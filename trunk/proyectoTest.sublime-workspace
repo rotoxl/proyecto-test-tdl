@@ -1,0 +1,644 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"limi",
+				"limiteCache"
+			],
+			[
+				"inn",
+				"innerHeight"
+			],
+			[
+				"setUni",
+				"setUnidadesImporteUsuario_getSql"
+			],
+			[
+				"back",
+				"backgroundImage"
+			],
+			[
+				"shor",
+				"shortToast"
+			],
+			[
+				"succ",
+				"success"
+			],
+			[
+				"json_",
+				"json_encode"
+			],
+			[
+				"MESS",
+				"messageData"
+			],
+			[
+				"mess",
+				"messageData"
+			],
+			[
+				"paddin",
+				"padding-top"
+			],
+			[
+				"anim",
+				"animacionFinal"
+			],
+			[
+				"toggleMostrare",
+				"toggleMostrarExtraInfo"
+			],
+			[
+				"keyboar",
+				"keyboardShowHandler"
+			],
+			[
+				"overla",
+				"statusBarOverlaysWebView"
+			],
+			[
+				"Statu",
+				"StatusBarfk"
+			],
+			[
+				"stat",
+				"statusBarOverlaysWebView"
+			],
+			[
+				"colorC",
+				"colorCorp"
+			],
+			[
+				"coorCo",
+				"colorCorpOverlay"
+			],
+			[
+				"test",
+				"testData"
+			],
+			[
+				"TarjetaPet",
+				"TarjetaPetRechazada"
+			],
+			[
+				"TarjetaNoH",
+				"TarjetaNoHayDatos"
+			],
+			[
+				"TarjetaPetR",
+				"TarjetaPeticionRealizada"
+			],
+			[
+				"coment",
+				"comentarioViaje"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"comp",
+				"comprueba"
+			],
+			[
+				"icon",
+				"iconoFav"
+			],
+			[
+				"remo",
+				"removeClass"
+			],
+			[
+				"gest",
+				"gestionProduccion"
+			],
+			[
+				"lotsE",
+				"lotesEnVigor"
+			],
+			[
+				"TarjetaPro",
+				"TarjetaProduccion"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"close",
+				"closest"
+			],
+			[
+				"ini",
+				"inicialNueva"
+			],
+			[
+				"vis",
+				"visibility"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"TarjetaProd",
+				"TarjetaProduccion"
+			],
+			[
+				"msgE",
+				"msgEstadoBarra"
+			],
+			[
+				"motiv",
+				"motivosRechazo"
+			],
+			[
+				"solicu",
+				"solicitudes_r"
+			],
+			[
+				"Control",
+				"Controlador_plus"
+			],
+			[
+				"clas",
+				"className"
+			],
+			[
+				"naviga",
+				"navigation_drawer"
+			],
+			[
+				"recargono",
+				"recargonocturno_ap"
+			],
+			[
+				"compru",
+				"compruebaVersion"
+			],
+			[
+				"version",
+				"versionCaducada"
+			],
+			[
+				"versio",
+				"versionCaducada"
+			],
+			[
+				"vers",
+				"versionCaducada"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"sele",
+				"seleccionados"
+			],
+			[
+				"lent",
+				"length"
+			],
+			[
+				"tool",
+				"tooltip"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 120,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"js",
+				"Pretty JSON: JSON query with ./jq"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"prettyp",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 457.0
+	},
+	"console":
+	{
+		"height": 332.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/rotoxl/Documents/docu-proyecto test/notebook/less/app.arrow.less",
+		"/Users/rotoxl/Documents/docu-proyecto test/notebook/less/app.switch.less",
+		"/Users/rotoxl/Documents/docu-proyecto test/notebook/less/app.variables.less",
+		"/Users/rotoxl/Documents/proyecto test/notebook/api/Slim/Slim.php",
+		"/Users/rotoxl/Documents/proyecto test/notebook/api/notes.sql",
+		"/Users/rotoxl/Documents/proyecto test/Previo/temas/Notebook/css/animate.css",
+		"/Users/rotoxl/dev/instrucciones.txt",
+		"/Users/rotoxl/dev/TaxiMobileIOSx/config.xml",
+		"/Users/rotoxl/dev/web/tax-i/mobile/static/taxi.mobile.css",
+		"/Users/rotoxl/dev/web/tax-i/mobile/fail.html",
+		"/Users/rotoxl/dev/web/tax-i/mobile/static/taxi.com.js",
+		"/Users/rotoxl/dev/web/tax-i/mobile/static/taxi.mobile.comun.scss",
+		"/Users/rotoxl/dev/web/tax-i/mobile/login.html",
+		"/Users/rotoxl/dev/TaxiDriverAndroid/platforms/android/AndroidManifest.xml",
+		"/Library/WebServer/Documents/.htaccess",
+		"/Users/rotoxl/dev/TaxiMobileAndroid/platforms/android/AndroidManifest.xml",
+		"/Users/rotoxl/dev/web/tax-i/include/creaConn.php",
+		"/Users/rotoxl/dev/web/tax-i/mobile/metadatos.php",
+		"/Users/rotoxl/dev/web/tax-i/include/metadatos_com.php",
+		"/Users/rotoxl/dev/web/tax-i/mobile/static/taxi.mobile.comun.js",
+		"/Users/rotoxl/dev/TaxiMobileAndroid/config.xml",
+		"/Users/rotoxl/dev/web/tax-i/mobile/static/taxi.mobile.js",
+		"/Users/rotoxl/dev/web/tax-i/mobile/prumapa.html",
+		"/Users/rotoxl/dev/web/tax-i/mobile/prod.html",
+		"/Users/rotoxl/dev/web/tax-i/mobile/mobile_r.php",
+		"/Users/rotoxl/dev/web/tax-i/mobile/static/taxi.mobile.comun.css",
+		"/Users/rotoxl/dev/web/tax-i/include/static/taxi.com.js",
+		"/Users/rotoxl/dev/TaxiMobileAndroid/platforms/android/src/com/plugin/gcm/GCMIntentService.java",
+		"/Users/rotoxl/dev/web/tax-i/mobile/static/login.css",
+		"/Users/rotoxl/dev/TaxiMobile/config.xml",
+		"/Users/rotoxl/dev/TaxiMobile2/config.xml",
+		"/Users/rotoxl/dev/TaxiMobile2/platforms/android/platform_www/cordova.js",
+		"/Users/rotoxl/dev/createTaxiMobile.txt",
+		"/Users/rotoxl/dev/taxiMobile/platforms/ios/cordova/lib/copy-www-build-step.sh",
+		"/Users/rotoxl/dev/taxiMobile/config.xml",
+		"/Users/rotoxl/dev/web/tax-i/operator/login.php",
+		"/Users/rotoxl/dev/web/tax-i/mobile/static/style.css",
+		"/Users/rotoxl/dev/web/tax-i/mobile/static/style-metronic.css",
+		"/Users/rotoxl/dev/web/tax-i/mobile/login_r.php",
+		"/Users/rotoxl/Desktop/conflictosEvales.txt",
+		"/Users/rotoxl/dev/web/tax-i/mobile/mobile.sublime-project",
+		"/Users/rotoxl/dev/web/tax-i/mobile/mobile.html",
+		"/Users/rotoxl/dev/web/tax-i/mobile/versiones_historial.txt",
+		"/Users/rotoxl/dev/web/tax-i/web/css/style.css",
+		"/Users/rotoxl/dev/web/tax-i/web/descargas.html",
+		"/Users/rotoxl/dev/web/tax-i/google_play/apk-sign/firmar.sh",
+		"/Users/rotoxl/dev/web/tax-i/web/google_play/apk-sign/firmar.sh",
+		"/Users/rotoxl/dev/web/tax-i/enterprise/pagina.php",
+		"/Users/rotoxl/dev/web/tax-i/enterprise/enterprise.sublime-project",
+		"/Users/rotoxl/Downloads/imakewebthings-jquery-waypoints-415eb55/waypoints.js",
+		"/Users/rotoxl/dev/web/tax-i/docu/cambios.sql",
+		"/Users/rotoxl/dev/web/tax-i/operator/operator.sublime-project",
+		"/Users/rotoxl/dev/eclipse.workspace/TaxiMobileCordova34/hooks/before_prepare/svn_info.sh",
+		"/Users/rotoxl/dev/eclipse.workspace/TaxiMobileCordova34/hooks/before_prepare.sh",
+		"/Users/rotoxl/dev/web/tax-i/web/index.html",
+		"/Users/rotoxl/dev/web/tax-i/web/info.html",
+		"/Users/rotoxl/dev/web/tax-i/web/web.sublime-project",
+		"/Users/rotoxl/dev/web/tax-i/web.sublime-project",
+		"/Users/rotoxl/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/rotoxl/dev/web/tax-i/web/js/cbpScroller.js",
+		"/Users/rotoxl/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/rotoxl/dev/web/tax-i/index.html",
+		"/Users/rotoxl/dev/web/tax-i/descargas.html",
+		"/Users/rotoxl/dev/web/tax-i/web/js/main.js",
+		"/Users/rotoxl/dev/web/tax-i/operator/static/taxi.operator.js",
+		"/Users/rotoxl/dev/web/tax-i/operator/static/taxi.operator.css",
+		"/Users/rotoxl/dev/web/tax-i/operator/cargarlista.php",
+		"/Users/rotoxl/dev/web/tax-i/copia recursos mobile.sh",
+		"/Users/rotoxl/dev/web/tax-i/include/static/login.css",
+		"/Users/rotoxl/dev/web/tax-i/include/login.php",
+		"/Users/rotoxl/Library/Application Support/Sublime Text 3/Packages/User/BufferScroll.sublime-settings",
+		"/Users/rotoxl/Desktop/ugly.json",
+		"/Users/rotoxl/Library/Application Support/Sublime Text 3/Packages/BufferScroll/BufferScroll.sublime-settings"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"$_SERVER",
+			"setMsgDesarrollador",
+			"msgd",
+			"msgdes",
+			"limiteCache",
+			"60000",
+			"limiteCache",
+			"60000",
+			"min_col",
+			"reparteEnCols",
+			"min_col_width",
+			"min_col_width=250",
+			"min_col",
+			"save",
+			"logout",
+			"app.logout",
+			"isphone",
+			"min_col_width",
+			"cambiaFormaPago",
+			"tareasPos",
+			"rellenaPopupCC",
+			"rellenaColEVale",
+			"rellenaPopupCC",
+			"Indica el cent",
+			"this.poly",
+			"polyline",
+			"push",
+			"iconsPath",
+			"gps",
+			"map-marker",
+			"animateThen",
+			"cancelarPeticion",
+			"petdectaxi",
+			"generaPeticion",
+			"coordsGPS",
+			"creaPeticion",
+			"madrid",
+			"bogota",
+			"xlatlong",
+			"ROADMAP",
+			"mapRedraw",
+			"mapOptions",
+			"maps",
+			"initmapa",
+			"getInitData",
+			"font-size",
+			"html",
+			"font-size",
+			".col.num1",
+			".col.num2",
+			".col",
+			"_comprueba_do",
+			"TarjetaCalificar",
+			"btnNuevoTrayecto",
+			"quitaEstadoBarra",
+			"TarjetaCalificar",
+			"setEstadoBarra('neutro')",
+			"setEstadoBarra",
+			"reinitPet",
+			"reinitModulo",
+			"TarjetaCalificar",
+			"rellenaColEVale",
+			"Indica el ",
+			"tickets",
+			"comprueba",
+			"estadoPeticion",
+			"quitaEstadoBarra",
+			"tarjetaCalif",
+			"isphone",
+			"la petición",
+			"realizado",
+			"la peticion",
+			"throbber",
+			"nohayTa",
+			"azulCorp",
+			"44px",
+			"430px",
+			"fpago",
+			"fts",
+			"tipo de taxi",
+			"ajustaTopFlotante",
+			"showForm",
+			"Hora de la ",
+			"nohaycoches",
+			"noch",
+			"notch",
+			"('#maincontent').css",
+			"#maincontent",
+			"resize",
+			"hayPush",
+			"xlog",
+			"pushRecei",
+			"pushReci",
+			"onPushAPN",
+			"fasesPeticion",
+			"registerPush_token",
+			"tamanhoDiv",
+			"size",
+			"ponEventoFoco",
+			"ponEventoFoco\nponEventoFoco",
+			"ponEventoFoco",
+			"ping",
+			"keyboardsho",
+			"ponEventos",
+			".card",
+			"css",
+			"cordova",
+			"static",
+			"app.cache.historial",
+			"jQuery(this.dom).find('section.body').click( function(){self.ampliar()} )",
+			"X",
+			"Pulsa sobre",
+			"Caducó",
+			"gestionPro",
+			"animacion",
+			"anima",
+			"TarjetaTour.prototype",
+			"muestraTour",
+			"tour",
+			"historico",
+			"marcanavegador\nmarcanavegador",
+			"marcanavegador",
+			"esAndroid",
+			"'android'",
+			"icon.png",
+			"' trayectos'",
+			"trayectos",
+			"msgdes"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 120,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								88,
+								88
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "html",
+							"buffer_scroll_name": "2f0dfef9",
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 98.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "proyectoTest.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 166.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
