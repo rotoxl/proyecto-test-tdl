@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>
+  	<title></title>
+
+  	<meta charset="utf-8" />
+  
+  	<meta name="description" content="app, web app, responsive, onetest, flat, flat ui, ui kit, off screen nav" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  	<meta name="mobile-web-app-capable" content="yes">
+
+	<!-- <link rel="shortcut icon" 				sizes="144x144" href="static/taxiconipadhi.png">
+	<link rel="shortcut icon" 				sizes="72x72" 	href="static/taxiphone4.png">
+	<link rel="apple-touch-icon" 			sizes="144x144" href="static/taxiconipadhi.png">
+	<link rel="apple-touch-icon-precomposed"sizes="72x72" 	href="static/taxiphone4.png"> -->
+
+
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="css/font.css" type="text/css" />
+	<!-- <link rel="stylesheet" href="js/calendar/bootstrap_calendar.css" type="text/css" /> -->
+	<link rel="stylesheet" href="css/app.css" type="text/css" />
+	<!--[if lt IE 9]>
+		<script src="js/ie/html5shiv.js"></script>
+		<script src="js/ie/respond.min.js"></script>
+		<script src="js/ie/excanvas.js"></script>
+	<![endif]-->
+</head>
+<body class="">
+	<section class="vbox">
+	  	<header class="header navbar navbar-fixed-top-xs" id="navigation_bar">
+			<div class="navbar-header aside-md">
+				<a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+					<i class="fa fa-bars"></i>
+				</a>
+				<a href="#" class="navbar-brand"><img src="images/logo.png" class="m-r-sm">Notebook</a>
+				<a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user">
+					<i class="fa fa-cog"></i>
+				</a>
+			</div>
+
+			<ul class="nav navbar-nav hidden-xs">
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<span class="thumb-sm avatar pull-left">
+							<img src="images/avatar.jpg">
+						</span>
+						John.Smith <b class="caret"></b>
+					</a>
+					
+					<ul class="dropdown-menu animated fadeInRight" role="menu">
+					<span class="arrow top"></span>
+					<li>
+						<a href="javascript:app.cargaAjustes()">Ajustes</a>
+					</li>
+					<li>
+						<a href="javascript:app.cargaPerfil()">Ver perfil</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="modal.lockme.html" data-toggle="ajaxModal" >Logout</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+	  	</header>
+
+
+	  	<section id="main_container">
+	  		<section class="hbox">
+		        <aside class="aside-md hidden-xs" id="nav">          
+		          	<section class="vbox">
+			            <header class="header clearfix">  
+			            </header>
+
+			            <section class="scrollable">
+			              	<div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
+			                
+			                	<nav class="nav-primary hidden-xs">
+			                  		<ul class="nav">
+			                    		<li class="continuarTest active">
+			                    			<a href="javascript:app.continuarTest()">	
+		                    					<i class="fa fa-play">
+		                    						<b class="bg-danger">
+		                    						</b>
+		                    					</i>
+			                    				<span>Continuar test</span>
+			                    			</a>
+			                    		</li>
+
+			                    		<li class="">
+			                    			<a href="javascript:app.cargaVistaMisTest()">	
+		                    					<i class="fa fa-th">
+		                    						<b class="bg-warning">
+		                    						</b>
+		                    					</i>
+			                    				<span>Mis tests</span>
+			                    			</a>
+			                    		</li>
+
+			                    		<li class="">
+			                    			<a href="javascript:app.cargaVistaSocial()">	
+		                    					<i class="fa fa-share-alt">
+		                    						<b class="bg-success">
+		                    						</b>
+		                    					</i>
+			                    				<span>Social/Mis grupos</span>
+			                    			</a>
+			                    		</li>
+
+			                    		<li class="">
+			                    			<a href="javascript:app.cargaVistaEstadisticas()">	
+		                    					<i class="fa fa-pie-chart">
+		                    						<b class="bg-info">
+		                    						</b>
+		                    					</i>
+			                    				<span>Estadísticas</span>
+			                    			</a>
+			                    		</li>
+
+			                  		</ul>
+			                	</nav>
+			                	
+			              </div>
+			            </section>
+			            
+			            <footer class="footer lt hidden-xs b-t b-dark">
+			            </footer>
+
+		          	</section>
+		        </aside>
+
+		        <section>
+		        	<section class="vbox" id="content">
+		        	</section>
+		        </section>
+
+	  		</section>
+	  	</section>
+	</section>
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- App -->
+	<script src="js/app.js"></script> 
+	<script src="js/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="js/app.plugin.js"></script>
+
+	<script>
+		function init(){
+			app= new Controlador()
+			app.continuarTest()
+		}
+		
+		if (isPhone())
+          	document.addEventListener('deviceready', init(), true)
+      	else
+          	jQuery(document).ready(function(){init()} )
+	</script>
+</body>
+</html>
