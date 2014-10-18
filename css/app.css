@@ -211,6 +211,15 @@ section#main_container {
   background-color: transparent !important;
   color: #2e3e4e !important; }
 
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-user-focus: none;
+  -moz-user-select: none;
+  -moz-user-focus: none;
+  user-select: none;
+  user-focus: none; }
+
 #content {
   width: 100%;
   min-height: 80%; }
@@ -284,6 +293,7 @@ section#main_container {
         #content.vistaTest .pregunta table td.clave {
           vertical-align: top; }
         #content.vistaTest .pregunta table td.valor {
+          vertical-align: top;
           padding-right: 5px;
           font-weight: 400; }
     #content.vistaTest footer.respuestas {
@@ -476,5 +486,29 @@ section#main_container {
 
   .navbar-nav.navbar-right:last-child {
     margin-right: -15px; } }
+#swipeview-slider > div {
+  min-height: 400px;
+  position: relative;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: -o-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  -o-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
+  -o-box-pack: center;
+  box-pack: center;
+  -webkit-box-align: center;
+  -mox-box-align: center;
+  -ms-box-align: center;
+  -o-box-align: center;
+  box-align: center;
+  overflow: hidden; }
 
 /*# sourceMappingURL=app.css.map */
