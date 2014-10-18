@@ -125,6 +125,18 @@ function lpad(v, carRelleno, lenTotal){
     lenTotal=lenTotal || 2
     return ('00'+v).substr(-lenTotal, lenTotal)
     }
+function buscaFilas(filas, dicBuscado){
+     //devuelve el array de filas que cumplen los requisitos
+     var fn=function(element, index){
+          for (var k in dicBuscado){
+               if (dicBuscado[k]!=element[k]){
+                    return false
+                    }
+               }
+          return true
+          }
+     return jQuery.grep(filas, fn)
+     }
 //////////
 function Controlador(){
   this.init()
@@ -144,6 +156,7 @@ Controlador.prototype.init=function(){
       	$this.toggleClass('active');
         });
     }
+
 /////
 Controlador.prototype.continuarTest=function(){
     this.cargaTest( this.testData() )
@@ -151,11 +164,10 @@ Controlador.prototype.continuarTest=function(){
 Controlador.prototype.cargaTest=function(test){
   new VistaTest(test).toDOM()
   }
+Controlador.prototype.cargaVistaInicio=function(){}
 Controlador.prototype.cargaVistaMisTest=function(){}
 Controlador.prototype.cargaVistaSocial=function(){}
 Controlador.prototype.cargaVistaEstadisticas=function(){}
-//////////
-
 //////////
 function Vista(test){
   if (this.id==null) return
@@ -181,33 +193,48 @@ Vista.prototype.resize=function(){
   }
 //////////
 function VistaTest(test){
+    if (test==null) return
+
     Vista.call(this)
 
     this.test=test
     this.id='vistaTest'
 
     this.mapaInicializado=false
+    this.examen=this.test.examen
     }
 VistaTest.prototype=new Vista
 VistaTest.prototype.tareasPostCarga=function(){
   this.cargaPregunta(0)
+  this.iniciaTiempo()
   }
-VistaTest.prototype.convierteAHora=function(numMinutos){
-  return Math.floor(numMinutos/60)+':'+ lpad(numMinutos % 60, '0', 2)
+VistaTest.prototype.convierteSegundosAHora=function(numSegundos){
+  return this.convierteMinutosAHora(numSegundos/60)
+  }
+VistaTest.prototype.convierteMinutosAHora=function(numMinutos){
+  return Math.floor(numMinutos/60)+':'+ lpad( Math.floor(numMinutos) % 60, '0', 2)
   }
 VistaTest.prototype.getDOM=function(){
+  var self=this
   return [
     creaObjProp('header', {className:'marcadores' , hijos:[
         creaObjProp('div', {className:'btn-group btn-dark', hijos:[
-            creaObjProp('button', {className:'btn btn-primary col-md-6 col-sm-6 col-xs-6 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', texto:' Pregunta 1 de '+this.test.examen.numPreguntas+' ', hijos:[
+            creaObjProp('button', {className:'btn btn-primary col-md-6 col-sm-6 col-xs-6 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', hijos:[
+              creaT(' Pregunta '),
+              creaObjProp('span', {id:'numPag', texto:1}),
+              creaT(' de '+this.test.examen.numPreguntas+' '), 
               creaObjProp('b', {className:'caret'})
               ]}),
             creaObjProp('ul', {id:'mapatest', className:'dropdown-menu animated fadeInRight btn-primary', role:'menu', hijos:[
               creaObjProp('span', {className:'arrow top'}),
 
               ]}),
-            creaObjProp('button', {className:'btn btn-dark col-md-6 col-sm-6 col-xs-6', i:'fa-clock-o', texto:' 00:00 de '+this.convierteAHora(this.test.examen.minutos), hijo:
-              creaObjProp('i', {className:'fa fa-pause'}) }),
+            creaObjProp('button', {onclick:function(){self.pausaTiempo()}, className:'btn btn-dark col-md-6 col-sm-6 col-xs-6', i:'fa-clock-o', hijos:[
+              creaT(' '),
+              creaObjProp('span', {id:'tiempoConsumido', texto:this.convierteSegundosAHora(this.test.examen.segundosConsumidos)}),
+              creaT(' de '+this.convierteMinutosAHora(this.test.examen.minutos)),
+              creaObjProp('i', {className:'fa fa-pause'}) 
+              ]}),
           ]})
         ]}),
     creaObjProp('div', {className:'pregunta'}),
@@ -230,7 +257,7 @@ VistaTest.prototype.initMapa=function(){
   // var numfilas=Math.floor(this.test.preguntas.length/elPorFila)
   var col=0,tr=creaObjProp('tr'), trs=[], ta=creaObjProp('table')
   for (var i=0; i<preg.length; i++){
-    preg.i=i
+    this.test.preguntas[i].i=i
     if (col>=elPorFila){
       ta.appendChild(tr)
       tr=creaObjProp('tr')
@@ -238,16 +265,15 @@ VistaTest.prototype.initMapa=function(){
       }
     var pra=preg[i]
 
-    var hijo, texto=null
+    var hijo
     if (pra.estrella){
       hijo=this.generaDomEstrella(i+1)
     }
     else 
-      texto=i+1
+      hijo=creaObjProp('span', {texto:i+1})
 
     var self=this
     tr.appendChild( creaObjProp('td', { className:(pra.respuestaUsuario!=null? 'contestada':''), 
-                                        texto:texto,
                                         id:'mapa_preg'+i, 
                                         hijo:hijo, 
                                         onclick:function(){self.navegaPregunta( jQuery(this).text() ) } }) ) 
@@ -273,8 +299,12 @@ VistaTest.prototype.actualizaMapa=function(preg){
   if (preg.estrella)
     td.append(this.generaDomEstrella(preg.i+1))
   else 
-    td.append(creaT(preg.i+1))
-}
+    td.append(creaObjProp('span', {texto:preg.i+1}))
+  }
+VistaTest.prototype.marcaPreguntaActual=function(){
+  jQuery('#mapatest td').removeClass('active')
+  jQuery('#mapa_preg'+this.preg.i).addClass('active')
+  }
 VistaTest.prototype.cargaPregunta=function(i){
   if (!this.mapaInicializado)
     this.initMapa()
@@ -300,8 +330,11 @@ VistaTest.prototype.cargaPregunta=function(i){
   this.dom.find('.respuestas').append(
     creaObjProp('table',{hijos:xr})
     )
+
+  this.marcaPreguntaActual()
   }
 VistaTest.prototype.generaDomRespuestas=function(){
+  var self=this
   var xr=[], letras='ABCDE', estilos=['bg-danger', 'bg-warning', 'bg-success', 'bg-primary', 'bg-info']
   for (var i=0; i<this.preg.respuestas.length; i++){
       xr.push( creaObjProp('tr', {onclick:function(){self.marcaResp(this)}, hijos:[
@@ -309,8 +342,13 @@ VistaTest.prototype.generaDomRespuestas=function(){
         creaObjProp('td', {className:'valor', texto:this.preg.respuestas[i].texto }),
         ]}))
     }
+  if (this.preg.respuestaUsuario!=null){
+    jQuery(xr).addClass('atenuada')
+    jQuery(xr[this.preg.respuestaUsuario]).removeClass('atenuada').addClass('active')
+  }
   return xr
-}
+
+  }
 VistaTest.prototype.navegaPregunta=function(iRestar1){
   var i=iRestar1-1
   if (i<0 || i>this.test.examen.numPreguntas)
@@ -321,8 +359,11 @@ VistaTest.prototype.navegaPregunta=function(iRestar1){
   dp.find('.clave i').removeClass('fa-star fa-star-o').addClass(this.preg.estrella?'fa-star':'fa-star-o')
   dp.find('.valor').text(this.preg.texto)
 
-  var dr=this.dom.find('.respuestas table').empty().append(this.generaDomRespuestas() )
-}
+  this.dom.find('#numPag').text(i+1)
+  this.dom.find('.respuestas table').empty().append(this.generaDomRespuestas() )
+
+  this.marcaPreguntaActual()
+  }
 VistaTest.prototype.toggleEstrella=function(celda){
   if (this.preg.estrella==null)
     this.preg.estrella=false
@@ -353,10 +394,185 @@ VistaTest.prototype.marcaResp=function(fila){
 
   this.actualizaMapa(this.preg)
   }
+//////
+VistaTest.prototype.tiempoAcabado=function(){
+  this.guardaEstadoExamen()
+  this.muestraFormPausa('fintiempo')
+  }
+VistaTest.prototype.guardaEstadoExamen=function(){
+  console.error('GUARDAR ESTADO DEL EXAMEN!')
+  }
+VistaTest.prototype.muestraFormPausa=function(tipo){
+  var self=this
+  var stats=this.generaEstadisticasPausa()
+
+  this.frmdom=jQuery('.modal#frmPausa')
+
+  var frmfooter=this.frmdom.find('.modal-footer')
+
+  var visual=this.frmdom.find('.main .visual')
+  var tit=this.frmdom.find('.main .texto')
+  var details=this.frmdom.find('.main .details')
+  
+  visual.removeClass().addClass('visual fa fa-stack-1x fa-inverse')
+  if (tipo=='pausa'){
+      visual.addClass('fa-pause')
+      tit.text('Test Pausado')
+
+      details.empty().append([
+        creaObjProp('p', {className:'titulo', texto:'Estado del test actual'}),
+        creaObjProp('p', {className:'respondidas', texto:stats.respondidas+' de '+stats.preguntas+' preguntas respondidas ('+stats.respondidasPorcentaje+'%)', i:'fa-pie-chart fa-fw', omiteNulo:true}),
+        creaObjProp('p', {className:'tiempo', texto:stats.minutosConsumidos+' de '+stats.minutosTotal+' minutos consumidos ('+stats.minutosPorcentaje+'%)', i:'fa-clock-o fa-fw', omiteNulo:true}),
+        creaObjProp('p', {className:'estrellas', texto:stats.estrellas+' preguntas marcadas', i:'fa-star-o fa-fw', omiteNulo:true}),
+        ])
+
+      frmfooter.empty().append([
+        creaObjProp('button', {onclick:function(){self.muestraFormPausa('fin')}, className:'btn btn-sm btn-dark transparent', texto:'Finalizar'}),
+        creaObjProp('button', {onclick:function(){self.pausaTiempo(); self.frmdom.modal('hide')}, className:'btn btn-sm btn-success', texto:'Continuar'}),
+        ])
+    }
+  else if (tipo=='fin' || tipo=='fintiempo'){
+    var corrige=this.corrigeTest()
+
+    if (tipo=='fin'){
+        visual.addClass('fa-stop')
+        tit.text('Test finalizado')
+        }
+    else if (tipo=='fintiempo') {
+        visual.addClass('fa-clock-o')
+        tit.text('Tiempo finalizado')
+        }
+
+      details.empty().append([
+        creaObjProp('p', {className:'titulo', texto:'Resultado de la prueba'}),
+        creaObjProp('p', {className:'resp notafinal', texto:'NOTA FINAL: '+ corrige.nota, i:'fa-trophy fa-fw'}),
+
+        creaObjProp('p', {className:'titulo', texto:'Estadísticas'}),
+        creaObjProp('p', {className:'resp aciertos',texto:corrige.aciertos+' acierto(s)', i:'fa-check-circle fa-fw'}),
+        creaObjProp('p', {className:'resp fallos',  texto:corrige.fallos+' fallo(s)', i:'fa-times-circle fa-fw'}),
+        creaObjProp('p', {className:'resp nc',      texto:corrige.nc+' no respondida(s)', i:'fa-dot-circle-o fa-fw'}),
+
+        creaObjProp('p', {className:'respondidas', texto:stats.respondidas+' de '+stats.preguntas+' preguntas respondidas ('+stats.minutosPorcentaje+'%)', i:'fa-pie-chart fa-fw'}),
+        creaObjProp('p', {className:'tiempo', texto:stats.minutosConsumidos+' de '+stats.minutosTotal+' minutos consumidos ('+stats.minutosPorcentaje+'%)', i:'fa-clock-o fa-fw'}),
+        creaObjProp('p', {className:'estrellas', texto:stats.estrellas+' preguntas marcadas', i:'fa-star-o fa-fw'}),
+        ])
+
+      frmfooter.empty().append([
+        creaObjProp('button', {onclick:function(){self.frmdom.modal('hide'); app.cargaVistaInicio()}, className:'btn btn-sm btn-dark transparent', texto:'Cerrar test'}),
+        creaObjProp('button', {onclick:function(){self.repasarExamen(); self.frmdom.modal('hide')}, className:'btn btn-sm btn-success', texto:'Repasar'}),
+        ])
+    }
+  else {
+      console.warn('Tipo de form desconocido!'+tipo)
+      return
+      }
+
+  //metadatos del test
+  var md=this.test.md
+  this.frmdom.find('.info .details').empty().append([
+    // creaObjProp('p', {className:'header', texto:'Metadatos disponibles'}),
+    creaObjProp('p', {className:'titulo', texto:md.titulo, i:'fa-bookmark fa-fw', omiteNulo:true}),
+    creaObjProp('p', {className:'categoria', texto:md.categoria, i:'fa-graduation-cap fa-fw', omiteNulo:true}),
+    creaObjProp('p', {className:'fecha', texto:md.fecha, i:'fa-calendar fa-fw', omiteNulo:true}),
+    creaObjProp('p', {className:'organismo', texto:md.organismo, i:'fa-institution fa-fw', omiteNulo:true}),
+    creaObjProp('p', {className:'region', texto:md.region, i:'fa-globe fa-fw', omiteNulo:true}),
+    ])
+  if (md.img)
+    this.frmdom.find('.info .visual')[0].src=md.img
 
 
+  this.frmdom.modal({backdrop:'static', keyboard:false})
+  }
+VistaTest.prototype.generaEstadisticasPausa=function(){
+  var r= {
+      estrellas: buscaFilas(this.test.preguntas, {estrella:true}).length,
+      noRespondidas: buscaFilas(this.test.preguntas, {respuestaUsuario:null}).length,
+      preguntas:this.test.preguntas.length,
+
+      minutosConsumidos:Math.floor(this.examen.segundosConsumidos/60),
+      minutosTotal:this.examen.minutos
+      }
+  r.minutosPorcentaje= Math.floor(100*this.examen.segundosConsumidos/(r.minutosTotal*60) )
+  r.respondidas=r.preguntas-r.noRespondidas
+  r.respondidasPorcentaje=Math.floor(100*r.respondidas/r.preguntas)
+  return r
+  }
+VistaTest.prototype.corrigeTest=function(){
+  var a=0, f=0, nc=0
+  for (var i=0; i<this.test.preguntas.length; i++){
+      var preg=this.test.preguntas[i]
+      if (preg.respuestaUsuario==null)
+        nc++
+      else if (preg.respuestaUsuario==preg.respuesta)
+        a++
+      else 
+        f++
+      }
+  var fr=this.test.examen.fallosRestan
+  if (fr==null) fr=0
+
+  var tn= (a-(f*fr))/this.test.preguntas.length
+  var nota=Math.floor(tn*100)/10
+
+  return {aciertos:a, fallos:f, nc:nc, nota:nota}
+  }
+//////
+VistaTest.prototype.refrescoCrono=1000
+VistaTest.prototype.iniciaTiempo=function(){
+  var self=this
+  this.crono=setTimeout(function(){self.tickCrono()}, this.refrescoCrono)
+
+  var difMinutos=(this.examen.minutos-this.examen.segundosConsumidos/60)
+  this.examen.horaFinal=new Date( new Date().getTime() + difMinutos*60000)
+  console.info(this.examen.horaFinal)
+  }
+VistaTest.prototype.pausaTiempo=function(){
+  if (this.crono){ //pausamos
+    clearTimeout(this.crono)
+    this.crono=null
+
+    var sRestantes=(this.examen.horaFinal-new Date())/1000
+
+    this.examen.segundosConsumidos=(this.examen.minutos*60-sRestantes)
+    console.warn('Segundos consumidos:'+this.examen.segundosConsumidos)
+
+    this.examen.horaFinal=null
+
+    this.guardaEstadoExamen()
+    this.muestraFormPausa('pausa')
+    }
+  else { //retomamos
+    this.iniciaTiempo()
+    }
+  }
+VistaTest.prototype.tickCrono=function(){
+  var self=this
+  this.crono=setTimeout(function(){self.tickCrono()}, this.refrescoCrono)
+
+  var sRestantes=(this.examen.horaFinal-new Date())/1000
+  var minRestantes=Math.ceil(sRestantes/60)
+  
+  if (this.minRestantes==minRestantes){
+    console.log('No hay que actualizar el crono: segRestantes='+sRestantes)
+    return
+  }
+  console.warn('Actualizo crono: segRestantes='+sRestantes)
+  jQuery('#tiempoConsumido').text(this.convierteMinutosAHora(this.examen.minutos-minRestantes))
+  
+  this.minRestantes=minRestantes
+
+  if (sRestantes<=0){
+    this.tiempoAcabado()
+    clearTimeout(this.crono)
+    this.crono=null
+    }
+  }
 ////////////
-////////////
+function VistaRepasoTest(test){
+    VistaTest.call(this, test)
+    }
+VistaRepasoTest.prototype=new VistaTest
+VistaRepasoTest.prototype
 ////////////
 ////////////
 ////////////
@@ -374,8 +590,9 @@ Controlador.prototype.testData=function(){
             },
         examen: {
             fallosRestan:.25, //para indicar aquello de que cada 4 fallos resta 1 acierto
-            minutos:120,
+            minutos:2,
             numPreguntas:6, //redundante, pero vendrá bien para comprobar la integridad
+            segundosConsumidos:30,
             },
         preguntas:[{ 
               texto:'¿Cuál de los siguientes estandares de directorios guarda relación con la descripción de servicios de usuario?', 
@@ -388,7 +605,7 @@ Controlador.prototype.testData=function(){
                 {texto:'x.511'},
                 ],
               respuestaUsuario:1,
-            },{
+            },{ 
               texto:'Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD:', 
               img:null,
               respuesta:1,
@@ -400,14 +617,14 @@ Controlador.prototype.testData=function(){
                 ],
               respuestaUsuario:1,
             },{ 
-                texto:'Cuál de los siguientes derechos de explotación no precisan la realización o autorización por parte del titular de un programa de ordenador, seg&uacute;n la ley espa&ntilde;ola de propiedad intelectual:', 
+                texto:'Cuál de los siguientes derechos de explotación no precisan la realización o autorización por parte del titular de un programa de ordenador, según la ley española de propiedad intelectual:', 
                 img:null,
                 respuesta:1,
                 respuestas:[
                   {texto:'Reproducción total o parcial'},
                   {texto:'La realización de una copia de seguridad'},
                   {texto:'Traducción, adaptación o arreglo'},
-                  {texto:'Cualquier forma de distribución p&uacute;blica'},
+                  {texto:'Cualquier forma de distribución pública'},
                   ]
             },{ 
                 texto:'especto a la LSSI puede decirse que:', 
