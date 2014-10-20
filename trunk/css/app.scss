@@ -7,6 +7,8 @@ $navigation_drawer_bgcolor:#41586e;
 $navigation_drawer_bgcolor:#9db1c5;
 
 
+* > i{margin-right:2px;}
+
 body {
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
@@ -21,12 +23,19 @@ header#navigation_bar{
 	background-color:$navigation_bar_bgcolor; 
 	color:$navigation_bar_fgcolor;
 
-	> ul > li > a {
-		color:inherit;
-		:hover{color:$navigation_bar_fgcolor_hover;}
-	}
 
-	.navbar-header > .btn {
+	.barra { 
+		.navbar-header{
+			height:50px;
+
+			> ul > li > a {
+				color:inherit;
+				:hover{color:$navigation_bar_fgcolor_hover;}
+			}
+		}
+		
+	}
+	.navbar-header .btn {
 		position: absolute;
 		font-size: 1.3em;
 		padding: 9px 16px;
@@ -55,6 +64,12 @@ header#navigation_bar{
 			left: auto;
 		}
 	}
+	.barra.vista a.navbar-brand{
+			max-width: 80%;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 
 	.nav > li > a:hover, .nav > li > a:focus ,
 	.nav > li.open > a {
@@ -197,16 +212,20 @@ section#main_container{
 		content: "";
 		}
 }
-
+.dropdown-menu > li > a{
+	white-space:normal;
+}
 .dropdown-menu > li > a:hover, 
 .dropdown-menu > li > a:focus, 
 .dropdown-menu > .active > a, 
 .dropdown-menu > .active > a:hover, 
 .dropdown-menu > .active > a:focus {
+	cursor:pointer;
 	background-image: none;
 	filter: none;
 	background-color: #f1f1f1 !important;
 	color: #717171;
+	
 }
 
 .avatar {
@@ -296,22 +315,70 @@ section#main_container{
 	width: 100%;
 	min-height: 80%;
 
-	&.vistaTest{
-
-		background-color:rgba(50,50,50,0.1);
-		
-		header.marcadores{
-			width: 100%;
-			min-height: 50px;
-
+	&.vista{
+		.vista-header{
+			height:50px;
+			background-color:rgba(50,50,50,0.1);
+			
 			.btn-group{
-				width:100%
+				width: 100%;
 			}
 			.btn{
 				border-radius:0;
 				padding-top: 15px;
 				padding-bottom: 13px;
+			}
+		}
+		.vista-body{
+			min-height:50px;
+			
+			&.flowable{
+				overflow-y:auto;
+			}
+			
 
+			&.cargando{
+				background:url("../images/throbber.gif") no-repeat center center;
+				background-size:50px;
+			}
+
+			section.bloque{
+				margin-left:5px; margin-right:5px;
+				padding-top:10px
+			}
+			article.card{
+				display:inline-block;
+				min-height:80px; width:49%;
+				margin-top:5px; 
+
+				border-radius:3px; box-shadow: 0 1px 2px #aaa;
+				
+				overflow:hidden;
+				background: white;
+
+				div.body{
+					height:60px;
+				}
+				footer{
+					padding-left:2px; 
+					padding-right:2px;
+					height:40px; 
+
+					border-top: 1px solid #f0f0f0;
+					background-color:rgba(50, 50, 50, 0.1);
+					.bl{display:block;}
+				}
+			}
+			article.card.d{
+				float: right;
+			}
+
+		}
+	}
+
+	&.vista.vistaTest{
+		.vista-header{
+			.btn{
 				.fa-pause{
 					float: right;
 					margin-top: 2px;
@@ -388,6 +455,7 @@ section#main_container{
 			font-size:20px; line-height:21px; 
 			color:rgb(113, 113, 113);
 			// background-color:rgba(0,0,0,0.05) !important;
+			border-bottom:1px solid #2e3e4e;
 			table {
 				margin-top:15px; 
 				td.clave{
@@ -423,6 +491,63 @@ section#main_container{
 			}
 			
 		
+		}
+
+	}
+	&.vista.vistaTienda{
+		.vista-header {
+			background:#65bd77; color:white;
+			button{
+				background:transparent;
+			}
+		}
+		.vista-body{
+			padding-bottom:10px;
+			background-color:rgba(50, 50, 50, 0.1);
+			
+			.bloque{
+				margin-left:5px; margin-right:5px;
+				
+				.titulo{			
+				}
+				.btn.cargarMas{
+					float: right;
+					margin-top:-2px;
+					padding:0px 4px;
+
+					text-transform: uppercase;
+					border-radius:0;
+
+					&.aunMas{
+						margin-top:10px;
+						margin-bottom: 10px;
+					}
+				}
+
+				.card{
+					min-height: 120px;
+
+					.body{
+						min-height:100px;
+
+						text-align: center;
+
+
+						i {
+							opacity: .1;
+							font-size: 160px;
+
+						}
+					}
+
+					span.love{color:#aaa}
+				}
+
+				&#cat-1 .body{
+					// background:url(../images/cat-1.png) no-repeat center center;
+					// background-size:cover;
+				}//enfermeria
+			}
 		}
 
 	}
@@ -506,6 +631,7 @@ section#main_container{
 
 //media queries
 @media (max-width: 767px){
+	body{overflow:hidden;}
 	.modal#frmPausa{
 		
 		padding-left:15px;
@@ -517,13 +643,29 @@ section#main_container{
 			.visual{
 				right: 11px;
 				top: -20px;
+				max-height: 70px;
+				background:transparent;	
+							
 			}
 		}
 	}
 
-	ul#mapatest span.arrow{
+	ul.btn2_1 span.arrow{
 		margin-left:-25%;
 	}
+	ul.btn2_2 span.arrow{
+		margin-left:+25%;
+	}
+
+	ul.btn3_1 span.arrow{
+		margin-left:-37%;
+	}
+	ul.btn3_2 span.arrow{
+		margin-left:0%;
+	}
+	// ul.btn3_2 span.arrow{
+	// 	margin-left:0%;
+	// }
 
 	.navbar + section .nav-off-screen {
 		top: 50px;
@@ -656,19 +798,39 @@ section#main_container{
 
 
 #swipeview-slider{
-}
-#swipeview-slider > div {
-	
-	min-height:400px;
-	position:relative;
 
-	display:-webkit-box; display:-moz-box; display:-ms-box; display:-o-box; display:box;
-	-webkit-box-orient:vertical; -moz-box-orient:vertical; -ms-box-orient:vertical; -o-box-orient:vertical; box-orient:vertical;
-	-webkit-box-pack:center; -moz-box-pack:center; -ms-box-pack:center; -o-box-pack:center; box-pack:center;
-	-webkit-box-align:center; -mox-box-align:center; -ms-box-align:center; -o-box-align:center; box-align:center;
-	overflow:hidden;
+	> div {
+		min-height:400px;
+		position:relative;
+
+		display:-webkit-box; display:-moz-box; display:-ms-box; display:-o-box; display:box;
+		-webkit-box-orient:vertical; -moz-box-orient:vertical; -ms-box-orient:vertical; -o-box-orient:vertical; box-orient:vertical;
+		-webkit-box-pack:center; -moz-box-pack:center; -ms-box-pack:center; -o-box-pack:center; box-pack:center;
+		-webkit-box-align:center; -mox-box-align:center; -ms-box-align:center; -o-box-align:center; box-align:center;
+		overflow:hidden;
+	
+		.swipeview-active{}
+
+		&.portada{
+			
+			div.visual{
+				height: 100px;
+				width: 100px;
+				margin-top: 40px;
+
+				background-repeat:no-repeat;
+				background-position: center center;
+
+				}
+			&.inicio div.visual{ background-image:url("../images/m-swipe-left.png"); }
+			&.fin div.visual{ background-image:url("../images/m-swipe-right.png"); }
+			
+			font-size:28px; font-style:italic; 
+			background-color:#2e3e4e; color:white;
+		}
+	}
+
 }
-#swipeview-slider .swipeview-active {}
 // #swipeview-slider .swipeview-active span {
 // 	-webkit-transform:translate(0,0) translateZ(0);
 // 	-moz-transform:translate(0,0) translateZ(0);
