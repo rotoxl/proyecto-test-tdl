@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="co.tapp37" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>tapp37</name>
+    <description>
+        App para realizar tests de oposiciones y de otros tipos; incluye tienda de tests organizada por materias, estadísticas de tus avances, méritos...
+    </description>
+    <author email="rotoxl@gmail.com" href="http://cordova.io">Carrón Sisters </author>
+    <content src="lnk/index.html" />
+    <access origin="*" />
+</widget>
