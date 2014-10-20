@@ -141,7 +141,7 @@ function buscaFilas(filas, dicBuscado){
 function Controlador(){
   this.init()
   }
-Controlador.prototype.init=function(){  
+Controlador.prototype.init=function(){
     jQuery(document).on('click', '[data-toggle^="class"]', function(e){
   		  e && e.preventDefault();
     		var $this = jQuery(e.target), $class , $target, $tmp, $classes, $targets;
@@ -155,69 +155,128 @@ Controlador.prototype.init=function(){
             });
       	$this.toggleClass('active');
         });
-    }
 
+    this.cache={}
+    this.cache.categorias=[
+        {id:1, ds:'Diplomado Sanitario/Enfermería', i:'fa-stethoscope'},
+        {id:2, ds:'Carné de conducir B2', i:'fa-car'},
+        {id:3, ds:'Cuerpo Superior de Sistemas y Tecnologías de la Información', i:'fa-file-code-o'},
+        ]
+    }
 /////
+Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
+  var arbol=jQuery('.aside-md .nav-primary')
+  arbol.find('li.active').removeClass('.active')
+
+  arbol.find('.'+idLi).addClass('active')
+  
+  var nodoContinuarTest=arbol.find('.continuarTest')
+  nodoContinuarTest.toggleClass('hidden', idLi!='continuarTest')
+}
+Controlador.prototype.cierraNavDrawer=function(){
+  jQuery('#main_container aside.nav-off-screen').removeClass('nav-off-screen')
+  }
+//
 Controlador.prototype.continuarTest=function(){
-    this.cargaTest( this.testData() )
+    this.cargaTest( VistaTest.prototype.testData() )
+    this.cierraNavDrawer()
     }
 Controlador.prototype.cargaTest=function(test){
   new VistaTest(test).toDOM()
   }
-Controlador.prototype.cargaVistaInicio=function(){}
-Controlador.prototype.cargaVistaMisTest=function(){}
+Controlador.prototype.cargaVistaInicio=function(){
+  this.cargaVistaTienda()
+  }
+Controlador.prototype.cargaVistaTienda=function(){
+  new VistaTienda().toDOM()
+  this.cierraNavDrawer()
+  }
 Controlador.prototype.cargaVistaSocial=function(){}
 Controlador.prototype.cargaVistaEstadisticas=function(){}
+Controlador.prototype.backButton=function(){
+  this.vistaActiva.backButton()
+  }
 //////////
-function Vista(test){
+/*
+Todas las vistas tienen un vista-header y un vista-body
+*/
+function Vista(){
   if (this.id==null) return
   if (this.tipos.indexOf(this.id)==-1 )
       console.error('Tipo de vista desconocido: hay que darlo de alta en Vista.prototype.tipos')
   }
-Vista.prototype.tipos=['vistaTest']
+Vista.prototype.tipos=['vistaTest', 'vistaTienda']
 Vista.prototype.toDOM=function(){
     var xd=jQuery('#content')
     if (app) app.vistaActiva=this
 
-    xd.append(this.getDOM())
+    this.domHeader=jQuery(this.getHeader())
+    this.domBody=jQuery(this.getBody())
+    
+    xd.empty()
+      .append(this.domHeader)
+      .append(this.domBody)
       .removeClass(this.tipos.join(' '))
-      .addClass(this.id)
+      .addClass('vista '+this.id)
 
     this.dom=xd
     this.resize()
     this.tareasPostCarga()
     }
-Vista.prototype.getDOM=function(){}
+Vista.prototype.getHeader=function(){}
+Vista.prototype.getBody=function(){}
 Vista.prototype.resize=function(){
   jQuery('#content').height( jQuery(document).innerHeight()- jQuery('#navigation_bar').innerHeight() )
+
+  this.hVista=jQuery('#content').height()//-jQuery('#navigation_bar').innerHeight()
+  this.domBody.height( this.hVista-this.domHeader.outerHeight() )
   }
+Vista.prototype.tareasPostCarga=function(){}
+Vista.prototype.backButton=function(){}
+Vista.prototype.cerrar=function(){}
+Vista.prototype.cambiaHeaderApp=function(titulo){
+    var nb=jQuery('#navigation_bar')
+    nb.find('.barra.global').hide()
+    nb.find('.barra.vista').show()
+    nb.find('.barra.vista .navbar-brand').text(titulo)
+    }
+Vista.prototype.restauraHeaderApp=function(){
+    var nb=jQuery('#navigation_bar')
+    nb.find('.barra.global').show()
+    nb.find('.barra.vista').hide()
+    }
+//////////
+function VistaPantallaCompleta(){}
+VistaPantallaCompleta.prototype.title='Nombre de la vista'
+VistaPantallaCompleta.prototype=new Vista
+VistaPantallaCompleta.prototype.toDOM=function(){
+    Vista.prototype.toDOM.call(this)
+    this.cambiaHeaderApp(this.title)
+
+    }
+VistaPantallaCompleta.prototype.cerrar=function(){
+    this.restauraHeaderApp()
+    }
 //////////
 function VistaTest(test){
     if (test==null) return
-
-    Vista.call(this)
+    VistaPantallaCompleta.call(this)
 
     this.test=test
     this.id='vistaTest'
+    this.title=test.md.titulo 
 
     this.mapaInicializado=false
     this.examen=this.test.examen
+
+    //insertamos la portada y la contraportada
+    this.test.preguntas.splice(0,0, null)
+    this.test.preguntas.push(null)  
     }
-VistaTest.prototype=new Vista
-VistaTest.prototype.tareasPostCarga=function(){
-  this.cargaPregunta(0)
-  this.iniciaTiempo()
-  }
-VistaTest.prototype.convierteSegundosAHora=function(numSegundos){
-  return this.convierteMinutosAHora(numSegundos/60)
-  }
-VistaTest.prototype.convierteMinutosAHora=function(numMinutos){
-  return Math.floor(numMinutos/60)+':'+ lpad( Math.floor(numMinutos) % 60, '0', 2)
-  }
-VistaTest.prototype.getDOM=function(){
+VistaTest.prototype=new VistaPantallaCompleta
+VistaTest.prototype.getHeader=function(){
   var self=this
-  return [
-    creaObjProp('header', {className:'marcadores' , hijos:[
+  return creaObjProp('header', {className:'vista-header marcadores' , hijos:[
         creaObjProp('div', {className:'btn-group btn-dark', hijos:[
             creaObjProp('button', {className:'btn btn-primary col-md-6 col-sm-6 col-xs-6 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', hijos:[
               creaT(' Pregunta '),
@@ -225,7 +284,7 @@ VistaTest.prototype.getDOM=function(){
               creaT(' de '+this.test.examen.numPreguntas+' '), 
               creaObjProp('b', {className:'caret'})
               ]}),
-            creaObjProp('ul', {id:'mapatest', className:'dropdown-menu animated fadeInRight btn-primary', role:'menu', hijos:[
+            creaObjProp('ul', {id:'mapatest', className:'btn2_1 dropdown-menu XXanimated XXfadeInRight btn-primary', role:'menu', hijos:[
               creaObjProp('span', {className:'arrow top'}),
 
               ]}),
@@ -236,27 +295,127 @@ VistaTest.prototype.getDOM=function(){
               creaObjProp('i', {className:'fa fa-pause'}) 
               ]}),
           ]})
-        ]}),
-    creaObjProp('div', {className:'pregunta'}),
-    creaObjProp('footer', {className:'footer respuestas'})
-    ]
+        ]})
   }
-VistaTest.prototype.resize=function(){
-  Vista.prototype.resize.call()
-  // jQuery('#content').height( jQuery(document).innerHeight()- jQuery('#navigation_bar').innerHeight() )
-  var p=this.dom.find('.pregunta')
-  var r=this.dom.find('.respuestas')
-  p.height(r.position().top-p.position().top)
+VistaTest.prototype.getBody=function(){
+  return creaObjProp('div', {className:'vista-body', id:'swypeWrapper'})
+  }
+VistaTest.prototype.tareasPostCarga=function(){
+  this.initMapa()
+  this.iniciaTiempo()
 
+  this.initSwype(xpregActiva)
+  jQuery(this.dom).addClass('noselect')
+
+  //ojo, la 0 es la portada y la última la contraportada
+  var xpregActiva=(this.test.examen.preguntaActiva) || 1
+  // this.goToPage(xpregActiva)
   }
+//////
+VistaTest.prototype.initSwype=function(xpregActiva){
+  var self=this
+
+  // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+  var gallery=new SwipeView('#swypeWrapper', {numberOfPages:this.test.preguntas.length, loop:false });
+  
+  // // Load initial data
+  for (var i=0; i<3; i++) {
+    // var page = i==0 ? this.test.preguntas.length-1 : i-1;
+    var page = i==0 ? 0 : i-1;
+    this.creaDiapo(page, gallery.masterPages[i])
+    }
+
+  gallery.onFlip(function () {
+    var el,
+      upcoming,
+      i;
+
+    for (i=0; i<3; i++) {
+      upcoming = gallery.masterPages[i].dataset.upcomingPageIndex;
+
+      if (upcoming != gallery.masterPages[i].dataset.pageIndex) {
+        self.creaDiapo(upcoming, gallery.masterPages[ i ])
+        }
+      }
+  
+    self.indicaPreguntaActivaEnMarcador(gallery.pageIndex)
+    });
+
+  gallery.onMoveOut(function () {
+      var cmp=jQuery(gallery.masterPages[gallery.currentMasterPage])
+      cmp.removeClass('swipeview-active')
+      })
+
+  gallery.onMoveIn(function () {
+      var cmp=jQuery(gallery.masterPages[gallery.currentMasterPage])
+      cmp.addClass('swipeview-active')
+    })
+
+  this.gallery=gallery
+  }
+VistaTest.prototype.creaDiapo=function(i, cont){
+    if (i==0 || i==this.test.preguntas.length-1){
+
+      jQuery(cont).empty().addClass('portada '+(i==0?'inicio':'fin')).append( [
+        creaObjProp('span', {texto:i==0?'Inicio':'Fin'}),
+        creaObjProp('div', {className:'visual'})
+        ])
+
+      console.info('> crea portada, cont '+cont.id)
+      }
+    else {
+      var preg=this.test.preguntas[i] //la 0 es la portada
+
+      jQuery(cont).removeClass('portada inicio fin').empty()
+        .append (creaObjProp('div', {'style.height':this.hFija/2, className:'pregunta noselect', hijo:this.generaDomPreguntas(preg)}) )
+        .append (creaObjProp('footer', {'style.height':this.hFija/2, className:'footer respuestas noselect', hijo:this.generaDomRespuestas(preg)}) )
+
+      console.info('> crea diapo '+i+', cont '+cont.id)
+      }
+    }
+VistaTest.prototype.generaDomPreguntas=function(preg){
+  var self=this
+  return creaObjProp('table',{hijos:[
+        creaObjProp('tr', {hijos:[
+          creaObjProp('td', {className:'clave', onclick:function(){self.toggleEstrella(this)}, i:(preg.estrella?'fa-star':'fa fa-star-o')}),
+          creaObjProp('td', {className:'valor', texto:preg.texto})
+          ]}) 
+        ]})
+  }
+VistaTest.prototype.generaDomRespuestas=function(preg){
+  var self=this
+  var xr=[], letras='ABCDE', estilos=['bg-danger', 'bg-warning', 'bg-success', 'bg-info', 'bg-primary']
+  for (var i=0; i<preg.respuestas.length; i++){
+      xr.push( creaObjProp('tr', {onclick:function(){self.marcaResp(this)}, hijos:[
+        creaObjProp('td', {className:'clave '+ estilos[i], texto:letras.substr(i,1) }),
+        creaObjProp('td', {className:'valor', texto:preg.respuestas[i].texto }),
+        ]}))
+    }
+  if (preg.respuestaUsuario!=null){
+    jQuery(xr).addClass('atenuada')
+    jQuery(xr[preg.respuestaUsuario]).removeClass('atenuada').addClass('active')
+  }
+  return creaObjProp('table', {hijos:xr})
+  }
+//////
+VistaTest.prototype.convierteSegundosAHora=function(numSegundos){
+  return this.convierteMinutosAHora(numSegundos/60)
+  }
+VistaTest.prototype.convierteMinutosAHora=function(numMinutos){
+  return Math.floor(numMinutos/60)+':'+ lpad( Math.floor(numMinutos) % 60, '0', 2)
+  }
+//////
 VistaTest.prototype.initMapa=function(){
+
   this.mapaInicializado=true
-  var elPorFila=5
+  var elPorFila=10
 
   var preg=this.test.preguntas
   // var numfilas=Math.floor(this.test.preguntas.length/elPorFila)
   var col=0,tr=creaObjProp('tr'), trs=[], ta=creaObjProp('table')
-  for (var i=0; i<preg.length; i++){
+  
+  //no reflejamos portada ni contraportada
+  for (var i=1; i<preg.length-1; i++){
     this.test.preguntas[i].i=i
     if (col>=elPorFila){
       ta.appendChild(tr)
@@ -267,102 +426,59 @@ VistaTest.prototype.initMapa=function(){
 
     var hijo
     if (pra.estrella){
-      hijo=this.generaDomEstrella(i+1)
+      hijo=this.generaDomEstrella(i)
     }
     else 
-      hijo=creaObjProp('span', {texto:i+1})
+      hijo=creaObjProp('span', {texto:i})
 
     var self=this
     tr.appendChild( creaObjProp('td', { className:(pra.respuestaUsuario!=null? 'contestada':''), 
                                         id:'mapa_preg'+i, 
+                                        // 'data-id':
                                         hijo:hijo, 
-                                        onclick:function(){self.navegaPregunta( jQuery(this).text() ) } }) ) 
+                                        onclick:function(){
+                                          var n=Number(jQuery(this).text())
+                                          self.goToPage(n)
+                                        } }) ) 
     col++
     }
-  if (tr.childNodes.length){
+  if (tr.childNodes.length)
     ta.appendChild(tr)
-  }
 
   this.dom.find('#mapatest').append(ta)
+  }
+VistaTest.prototype.actualizaMapa=function(preg){
+  var td=jQuery('#mapa_preg'+preg.i)
+  td.toggleClass('contestada', preg.respuestaUsuario!=null)
+
+  td.empty()
+  if (preg.estrella)
+    td.append(this.generaDomEstrella(preg.i))
+  else 
+    td.append(creaObjProp('span', {texto:preg.i}))
+  }
+VistaTest.prototype.indicaPreguntaActivaEnMarcador=function(i){
+  this.preg=this.test.preguntas[i]
+
+  jQuery('#mapatest td').removeClass('active')
+  jQuery('#mapa_preg'+i).addClass('active')
+
+  var np=i
+  if (np==0)
+    np=1
+  else if (np==this.test.preguntas.length-1)
+    np=this.test.preguntas.length-2
+
+  this.dom.find('#numPag').text(np)
+  }
+VistaTest.prototype.goToPage=function(n){
+  this.indicaPreguntaActivaEnMarcador(n)
+  this.gallery.goToPage(n) 
   }
 VistaTest.prototype.generaDomEstrella=function(i){
   return creaObjProp('span', {className:'fa-stack', i:'fa fa-star fa-stack-2x', hijos:[
         creaObjProp('span', {className:'fa-stack-1x stack-text', texto:i})
         ]})
-  }
-VistaTest.prototype.actualizaMapa=function(preg){
-  var td=jQuery('#mapa_preg'+preg.i)
-  if (preg.respuestaUsuario!=null)
-    td.addClass('contestada')
-
-  td.empty()
-  if (preg.estrella)
-    td.append(this.generaDomEstrella(preg.i+1))
-  else 
-    td.append(creaObjProp('span', {texto:preg.i+1}))
-  }
-VistaTest.prototype.marcaPreguntaActual=function(){
-  jQuery('#mapatest td').removeClass('active')
-  jQuery('#mapa_preg'+this.preg.i).addClass('active')
-  }
-VistaTest.prototype.cargaPregunta=function(i){
-  if (!this.mapaInicializado)
-    this.initMapa()
-
-  var self=this
-  if (i<0 || i>this.test.examen.numPreguntas)
-    return
-  this.preg=this.test.preguntas[i]
-
-  this.dom.find('.pregunta').append(
-    // creaObjProp('div', {className:'wrapper', hijos:[
-      creaObjProp('table',{hijos:[
-        creaObjProp('tr', {hijos:[
-          creaObjProp('td', {className:'clave', onclick:function(){self.toggleEstrella(this)}, i:(this.preg.estrella?'fa-star':'fa fa-star-o')}),
-          creaObjProp('td', {className:'valor', texto:this.preg.texto})
-          ]}) 
-        ]})
-      // ]})
-    )
-
-  var xr=this.generaDomRespuestas()
-  
-  this.dom.find('.respuestas').append(
-    creaObjProp('table',{hijos:xr})
-    )
-
-  this.marcaPreguntaActual()
-  }
-VistaTest.prototype.generaDomRespuestas=function(){
-  var self=this
-  var xr=[], letras='ABCDE', estilos=['bg-danger', 'bg-warning', 'bg-success', 'bg-primary', 'bg-info']
-  for (var i=0; i<this.preg.respuestas.length; i++){
-      xr.push( creaObjProp('tr', {onclick:function(){self.marcaResp(this)}, hijos:[
-        creaObjProp('td', {className:'clave '+ estilos[i], texto:letras.substr(i,1) }),
-        creaObjProp('td', {className:'valor', texto:this.preg.respuestas[i].texto }),
-        ]}))
-    }
-  if (this.preg.respuestaUsuario!=null){
-    jQuery(xr).addClass('atenuada')
-    jQuery(xr[this.preg.respuestaUsuario]).removeClass('atenuada').addClass('active')
-  }
-  return xr
-
-  }
-VistaTest.prototype.navegaPregunta=function(iRestar1){
-  var i=iRestar1-1
-  if (i<0 || i>this.test.examen.numPreguntas)
-    return
-  this.preg=this.test.preguntas[i]
-
-  var dp=this.dom.find('.pregunta')
-  dp.find('.clave i').removeClass('fa-star fa-star-o').addClass(this.preg.estrella?'fa-star':'fa-star-o')
-  dp.find('.valor').text(this.preg.texto)
-
-  this.dom.find('#numPag').text(i+1)
-  this.dom.find('.respuestas table').empty().append(this.generaDomRespuestas() )
-
-  this.marcaPreguntaActual()
   }
 VistaTest.prototype.toggleEstrella=function(celda){
   if (this.preg.estrella==null)
@@ -472,7 +588,7 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
   this.frmdom.find('.info .details').empty().append([
     // creaObjProp('p', {className:'header', texto:'Metadatos disponibles'}),
     creaObjProp('p', {className:'titulo', texto:md.titulo, i:'fa-bookmark fa-fw', omiteNulo:true}),
-    creaObjProp('p', {className:'categoria', texto:md.categoria, i:'fa-graduation-cap fa-fw', omiteNulo:true}),
+    creaObjProp('p', {className:'categoria', texto:app.cache.categorias[md.categoria], i:'fa-graduation-cap fa-fw', omiteNulo:true}),
     creaObjProp('p', {className:'fecha', texto:md.fecha, i:'fa-calendar fa-fw', omiteNulo:true}),
     creaObjProp('p', {className:'organismo', texto:md.organismo, i:'fa-institution fa-fw', omiteNulo:true}),
     creaObjProp('p', {className:'region', texto:md.region, i:'fa-globe fa-fw', omiteNulo:true}),
@@ -483,11 +599,15 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 
   this.frmdom.modal({backdrop:'static', keyboard:false})
   }
+VistaTest.prototype.pregSinPortadas=function(){
+  return this.test.preguntas.slice(1, this.test.preguntas.length-2)
+  }
 VistaTest.prototype.generaEstadisticasPausa=function(){
+  var pr=this.pregSinPortadas()
   var r= {
-      estrellas: buscaFilas(this.test.preguntas, {estrella:true}).length,
-      noRespondidas: buscaFilas(this.test.preguntas, {respuestaUsuario:null}).length,
-      preguntas:this.test.preguntas.length,
+      estrellas: buscaFilas(pr, {estrella:true}).length,
+      noRespondidas: buscaFilas(pr, {respuestaUsuario:null}).length,
+      preguntas:pr.length,
 
       minutosConsumidos:Math.floor(this.examen.segundosConsumidos/60),
       minutosTotal:this.examen.minutos
@@ -499,8 +619,9 @@ VistaTest.prototype.generaEstadisticasPausa=function(){
   }
 VistaTest.prototype.corrigeTest=function(){
   var a=0, f=0, nc=0
-  for (var i=0; i<this.test.preguntas.length; i++){
-      var preg=this.test.preguntas[i]
+  var pr=this.pregSinPortadas()
+  for (var i=0; i<pr.length; i++){
+      var preg=pr[i]
       if (preg.respuestaUsuario==null)
         nc++
       else if (preg.respuestaUsuario==preg.respuesta)
@@ -511,7 +632,7 @@ VistaTest.prototype.corrigeTest=function(){
   var fr=this.test.examen.fallosRestan
   if (fr==null) fr=0
 
-  var tn= (a-(f*fr))/this.test.preguntas.length
+  var tn= (a-(f*fr))/pr.length
   var nota=Math.floor(tn*100)/10
 
   return {aciertos:a, fallos:f, nc:nc, nota:nota}
@@ -534,7 +655,7 @@ VistaTest.prototype.pausaTiempo=function(){
     var sRestantes=(this.examen.horaFinal-new Date())/1000
 
     this.examen.segundosConsumidos=(this.examen.minutos*60-sRestantes)
-    console.warn('Segundos consumidos:'+this.examen.segundosConsumidos)
+    // console.warn('Segundos consumidos:'+this.examen.segundosConsumidos)
 
     this.examen.horaFinal=null
 
@@ -553,10 +674,10 @@ VistaTest.prototype.tickCrono=function(){
   var minRestantes=Math.ceil(sRestantes/60)
   
   if (this.minRestantes==minRestantes){
-    console.log('No hay que actualizar el crono: segRestantes='+sRestantes)
+    // console.log('No hay que actualizar el crono: segRestantes='+sRestantes)
     return
   }
-  console.warn('Actualizo crono: segRestantes='+sRestantes)
+  // console.warn('Actualizo crono: segRestantes='+sRestantes)
   jQuery('#tiempoConsumido').text(this.convierteMinutosAHora(this.examen.minutos-minRestantes))
   
   this.minRestantes=minRestantes
@@ -567,35 +688,27 @@ VistaTest.prototype.tickCrono=function(){
     this.crono=null
     }
   }
-////////////
-function VistaRepasoTest(test){
-    VistaTest.call(this, test)
-    }
-VistaRepasoTest.prototype=new VistaTest
-VistaRepasoTest.prototype
-////////////
-////////////
-////////////
-////////////
-Controlador.prototype.testData=function(){
+//////
+VistaTest.prototype.testData=function(){
     return {
         md: {
             fecha:'04/10/2014',
             titulo:'Pruebas selectivas para el acceso a la condición de Personal Estatutario Fijo (BOCM: 10-09-2012)',
-            categoria:'Diplomado Sanitario/Enfermera',
+            id_categoria:1, //1-enfermería, 3-tic
 
             region:'Comunidad de Madrid',
-            organismo:'SaludMadrid/Servicio Madrileño de Salud. Comunidad de Madrid',
-            img:'https://193.146.176.77/paginas_propias/servicios/comunicacion/memorias/h2005/Fijos/IMGS/LgSaludMadrid.gif'
+            organismo:'SaludMadrid/Servicio Madrileño de Salud',
+            img:'http://1.bp.blogspot.com/-20rV8pKsdjQ/UJd4Ss6XSII/AAAAAAAAG0c/3Wu9Z25s4_A/s1600/SALUD_MADRID.jpg',
             },
         examen: {
             fallosRestan:.25, //para indicar aquello de que cada 4 fallos resta 1 acierto
-            minutos:2,
+            minutos:20,
             numPreguntas:6, //redundante, pero vendrá bien para comprobar la integridad
             segundosConsumidos:30,
+            // preguntaActiva:3,
             },
         preguntas:[{ 
-              texto:'¿Cuál de los siguientes estandares de directorios guarda relación con la descripción de servicios de usuario?', 
+              texto:'1-¿Cuál de los siguientes estandares de directorios guarda relación con la descripción de servicios de usuario?', 
               img:null,
               respuesta:3,
               respuestas:[
@@ -606,7 +719,7 @@ Controlador.prototype.testData=function(){
                 ],
               respuestaUsuario:1,
             },{ 
-              texto:'Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD:', 
+              texto:'2-Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD: Indicar cuál de las siguientes afirmaciones es cierta en el ámbito de la LOPD:', 
               img:null,
               respuesta:1,
               respuestas:[
@@ -617,49 +730,230 @@ Controlador.prototype.testData=function(){
                 ],
               respuestaUsuario:1,
             },{ 
-                texto:'Cuál de los siguientes derechos de explotación no precisan la realización o autorización por parte del titular de un programa de ordenador, según la ley española de propiedad intelectual:', 
-                img:null,
-                respuesta:1,
-                respuestas:[
-                  {texto:'Reproducción total o parcial'},
-                  {texto:'La realización de una copia de seguridad'},
-                  {texto:'Traducción, adaptación o arreglo'},
-                  {texto:'Cualquier forma de distribución pública'},
-                  ]
+              texto:'3-Cuál de los siguientes derechos de explotación no precisan la realización o autorización por parte del titular de un programa de ordenador, según la ley española de propiedad intelectual:', 
+              img:null,
+              respuesta:1,
+              respuestas:[
+                {texto:'Reproducción total o parcial'},
+                {texto:'La realización de una copia de seguridad'},
+                {texto:'Traducción, adaptación o arreglo'},
+                {texto:'Cualquier forma de distribución pública'},
+                ]
             },{ 
-                texto:'especto a la LSSI puede decirse que:', 
-                img:null,
-                respuesta:3,
-                respuestas:[
-                  {texto:'Queda prohibido el envío de comunicaciones publicitarias o promocionales por correo electrónico'},
-                  {texto:'Queda prohibido el envío de comunicaciones publicitarias o promocionales por correo electrónico u otro medio de comunicación electrónica equivalente'},
-                  {texto:'Queda prohibido el envío de comunicaciones publicitarias o promocionales por correo electrónico u otro medio de comunicación electrónica equivalente que previamente no hubieran sido solicitadas o expresamente autorizadas por los remitentes de las misma'},
-                  {texto:'Queda prohibido el envío de comunicaciones publicitarias o promocionales por correo electrónico u otro medio de comunicación electrónica equivalente que previamente no hubieran sido solicitadas o expresamente autorizadas por los destinatarios de las misma'},
-                  ]
+              texto:'4-Respecto a la LSSI puede decirse que:', 
+              img:null,
+              respuesta:3,
+              respuestas:[
+                {texto:'Queda prohibido el envío de comunicaciones publicitarias o promocionales por correo electrónico'},
+                {texto:'Queda prohibido el envío de comunicaciones publicitarias o promocionales por correo electrónico u otro medio de comunicación electrónica equivalente'},
+                {texto:'Queda prohibido el envío de comunicaciones publicitarias o promocionales por correo electrónico u otro medio de comunicación electrónica equivalente que previamente no hubieran sido solicitadas o expresamente autorizadas por los remitentes de las misma'},
+                {texto:'Queda prohibido el envío de comunicaciones publicitarias o promocionales por correo electrónico u otro medio de comunicación electrónica equivalente que previamente no hubieran sido solicitadas o expresamente autorizadas por los destinatarios de las misma'},
+                ]
             },{ 
-                texto:'¿Cuál de las siguientes no es una distribución de Linux ?', 
-                img:null,
-                respuesta:3,
-                respuestas:[
-                  {texto:'Debian'},
-                  {texto:'Gentoo'},
-                  {texto:'Max'},
-                  {texto:'FreeBSD'},
-                  ]
+              texto:'5-¿Cuál de las siguientes no es una distribución de Linux ?', 
+              img:null,
+              respuesta:3,
+              respuestas:[
+                {texto:'Debian'},
+                {texto:'Gentoo'},
+                {texto:'Max'},
+                {texto:'FreeBSD'},
+                ]
             },{ 
-                texto:'Dentro del análisis orientado a objetos, la cualidad que se refiere al tiempo durante el cual un objeto permanece accesible en la memoria del ordenador (principal o secundaria), se denomina:', 
-                img:null,
-                respuesta:3,
-                respuestas:[
-                  {texto:'Reusabilidad'},
-                  {texto:'Encapsulación'},
-                  {texto:'Abstracción'},
-                  {texto:'Persistencia'},
-                  ],
-                estrella:true
+              texto:'6-Dentro del análisis orientado a objetos, la cualidad que se refiere al tiempo durante el cual un objeto permanece accesible en la memoria del ordenador (principal o secundaria), se denomina:', 
+              img:null,
+              respuesta:3,
+              respuestas:[
+                {texto:'Reusabilidad'},
+                {texto:'Encapsulación'},
+                {texto:'Abstracción'},
+                {texto:'Persistencia'},
+                ],
+              estrella:true
             }
           ]
       }
+    }
+////////////////////////
+
+function VistaRepasoTest(test){
+    VistaTest.call(this, test)
+    }
+VistaRepasoTest.prototype=new VistaTest
+////////////////////////////////////////////////
+
+function VistaTienda(){
+  this.id='vistaTienda'
+  this.leeTestLocales()
+  this.cat=null
+  app.muestraNodoEnNavDrawer('liVistaTienda')
+  }
+VistaTienda.prototype=new Vista
+
+VistaTienda.prototype.getHeader=function(){
+  var self=this
+  return creaObjProp('header', {className:'btn-primary vista-header' , hijos:[
+        creaObjProp('div', {className:'btn-group', hijos:[
+            creaObjProp('button', {className:'btn btn-primary col-md-4 col-sm-4 col-xs-4 dropdown-toggle', 'data-toggle':'dropdown', hijos:[
+              creaT(' Categorías '),
+              creaObjProp('b', {className:'caret'})
+              ]}),
+            creaObjProp('ul', {id:'categorias', className:'dropdown-menu animated fadeInRight btn3_1', role:'menu', hijos:[
+              creaObjProp('span', {className:'arrow top'}),
+
+              ]}),
+        //     creaObjProp('button', {onclick:function(){self.pausaTiempo()}, className:'btn btn-dark col-md-6 col-sm-6 col-xs-6', i:'fa-clock-o', hijos:[
+        //       creaT(' '),
+        //       creaObjProp('span', {id:'tiempoConsumido', texto:this.convierteSegundosAHora(this.test.examen.segundosConsumidos)}),
+        //       creaT(' de '+this.convierteMinutosAHora(this.test.examen.minutos)),
+        //       creaObjProp('i', {className:'fa fa-pause'}) 
+        //       ]}),
+        //   ]})
+        ]})
+      ]})
+  }
+VistaTienda.prototype.getBody=function(){
+    return creaObjProp('div', {className:'vista-body cargando'})
+    }
+VistaTienda.prototype.tareasPostCarga=function(){
+    this.cargaListaCategorias()
+    this.cargaListaTests()
+    }
+VistaTienda.prototype.cargaListaCategorias=function(){
+    var self=this
+    //http://www.oposiciones.de/oposiciones.htm, opción "según estudios"
+    
+    var xl=[]
+    var fn=function(){
+        var idcat=jQuery(this).data('id')
+        self.navegaCat(idcat) 
+        }
+
+    for (var i=0; i<app.cache.categorias.length; i++){
+      var cat=app.cache.categorias[i]
+      xl.push( creaObjProp('li', {hijo:creaObjProp('a', {texto:cat.ds, 'data-id':cat.id, onclick:fn})} ) )
+      }
+    jQuery('ul#categorias').append(xl)
+    }
+VistaTienda.prototype.navegaCat=function(idcat){
+  //dejamos una pequeña lista de tests visibles por categoría, y mostramos el botón 'cargar más'
+  this.backButton()
+
+  this.cat=buscaFilas(app.cache.categorias, {id:idcat})[0]
+  this.cambiaHeaderApp(this.cat.ds)
+
+  var blSel=this.domBody.find('.bloque.cat#cat-'+this.cat.id)
+  this.domBody.find('.bloque.cat').not(blSel).hide()
+  this.cargarMas()
+  }
+VistaTienda.prototype.backButton=function(){
+    if (this.cat){
+      this.cat=null
+      this.restauraHeaderApp() 
+
+      //dejamos una pequeña lista de tests visibles por categoría, y mostramos el botón 'cargar más'
+      var bloques=this.domBody.find('.bloque.cat').show()
+      bloques.find('.card').not('.main').remove()
+      bloques.find('.titulo .cargarMas').show()
+      bloques.find('.cargarMas.aunMas').remove()
+      }
+    }
+VistaTienda.prototype.leeTestLocales=function(){
+  this.testLocales=VistaTienda.prototype.testData()
+  this.testLocales.sort(function(a,b){
+          if (a.favorito==b.favorito)
+            return 0
+          else if (a.favorito>b.favorito)
+            return -1
+          else
+            return 1
+          })
+  } 
+VistaTienda.prototype.generaBtnCargarMas=function(cssAdicional){
+  var self=this
+  var fnNavega=function(){
+      self.navegaCat(jQuery(this).closest('.bloque').data('id'))
+      }
+  return creaObjProp('button', {className:'cargarMas btn btn-primary '+cssAdicional, texto:'Más', onclick:fnNavega} )
+  }
+VistaTienda.prototype.cargaListaTests=function(){
+  var xl=[]
+
+  for (var i=0; i<app.cache.categorias.length; i++){
+      var cat=app.cache.categorias[i]
+      var sl=buscaFilas(this.testLocales, {id_categoria:cat.id}).slice(0,4)
+      
+      var d=creaObjProp('section', {id:'cat-'+cat.id, className:'bloque cat', 'data-id':cat.id, hijos:[
+        creaObjProp('h4', {className:'titulo',texto:cat.ds, 'data-id':cat.cd, hijo:this.generaBtnCargarMas() })
+        ]} )
+
+      for (var j=0;  j<sl.length; j++){
+        var t=sl[j]
+
+        d.appendChild(
+          this._generaDomTest(t, j, cat)
+          )
+        }
+
+      xl.push( d )
+      }
+
+  this.domBody.addClass('flowable').append(xl).removeClass('cargando')
+  }
+VistaTienda.prototype._generaDomTest=function(test, j, cat){
+  return creaObjProp('article', {id:'test-'+test.id, 'data-id':test.id, className:'main card'+(j%2?' d':''), hijos:[
+            creaObjProp('div', {className:'body', i:cat.i}),
+            creaObjProp('footer', {hijos:[
+                      creaObjProp('span', {className:'bl love', texto:test.favorito, i:(test.favorito>0?'fa-heart':'fa-heart-o') }),
+                      creaObjProp('span', {className:'bl nombre', texto:test.ds}) 
+                      ]})
+            ]})
+  }
+VistaTienda.prototype.cargarMas=function(){
+  var tanda=2
+  //this.cat
+  var blCat=this.domBody.find('.cat#cat-'+this.cat.id)
+
+  blCat.find('.titulo .cargarMas').hide()//el principal lo ocultamos, el resto se eliminan
+  blCat.find('.cargarMas.aunMas').remove()
+
+  var num=blCat.find('article.card').length
+  var sl=buscaFilas(this.testLocales, {id_categoria:this.cat.id})
+
+  var aPintar=sl.slice(num,num+tanda)
+  for (var j=0;  j<aPintar.length; j++){
+    blCat.append( this._generaDomTest(aPintar[j], j, this.cat ) )
+    }
+
+  if (sl.length>num+tanda){
+    blCat.append( this.generaBtnCargarMas('aunMas') )
+  }
+
+  }
+VistaTienda.prototype.testData=function(){
+  return [
+      {id:1, ds:'Test Enfermería 1', favorito:13, id_categoria:1, nota:5.5},
+      {id:12, ds:'Test Enfermería 2', favorito:1, id_categoria:1, nota:6},
+      {id:19, ds:'Test Enfermería 3', favorito:0, id_categoria:1},
+      {id:99, ds:'Test Enfermería 4', favorito:1, id_categoria:1},
+      {id:999, ds:'Test Enfermería 99', favorito:3, id_categoria:1},
+      {id:1000, ds:'Test Enfermería 100', favorito:5, id_categoria:1},
+      {id:1001, ds:'Test Enfermería 101', favorito:7, id_categoria:1},
+
+      {id:2, ds:'Test Autoescuela ABC', favorito:0,id_categoria:2},
+      {id:3, ds:'Test Autoescuela DEF', favorito:0,id_categoria:2},
+      {id:4, ds:'Test Autoescuela 3', favorito:0,  id_categoria:2},
+      {id:5, ds:'Test Autoescuela 4', favorito:0,  id_categoria:2},
+      {id:6, ds:'Test Autoescuela 5', favorito:0,  id_categoria:2},
+      {id:7, ds:'Test Autoescuela 99', favorito:0, id_categoria:2},
+
+      {id:201, ds:'Test TIC 1',  favorito:1, id_categoria:3},
+      {id:301, ds:'Test TIC 11', favorito:3, id_categoria:3},
+      {id:401, ds:'Test TIC 9',  favorito:2, id_categoria:3},
+      {id:501, ds:'Test TIC 10', favorito:5, id_categoria:3},
+      {id:601, ds:'Test TIC 11', favorito:7, id_categoria:3},
+      {id:701, ds:'Test TIC 12', favorito:11,id_categoria:3},
+  ]
   }
 
 

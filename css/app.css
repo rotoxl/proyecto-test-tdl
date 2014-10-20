@@ -1,3 +1,6 @@
+* > i {
+  margin-right: 2px; }
+
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -11,11 +14,13 @@ header#navigation_bar {
   margin-bottom: 0;
   background-color: #25313e;
   color: #9db1c5; }
-  header#navigation_bar > ul > li > a {
-    color: inherit; }
-    header#navigation_bar > ul > li > a :hover {
-      color: #fff; }
-  header#navigation_bar .navbar-header > .btn {
+  header#navigation_bar .barra .navbar-header {
+    height: 50px; }
+    header#navigation_bar .barra .navbar-header > ul > li > a {
+      color: inherit; }
+      header#navigation_bar .barra .navbar-header > ul > li > a :hover {
+        color: #fff; }
+  header#navigation_bar .navbar-header .btn {
     position: absolute;
     font-size: 1.3em;
     padding: 9px 16px;
@@ -39,6 +44,11 @@ header#navigation_bar {
       right: 0;
       top: 0;
       left: auto; }
+  header#navigation_bar .barra.vista a.navbar-brand {
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
   header#navigation_bar .nav > li > a:hover, header#navigation_bar .nav > li > a:focus,
   header#navigation_bar .nav > li.open > a {
     background-color: #25313e; }
@@ -130,11 +140,15 @@ section#main_container {
     border-width: 7px;
     content: ""; }
 
+.dropdown-menu > li > a {
+  white-space: normal; }
+
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus,
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
+  cursor: pointer;
   background-image: none;
   filter: none;
   background-color: #f1f1f1 !important;
@@ -223,95 +237,156 @@ section#main_container {
 #content {
   width: 100%;
   min-height: 80%; }
-  #content.vistaTest {
+  #content.vista .vista-header {
+    height: 50px;
     background-color: rgba(50, 50, 50, 0.1); }
-    #content.vistaTest header.marcadores {
-      width: 100%;
-      min-height: 50px; }
-      #content.vistaTest header.marcadores .btn-group {
-        width: 100%; }
-      #content.vistaTest header.marcadores .btn {
-        border-radius: 0;
-        padding-top: 15px;
-        padding-bottom: 13px; }
-        #content.vistaTest header.marcadores .btn .fa-pause {
-          float: right;
-          margin-top: 2px;
-          right: 21px;
-          position: absolute; }
-      #content.vistaTest header.marcadores ul#mapatest {
-        max-width: 400px; }
-        #content.vistaTest header.marcadores ul#mapatest span.arrow:after {
-          border-bottom-color: #65bd77; }
-        #content.vistaTest header.marcadores ul#mapatest table {
-          margin-top: 10px;
-          margin-bottom: 10px;
-          color: #ebf4e4;
-          text-align: center; }
-          #content.vistaTest header.marcadores ul#mapatest table td {
-            height: 40px;
-            cursor: pointer; }
-            #content.vistaTest header.marcadores ul#mapatest table td.contestada {
-              opacity: .4; }
-            #content.vistaTest header.marcadores ul#mapatest table td.active span {
-              background-color: #ebf4e4;
-              color: #65bd77;
-              display: inline-block;
-              border-radius: 30px;
-              width: 30px;
-              height: 30px;
-              line-height: 32px;
-              margin-top: -2px; }
-            #content.vistaTest header.marcadores ul#mapatest table td .stack-text {
-              margin-top: -.1rem;
-              color: #65bd77; }
-    #content.vistaTest table {
-      table-layout: fixed;
+    #content.vista .vista-header .btn-group {
       width: 100%; }
-      #content.vistaTest table td.clave {
-        width: 50px;
-        height: 50px;
-        text-align: center;
-        font-size: 26px;
+    #content.vista .vista-header .btn {
+      border-radius: 0;
+      padding-top: 15px;
+      padding-bottom: 13px; }
+  #content.vista .vista-body {
+    min-height: 50px; }
+    #content.vista .vista-body.flowable {
+      overflow-y: auto; }
+    #content.vista .vista-body.cargando {
+      background: url("../images/throbber.gif") no-repeat center center;
+      background-size: 50px; }
+    #content.vista .vista-body section.bloque {
+      margin-left: 5px;
+      margin-right: 5px;
+      padding-top: 10px; }
+    #content.vista .vista-body article.card {
+      display: inline-block;
+      min-height: 80px;
+      width: 49%;
+      margin-top: 5px;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px #aaa;
+      overflow: hidden;
+      background: white; }
+      #content.vista .vista-body article.card div.body {
+        height: 60px; }
+      #content.vista .vista-body article.card footer {
+        padding-left: 2px;
+        padding-right: 2px;
+        height: 40px;
+        border-top: 1px solid #f0f0f0;
+        background-color: rgba(50, 50, 50, 0.1); }
+        #content.vista .vista-body article.card footer .bl {
+          display: block; }
+    #content.vista .vista-body article.card.d {
+      float: right; }
+  #content.vista.vistaTest .vista-header .btn .fa-pause {
+    float: right;
+    margin-top: 2px;
+    right: 21px;
+    position: absolute; }
+  #content.vista.vistaTest .vista-header ul#mapatest {
+    max-width: 400px; }
+    #content.vista.vistaTest .vista-header ul#mapatest span.arrow:after {
+      border-bottom-color: #65bd77; }
+    #content.vista.vistaTest .vista-header ul#mapatest table {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: #ebf4e4;
+      text-align: center; }
+      #content.vista.vistaTest .vista-header ul#mapatest table td {
+        height: 40px;
+        cursor: pointer; }
+        #content.vista.vistaTest .vista-header ul#mapatest table td.contestada {
+          opacity: .4; }
+        #content.vista.vistaTest .vista-header ul#mapatest table td.active span {
+          background-color: #ebf4e4;
+          color: #65bd77;
+          display: inline-block;
+          border-radius: 30px;
+          width: 30px;
+          height: 30px;
+          line-height: 32px;
+          margin-top: -2px; }
+        #content.vista.vistaTest .vista-header ul#mapatest table td .stack-text {
+          margin-top: -.1rem;
+          color: #65bd77; }
+  #content.vista.vistaTest table {
+    table-layout: fixed;
+    width: 100%; }
+    #content.vista.vistaTest table td.clave {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 400; }
+    #content.vista.vistaTest table td.valor {
+      padding-left: 4px;
+      color: #717171 !important;
+      font-weight: inherit;
+      font-size: 16px;
+      line-height: 21px; }
+  #content.vista.vistaTest .pregunta {
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    overflow: auto;
+    font-size: 20px;
+    line-height: 21px;
+    color: #717171;
+    border-bottom: 1px solid #2e3e4e; }
+    #content.vista.vistaTest .pregunta table {
+      margin-top: 15px; }
+      #content.vista.vistaTest .pregunta table td.clave {
+        vertical-align: top; }
+      #content.vista.vistaTest .pregunta table td.valor {
+        vertical-align: top;
+        padding-right: 5px;
         font-weight: 400; }
-      #content.vistaTest table td.valor {
-        padding-left: 4px;
-        color: #717171 !important;
-        font-weight: inherit;
-        font-size: 16px;
-        line-height: 21px; }
-    #content.vistaTest .pregunta {
-      position: absolute;
-      width: 100%;
-      height: 40%;
-      overflow: auto;
-      font-size: 20px;
-      line-height: 21px;
-      color: #717171; }
-      #content.vistaTest .pregunta table {
-        margin-top: 15px; }
-        #content.vistaTest .pregunta table td.clave {
-          vertical-align: top; }
-        #content.vistaTest .pregunta table td.valor {
-          vertical-align: top;
-          padding-right: 5px;
-          font-weight: 400; }
-    #content.vistaTest footer.respuestas {
-      position: absolute;
-      width: 100%;
-      bottom: 0;
-      height: 50%;
-      overflow: auto;
-      border-top: 1px solid 1px solid #25313e;
-      background-color: #ececec; }
-      #content.vistaTest footer.respuestas table {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
-        #content.vistaTest footer.respuestas table tr.active {
-          background-color: rgba(0, 0, 0, 0.05); }
-        #content.vistaTest footer.respuestas table tr.atenuada {
-          opacity: .6; }
-        #content.vistaTest footer.respuestas table td {
-          border-top: 1px solid rgba(0, 0, 0, 0.05); }
+  #content.vista.vistaTest footer.respuestas {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 50%;
+    overflow: auto;
+    border-top: 1px solid 1px solid #25313e;
+    background-color: #ececec; }
+    #content.vista.vistaTest footer.respuestas table {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+      #content.vista.vistaTest footer.respuestas table tr.active {
+        background-color: rgba(0, 0, 0, 0.05); }
+      #content.vista.vistaTest footer.respuestas table tr.atenuada {
+        opacity: .6; }
+      #content.vista.vistaTest footer.respuestas table td {
+        border-top: 1px solid rgba(0, 0, 0, 0.05); }
+  #content.vista.vistaTienda .vista-header {
+    background: #65bd77;
+    color: white; }
+    #content.vista.vistaTienda .vista-header button {
+      background: transparent; }
+  #content.vista.vistaTienda .vista-body {
+    padding-bottom: 10px;
+    background-color: rgba(50, 50, 50, 0.1); }
+    #content.vista.vistaTienda .vista-body .bloque {
+      margin-left: 5px;
+      margin-right: 5px; }
+      #content.vista.vistaTienda .vista-body .bloque .btn.cargarMas {
+        float: right;
+        margin-top: -2px;
+        padding: 0px 4px;
+        text-transform: uppercase;
+        border-radius: 0; }
+        #content.vista.vistaTienda .vista-body .bloque .btn.cargarMas.aunMas {
+          margin-top: 10px;
+          margin-bottom: 10px; }
+      #content.vista.vistaTienda .vista-body .bloque .card {
+        min-height: 120px; }
+        #content.vista.vistaTienda .vista-body .bloque .card .body {
+          min-height: 100px;
+          text-align: center; }
+          #content.vista.vistaTienda .vista-body .bloque .card .body i {
+            opacity: .1;
+            font-size: 160px; }
+        #content.vista.vistaTienda .vista-body .bloque .card span.love {
+          color: #aaa; }
 
 .modal-backdrop {
   background-color: #2e3e4e; }
@@ -365,6 +440,9 @@ section#main_container {
     border-radius: 8px; }
 
 @media (max-width: 767px) {
+  body {
+    overflow: hidden; }
+
   .modal#frmPausa {
     padding-left: 15px;
     padding-top: 15px; }
@@ -372,10 +450,21 @@ section#main_container {
       margin-top: 40px; }
       .modal#frmPausa .info .visual {
         right: 11px;
-        top: -20px; }
+        top: -20px;
+        max-height: 70px;
+        background: transparent; }
 
-  ul#mapatest span.arrow {
+  ul.btn2_1 span.arrow {
     margin-left: -25%; }
+
+  ul.btn2_2 span.arrow {
+    margin-left: +25%; }
+
+  ul.btn3_1 span.arrow {
+    margin-left: -37%; }
+
+  ul.btn3_2 span.arrow {
+    margin-left: 0%; }
 
   .navbar + section .nav-off-screen {
     top: 50px; }
@@ -510,5 +599,20 @@ section#main_container {
   -o-box-align: center;
   box-align: center;
   overflow: hidden; }
+  #swipeview-slider > div.portada {
+    font-size: 28px;
+    font-style: italic;
+    background-color: #2e3e4e;
+    color: white; }
+    #swipeview-slider > div.portada div.visual {
+      height: 100px;
+      width: 100px;
+      margin-top: 40px;
+      background-repeat: no-repeat;
+      background-position: center center; }
+    #swipeview-slider > div.portada.inicio div.visual {
+      background-image: url("../images/m-swipe-left.png"); }
+    #swipeview-slider > div.portada.fin div.visual {
+      background-image: url("../images/m-swipe-right.png"); }
 
 /*# sourceMappingURL=app.css.map */
