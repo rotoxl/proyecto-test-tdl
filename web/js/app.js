@@ -139,6 +139,8 @@ function buscaFilas(filas, dicBuscado){
 //////////
 function Controlador(){
 	this.init()
+	app.cache.token=document.location.search.substring('?token='.length)
+	this.cache.usuario=getDataProfile(app.cache.token)
 	}
 Controlador.prototype.init=function(){
 	jQuery(document).on('click', '[data-toggle^="class"]', function(e){

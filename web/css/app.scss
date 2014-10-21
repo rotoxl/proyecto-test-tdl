@@ -32,7 +32,13 @@ body > .login{
 		background:url(../images/screens.png) no-repeat center center;
 	}
 
-	a{width:50%; margin-left:25%;}
+	a{
+		width:220px; 
+		margin:0 auto; 
+		display:inherit;
+		padding: 10px 12px;
+		font-size: 18px;
+	}
 	p.status{
 		margin: 15px;
 	}
