@@ -25,33 +25,29 @@
 <body class="">
 	<section class="login">
 		<div class="screens"></div>
-		<a href="#" class="btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
+		<a href="javascript:doLogin()" class="btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
 
 		<p class="status"></p>
 	</section>
 
 	<script src="js/jquery.min.js"></script>
-	<script src="js/app.js"></script> 
+	<!-- <script src="js/app.js"></script> -->
 	<script src="js/app.plugin.js"></script>
 	<script src="js/options.nosvn.js"></script>
 	<script src="../cordova.js"></script>
 	
 	<script>
+		function isPhone(){
+			if (document.URL.indexOf("http://") === -1 && 
+				document.URL.indexOf("https://") === -1) {
+				return true
+				}
+			else
+				return false 
+			}
 		function init(){
-			jQuery('body > *').hide()
-			jQuery('body > .login').show()
-
-			var $loginButton = jQuery('body > .login a.btn');
-			var $loginStatus = jQuery('body > .login p.status');
-
-			$loginButton.on('click', function() {
-			    googleapi.authorize(options).done(function(data) {
-			      	$loginStatus.html('Access Token: ' + data.access_token);
-			    }).fail(function(data) {
-			      	$loginStatus.html(data.error);
-			    	});
-				});
-		}
+			//ready
+			}
 		
 		if (isPhone())
           	document.addEventListener('deviceready', init(), true)

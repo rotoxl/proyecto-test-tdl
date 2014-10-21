@@ -23,8 +23,11 @@ body > .login {
     left: 0;
     background: url(../images/screens.png) no-repeat center center; }
   body > .login a {
-    width: 50%;
-    margin-left: 25%; }
+    width: 220px;
+    margin: 0 auto;
+    display: inherit;
+    padding: 10px 12px;
+    font-size: 18px; }
   body > .login p.status {
     margin: 15px; }
 
