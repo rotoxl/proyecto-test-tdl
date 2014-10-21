@@ -8,6 +8,26 @@ body {
   background-color: transparent;
   -webkit-font-smoothing: antialiased; }
 
+body > .login {
+  color: white;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  background: #2e3e4e; }
+  body > .login div.screens {
+    margin-top: 30%;
+    height: 200px;
+    width: 100%;
+    left: 0;
+    background: url(../images/screens.png) no-repeat center center; }
+  body > .login a {
+    width: 50%;
+    margin-left: 25%; }
+  body > .login p.status {
+    margin: 15px; }
+
 header#navigation_bar {
   border-radius: 0;
   border: 0;
