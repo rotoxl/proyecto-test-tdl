@@ -5,6 +5,8 @@
         App para realizar tests de oposiciones y de otros tipos; incluye tienda de tests organizada por materias, estadísticas de tus avances, méritos...
     </description>
     <author email="rotoxl@gmail.com" href="http://cordova.io">Carrón Sisters </author>
-    <content src="lnk/index.html" />
+    <content src="lnk/login.html" />
     <access origin="*" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="true" />
 </widget>
