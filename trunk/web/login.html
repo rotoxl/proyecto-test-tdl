@@ -25,7 +25,7 @@
 <body class="">
 	<section class="login">
 		<div class="screens"></div>
-		<a href="javascript:doLogin()" class="btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
+		<a href="#" style="display:none" class="btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
 
 		<p class="status"></p>
 	</section>
@@ -37,6 +37,7 @@
 	<script src="../cordova.js"></script>
 	
 	<script>
+		function get(s){return localStorage.getItem(s)}
 		function isPhone(){
 			if (document.URL.indexOf("http://") === -1 && 
 				document.URL.indexOf("https://") === -1) {
@@ -46,7 +47,15 @@
 				return false 
 			}
 		function init(){
-			//ready
+			var ud=get('tapp37_userdata')
+			if (ud!=null){
+				document.location='./index.html?meacuerdo'
+				return
+				}
+			else {
+				prepareLogin()
+				jQuery('.login .btn').fadeIn()
+				}
 			}
 		
 		if (isPhone())
