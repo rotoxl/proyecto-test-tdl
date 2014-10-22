@@ -254,13 +254,13 @@ section#main_container{
 	
 }
 
-.avatar {
+.avatar .img{
 	border: 1px solid rgba(255,255,255,0.35);
 	display: block;
 	border-radius: 500px;
 	white-space: nowrap;
 	}
-.nav .avatar {
+.nav .avatar .pic {
 	width: 30px;
 	margin-top: -5px;
 	margin-right: 5px;
@@ -395,9 +395,6 @@ section#main_container{
 					.bl{display:block;}
 				}
 			}
-			article.card.d{
-				float: right;
-			}
 
 		}
 	}
@@ -521,6 +518,7 @@ section#main_container{
 
 	}
 	&.vista.vistaTienda{
+		background-color:rgba(50, 50, 50, 0.1);
 		.vista-header {
 			background:#65bd77; color:white;
 			button{
@@ -529,7 +527,7 @@ section#main_container{
 		}
 		.vista-body{
 			padding-bottom:10px;
-			background-color:rgba(50, 50, 50, 0.1);
+			
 			
 			.bloque{
 				margin-left:5px; margin-right:5px;
@@ -657,6 +655,47 @@ section#main_container{
 
 //media queries
 @media (max-width: 767px){
+	.cargarMas{
+		margin-right:1%;
+	}
+	section.bloque{
+		margin-left:1%!important;
+		margin-right:0!important;
+	}
+	article.card{
+		width:48%;
+		margin-top:5px; 
+		margin-right:1%;
+		}
+
+	aside .vbox > footer {
+		position: absolute;
+		bottom: 10px;
+		
+		left: 2.5%;
+		width: 95%;
+		min-height:45px; height:45px;
+
+		color:#adbece;
+		padding: 5px 5px 0 5px!important;
+
+		.ajustes, .logout{
+			font-size:22px; 
+			line-height: 26px;
+			color:#adbece!important;
+		}
+		.avatar{
+			.pic {
+				width: 30px;
+			}
+			.nombre{
+				font-size: 13px;
+				line-height: 28px;
+				margin-left: 4px;
+			}
+		}
+	}
+
 	body{overflow:hidden;}
 	.modal#frmPausa{
 		
@@ -819,6 +858,7 @@ section#main_container{
 	.navbar-nav.navbar-right:last-child {
 		margin-right: -15px;
 	}
+
 }
 
 

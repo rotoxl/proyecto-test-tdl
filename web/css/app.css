@@ -177,13 +177,13 @@ section#main_container {
   background-color: #f1f1f1 !important;
   color: #717171; }
 
-.avatar {
+.avatar .img {
   border: 1px solid rgba(255, 255, 255, 0.35);
   display: block;
   border-radius: 500px;
   white-space: nowrap; }
 
-.nav .avatar {
+.nav .avatar .pic {
   width: 30px;
   margin-top: -5px;
   margin-right: 5px; }
@@ -299,8 +299,6 @@ section#main_container {
         background-color: rgba(50, 50, 50, 0.1); }
         #content.vista .vista-body article.card footer .bl {
           display: block; }
-    #content.vista .vista-body article.card.d {
-      float: right; }
   #content.vista.vistaTest .vista-header .btn .fa-pause {
     float: right;
     margin-top: 2px;
@@ -380,36 +378,37 @@ section#main_container {
         opacity: .6; }
       #content.vista.vistaTest footer.respuestas table td {
         border-top: 1px solid rgba(0, 0, 0, 0.05); }
-  #content.vista.vistaTienda .vista-header {
-    background: #65bd77;
-    color: white; }
-    #content.vista.vistaTienda .vista-header button {
-      background: transparent; }
-  #content.vista.vistaTienda .vista-body {
-    padding-bottom: 10px;
+  #content.vista.vistaTienda {
     background-color: rgba(50, 50, 50, 0.1); }
-    #content.vista.vistaTienda .vista-body .bloque {
-      margin-left: 5px;
-      margin-right: 5px; }
-      #content.vista.vistaTienda .vista-body .bloque .btn.cargarMas {
-        float: right;
-        margin-top: -2px;
-        padding: 0px 4px;
-        text-transform: uppercase;
-        border-radius: 0; }
-        #content.vista.vistaTienda .vista-body .bloque .btn.cargarMas.aunMas {
-          margin-top: 10px;
-          margin-bottom: 10px; }
-      #content.vista.vistaTienda .vista-body .bloque .card {
-        min-height: 120px; }
-        #content.vista.vistaTienda .vista-body .bloque .card .body {
-          min-height: 100px;
-          text-align: center; }
-          #content.vista.vistaTienda .vista-body .bloque .card .body i {
-            opacity: .1;
-            font-size: 160px; }
-        #content.vista.vistaTienda .vista-body .bloque .card span.love {
-          color: #aaa; }
+    #content.vista.vistaTienda .vista-header {
+      background: #65bd77;
+      color: white; }
+      #content.vista.vistaTienda .vista-header button {
+        background: transparent; }
+    #content.vista.vistaTienda .vista-body {
+      padding-bottom: 10px; }
+      #content.vista.vistaTienda .vista-body .bloque {
+        margin-left: 5px;
+        margin-right: 5px; }
+        #content.vista.vistaTienda .vista-body .bloque .btn.cargarMas {
+          float: right;
+          margin-top: -2px;
+          padding: 0px 4px;
+          text-transform: uppercase;
+          border-radius: 0; }
+          #content.vista.vistaTienda .vista-body .bloque .btn.cargarMas.aunMas {
+            margin-top: 10px;
+            margin-bottom: 10px; }
+        #content.vista.vistaTienda .vista-body .bloque .card {
+          min-height: 120px; }
+          #content.vista.vistaTienda .vista-body .bloque .card .body {
+            min-height: 100px;
+            text-align: center; }
+            #content.vista.vistaTienda .vista-body .bloque .card .body i {
+              opacity: .1;
+              font-size: 160px; }
+          #content.vista.vistaTienda .vista-body .bloque .card span.love {
+            color: #aaa; }
 
 .modal-backdrop {
   background-color: #2e3e4e; }
@@ -463,6 +462,38 @@ section#main_container {
     border-radius: 8px; }
 
 @media (max-width: 767px) {
+  .cargarMas {
+    margin-right: 1%; }
+
+  section.bloque {
+    margin-left: 1% !important;
+    margin-right: 0 !important; }
+
+  article.card {
+    width: 48%;
+    margin-top: 5px;
+    margin-right: 1%; }
+
+  aside .vbox > footer {
+    position: absolute;
+    bottom: 10px;
+    left: 2.5%;
+    width: 95%;
+    min-height: 45px;
+    height: 45px;
+    color: #adbece;
+    padding: 5px 5px 0 5px !important; }
+    aside .vbox > footer .ajustes, aside .vbox > footer .logout {
+      font-size: 22px;
+      line-height: 26px;
+      color: #adbece !important; }
+    aside .vbox > footer .avatar .pic {
+      width: 30px; }
+    aside .vbox > footer .avatar .nombre {
+      font-size: 13px;
+      line-height: 28px;
+      margin-left: 4px; }
+
   body {
     overflow: hidden; }
 

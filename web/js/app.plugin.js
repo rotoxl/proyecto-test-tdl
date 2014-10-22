@@ -1,3 +1,5 @@
+var authWindow=null
+
 !function (jQuery) {
 
   jQuery(function(){
@@ -18,7 +20,7 @@
   });
 }(window.jQuery);
 ////
-function doLogin(){
+function prepareLogin(){
 	jQuery('body > *').hide()
 	jQuery('body > .login').show()
 
@@ -53,7 +55,7 @@ var googleapi = {
         });
 
         //Open the OAuth consent page in the InAppBrowser
-        var authWindow = window.open(authUrl, '_blank', 'location=no,toolbar=no');
+        authWindow = window.open(authUrl, '_blank', 'location=no,toolbar=no');
 
         //The recommendation is to use the redirect_uri "urn:ietf:wg:oauth:2.0:oob"
         //which sets the authorization code in the browser's title. However, we can't
@@ -101,7 +103,7 @@ var googleapi = {
         return deferred.promise();
     }
 }
-function getDataProfile(token){
+function getDataProfile(token, fnCallBack){
         var term=null;
         jQuery.ajax({
                url:'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+token,
@@ -113,10 +115,10 @@ function getDataProfile(token){
             success:function(data){
                    var item;
 
-                   console.log(JSON.stringify(data));
+                   // console.log(JSON.stringify(data));
                     // Save the userprofile data in your localStorage.
                    
-                   return data
+                   fnCallBack(data)
                    // localStorage.gmailLogin="true";
                    // localStorage.gmailID=data.id;
                    // localStorage.gmailEmail=data.email;

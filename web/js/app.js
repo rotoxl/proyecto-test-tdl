@@ -136,11 +136,44 @@ function buscaFilas(filas, dicBuscado){
 		}
 	return jQuery.grep(filas, fn)
 	}
+function get(s){return JSON.parse( localStorage.getItem(s) )}
+function save(s,v){localStorage.setItem(s, JSON.stringify(v))}
 //////////
 function Controlador(){
+	var self=this
 	this.init()
-	app.cache.token=document.location.search.substring('?token='.length)
-	this.cache.usuario=getDataProfile(app.cache.token)
+	
+	var sr=document.location.search+''
+
+	if (sr.indexOf('?token=')==0){
+		this.cache.token=sr.substring('?token='.length)
+
+		if (this.cache.token=='666'){
+			this.cache.usuario={//id:"118066386467974893999",
+								email:"rotoxl@gmail.com",
+								verified_email:true,
+								// name:"Ernesto Molina Carrón",
+								given_name:"Ernesto",
+								family_name:"Molina Carrón",
+								// link:"https://plus.google.com/118066386467974893999",
+								picture:"https://lh6.googleusercontent.com/-yLoUCNmu2qc/AAAAAAAAAAI/AAAAAAAAE3s/d8OsxGzNbeo/photo.jpg",
+								// gender:"male"
+								} 
+			this.actualizaDomUsuario()
+			}
+		else {
+			getDataProfile(this.cache.token, function(data){self.userDataReceived(data)} )
+			}
+		}
+	else if (sr.indexOf('?meacuerdo')==0){
+		var s=get('tapp37_userdata')
+		this.cache.usuario=JSON.parse(s)
+		this.actualizaDomUsuario()
+		}
+	else{
+		localStorage.removeItem('tapp37_userdata')
+		document.location='login.html'
+		}
 	}
 Controlador.prototype.init=function(){
 	jQuery(document).on('click', '[data-toggle^="class"]', function(e){
@@ -164,6 +197,21 @@ Controlador.prototype.init=function(){
 			{id:3, ds:'Cuerpo Superior de Sistemas y Tecnologías de la Información', i:'fa-file-code-o'},
 			]
 	}
+Controlador.prototype.userDataReceived=function(data){
+	this.cache.usuario=data
+	save('tapp37_userdata', JSON.stringify(data))
+	this.actualizaDomUsuario()
+	}
+Controlador.prototype.actualizaDomUsuario=function(){
+	jQuery('.avatar .pic img').attr('src', this.cache.usuario.picture)
+	jQuery('.avatar .nombre').text(this.cache.usuario.given_name)
+	// this.abreNavDrawer()
+	}
+Controlador.prototype.logout=function(){
+	disconnectUser(this.cache.token)
+	localStorage.removeItem('tapp37_userdata')
+	document.location='login.html'
+	}
 /////
 Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
 	var arbol=jQuery('.aside-md .nav-primary')
@@ -173,6 +221,9 @@ Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
 	
 	var nodoContinuarTest=arbol.find('.continuarTest')
 	nodoContinuarTest.toggleClass('hidden', idLi!='continuarTest')
+	}
+Controlador.prototype.abreNavDrawer=function(){
+	jQuery('aside.aside-md').addClass('nav-off-screen')
 	}
 Controlador.prototype.cierraNavDrawer=function(){
 	jQuery('#main_container aside.nav-off-screen').removeClass('nav-off-screen')
@@ -187,6 +238,7 @@ Controlador.prototype.cargaTest=function(test){
 	}
 Controlador.prototype.cargaVistaInicio=function(){
 	this.cargaVistaTienda()
+	this.abreNavDrawer()
 	}
 Controlador.prototype.cargaVistaTienda=function(){
 	new VistaTienda().toDOM()
@@ -780,9 +832,11 @@ VistaRepasoTest.prototype=new VistaTest
 
 function VistaTienda(){
 	this.id='vistaTienda'
-	this.leeTestLocales()
 	this.cat=null
 	app.muestraNodoEnNavDrawer('liVistaTienda')
+
+	this.leeTestLocales()
+	this.entornoLocal=true
 	}
 VistaTienda.prototype=new Vista
 VistaTienda.prototype.getHeader=function(){
@@ -804,7 +858,11 @@ VistaTienda.prototype.getHeader=function(){
 			//       creaObjProp('i', {className:'fa fa-pause'}) 
 			//       ]}),
 			//   ]})
-			]})
+			]}),
+			creaObjProp('div', {className:'btn-group', hijos:[
+				creaObjProp('button', {texto:'Dispositivo', i:'fa-download', className:'btn-primary active'}),
+				creaObjProp('button', {texto:'Tienda', i:'fa-cloud', className:'btn-primary active'}),
+				]})
 		]})
 	}
 VistaTienda.prototype.getBody=function(){
@@ -812,7 +870,7 @@ VistaTienda.prototype.getBody=function(){
 	}
 VistaTienda.prototype.tareasPostCarga=function(){
 	this.cargaListaCategorias()
-	this.cargaListaTests()
+	this.cargaListaTests(this.testLocales)
 	}
 VistaTienda.prototype.cargaListaCategorias=function(){
 	var self=this
@@ -852,17 +910,6 @@ VistaTienda.prototype.backButton=function(){
 		bloques.find('.titulo .cargarMas').show()
 		bloques.find('.cargarMas.aunMas').remove()
 		}
-	}
-VistaTienda.prototype.leeTestLocales=function(){
-	this.testLocales=VistaTienda.prototype.testData()
-	this.testLocales.sort(function(a,b){
-					if (a.favorito==b.favorito)
-						return 0
-					else if (a.favorito>b.favorito)
-						return -1
-					else
-						return 1
-					})
 	} 
 VistaTienda.prototype.generaBtnCargarMas=function(cssAdicional){
 	var self=this
@@ -871,12 +918,12 @@ VistaTienda.prototype.generaBtnCargarMas=function(cssAdicional){
 			}
 	return creaObjProp('button', {className:'cargarMas btn btn-primary '+cssAdicional, texto:'Más', onclick:fnNavega} )
 	}
-VistaTienda.prototype.cargaListaTests=function(){
+VistaTienda.prototype.cargaListaTests=function(lista){
 	var xl=[]
 
 	for (var i=0; i<app.cache.categorias.length; i++){
 		var cat=app.cache.categorias[i]
-		var sl=buscaFilas(this.testLocales, {id_categoria:cat.id}).slice(0,4)
+		var sl=buscaFilas(lista, {id_categoria:cat.id}).slice(0,4)
 		
 		var d=creaObjProp('section', {id:'cat-'+cat.id, className:'bloque cat', 'data-id':cat.id, hijos:[
 			creaObjProp('h4', {className:'titulo',texto:cat.ds, 'data-id':cat.cd, hijo:this.generaBtnCargarMas() })
@@ -896,7 +943,7 @@ VistaTienda.prototype.cargaListaTests=function(){
 	this.domBody.addClass('flowable').append(xl).removeClass('cargando')
 	}
 VistaTienda.prototype._generaDomTest=function(test, j, cat){
-	return creaObjProp('article', {id:'test-'+test.id, 'data-id':test.id, className:'main card'+(j%2?' d':''), hijos:[
+	return creaObjProp('article', {id:'test-'+test.id, 'data-id':test.id, className:'main card', hijos:[
 						creaObjProp('div', {className:'body', i:cat.i}),
 						creaObjProp('footer', {hijos:[
 											creaObjProp('span', {className:'bl love', texto:test.favorito, i:(test.favorito>0?'fa-heart':'fa-heart-o') }),
@@ -924,6 +971,43 @@ VistaTienda.prototype.cargarMas=function(){
 		blCat.append( this.generaBtnCargarMas('aunMas') )
 		}
 	}
+//////
+VistaTienda.prototype.leeTestTienda=function(cat, fnCallBack){
+	return [
+			{id:1, ds:'Test Enfermería 1', favorito:13, id_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/style-metronic.css'},
+			{id:12, ds:'Test Enfermería 2', favorito:1, id_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/select2.css'},
+			{id:19, ds:'Test Enfermería 3', favorito:0, id_categoria:1, importe:.6},
+			{id:99, ds:'Test Enfermería 4', favorito:1, id_categoria:1, importe:.2},
+			{id:88, ds:'Paquete 10 Tests Enfermería/legislación', favorito:10, id_categoria:1, importe:.60, contenido:[
+					{ds:'Legislación 1'},
+					{ds:'Legislación 2'},
+					{ds:'Legislación 3'},
+					{ds:'Legislación 4'},
+					{ds:'Legislación 5'},
+				]},
+				},
+			]
+}
+//////
+VistaTienda.prototype.salvaTestLocales=function(){
+	save('tapp_37_listatest', this.testLocales)
+	}
+VistaTienda.prototype.leeTestLocales=function(fnCallBack){
+	this.testLocales=get('tapp_37_listatest') //VistaTienda.prototype.testData()
+	if (! (this.testLocales instanceof Array) )
+		this.testLocales=[]
+	this.testLocales.sort(function(a,b){
+					if (a.favorito==b.favorito)
+						return 0
+					else if (a.favorito>b.favorito)
+						return -1
+					else
+						return 1
+					})
+	fnCallBack(this.testLocales)
+	}
+VistaTienda.prototype.descargaTest=function(){}
+//////
 VistaTienda.prototype.testData=function(){
 	return [
 			{id:1, ds:'Test Enfermería 1', favorito:13, id_categoria:1, nota:5.5},
