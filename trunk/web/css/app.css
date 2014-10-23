@@ -248,6 +248,11 @@ section#main_container {
   background-color: transparent !important;
   color: #2e3e4e !important; }
 
+.btn:active, .btn.active {
+  background: rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 0 0;
+  border-color: rgba(0, 0, 0, 0.1) !important; }
+
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -263,7 +268,7 @@ section#main_container {
   #content.vista .vista-header {
     height: 50px;
     background-color: rgba(50, 50, 50, 0.1); }
-    #content.vista .vista-header .btn-group {
+    #content.vista .vista-header > .btn-group {
       width: 100%; }
     #content.vista .vista-header .btn {
       border-radius: 0;
@@ -392,7 +397,6 @@ section#main_container {
         margin-right: 5px; }
         #content.vista.vistaTienda .vista-body .bloque .btn.cargarMas {
           float: right;
-          margin-top: -2px;
           padding: 0px 4px;
           text-transform: uppercase;
           border-radius: 0; }

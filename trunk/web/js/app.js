@@ -13,7 +13,7 @@ function isPhone(){
 function creaObjProp(tipo, dicPropiedades){
 	var subtipo
 	if (tipo.indexOf(':')>-1){
-		temp=tipo.split(':')
+		var temp=tipo.split(':')
 		tipo=temp[0];subtipo=temp[1]
 		}
 	var obj=document.createElement(tipo)
@@ -138,26 +138,37 @@ function buscaFilas(filas, dicBuscado){
 	}
 function get(s){return JSON.parse( localStorage.getItem(s) )}
 function save(s,v){localStorage.setItem(s, JSON.stringify(v))}
+function xeval(s){return JSON.parse(s)}
 //////////
 function Controlador(){
 	var self=this
-	this.init()
-	
-	var sr=document.location.search+''
 
+	this.cache={}
+	this.config={}
+	this.init()
+
+	if ( isPhone() )
+		this.config.servidor='http://192.168.0.196:8888/proyectotest/'
+	else
+		this.config.servidor='./'
+	this.config.url=this.config.servidor+'index_r.php'
+
+	//////////
+	var sr=document.location.search+''
 	if (sr.indexOf('?token=')==0){
 		this.cache.token=sr.substring('?token='.length)
 
 		if (this.cache.token=='666'){
-			this.cache.usuario={//id:"118066386467974893999",
-								email:"rotoxl@gmail.com",
-								verified_email:true,
-								// name:"Ernesto Molina Carrón",
-								given_name:"Ernesto",
-								family_name:"Molina Carrón",
-								// link:"https://plus.google.com/118066386467974893999",
-								picture:"https://lh6.googleusercontent.com/-yLoUCNmu2qc/AAAAAAAAAAI/AAAAAAAAE3s/d8OsxGzNbeo/photo.jpg",
-								// gender:"male"
+			this.cache.usuario={//id: '118066386467974893999',
+								cd_usuario: 'emolina@tax-i.co',
+								email:'emolina@tax-i.co',
+								verified_email :true,
+								// name: 'Ernesto Molina Carrón',
+								given_name: 'Ernesto',
+								family_name: 'Molina Carrón',
+								// link: 'https://plus.google.com/118066386467974893999,
+								picture: 'https://lh6.googleusercontent.com/-yLoUCNmu2qc/AAAAAAAAAAI/AAAAAAAAE3s/d8OsxGzNbeo/photo.jpg',
+								// gender: 'male'
 								} 
 			this.actualizaDomUsuario()
 			}
@@ -189,16 +200,18 @@ Controlador.prototype.init=function(){
 					});
 			$this.toggleClass('active');
 			});
-
-	this.cache={}
+	
 	this.cache.categorias=[
 			{id:1, ds:'Diplomado Sanitario/Enfermería', i:'fa-stethoscope'},
 			{id:2, ds:'Carné de conducir B2', i:'fa-car'},
 			{id:3, ds:'Cuerpo Superior de Sistemas y Tecnologías de la Información', i:'fa-file-code-o'},
 			]
+
 	}
 Controlador.prototype.userDataReceived=function(data){
+	this.cache.usuario.cd_usuario=data.email
 	this.cache.usuario=data
+
 	save('tapp37_userdata', JSON.stringify(data))
 	this.actualizaDomUsuario()
 	}
@@ -212,6 +225,20 @@ Controlador.prototype.logout=function(){
 	localStorage.removeItem('tapp37_userdata')
 	document.location='login.html'
 	}
+/////
+Controlador.prototype.loginTienda=function(){
+	if (this._loginTiendaOK==true)
+		return
+
+	var self=this
+	var desfaseUTC=new Date().getTimezoneOffset()/-60
+    this.cache.usuario.tz=(desfaseUTC<0?'-':'+')+lpad(desfaseUTC, '0', 2)+':00'
+
+	jQuery.get(this.config.servidor+'login_r.php', {accion:'login', tz:this.cache.usuario.tz, cd_usuario:this.cache.usuario.cd_usuario})
+		.success(function(data){
+			self._loginTiendaOK=true
+		})
+}
 /////
 Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
 	var arbol=jQuery('.aside-md .nav-primary')
@@ -238,7 +265,7 @@ Controlador.prototype.cargaTest=function(test){
 	}
 Controlador.prototype.cargaVistaInicio=function(){
 	this.cargaVistaTienda()
-	this.abreNavDrawer()
+	// this.abreNavDrawer()
 	}
 Controlador.prototype.cargaVistaTienda=function(){
 	new VistaTienda().toDOM()
@@ -741,11 +768,12 @@ VistaTest.prototype.testData=function(){
 		md: {
 				fecha:'04/10/2014',
 				titulo:'Pruebas selectivas para el acceso a la condición de Personal Estatutario Fijo (BOCM: 10-09-2012)',
-				id_categoria:1, //1-enfermería, 3-tic
+				cd_categoria:1, //1-enfermería, 3-tic
 
 				region:'Comunidad de Madrid',
 				organismo:'SaludMadrid/Servicio Madrileño de Salud',
 				img:'http://1.bp.blogspot.com/-20rV8pKsdjQ/UJd4Ss6XSII/AAAAAAAAG0c/3Wu9Z25s4_A/s1600/SALUD_MADRID.jpg',
+				version:1 //servirá para corregir las erratas y demás
 				},
 		examen: {
 				fallosRestan:.25, //para indicar aquello de que cada 4 fallos resta 1 acierto
@@ -843,27 +871,39 @@ VistaTienda.prototype.getHeader=function(){
 	var self=this
 	return creaObjProp('header', {className:'btn-primary vista-header' , hijos:[
 			creaObjProp('div', {className:'btn-group', hijos:[
-					creaObjProp('button', {className:'btn btn-primary col-md-4 col-sm-4 col-xs-4 dropdown-toggle', 'data-toggle':'dropdown', hijos:[
+
+				creaObjProp('div', {className:'btn-group col-md-6 col-sm-6 col-xs-6', hijos:[
+					creaObjProp('button', {className:'btn btn-primary dropdown-toggle', 'data-toggle':'dropdown', hijos:[
 						creaT(' Categorías '),
 						creaObjProp('b', {className:'caret'})
-						]}),
-					creaObjProp('ul', {id:'categorias', className:'dropdown-menu animated fadeInRight btn3_1', role:'menu', hijos:[
+						]}), 
+					creaObjProp('ul', {id:'categorias', className:'btn3_1 dropdown-menu animated fadeInRight', role:'menu', hijos:[
 						creaObjProp('span', {className:'arrow top'}),
 
 						]}),
-			//     creaObjProp('button', {onclick:function(){self.pausaTiempo()}, className:'btn btn-dark col-md-6 col-sm-6 col-xs-6', i:'fa-clock-o', hijos:[
-			//       creaT(' '),
-			//       creaObjProp('span', {id:'tiempoConsumido', texto:this.convierteSegundosAHora(this.test.examen.segundosConsumidos)}),
-			//       creaT(' de '+this.convierteMinutosAHora(this.test.examen.minutos)),
-			//       creaObjProp('i', {className:'fa fa-pause'}) 
-			//       ]}),
-			//   ]})
+					]}),
+
+					creaObjProp('button', {onclick:function(){self.cambiaEntorno(this)}, texto:'Tienda', i:'fa-cloud', className:'pull-right btn btn-primary tienda'}),
+					creaObjProp('button', {onclick:function(){self.cambiaEntorno(this)}, texto:'Dispositivo', i:'fa-download', className:'pull-right btn btn-primary active dispositivo'}),
 			]}),
-			creaObjProp('div', {className:'btn-group', hijos:[
-				creaObjProp('button', {texto:'Dispositivo', i:'fa-download', className:'btn-primary active'}),
-				creaObjProp('button', {texto:'Tienda', i:'fa-cloud', className:'btn-primary active'}),
-				]})
+			
 		]})
+	}
+VistaTienda.prototype.cambiaEntorno=function(xbtn){
+	var pressed=jQuery(xbtn)
+	
+	this.domHeader.find('.btn.tienda, .btn.dispositivo').removeClass('active')
+	pressed.addClass('active')
+
+	if (pressed.hasClass('dispositivo')){
+		this.entornoLocal=true
+		this.cargaListaTests(this.testLocales)
+		}
+	else {
+		this.entornoLocal=false
+		var self=this
+		this.leeTestTienda( function(datos){self.cargaListaTests(datos)} )
+		}
 	}
 VistaTienda.prototype.getBody=function(){
 	return creaObjProp('div', {className:'vista-body cargando'})
@@ -872,6 +912,19 @@ VistaTienda.prototype.tareasPostCarga=function(){
 	this.cargaListaCategorias()
 	this.cargaListaTests(this.testLocales)
 	}
+VistaTienda.prototype.backButton=function(){
+	if (this.cat){
+		this.cat=null
+		this.restauraHeaderApp() 
+
+		//dejamos una pequeña lista de tests visibles por categoría, y mostramos el botón 'cargar más'
+		var bloques=this.domBody.find('.bloque.cat').show()
+		bloques.find('.card').not('.main').remove()
+		bloques.find('.titulo .cargarMas').show()
+		bloques.find('.cargarMas.aunMas').remove()
+		}
+	}
+//////
 VistaTienda.prototype.cargaListaCategorias=function(){
 	var self=this
 	//http://www.oposiciones.de/oposiciones.htm, opción "según estudios"
@@ -899,18 +952,6 @@ VistaTienda.prototype.navegaCat=function(idcat){
 	this.domBody.find('.bloque.cat').not(blSel).hide()
 	this.cargarMas()
 	}
-VistaTienda.prototype.backButton=function(){
-	if (this.cat){
-		this.cat=null
-		this.restauraHeaderApp() 
-
-		//dejamos una pequeña lista de tests visibles por categoría, y mostramos el botón 'cargar más'
-		var bloques=this.domBody.find('.bloque.cat').show()
-		bloques.find('.card').not('.main').remove()
-		bloques.find('.titulo .cargarMas').show()
-		bloques.find('.cargarMas.aunMas').remove()
-		}
-	} 
 VistaTienda.prototype.generaBtnCargarMas=function(cssAdicional){
 	var self=this
 	var fnNavega=function(){
@@ -923,10 +964,10 @@ VistaTienda.prototype.cargaListaTests=function(lista){
 
 	for (var i=0; i<app.cache.categorias.length; i++){
 		var cat=app.cache.categorias[i]
-		var sl=buscaFilas(lista, {id_categoria:cat.id}).slice(0,4)
+		var sl=buscaFilas(lista, {cd_categoria:cat.id}).slice(0,4)
 		
 		var d=creaObjProp('section', {id:'cat-'+cat.id, className:'bloque cat', 'data-id':cat.id, hijos:[
-			creaObjProp('h4', {className:'titulo',texto:cat.ds, 'data-id':cat.cd, hijo:this.generaBtnCargarMas() })
+			creaObjProp('h4', {className:'titulo', 'data-id':cat.cd, hijos:[this.generaBtnCargarMas(), creaT(cat.ds)] })
 			]} )
 
 		for (var j=0;  j<sl.length; j++){
@@ -960,7 +1001,7 @@ VistaTienda.prototype.cargarMas=function(){
 	blCat.find('.cargarMas.aunMas').remove()
 
 	var num=blCat.find('article.card').length
-	var sl=buscaFilas(this.testLocales, {id_categoria:this.cat.id})
+	var sl=buscaFilas(this.testLocales, {cd_categoria:this.cat.id})
 
 	var aPintar=sl.slice(num,num+tanda)
 	for (var j=0;  j<aPintar.length; j++){
@@ -972,22 +1013,37 @@ VistaTienda.prototype.cargarMas=function(){
 		}
 	}
 //////
-VistaTienda.prototype.leeTestTienda=function(cat, fnCallBack){
-	return [
-			{id:1, ds:'Test Enfermería 1', favorito:13, id_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/style-metronic.css'},
-			{id:12, ds:'Test Enfermería 2', favorito:1, id_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/select2.css'},
-			{id:19, ds:'Test Enfermería 3', favorito:0, id_categoria:1, importe:.6},
-			{id:99, ds:'Test Enfermería 4', favorito:1, id_categoria:1, importe:.2},
-			{id:88, ds:'Paquete 10 Tests Enfermería/legislación', favorito:10, id_categoria:1, importe:.60, contenido:[
-					{ds:'Legislación 1'},
-					{ds:'Legislación 2'},
-					{ds:'Legislación 3'},
-					{ds:'Legislación 4'},
-					{ds:'Legislación 5'},
-				]},
-				},
-			]
-}
+VistaTienda.prototype.leeTestTienda=function(fnCallBack){
+	// return [
+	// 		{id:1, ds:'Test Enfermería 1', favorito:13, cd_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/style-metronic.css'},
+	// 		{id:12, ds:'Test Enfermería 2', favorito:1, cd_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/select2.css'},
+	// 		{id:19, ds:'Test Enfermería 3', favorito:0, cd_categoria:1, importe:.6},
+	// 		{id:99, ds:'Test Enfermería 4', favorito:1, cd_categoria:1, importe:.2},
+	// 		{id:88, ds:'Paquete 10 Tests Enfermería/legislación', favorito:10, cd_categoria:1, importe:.60, contenido:[
+	// 				{ds:'Legislación 1'},
+	// 				{ds:'Legislación 2'},
+	// 				{ds:'Legislación 3'},
+	// 				{ds:'Legislación 4'},
+	// 				{ds:'Legislación 5'},
+	// 			]},
+	// 		]
+	var self=this
+	self.domBody.empty().addClass('cargando')
+	jQuery.get(app.config.url, {accion:'getPreviewCategorias', cd_usuario:app.cache.usuario.cd_usuario}).success(
+		function(data){
+			var datos=xeval(data)
+			if (datos.retorno==1){
+				self.testTienda=datos.tests || []
+				
+				if (fnCallBack){
+					fnCallBack(self.testTienda)
+					self.domBody.removeClass('cargando')
+					}
+				}
+			else
+				console.error(data)
+		})
+	}
 //////
 VistaTienda.prototype.salvaTestLocales=function(){
 	save('tapp_37_listatest', this.testLocales)
@@ -1004,33 +1060,34 @@ VistaTienda.prototype.leeTestLocales=function(fnCallBack){
 					else
 						return 1
 					})
-	fnCallBack(this.testLocales)
+	if (fnCallBack)
+		fnCallBack(this.testLocales)
 	}
 VistaTienda.prototype.descargaTest=function(){}
 //////
 VistaTienda.prototype.testData=function(){
 	return [
-			{id:1, ds:'Test Enfermería 1', favorito:13, id_categoria:1, nota:5.5},
-			{id:12, ds:'Test Enfermería 2', favorito:1, id_categoria:1, nota:6},
-			{id:19, ds:'Test Enfermería 3', favorito:0, id_categoria:1},
-			{id:99, ds:'Test Enfermería 4', favorito:1, id_categoria:1},
-			{id:999, ds:'Test Enfermería 99', favorito:3, id_categoria:1},
-			{id:1000, ds:'Test Enfermería 100', favorito:5, id_categoria:1},
-			{id:1001, ds:'Test Enfermería 101', favorito:7, id_categoria:1},
+			{id:1, ds:'Test Enfermería 1', favorito:13, cd_categoria:1, nota:5.5},
+			{id:12, ds:'Test Enfermería 2', favorito:1, cd_categoria:1, nota:6},
+			{id:19, ds:'Test Enfermería 3', favorito:0, cd_categoria:1},
+			{id:99, ds:'Test Enfermería 4', favorito:1, cd_categoria:1},
+			{id:999, ds:'Test Enfermería 99', favorito:3, cd_categoria:1},
+			{id:1000, ds:'Test Enfermería 100', favorito:5, cd_categoria:1},
+			{id:1001, ds:'Test Enfermería 101', favorito:7, cd_categoria:1},
 
-			{id:2, ds:'Test Autoescuela ABC', favorito:0,id_categoria:2},
-			{id:3, ds:'Test Autoescuela DEF', favorito:0,id_categoria:2},
-			{id:4, ds:'Test Autoescuela 3', favorito:0,  id_categoria:2},
-			{id:5, ds:'Test Autoescuela 4', favorito:0,  id_categoria:2},
-			{id:6, ds:'Test Autoescuela 5', favorito:0,  id_categoria:2},
-			{id:7, ds:'Test Autoescuela 99', favorito:0, id_categoria:2},
+			{id:2, ds:'Test Autoescuela ABC', favorito:0,cd_categoria:2},
+			{id:3, ds:'Test Autoescuela DEF', favorito:0,cd_categoria:2},
+			{id:4, ds:'Test Autoescuela 3', favorito:0,  cd_categoria:2},
+			{id:5, ds:'Test Autoescuela 4', favorito:0,  cd_categoria:2},
+			{id:6, ds:'Test Autoescuela 5', favorito:0,  cd_categoria:2},
+			{id:7, ds:'Test Autoescuela 99', favorito:0, cd_categoria:2},
 
-			{id:201, ds:'Test TIC 1',  favorito:1, id_categoria:3},
-			{id:301, ds:'Test TIC 11', favorito:3, id_categoria:3},
-			{id:401, ds:'Test TIC 9',  favorito:2, id_categoria:3},
-			{id:501, ds:'Test TIC 10', favorito:5, id_categoria:3},
-			{id:601, ds:'Test TIC 11', favorito:7, id_categoria:3},
-			{id:701, ds:'Test TIC 12', favorito:11,id_categoria:3},
+			{id:201, ds:'Test TIC 1',  favorito:1, cd_categoria:3},
+			{id:301, ds:'Test TIC 11', favorito:3, cd_categoria:3},
+			{id:401, ds:'Test TIC 9',  favorito:2, cd_categoria:3},
+			{id:501, ds:'Test TIC 10', favorito:5, cd_categoria:3},
+			{id:601, ds:'Test TIC 11', favorito:7, cd_categoria:3},
+			{id:701, ds:'Test TIC 12', favorito:11,cd_categoria:3},
 		]
 	}
 
