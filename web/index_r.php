@@ -27,21 +27,42 @@ $ret=null;
         case 'getPreviewCategorias':
             $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_EMAIL);
 
-            $categorias=$md->getPreviewCategorias($cd_usuario);
-        
+            $categorias=$md->getPreviewCategorias($cd_usuario)->filas;
+            
             $tests=array();
-            for ($i=0; $i<count($categorias->filas); $i++){
-                $fila=$categorias->filas[$i];
+            for ($i=0; $i<count($categorias); $i++){
+                $fila=$categorias[$i];
+                // var_dump( $fila);
                 $testsCat=$md->getPreviewCategoria( $fila['cd_categoria'] );
 
                 $tests=uneArray($tests, $testsCat->filas);
                 }
 
             echo(json_encode(array('retorno' => 1, 
-                                   //'categorias' => $categorias,
+                                   'categorias' => $categorias,
                                    'tests' => $tests, 
                                    )));
             break;
+        case 'getPreviewTest':
+            $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
+            echo(json_encode(array('retorno' => 1, 
+                                   'test' => $md->getPreviewTest($cd_test), 
+                                   )));
+            break;
+        case 'getTest':
+            $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
+            echo(json_encode(array('retorno' => 1, 
+                                   'test' => $md->getTest($cd_test), 
+                                   )));
+            break;
+        case 'creaBorradorTest':
+            $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_STRING);
+            $datos=json_decode( filter_input($REQ, 'datos', FILTER_UNSAFE_RAW) );
+            $cd_test=$md->creaBorradorTest($datos, $cd_usuario);
+
+            echo(json_encode(array('retorno' => 1, 'cd_test'=>$cd_test)));
+            break;
+        //--------------------------------------------------------
         case 'login':
             $usu=filter_input(INPUT_POST, 'cd_usuario', FILTER_SANITIZE_EMAIL);
             $conn->logInfo('Login '.$usu, 'LOGIN');
