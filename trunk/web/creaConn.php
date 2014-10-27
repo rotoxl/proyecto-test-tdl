@@ -1,13 +1,8 @@
 <?php
 $tz='+00:00';
 
-$dbhost = $_SERVER['DB_HOSTNAME'];
-$dbport = $_SERVER['DB_PORT'];
-$dbname = $_SERVER['DB_NAME'];
-
+require_once(__DIR__.'/paramBD.php'); 
 $dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset=utf8";
-$username = $_SERVER['DB_USERNAME'];
-$password = $_SERVER['DB_PASSWORD'];
 
 class nullableInt{
 	public $value;
@@ -105,6 +100,7 @@ class Conn{
 			$this->logInfo($stmt->errorInfo()[2].'
 				*********** 
 				'.$sql, 'ERROR', $param);
+
 	 		throw new Exception( $err[2] );
 			}
 

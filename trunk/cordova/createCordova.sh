@@ -6,7 +6,7 @@ cd $BASE_DIR
 
 rm -rf www/*
 rsync -a -c ../lnk www
-rsync -a -c ../cordova/android/res www
+rsync -a -c ../cordova/android/res /Users/rotoxl/dev/proyectotest/$BASE_DIR/platforms/android/res
 rsync -a -c ../cordova/config.xml .
 
 # cordova plugin add org.apache.cordova.device
