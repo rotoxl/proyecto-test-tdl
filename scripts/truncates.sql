@@ -1,0 +1,11 @@
+truncate table `categorias`;
+truncate table `preguntas_tests`;
+truncate table `promociones`;
+truncate table `test_categorias`;
+truncate table `tests`;
+truncate table `tests_t`;
+truncate table `usuarios`;
+truncate table `usuarios_categorias`;
+truncate table `usuarios_likes`;
+truncate table `usuarios_promociones`;
+truncate table `usuarios_tests`;
