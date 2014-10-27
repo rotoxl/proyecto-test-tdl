@@ -262,7 +262,7 @@ function Controlador(){
 	this.init()
 
 	if ( isPhone() )
-		this.config.servidor='http://192.168.0.196:8888/proyectotest/'
+		this.config.servidor='http://rotoxl.alwaysdata.net/'
 	else
 		this.config.servidor='./'
 	this.config.url=this.config.servidor+'index_r.php'
@@ -316,11 +316,10 @@ Controlador.prototype.init=function(){
 			});
 	
 	document.addEventListener('backbutton', function(){app.backButton()}, false)
-	this.cache.categorias=[
-			{cd_categoria:1, ds_categoria:'Diplomado Sanitario/Enfermería', i:'fa-stethoscope', numtestsporcat:-1},
-			{cd_categoria:2, ds_categoria:'Carné de conducir B2', i:'fa-car', numtestsporcat:-1},
-			{cd_categoria:3, ds_categoria:'Cuerpo Superior de Sistemas y Tecnologías de la Información', i:'fa-file-code-o', numtestsporcat:-1},
-			]
+	
+	this.cache.categorias=get('tapp37_categorias')
+	if (! (this.cache.categorias instanceof Array))
+		this.cache.categorias=[]
 
 	var self=this
 	jQuery(window).bind('popstate', function(){self.backButton()} )
@@ -432,8 +431,8 @@ function Vista(){
 Vista.prototype.calculaAnchoTarjetas=function(){
 	var w=jQuery('#content').width() 
 	var anchoMinCards=160
-	var numtarjetas=Math.floor(w*0.95/anchoMinCards)
-	return w*0.97/numtarjetas
+	var numtarjetas=Math.floor( (w-10)/anchoMinCards)
+	return (w/numtarjetas)-10
 	}
 Vista.prototype.tipos=['vistaTest', 'vistaTienda', 'vistaSocial', 'vistaEstadisticas', 'vistaMigraTest']
 Vista.prototype.toDOM=function(){
@@ -850,7 +849,7 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 	this.frmdom.find('.info .details').empty().append([
 		// creaObjProp('p', {className:'header', texto:'Metadatos disponibles'}),
 		creaObjProp('p', {className:'titulo', texto:md.ds_test, i:'fa-bookmark fa-fw', omiteNulo:true}),
-		creaObjProp('p', {className:'categoria', texto:this.concatCategoriasTest(md.liscat), i:'fa-tags fa-fw', omiteNulo:true}),
+		creaObjProp('p', {className:'categoria', texto:this.concatCategoriasTest(md), i:'fa-tags fa-fw', omiteNulo:true}),
 		creaObjProp('p', {className:'fecha', texto:formato.fechaDDMMYYYY(md.f_examen) , i:'fa-calendar fa-fw', omiteNulo:true}),
 		creaObjProp('p', {className:'organismo', texto:md.organismo, i:'fa-institution fa-fw', omiteNulo:true}),
 		creaObjProp('p', {className:'region', texto:md.region, i:'fa-globe fa-fw', omiteNulo:true}),
@@ -890,7 +889,7 @@ VistaTest.prototype.corrigeTest=function(){
 		else 
 			f++
 		}
-	var fr=this.test.examen.fallosRestan
+	var fr=this.test.fallosRestan
 	if (fr==null) fr=0
 
 	var tn= (a-(f*fr))/pr.length
@@ -1100,7 +1099,7 @@ VistaTienda.prototype.tareasPostCarga=function(){
 	this.nav.push({entornoLocal:this.entornoLocal})
 	}
 VistaTienda.prototype.backButton=function(){
-	this.nav.pop()
+	var from=this.nav.pop()
 	var nvista=this.nav[this.nav.length-1]
 
 	if (nvista.cd_test){
@@ -1123,6 +1122,9 @@ VistaTienda.prototype.backButton=function(){
 			bloques.find('.card').not('.main').remove()
 			bloques.find('.titulo .cargarMas').show()
 			bloques.find('.cargarMas.aunMas').remove()
+
+			if (from.cd_categoria)
+				this.domBody.scrollTop( this.domBody.find('#cat-'+from.cd_categoria).offset().top-100 )
 			}
 		}
 	}
@@ -1184,7 +1186,8 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory){
 
 	}
 VistaTienda.prototype.generaBtnCargarMas=function(cssAdicional){
-	return creaObjProp('button', {className:'cargarMas btn btn-warning '+cssAdicional, texto:'Más'} )
+	var self=this
+	return creaObjProp('button', {onclick:function(){self.cargarMas()}, className:'cargarMas btn btn-warning '+cssAdicional, texto:'Más'} )
 	}
 VistaTienda.prototype.pintaListaTests=function(lista){
 	var xl=[]
@@ -1314,7 +1317,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 			]})
 	}
 VistaTienda.prototype.cargarMas=function(){
-	var tanda=2
+	var tanda=10
 	//this.cat
 	var blCat=this.domBody.find('.cat#cat-'+this.cat.cd_categoria)
 
@@ -1322,9 +1325,12 @@ VistaTienda.prototype.cargarMas=function(){
 	blCat.find('.cargarMas.aunMas').remove()
 
 	var num=blCat.find('article.card').length
-	var sl=buscaFilas(this.testLocales, {cd_categoria:this.cat.cd_categoria})
 
-	var aPintar=sl.slice(num,num+tanda)
+	var lista=(this.entornoLocal?this.testLocales:this.testTienda)
+	var sl=buscaFilas( lista, {cd_categoria:this.cat.cd_categoria})
+
+	var aPintar=sl.slice(0)
+	aPintar=aPintar.slice(num,num+tanda)
 	for (var j=0;  j<aPintar.length; j++){
 		blCat.append( this._generaDomTest(aPintar[j], j, this.cat ) )
 		}
@@ -1355,8 +1361,11 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 			var datos=xeval(data)
 			if (datos.retorno==1){
 				self.testTienda=datos.tests || []
+				
 				app.cache.categorias=datos.categorias
+				save('tapp37_categorias', datos.categorias)
 				self.cargaListaCategorias()
+
 				if (fnCallBack){
 					fnCallBack(self.testTienda)
 					self.domBody.removeClass('cargando')
@@ -1415,7 +1424,7 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 						creaObjProp('span', {className:'bl', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos'}),
 
 						creaObjProp('div', {className:'btn-group', hijos:[
-							creaObjProp('button', {className:'btn-descarga-test btn btn-primary pull-right', texto:textoBoton, onclick:fnDescargar })
+							creaObjProp('button', {className:'btn-descarga-test btn btn-warning pull-right', texto:textoBoton, onclick:fnDescargar })
 							]})
 						]}),
 					]}),
@@ -1489,6 +1498,8 @@ VistaTienda.prototype.descargaTest=function(cd_test, xbtn){
 				self.anhadeATestLocales(datos.test)
 
 				jQuery(xbtn).text('Abrir').removeClass('cargando')
+				xbtn.onclick=function(){self.lanzaTest(datos.test.cd_test)}
+
 				console.info('test '+cd_test+' descargado!, '+datos.test.numpreguntas+' preguntas')
 				}
 			else
@@ -1565,7 +1576,11 @@ VistaMigraTest.prototype.getBody=function(){
 		]})
 	}
 VistaMigraTest.prototype.tareasPostCarga=function(){
-	var l=['test_0001.js'], lista=[], self=this
+	var l=[], lista=[], self=this
+
+	for (var i=1; i<101; i++){
+		l.push('test_0'+lpad(i, '0', 3)+'.js') //'test_0001.js',
+		}
 
 	for (var i=0; i<l.length; i++){
 		var f=l[i]

@@ -327,7 +327,8 @@ section#main_container{
 	border-color:#f0ad4e;
 }
 //////////
-.btn-primary, .btn-primary:hover, .btn-primary.active,
+.btn-primary, .btn-primary:hover, .btn-primary.active, 
+.btn-primary:focus, .btn-primary:active,
 .open .dropdown-toggle.btn-primary{
 	color: #fff !important;
 	background-color: #65bd77;
@@ -525,7 +526,7 @@ section#main_container{
 			}
 			td.valor{
 				padding-left:4px; 
-				color:#717171 !important;
+				color:inherit !important;
 				font-weight: inherit;
 				font-size: 16px;
 				line-height:21px;
@@ -537,9 +538,11 @@ section#main_container{
 			height: 50%; overflow:auto;
 
 			font-size:20px; line-height:21px; 
-			color:rgb(113, 113, 113);
-			// background-color:rgba(0,0,0,0.05) !important;
+			
 			border-bottom:1px solid #2e3e4e;
+
+			background: #89cc97;
+			color: white;//color:rgb(113, 113, 113);
 			table {
 				margin-top:15px; 
 				td.clave{
@@ -822,7 +825,7 @@ section#main_container{
 	article.card{
 		width:48%;
 		margin-top:5px; 
-		margin-right:1%;
+		margin-right:5px;
 		}
 
 	aside .vbox > footer {
@@ -959,6 +962,11 @@ section#main_container{
 		height: 100%;
 		overflow: hidden;
 	}
+
+	article.card{
+		margin-top:5px; 
+		margin-right:5px;
+		}
 
 	.hbox {
 		display: table;
