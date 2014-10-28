@@ -970,7 +970,15 @@ VistaTest.prototype.tickCrono=function(){
 		}
 	}
 VistaTest.prototype.backButton=function(){
-	this.pausaTiempo()
+	var sRestantes=(this.examen.horaFinal-new Date())/1000
+	var segundosConsumidos=(this.examen.minutos*60-sRestantes)
+
+	if (segundosConsumidos<10) {
+		//salimos sin más, ha debido entrar por error
+		app.cargaVistaInicio()
+		}
+	else 
+		this.pausaTiempo()
 	}
 //////
 VistaTest.prototype.testData=function(){
@@ -1210,12 +1218,12 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory){
 
 	var blSel=this.domBody.find('.bloque.cat#cat-'+this.cat.cd_categoria)
 	this.domBody.find('.bloque.cat').not(blSel).hide()
-	this.cargarMas()
+	this.cargarMas(this.cat.cd_categoria)
 
 	}
-VistaTienda.prototype.generaBtnCargarMas=function(cssAdicional){
+VistaTienda.prototype.generaBtnCargarMas=function(cd_categoria, cssAdicional){
 	var self=this
-	return creaObjProp('button', {onclick:function(){self.cargarMas()}, className:'cargarMas btn btn-warning '+cssAdicional, texto:'Más'} )
+	return creaObjProp('button', {onclick:function(){self.cargarMas(cd_categoria)}, className:'cargarMas btn btn-warning '+cssAdicional, texto:'Más'} )
 	}
 VistaTienda.prototype.arreglaCategorias=function(){
 	if (this.entornoLocal){
@@ -1270,7 +1278,7 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 
 		if (sl.length==0) continue
 
-		var hijos=[this.generaBtnCargarMas()]
+		var hijos=[this.generaBtnCargarMas(cat.cd_categoria)]
 		if (sl.length==cat.numtestsporcat)
 			hijos=[]
 		hijos.push(creaT(cat.ds_categoria))
@@ -1361,10 +1369,12 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 				]})
 			]})
 	}
-VistaTienda.prototype.cargarMas=function(){
+VistaTienda.prototype.cargarMas=function(cd_categoria){
 	var tanda=10
 	//this.cat
-	var blCat=this.domBody.find('.cat#cat-'+this.cat.cd_categoria)
+	var blCat=this.domBody.find('.cat#cat-'+cd_categoria)
+
+	var xcat=buscaFilas(app.cache.categorias, {cd_categoria:cd_categoria})[0]
 
 	blCat.find('.titulo .cargarMas').hide()//el principal lo ocultamos, el resto se eliminan
 	blCat.find('.cargarMas.aunMas').remove()
@@ -1372,16 +1382,16 @@ VistaTienda.prototype.cargarMas=function(){
 	var num=blCat.find('article.card').length
 
 	var lista=(this.entornoLocal?this.testLocales:this.testTienda)
-	var sl=buscaFilas( lista, {cd_categoria:this.cat.cd_categoria})
+	var sl=buscaFilas( lista, {_contains_liscat:cd_categoria})
 
 	var aPintar=sl.slice(0)
 	aPintar=aPintar.slice(num,num+tanda)
 	for (var j=0;  j<aPintar.length; j++){
-		blCat.append( this._generaDomTest(aPintar[j], j, this.cat ) )
+		blCat.append( this._generaDomTest(aPintar[j], j, xcat ) )
 		}
 
 	if (sl.length>num+tanda){
-		blCat.append( this.generaBtnCargarMas('aunMas') )
+		blCat.append( this.generaBtnCargarMas(cd_categoria, 'aunMas') )
 		}
 	}
 //////
@@ -1437,7 +1447,7 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 
 	var loTengo=buscaFilas(this.testLocales, {cd_test:cd_test}).length
 	var self=this
-	jQuery.get(app.config.url, {accion:'getPreviewTest', cd_test:cd_test}).success(
+	jQuery.get(app.config.url, {accion:'getPreviewTest', cd_usuario:app.cache.usuario.cd_usuario, cd_test:cd_test}).success(
 		function(data){
 			var test=xeval(data).test
 			self.cambiaHeaderApp(test.ds_test)
@@ -1479,7 +1489,7 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 
 						creaObjProp('div', {className:'bl grupo', hijos:[
 							creaObjProp('button', {className:'btnAbrir btn btn-default pull-right', texto:'Abrir', onclick:function(){self.lanzaTest(test.cd_test)} }),
-							creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-default pull-right', i:'fa-heart fa-fw', onclick:function(){self.toggleLike() } }),
+							creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-default pull-right'+(test.likeit?' btn-warning':''), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
 							
 							creaObjProp('button', {className:'btnDescargar btn btn-warning pull-right', texto:textoBotonDescargar, onclick:fnDescargar })
 							]})
@@ -1561,6 +1571,20 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 				}
 			else
 				console.error(data)
+		})
+	}
+VistaTienda.prototype.toggleLike=function(cd_test){
+	var btn=this.domDetalleTest.find('.btnLove')
+	
+	var cls='btn-warning'
+	btn.toggleClass(cls)
+
+	var param={accion:'like+', cd_usuario:app.cache.usuario.cd_usuario, cd_test:cd_test}
+	if (!btn.hasClass(cls))
+		param.accion='like-'
+	
+	jQuery.post(app.config.url, param).success(function(data){
+		var datos=xeval(data)
 		})
 	}
 //////

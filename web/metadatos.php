@@ -18,7 +18,7 @@ $conn=new Conn();
 class FasesTramitacion{ // tests_t
     const Alta='Alta';
     const Borrador='Borrador';
-    // const Favorito='Favorito';
+    const Favorito='Favorito';
     // const CambioPrecio='CambioPrecio';
  	}
 function uneArray($arr, $arrUObj){
@@ -159,7 +159,7 @@ class Metadatos{
 		$sql="select * from (".$sql.") xx group by cd_test order by likes desc, cd_test";
 		return $this->conn->lookupFilas($sql, $arr);
 		}
-	public function getPreviewTest($cd_test){
+	public function getPreviewTest($cd_usuario, $cd_test){
 		$porcentajePreguntas=10;
 
 		$sql="select * from vs_testpreview t where cd_test=?";
@@ -170,7 +170,11 @@ class Metadatos{
 		$sqlPreguntas="select pregunta from preguntas_tests where cd_test=? and cd_pregunta<?";
 		$preg=$this->conn->lookupFilas($sqlPreguntas, array($cd_test, $maxCD_Pregunta));
 
+		$likeit=$this->conn->lookupSimple("select cd_usuario from usuarios_likes where cd_usuario=? and cd_test=?", array($cd_usuario, $cd_test));
+		
 		$test['preguntas']=$preg->filas;
+		$test['likeit']=($likeit==$cd_usuario);
+
 		return $test;
 		}
 	public function getTest($cd_test){
@@ -218,7 +222,20 @@ class Metadatos{
 			);
 		}
 	//////
-	private function sql_test_t($cd_test, $cd_usuario, $fase, $ds_operacion, $f_ejecucion){
+	public function toggleLike($accion, $cd_usuario, $cd_test){
+		if ($accion=='like+')
+			$sql='insert into usuarios_likes (cd_usuario, cd_test) values (?, ?)';
+		else
+			$sql='delete from usuarios_likes where cd_usuario=? and cd_test=?';
+		
+		$arr=array(
+			new Sql($sql, array($cd_usuario, $cd_test)),
+			$this->sql_test_t($cd_test, $cd_usuario, FasesTramitacion::Favorito, $accion)
+			);
+		$this->conn->ejecutaLote($arr);
+		}
+	//////
+	private function sql_test_t($cd_test, $cd_usuario, $fase, $ds_operacion){
 		return new Sql('insert into tests_t (cd_test, cd_usuario, cd_operacion, ds_operacion, f_ejecucion) values (?, ?, ?, ?, now())',
 					array(
 						$cd_test, $cd_usuario, $fase, $ds_operacion
