@@ -272,7 +272,7 @@ section#main_container {
   box-shadow: 0 0 0;
   border-color: rgba(0, 0, 0, 0.1) !important; }
 
-.btn-icon.btn-rounded {
+.btn-icon.btn-rounded.btn-sm {
   border-radius: 50px;
   padding-top: 7px;
   padding-bottom: 7px;
@@ -280,9 +280,6 @@ section#main_container {
   padding-right: 4px;
   width: 34px;
   text-align: center; }
-
-.btn-sm {
-  width: 30px; }
 
 .noselect {
   -webkit-touch-callout: none;

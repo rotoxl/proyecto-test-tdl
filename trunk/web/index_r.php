@@ -22,7 +22,7 @@ $getopost=filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
 $accion = ($getopost == 'GET')? filter_input(INPUT_GET, 'accion', FILTER_SANITIZE_STRING): filter_input(INPUT_POST, 'accion', FILTER_SANITIZE_STRING);
 $REQ=($getopost == 'GET'?INPUT_GET:INPUT_POST);
 $ret=null;
-try {
+// try {
     switch ($accion) {
         case 'getPreviewCategorias':
             $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_EMAIL);
@@ -52,9 +52,10 @@ try {
                                    )));
             break;
         case 'getPreviewTest':
+            $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_STRING);
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
             echo(json_encode(array('retorno' => 1, 
-                                   'test' => $md->getPreviewTest($cd_test), 
+                                   'test' => $md->getPreviewTest($cd_usuario, $cd_test), 
                                    )));
             break;
         case 'getTest':
@@ -69,6 +70,14 @@ try {
             $cd_test=$md->creaBorradorTest($datos, $cd_usuario);
 
             echo(json_encode(array('retorno' => 1, 'cd_test'=>$cd_test)));
+            break;
+        case 'like+':
+        case 'like-':
+            $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_STRING);
+            $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
+
+            $md->toggleLike($accion, $cd_usuario, $cd_test);
+            echo(json_encode(array('retorno' => 1)));
             break;
         //--------------------------------------------------------
         case 'login':
@@ -85,9 +94,9 @@ try {
             trigger_error('¡Accion '. $accion . ' no implementada!');
         }
     
-    }
-catch (Exception $ee){
-    echo json_encode(array('retorno'=>0, 'error'=>1, 'msgError'=>$ee->getMessage()));
-    }
+//     }
+// catch (Exception $ee){
+//     echo json_encode(array('retorno'=>0, 'error'=>1, 'msgError'=>$ee->getMessage()));
+//     }
     
 ?>
