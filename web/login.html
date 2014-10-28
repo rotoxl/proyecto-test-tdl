@@ -27,6 +27,7 @@
 		<div class="screens"></div>
 		<a href="#" style="display:none" class="btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
 
+		<div class="throbber cargando"></div>
 		<p class="status"></p>
 	</section>
 
@@ -47,13 +48,12 @@
 				return false 
 			}
 		function init(){
-			var ud=get('tapp37_userdata')
-			if (ud!=null){
-				document.location='./index.html?meacuerdo'
-				return
+			var refresh_token=get('tapp37_refresh_token')
+			if (refresh_token!=null){
+				googleapi.prepareSilentLogin(refresh_token)
 				}
 			else {
-				prepareLogin()
+				googleapi.prepareLogin()
 				jQuery('.login .btn').fadeIn()
 				}
 			}
