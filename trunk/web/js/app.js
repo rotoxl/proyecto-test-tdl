@@ -284,8 +284,48 @@ function Controlador(){
 
 	//////////
 	var sr=document.location.search+''
-	if (sr.indexOf('?token=')==0){
-		this.cache.token=sr.substring('?token='.length)
+	if (sr.indexOf('code=')>-1 || sr.indexOf('error=')>-1){
+		// http://localhost:8888/proyectotest/index.html?
+		// 	code=4/PadKyvvncUsEzVXEHlYprQ0b-4ytlyPlGS7Iv_-e_f4.Ug3WIAl7l9geoiIBeO6P2m-i5haxkgI&
+		// 	authuser=0&
+		// 	num_sessions=3&
+		// 	prompt=consent&
+		// 	session_state=b078c680812f842f4144adc06715cfa252666c12..5c5f
+
+		// var code = /\?code=(.+)$/.exec(document.location.search);
+		// var error = /\?error=(.+)$/.exec(document.location.search);
+
+  //       if (code) {
+  //           var codeNew=code[1];
+  //           var n = codeNew.indexOf('&')
+  //           codeNew = codeNew.substring(0, n != -1 ? n : codeNew.length)
+  //           //Exchange the authorization code for an access token
+  //           jQuery.post('https://accounts.google.com/o/oauth2/token', {
+  //               code:codeNew, //code: code[1],
+  //               client_id: options.web.client_id,
+  //               client_secret: options.web.client_secret,
+  //               redirect_uri: options.web.redirect_uri,
+  //               grant_type: 'authorization_code'
+  //           	})
+  //           .success(function(data) {
+  //           	alert(JSON.stringify(data))
+  //               deferred.resolve(data);
+  //           	})
+  //           .fail(function(response) {
+		// 		alert(JSON.stringify(response))
+  //               // deferred.reject(response.responseJSON);
+  //           	})
+// 			} 
+// 			else if (error) {
+//     			//The user denied access to the app
+//     			deferred.reject({error: error[1]})
+// 			}
+		}
+	else if (sr.indexOf('?token=')==0){//teléfonos: no se produce el error por Access-Control-Allow-Origin
+		this.cache.token=sr.substring('?token='.length).split('&')[0]
+		var refresh_token=sr.substring( sr.indexOf('refresh_token=')+14 ).split('&')[0]
+		if (refresh_token.length>10)
+			save('tapp37_refresh_token', refresh_token)
 
 		if (this.cache.token=='666'){
 			this.cache.usuario={//id: '118066386467974893999',
@@ -302,7 +342,7 @@ function Controlador(){
 			this.actualizaDomUsuario()
 			}
 		else {
-			getDataProfile(this.cache.token, function(data){self.userDataReceived(data)} )
+			googleapi.getDataProfile(this.cache.token, function(data){self.userDataReceived(data)} )
 			}
 		}
 	else if (sr.indexOf('?meacuerdo')==0){
@@ -310,10 +350,10 @@ function Controlador(){
 		this.cache.usuario=JSON.parse(s)
 		this.actualizaDomUsuario()
 		}
-	else {
-		localStorage.removeItem('tapp37_userdata')
-		document.location='login.html'
-		}
+	// else {
+	// 	localStorage.removeItem('tapp37_userdata')
+	// 	document.location='login.html'
+	// 	}
 	}
 Controlador.prototype.init=function(){
 	jQuery(document).on('click', '[data-toggle^="class"]', function(e){
@@ -346,6 +386,8 @@ Controlador.prototype.setCategorias=function(lis){
 	save('tapp37_categorias', lis)
 	}
 Controlador.prototype.userDataReceived=function(data){
+	data.token=this.cache.token
+	
 	this.cache.usuario=data
 	this.cache.usuario.cd_usuario=data.email
 
@@ -360,8 +402,9 @@ Controlador.prototype.actualizaDomUsuario=function(){
 		jQuery('.liVistaUploadTest').removeClass('hidden')
 	}
 Controlador.prototype.logout=function(){
-	disconnectUser(this.cache.token)
+	googleapi.disconnectUser(app.cache.token)
 	localStorage.removeItem('tapp37_userdata')
+	localStorage.removeItem('tapp37_refresh_token')
 	document.location='login.html'
 	}
 /////

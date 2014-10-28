@@ -42,8 +42,15 @@ body > .login{
 		padding: 10px 12px;
 		font-size: 18px;
 	}
+	.throbber{
+		background:url("../images/throbber-white.gif") no-repeat center center;
+		display: block;
+		height:40px;
+		background-size:30px;
+	}
 	p.status{
 		margin: 15px;
+		text-align: center;
 	}
 }
 .ellipsis{
