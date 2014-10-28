@@ -1131,7 +1131,7 @@ VistaTienda.prototype.backButton=function(){
 	var from=this.nav.pop()
 	var nvista=this.nav[this.nav.length-1]
 
-	if (nvista.cd_test){
+	if (nvista && nvista.cd_test){
 		this.testPreview(nvista.cd_test, true)
 		}
 	else  {
@@ -1140,7 +1140,7 @@ VistaTienda.prototype.backButton=function(){
 			this.domDetalleTest.hide()
 			}
 
-		if (nvista.cd_categoria)
+		if (nvista && nvista.cd_categoria)
 			this.navegaCat(nvista.cd_categoria, true)
 		else { //
 			this.cat=null
