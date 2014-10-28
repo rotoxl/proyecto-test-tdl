@@ -272,6 +272,18 @@ section#main_container {
   box-shadow: 0 0 0;
   border-color: rgba(0, 0, 0, 0.1) !important; }
 
+.btn-icon.btn-rounded {
+  border-radius: 50px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 6px;
+  padding-right: 4px;
+  width: 34px;
+  text-align: center; }
+
+.btn-sm {
+  width: 30px; }
+
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -323,7 +335,7 @@ section#main_container {
         #content.vista .vista-body article.card footer {
           padding-left: 2px;
           padding-right: 2px;
-          height: 40px;
+          height: 60px;
           border-top: 1px solid #f0f0f0;
           background-color: rgba(50, 50, 50, 0.1); }
     #content.vista .admonition {
@@ -364,7 +376,7 @@ section#main_container {
         height: 40px;
         cursor: pointer; }
         #content.vista.vistaTest .vista-header ul#mapatest table td.contestada {
-          opacity: .4; }
+          background-color: #89cc97; }
         #content.vista.vistaTest .vista-header ul#mapatest table td.active span {
           background-color: #ebf4e4;
           color: #65bd77;
@@ -399,7 +411,6 @@ section#main_container {
     overflow: auto;
     font-size: 20px;
     line-height: 21px;
-    border-bottom: 1px solid #2e3e4e;
     background: #89cc97;
     color: white; }
     #content.vista.vistaTest .pregunta table {
@@ -463,6 +474,9 @@ section#main_container {
         #content.vista.vistaTienda .vista-body .bloque .card footer .frow {
           width: 100%;
           display: block; }
+          #content.vista.vistaTienda .vista-body .bloque .card footer .frow span.nombre {
+            white-space: normal;
+            height: 40px; }
           #content.vista.vistaTienda .vista-body .bloque .card footer .frow > * {
             padding-left: 5px;
             padding-right: 5px; }
@@ -498,9 +512,9 @@ section#main_container {
         font-weight: bold; }
       #content.vista.vistaTienda .detalle-test .cabecera .data .bl {
         margin-bottom: 5px; }
-      #content.vista.vistaTienda .detalle-test .cabecera .data .btn-group {
+      #content.vista.vistaTienda .detalle-test .cabecera .data .grupo {
         margin-top: 20px; }
-    #content.vista.vistaTienda .detalle-test .cabecera .btn.btn-descarga-test.cargando {
+    #content.vista.vistaTienda .detalle-test .cabecera .btn.btnDescargar.cargando {
       background-image: url(../images/throbber-white.gif);
       background-position: 5px center;
       background-repeat: no-repeat;
@@ -513,6 +527,22 @@ section#main_container {
     padding-bottom: 5px;
     margin-top: 10px;
     margin-bottom: 0; }
+  #content.vista.vistaTienda .detalle-test .loTengo {
+    margin-top: 1rem; }
+    #content.vista.vistaTienda .detalle-test .loTengo i {
+      color: #f0ad4e; }
+  #content.vista.vistaTienda .detalle-test .btnLove {
+    margin-right: 5px; }
+  #content.vista.vistaTienda .detalle-test .btnAbrir, #content.vista.vistaTienda .detalle-test .btnLove, #content.vista.vistaTienda .detalle-test .loTengo {
+    display: none !important; }
+  #content.vista.vistaTienda .detalle-test .btnDescargar {
+    display: inline-block; }
+  #content.vista.vistaTienda .detalle-test.tengo-este-test .btnAbrir, #content.vista.vistaTienda .detalle-test.tengo-este-test .btnLove {
+    display: inline-block !important; }
+  #content.vista.vistaTienda .detalle-test.tengo-este-test .loTengo {
+    display: block !important; }
+  #content.vista.vistaTienda .detalle-test.tengo-este-test .btnDescargar {
+    display: none; }
   #content.vista.vistaMigraTest .vista-body {
     padding: 1rem;
     padding-top: 3rem;
