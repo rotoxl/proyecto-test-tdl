@@ -35,7 +35,8 @@ function uneArray($arr, $arrUObj){
 	return $arr;
 	}
 
-$limitePreview=10;
+$limitePreview=30;
+
 class Metadatos{
 	public $conn=null;
 
@@ -74,34 +75,89 @@ class Metadatos{
 			}
 		}
 
-	public function getPreviewCategorias($cd_usuario){
+	public function getListaCategorias($cd_usuario){
 		global $limitePreview;
 
-		$sql="select
-			 	c.ds_categoria, uc.*, c.i,
-				(select count(*) from vs_testpreview vt where c.cd_categoria=vt.cd_categoria) as numTestsPorCat
+		$sql="select 
+				'(título dinamico)' as ds_categoria, 
+				-1 as cd_categoria, 
+				'fa-fire' as i,
+				(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat
+			union
+			select
+			 	c.ds_categoria, c.cd_categoria, c.i,
+				(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat
 			 from categorias c, usuarios_categorias uc
 				where c.cd_categoria=uc.cd_categoria and uc.cd_usuario=?
 				limit ?";
 		$filas=$this->conn->lookupFilas($sql, array($cd_usuario, $limitePreview));
 
-		if ($filas->numFilas==0){
-			$sql="select count(*) as numTestsPorCat, c.cd_categoria, c.ds_categoria, c.i
-					from vs_testpreview vt, categorias c 
-					where vt.cd_categoria = c.cd_categoria
-					group by cd_categoria";
+		if ($filas->numFilas<=1){//sí, 1, porque hemos metido una cat ficticia
+			$sql="select  
+					(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat,
+					-1 as cd_categoria, 
+					'Nuevos y actualizados' as ds_categoria,
+					'fa-fire' as i
+				union
+				select
+					(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat,
+					c.cd_categoria, c.ds_categoria, c.i
+				from categorias c 
+					having numTestsPorCat > 0";
 			$filas=$this->conn->lookupFilas($sql, array($limitePreview));			
 			}
 		
 		return $filas;
 		}
-	public function getPreviewCategoria($cd_categoria){
+	// public function getPreviewCategoria($cd_categoria){
+	// 	global $limitePreview;
+
+	// 	if ($cd_categoria==-1){//últimos actualizados
+	// 		$sql="select t.* from vs_testpreview t
+	// 			where t.fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)
+	// 			order by t.likes, t.fu_modificacion desc
+	// 			limit ?";
+	// 		$arr=array($limitePreview);
+	// 		}
+	// 	else {
+	// 		$sql="select t.* from vs_testpreview t 
+	// 				where t.liscat like concat('%', ?, ',%')
+	// 				order by t.likes desc
+	// 				limit ?";
+	// 		$arr=array($cd_categoria, $limitePreview);
+	// 		}
+	// 	return $this->conn->lookupFilas($sql, $arr);
+	// 	}
+	public function getPreviewCategoria($arrCats){
 		global $limitePreview;
-		$sql="select t.* from vs_testpreview t 
-				where t.cd_categoria=?
-				order by t.likes desc
-				limit ?";
-		return $this->conn->lookupFilas($sql, array($cd_categoria, $limitePreview));
+
+		$sql=''; $arr=array();
+		for ($i=0; $i<count($arrCats); $i++){
+			$cd_categoria=$arrCats[$i];
+
+			if ($cd_categoria==-1){//últimos actualizados
+				if ($sql!='')
+					$sql=$sql . " UNION ALL ";
+
+				$sql=$sql . "(select t.* from vs_testpreview t
+					where t.fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)
+					order by t.likes, t.fu_modificacion desc
+					limit ?)";
+				array_push($arr, $limitePreview);
+				}
+			else {
+				if ($sql!='')
+					$sql=$sql . " UNION ALL ";
+
+				$sql=$sql . "(select t.* from vs_testpreview t 
+						where t.liscat like concat('%', ?, ',%')
+						order by t.likes desc
+						limit ?)";
+				array_push($arr, $cd_categoria, $limitePreview);
+				}
+			}
+		$sql="select * from (".$sql.") xx group by cd_test order by likes desc, cd_test";
+		return $this->conn->lookupFilas($sql, $arr);
 		}
 	public function getPreviewTest($cd_test){
 		$porcentajePreguntas=10;

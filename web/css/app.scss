@@ -354,6 +354,21 @@ section#main_container{
 	box-shadow:0 0 0;
 	border-color:rgba(0,0,0,.1)!important;
 	}
+
+
+.btn-icon.btn-rounded{
+	border-radius:50px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 6px;
+	padding-right: 4px;
+
+	width: 34px;
+	text-align: center;
+	}
+.btn-sm{
+	width: 30px;
+	}
 ///////////
 
 .noselect{
@@ -423,7 +438,7 @@ section#main_container{
 				footer{
 					padding-left:2px; 
 					padding-right:2px;
-					height:40px; 
+					height:60px; 
 
 					border-top: 1px solid #f0f0f0;
 					background-color:rgba(50, 50, 50, 0.1);
@@ -491,7 +506,7 @@ section#main_container{
 						//border-top:1px solid rgba(0,0,0,0.05);
 					
 						&.contestada{
-							opacity: .4;
+							background-color:#89cc97;
 						}
 						&.active span{
 							background-color:rgb(235, 244, 228);
@@ -539,10 +554,9 @@ section#main_container{
 
 			font-size:20px; line-height:21px; 
 			
-			border-bottom:1px solid #2e3e4e;
-
 			background: #89cc97;
 			color: white;//color:rgb(113, 113, 113);
+			//border-bottom:1px solid #2e3e4e;
 			table {
 				margin-top:15px; 
 				td.clave{
@@ -643,6 +657,10 @@ section#main_container{
 							width:100%;
 							display: block;
 
+							span.nombre{
+								white-space: normal;
+								height:40px;
+							}
 							> *{
 								padding-left:5px; padding-right:5px;
 
@@ -650,8 +668,8 @@ section#main_container{
 						}
 
 						span.love{
-							
-							color:#aaa}
+							color:#aaa
+						}
 						span.precio, span.loTengo{
 							color:#f0ad4e; 
 							// color:#fb6b5b;
@@ -701,12 +719,12 @@ section#main_container{
 						margin-bottom:5px;
 					}
 
-					.btn-group{
+					.grupo{
 						margin-top:20px;
 					}
 				}
 
-				.btn.btn-descarga-test{
+				.btn.btnDescargar{
 					&.cargando{
 						background-image: url(../images/throbber-white.gif);
 						background-position: 5px center;
@@ -722,7 +740,23 @@ section#main_container{
 				margin-top:10px; margin-bottom:0
 			}
 			
-			
+			.loTengo {
+				margin-top:1rem;
+
+				i {
+					color:#f0ad4e
+				}
+			}
+
+			.btnLove{margin-right:5px;}
+			.btnAbrir, .btnLove, .loTengo{display:none !important;}
+			.btnDescargar{display:inline-block;}
+
+			&.tengo-este-test {
+				.btnAbrir, .btnLove{display:inline-block!important;}
+				.loTengo{display:block!important;}
+				.btnDescargar{display:none;}
+			}
 		}
 	}
 

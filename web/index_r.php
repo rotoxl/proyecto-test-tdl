@@ -22,25 +22,33 @@ $getopost=filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
 $accion = ($getopost == 'GET')? filter_input(INPUT_GET, 'accion', FILTER_SANITIZE_STRING): filter_input(INPUT_POST, 'accion', FILTER_SANITIZE_STRING);
 $REQ=($getopost == 'GET'?INPUT_GET:INPUT_POST);
 $ret=null;
-// try {
+try {
     switch ($accion) {
         case 'getPreviewCategorias':
             $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_EMAIL);
 
-            $categorias=$md->getPreviewCategorias($cd_usuario)->filas;
+            $categorias=$md->getListaCategorias($cd_usuario)->filas;
             
-            $tests=array();
+            // $tests=array();
+            // for ($i=0; $i<count($categorias); $i++){
+            //     $fila=$categorias[$i];
+            //     // var_dump( $fila);
+            //     $testsCat=$md->getPreviewCategoria( $fila['cd_categoria'] );
+
+            //     $tests=uneArray($tests, $testsCat->filas);
+            //     }
+
+            $tests=array(); $arrCats=array();
             for ($i=0; $i<count($categorias); $i++){
                 $fila=$categorias[$i];
-                // var_dump( $fila);
-                $testsCat=$md->getPreviewCategoria( $fila['cd_categoria'] );
 
-                $tests=uneArray($tests, $testsCat->filas);
+                array_push($arrCats, $fila['cd_categoria'] );
                 }
+            $testsCat=$md->getPreviewCategoria( $arrCats )->filas;
 
             echo(json_encode(array('retorno' => 1, 
                                    'categorias' => $categorias,
-                                   'tests' => $tests, 
+                                   'tests' => $testsCat, 
                                    )));
             break;
         case 'getPreviewTest':
@@ -77,9 +85,9 @@ $ret=null;
             trigger_error('¡Accion '. $accion . ' no implementada!');
         }
     
-//     }
-// catch (Exception $ee){
-//     echo json_encode(array('retorno'=>0, 'error'=>1, 'msgError'=>$ee->getMessage()));
-//     }
+    }
+catch (Exception $ee){
+    echo json_encode(array('retorno'=>0, 'error'=>1, 'msgError'=>$ee->getMessage()));
+    }
     
 ?>
