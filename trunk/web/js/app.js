@@ -312,7 +312,11 @@ function Controlador(){
 			this.actualizaDomUsuario()
 			}
 		else {
-			googleMobileApi.getDataProfile(this.cache.token, function(data){self.userDataReceived(data)} )
+			googleMobileApi.getDataProfile( this.cache.token, 
+											function(data){self.userDataReceived(data)},
+											function(error){
+												console.error( JSON.stringify(error) )
+											})
 			}
 		}
 	else if (sr.indexOf('?meacuerdo')==0){
@@ -322,7 +326,7 @@ function Controlador(){
 		}
 	else {
 		localStorage.removeItem('tapp37_userdata')
-		document.location='login.html'
+		document.location='index.html'
 		}
 	}
 Controlador.prototype.init=function(){
@@ -378,7 +382,7 @@ Controlador.prototype.logout=function(){
 	localStorage.removeItem('tapp37_refresh_token')
 	localStorage.removeItem('tapp37_yanoshavisitado')
 	
-	document.location='login.html'
+	document.location='index.html'
 	}
 /////
 Controlador.prototype.loginTienda=function(){
@@ -416,8 +420,11 @@ Controlador.prototype.continuarTest=function(desdeHistorial){
 	this.lanzaTest( VistaTest.prototype.testData() )
 	this.cierraNavDrawer()
 	}
-Controlador.prototype.lanzaTest=function(test){
-	new VistaTest(test).toDOM()
+Controlador.prototype.lanzaTest=function(test, vistaOrigen){
+	var nv=new VistaTest(test)
+	nv.returnTo=vistaOrigen
+	nv.toDOM()
+
 	}
 Controlador.prototype.cargaVistaInicio=function(){
 	var hash=(document.location.hash+'').substring(1)
@@ -435,9 +442,10 @@ Controlador.prototype.cargaVistaInicio=function(){
 	//  this.cargaVistaEstadisticas()
 
 	else {
-		// if (isPhone())
-			this.abreNavDrawer()
-	
+		// if (get('tapp37_tourRealizado')!=1)
+		// 	this.lanzaTourAplicacion()
+
+		this.cargaVistaTienda(false, true)//ojo, sólo a local
 		}
 
 	}
@@ -470,7 +478,13 @@ Vista.prototype.calculaAnchoTarjetas=function(){
 	var numtarjetas=Math.floor( (w-10)/anchoMinCards)
 	return (w/numtarjetas)-10
 	}
-Vista.prototype.tipos=['vistaTest', 'vistaTienda', 'vistaSocial', 'vistaEstadisticas', 'vistaMigraTest']
+Vista.prototype.tipos={
+	vistaTest:'vistaTest', 
+	vistaTienda:'vistaTienda', 
+	vistaSocial:'vistaSocial', 
+	vistaEstadisticas:'vistaEstadisticas', 
+	vistaMigraTest:'vistaMigraTest'
+	}
 Vista.prototype.toDOM=function(){
 	var xd=jQuery('#content')
 	if (app) app.vistaActiva=this
@@ -481,7 +495,7 @@ Vista.prototype.toDOM=function(){
 	xd.empty()
 		.append(this.domHeader)
 		.append(this.domBody)
-		.removeClass(this.tipos.join(' '))
+		.removeClass( Object.keys(this.tipos).join(' '))
 		.addClass('vista '+this.id)
 
 	this.dom=xd
@@ -991,7 +1005,17 @@ VistaTest.prototype.backButton=function(){
 
 	if (segundosConsumidos<10) {
 		//salimos sin más, ha debido entrar por error
-		app.cargaVistaInicio()
+		if (this.returnTo){
+			if (this.returnTo.id==this.tipos.vistaTienda){
+				var nel=this.returnTo.nav[this.returnTo.nav.length-1]
+			
+				var nv=new VistaTienda(true, true)
+				nv.toDOM()
+
+				nv.nav=this.returnTo.nav
+				nv.navegaEl(nel)
+				}
+			}
 		}
 	else 
 		this.pausaTiempo()
@@ -1146,7 +1170,9 @@ VistaTienda.prototype.tareasPostCarga=function(){
 VistaTienda.prototype.backButton=function(){
 	var from=this.nav.pop()
 	var nvista=this.nav[this.nav.length-1]
-
+	this.navegaEl(nvista, from)
+	}
+VistaTienda.prototype.navegaEl=function(nvista, from){
 	if (nvista && nvista.cd_test){
 		this.testPreview(nvista.cd_test, true)
 		}
@@ -1168,7 +1194,7 @@ VistaTienda.prototype.backButton=function(){
 			bloques.find('.titulo .cargarMas').show()
 			bloques.find('.cargarMas.aunMas').remove()
 
-			if (from.cd_categoria)
+			if (from && from.cd_categoria)
 				this.domBody.scrollTop( this.domBody.find('#cat-'+from.cd_categoria).offset().top-100 )
 			}
 		}
@@ -1354,7 +1380,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 			domPrecio,
 			]
 
-		onclick=function(){self.lanzaTest(test.cd_test)}
+		onclick=function(){self.testPreview(test.cd_test)}
 		}
 	else {
 		loTengo=buscaFilas(this.testLocales, {cd_test:test.cd_test}).length
@@ -1503,10 +1529,11 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 						creaObjProp('span', {className:'bl', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos'}),
 						creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'Este test está en tu colección'}),
 
-						creaObjProp('div', {className:'bl grupo', hijos:[
-							creaObjProp('button', {className:'btnAbrir btn btn-default pull-right', texto:'Abrir', onclick:function(){self.lanzaTest(test.cd_test)} }),
-							creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-default pull-right'+(test.likeit?' btn-warning':''), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
-							
+						creaObjProp('div', {className:'bl grupo pull-right', hijos:[
+							creaObjProp('button', {className:'btnAbrir btn btn-default btn-dark ', texto:'Abrir', onclick:function(){self.lanzaTest(test.cd_test)} }),
+							creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-default'+(test.likeit?' btn-warning':''), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
+							creaObjProp('button', {className:'btnDesinstalar btn btn-rounded btn-default', texto:'Desinstalar', onclick:function(){self.desinstalarTest(test.cd_test)} }),
+
 							creaObjProp('button', {className:'btnDescargar btn btn-warning pull-right', texto:textoBotonDescargar, onclick:fnDescargar })
 							]})
 						]}),
@@ -1520,11 +1547,26 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 	}
 VistaTienda.prototype.lanzaTest=function(cd_test){
 	var test=buscaFilas(this.testLocales, {cd_test:cd_test})[0]
-	app.lanzaTest(test)
+	app.lanzaTest(test, this)
 	}
 //////
 VistaTienda.prototype.anhadeATestLocales=function(test){
 	this.testLocales.push(test)
+	this.salvaTestLocales()
+	}
+VistaTienda.prototype.desinstalarTest=function(cd_test){
+	var idx=0
+	this.testLocales.map(function(el){el.idx=idx; idx++})
+	var idxBorrar=buscaFilas(this.testLocales, {cd_test:cd_test})[0].idx
+
+	this.testLocales.splice(idxBorrar, 1)
+	this.domDetalleTest.removeClass('tengo-este-test')
+
+	if (this.entornoLocal)
+		jQuery('article.main.card[data-id='+cd_test+']').remove()
+	else
+		jQuery('article.main.card[data-id='+cd_test+'] .loTengo').remove()
+
 	this.salvaTestLocales()
 	}
 VistaTienda.prototype.salvaTestLocales=function(){
@@ -1589,6 +1631,7 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 				console.error(data)
 		})
 	}
+
 VistaTienda.prototype.toggleLike=function(cd_test){
 	var btn=this.domDetalleTest.find('.btnLove')
 	
@@ -1630,7 +1673,6 @@ VistaTienda.prototype.testData=function(){
 		]
 	}
 ////////////////////////////////////////////////
-
 Controlador.prototype.cargaVistaMigraTest=function(desdeHistorial){
 	new VistaMigraTest(desdeHistorial).toDOM()
 	this.cierraNavDrawer()
