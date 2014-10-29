@@ -91,7 +91,7 @@ var googleMobileApi = {
       var $loginStatus = jQuery('body > .login p.status');
       googleMobileApi.doSilentLogin(refresh_token).done(function(data) {
               // console.info('Access Token: ' + data.access_token);
-              document.location='./index.html?token='+data.access_token
+              document.location.replace('./index.html?token='+data.access_token)
               })
           .fail(function(data) {
               if (data) console.log(data.error);
@@ -133,7 +133,7 @@ var googleMobileApi = {
             $throbber.fadeIn()
             googleMobileApi.authorize().done(function(data) {
                 // console.info('Access Token: ' + data.access_token);
-                document.location='./index.html?token='+data.access_token+ (data.refresh_token?'&refresh_token='+data.refresh_token:'')
+                document.location.replace('./prod.html?token='+data.access_token+ (data.refresh_token?'&refresh_token='+data.refresh_token:'') )
             }).fail(function(data) {
                 $loginButton.fadeIn()
                 $throbber.hide()
@@ -218,7 +218,7 @@ var googleWebApi={
               // callback
               console.log("done!", data);
               localStorage.setItem('tapp37_yanoshavisitado',1)
-              document.location='./index.html?token='+data.access_token+(data.refresh_token?'&refresh_token='+data.refresh_token:'')
+              document.location.replace('./prod.html?token='+data.access_token+(data.refresh_token?'&refresh_token='+data.refresh_token:'') )
               })
         },
     signinCallback:function(authResult){

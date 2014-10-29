@@ -114,6 +114,7 @@ header#navigation_bar{
 
 	.nav > li > a:hover, .nav > li > a:focus ,
 	.nav > li.open > a {
+		color:#9db1c5;
 		background-color: $navigation_bar_bgcolor;
 		}
 }
@@ -273,8 +274,8 @@ section#main_container{
 	
 }
 
-.avatar{
-	color: rgb(157, 177, 197);
+.avatar, footer .avatar{
+	color: rgb(157, 177, 197)!important;
 	.img{
 		border: 1px solid rgba(255,255,255,0.35);
 		display: block;
@@ -362,9 +363,11 @@ section#main_container{
 	border-color:rgba(0,0,0,.1)!important;
 	}
 
-
-.btn-icon.btn-rounded.btn-sm{
+.btn-rounded{
 	border-radius:50px;
+}
+.btn-icon.btn-sm{
+	
 	padding-top: 7px;
 	padding-bottom: 7px;
 	padding-left: 6px;
@@ -754,12 +757,12 @@ section#main_container{
 				}
 			}
 
-			.btnLove{margin-right:5px;}
-			.btnAbrir, .btnLove, .loTengo{display:none !important;}
+			.btnLove{margin-right:5px; margin-left:5px;}
+			.btnAbrir, .btnLove, .loTengo, .btnDesinstalar{display:none !important;}
 			.btnDescargar{display:inline-block;}
 
 			&.tengo-este-test {
-				.btnAbrir, .btnLove{display:inline-block!important;}
+				.btnAbrir, .btnLove,.btnDesinstalar{display:inline-block!important;}
 				.loTengo{display:block!important;}
 				.btnDescargar{display:none;}
 			}

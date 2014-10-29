@@ -88,6 +88,7 @@ header#navigation_bar {
     text-overflow: ellipsis; }
   header#navigation_bar .nav > li > a:hover, header#navigation_bar .nav > li > a:focus,
   header#navigation_bar .nav > li.open > a {
+    color: #9db1c5;
     background-color: #25313e; }
 
 section#main_container {
@@ -196,20 +197,20 @@ section#main_container {
   background-color: #f1f1f1 !important;
   color: #717171; }
 
-.avatar {
-  color: #9db1c5; }
-  .avatar .img {
+.avatar, footer .avatar {
+  color: #9db1c5 !important; }
+  .avatar .img, footer .avatar .img {
     border: 1px solid rgba(255, 255, 255, 0.35);
     display: block;
     border-radius: 500px;
     white-space: nowrap; }
-  .avatar .pic {
+  .avatar .pic, footer .avatar .pic {
     width: 30px;
     margin-top: 0px;
     margin-right: 5px; }
-  .nav .avatar .pic {
+  .nav .avatar .pic, .nav footer .avatar .pic {
     margin-top: -5px; }
-  .avatar img {
+  .avatar img, footer .avatar img {
     border-radius: 500px; }
 
 .thumb img, .thumb-xs img, .thumb-sm img, .thumb-md img, .thumb-lg img {
@@ -278,8 +279,10 @@ section#main_container {
   box-shadow: 0 0 0;
   border-color: rgba(0, 0, 0, 0.1) !important; }
 
-.btn-icon.btn-rounded.btn-sm {
-  border-radius: 50px;
+.btn-rounded {
+  border-radius: 50px; }
+
+.btn-icon.btn-sm {
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 6px;
@@ -535,12 +538,13 @@ section#main_container {
     #content.vista.vistaTienda .detalle-test .loTengo i {
       color: #f0ad4e; }
   #content.vista.vistaTienda .detalle-test .btnLove {
-    margin-right: 5px; }
-  #content.vista.vistaTienda .detalle-test .btnAbrir, #content.vista.vistaTienda .detalle-test .btnLove, #content.vista.vistaTienda .detalle-test .loTengo {
+    margin-right: 5px;
+    margin-left: 5px; }
+  #content.vista.vistaTienda .detalle-test .btnAbrir, #content.vista.vistaTienda .detalle-test .btnLove, #content.vista.vistaTienda .detalle-test .loTengo, #content.vista.vistaTienda .detalle-test .btnDesinstalar {
     display: none !important; }
   #content.vista.vistaTienda .detalle-test .btnDescargar {
     display: inline-block; }
-  #content.vista.vistaTienda .detalle-test.tengo-este-test .btnAbrir, #content.vista.vistaTienda .detalle-test.tengo-este-test .btnLove {
+  #content.vista.vistaTienda .detalle-test.tengo-este-test .btnAbrir, #content.vista.vistaTienda .detalle-test.tengo-este-test .btnLove, #content.vista.vistaTienda .detalle-test.tengo-este-test .btnDesinstalar {
     display: inline-block !important; }
   #content.vista.vistaTienda .detalle-test.tengo-este-test .loTengo {
     display: block !important; }
