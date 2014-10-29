@@ -25,7 +25,7 @@ body > .login {
     width: 100%;
     left: 0;
     background: url(../images/screens.png) no-repeat center center; }
-  body > .login a {
+  body > .login .btn-mobile, body > .login .btn-web {
     width: 220px;
     margin: 0 auto;
     display: inherit;

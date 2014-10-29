@@ -284,42 +284,12 @@ function Controlador(){
 
 	//////////
 	var sr=document.location.search+''
-	if (sr.indexOf('code=')>-1 || sr.indexOf('error=')>-1){
-		// http://localhost:8888/proyectotest/index.html?
-		// 	code=4/PadKyvvncUsEzVXEHlYprQ0b-4ytlyPlGS7Iv_-e_f4.Ug3WIAl7l9geoiIBeO6P2m-i5haxkgI&
-		// 	authuser=0&
-		// 	num_sessions=3&
-		// 	prompt=consent&
-		// 	session_state=b078c680812f842f4144adc06715cfa252666c12..5c5f
-
-		// var code = /\?code=(.+)$/.exec(document.location.search);
-		// var error = /\?error=(.+)$/.exec(document.location.search);
-
-  //       if (code) {
-  //           var codeNew=code[1];
-  //           var n = codeNew.indexOf('&')
-  //           codeNew = codeNew.substring(0, n != -1 ? n : codeNew.length)
-  //           //Exchange the authorization code for an access token
-  //           jQuery.post('https://accounts.google.com/o/oauth2/token', {
-  //               code:codeNew, //code: code[1],
-  //               client_id: options.web.client_id,
-  //               client_secret: options.web.client_secret,
-  //               redirect_uri: options.web.redirect_uri,
-  //               grant_type: 'authorization_code'
-  //           	})
-  //           .success(function(data) {
-  //           	alert(JSON.stringify(data))
-  //               deferred.resolve(data);
-  //           	})
-  //           .fail(function(response) {
-		// 		alert(JSON.stringify(response))
-  //               // deferred.reject(response.responseJSON);
-  //           	})
-// 			} 
-// 			else if (error) {
-//     			//The user denied access to the app
-//     			deferred.reject({error: error[1]})
-// 			}
+	if (sr.indexOf('code=')>-1){//web: se produce el error por Access-Control-Allow-Origin, tenemos que sacar el token en el servidor
+		var code=sr.substring('?code='.length).split('&')[0]
+		jQuery.post(app.config.url, {accion:'getOAuth-token', code:code})
+			.success(function(data){
+				console.log(data)
+			}) 
 		}
 	else if (sr.indexOf('?token=')==0){//teléfonos: no se produce el error por Access-Control-Allow-Origin
 		this.cache.token=sr.substring('?token='.length).split('&')[0]
@@ -342,7 +312,7 @@ function Controlador(){
 			this.actualizaDomUsuario()
 			}
 		else {
-			googleapi.getDataProfile(this.cache.token, function(data){self.userDataReceived(data)} )
+			googleMobileApi.getDataProfile(this.cache.token, function(data){self.userDataReceived(data)} )
 			}
 		}
 	else if (sr.indexOf('?meacuerdo')==0){
@@ -350,10 +320,10 @@ function Controlador(){
 		this.cache.usuario=JSON.parse(s)
 		this.actualizaDomUsuario()
 		}
-	// else {
-	// 	localStorage.removeItem('tapp37_userdata')
-	// 	document.location='login.html'
-	// 	}
+	else {
+		localStorage.removeItem('tapp37_userdata')
+		document.location='login.html'
+		}
 	}
 Controlador.prototype.init=function(){
 	jQuery(document).on('click', '[data-toggle^="class"]', function(e){
@@ -402,9 +372,12 @@ Controlador.prototype.actualizaDomUsuario=function(){
 		jQuery('.liVistaUploadTest').removeClass('hidden')
 	}
 Controlador.prototype.logout=function(){
-	googleapi.disconnectUser(app.cache.token)
+	googleMobileApi.disconnectUser(app.cache.token)
+	
 	localStorage.removeItem('tapp37_userdata')
 	localStorage.removeItem('tapp37_refresh_token')
+	localStorage.removeItem('tapp37_yanoshavisitado')
+	
 	document.location='login.html'
 	}
 /////
@@ -462,7 +435,7 @@ Controlador.prototype.cargaVistaInicio=function(){
 	//  this.cargaVistaEstadisticas()
 
 	else {
-		if (isPhone())
+		// if (isPhone())
 			this.abreNavDrawer()
 	
 		}

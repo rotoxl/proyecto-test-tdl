@@ -26,7 +26,7 @@ var authWindow=null
 //  	client_id: "SECRETO",
 //  	...
 // 		}
-var googleapi = {
+var googleMobileApi = {
     authorize: function() {
         var deferred = jQuery.Deferred();
 
@@ -86,16 +86,16 @@ var googleapi = {
         }, false);
 
         return deferred.promise();
-      },
+        },
     prepareSilentLogin:function(refresh_token){
       var $loginStatus = jQuery('body > .login p.status');
-      googleapi.doSilentLogin(refresh_token).done(function(data) {
+      googleMobileApi.doSilentLogin(refresh_token).done(function(data) {
               // console.info('Access Token: ' + data.access_token);
               document.location='./index.html?token='+data.access_token
               })
           .fail(function(data) {
               if (data) console.log(data.error);
-              googleapi.prepareLogin()
+              googleMobileApi.prepareLogin()
               })
         },
     doSilentLogin: function(refresh_token){
@@ -116,7 +116,7 @@ var googleapi = {
             deferred.reject(response.responseJSON);
             })
         return deferred.promise()
-      },
+        },
     prepareLogin:function(){
         jQuery('body > *').hide()
         jQuery('body > .login').show()
@@ -131,7 +131,7 @@ var googleapi = {
         $loginButton.on('click', function() {
             $loginButton.hide()
             $throbber.fadeIn()
-            googleapi.authorize().done(function(data) {
+            googleMobileApi.authorize().done(function(data) {
                 // console.info('Access Token: ' + data.access_token);
                 document.location='./index.html?token='+data.access_token+ (data.refresh_token?'&refresh_token='+data.refresh_token:'')
             }).fail(function(data) {
@@ -140,7 +140,7 @@ var googleapi = {
                 $loginStatus.html(data.error);
               })
           })
-      },
+        },
     getDataProfile:function(token, fnCallBack){
         var term=null;
         jQuery.ajax({
@@ -166,8 +166,8 @@ var googleapi = {
                    // localStorage.gmailGender=data.gender;
                    }
                });
-      // disconnectUser();
-      },
+        // disconnectUser();
+        },
     disconnectUser:function (token) {
       var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token='+token;
 
@@ -193,35 +193,73 @@ var googleapi = {
                 }
                 });
       }
-
 }
-// function getDataProfile(token, fnCallBack){
-//         var term=null;
-//         jQuery.ajax({
-//                url:'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+token,
-//                type:'GET',
-//                data:term,
-//                dataType:'json',
-//                error:function(jqXHR,text_status,strError){
-//                },
-//             success:function(data){
-//                    var item;
 
-//                    // console.log(JSON.stringify(data));
-//                     // Save the userprofile data in your localStorage.
-                   
-//                    fnCallBack(data)
-//                    // localStorage.gmailLogin="true";
-//                    // localStorage.gmailID=data.id;
-//                    // localStorage.gmailEmail=data.email;
-//                    // localStorage.gmailFirstName=data.given_name;
-//                    // localStorage.gmailLastName=data.family_name;
-//                    // localStorage.gmailProfilePicture=data.picture;
-//                    // localStorage.gmailGender=data.gender;
-//                    }
-//                });
-//     // disconnectUser();
-//     }
+var googleWebApi={
+    prepareLogin:function(){
+        var btn=jQuery('#signinButton').show()
+        btn.find('.g-signin').attr('data-clientid', options.web.client_id)
+
+        var $throbber=jQuery('body > .login .throbber')
+        $throbber.hide()
+
+        },
+    signIn:function() {
+        console.log("signing in...");
+        gapi.auth.authorize({
+              client_id: options.web.client_id,
+              immediate: false,
+              response_type: "token",
+              scope: options.web.scope, //["https://www.googleapis.com/auth/plus.login"],
+
+              //request_visible_actions: "https://schemas.google.com/AddActivity"
+              }, 
+          function(data) {
+              // callback
+              console.log("done!", data);
+              localStorage.setItem('tapp37_yanoshavisitado',1)
+              document.location='./index.html?token='+data.access_token+(data.refresh_token?'&refresh_token='+data.refresh_token:'')
+              })
+        },
+    signinCallback:function(authResult){
+        if (authResult['access_token']) {
+            // Autorizado correctamente
+            // Oculta el botón de inicio de sesión ahora que el usuario está autorizado, por ejemplo:
+            document.getElementById('signinButton').setAttribute('style', 'display: none');
+            } 
+        else if (authResult['error']) {
+            // Se ha producido un error.
+            // Posibles códigos de error:
+            //   "access_denied": el usuario ha denegado el acceso a la aplicación.
+            //   "immediate_failed": no se ha podido dar acceso al usuario de forma automática.
+            console.log('There was an error: ' + authResult['error']);
+            }
+        },
+    disconnectUser:function(access_token) {
+        var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
+        access_token;
+
+        // Realiza una solicitud GET asíncrona.
+        $.ajax({
+            type: 'GET',
+            url: revokeUrl,
+            async: false,
+            contentType: "application/json",
+            dataType: 'jsonp',
+            success: function(nullResponse) {
+              // Lleva a cabo una acción ahora que el usuario está desconectado
+              // La respuesta siempre está indefinida.
+            },
+          error: function(e) {
+              // Gestiona el error
+              // console.log(e);
+              // Puedes indicar a los usuarios que se desconecten de forma manual si se produce un error
+              // https://plus.google.com/apps
+              }
+          })
+        }
+    }
+
 
 //    cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git
 //    NO FUNCIONA EL PLUGIN: https://github.com/EddyVerbruggen/cordova-plugin-googleplus/issues/5
