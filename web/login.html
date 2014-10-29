@@ -20,12 +20,24 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
 	<link rel="stylesheet" href="css/font.css" type="text/css" />
 	<link rel="stylesheet" href="css/app.css" type="text/css" />
-
 </head>
 <body class="">
 	<section class="login">
 		<div class="screens"></div>
-		<a href="#" style="display:none" class="btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
+
+		<a href="#" style="display:none" class="btn-mobile btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
+
+		<span id="signinButton" style="display:none" class="btn btn-google btn-rounded btn-danger btn-web" >
+			<span
+			    class="g-signin"
+			    data-callback="googleWebApi.signinCallback"
+			    data-clientid="893060658101-6ehddc6q9hh1d4l891on5fm1mss3fcme.apps.googleusercontent.com"
+			    data-cookiepolicy="single_host_origin"
+			    data-scope="https://www.googleapis.com/auth/plus.login" onclick="googleWebApi.signIn()">
+
+			    <i class="fa fa-google-plus"></i>Login con Google</a>
+		  	</span>
+		</span>
 
 		<div class="throbber cargando"></div>
 		<p class="status"></p>
@@ -35,6 +47,8 @@
 	<!-- <script src="js/app.js"></script> -->
 	<script src="js/app.plugin.js"></script>
 	<script src="js/options.nosvn.js"></script>
+	<script src="https://apis.google.com/js/client.js?onload=gapiInit"></script>
+
 	<script src="../cordova.js"></script>
 	
 	<script>
@@ -48,13 +62,21 @@
 				return false 
 			}
 		function init(){
-			var refresh_token=get('tapp37_refresh_token')
-			if (refresh_token!=null){
-				googleapi.prepareSilentLogin(refresh_token)
+			if ( !isPhone() ){
+				if (get('tapp37_yanoshavisitado')=='1')
+					setTimeout(function(){googleWebApi.signIn()}, 300)
+				else
+					googleWebApi.prepareLogin()
 				}
 			else {
-				googleapi.prepareLogin()
-				jQuery('.login .btn').fadeIn()
+				var refresh_token=get('tapp37_refresh_token')
+				if (refresh_token!=null){
+					googleapi.prepareSilentLogin(refresh_token)
+					}
+				else {
+					googleMobileApi.prepareLogin()
+					jQuery('.login .btn').fadeIn()
+					}
 				}
 			}
 		
