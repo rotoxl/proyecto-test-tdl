@@ -79,31 +79,48 @@ class Metadatos{
 		global $limitePreview;
 
 		$sql="select 
-				'(título dinamico)' as ds_categoria, 
+				'(título dinamico nuevos y actualizados)' as ds_categoria, 
 				-1 as cd_categoria, 
 				'fa-fire' as i,
 				(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat
+			
+			/* union
+				select 
+					'(título dinamico los más valorados)' as ds_categoria, 
+					-2 as cd_categoria, 
+					'fa-love' as i,
+					10 as numTestsPorCat */
 			union
-			select
-			 	c.ds_categoria, c.cd_categoria, c.i,
-				(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat
-			 from categorias c, usuarios_categorias uc
-				where c.cd_categoria=uc.cd_categoria and uc.cd_usuario=?
-				limit ?";
+				select
+				 	c.ds_categoria, c.cd_categoria, c.i,
+					(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat
+				 from categorias c, usuarios_categorias uc
+					where c.cd_categoria=uc.cd_categoria and uc.cd_usuario=?
+					limit ?";
 		$filas=$this->conn->lookupFilas($sql, array($cd_usuario, $limitePreview));
 
 		if ($filas->numFilas<=1){//sí, 1, porque hemos metido una cat ficticia
 			$sql="select  
-					(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat,
+					'(título dinamico nuevos y actualizados)' as ds_categoria, 
 					-1 as cd_categoria, 
-					'Nuevos y actualizados' as ds_categoria,
-					'fa-fire' as i
+					'fa-fire' as i,
+					(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat
+				
+				/* union
+					select 
+						'(título dinamico los más valorados)' as ds_categoria, 
+						-2 as cd_categoria, 
+						'fa-love' as i,
+						10 as numTestsPorCat */
+
 				union
-				select
-					(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat,
-					c.cd_categoria, c.ds_categoria, c.i
-				from categorias c 
-					having numTestsPorCat > 0";
+					select
+						c.ds_categoria,
+						c.cd_categoria,  
+						c.i,
+						(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat
+					from categorias c 
+						having numTestsPorCat > 0";
 			$filas=$this->conn->lookupFilas($sql, array($limitePreview));			
 			}
 		
@@ -206,20 +223,8 @@ class Metadatos{
 			array_push($arrPreguntas, $pregunta);
 			}
 
-		return array(
-			'f_examen'=>	$md['f_examen'],
-			'ds_test'=>		$md['ds_test'],
-			'cd_test'=>		$md['cd_test'],
-			'liscat'=>		$md['liscat'],
-			'region'=>		$md['region'],
-			'organismo'=>	$md['organismo'],
-			'img'=>			$md['img'],
-			'fallosRestan'=>$md['fallosrestan'],
-			'minutos'=>		$md['minutos'],
-			'numPreguntas'=>$md['numpreguntas'],
-
-			'preguntas'=>$arrPreguntas
-			);
+		$md['preguntas']=$arrPreguntas;
+		return $md;
 		}
 	//////
 	public function toggleLike($accion, $cd_usuario, $cd_test){
@@ -260,8 +265,8 @@ class Metadatos{
 		$arr=array(
 			new Sql('insert into tests (cd_test, ds_test, region, organismo, img, f_examen, 
 										fallosRestan, minutos, numpreguntas, admiteReordenarPreguntas, admiteReordenarRespuestas, 
-										precio, cd_moneda) 
-					values (?,?,?,?,?, ?,?,?,?,?, ?,?,? )',
+										precio, cd_moneda, matricula) 
+					values (?,?,?,?,?, ?,?,?,?,?, ?,?,?, generaMatricula_Test() )',
 					array(
 						$nuevoCD_Test,
 						$datos->ds_test, 
