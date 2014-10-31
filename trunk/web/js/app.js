@@ -143,8 +143,22 @@ function buscaFilas(filas, dicBuscado){
 		}
 	return jQuery.grep(filas, fn)
 	}
+function getIndiceFila(filas, dicBuscado){
+	var _idx=0
+	filas.map(function(el){el._idx=_idx; _idx++})
+	var filas=buscaFilas(filas, dicBuscado)
+
+	if (filas.length==0) 
+		return -1
+
+	var idxBorrar=filas[0]._idx
+	return idxBorrar
+	}
 function get(s){return JSON.parse( localStorage.getItem(s) )}
-function save(s,v){localStorage.setItem(s, JSON.stringify(v))}
+function save(s,v){
+	localStorage.setItem(s, JSON.stringify(v))
+	console.info('localStorage: '+s)
+	}
 function xeval(s){return JSON.parse(s)}
 //////////
 var Formato=function(){
@@ -420,8 +434,8 @@ Controlador.prototype.continuarTest=function(desdeHistorial){
 	this.lanzaTest( VistaTest.prototype.testData() )
 	this.cierraNavDrawer()
 	}
-Controlador.prototype.lanzaTest=function(test, vistaOrigen){
-	var nv=new VistaTest(test)
+Controlador.prototype.lanzaTest=function(test, resp, vistaOrigen){
+	var nv=new VistaTest(test, resp)
 	nv.returnTo=vistaOrigen
 	nv.toDOM()
 
@@ -560,7 +574,7 @@ VistaPantallaCompleta.prototype.cerrar=function(){
 	this.restauraHeaderApp()
 	}
 //////////
-function VistaTest(test, desdeHistorial){
+function VistaTest(test, respuestas, desdeHistorial){
 	if (test==null) return
 	VistaPantallaCompleta.call(this)
 
@@ -570,21 +584,39 @@ function VistaTest(test, desdeHistorial){
 
 	this.mapaInicializado=false
 
+	this.preguntas=this.test.preguntas
+	this.respuestas=respuestas.respuestas || this.generaObjRespuestas()
+
 	this.examen={
-		fallosRestan:this.test.fallosRestan,
+		fallosrestan:this.test.fallosrestan,
 		minutos:this.test.minutos,
-		numPreguntas:this.test.numPreguntas,
-		segundosConsumidos:0,
-	}
+		numpreguntas:this.test.numpreguntas,
+		segundosConsumidos:(respuestas?respuestas.segundosConsumidos:0),
+		}
+	
+	this.generaIndices()
 
 	//insertamos la portada y la contraportada
-	this.test.preguntas.splice(0,0, null)
-	this.test.preguntas.push(null)
+	this.preguntas.splice(0,0, null); this.preguntas.push(null)
+	this.respuestas.splice(0,0, null); this.respuestas.push(null)
 
 	if (!desdeHistorial) 
 		app.pushState(this.id)
 	}
 VistaTest.prototype=new VistaPantallaCompleta
+VistaTest.prototype.generaObjRespuestas=function(){
+	var contestadas=[]
+	for (var i=0; i<this.preguntas.length; i++){
+		contestadas.push({estrella:false, respuestaUsuario:null})
+		}
+	return contestadas
+	}
+VistaTest.prototype.generaIndices=function(){
+	for (var i=0; i<this.preguntas.length; i++){
+		this.preguntas[i].i=i
+		this.respuestas[i].i=i
+		}
+	}
 VistaTest.prototype.getHeader=function(){
 	var self=this
 	return creaObjProp('header', {className:'vista-header marcadores' , hijos:[
@@ -592,7 +624,7 @@ VistaTest.prototype.getHeader=function(){
 						creaObjProp('button', {className:'btn btn-primary col-md-6 col-sm-6 col-xs-6 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', hijos:[
 							creaT(' Pregunta '),
 							creaObjProp('span', {id:'numPag', texto:1}),
-							creaT(' de '+this.examen.numPreguntas+' '), 
+							creaT(' de '+this.examen.numpreguntas+' '), 
 							creaObjProp('b', {className:'caret'})
 							]}),
 						creaObjProp('ul', {id:'mapatest', className:'btn2_1 dropdown-menu XXanimated XXfadeInRight btn-primary', role:'menu', hijos:[
@@ -627,11 +659,11 @@ VistaTest.prototype.initSwype=function(xpregActiva){
 	var self=this
 
 	// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-	var gallery=new SwipeView('#swypeWrapper', {numberOfPages:this.test.preguntas.length, loop:false });
+	var gallery=new SwipeView('#swypeWrapper', {numberOfPages:this.preguntas.length, loop:false });
 
 	// // Load initial data
 	for (var i=0; i<3; i++) {
-		// var page = i==0 ? this.test.preguntas.length-1 : i-1;
+		// var page = i==0 ? this.preguntas.length-1 : i-1;
 		var page = i==0 ? 0 : i-1;
 		this.creaDiapo(page, gallery.masterPages[i])
 		}
@@ -649,7 +681,7 @@ VistaTest.prototype.initSwype=function(xpregActiva){
 				}
 			}
 
-		self.indicaPreguntaActivaEnMarcador(gallery.pageIndex)
+		self.indicaPreguntaActivaEnMarcador(gallery.page)
 		});
 
 	gallery.onMoveOut(function () {
@@ -665,8 +697,7 @@ VistaTest.prototype.initSwype=function(xpregActiva){
 	this.gallery=gallery
 	}
 VistaTest.prototype.creaDiapo=function(i, cont){
-	if (i==0 || i==this.test.preguntas.length-1){
-
+	if (i==0 || i==this.preguntas.length-1){
 		jQuery(cont).empty().addClass('portada '+(i==0?'inicio':'fin')).append( [
 			creaObjProp('span', {texto:i==0?'Inicio':'Fin'}),
 			creaObjProp('div', {className:'visual'})
@@ -675,39 +706,46 @@ VistaTest.prototype.creaDiapo=function(i, cont){
 		console.info('> crea portada, cont '+cont.id)
 		}
 	else {
-		var preg=this.test.preguntas[i] //la 0 es la portada
+		var preg=this.preguntas[i] //la 0 es la portada
+		var resp=this.respuestas[i]
 
 		jQuery(cont).removeClass('portada inicio fin').empty()
-			.append (creaObjProp('div', {'style.height':this.hFija/2, className:'pregunta noselect', hijo:this.generaDomPreguntas(preg)}) )
-			.append (creaObjProp('footer', {'style.height':this.hFija/2, className:'footer respuestas noselect', hijo:this.generaDomRespuestas(preg)}) )
+			.append (creaObjProp('div', {'style.height':this.hFija/2, 
+										className:'pregunta noselect', 
+										hijo:this.generaDomPreguntas(preg, resp)}) )
+			.append (creaObjProp('footer', {'style.height':this.hFija/2, 
+											className:'footer respuestas noselect', 
+											hijo:this.generaDomRespuestas(preg, resp)}) )
+			.attr('data-cd-pregunta', i)
 
 			console.info('> crea diapo '+i+', cont '+cont.id)
+
 		}
 	}
-VistaTest.prototype.generaDomPreguntas=function(preg){
+VistaTest.prototype.generaDomPreguntas=function(preg, resp){
 	var self=this
 	return creaObjProp('table',{hijos:[
 				creaObjProp('tr', {hijos:[
-					creaObjProp('td', {className:'clave', onclick:function(){self.toggleEstrella(this)}, i:(preg.estrella?'fa-star':'fa fa-star-o')}),
-					creaObjProp('td', {className:'valor', texto:preg.i+'-'+preg.pregunta})
+					creaObjProp('td', {className:'clave', onclick:function(){self.toggleEstrella(this)}, i:(resp.estrella?'fa-star':'fa fa-star-o')}),
+					creaObjProp('td', {className:'valor', texto:(preg.i+1)+'-'+preg.pregunta})
 					]}) 
 				]})
 	}
-VistaTest.prototype.generaDomRespuestas=function(preg){
+VistaTest.prototype.generaDomRespuestas=function(preg, resp){
 	var self=this
 	var xr=[], letras='ABCDE', estilos=['bg-danger', 'bg-warning', 'bg-success', 'bg-info', 'bg-primary']
 	for (var i=0; i<preg.respuestas.length; i++){
-		var resp=preg.respuestas[i]
-		if (resp.texto==null || resp.texto=='') 
+		var opcion=preg.respuestas[i]
+		if (opcion.texto==null || opcion.texto=='') 
 			continue
 		xr.push( creaObjProp('tr', {onclick:function(){self.marcaResp(this)}, hijos:[
 			creaObjProp('td', {className:'clave '+ estilos[i], texto:letras.substr(i,1) }),
-			creaObjProp('td', {className:'valor', texto:preg.respuestas[i].texto }),
+			creaObjProp('td', {className:'valor', texto:opcion.texto }),
 			]}))
 		}
-	if (preg.respuestaUsuario!=null){
+	if (resp.respuestaUsuario!=null){
 		jQuery(xr).addClass('atenuada')
-		jQuery(xr[preg.respuestaUsuario]).removeClass('atenuada').addClass('active')
+		jQuery(xr[resp.respuestaUsuario]).removeClass('atenuada').addClass('active')
 		}
 	return creaObjProp('table', {hijos:xr})
 	}
@@ -723,13 +761,12 @@ VistaTest.prototype.initMapa=function(){
 	this.mapaInicializado=true
 	var elPorFila=10
 
-	var preg=this.test.preguntas
-	// var numfilas=Math.floor(this.test.preguntas.length/elPorFila)
+	var preg=this.respuestas
+	// var numfilas=Math.floor(this.preguntas.length/elPorFila)
 	var col=0,tr=creaObjProp('tr'), trs=[], ta=creaObjProp('table')
 	
 	//no reflejamos portada ni contraportada
 	for (var i=1; i<preg.length-1; i++){
-		this.test.preguntas[i].i=i
 		if (col>=elPorFila){
 			ta.appendChild(tr)
 			tr=creaObjProp('tr')
@@ -746,7 +783,7 @@ VistaTest.prototype.initMapa=function(){
 
 		var self=this
 		tr.appendChild( creaObjProp('td', { className:(pra.respuestaUsuario!=null? 'contestada':''), 
-																				id:'mapa_preg'+i, 
+																				id:'mapa_preg'+pra.i, 
 																				// 'data-id':
 																				hijo:hijo, 
 																				onclick:function(){
@@ -760,26 +797,27 @@ VistaTest.prototype.initMapa=function(){
 
 	this.dom.find('#mapatest').append(ta)
 	}
-VistaTest.prototype.actualizaMapa=function(preg){
-	var td=jQuery('#mapa_preg'+preg.i)
-	td.toggleClass('contestada', preg.respuestaUsuario!=null)
+VistaTest.prototype.actualizaMapa=function(preg, resp){
+	var td=jQuery('#mapa_preg'+resp.i)
+	td.toggleClass('contestada', resp.respuestaUsuario!=null)
 
 	td.empty()
-	if (preg.estrella)
-		td.append(this.generaDomEstrella(preg.i))
+	if (resp.estrella)
+		td.append(this.generaDomEstrella(resp.i+1))
 	else 
-		td.append(creaObjProp('span', {texto:preg.i}))
+		td.append(creaObjProp('span', {texto:resp.i}))
 	}
 VistaTest.prototype.indicaPreguntaActivaEnMarcador=function(i){
-	this.preg=this.test.preguntas[i]
+	this.preg=this.preguntas[i]
+	this.resp=this.respuestas[i] //aquí no se usan, pero se establecen globalmente
 
 	jQuery('#mapatest td').removeClass('active')
-	jQuery('#mapa_preg'+i).addClass('active')
+	jQuery('#mapa_preg'+(i-1) ).addClass('active')
 	var np=i
 	if (np==0)
 		np=1
-	else if (np==this.test.preguntas.length-1)
-		np=this.test.preguntas.length-2
+	else if (np==this.preguntas.length-1)
+		np=this.preguntas.length-2
 
 	this.dom.find('#numPag').text(np)
 	}
@@ -793,18 +831,18 @@ VistaTest.prototype.generaDomEstrella=function(i){
 				]})
 	}
 VistaTest.prototype.toggleEstrella=function(celda){
-	if (this.preg.estrella==null)
-		this.preg.estrella=false
-	this.preg.estrella=!this.preg.estrella
+	if (this.resp.estrella==null)
+		this.resp.estrella=false
+	this.resp.estrella=!this.resp.estrella
 
 	var xcelda=jQuery(celda).find('i')
 	xcelda.removeClass('fa-star fa-star-o')
-	if (this.preg.estrella)
+	if (this.resp.estrella)
 		xcelda.addClass('fa-star')
 	else
 		xcelda.addClass('fa-star-o')
 
-	this.actualizaMapa(this.preg)
+	this.actualizaMapa(this.preg, this.resp)
 	}
 VistaTest.prototype.marcaResp=function(fila){
 	var xfila=jQuery(fila)
@@ -812,23 +850,64 @@ VistaTest.prototype.marcaResp=function(fila){
 
 	if (xfila.hasClass('active')){
 		xfilas.removeClass('active atenuada')
-		this.preg.respuestaUsuario=null
+		this.resp.respuestaUsuario=null
 		}
 	else {
 		xfilas.removeClass('active').addClass('atenuada')
 		xfila.addClass('active').removeClass('atenuada')
-		this.preg.respuestaUsuario=xfilas.index(fila)
+		this.resp.respuestaUsuario=xfilas.index(fila)
 		}
 
-	this.actualizaMapa(this.preg)
+	this.actualizaMapa(this.preg, this.resp)
 	}
 //////
 VistaTest.prototype.tiempoAcabado=function(){
-	this.guardaEstadoExamen()
+	this.guardaEstadoExamen(true)
 	this.muestraFormPausa('fintiempo')
 	}
-VistaTest.prototype.guardaEstadoExamen=function(){
-	console.error('GUARDAR ESTADO DEL EXAMEN!')
+VistaTest.prototype.guardaEstadoExamen=function(finalizado){
+	if (finalizado==undefined)
+		finalizado=false
+	
+	var respuestas=this.quitaPortadas(this.respuestas)
+
+	this.respuestasTestLocales=get('tapp37_listaTestRespuestas')//{cd_test:1, respuestas:{}}
+	this.respuestasTestLocales=this.respuestasTestLocales || []
+	var idx=getIndiceFila(this.respuestasTestLocales, {cd_test:this.test.cd_test}), resp
+
+	var nel={cd_test:this.test.cd_test, 
+			respuestas:respuestas, 
+			segundosConsumidos:this.examen.segundosConsumidos,
+			finalizado:finalizado,
+			preguntaActual:this.preg.i,
+			sincronizado:false
+			}
+
+	if (finalizado){
+		var corregido=this.corrigeTest()
+		nel.aciertos= corregido.aciertos
+		nel.fallos= corregido.fallos
+		nel.nc= corregido.nc
+		nel.nota= corregido.nota
+		}
+	else {
+		var stats=this.generaEstadisticasPausa()
+		nel.minutosPorcentaje=stats.minutosPorcentaje
+		nel.respondidasPorcentaje=stats.respondidasPorcentaje
+
+		nel.noRespondidas = stats.noRespondidas
+		nel.preguntas = stats.preguntas
+		nel.minutosConsumidos = stats.minutosConsumidos
+		nel.minutosTotal = stats.minutosTotal
+		nel.respondidas = stats.respondidas
+		}
+
+	if (idx==-1)
+		this.respuestasTestLocales.push(nel)
+	else 
+		this.respuestasTestLocales[idx]=nel
+		
+	save('tapp37_listaTestRespuestas', this.respuestasTestLocales)
 	}
 VistaTest.prototype.muestraFormPausa=function(tipo){
 	var self=this
@@ -910,15 +989,17 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 
 	this.frmdom.modal({backdrop:'static', keyboard:false})
 	}
-VistaTest.prototype.pregSinPortadas=function(){
-	return this.test.preguntas.slice(1, this.test.preguntas.length-2)
+VistaTest.prototype.quitaPortadas=function(arr){
+	if (arr[0]==null)
+	 	return arr.slice(1, this.preguntas.length-1)
+	return arr
 	}
 VistaTest.prototype.generaEstadisticasPausa=function(){
-	var pr=this.pregSinPortadas()
-	var r= {
-		estrellas: buscaFilas(pr, {estrella:true}).length,
-		noRespondidas: buscaFilas(pr, {respuestaUsuario:null}).length,
-		preguntas:pr.length,
+	var resp=this.quitaPortadas(this.respuestas)
+	var r={
+		estrellas: buscaFilas(resp, {estrella:true}).length,
+		noRespondidas: buscaFilas(resp, {respuestaUsuario:null}).length,
+		preguntas:resp.length,
 
 		minutosConsumidos:Math.floor(this.examen.segundosConsumidos/60),
 		minutosTotal:this.examen.minutos
@@ -930,17 +1011,20 @@ VistaTest.prototype.generaEstadisticasPausa=function(){
 	}
 VistaTest.prototype.corrigeTest=function(){
 	var a=0, f=0, nc=0
-	var pr=this.pregSinPortadas()
+	var pr=this.quitaPortadas(this.preguntas)
+	var resp=this.quitaPortadas(this.respuestas)
+
 	for (var i=0; i<pr.length; i++){
-		var preg=pr[i]
-		if (preg.respuestaUsuario==null)
+		var preg=pr[i], resp=pr[i]
+
+		if (resp.respuestaUsuario==null)
 			nc++
-		else if (preg.respuestaUsuario==preg.cd_respuestacorrecta)
+		else if (resp.respuestaUsuario==preg.cd_respuestacorrecta)
 			a++
 		else 
 			f++
 		}
-	var fr=this.test.fallosRestan
+	var fr=this.test.fallosrestan
 	if (fr==null) fr=0
 
 	var tn= (a-(f*fr))/pr.length
@@ -970,7 +1054,7 @@ VistaTest.prototype.pausaTiempo=function(){
 
 		this.examen.horaFinal=null
 
-		this.guardaEstadoExamen()
+		this.guardaEstadoExamen(false)
 		this.muestraFormPausa('pausa')
 		}
 	else { //retomamos
@@ -978,6 +1062,11 @@ VistaTest.prototype.pausaTiempo=function(){
 		}
 	}
 VistaTest.prototype.tickCrono=function(){
+	if (this.crono==null){
+		console.error('El tiempo debería estar parado')
+		return
+	}
+
 	var self=this
 	this.crono=setTimeout(function(){self.tickCrono()}, this.refrescoCrono)
 
@@ -985,10 +1074,10 @@ VistaTest.prototype.tickCrono=function(){
 	var minRestantes=Math.ceil(sRestantes/60)
 	
 	if (this.minRestantes==minRestantes){
-		// console.log('No hay que actualizar el crono: segRestantes='+sRestantes)
+		console.log('No hay que actualizar el crono: segRestantes='+sRestantes)
 		return
 	}
-	// console.warn('Actualizo crono: segRestantes='+sRestantes)
+	console.warn('Actualizo crono: segRestantes='+sRestantes)
 	jQuery('#tiempoConsumido').text(this.convierteMinutosAHora(this.examen.minutos-minRestantes))
 	
 	this.minRestantes=minRestantes
@@ -1000,6 +1089,12 @@ VistaTest.prototype.tickCrono=function(){
 		}
 	}
 VistaTest.prototype.backButton=function(){
+	var mapa=jQuery('ul#mapatest')
+	if (mapa.is(':visible')){
+		mapa.closest('.open').removeClass('open')
+		return
+		}
+
 	var sRestantes=(this.examen.horaFinal-new Date())/1000
 	var segundosConsumidos=(this.examen.minutos*60-sRestantes)
 
@@ -1034,9 +1129,9 @@ VistaTest.prototype.testData=function(){
 				version:1 //servirá para corregir las erratas y demás
 				},
 		examen: {
-				fallosRestan:.25, //para indicar aquello de que cada 4 fallos resta 1 acierto
+				fallosrestan:.25, //para indicar aquello de que cada 4 fallos resta 1 acierto
 				minutos:20,
-				numPreguntas:6, //redundante, pero vendrá bien para comprobar la integridad
+				numpreguntas:6, //redundante, pero vendrá bien para comprobar la integridad
 				segundosConsumidos:30,
 				// preguntaActiva:3,
 				},
@@ -1373,10 +1468,18 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 
 	if (this.entornoLocal){
 		loTengo=true
-		domPrecio=creaObjProp('span', {className:'col-xs-6 loTengo', i:'fa-check-circle'})
+		domPrecio=creaObjProp('span', {className:'col-xs-4 loTengo', i:'fa-check-circle'})
+
+		var notaTest=''
+		var resp=buscaFilas(this.respuestasTestLocales, {cd_test:test.cd_test})[0]
+		if (resp){
+			if (!resp.finalizado)
+				notaTest='No finalizado'
+
+			}
 
 		infoTienda=[
-			creaObjProp('span', {className:'col-xs-6 bl'}),
+			creaObjProp('span', {className:'col-xs-8 bl notaTest', texto:notaTest}),
 			domPrecio,
 			]
 
@@ -1453,6 +1556,24 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 	// 		]
 	var self=this
 	self.domBody.empty().addClass('cargando')
+
+	if (app.cache.usuario==null){
+		var self=this
+		this.esperandoCredenciales=this.esperandoCredenciales || 0
+		this.esperandoCredenciales++
+
+		if (this.esperandoCredenciales<5){
+			console.info('hay que esperar a las credenciales')
+			setTimeout(function(){self.leeTestTienda(fnCallBack)}, 800)
+			return
+			}
+		else{
+			self.domBody.removeClass('cargando')
+			this.domBody.append(
+				this.admonition('No se ha podido conectar con la tienda', 'Es una pena, realmente disponemos de un gran material allá arriba. Inténtalo más tarde, por favor.', 'fa-exclamation-triangle fa-4x')
+				)
+			}
+		}
 	jQuery.post(app.config.url, {accion:'getPreviewCategorias', cd_usuario:app.cache.usuario.cd_usuario}).success(
 		function(data){
 			var datos=xeval(data)
@@ -1487,67 +1608,113 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 		this.domBody.hide()
 		}
 
-	var loTengo=buscaFilas(this.testLocales, {cd_test:cd_test}).length
+	var loTengo=buscaFilas(this.testLocales, {cd_test:cd_test})
+	var loHice=buscaFilas(this.respuestasTestLocales, {cd_test:cd_test})
+
+	if (loTengo.length>0){ //no hace falta consultar al servidor
+		this._testPreview(loTengo[0], loHice[0], true)
+		}
+	else {
+		var self=this
+		jQuery.get(app.config.url, {accion:'getPreviewTest', cd_usuario:app.cache.usuario.cd_usuario, cd_test:cd_test}).success(
+			function(data){
+				var test=xeval(data).test
+				self._testPreview(test, null, false)
+				}
+			)
+		}
+	}
+VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 	var self=this
-	jQuery.get(app.config.url, {accion:'getPreviewTest', cd_usuario:app.cache.usuario.cd_usuario, cd_test:cd_test}).success(
-		function(data){
-			var test=xeval(data).test
-			self.cambiaHeaderApp(test.ds_test)
-			self.domDetalleTest.removeClass('cargando tengo-este-test')
 
-				
-			if (loTengo){
-				self.domDetalleTest.addClass('tengo-este-test')
-				}
-			var textoBotonDescargar, fnDescargar
-			if (test.precio==0){
-				textoBotonDescargar='Descargar'
-				fnDescargar=function(){self.descargaTest(test.cd_test)}
-				}
-			else{
-				textoBotonDescargar=formato.moneda(test.precio, test.moneda)+' - Comprar'
-				fnDescargar=function(){self.descargaTest(test.cd_test)}
-				}
+	self.cambiaHeaderApp(test.ds_test)
+	self.domDetalleTest.removeClass('cargando tengo-este-test')
 
-			var visual=creaObjProp('div', {className:'col-xs-4 visual'})
-			if (test.img==null || test.img=='')
-				visual.appendChild( creaObjProp('i', {className:'fa fa-file-text-o fa-8x'}) )
-			else
-				visual.style.backgroundImage='url('+test.img+')'
+	if (loTengo){
+		self.domDetalleTest.addClass('tengo-este-test')
+		}
+	var textoBotonDescargar, fnDescargar
+	if (test.precio==0){
+		textoBotonDescargar='Descargar'
+		fnDescargar=function(){self.descargaTest(test.cd_test)}
+		}
+	else{
+		textoBotonDescargar=formato.moneda(test.precio, test.moneda)+' - Comprar'
+		fnDescargar=function(){self.descargaTest(test.cd_test)}
+		}
 
-			self.domDetalleTest.empty().append([
-				creaObjProp('div', {className:'bl cabecera row', hijos:[
-					visual,
-					creaObjProp('div', {className:'col-xs-8 data', hijos:[
-						creaObjProp('span', {className:'bl titulo', texto:test.ds_test}),
-						creaObjProp('span', {className:'bl', hijos:[
-							creaObjProp('span', {className:'bold organismo', texto:test.organismo}),
-							creaObjProp('span', {texto:test.organismo==null? '': espacioDuro2}),
-							creaObjProp('span', {className:'fecha', texto: formato.fechaDDMMYYYY(test.f_examen) }),
-							]}),
-						creaObjProp('span', {className:'bl bold', texto: self.concatCategoriasTest(test), omiteNulo:true, i:'fa-tags' }),
-						creaObjProp('span', {className:'bl', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos'}),
-						creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'Este test está en tu colección'}),
+	var visual=creaObjProp('div', {className:'col-xs-3 visual'})
+	if (test.img==null || test.img=='')
+		// visual.appendChild( creaObjProp('i', {className:'fa fa-file-text-o fa-8x'}) )
+		visual.appendChild( creaObjProp('span', {className:'fa-stack pull-left fa-3x', hijos:[
+			creaObjProp('i', {className:'fa fa-circle text-success fa-stack-2x'}),
+			creaObjProp('i', {className:'fa fa-file-text-o text-white fa-stack-1x'}),
+			]}) )
+	else
+		visual.style.backgroundImage='url('+test.img+')'
 
-						creaObjProp('div', {className:'bl grupo pull-right', hijos:[
-							creaObjProp('button', {className:'btnAbrir btn btn-default btn-dark ', texto:'Abrir', onclick:function(){self.lanzaTest(test.cd_test)} }),
-							creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-default'+(test.likeit?' btn-warning':''), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
-							creaObjProp('button', {className:'btnDesinstalar btn btn-rounded btn-default', texto:'Desinstalar', onclick:function(){self.desinstalarTest(test.cd_test)} }),
+	self.domDetalleTest.empty().append([
+		creaObjProp('section', {className:'cabecera row', hijos:[
+			visual,
+			creaObjProp('div', {className:'col-xs-9 data', hijos:[
+				creaObjProp('h1', {className:'bl titulo', texto:test.ds_test}),
+				creaObjProp('span', {className:'bl', hijos:[
+					creaObjProp('span', {className:'organismo', texto:test.organismo}),
+					creaObjProp('span', {texto:test.organismo==null? '': espacioDuro2}),
+					creaObjProp('span', {className:'fecha', texto: formato.fechaDDMMYYYY(test.f_examen) }),
+					]}),
+				creaObjProp('span', {className:'bl cats', texto: self.concatCategoriasTest(test), omiteNulo:true, i:'fa-tags' }),
+				creaObjProp('span', {className:'bl', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos'}),
+				creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'Este test está en tu colección'}),
 
-							creaObjProp('button', {className:'btnDescargar btn btn-warning pull-right', texto:textoBotonDescargar, onclick:fnDescargar })
+				creaObjProp('div', {className:'bl grupo pull-right', hijos:[
+					creaObjProp('button', {className:'btnAbrir btn btn-default btn-dark ', texto:'Abrir', onclick:function(){self.lanzaTest(test.cd_test)} }),
+					creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-default'+(test.likeit?' btn-warning':''), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
+					creaObjProp('button', {className:'btnDesinstalar btn btn-rounded btn-default', texto:'Desinstalar', onclick:function(){self.desinstalarTest(test.cd_test)} }),
+
+					creaObjProp('button', {className:'btnDescargar btn btn-warning pull-right', texto:textoBotonDescargar, onclick:fnDescargar })
+					]})
+				]}),
+			]}),
+		])
+
+	if (estadisticas){
+		if (!estadisticas.finalizado){
+			self.domDetalleTest.append(
+				creaObjProp('section', {className:'cabecera row', hijos:[
+					creaObjProp('div', {className:'col-xs-3 visual', 'style.paddingLeft':'15px', hijos:[
+						creaObjProp('span', {className:'fa-stack pull-left fa-2x', hijos:[
+							creaObjProp('i', {className:'fa fa-circle text-info fa-stack-2x'}),
+							creaObjProp('i', {className:'fa fa-pause text-white fa-stack-1x'}),
 							]})
 						]}),
-					]}),
-				// creaObjProp('hr'),
-				// creaObjProp('div', {className:'bl preguntas row'}),
-				// creaObjProp('hr'),
-				// creaObjProp('div', {className:'bl similares row'}),
-				])
-		})
+					creaObjProp('div', {className:'col-xs-9 data', hijos:[
+						creaObjProp('h2', {texto:'Tienes este test a medias'}),
+						creaObjProp('div', {hijos:[
+							creaT('Preguntas respondidas: '+estadisticas.minutosPorcentaje+'%'),
+							creaObjProp('div', {className:'progress progress-sm', hijos:[
+								creaObjProp('div', {className:'progress-bar', 'style.width':estadisticas.minutosPorcentaje+'%', role:'progressbar'})
+								]})
+							]}),
+						creaObjProp('div', {hijos:[
+							creaT('Tiempo consumido: '+estadisticas.respondidasPorcentaje+'%'),
+							creaObjProp('div', {className:'progress progress-sm', hijos:[
+								creaObjProp('div', {className:'progress-bar', 'style.width':estadisticas.respondidasPorcentaje+'%', role:'progressbar'})
+								]})
+							]}),
+						]}),
+					]})
+				)
+			}
+		else {
+
+			}
+		}
 	}
 VistaTienda.prototype.lanzaTest=function(cd_test){
 	var test=buscaFilas(this.testLocales, {cd_test:cd_test})[0]
-	app.lanzaTest(test, this)
+	var resp=buscaFilas(this.respuestasTestLocales, {cd_test:cd_test})[0]
+	app.lanzaTest(test, resp, this)
 	}
 //////
 VistaTienda.prototype.anhadeATestLocales=function(test){
@@ -1555,11 +1722,9 @@ VistaTienda.prototype.anhadeATestLocales=function(test){
 	this.salvaTestLocales()
 	}
 VistaTienda.prototype.desinstalarTest=function(cd_test){
-	var idx=0
-	this.testLocales.map(function(el){el.idx=idx; idx++})
-	var idxBorrar=buscaFilas(this.testLocales, {cd_test:cd_test})[0].idx
-
+	var idxBorrar=getIndiceFila(this.testLocales, {cd_test:cd_test})
 	this.testLocales.splice(idxBorrar, 1)
+
 	this.domDetalleTest.removeClass('tengo-este-test')
 
 	if (this.entornoLocal)
@@ -1570,7 +1735,7 @@ VistaTienda.prototype.desinstalarTest=function(cd_test){
 	this.salvaTestLocales()
 	}
 VistaTienda.prototype.salvaTestLocales=function(){
-	save('tapp37_listatest', this.testLocales)
+	save('tapp37_listaTest', this.testLocales)
 	}
 VistaTienda.prototype.ordenaPorFecha=function(lista){
 	lista.sort(function(a, b){
@@ -1594,8 +1759,8 @@ VistaTienda.prototype.ordenaPorFecha=function(lista){
 	return lista
 	}
 VistaTienda.prototype.leeTestLocales=function(fnCallBack){
-	// this.testLocales=get('tapp_37_listatest') //VistaTienda.prototype.testData()
-	this.testLocales=get('tapp37_listatest') //VistaTienda.prototype.testData()
+	this.respuestasTestLocales=get('tapp37_listaTestRespuestas') //VistaTienda.prototype.testData()
+	this.testLocales=get('tapp37_listaTest') //VistaTienda.prototype.testData()
 	if (! (this.testLocales instanceof Array) )
 		this.testLocales=[]
 
@@ -1744,7 +1909,7 @@ VistaMigraTest.prototype.cargaArchivoRemoto=function(enlace){
 			console.info('LISTOS')
 
 			jQuery(self.domBody).find('span.bl').text("Archivo '"+n+"' seleccionado")
-			self.procesa()
+			self.procesa(n)
 			jQuery(self.btn).attr('disabled', false)
 			}
 		)
@@ -1779,13 +1944,13 @@ VistaMigraTest.prototype.quitaAcutes=function(s){
 		s=s.substring(esta+3)
 	return s
 	}
-VistaMigraTest.prototype.procesa=function(){
+VistaMigraTest.prototype.procesa=function(n){
 	this.test={
-		ds_test:'Tests de Preparatic XXII/Examenes',
+		ds_test:'Examen '+Number(n.substring(5,9))+'/Tests de Preparatic XXII',
 		organismo:'Administración General del Estado',
-		numPreguntas:100,
+		numpreguntas:100,
 		minutos:100,
-		fallosRestan:.5,
+		fallosrestan:.5,
 		precio:0,
 		liscat:'103,104',
 		}
