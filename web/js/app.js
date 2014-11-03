@@ -206,18 +206,53 @@ Formato.prototype.formato_numero=function(numero, numDecimales, separador_decima
 
     return numero;
 	}
+////
+Formato.prototype._ddmmyyyy=function(f){
+	return lpad(f.getDate(), '0', 2)+this.sepFecha+lpad(f.getMonth()+1, '0', 2)+this.sepFecha+f.getFullYear()
+	}
+Formato.prototype._hhmm=function(f){
+	return lpad(f.getHours(), '0', 2)+this.sepHora+lpad(f.getMinutes(), '0', 2)
+	}
+Formato.prototype._hhmmss=function(f){
+	return lpad(f.getHours(), '0', 2)+this.sepHora+lpad(f.getMinutes(), '0', 2)+this.sepHora+lpad(f.getSeconds(), '0', 2)
+	}
 Formato.prototype.fechaDDMMYYYY=function(t){
 	var f=this.toDate(t)
 	if (f==null) return '';
-	return lpad(f.getDate(), '0', 2)+this.sepFecha+lpad(f.getMonth()+1, '0', 2)+this.sepFecha+f.getFullYear()
+	return this._ddmmyyyy(f)
 	}
 Formato.prototype.fechaDDMMYYYYHHMMSS=function(t){
 	var f=this.toDate(t)
 	if (f==null) return '';
 
-    return 	lpad(f.getDate(), '0', 2)+this.sepFecha+lpad(f.getMonth()+1, '0', 2)+this.sepFecha+f.getFullYear()
-    		' '+
-    		lpad(f.getHours(), '0', 2)+this.sepHora+lpad(f.getMinutes(), '0', 2)+this.sepHora+lpad(f.getSeconds(), '0', 2)
+    return 	this._ddmmyyyy(f)+' '+this._hhmmss(f)
+	}
+Formato.prototype.fechaUHora=function(t){
+	var f=this.toDate(t)
+	if (f==null) return '';
+
+	var hoy=new Date()
+	if (f.getDate()==hoy.getDate() && 
+		f.getMonth()==hoy.getMonth() && 
+		f.getFullYear()==hoy.getFullYear()){
+
+		return this._hhmm(f)
+		}
+	else 
+		return this._ddmmyyyy(f)
+	}
+Formato.prototype.fechaComps=function(t){
+	var f=this.toDate(t)
+	if (f==null) return '';
+	return {
+		dia:f.getDate()    ,
+		mes:f.getMonth()+1 ,
+		mesl: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'][f.getMonth()],
+		año:f.getFullYear(),
+		hora:f.getHours()  ,
+		min:f.getMinutes() ,
+		seg:f.getSeconds()
+      	}
 	}
 Formato.prototype.toDate=function(t){
 	var fjs
@@ -227,8 +262,14 @@ Formato.prototype.toDate=function(t){
     	fjs=t
     else if (typeof(t)=='number')//Long
         fjs=new Date(t)
-    else
-        fjs=this._fechajs(t)
+    
+    else {
+    	var ret=new Date(t)
+       	if (!isNaN( ret.getTime() ) )//check invalid date
+         	fjs=ret
+        else
+        	fjs=this._fechajs(t)
+    	}
     return fjs
 	}
 Formato.prototype._fechajs=function(fOriginal){
@@ -238,14 +279,6 @@ Formato.prototype._fechajs=function(fOriginal){
     else if (fOriginal instanceof Date){
         return fOriginal
         }
-    
-    try {
-       	ret=new Date(fOriginal)
-       	if (!isNaN( d.getTime() ) )//check invalid date
-         	return ret
-    } catch (e){
-       //pass
-    }
 
     var trozos=(fOriginal+'').split(this.sepFechaHora)
     var ret=new Date()
@@ -585,7 +618,7 @@ function VistaTest(test, respuestas, desdeHistorial){
 	this.mapaInicializado=false
 
 	this.preguntas=this.test.preguntas
-	this.respuestas=respuestas.respuestas || this.generaObjRespuestas()
+	this.respuestas=respuestas? respuestas.respuestas: this.generaObjRespuestas()
 
 	this.examen={
 		fallosrestan:this.test.fallosrestan,
@@ -885,6 +918,7 @@ VistaTest.prototype.guardaEstadoExamen=function(finalizado){
 			segundosConsumidos:this.examen.segundosConsumidos,
 			finalizado:finalizado,
 			preguntaActual:(this.preg?this.preg.i:0),
+			fecha:new Date().toGMTString(),
 			sincronizado:false
 			}
 
@@ -971,7 +1005,7 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 
 		frmfooter.empty().append([
 			creaObjProp('button', {onclick:function(){self.finExamen()}, className:'btn btn-sm btn-dark transparent', texto:'Cerrar test'}),
-			creaObjProp('button', {onclick:function(){self.repasarExamen(); self.frmdom.modal('hide')}, className:'btn btn-sm btn-success', texto:'Repasar'}),
+			//creaObjProp('button', {onclick:function(){self.repasarExamen(); self.frmdom.modal('hide')}, className:'btn btn-sm btn-success', texto:'Repasar'}),
 			])
 		}
 	else {
@@ -1016,11 +1050,11 @@ VistaTest.prototype.generaEstadisticasPausa=function(){
 	}
 VistaTest.prototype.corrigeTest=function(){
 	var a=0, f=0, nc=0
-	var pr=this.quitaPortadas(this.preguntas)
-	var resp=this.quitaPortadas(this.respuestas)
+	var preguntas=this.quitaPortadas(this.preguntas)
+	var respuestas=this.quitaPortadas(this.respuestas)
 
-	for (var i=0; i<pr.length; i++){
-		var preg=pr[i], resp=pr[i]
+	for (var i=0; i<preguntas.length; i++){
+		var preg=preguntas[i], resp=respuestas[i]
 
 		if (resp.respuestaUsuario==null)
 			nc++
@@ -1032,7 +1066,8 @@ VistaTest.prototype.corrigeTest=function(){
 	var fr=this.test.fallosrestan
 	if (fr==null) fr=0
 
-	var tn= (a-(f*fr))/pr.length
+	var tn= (a-(f*fr))/preguntas.length
+	if (tn<0) tn=0
 	var nota=Math.floor(tn*100)/10
 
 	return {aciertos:a, fallos:f, nc:nc, nota:nota}
@@ -1079,10 +1114,10 @@ VistaTest.prototype.tickCrono=function(){
 	var minRestantes=Math.ceil(sRestantes/60)
 	
 	if (this.minRestantes==minRestantes){
-		console.log('No hay que actualizar el crono: segRestantes='+sRestantes)
+		// console.log('No hay que actualizar el crono: segRestantes='+sRestantes)
 		return
 	}
-	console.warn('Actualizo crono: segRestantes='+sRestantes)
+	// console.warn('Actualizo crono: segRestantes='+sRestantes)
 	jQuery('#tiempoConsumido').text(this.convierteMinutosAHora(this.examen.minutos-minRestantes))
 	
 	this.minRestantes=minRestantes
@@ -1469,11 +1504,11 @@ VistaTienda.prototype._formatoPrecio=function(domPrecio, precio, moneda){
 	}
 VistaTienda.prototype._generaDomTest=function(test, j, cat){
 	var self=this
-	var infoTienda=[], loTengo=false, domPrecio, onclick
+	var infoTienda=[], loTengo=false, domPrecio, onclick, dFecha=creaT('')
 
 	if (this.entornoLocal){
 		loTengo=true
-		domPrecio=creaObjProp('span', {className:'col-xs-3 loTengo', i:'fa-check-circle'})
+		domPrecio=creaObjProp('span', {className:'col-xs-2 loTengo', i:'fa-check-circle'})
 
 		var notaTest=''
 		var resp=buscaFilas(this.respuestasTestLocales, {cd_test:test.cd_test})[0]
@@ -1487,11 +1522,22 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 			}
 
 		infoTienda=[
-			creaObjProp('span', {className:'col-xs-9 bl notaTest', texto:notaTest}),
+			creaObjProp('span', {className:'col-xs-10 bl notaTest', texto:notaTest}),
 			domPrecio,
 			]
 
 		onclick=function(){self.testPreview(test.cd_test)}
+
+		var uo=( (resp && resp.fecha)? resp.fecha: test.fu_modificacion)
+
+		var f=formato.fechaComps(uo)
+		if (f){
+			dFecha=creaObjProp('span', {className:'fecha pull-right bl', hijos:[
+				creaObjProp('span', {className:'bl dia', texto:f.dia}),
+				creaObjProp('span', {className:'bl mes', texto:f.mesl}),
+				]})
+			}
+
 		}
 	else {
 		loTengo=buscaFilas(this.testLocales, {cd_test:test.cd_test}).length
@@ -1515,6 +1561,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 	return creaObjProp('article', {'style.width':this.anchoTarjetas+'px', onclick:onclick, id:'test-'+test.cd_test, 'data-id':test.cd_test, className:'main card', hijos:[
 			creaObjProp('div', {className:'body', i:cat.i}),
 			creaObjProp('footer', {hijos:[
+				dFecha,
 				creaObjProp('div', {className:'frow', hijos:infoTienda}),
 				creaObjProp('div', {className:'frow', hijos:[
 					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:test.ds_test}) 
@@ -1668,7 +1715,7 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 				creaObjProp('h1', {className:'bl titulo', texto:test.ds_test}),
 				creaObjProp('span', {className:'bl', hijos:[
 					creaObjProp('span', {className:'small organismo', texto:test.organismo}),
-					creaObjProp('span', {texto:test.organismo==null? '': espacioDuro2}),
+					// creaObjProp('span', {texto:test.organismo==null? '': espacioDuro2}),
 					creaObjProp('span', {className:'fecha', texto: formato.fechaDDMMYYYY(test.f_examen) }),
 					]}),
 				creaObjProp('span', {className:'bl cats', texto: self.concatCategoriasTest(test), omiteNulo:true, i:'fa-tags' }),
@@ -1677,13 +1724,13 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 				]}),
 			]}),
 		creaObjProp('section', {className:'row botonera', hijos:[
-					// creaObjProp('div', {className:'bl grupo pull-right', hijos:[
-					creaObjProp('button', {className:'btnAbrir btn btn-info-t btn-sm pull-right', texto:'ABRIR', onclick:function(){self.lanzaTest(test.cd_test)} }),
-					creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-default btn-sm'+(test.likeit?' btn-warning':''), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
-					creaObjProp('button', {className:'btnDesinstalar btn btn-default btn-sm', texto:'Desinstalar', onclick:function(){self.desinstalarTest(test.cd_test)} }),
+			// creaObjProp('div', {className:'bl grupo pull-right', hijos:[
+			creaObjProp('button', {className:'btnAbrir btn btn-info-t btn-sm pull-right', texto:'ABRIR', onclick:function(){self.lanzaTest(test.cd_test)} }),
+			creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-sm'+(test.likeit?' btn-success':' btn-default'), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
+			creaObjProp('button', {className:'btnDesinstalar btn btn-default btn-sm', texto:'Desinstalar', onclick:function(){self.desinstalarTest(test.cd_test)} }),
 
-					creaObjProp('button', {className:'btnDescargar btn btn-warning pull-right', texto:textoBotonDescargar, onclick:fnDescargar })
-					// ]})
+			creaObjProp('button', {className:'btnDescargar btn btn-success-t pull-right btn-sm', texto:textoBotonDescargar, onclick:fnDescargar })
+			// ]})
 			]})
 		])
 
@@ -1733,6 +1780,8 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 						]}),
 					creaObjProp('div', {className:'col-xs-9 data', hijos:[
 						creaObjProp('h2', {texto:texto}),
+						creaObjProp('small', {texto: formato.fechaUHora(estadisticas.fecha) }),
+
 						creaObjProp('div', {className:'resultados', hijos:[
 							creaObjProp('div', {className:'col-xs-4', hijos:[
 								creaObjProp('span', {className:'bl small', texto:'Aciertos'}),
@@ -1826,7 +1875,7 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 		function(data){
 			var datos=xeval(data)
 			if (datos.retorno==1){
-				datos.test.fu_modificacion=formato.fechaDDMMYYYYHHMMSS(new Date())
+				datos.test.fu_modificacion=new Date()
 
 				self.anhadeATestLocales(datos.test)
 
@@ -1842,13 +1891,17 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 VistaTienda.prototype.toggleLike=function(cd_test){
 	var btn=this.domDetalleTest.find('.btnLove')
 	
-	var cls='btn-warning'
+	var cls='btn-default btn-success'
 	btn.toggleClass(cls)
 
 	var param={accion:'like+', cd_usuario:app.cache.usuario.cd_usuario, cd_test:cd_test}
-	if (!btn.hasClass(cls))
+	if (!btn.hasClass('btn-success'))
 		param.accion='like-'
 	
+	var idx=getIndiceFila(this.testLocales, {cd_test:cd_test})
+	this.testLocales[idx].likeit=btn.hasClass('btn-success')
+	this.salvaTestLocales()
+
 	jQuery.post(app.config.url, param).success(function(data){
 		var datos=xeval(data)
 		})
@@ -1974,6 +2027,11 @@ VistaMigraTest.prototype.quitaAcutes=function(s){
 
 		'&lsquo;':'"',
 		'&rsquo;':'"',
+
+		'&ldquo;':'"',
+		'&rdquo;':'"',
+
+		'&quot;':'"',
 		}
 	var claves=Object.keys(trans)
 	for (var i=0; i<claves.length; i++){
