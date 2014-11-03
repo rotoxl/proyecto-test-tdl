@@ -181,6 +181,9 @@ section#main_container {
 .text-success {
   color: #8ec165; }
 
+.text-danger {
+  color: #fb6b5b; }
+
 .text-info {
   color: #4cc0c1; }
 
@@ -322,12 +325,20 @@ section#main_container {
   border-radius: 50px; }
 
 .btn-icon.btn-sm {
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 6px;
-  padding-right: 4px;
-  width: 34px;
+  padding-bottom: 5px;
+  padding-top: 6px;
+  padding-left: 4px;
+  padding-right: 2px;
+  width: 30px;
   text-align: center; }
+
+.btn-info-t {
+  color: #46b8da;
+  border-color: #46b8da;
+  background-color: transparent; }
+
+.btn-default {
+  color: #717171 !important; }
 
 .noselect {
   -webkit-touch-callout: none;
@@ -380,7 +391,7 @@ section#main_container {
         #content.vista .vista-body article.card footer {
           padding-left: 2px;
           padding-right: 2px;
-          height: 60px;
+          height: 61px;
           border-top: 1px solid #f0f0f0;
           background-color: rgba(50, 50, 50, 0.1); }
     #content.vista .admonition {
@@ -542,60 +553,76 @@ section#main_container {
     background-color: #f7f7f7;
     padding: 20px 10px;
     color: #979797; }
-    #content.vista.vistaTienda .detalle-test .row {
+    #content.vista.vistaTienda .detalle-test section.row {
       margin-left: 0px;
       margin-right: 0;
-      padding-top: 20px; }
-    #content.vista.vistaTienda .detalle-test section {
+      padding-top: 10px;
+      padding-bottom: 10px;
       background: #fefefe;
       border: 1px solid #e8e8e8;
-      border-top-width: 0px;
+      border-bottom-width: 0px;
       border-radius: 2px;
-      padding-top: 2rem;
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
-      #content.vista.vistaTienda .detalle-test section .visual {
+      #content.vista.vistaTienda .detalle-test section.row .visual {
         padding-left: 0px;
-        min-height: 150px;
         margin-left: 0;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
         text-align: center; }
-      #content.vista.vistaTienda .detalle-test section:first-child {
-        border-top-width: 1px; }
-    #content.vista.vistaTienda .detalle-test .cabecera .data {
-      padding-left: 0px; }
-      #content.vista.vistaTienda .detalle-test .cabecera .data span.bl, #content.vista.vistaTienda .detalle-test .cabecera .data .btn-group {
-        display: block; }
-      #content.vista.vistaTienda .detalle-test .cabecera .data h1 {
-        font-family: 'Open sans', 'Helvetica Neue';
-        color: #717171;
-        font-weight: 500;
-        font-size: 20px;
-        margin-bottom: 0px !important;
+      #content.vista.vistaTienda .detalle-test section.row:last-child {
+        border-bottom-width: 1px; }
+      #content.vista.vistaTienda .detalle-test section.row.botonera {
+        padding-left: .3rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
+        border-top-style: dashed; }
+      #content.vista.vistaTienda .detalle-test section.row .data {
+        padding-right: 5px;
+        padding-left: 0px; }
+        #content.vista.vistaTienda .detalle-test section.row .data span.bl, #content.vista.vistaTienda .detalle-test section.row .data .btn-group {
+          display: block; }
+        #content.vista.vistaTienda .detalle-test section.row .data h1, #content.vista.vistaTienda .detalle-test section.row .data h2 {
+          margin-top: 10px;
+          font-family: 'Open sans', 'Helvetica Neue';
+          color: #717171; }
+        #content.vista.vistaTienda .detalle-test section.row .data h1 {
+          font-weight: 500;
+          font-size: 18px;
+          margin-bottom: 0px !important; }
+        #content.vista.vistaTienda .detalle-test section.row .data h2 {
+          font-weight: 400;
+          font-size: 16px;
+          margin-bottom: 20px !important; }
+        #content.vista.vistaTienda .detalle-test section.row .data small, #content.vista.vistaTienda .detalle-test section.row .data .small {
+          font-size: 12px;
+          text-transform: uppercase; }
+        #content.vista.vistaTienda .detalle-test section.row .data bold, #content.vista.vistaTienda .detalle-test section.row .data .bold {
+          font-weight: bold; }
+        #content.vista.vistaTienda .detalle-test section.row .data .resultados > * {
+          border-left: 1px solid rgba(0, 0, 0, 0.05);
+          padding-left: 0;
+          padding-right: 0;
+          text-align: center; }
+          #content.vista.vistaTienda .detalle-test section.row .data .resultados > *:first-child {
+            border-left: none !important; }
+        #content.vista.vistaTienda .detalle-test section.row .data .progress {
+          margin-top: 5px;
+          margin-bottom: 10px; }
+          #content.vista.vistaTienda .detalle-test section.row .data .progress .progress-bar {
+            background-color: #717171; }
+        #content.vista.vistaTienda .detalle-test section.row .data .bl {
+          margin-bottom: 10px; }
+        #content.vista.vistaTienda .detalle-test section.row .data .grupo {
+          margin-top: 20px; }
+      #content.vista.vistaTienda .detalle-test section.row .btn.btnDescargar.cargando {
+        background-image: url(../images/throbber-white.gif);
+        background-position: 5px center;
+        background-repeat: no-repeat;
+        background-size: 16px;
+        padding-left: 25px; }
+      #content.vista.vistaTienda .detalle-test section.row.resultadoUltimoExamen {
         margin-top: 10px; }
-      #content.vista.vistaTienda .detalle-test .cabecera .data h2 {
-        font-family: 'Open sans', 'Helvetica Neue';
-        color: #717171;
-        font-weight: 400;
-        font-size: 16px;
-        margin-top: 10px;
-        margin-bottom: 20px !important; }
-      #content.vista.vistaTienda .detalle-test .cabecera .data .progress {
-        margin-top: 5px;
-        margin-bottom: 10px; }
-        #content.vista.vistaTienda .detalle-test .cabecera .data .progress .progress-bar {
-          background-color: #717171; }
-      #content.vista.vistaTienda .detalle-test .cabecera .data .bl {
-        margin-bottom: 10px; }
-      #content.vista.vistaTienda .detalle-test .cabecera .data .grupo {
-        margin-top: 20px; }
-    #content.vista.vistaTienda .detalle-test .cabecera .btn.btnDescargar.cargando {
-      background-image: url(../images/throbber-white.gif);
-      background-position: 5px center;
-      background-repeat: no-repeat;
-      background-size: 16px;
-      padding-left: 25px; }
     #content.vista.vistaTienda .detalle-test hr {
       border-color: silver;
       width: 90%;
@@ -607,6 +634,10 @@ section#main_container {
       margin-top: 1rem; }
       #content.vista.vistaTienda .detalle-test .loTengo i {
         color: #f0ad4e; }
+    #content.vista.vistaTienda .detalle-test .btn-sm {
+      text-transform: uppercase; }
+    #content.vista.vistaTienda .detalle-test .cats {
+      font-size: 12px; }
     #content.vista.vistaTienda .detalle-test .btnLove {
       margin-right: 5px;
       margin-left: 5px; }

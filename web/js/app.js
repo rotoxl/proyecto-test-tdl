@@ -865,6 +865,11 @@ VistaTest.prototype.tiempoAcabado=function(){
 	this.guardaEstadoExamen(true)
 	this.muestraFormPausa('fintiempo')
 	}
+VistaTest.prototype.finExamen=function(){
+	this.guardaEstadoExamen(true)
+	this.frmdom.modal('hide')
+	app.cargaVistaInicio()
+	}
 VistaTest.prototype.guardaEstadoExamen=function(finalizado){
 	if (finalizado==undefined)
 		finalizado=false
@@ -879,7 +884,7 @@ VistaTest.prototype.guardaEstadoExamen=function(finalizado){
 			respuestas:respuestas, 
 			segundosConsumidos:this.examen.segundosConsumidos,
 			finalizado:finalizado,
-			preguntaActual:this.preg.i,
+			preguntaActual:(this.preg?this.preg.i:0),
 			sincronizado:false
 			}
 
@@ -965,7 +970,7 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 			])
 
 		frmfooter.empty().append([
-			creaObjProp('button', {onclick:function(){self.frmdom.modal('hide'); app.cargaVistaInicio()}, className:'btn btn-sm btn-dark transparent', texto:'Cerrar test'}),
+			creaObjProp('button', {onclick:function(){self.finExamen()}, className:'btn btn-sm btn-dark transparent', texto:'Cerrar test'}),
 			creaObjProp('button', {onclick:function(){self.repasarExamen(); self.frmdom.modal('hide')}, className:'btn btn-sm btn-success', texto:'Repasar'}),
 			])
 		}
@@ -1468,18 +1473,21 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 
 	if (this.entornoLocal){
 		loTengo=true
-		domPrecio=creaObjProp('span', {className:'col-xs-4 loTengo', i:'fa-check-circle'})
+		domPrecio=creaObjProp('span', {className:'col-xs-3 loTengo', i:'fa-check-circle'})
 
 		var notaTest=''
 		var resp=buscaFilas(this.respuestasTestLocales, {cd_test:test.cd_test})[0]
 		if (resp){
 			if (!resp.finalizado)
 				notaTest='No finalizado'
-
+			else if (resp.nota>5)
+				notaTest='Aprobado ('+resp.nota+')'
+			else
+				notaTest='No aprobado ('+resp.nota+')'
 			}
 
 		infoTienda=[
-			creaObjProp('span', {className:'col-xs-8 bl notaTest', texto:notaTest}),
+			creaObjProp('span', {className:'col-xs-9 bl notaTest', texto:notaTest}),
 			domPrecio,
 			]
 
@@ -1659,23 +1667,24 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 			creaObjProp('div', {className:'col-xs-9 data', hijos:[
 				creaObjProp('h1', {className:'bl titulo', texto:test.ds_test}),
 				creaObjProp('span', {className:'bl', hijos:[
-					creaObjProp('span', {className:'organismo', texto:test.organismo}),
+					creaObjProp('span', {className:'small organismo', texto:test.organismo}),
 					creaObjProp('span', {texto:test.organismo==null? '': espacioDuro2}),
 					creaObjProp('span', {className:'fecha', texto: formato.fechaDDMMYYYY(test.f_examen) }),
 					]}),
 				creaObjProp('span', {className:'bl cats', texto: self.concatCategoriasTest(test), omiteNulo:true, i:'fa-tags' }),
 				creaObjProp('span', {className:'bl', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos'}),
 				creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'Este test está en tu colección'}),
-
-				creaObjProp('div', {className:'bl grupo pull-right', hijos:[
-					creaObjProp('button', {className:'btnAbrir btn btn-default btn-dark ', texto:'Abrir', onclick:function(){self.lanzaTest(test.cd_test)} }),
-					creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-default'+(test.likeit?' btn-warning':''), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
-					creaObjProp('button', {className:'btnDesinstalar btn btn-rounded btn-default', texto:'Desinstalar', onclick:function(){self.desinstalarTest(test.cd_test)} }),
-
-					creaObjProp('button', {className:'btnDescargar btn btn-warning pull-right', texto:textoBotonDescargar, onclick:fnDescargar })
-					]})
 				]}),
 			]}),
+		creaObjProp('section', {className:'row botonera', hijos:[
+					// creaObjProp('div', {className:'bl grupo pull-right', hijos:[
+					creaObjProp('button', {className:'btnAbrir btn btn-info-t btn-sm pull-right', texto:'ABRIR', onclick:function(){self.lanzaTest(test.cd_test)} }),
+					creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-default btn-sm'+(test.likeit?' btn-warning':''), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
+					creaObjProp('button', {className:'btnDesinstalar btn btn-default btn-sm', texto:'Desinstalar', onclick:function(){self.desinstalarTest(test.cd_test)} }),
+
+					creaObjProp('button', {className:'btnDescargar btn btn-warning pull-right', texto:textoBotonDescargar, onclick:fnDescargar })
+					// ]})
+			]})
 		])
 
 	if (estadisticas){
@@ -1707,7 +1716,40 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 				)
 			}
 		else {
+			var cls='text-danger', ico='fa-times-circle', texto='No aprobado ('+estadisticas.nota+')'
+			if (estadisticas.nota>5){
+				cls='text-success'
+				ico='fa-ok-circle'
+				texto='Aprobado ('+estadisticas.nota+')'
+				}
 
+			self.domDetalleTest.append(
+				creaObjProp('section', {className:'row resultadoUltimoExamen', hijos:[
+					creaObjProp('div', {className:'col-xs-3 visual', 'style.paddingLeft':'15px', hijos:[
+						creaObjProp('span', {className:'fa-stack pull-left fa-2x', hijos:[
+							creaObjProp('i', {className:'fa fa-circle fa-stack-2x '+cls}),
+							creaObjProp('i', {className:'fa fa-pause text-white fa-stack-1x '+ico}),
+							]})
+						]}),
+					creaObjProp('div', {className:'col-xs-9 data', hijos:[
+						creaObjProp('h2', {texto:texto}),
+						creaObjProp('div', {className:'resultados', hijos:[
+							creaObjProp('div', {className:'col-xs-4', hijos:[
+								creaObjProp('span', {className:'bl small', texto:'Aciertos'}),
+								creaObjProp('span', {className:'bl bold', texto:estadisticas.aciertos})
+								]}),
+							creaObjProp('div', {className:'col-xs-4', hijos:[
+								creaObjProp('span', {className:'bl small', texto:'Fallos'}),
+								creaObjProp('span', {className:'bl bold', texto:estadisticas.fallos})
+								]}),
+							creaObjProp('div', {className:'col-xs-4', hijos:[
+								creaObjProp('span', {className:'bl small', texto:'NC'}),
+								creaObjProp('span', {className:'bl bold', texto:estadisticas.nc})
+								]}),
+							]})
+						]}),
+					]})
+				)
 			}
 		}
 	}
