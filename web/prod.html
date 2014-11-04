@@ -235,7 +235,11 @@
 
 	<script>
 		function init(){
-			FastClick.attach(document.body);
+			if (isPhone()){
+				var attachFastClick = Origami.fastclick
+				attachFastClick(document.body)
+				}
+
 			app=new Controlador()
 			app.cargaVistaInicio()
 		}
