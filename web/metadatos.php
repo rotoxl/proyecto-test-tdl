@@ -82,18 +82,24 @@ class Metadatos{
 				'(título dinamico nuevos y actualizados)' as ds_categoria, 
 				-1 as cd_categoria, 
 				'fa-fire' as i,
-				(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat
+				(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat,
+				1 as listarComoCategoria, 
+				null as cd_categoriapadre
 			
 			/* union
 				select 
 					'(título dinamico los más valorados)' as ds_categoria, 
 					-2 as cd_categoria, 
 					'fa-love' as i,
-					10 as numTestsPorCat */
+					10 as numTestsPorCat,
+					1 as listarComoCategoria, 
+					null as cd_categoriapadre */
 			union
 				select
 				 	c.ds_categoria, c.cd_categoria, c.i,
-					(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat
+					(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat,
+					c.listarComoCategoria,
+					c.cd_categoriapadre
 				 from categorias c, usuarios_categorias uc
 					where c.cd_categoria=uc.cd_categoria and uc.cd_usuario=?
 					limit ?";
@@ -104,21 +110,27 @@ class Metadatos{
 					'(título dinamico nuevos y actualizados)' as ds_categoria, 
 					-1 as cd_categoria, 
 					'fa-fire' as i,
-					(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat
+					(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat,
+					1 as listarComoCategoria, 
+					null as cd_categoriapadre
 				
 				/* union
 					select 
 						'(título dinamico los más valorados)' as ds_categoria, 
 						-2 as cd_categoria, 
 						'fa-love' as i,
-						10 as numTestsPorCat */
+						10 as numTestsPorCat,
+						1 as listarComoCategoria, 
+					null as cd_categoriapadre */
 
 				union
 					select
 						c.ds_categoria,
 						c.cd_categoria,  
 						c.i,
-						(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat
+						(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat,
+						c.listarComoCategoria,
+						c.cd_categoriapadre
 					from categorias c 
 						having numTestsPorCat > 0";
 			$filas=$this->conn->lookupFilas($sql, array($limitePreview));			
