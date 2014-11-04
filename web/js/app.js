@@ -985,6 +985,7 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 
 		frmfooter.empty().append([
 			creaObjProp('button', {onclick:function(){self.muestraFormPausa('fin')}, className:'btn btn-sm btn-dark transparent', texto:'Finalizar'}),
+			creaObjProp('button', {onclick:function(){self.frmdom.modal('hide'); app.cargaVistaInicio()}, className:'btn btn-sm btn-dark transparent', texto:'Pausar y salir'}),
 			creaObjProp('button', {onclick:function(){self.pausaTiempo(); self.frmdom.modal('hide')}, className:'btn btn-sm btn-success', texto:'Continuar'}),
 			])
 		}
@@ -1411,6 +1412,7 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	this.cat=buscaFilas(app.cache.categorias, {cd_categoria: cd_categoria})[0]
 	this.cambiaHeaderApp(this.cat.ds_categoria)
 
+	this.domBody.find('.admonition').remove()
 	var blSel=this.domBody.find('.bloque.cat#cat-'+this.cat.cd_categoria)
 	if (blSel.length==0){
 		blSel=jQuery(
@@ -1673,7 +1675,7 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 			var pack=packs[j]
 
 			if (jQuery(blCat).find('#pack-'+ pack.cd_categoria).length==0){
-				jQuery(blCat).appendChild( this._generaDomPack(pack, j, cat) )
+				jQuery(blCat).appendChild( this._generaDomPack(pack, j, pack) )
 				}
 			}
 		}
