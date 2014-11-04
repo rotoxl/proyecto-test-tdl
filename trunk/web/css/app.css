@@ -295,6 +295,16 @@ section#main_container {
 .btn-warning {
   border-color: #f0ad4e; }
 
+button {
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
 .btn-primary, .btn-primary:hover, .btn-primary.active,
 .btn-primary:focus, .btn-primary:active,
 .open .dropdown-toggle.btn-primary {
@@ -381,7 +391,7 @@ section#main_container {
         margin-left: 5px;
         margin-right: 5px;
         padding-top: 10px; }
-      #content.vista .vista-body article.card {
+      #content.vista .vista-body article.card, #content.vista .vista-body article.pack {
         display: inline-block;
         min-height: 80px;
         width: 49%;
@@ -391,14 +401,35 @@ section#main_container {
         overflow: hidden;
         background: white;
         cursor: pointer; }
-        #content.vista .vista-body article.card div.body {
+        #content.vista .vista-body article.card div.body, #content.vista .vista-body article.pack div.body {
           height: 60px; }
-        #content.vista .vista-body article.card footer {
+        #content.vista .vista-body article.card footer, #content.vista .vista-body article.pack footer {
           padding-left: 2px;
           padding-right: 2px;
           height: 61px;
           border-top: 1px solid #f0f0f0;
           background-color: rgba(50, 50, 50, 0.1); }
+      #content.vista .vista-body article.pack {
+        background-color: rgba(46, 62, 78, 0.8);
+        color: #9db1c5 !important;
+        border-radius: 500px; }
+        #content.vista .vista-body article.pack i {
+          margin-top: 35px;
+          font-size: 90px !important; }
+        #content.vista .vista-body article.pack footer {
+          border-top: rgba(46, 62, 78, 0.2);
+          background-color: rgba(46, 62, 78, 0.3); }
+          #content.vista .vista-body article.pack footer .frow {
+            color: inherit; }
+            #content.vista .vista-body article.pack footer .frow span.nombre {
+              text-align: center;
+              max-width: 70%;
+              margin-left: 15%;
+              height: 20px !important;
+              white-space: nowrap; }
+            #content.vista .vista-body article.pack footer .frow small {
+              text-align: center;
+              display: block; }
     #content.vista .admonition {
       margin-top: 20%;
       margin-left: 5%;
@@ -412,7 +443,7 @@ section#main_container {
         #content.vista .admonition > div .tit {
           display: block;
           font-size: 120%;
-          text-align: justify; }
+          text-align: center; }
         #content.vista .admonition > div .des, #content.vista .admonition > div .sub {
           margin-top: 10px;
           display: block;
@@ -524,7 +555,8 @@ section#main_container {
           margin-top: 10px;
           margin-bottom: 10px; }
       #content.vista.vistaTienda .vista-body .bloque .card {
-        min-height: 120px; }
+        min-height: 120px;
+        color: #979797; }
         #content.vista.vistaTienda .vista-body .bloque .card .body {
           min-height: 100px;
           text-align: center; }
@@ -540,14 +572,13 @@ section#main_container {
             text-align: center; }
         #content.vista.vistaTienda .vista-body .bloque .card footer .frow {
           width: 100%;
-          display: block;
-          color: #979797; }
+          display: block; }
           #content.vista.vistaTienda .vista-body .bloque .card footer .frow span.nombre {
             white-space: normal;
             height: 40px; }
           #content.vista.vistaTienda .vista-body .bloque .card footer .frow > * {
-            padding-left: 5px;
-            padding-right: 5px; }
+            padding-left: 0px;
+            padding-right: 0px; }
         #content.vista.vistaTienda .vista-body .bloque .card footer span.love {
           color: #aaa; }
         #content.vista.vistaTienda .vista-body .bloque .card footer span.precio, #content.vista.vistaTienda .vista-body .bloque .card footer span.loTengo {

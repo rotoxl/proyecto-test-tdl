@@ -126,6 +126,7 @@ function lpad(v, carRelleno, lenTotal){
 	}
 function buscaFilas(filas, dicBuscado){
 	//devuelve el array de filas que cumplen los requisitos
+	if (filas==null) return []
 	var fn=function(element, index){
 		for (var k in dicBuscado){
 			if (k.indexOf('_contains_')==0){
@@ -144,6 +145,7 @@ function buscaFilas(filas, dicBuscado){
 	return jQuery.grep(filas, fn)
 	}
 function getIndiceFila(filas, dicBuscado){
+	if (filas==null) return -1
 	var _idx=0
 	filas.map(function(el){el._idx=_idx; _idx++})
 	var filas=buscaFilas(filas, dicBuscado)
@@ -402,8 +404,17 @@ Controlador.prototype.setCategorias=function(lis){
 	this.cache.categorias=lis
 	
 	if (! (this.cache.categorias instanceof Array))
-		this.cache.categorias=[]
+		this.cache.categorias=[{}]
 	
+
+	// if (this.entornoLocal){
+	// 	app.cache.categorias[0].ds_categoria='Últimos realizados o descargados'
+	// 	}
+	// else
+	this.cache.categorias[0].ds_categoria='Nuevos y actualizados'
+	this.cache.categorias[0].i='fa-clock-o'
+
+
 	save('tapp37_categorias', lis)
 	}
 Controlador.prototype.userDataReceived=function(data){
@@ -1322,12 +1333,15 @@ VistaTienda.prototype.navegaEl=function(nvista, from){
 		else { //
 			this.cat=null
 			this.restauraHeaderApp() 
-
+			
 			//dejamos una pequeña lista de tests visibles por categoría, y mostramos el botón 'cargar más'
-			var bloques=this.domBody.find('.bloque.cat').show()
+			var bloques=this.domBody.find('.bloque.cat:not(.pack)').show()
 			bloques.find('.card').not('.main').remove()
 			bloques.find('.titulo .cargarMas').show()
 			bloques.find('.cargarMas.aunMas').remove()
+
+			//ocultamos los packs en su forma expandida
+			this.domBody.find('.bloque.cat.pack').hide()
 
 			if (from && from.cd_categoria)
 				this.domBody.scrollTop( this.domBody.find('#cat-'+from.cd_categoria).offset().top-100 )
@@ -1371,11 +1385,13 @@ VistaTienda.prototype.cargaListaCategorias=function(){
 
 	for (var i=0; i<app.cache.categorias.length; i++){
 		var cat=app.cache.categorias[i]
-		xl.push( creaObjProp('li', {hijo:creaObjProp('a', {texto:cat.ds_categoria, 'data-id':cat.cd_categoria, onclick:fn})} ) )
+
+		if (cat.cd_categoriapadre==null)// if (cat.listarcomocategoria==1)
+			xl.push( creaObjProp('li', {hijo:creaObjProp('a', {texto:cat.ds_categoria, 'data-id':cat.cd_categoria, onclick:fn})} ) )
 		}
 	jQuery('ul#categorias').empty().append(xl)
 	}
-VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory){
+VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	if (!fromHistory) 
 		this.nav.push({entornoLocal:this.entornoLocal, cd_categoria:cd_categoria})
 
@@ -1394,31 +1410,38 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory){
 	this.cambiaHeaderApp(this.cat.ds_categoria)
 
 	var blSel=this.domBody.find('.bloque.cat#cat-'+this.cat.cd_categoria)
+	if (blSel.length==0){
+		blSel=jQuery(
+			creaObjProp('section', {id:'cat-'+this.cat.cd_categoria, className:'bloque cat pack', 'data-id':this.cat.cd_categoria, hijos:[
+				creaObjProp('h4', {className:'titulo', texto:this.cat.ds_categoria+' (colección)' })
+				]} )
+			)
+		this.domBody.append(blSel[0])
+		}
 	this.domBody.find('.bloque.cat').not(blSel).hide()
-	this.cargarMas(this.cat.cd_categoria)
+	blSel.show()//por si acaso
+	if (cd_pack==null){
+		this.domBody.find('.bloque.cat.pack').hide()
+		}
 
+	this.cargarMas(this.cat.cd_categoria, cd_pack)
+	}
+VistaTienda.prototype.navegaPack=function(cd_categoria, fromHistory){
+	this.navegaCat(cd_categoria, fromHistory, cd_categoria)
 	}
 VistaTienda.prototype.generaBtnCargarMas=function(cd_categoria, cssAdicional){
 	var self=this
 	return creaObjProp('button', {onclick:function(){self.cargarMas(cd_categoria)}, className:'cargarMas btn btn-warning '+cssAdicional, texto:'Más'} )
 	}
-VistaTienda.prototype.arreglaCategorias=function(){
-	if (this.entornoLocal){
-		app.cache.categorias[0].ds_categoria='Últimos realizados o descargados'
-		app.cache.categorias[0].i='fa-clock-o'
-		}
-	else
-		app.cache.categorias[0].ds_categoria='Nuevos y actualizados'
-
-	return app.cache.categorias
-	}
 VistaTienda.prototype.escogeTestsCatDinamica=function(cd_categoria, lista){
+	var tests
 	if (this.entornoLocal){//últimos hechos o descargados
-		return this.ordenaPorFecha(lista).slice(0,10)
+		tests=this.ordenaPorFecha(lista).slice(0,10)
 		}
 	else {
-		return this.ordenaPorFecha(lista).slice(0,10)
+		tests=this.ordenaPorFecha(lista).slice(0,10)
 		}
+	return tests
 	}
 VistaTienda.prototype.pintaListaTests=function(lista){
 	var xl=[]
@@ -1437,17 +1460,22 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 		return
 		}
 
-	var xcat=this.arreglaCategorias()
+	var xcat=app.cache.categorias
 	for (var i=0; i<xcat.length; i++){
 		var cat=xcat[i]
+		var packs=[]
+
+		if (cat.listarcomocategoria==0) 
+			continue
 
 		var totalPorCat, sl
-		if (cat.cd_categoria==-1){
+		if (cat.cd_categoria<=0){
 			totalPorCat=this.escogeTestsCatDinamica(cat.cd_categoria, lista)
 			sl=totalPorCat.slice(0,6)
 			cat.numtestsporcat=sl.length//aquí no queremos botón de más
 			}
 		else{
+			packs=buscaFilas(app.cache.categorias, {listarcomocategoria:0, cd_categoriapadre:cat.cd_categoria})
 			totalPorCat=buscaFilas(lista, {_contains_liscat:cat.cd_categoria})
 			cat.numtestsporcat=totalPorCat.length
 			sl=totalPorCat.slice(0,4) //Sacamos sólo unos pocos
@@ -1455,27 +1483,47 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 
 		if (sl.length==0) continue
 
-		var hijos=[this.generaBtnCargarMas(cat.cd_categoria)]
-		if (sl.length==cat.numtestsporcat)
-			hijos=[]
-		hijos.push(creaT(cat.ds_categoria))
-
 		var d=creaObjProp('section', {id:'cat-'+cat.cd_categoria, className:'bloque cat', 'data-id':cat.cd_categoria, hijos:[
-			creaObjProp('h4', {onclick:fnNavega, className:'titulo', hijos:hijos })
+			creaObjProp('h4', {onclick:fnNavega, className:'titulo', hijos:[
+				creaT(cat.ds_categoria)
+				] })
 			]} )
 
+		for (var j=0;  j<packs.length; j++){
+			var pack=packs[j]
+
+			if (jQuery(d).find('#pack-'+ pack.cd_categoria).length==0){
+				d.appendChild( this._generaDomPack(pack, j, cat) )
+				}
+			}
 		for (var j=0;  j<sl.length; j++){
 			var t=sl[j]
-
-			if (jQuery(d).find('#test-'+ t.cd_test).length==0){
+			if (packs.length && this.testEstaEnPack(t, packs)){
+				continue
+				}
+			else if (jQuery(d).find('#test-'+ t.cd_test).length==0){
 				d.appendChild( this._generaDomTest(t, j, cat) )
 				}
 			}
 
+		// if (jQuery(d).find('article.card').length<sl.length)
+		// 	jQuery(d).find('h4').append( this.generaBtnCargarMas(cat.cd_categoria) )
 		xl.push( d )
 		}
 
 	this.domBody.addClass('flowable').append(xl).removeClass('cargando')
+	}
+VistaTienda.prototype.testEstaEnPack=function(test, packs){
+	var temp=test.liscat.split(',')
+	for (var i=0; i<temp.length; i++){
+		var c=temp[i]
+		if (c=='') 
+			continue
+		var f=buscaFilas(packs, {cd_categoria:c})
+		if (f.length)
+			return true
+		}
+	return false
 	}
 VistaTienda.prototype._formatoPrecio=function(domPrecio, precio, moneda){
 	if (precio==0) {
@@ -1504,14 +1552,16 @@ VistaTienda.prototype._formatoPrecio=function(domPrecio, precio, moneda){
 	}
 VistaTienda.prototype._generaDomTest=function(test, j, cat){
 	var self=this
-	var infoTienda=[], loTengo=false, domPrecio, onclick, dFecha=creaT('')
+	var infoTienda=[], loTengo=false, domPrecio, onclick, dFecha=creaT(''), resp
 
 	if (this.entornoLocal){
 		loTengo=true
 		domPrecio=creaObjProp('span', {className:'col-xs-2 loTengo', i:'fa-check-circle'})
 
 		var notaTest=''
-		var resp=buscaFilas(this.respuestasTestLocales, {cd_test:test.cd_test})[0]
+		var respTodas=buscaFilas(this.respuestasTestLocales, {cd_test:test.cd_test})
+		if (respTodas)
+			resp=respTodas[0]
 		if (resp){
 			if (!resp.finalizado)
 				notaTest='No finalizado'
@@ -1569,8 +1619,24 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 				]})
 			]})
 	}
-VistaTienda.prototype.cargarMas=function(cd_categoria){
-	var tanda=10
+VistaTienda.prototype._generaDomPack=function(pack, j, cat){
+	var self=this
+	return creaObjProp('article', {'style.width':this.anchoTarjetas+'px', onclick:function(){self.navegaPack(pack.cd_categoria)}, id:'pack-'+pack.cd_categoria, 'data-id':pack.cd_categoria, className:'main card pack', hijos:[
+			creaObjProp('div', {className:'body', i:cat.i}),
+			creaObjProp('footer', {hijos:[
+				// dFecha,
+				
+				creaObjProp('div', {className:'frow', hijos:[
+					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:pack.ds_categoria}) 
+					]}),
+				creaObjProp('div', {className:'frow', hijos:[
+					creaObjProp('small', {texto:'Colección de tests'})
+					]}),
+				]})
+			]})
+	}
+VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
+	var tanda=10, packs=[]
 	//this.cat
 	var blCat=this.domBody.find('.cat#cat-'+cd_categoria)
 
@@ -1582,33 +1648,58 @@ VistaTienda.prototype.cargarMas=function(cd_categoria){
 	var num=blCat.find('article.card').length
 
 	var lista=(this.entornoLocal?this.testLocales:this.testTienda)
+
+	if (cd_pack==null){
+		packs=buscaFilas(app.cache.categorias, {listarcomocategoria:0, cd_categoriapadre:cd_categoria})
+	
+		for (var j=0; j<packs.length; j++){
+			var pack=packs[j]
+
+			if (jQuery(blCat).find('#pack-'+ pack.cd_categoria).length==0){
+				jQuery(blCat).appendChild( this._generaDomPack(pack, j, cat) )
+				}
+			}
+		}
+
 	var sl=buscaFilas( lista, {_contains_liscat:cd_categoria})
 
 	var aPintar=sl.slice(0)
 	aPintar=aPintar.slice(num,num+tanda)
 	for (var j=0;  j<aPintar.length; j++){
+		if (packs.length && this.testEstaEnPack(aPintar[j], packs))
+			continue
+			
 		blCat.append( this._generaDomTest(aPintar[j], j, xcat ) )
 		}
 
-	if (sl.length>num+tanda){
+	if (sl.length>(num+tanda) && jQuery(blCat).find('article.card').length==(num+tanda) ){
 		blCat.append( this.generaBtnCargarMas(cd_categoria, 'aunMas') )
 		}
 	}
 //////
 VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 	// return [
-	// 		{cd_test:1, ds:'Test Enfermería 1',  likes:13, cd_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/style-metronic.css'},
-	// 		{cd_test:12, ds:'Test Enfermería 2', likes:1, cd_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/select2.css'},
-	// 		{cd_test:19, ds:'Test Enfermería 3', likes:0, cd_categoria:1, importe:.6},
-	// 		{cd_test:99, ds:'Test Enfermería 4', likes:1, cd_categoria:1, importe:.2},
-	// 		{cd_test:88, ds:'Paquete 10 Tests Enfermería/legislación', likes:10, cd_categoria:1, importe:.60, contenido:[
-	// 				{ds:'Legislación 1'},
-	// 				{ds:'Legislación 2'},
-	// 				{ds:'Legislación 3'},
-	// 				{ds:'Legislación 4'},
-	// 				{ds:'Legislación 5'},
-	// 			]},
-	// 		]
+		// 		{cd_test:1, ds:'Test Enfermería 1',  likes:13, cd_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/style-metronic.css'},
+		// 		{cd_test:12, ds:'Test Enfermería 2', likes:1, cd_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/select2.css'},
+		// 		{cd_test:19, ds:'Test Enfermería 3', likes:0, cd_categoria:1, importe:.6},
+		// 		{cd_test:99, ds:'Test Enfermería 4', likes:1, cd_categoria:1, importe:.2},
+		// 		{cd_test:88, ds:'Paquete 10 Tests Enfermería/legislación', likes:10, cd_categoria:1, importe:.60, contenido:[
+		// 				{ds:'Legislación 1'},
+		// 				{ds:'Legislación 2'},
+		// 				{ds:'Legislación 3'},
+		// 				{ds:'Legislación 4'},
+		// 				{ds:'Legislación 5'},
+		// 			]},
+		// 		]
+	if (this.ftestTienda && (new Date()-this.ftestTienda<120000)){//120s
+		console.info('leeTestTienda: la última lectura es reciente, la reaprovechamos')
+		if (fnCallBack){
+			fnCallBack(this.testTienda)
+			this.domBody.removeClass('cargando')
+			}
+		return
+		}
+
 	var self=this
 	self.domBody.empty().addClass('cargando')
 
@@ -1634,6 +1725,7 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 			var datos=xeval(data)
 			if (datos.retorno==1){
 				self.testTienda=datos.tests || []
+				self.ftestTienda=new Date()
 				
 				app.setCategorias(datos.categorias)
 				self.cargaListaCategorias()
@@ -1682,14 +1774,17 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 	var self=this
 
+	var textoBotonDescargar, fnDescargar
+
 	self.cambiaHeaderApp(test.ds_test)
 	self.domDetalleTest.removeClass('cargando tengo-este-test')
 
 	if (loTengo){
 		self.domDetalleTest.addClass('tengo-este-test')
+		textoBotonDescargar='Descargar'
+		fnDescargar=function(){self.descargaTest(test.cd_test)}
 		}
-	var textoBotonDescargar, fnDescargar
-	if (test.precio==0){
+	else if (test.precio==0){
 		textoBotonDescargar='Descargar'
 		fnDescargar=function(){self.descargaTest(test.cd_test)}
 		}
@@ -1879,7 +1974,11 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 
 				self.anhadeATestLocales(datos.test)
 
-				self.pintaListaTests(self.testTienda)
+				if (self.entornoLocal)
+					self.pintaListaTests(self.testLocales)
+				else
+					self.pintaListaTests(self.testTienda)
+
 				setTimeout(function(){self.domDetalleTest.addClass('tengo-este-test')},1500)
 				console.info('test '+cd_test+' descargado!, '+datos.test.numpreguntas+' preguntas')
 				}
