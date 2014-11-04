@@ -44,10 +44,11 @@
 	</section>
 
 	<script src="js/jquery.min.js"></script>
+	<script src="https://apis.google.com/js/client.js?onload=gapiInit"></script>
 	<!-- <script src="js/app.js"></script> -->
 	<script src="js/app.plugin.js"></script>
 	<script src="js/options.nosvn.js"></script>
-	<script src="https://apis.google.com/js/client.js?onload=gapiInit"></script>
+	
 
 	<script src="../cordova.js"></script>
 	
@@ -62,24 +63,16 @@
 				return false 
 			}
 		function init(){
-			if ( !isPhone() ){
+			if (!isPhone() ){
 				if (get('tapp37_yanoshavisitado')=='1')
 					setTimeout(function(){googleWebApi.signIn()}, 300)
-				else
+				else{
 					googleWebApi.prepareLogin()
-				}
-			else {
-				var refresh_token=get('tapp37_refresh_token')
-				if (refresh_token!=null){
-					googleapi.prepareSilentLogin(refresh_token)
-					}
-				else {
-					googleMobileApi.prepareLogin()
-					jQuery('.login .btn').fadeIn()
 					}
 				}
+			else 
+				googleMobileApi.prepareLogin()
 			}
-		
 		if (isPhone())
           	document.addEventListener('deviceready', init(), true)
       	else
