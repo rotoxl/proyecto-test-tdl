@@ -1460,7 +1460,7 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 		var titulo='No hay tests'
 		var texto='Aquí se muestran los tests que tienes almacenados en tu dispositivo, pero ahora mismo no hay ninguno.'
 		var sub='¿Por qué no descargas alguno de la tienda? Hay muchos gratuitos'
-		this.domBody.removeClass('cargando flowable').append( this.admonition(titulo, texto, 'fa-ban fa-4x', sub ) )
+		this.domBody.removeClass('cargando').addClass('flowable').append( this.admonition(titulo, texto, 'fa-ban fa-4x', sub ) )
 		return
 		}
 
