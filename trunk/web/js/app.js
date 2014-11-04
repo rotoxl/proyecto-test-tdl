@@ -1434,7 +1434,9 @@ VistaTienda.prototype.navegaPack=function(cd_categoria, fromHistory){
 	}
 VistaTienda.prototype.generaBtnCargarMas=function(cd_categoria, cssAdicional){
 	var self=this
-	return creaObjProp('button', {onclick:function(){self.cargarMas(cd_categoria)}, className:'cargarMas btn btn-warning '+cssAdicional, texto:'Más'} )
+	return creaObjProp('button', {onclick:function(){self.cargarMas(cd_categoria)}, className:'cargarMas '+cssAdicional, hijos:[
+		creaObjProp('span', {className:'btn btn-warning', texto:'Más'})
+		]} )
 	}
 VistaTienda.prototype.escogeTestsCatDinamica=function(cd_categoria, lista){
 	var tests

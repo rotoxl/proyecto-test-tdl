@@ -552,15 +552,20 @@ section#main_container {
       margin-right: 5px; }
       #content.vista.vistaTienda .vista-body .bloque .titulo {
         cursor: pointer; }
-      #content.vista.vistaTienda .vista-body .bloque .btn.cargarMas {
-        float: right;
-        padding: 5px 14px;
-        font-size: 16px;
-        text-transform: uppercase;
-        border-radius: 0; }
-        #content.vista.vistaTienda .vista-body .bloque .btn.cargarMas.aunMas {
-          margin-top: 10px;
-          margin-bottom: 10px; }
+      #content.vista.vistaTienda .vista-body .bloque .cargarMas {
+        display: block;
+        width: 99%;
+        background-color: transparent;
+        border: none; }
+        #content.vista.vistaTienda .vista-body .bloque .cargarMas.aunMas {
+          padding-top: 10px;
+          padding-bottom: 10px; }
+        #content.vista.vistaTienda .vista-body .bloque .cargarMas span {
+          float: right;
+          padding: 3px 9px;
+          font-size: 16px;
+          text-transform: uppercase;
+          border-radius: 0; }
       #content.vista.vistaTienda .vista-body .bloque .card {
         min-height: 120px;
         color: #979797; }
