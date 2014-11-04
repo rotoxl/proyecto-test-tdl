@@ -11,9 +11,14 @@ li, a, span, button, div, .btn {
   user-select: none !important;
   user-focus: ignore !important; }
 
-body {
+body.cordova {
   -webkit-font-smoothing: antialiased;
-  -webkit-overflow-scrolling: touch; }
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0); }
+
+body.cordova article.card {
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translate3d(0, 0, 0); }
 
 * > i {
   margin-right: 2px; }
@@ -403,6 +408,7 @@ section#main_container {
         width: 49%;
         margin-top: 5px;
         border-radius: 3px;
+        border: 1px solid #E0DADA;
         box-shadow: 0 1px 2px #aaa;
         overflow: hidden;
         background: white;
@@ -421,7 +427,8 @@ section#main_container {
         border-radius: 500px; }
         #content.vista .vista-body article.pack i {
           margin-top: 35px;
-          font-size: 90px !important; }
+          font-size: 90px !important;
+          color: inherit !important; }
         #content.vista .vista-body article.pack footer {
           border-top: rgba(46, 62, 78, 0.2);
           background-color: rgba(46, 62, 78, 0.3); }
@@ -554,7 +561,7 @@ section#main_container {
         cursor: pointer; }
       #content.vista.vistaTienda .vista-body .bloque .cargarMas {
         display: block;
-        width: 99%;
+        width: 100%;
         background-color: transparent;
         border: none; }
         #content.vista.vistaTienda .vista-body .bloque .cargarMas.aunMas {
@@ -574,7 +581,8 @@ section#main_container {
           text-align: center; }
           #content.vista.vistaTienda .vista-body .bloque .card .body i {
             opacity: .1;
-            font-size: 160px; }
+            font-size: 160px;
+            color: darkslategray; }
         #content.vista.vistaTienda .vista-body .bloque .card .fecha {
           margin-top: -102px;
           background-color: rgba(50, 50, 50, 0.1);
@@ -992,9 +1000,14 @@ section#main_container {
     font-style: italic;
     background-color: #2e3e4e;
     color: white; }
+    #swipeview-slider > div.portada span {
+      width: 100%;
+      display: block;
+      text-align: center;
+      margin-top: 5rem; }
     #swipeview-slider > div.portada div.visual {
       height: 100px;
-      width: 100px;
+      width: 100%;
       margin-top: 40px;
       background-repeat: no-repeat;
       background-position: center center; }

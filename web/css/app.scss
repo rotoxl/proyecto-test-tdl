@@ -14,9 +14,15 @@ li, a, span, button, div, .btn{
     user-focus: ignore !important;
 
 	}
-body {
+body.cordova {
 	-webkit-font-smoothing: antialiased;
 	-webkit-overflow-scrolling: touch;
+	-webkit-transform: translateZ(0);
+	}
+
+body.cordova article.card {
+	-webkit-overflow-scrolling: touch; 
+	-webkit-transform: translate3d(0, 0, 0); 
 	}
 
 //Colores
@@ -495,7 +501,11 @@ section#main_container{
 				min-height:80px; width:49%;
 				margin-top:5px; 
 
-				border-radius:3px; box-shadow: 0 1px 2px #aaa;
+				border-radius:3px; 
+				border:1px solid #E0DADA;
+
+				box-shadow: 0 1px 2px #aaa;
+				//box-shadow: 0 0 0;
 				
 				overflow:hidden;
 				background: white;
@@ -520,6 +530,7 @@ section#main_container{
 				i {
 					margin-top:35px;
 					font-size: 90px !important;
+					color:inherit!important;
 				}
 				footer{
 					border-top: rgba(46, 62, 78, .2);
@@ -723,7 +734,7 @@ section#main_container{
 				}
 				.cargarMas{
 					display: block;
-					width:99%;
+					width:100%;
 					background-color:transparent;
 					border: none;
 
@@ -754,7 +765,7 @@ section#main_container{
 						i {
 							opacity: .1;
 							font-size: 160px;
-
+							color:darkslategray;
 						}
 					}
 
@@ -826,6 +837,7 @@ section#main_container{
 				border-bottom-width:0px;
 				border-radius: 2px;
 				box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+				//box-shadow: 0 0 0;
 
 				.visual{
 					padding-left:0px;
@@ -1307,9 +1319,15 @@ section#main_container{
 
 		&.portada{
 			
+			span{
+				width: 100%;
+				display: block;
+				text-align: center;
+				margin-top:5rem;
+			}
 			div.visual{
 				height: 100px;
-				width: 100px;
+				width: 100%;
 				margin-top: 40px;
 
 				background-repeat:no-repeat;
