@@ -229,11 +229,13 @@
 	<!-- <script src="js/slimscroll/jquery.slimscroll.min.js"></script>//-->
 	<script src="js/app.plugin.js"></script>
 	<script src="js/options.nosvn.js"></script>
+	<script src="js/fastclick.js"></script>
 
 	<script src="../cordova.js"></script>
 
 	<script>
 		function init(){
+			FastClick.attach(document.body);
 			app=new Controlador()
 			app.cargaVistaInicio()
 		}
