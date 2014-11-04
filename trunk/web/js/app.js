@@ -1328,7 +1328,9 @@ VistaTienda.prototype.navegaEl=function(nvista, from){
 			this.domDetalleTest.hide()
 			}
 
-		if (nvista && nvista.cd_categoria)
+		if (nvista && nvista.cd_categoria && nvista.cd_pack)
+			this.navegaCat(nvista.cd_categoria, true, nvista.cd_pack)
+		else if (nvista && nvista.cd_categoria)
 			this.navegaCat(nvista.cd_categoria, true)
 		else { //
 			this.cat=null
@@ -1393,7 +1395,7 @@ VistaTienda.prototype.cargaListaCategorias=function(){
 	}
 VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	if (!fromHistory) 
-		this.nav.push({entornoLocal:this.entornoLocal, cd_categoria:cd_categoria})
+		this.nav.push({entornoLocal:this.entornoLocal, cd_categoria:cd_categoria, cd_pack:cd_pack})
 
 	if (this.domDetalleTest && this.domDetalleTest.is(':visible')){
 		this.domBody.show()
@@ -1427,6 +1429,7 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	this.cargarMas(this.cat.cd_categoria, cd_pack)
 	}
 VistaTienda.prototype.navegaPack=function(cd_categoria, fromHistory){
+	console.log('> click pack')
 	this.navegaCat(cd_categoria, fromHistory, cd_categoria)
 	}
 VistaTienda.prototype.generaBtnCargarMas=function(cd_categoria, cssAdicional){
@@ -1449,6 +1452,7 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 	this.anchoTarjetas=this.calculaAnchoTarjetas()
 	var self=this
 	var fnNavega=function(){
+			console.log('> click cat')
 			self.navegaCat(jQuery(this).closest('.bloque').data('id'))
 			}
 	this.domBody.empty()
@@ -1576,7 +1580,10 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 			domPrecio,
 			]
 
-		onclick=function(){self.testPreview(test.cd_test)}
+		onclick=function(){
+			console.log('> click test')
+			self.testPreview(test.cd_test)
+			}
 
 		var uo=( (resp && resp.fecha)? resp.fecha: test.fu_modificacion)
 
@@ -1621,7 +1628,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 	}
 VistaTienda.prototype._generaDomPack=function(pack, j, cat){
 	var self=this
-	return creaObjProp('article', {'style.width':this.anchoTarjetas+'px', onclick:function(){self.navegaPack(pack.cd_categoria)}, id:'pack-'+pack.cd_categoria, 'data-id':pack.cd_categoria, className:'main card pack', hijos:[
+	var ret= creaObjProp('article', {'style.width':this.anchoTarjetas+'px', id:'pack-'+pack.cd_categoria, 'data-id':pack.cd_categoria, className:'main card pack', hijos:[
 			creaObjProp('div', {className:'body', i:cat.i}),
 			creaObjProp('footer', {hijos:[
 				// dFecha,
@@ -1634,6 +1641,14 @@ VistaTienda.prototype._generaDomPack=function(pack, j, cat){
 					]}),
 				]})
 			]})
+	var fn=function(){
+		self.navegaPack(pack.cd_categoria)
+		}
+	jQuery(ret)
+		//.on('tap', fn)
+		.on('click', fn)
+
+	return ret
 	}
 VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 	var tanda=10, packs=[]
@@ -1668,8 +1683,9 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 	for (var j=0;  j<aPintar.length; j++){
 		if (packs.length && this.testEstaEnPack(aPintar[j], packs))
 			continue
-			
-		blCat.append( this._generaDomTest(aPintar[j], j, xcat ) )
+		
+		if (blCat.find('article.card#test-'+aPintar[j].cd_test).length==0)
+			blCat.append( this._generaDomTest(aPintar[j], j, xcat ) )
 		}
 
 	if (sl.length>(num+tanda) && jQuery(blCat).find('article.card').length==(num+tanda) ){
@@ -1751,7 +1767,7 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 		this.domBody.hide()
 		}
 	else {
-		this.domDetalleTest.show().addClass('cargando')
+		this.domDetalleTest.show().empty().addClass('cargando')
 		this.domBody.hide()
 		}
 
@@ -1789,8 +1805,8 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 		fnDescargar=function(){self.descargaTest(test.cd_test)}
 		}
 	else{
-		textoBotonDescargar=formato.moneda(test.precio, test.moneda)+' - Comprar'
-		fnDescargar=function(){self.descargaTest(test.cd_test)}
+		textoBotonDescargar=formato.moneda(test.precio, test.moneda)+' - Comprar aún no funciona'
+		// fnDescargar=function(){self.descargaTest(test.cd_test)}
 		}
 
 	var visual=creaObjProp('div', {className:'col-xs-3 visual'})
@@ -1914,7 +1930,8 @@ VistaTienda.prototype.desinstalarTest=function(cd_test){
 	this.domDetalleTest.removeClass('tengo-este-test')
 
 	if (this.entornoLocal)
-		jQuery('article.main.card[data-id='+cd_test+']').remove()
+		this.pintaListaTests(this.testLocales)
+		// jQuery('article.main.card[data-id='+cd_test+']').remove()
 	else
 		jQuery('article.main.card[data-id='+cd_test+'] .loTengo').remove()
 
@@ -1964,7 +1981,11 @@ VistaTienda.prototype.leeTestLocales=function(fnCallBack){
 	}
 VistaTienda.prototype.descargaTest=function(cd_test){
 	var self=this
-	this.domDetalleTest.find('.btnDescargar').text('Descargando...').addClass('cargando')
+
+	var xbtn=this.domDetalleTest.find('.btnDescargar')
+	var oldText=xbtn.text()
+	xbtn.text('Descargando...').addClass('cargando')
+
 	console.info('Iniciamos descarga test '+cd_test)
 	jQuery.post(app.config.url, {accion:'getTest', cd_test:cd_test, cd_usuario:app.cache.usuario.cd_usuario}).success(
 		function(data){
@@ -1979,7 +2000,10 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 				else
 					self.pintaListaTests(self.testTienda)
 
-				setTimeout(function(){self.domDetalleTest.addClass('tengo-este-test')},1500)
+				setTimeout(function(){
+					self.domDetalleTest.addClass('tengo-este-test')
+					xbtn.removeClass('cargando').text(oldText)
+					},1500)
 				console.info('test '+cd_test+' descargado!, '+datos.test.numpreguntas+' preguntas')
 				}
 			else

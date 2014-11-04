@@ -1,3 +1,24 @@
+/*Android issues*/
+li, a, span, button, div, .btn{
+    outline:none !important;
+    -moz-tap-highlight-color: transparent !important;
+    -moz-user-select: none !important;
+    -moz-user-focus:ignore !important;
+
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-user-select: none !important;
+    -webkit-user-focus:ignore !important;
+
+    tap-highlight-color: transparent !important;
+    user-select: none !important;
+    user-focus: ignore !important;
+
+	}
+body {
+	-webkit-font-smoothing: antialiased;
+	-webkit-overflow-scrolling: touch;
+	}
+
 //Colores
 $navigation_bar_bgcolor:#25313e; 
 $navigation_bar_fgcolor:#9db1c5;
@@ -14,7 +35,6 @@ body {
 	font-size: 14px;
 	color: #717171;
 	background-color: transparent;
-	-webkit-font-smoothing: antialiased;
 	}
 
 body > .vbox{
@@ -362,16 +382,6 @@ section#main_container{
 	border-color:#f0ad4e;
 }
 //////////
-button {
-   outline: 0;
-   -webkit-tap-highlight-color: rgba(0,0,0,0);
-   -webkit-tap-highlight-color: transparent;
-   -webkit-touch-callout: none;
-   -webkit-user-select: none;
-      -moz-user-select: none;
-       -ms-user-select: none;
-           user-select: none;
-	}
 .btn-primary, .btn-primary:hover, .btn-primary.active, 
 .btn-primary:focus, .btn-primary:active,
 .open .dropdown-toggle.btn-primary{
@@ -713,7 +723,8 @@ button {
 				}
 				.btn.cargarMas{
 					float: right;
-					padding:0px 4px;
+					padding:5px 14px;
+					font-size: 16px;
 
 					text-transform: uppercase;
 					border-radius:0;
