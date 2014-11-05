@@ -11,14 +11,13 @@
     <!-- <access origin="https://*.googleapis.com"/>
     <access origin="https://*.gstatic.com"/> -->
 
-    <preference name="fullscreen" value="true" />
-    <preference name="webviewbounce" value="true" />
-    <preference name="DisallowOverscroll" value="true" />
-    <preference name="StatusBarOverlaysWebView" value="true" />
-
     <feature name="InAppBrowser">
 	    <param name="android-package" value="org.apache.cordova.InAppBrowser" />
 	</feature>
+
+    <preference name="webviewbounce" value="true" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
     
 </widget>
 
