@@ -575,7 +575,7 @@ section#main_container {
         min-height: 120px;
         color: #979797; }
         #content.vista.vistaTienda .vista-body .bloque .card .body {
-          min-height: 100px;
+          min-height: 80px;
           text-align: center; }
           #content.vista.vistaTienda .vista-body .bloque .card .body i {
             opacity: .1;

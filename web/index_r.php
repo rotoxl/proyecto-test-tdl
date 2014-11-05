@@ -28,15 +28,6 @@ $ret=null;
             $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_EMAIL);
 
             $categorias=$md->getListaCategorias($cd_usuario)->filas;
-            
-            // $tests=array();
-            // for ($i=0; $i<count($categorias); $i++){
-            //     $fila=$categorias[$i];
-            //     // var_dump( $fila);
-            //     $testsCat=$md->getPreviewCategoria( $fila['cd_categoria'] );
-
-            //     $tests=uneArray($tests, $testsCat->filas);
-            //     }
 
             $tests=array(); $arrCats=array();
             for ($i=0; $i<count($categorias); $i++){
