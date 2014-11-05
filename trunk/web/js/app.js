@@ -122,7 +122,12 @@ function creaT(t){return document.createTextNode(t)}
 function lpad(v, carRelleno, lenTotal){
 	carRelleno=carRelleno || '0'
 	lenTotal=lenTotal || 2
-	return ('00'+v).substr(-lenTotal, lenTotal)
+
+	var ini=''
+	while (ini.length<lenTotal){
+		ini+=carRelleno
+	}
+	return (ini+v).substr(-lenTotal, lenTotal)
 	}
 function buscaFilas(filas, dicBuscado){
 	//devuelve el array de filas que cumplen los requisitos
@@ -532,7 +537,7 @@ function Vista(){
 	}
 Vista.prototype.calculaAnchoTarjetas=function(){
 	var w=jQuery('#content').width() 
-	var anchoMinCards=160
+	var anchoMinCards=140
 	var numtarjetas=Math.floor( (w-10)/anchoMinCards)
 	return (w/numtarjetas)-10
 	}
@@ -1501,7 +1506,9 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 			var pack=packs[j]
 
 			if (jQuery(d).find('#pack-'+ pack.cd_categoria).length==0){
-				d.appendChild( this._generaDomPack(pack, j, cat) )
+				var dpack=this._generaDomPack(pack, j, cat)
+				d.appendChild( dpack )
+				// this.ajustaAlturaPack(dpack)
 				}
 			}
 		for (var j=0;  j<sl.length; j++){
@@ -1520,6 +1527,7 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 		}
 
 	this.domBody.addClass('flowable').append(xl).removeClass('cargando')
+	this.ajustaAlturaPack(jQuery('.card.pack'))
 	}
 VistaTienda.prototype.testEstaEnPack=function(test, packs){
 	var temp=test.liscat.split(',')
@@ -1648,11 +1656,32 @@ VistaTienda.prototype._generaDomPack=function(pack, j, cat){
 	var fn=function(){
 		self.navegaPack(pack.cd_categoria)
 		}
-	jQuery(ret)
-		//.on('tap', fn)
-		.on('click', fn)
+	jQuery(ret).on('click', fn)
 
 	return ret
+	}
+VistaTienda.prototype.ajustaAlturaPack=function(ret){
+	var xret=jQuery(ret)
+	var h,w
+
+	if (xret.length>1){
+		h=xret[0].innerHeight()
+		w=xret[0].innerWidth()
+		}
+	else {
+		h=xret.innerHeight()
+		w=xret.innerWidth()
+		}	
+
+	if (h==0 || w==0) return
+	var diff=h-w; var hFooter=61
+	if (diff>0){
+		xret.css({'margin-top': diff/2, 'margin-bottom': diff/2, }).find('.body').css('height', w-hFooter)
+		}
+	else{
+		diff=-diff
+		xret.css({'margin-left':diff/2, 'width':h})
+		}
 	}
 VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 	var tanda=10, packs=[]
@@ -1668,15 +1697,14 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 
 	var lista=(this.entornoLocal?this.testLocales:this.testTienda)
 
-	if (cd_pack==null){
-		packs=buscaFilas(app.cache.categorias, {listarcomocategoria:0, cd_categoriapadre:cd_categoria})
-	
-		for (var j=0; j<packs.length; j++){
-			var pack=packs[j]
+	packs=buscaFilas(app.cache.categorias, {listarcomocategoria:0, cd_categoriapadre:cd_categoria})
+	for (var j=0; j<packs.length; j++){
+		var pack=packs[j]
 
-			if (jQuery(blCat).find('#pack-'+ pack.cd_categoria).length==0){
-				jQuery(blCat).appendChild( this._generaDomPack(pack, j, pack) )
-				}
+		if (jQuery(blCat).find('#pack-'+ pack.cd_categoria).length==0){
+			var dpack=this._generaDomPack(pack, j, pack)
+			jQuery(blCat).append( dpack )
+			this.ajustaAlturaPack(dpack)
 			}
 		}
 
@@ -2014,7 +2042,6 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 				console.error(data)
 		})
 	}
-
 VistaTienda.prototype.toggleLike=function(cd_test){
 	var btn=this.domDetalleTest.find('.btnLove')
 	
@@ -2104,8 +2131,8 @@ VistaMigraTest.prototype.getBody=function(){
 VistaMigraTest.prototype.tareasPostCarga=function(){
 	var l=[], lista=[], self=this
 
-	for (var i=1; i<101; i++){
-		l.push('test_0'+lpad(i, '0', 3)+'.js') //'test_0001.js',
+	for (var i=1; i<=24; i++){
+		l.push('test_bloque_B2_'+lpad(i, '0', 4)+'.js') //'test_0001.js',
 		}
 
 	for (var i=0; i<l.length; i++){
@@ -2144,21 +2171,20 @@ VistaMigraTest.prototype.quitaAcutes=function(s){
 	var trans={
 		'&iquest;':'¿',
 
-		'&aacute;':'á',
-		'&eacute;':'é',
-		'&iacute;':'í',
-		'&oacute;':'ó',
-		'&uacute;':'ú',
+		'&aacute;':'á','&Aacute;':'Á',
+		'&eacute;':'é','&Eacute;':'É',
+		'&iacute;':'í','&Iacute;':'Í',
+		'&oacute;':'ó','&Oacute;':'Ó',
+		'&uacute;':'ú','&Uacute;':'Ú',
 
 		'&ntilde;':'ñ',
 
-		'&lsquo;':'"',
-		'&rsquo;':'"',
-
-		'&ldquo;':'"',
-		'&rdquo;':'"',
-
+		'&lsquo;':'"', '&rsquo;':'"',
+		'&ldquo;':'"', '&rdquo;':'"',
+		'&laquo;':'"', '&raquo;':'"',
 		'&quot;':'"',
+
+		'&gt;':'"', '&lt;':'"',
 		}
 	var claves=Object.keys(trans)
 	for (var i=0; i<claves.length; i++){
@@ -2173,13 +2199,13 @@ VistaMigraTest.prototype.quitaAcutes=function(s){
 	}
 VistaMigraTest.prototype.procesa=function(n){
 	this.test={
-		ds_test:'Examen '+Number(n.substring(5,9))+'/Tests de Preparatic XXII',
+		ds_test:'Examen '+Number(n.substring(15,19))+'/Tests de Preparatic XXII',
 		organismo:'Administración General del Estado',
 		numpreguntas:100,
 		minutos:100,
 		fallosrestan:.5,
-		precio:0,
-		liscat:'103,104',
+		precio:0, 
+		liscat:'103,104,108',
 		}
 
 	var preguntas=[]

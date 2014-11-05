@@ -287,9 +287,9 @@ class Metadatos{
 						$datos->img, 
 						$datos->f_examen, 
 
-						$datos->fallosRestan, 
+						$datos->fallosrestan, 
 						$datos->minutos, 
-						$datos->numPreguntas, 
+						$datos->numpreguntas, 
 						$datos->admiteReordenarPreguntas, 
 						$datos->admiteReordenarRespuestas, 
 
