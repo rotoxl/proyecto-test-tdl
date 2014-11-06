@@ -338,49 +338,35 @@ function Controlador(){
 
 	//////////
 	var sr=document.location.search+''
-	if (sr.indexOf('code=')>-1){//web: se produce el error por Access-Control-Allow-Origin, tenemos que sacar el token en el servidor
-		var code=sr.substring('?code='.length).split('&')[0]
-		jQuery.post(app.config.url, {accion:'getOAuth-token', code:code})
-			.success(function(data){
-				console.log(data)
-			}) 
-		}
-	else if (sr.indexOf('?token=')==0){//teléfonos: no se produce el error por Access-Control-Allow-Origin
+	if (sr.indexOf('?token=')==0){//teléfonos: no se produce el error por Access-Control-Allow-Origin
 		this.cache.token=sr.substring('?token='.length).split('&')[0]
 		var refresh_token=sr.substring( sr.indexOf('refresh_token=')+14 ).split('&')[0]
 		if (refresh_token.length>10)
 			save('tapp37_refresh_token', refresh_token)
 
-		if (this.cache.token=='666'){
-			this.cache.usuario={//id: '118066386467974893999',
-								cd_usuario: 'rotoxl@gmail.com',
-								email:'rotoxl@gmail.com',
-								verified_email :true,
-								// name: 'Ernesto Molina Carrón',
-								given_name: 'Ernesto',
-								family_name: 'Molina Carrón',
-								// link: 'https://plus.google.com/118066386467974893999,
-								picture: 'https://lh6.googleusercontent.com/-yLoUCNmu2qc/AAAAAAAAAAI/AAAAAAAAE3s/d8OsxGzNbeo/photo.jpg',
-								// gender: 'male'
-								} 
-			this.actualizaDomUsuario()
-			}
-		else {
-			googleMobileApi.getDataProfile( this.cache.token, 
-											function(data){self.userDataReceived(data)},
-											function(error){
-												console.error( JSON.stringify(error) )
-											})
+		this.loginEnMiNube()
+
+		this.cache.loginExpires=null
+		if (sr.indexOf('expires=')>-1){
+			var expires=sr.substring( sr.indexOf('expires=')+8).split('&')[0]
+			this.cache.loginExpires=new Date(expires-2*60*1000)//2 minutos de margen
 			}
 		}
-	else if (sr.indexOf('?meacuerdo')==0){
+	else if (sr.indexOf('?noHayDatos')==0){
 		var s=get('tapp37_userdata')
-		this.cache.usuario=JSON.parse(s)
+		this.cache.usuario=JSON.parse(s) || {
+								cd_usuario: 'desconocido',
+								email:'desconocido@ejemplo.com',
+								given_name: 'Desconocido', family_name: 'Desconocido',
+								picture:'./images/avatar_default.png',
+								}
+		this.cache.usuario.loginEnMiNube=false
+		this.cache.usuario.loginExpires=null
 		this.actualizaDomUsuario()
 		}
 	else {
 		localStorage.removeItem('tapp37_userdata')
-		document.location='index.html'
+		document.location='login.html'
 		}
 	}
 Controlador.prototype.init=function(){
@@ -422,11 +408,28 @@ Controlador.prototype.setCategorias=function(lis){
 
 	save('tapp37_categorias', lis)
 	}
+Controlador.prototype.loginEnMiNube=function(){
+	var self=this
+	
+	var desfaseUTC=new Date().getTimezoneOffset()/-60
+    var tz=(desfaseUTC<0?'-':'+')+lpad(desfaseUTC, '0', 2)+':00'
+
+	jQuery.post(this.config.url, {accion:'login', token:this.cache.token, tz:tz}).success(
+		function(data){
+			var datos=xeval(data)
+			if (datos.retorno==1)
+				self.userDataReceived(datos.userData)
+			
+			if (datos.esUsuarioNuevo)
+				self.lanzaTourAplicacion()
+		})
+	}
 Controlador.prototype.userDataReceived=function(data){
 	data.token=this.cache.token
 	
 	this.cache.usuario=data
 	this.cache.usuario.cd_usuario=data.email
+	this.cache.usuario.loginEnMiNube=true
 
 	save('tapp37_userdata', JSON.stringify(data))
 	this.actualizaDomUsuario()
@@ -443,23 +446,8 @@ Controlador.prototype.logout=function(){
 	
 	localStorage.removeItem('tapp37_userdata')
 	localStorage.removeItem('tapp37_refresh_token')
-	localStorage.removeItem('tapp37_yanoshavisitado')
 	
 	document.location='index.html'
-	}
-/////
-Controlador.prototype.loginTienda=function(){
-	if (this._loginTiendaOK==true)
-		return
-
-	var self=this
-	var desfaseUTC=new Date().getTimezoneOffset()/-60
-    this.cache.usuario.tz=(desfaseUTC<0?'-':'+')+lpad(desfaseUTC, '0', 2)+':00'
-
-	jQuery.get(this.config.servidor+'login_r.php', {accion:'login', tz:this.cache.usuario.tz, cd_usuario:this.cache.usuario.cd_usuario})
-		.success(function(data){
-			self._loginTiendaOK=true
-		})
 	}
 /////
 Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
@@ -483,6 +471,9 @@ Controlador.prototype.continuarTest=function(desdeHistorial){
 	this.lanzaTest( VistaTest.prototype.testData() )
 	this.cierraNavDrawer()
 	}
+Controlador.prototype.lanzaTourAplicacion=function(){
+	console.warn('Lanza tour Aplicación')
+	}
 Controlador.prototype.lanzaTest=function(test, resp, vistaOrigen){
 	var nv=new VistaTest(test, resp)
 	nv.returnTo=vistaOrigen
@@ -505,9 +496,6 @@ Controlador.prototype.cargaVistaInicio=function(){
 	//  this.cargaVistaEstadisticas()
 
 	else {
-		// if (get('tapp37_tourRealizado')!=1)
-		// 	this.lanzaTourAplicacion()
-
 		this.cargaVistaTienda(false, true)//ojo, sólo a local
 		}
 
@@ -1508,7 +1496,6 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 			if (jQuery(d).find('#pack-'+ pack.cd_categoria).length==0){
 				var dpack=this._generaDomPack(pack, j, cat)
 				d.appendChild( dpack )
-				// this.ajustaAlturaPack(dpack)
 				}
 			}
 		for (var j=0;  j<sl.length; j++){
@@ -1521,13 +1508,13 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 				}
 			}
 
-		// if (jQuery(d).find('article.card').length<sl.length)
-		// 	jQuery(d).find('h4').append( this.generaBtnCargarMas(cat.cd_categoria) )
 		xl.push( d )
 		}
 
 	this.domBody.addClass('flowable').append(xl).removeClass('cargando')
-	this.ajustaAlturaPack(jQuery('.card.pack'))
+	this.ajustaAlturaCard(jQuery('.card.pack'))
+	if (this.entornoLocal) 
+		this.ajustaAlturaCard(jQuery('.card.test'))
 	}
 VistaTienda.prototype.testEstaEnPack=function(test, packs){
 	var temp=test.liscat.split(',')
@@ -1627,7 +1614,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 		}
 
 	var self=this
-	return creaObjProp('article', {'style.width':this.anchoTarjetas+'px', onclick:onclick, id:'test-'+test.cd_test, 'data-id':test.cd_test, className:'main card', hijos:[
+	return creaObjProp('article', {'style.width':this.anchoTarjetas+'px', onclick:onclick, id:'test-'+test.cd_test, 'data-id':test.cd_test, className:'main card test', hijos:[
 			creaObjProp('div', {className:'body', i:cat.i}),
 			creaObjProp('footer', {hijos:[
 				dFecha,
@@ -1660,27 +1647,36 @@ VistaTienda.prototype._generaDomPack=function(pack, j, cat){
 
 	return ret
 	}
-VistaTienda.prototype.ajustaAlturaPack=function(ret){
+VistaTienda.prototype.ajustaAlturaCard=function(ret){
 	var xret=jQuery(ret)
-	var h,w
+	var h, w, esTest
 
 	if (xret.length>1){
-		h=xret[0].innerHeight()
-		w=xret[0].innerWidth()
+		var xxret=jQuery(xret[0])
+		h= xxret.innerHeight()
+		w= xxret.innerWidth()
+		esTest= xxret.hasClass('test')
 		}
 	else {
 		h=xret.innerHeight()
 		w=xret.innerWidth()
-		}	
+		esTest=xret.hasClass('test')
+		}
 
 	if (h==0 || w==0) return
 	var diff=h-w; var hFooter=61
-	if (diff>0){
-		xret.css({'margin-top': diff/2, 'margin-bottom': diff/2, }).find('.body').css('height', w-hFooter)
+	
+	if (esTest){
+		xret.find('footer .fecha').css('margin-top', -(h-hFooter) )
 		}
-	else{
-		diff=-diff
-		xret.css({'margin-left':diff/2, 'width':h})
+	else {//packs
+		if (diff>0){
+			xret.css({'margin-top': diff/2, 'margin-bottom': diff/2, }).find('.body').css('height', w-hFooter)
+			}
+		else{
+			diff=-diff
+			xret.css({'margin-left':diff/2, 'margin-right':diff/2, 'width':h})
+			}
 		}
 	}
 VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
@@ -1704,7 +1700,7 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 		if (jQuery(blCat).find('#pack-'+ pack.cd_categoria).length==0){
 			var dpack=this._generaDomPack(pack, j, pack)
 			jQuery(blCat).append( dpack )
-			this.ajustaAlturaPack(dpack)
+			this.ajustaAlturaCard(dpack)
 			}
 		}
 
@@ -1723,6 +1719,8 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 	if (sl.length>(num+tanda) && jQuery(blCat).find('article.card').length==(num+tanda) ){
 		blCat.append( this.generaBtnCargarMas(cd_categoria, 'aunMas') )
 		}
+	this.ajustaAlturaCard(blCat.find('article.card.test'))
+
 	}
 //////
 VistaTienda.prototype.leeTestTienda=function(fnCallBack){

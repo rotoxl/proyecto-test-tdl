@@ -58,10 +58,12 @@ body > .login{
 		// margin-top:30%;
 		height:200px; width:100%; left:0;
 
-		background:url(../images/screens.png) no-repeat center center;
+		background-image:url(../images/screens.png);
+		background-position: center center;
+		background-repeat: no-repeat;
 	}
 
-	.btn-mobile, .btn-web {
+	.btn {
 		width:220px; 
 		margin:0 auto; 
 		display:inherit;
@@ -76,9 +78,18 @@ body > .login{
 	}
 	p.status{
 		margin: 15px;
+		font-size: 16px;
 		text-align: center;
 	}
 }
+body.no-connection > .login {
+	div.screens{
+		background-image:url(../images/no-connection.png)
+	}
+	.btn-mobile, .btn-web {display:none !important;}
+	.btn-no-connection{display:block !important;}
+}
+
 .ellipsis{
 	white-space: nowrap;
 	overflow: hidden;
@@ -118,10 +129,10 @@ header#navigation_bar{
 		float: none; 
 		text-align: center;
 
-		font-size: 20px; color:inherit; font-weight: bold;
+		font-size: 20px; color:inherit; font-weight: 200;
 		
 		img{
-			max-height: 20px;
+			max-height: 30px;
 			margin-top: -4px;
 			vertical-align: middle;
 			display: inherit;

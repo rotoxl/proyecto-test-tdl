@@ -27,17 +27,19 @@
 
 		<a href="#" style="display:none" class="btn-mobile btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
 
-		<span id="signinButton" style="display:none" class="btn btn-google btn-rounded btn-danger btn-web" >
+		<span id="signinButton" style="display:none" onclick="googleWebApi.signIn()" class="btn btn-web btn-google btn-rounded btn-danger" >
 			<span
 			    class="g-signin"
 			    data-callback="googleWebApi.signinCallback"
 			    data-clientid="893060658101-6ehddc6q9hh1d4l891on5fm1mss3fcme.apps.googleusercontent.com"
 			    data-cookiepolicy="single_host_origin"
-			    data-scope="https://www.googleapis.com/auth/plus.login" onclick="googleWebApi.signIn()">
+			    data-scope="https://www.googleapis.com/auth/plus.login" >
 
 			    <i class="fa fa-google-plus"></i>Login con Google</a>
 		  	</span>
 		</span>
+
+		<a style="display:none" onclick="loginSinConexion()" class="btn-no-connection btn btn-warning btn-rounded"><i class="fa fa-sign-in"></i> Entrar</a>
 
 		<div class="throbber cargando"></div>
 		<p class="status"></p>
@@ -62,7 +64,20 @@
 			else
 				return false 
 			}
+		function prepareLoginSinConexion(){
+			jQuery('body').addClass('no-connection')	
+			jQuery('.status').html('<p>No se ha podido conectar con el servidor.  </p> <p>Puedes entrar y continuar con los tests que ya tengas, pero no podrás descargar nuevos.</p>')
+			jQuery('body > .login .throbber').hide()
+			}
+		function loginSinConexion(){
+			document.location.replace('./prod.html?noHayDatos')
+			}
 		function init(){
+			if (navigator.connection && navigator.connection.type==Connection.NONE){
+				prepareLoginSinConexion()
+				return
+				}
+			
 			if (!isPhone() ){
 				if (get('tapp37_yanoshavisitado')=='1')
 					setTimeout(function(){googleWebApi.signIn()}, 300)
@@ -74,7 +89,7 @@
 				googleMobileApi.prepareLogin()
 			}
 		if (isPhone())
-          	document.addEventListener('deviceready', init(), true)
+          	document.addEventListener('deviceready', function(){init()}, true)
       	else
           	jQuery(document).ready(function(){init()} )
 	</script>

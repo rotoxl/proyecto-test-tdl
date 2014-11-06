@@ -87,11 +87,20 @@ var googleMobileApi = {
 
         return deferred.promise();
         },
+    getURL:function(data){
+        var expires
+        // if (data.expires_at)
+        //     expires=data.expires_at
+        // else
+            expires=new Date().getTime()+(data.expires_in*1000)
+          
+        var refresh_token=data.refresh_token?'&refresh_token='+data.refresh_token:''
+        return './prod.html?token='+data.access_token+'&expires='+expires+refresh_token
+        },
     prepareSilentLogin:function(refresh_token){
       var $loginStatus = jQuery('body > .login p.status');
       googleMobileApi.doSilentLogin(refresh_token).done(function(data) {
-              // console.info('Access Token: ' + data.access_token);
-              document.location.replace('./index.html?token='+data.access_token)
+              document.location.replace( googleMobileApi.getURL(data) )
               })
           .fail(function(data) {
               if (data) console.log(data.error);
@@ -121,7 +130,7 @@ var googleMobileApi = {
         jQuery('body > *').hide()
         jQuery('body > .login').show()
 
-        var $loginButton = jQuery('body > .login a.btn')
+        var $loginButton = jQuery('body > .login a.btn-mobile')
         var $loginStatus = jQuery('body > .login p.status')
         var $throbber=jQuery('body > .login .throbber')
 
@@ -133,7 +142,7 @@ var googleMobileApi = {
             $throbber.fadeIn()
             googleMobileApi.authorize().done(function(data) {
                 // console.info('Access Token: ' + data.access_token);
-                document.location.replace('./prod.html?token='+data.access_token+ (data.refresh_token?'&refresh_token='+data.refresh_token:'') )
+                document.location.replace( googleMobileApi.getURL(data) )
             }).fail(function(data) {
                 $loginButton.fadeIn()
                 $throbber.hide()
@@ -141,33 +150,22 @@ var googleMobileApi = {
               })
           })
         },
-    getDataProfile:function(token, fnCallBack){
-        var term=null;
-        jQuery.ajax({
-               url:'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+token,
-               type:'GET',
-               data:term,
-               dataType:'json',
-               error:function(jqXHR,text_status,strError){
-               },
-            success:function(data){
-                   var item;
-
-                   // console.log(JSON.stringify(data));
-                    // Save the userprofile data in your localStorage.
-                   
-                   fnCallBack(data)
-                   // localStorage.gmailLogin="true";
-                   // localStorage.gmailID=data.id;
-                   // localStorage.gmailEmail=data.email;
-                   // localStorage.gmailFirstName=data.given_name;
-                   // localStorage.gmailLastName=data.family_name;
-                   // localStorage.gmailProfilePicture=data.picture;
-                   // localStorage.gmailGender=data.gender;
-                   }
-               });
-        // disconnectUser();
-        },
+    // getDataProfile:function(token, fnCallBack){
+    //     //funciona, pero ahora lo hacemos en el servidor
+    //     var term=null;
+    //     jQuery.ajax({
+    //            url:'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+token,
+    //            type:'GET',
+    //            data:term,
+    //            dataType:'json',
+    //            error:function(jqXHR,text_status,strError){
+    //            },
+    //         success:function(data){
+    //                var item;
+    //                fnCallBack(data)
+    //                }
+    //            });
+    //     },
     disconnectUser:function (token) {
       var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token='+token;
 
@@ -197,12 +195,21 @@ var googleMobileApi = {
 
 var googleWebApi={
     prepareLogin:function(){
-        var btn=jQuery('#signinButton').show()
+        var btn=jQuery('.btn-web').show()
         btn.find('.g-signin').attr('data-clientid', options.web.client_id)
 
         var $throbber=jQuery('body > .login .throbber')
         $throbber.hide()
 
+        },
+    getURL:function(data){
+        var expires
+        // if (data.expires_at)
+        //     expires=data.expires_at
+        // else
+            expires=new Date().getTime()+(data.expires_in*1000)
+        var refresh_token=data.refresh_token?'&refresh_token='+data.refresh_token:''
+        return './prod.html?token='+data.access_token+'&expires='+expires+refresh_token
         },
     signIn:function() {
         console.log("signing in...");
@@ -214,11 +221,9 @@ var googleWebApi={
 
               //request_visible_actions: "https://schemas.google.com/AddActivity"
               }, 
-          function(data) {
-              // callback
+          function(data) {// callback
               console.log("done!", data);
-              localStorage.setItem('tapp37_yanoshavisitado',1)
-              document.location.replace('./prod.html?token='+data.access_token+(data.refresh_token?'&refresh_token='+data.refresh_token:'') )
+              document.location.replace( googleWebApi.getURL(data) )
               })
         },
     signinCallback:function(authResult){
