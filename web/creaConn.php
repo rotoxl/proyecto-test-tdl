@@ -275,10 +275,12 @@ class FilasCt extends Filas{
 	}
 
 class Usuario{
-	public static function guardaEnSesion($cd_usuario, $tz){
+	public static function guardaEnSesion($arrUsuario, $tz=null){
 		if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
 
-		$_SESSION['cd_usuario'] = $cd_usuario;
+		$_SESSION['cd_usuario'] = $arrUsuario['cd_usuario'];
+		$_SESSION['datosUsuario'] = json_encode($arrUsuario);
+		
 		$_SESSION['tz'] = $tz;
 		}
 

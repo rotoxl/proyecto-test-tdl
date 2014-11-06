@@ -46,6 +46,43 @@ class Metadatos{
                $conn->setUsu($usu);
                }
           }
+	//////
+    function getGoogleUserProfile($token){
+    	$url = 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=';
+		
+		$json = file_get_contents($url.$token);
+		$userData = json_decode($json, true);
+		
+		if (array_key_exists('email', $userData)){
+			$arr=array(
+				'cd_usuario'=>$userData['email'],
+				'email'=>$userData['email'],
+				'given_name'=>$userData['given_name'],
+				'family_name'=>$userData['family_name'],
+				'picture'=>$userData['picture'],
+				);
+			return $arr;
+			}
+		else {
+			throw new Exception($json);
+			}
+
+    	}
+	function altaUsuario($d){
+		$cd_usuario=$d['cd_usuario'];
+
+		$yaExiste=$this->conn->lookupSimple('select cd_usuario from usuarios where cd_usuario=?', array($cd_usuario));
+
+		if ($yaExiste==$cd_usuario){
+			return false; //devolvemos esUsuarioNuevo
+			}
+		else {
+			$sql='insert into usuarios (cd_usuario, nombre, apellidos, picture) values (?, ?, ?, ?)';
+			$md->ejecuta($sql, array($d['cd_usuario'], $d['given_name'], $d['family_name'], $d['picture'] ));
+			return true; //devolvemos esUsuarioNuevo
+			}
+		}
+	//////
 	public function numerador($tabla, $col, $arr=null, $paratran=false){ // Uso: numerador ('centroscoste', array('id_empresa'=>1 ))
 		$params=array();
 		$sql='select max('. $col .') from ' . $tabla;
@@ -74,7 +111,7 @@ class Metadatos{
 			return 1+$ret;
 			}
 		}
-
+	//////
 	public function getListaCategorias($cd_usuario){
 		global $limitePreview;
 
@@ -138,25 +175,6 @@ class Metadatos{
 		
 		return $filas;
 		}
-	// public function getPreviewCategoria($cd_categoria){
-	// 	global $limitePreview;
-
-	// 	if ($cd_categoria==-1){//últimos actualizados
-	// 		$sql="select t.* from vs_testpreview t
-	// 			where t.fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)
-	// 			order by t.likes, t.fu_modificacion desc
-	// 			limit ?";
-	// 		$arr=array($limitePreview);
-	// 		}
-	// 	else {
-	// 		$sql="select t.* from vs_testpreview t 
-	// 				where t.liscat like concat('%', ?, ',%')
-	// 				order by t.likes desc
-	// 				limit ?";
-	// 		$arr=array($cd_categoria, $limitePreview);
-	// 		}
-	// 	return $this->conn->lookupFilas($sql, $arr);
-	// 	}
 	public function getPreviewCategoria($arrCats){
 		global $limitePreview;
 

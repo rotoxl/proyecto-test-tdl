@@ -22,7 +22,7 @@ $getopost=filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
 $accion = ($getopost == 'GET')? filter_input(INPUT_GET, 'accion', FILTER_SANITIZE_STRING): filter_input(INPUT_POST, 'accion', FILTER_SANITIZE_STRING);
 $REQ=($getopost == 'GET'?INPUT_GET:INPUT_POST);
 $ret=null;
-// try {
+try {
     switch ($accion) {
         case 'getPreviewCategorias':
             $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_EMAIL);
@@ -72,9 +72,16 @@ $ret=null;
             break;
         //--------------------------------------------------------
         case 'login':
-            $usu=filter_input(INPUT_POST, 'cd_usuario', FILTER_SANITIZE_EMAIL);
-            $conn->logInfo('Login '.$usu, 'LOGIN');
-            Usuario::guardaEnSesion($usu);
+            $token=filter_input($REQ, 'token', FILTER_SANITIZE_STRING);
+            $tz=filter_input($REQ, $tz, FILTER_SANITIZE_STRING);
+            
+            $datosUsu=$md->getGoogleUserProfile($token);
+            Usuario::guardaEnSesion($datosUsu);
+
+            $conn->logInfo('Login '.$datosUsu['cd_usuario'], 'LOGIN');
+            $esUsuarioNuevo=$md->altaUsuario($datosUsu, $tz);
+
+            echo(json_encode(array('retorno' => 1, 'userData'=>$datosUsu, 'esUsuarioNuevo'=>$esUsuarioNuevo )));
             break;
         case 'logout':
             $conn->logInfo('Logout', 'LOGIN');
@@ -85,9 +92,9 @@ $ret=null;
             trigger_error('¡Accion '. $accion . ' no implementada!');
         }
     
-//     }
-// catch (Exception $ee){
-//     echo json_encode(array('retorno'=>0, 'error'=>1, 'msgError'=>$ee->getMessage()));
-//     }
+    }
+catch (Exception $ee){
+    echo json_encode(array('retorno'=>0, 'error'=>1, 'msgError'=>$ee->getMessage()));
+    }
     
 ?>
