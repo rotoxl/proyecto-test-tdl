@@ -2,26 +2,35 @@
 error_reporting(E_ALL | E_STRICT);
 $usu=null;
 
-// try{
-//     if(@session_start()){
-//         $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
-//         }
-        
-//     require_once('metadatos.php'); 
-//     $usu=new Usuario();//saca los datos de la sesión
-//     }
-// catch (Exception $ee){
-//     echo json_encode(array('retorno'=>0, 'error'=>1, 'msgError'=>$ee->getMessage()));
-//     exit;
-//     }
-require_once('metadatos.php'); 
-
-$md=new Metadatos($conn, $usu);
-
 $getopost=filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
 $accion = ($getopost == 'GET')? filter_input(INPUT_GET, 'accion', FILTER_SANITIZE_STRING): filter_input(INPUT_POST, 'accion', FILTER_SANITIZE_STRING);
 $REQ=($getopost == 'GET'?INPUT_GET:INPUT_POST);
+
+require_once('metadatos.php'); 
+try{
+    @session_start();
+    if ($accion=='login'){
+        // $usu=null;
+        }
+    else {
+        $usu=new Usuario();//saca los datos de la sesión
+        $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+        }
+    }
+catch (Exception $ee){
+    echo json_encode(array('retorno'=>0, 
+                    'error'=>1, 
+                    'msgError'=>$ee->getMessage(),
+                    'sql' => $conn->arrResultSet,
+                    ));
+    exit;
+    }
+
+$md=new Metadatos($conn, $usu);
+
+
 $ret=null;
+// $showSQL=true;
 try {
     switch ($accion) {
         case 'getPreviewCategorias':
@@ -37,30 +46,41 @@ try {
                 }
             $testsCat=$md->getPreviewCategoria( $arrCats )->filas;
 
-            echo(json_encode(array('retorno' => 1, 
-                                   'categorias' => $categorias,
-                                   'tests' => $testsCat, 
-                                   )));
+            $ret=array('retorno' => 1, 
+                       'categorias' => $categorias,
+                       'tests' => $testsCat, 
+                       'sql' => $md->__logSQL(),
+                       );
+            echo(json_encode($ret));
             break;
         case 'getPreviewTest':
             $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_STRING);
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
-            echo(json_encode(array('retorno' => 1, 
-                                   'test' => $md->getPreviewTest($cd_usuario, $cd_test), 
-                                   )));
+           
+            $ret=array('retorno' => 1, 
+                        'test' => $md->getPreviewTest($cd_usuario, $cd_test), 
+                        'sql' => $md->__logSQL(),
+                       );
+            echo(json_encode($ret));
             break;
         case 'getTest':
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
-            echo(json_encode(array('retorno' => 1, 
-                                   'test' => $md->getTest($cd_test), 
-                                   )));
+            
+            $ret=array('retorno' => 1, 
+                       'test' => $md->getTest($cd_test),
+                       'sql' => $md->__logSQL(),
+                       );
+            echo(json_encode($ret));
             break;
         case 'creaBorradorTest':
             $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_STRING);
             $datos=json_decode( filter_input($REQ, 'datos', FILTER_UNSAFE_RAW) );
             $cd_test=$md->creaBorradorTest($datos, $cd_usuario);
 
-            echo(json_encode(array('retorno' => 1, 'cd_test'=>$cd_test)));
+            $ret=array('retorno' => 1, 
+                        'cd_test'=>$cd_test,
+                        'sql' => $md->__logSQL(),);
+            echo(json_encode($ret));
             break;
         case 'like+':
         case 'like-':
@@ -68,7 +88,17 @@ try {
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
 
             $md->toggleLike($accion, $cd_usuario, $cd_test);
-            echo(json_encode(array('retorno' => 1)));
+
+            $ret=array('retorno' => 1, 
+                    'sql' => $md->__logSQL(),);
+            echo(json_encode($ret));
+            break;
+        //--------------------------------------------------------
+        case 'getMisGrupos':
+            
+            $ret=array('retorno' => 1, 
+                    'sql' => $md->__logSQL(),);
+            echo(json_encode($ret));
             break;
         //--------------------------------------------------------
         case 'login':
@@ -77,16 +107,26 @@ try {
             
             $datosUsu=$md->getGoogleUserProfile($token);
             Usuario::guardaEnSesion($datosUsu);
-
             $conn->logInfo('Login '.$datosUsu['cd_usuario'], 'LOGIN');
+
             $esUsuarioNuevo=$md->altaUsuario($datosUsu, $tz);
 
-            echo(json_encode(array('retorno' => 1, 'userData'=>$datosUsu, 'esUsuarioNuevo'=>$esUsuarioNuevo )));
+            $ret=array('retorno' => 1, 
+                        'userData'=>$datosUsu, 
+                        'esUsuarioNuevo'=>$esUsuarioNuevo,
+                        'sql' => $md->__logSQL(), 
+                        );
+            echo(json_encode($ret));
             break;
         case 'logout':
             $conn->logInfo('Logout', 'LOGIN');
             session_destroy();
-            echo(json_encode(array('retorno' => 1, 'sesionDestruida'=>1)) ); 
+
+            $ret=array('retorno' => 1, 
+                'sesionDestruida'=>1,
+                'sql' => $md->__logSQL(),
+                );
+            echo(json_encode($ret) ); 
             break;
         default:
             trigger_error('¡Accion '. $accion . ' no implementada!');
