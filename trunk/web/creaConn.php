@@ -15,6 +15,8 @@ class nullableInt{
 class Conn{
 	private $con=null;
 	private $usu=null;
+	public $arrResultSet=array();
+
 	function __construct(){
 		global $dsn;
 		global $username;
@@ -22,7 +24,10 @@ class Conn{
 		$this->con = new PDO($dsn, $username, $password);
 		$this->con->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
 		}
-
+	//////
+	function setUsu($nusu){
+		$this->usu=$nusu;
+		}
 	private function logQuitanl($s){
 		$ret= trim(preg_replace('/\s\s+/', ' ', $s ));
 		$ret= trim(preg_replace('/\s+/', ' ', $s ));
@@ -31,11 +36,18 @@ class Conn{
 		// return json_encode($s);
 	 	}
 	function logInfo($texto, $tipo='INFO', $param=null){
-		return;
 		$t=microtime();
 		$this->log('['.$tipo.'] '.$texto, $param, $t, $t, null);
 		}
 	function log($sql, $param, $t1, $t2, $nfilas){
+		$this->log2Arr($sql, $param, $t1, $t2, $nfilas);
+		// $this->log2File($sql, $param, $t1, $t2, $nfilas);
+		}
+	private function log2Arr($sql, $param, $t1, $t2, $nfilas){
+		$el=array( 't='.substr($t2-$t1,0,5).'/numFilas='.$nfilas, $sql, $param, $t1, $t2 );
+		array_push($this->arrResultSet, $el);
+		}
+	private function log2File($sql, $param, $t1, $t2, $nfilas){
 		if (!array_key_exists('LOG_SQL', $_SERVER))
 			return ;
 		else if ($_SERVER['LOG_SQL']!=1) 
@@ -65,7 +77,7 @@ class Conn{
 		fwrite($arch, $s);
 		fclose($arch);
 		}
-	
+	//////
 	function set_timezone(){ //esto debería ir en un init de la conexión pero si lo haces así NO FUNCIONA
 		global $tz;
 		if ( substr($tz,0, 2)=='--' )
