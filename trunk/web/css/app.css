@@ -79,6 +79,10 @@ header#navigation_bar {
   margin-bottom: 0;
   background-color: #25313e;
   color: #9db1c5; }
+  header#navigation_bar .barra .btn-menu {
+    width: 50px; }
+    header#navigation_bar .barra .btn-menu ul {
+      margin-top: 40px; }
   header#navigation_bar .barra .navbar-header {
     height: 50px; }
     header#navigation_bar .barra .navbar-header > ul > li > a {
@@ -284,6 +288,13 @@ section#main_container {
   .avatar img, footer .avatar img {
     border-radius: 500px; }
 
+.thumb-xs {
+  width: 18px;
+  display: inline-block; }
+
+.m-r-sm {
+  margin-right: 10px; }
+
 .thumb img, .thumb-xs img, .thumb-sm img, .thumb-md img, .thumb-lg img {
   height: auto;
   max-width: 100%;
@@ -382,6 +393,20 @@ section#main_container {
   -moz-user-focus: none;
   user-select: none;
   user-focus: none; }
+
+.resultados > * {
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center; }
+  .resultados > *:first-child {
+    border-left: none !important; }
+.resultados .small {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase; }
+.resultados .bold {
+  font-weight: bold; }
 
 #content {
   width: 100%;
@@ -516,6 +541,18 @@ section#main_container {
       font-weight: inherit;
       font-size: 16px;
       line-height: 21px; }
+  #content.vista.vistaTest .recurso.resp {
+    width: 125px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-top: 20px; }
+  #content.vista.vistaTest .recurso.pre {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center; }
+    #content.vista.vistaTest .recurso.pre img {
+      margin-left: -25px;
+      box-shadow: 1px 2px 13px darkslategrey; }
   #content.vista.vistaTest .pregunta {
     position: absolute;
     width: 100%;
@@ -671,13 +708,6 @@ section#main_container {
           font-weight: bold; }
         #content.vista.vistaTienda .detalle-test section.row .data .resultados {
           margin-top: 10px; }
-          #content.vista.vistaTienda .detalle-test section.row .data .resultados > * {
-            border-left: 1px solid rgba(0, 0, 0, 0.05);
-            padding-left: 0;
-            padding-right: 0;
-            text-align: center; }
-            #content.vista.vistaTienda .detalle-test section.row .data .resultados > *:first-child {
-              border-left: none !important; }
         #content.vista.vistaTienda .detalle-test section.row .data .progress {
           margin-top: 5px;
           margin-bottom: 10px; }
@@ -732,6 +762,194 @@ section#main_container {
   #content.vista.vistaMigraTest ul#listatests {
     max-height: 600px;
     overflow: auto; }
+  #content.vista.vistaSocial {
+    background-color: #25313e; }
+    #content.vista.vistaSocial.no-header .vista-header {
+      display: none; }
+    #content.vista.vistaSocial.no-header .vista-body {
+      padding-bottom: 50px; }
+    #content.vista.vistaSocial .avatar {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      margin-top: 0 !important;
+      display: block;
+      border-radius: 500px;
+      white-space: nowrap;
+      display: block;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.35); }
+      #content.vista.vistaSocial .avatar img {
+        width: 148px;
+        height: 148px; }
+      #content.vista.vistaSocial .avatar:before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        top: 5px;
+        border: 4px solid #fff;
+        border-radius: 500px; }
+    #content.vista.vistaSocial .bl {
+      padding-top: 10px;
+      margin-left: 0px;
+      margin-right: 0;
+      color: #adbece;
+      padding-bottom: 20px; }
+      #content.vista.vistaSocial .bl.head .avatar {
+        width: 160px !important;
+        float: none !important;
+        margin: 20px auto;
+        padding: 5px; }
+    #content.vista.vistaSocial .resultados {
+      height: 40px; }
+      #content.vista.vistaSocial .resultados div {
+        border-color: rgba(255, 255, 255, 0.1); }
+    #content.vista.vistaSocial .grupo {
+      border-top: 1px solid rgba(173, 190, 206, 0.1);
+      padding-bottom: 10px; }
+      #content.vista.vistaSocial .grupo > .avatar {
+        border: 0;
+        padding-left: 10px;
+        padding-right: 10px; }
+      #content.vista.vistaSocial .grupo h5 {
+        margin-top: 5px;
+        margin-bottom: 0;
+        margin-left: 0;
+        padding-left: 0;
+        font-weight: bold;
+        font-size: 13px; }
+      #content.vista.vistaSocial .grupo span.grupo-personas {
+        margin-left: 0;
+        padding-left: 0; }
+        #content.vista.vistaSocial .grupo span.grupo-personas .persona {
+          font-size: 12px;
+          float: left;
+          padding-left: 0;
+          padding-right: 1px;
+          padding-top: 3px; }
+          #content.vista.vistaSocial .grupo span.grupo-personas .persona .avatar {
+            width: 30px !important;
+            height: 30px !important; }
+          #content.vista.vistaSocial .grupo span.grupo-personas .persona .nombre {
+            font-size: 12px;
+            float: left;
+            margin-top: 5px;
+            margin-left: 3px; }
+          #content.vista.vistaSocial .grupo span.grupo-personas .persona.sep {
+            margin-top: 6px;
+            margin-left: 2px; }
+      #content.vista.vistaSocial .grupo i {
+        font-size: 26px;
+        padding-right: 0px;
+        margin-right: 0;
+        padding-left: 40px; }
+      #content.vista.vistaSocial .grupo:last-child {
+        border-bottom: 1px solid rgba(173, 190, 206, 0.1); }
+    #content.vista.vistaSocial .vista-detalle-grupo {
+      background-color: #9db1c5;
+      color: #25313e; }
+    #content.vista.vistaSocial .vista-editar-grupo .row {
+      padding-bottom: 5px;
+      margin-left: 0;
+      margin-right: 0;
+      font-size: 16px;
+      text-align: left; }
+      #content.vista.vistaSocial .vista-editar-grupo .row > * {
+        padding-left: 0;
+        padding-right: 0; }
+    #content.vista.vistaSocial .vista-editar-grupo .txtNombreGrupo {
+      font-size: 21px;
+      color: white; }
+    #content.vista.vistaSocial .vista-editar-grupo i {
+      background-color: transparent;
+      border: 0;
+      color: white; }
+      #content.vista.vistaSocial .vista-editar-grupo i.btnNombreGrupo {
+        margin-top: -40px;
+        font-size: 25px; }
+    #content.vista.vistaSocial .vista-editar-grupo .member {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      color: white;
+      padding-top: 5px;
+      padding-bottom: 15px; }
+      #content.vista.vistaSocial .vista-editar-grupo .member i {
+        margin-top: 0px;
+        font-size: 25px;
+        margin-right: 14px;
+        color: inherit; }
+      #content.vista.vistaSocial .vista-editar-grupo .member.btnMemberAdd {
+        color: #adbece; }
+    #content.vista.vistaSocial .vista-editar-grupo small.bl {
+      padding-bottom: 0px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(173, 190, 206, 0.3); }
+    #content.vista.vistaSocial .chat {
+      overflow: auto;
+      position: relative;
+      left: 0;
+      top: 0;
+      min-height: 100px;
+      width: 100%;
+      background-color: white; }
+      #content.vista.vistaSocial .chat .bocadillo {
+        margin-bottom: -1px;
+        padding: 15px 0px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        font-size: 13px; }
+        #content.vista.vistaSocial .chat .bocadillo .nombre {
+          font-weight: bold;
+          margin-right: 5px; }
+        #content.vista.vistaSocial .chat .bocadillo.has-test .row.texto, #content.vista.vistaSocial .chat .bocadillo.has-badge .row.texto {
+          padding-bottom: 20px !important; }
+        #content.vista.vistaSocial .chat .bocadillo:nth-child(2n) {
+          background-color: #f8f8f8 !important; }
+        #content.vista.vistaSocial .chat .bocadillo img {
+          margin-left: 15px; }
+        #content.vista.vistaSocial .chat .bocadillo .row.texto {
+          margin-right: 0;
+          margin-left: 0;
+          padding-left: 43px;
+          padding-right: 40px;
+          padding-bottom: 0;
+          padding-right: 15px; }
+        #content.vista.vistaSocial .chat .bocadillo small {
+          margin-right: 5px;
+          margin-top: 2px; }
+        #content.vista.vistaSocial .chat .bocadillo .row.has-badge, #content.vista.vistaSocial .chat .bocadillo .row.has-test {
+          margin-left: 0;
+          margin-right: 0;
+          margin-top: -15px;
+          padding-top: 3px;
+          padding-left: 15px;
+          padding-right: 15px;
+          text-align: right;
+          width: 50%;
+          font-size: 16px;
+          color: gray;
+          border-top: 1px solid #ede3b1; }
+          #content.vista.vistaSocial .chat .bocadillo .row.has-badge i, #content.vista.vistaSocial .chat .bocadillo .row.has-test i {
+            margin-top: 2px;
+            font-size: 120%; }
+    #content.vista.vistaSocial footer {
+      height: 50px;
+      background-color: #25313e;
+      color: #9db1c5; }
+      #content.vista.vistaSocial footer span.input-group-addon {
+        background: none;
+        color: white;
+        border: 0;
+        padding-left: 15px;
+        padding-right: 15px; }
+      #content.vista.vistaSocial footer input {
+        border: 1px solid transparent;
+        border-radius: 0;
+        border-top: 1px solid;
+        font-size: 16px;
+        height: 40px; }
 
 .modal-backdrop {
   background-color: #2e3e4e; }
@@ -814,13 +1032,17 @@ section#main_container {
     aside .vbox > footer .ajustes, aside .vbox > footer .logout {
       font-size: 22px;
       line-height: 26px;
+      width: 44px !important;
       color: #adbece !important; }
-    aside .vbox > footer .avatar .pic {
-      width: 30px; }
-    aside .vbox > footer .avatar .nombre {
-      font-size: 13px;
-      line-height: 28px;
-      margin-left: 4px; }
+    aside .vbox > footer .avatar {
+      width: 50%; }
+      aside .vbox > footer .avatar .pic {
+        width: 30px; }
+      aside .vbox > footer .avatar .nombre {
+        float: left;
+        font-size: 13px;
+        line-height: 28px;
+        margin-left: 4px; }
 
   body {
     overflow: hidden; }

@@ -46,6 +46,9 @@ class Metadatos{
                $conn->setUsu($usu);
                }
           }
+	function __logSQL(){
+		return $this->conn->arrResultSet;
+		}
 	//////
     function getGoogleUserProfile($token){
     	$url = 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=';
@@ -139,7 +142,9 @@ class Metadatos{
 					c.cd_categoriapadre
 				 from categorias c, usuarios_categorias uc
 					where c.cd_categoria=uc.cd_categoria and uc.cd_usuario=?
-					limit ?";
+			order by cd_categoria
+			limit ?
+			";
 		$filas=$this->conn->lookupFilas($sql, array($cd_usuario, $limitePreview));
 
 		if ($filas->numFilas<=1){//sí, 1, porque hemos metido una cat ficticia
@@ -169,7 +174,8 @@ class Metadatos{
 						c.listarComoCategoria,
 						c.cd_categoriapadre
 					from categorias c 
-						having numTestsPorCat > 0";
+						having numTestsPorCat > 0
+				order by cd_categoria";
 			$filas=$this->conn->lookupFilas($sql, array($limitePreview));			
 			}
 		
@@ -198,7 +204,7 @@ class Metadatos{
 
 				$sql=$sql . "(select t.* from vs_testpreview t 
 						where t.liscat like concat('%', ?, ',%')
-						order by t.likes desc
+						order by t.likes desc , t.cd_test 
 						limit ?)";
 				array_push($arr, $cd_categoria, $limitePreview);
 				}
@@ -242,12 +248,12 @@ class Metadatos{
 				'img'=>$f['recursopregunta'],
 				'cd_respuestacorrecta'=>$f['cd_respuestacorrecta'],
 				'respuestas'=>array(
-					array( 'texto'=>$f['respuesta0'], 'img'=>$f['recursorespuesta0']),
-					array( 'texto'=>$f['respuesta1'], 'img'=>$f['recursorespuesta1']),
-					array( 'texto'=>$f['respuesta2'], 'img'=>$f['recursorespuesta2']),
-					array( 'texto'=>$f['respuesta3'], 'img'=>$f['recursorespuesta3']),
-					array( 'texto'=>$f['respuesta4'], 'img'=>$f['recursorespuesta4']),
-					array( 'texto'=>$f['respuesta5'], 'img'=>$f['recursorespuesta5']),
+					array( 'texto'=>$f['respuesta0'], 'img'=>$f['recursorespuesta0'], 'texto_recurso'=>$f['textorecursorespuesta0']),
+					array( 'texto'=>$f['respuesta1'], 'img'=>$f['recursorespuesta1'], 'texto_recurso'=>$f['textorecursorespuesta1']),
+					array( 'texto'=>$f['respuesta2'], 'img'=>$f['recursorespuesta2'], 'texto_recurso'=>$f['textorecursorespuesta2']),
+					array( 'texto'=>$f['respuesta3'], 'img'=>$f['recursorespuesta3'], 'texto_recurso'=>$f['textorecursorespuesta3']),
+					array( 'texto'=>$f['respuesta4'], 'img'=>$f['recursorespuesta4'], 'texto_recurso'=>$f['textorecursorespuesta4']),
+					array( 'texto'=>$f['respuesta5'], 'img'=>$f['recursorespuesta5'], 'texto_recurso'=>$f['textorecursorespuesta5']),
 					)
 				);
 			array_push($arrPreguntas, $pregunta);
@@ -359,6 +365,11 @@ class Metadatos{
 		$this->conn->ejecutaLote($arr);
 
 		return $nuevoCD_Test;
-	}
+		}
+	//////
+	public function getMisGrupos($cd_usuario){
+		$sql="";
+		}
+	
 }
 ?>

@@ -8,7 +8,8 @@
   	<meta name="description" content="app, web app, responsive, onetest, flat, flat ui, ui kit, off screen nav" />
   	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
-  	<meta content="320" name="MobileOptimized">      
+  	<meta content="320" name="MobileOptimized">
+  	<meta nae="theme-color" content="#25313e">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
 
@@ -38,9 +39,8 @@
 						<i class="fa fa-bars"></i>
 					</a>
 					<a href="#" class="navbar-brand"><img src="images/logo.png" class="m-r-sm">Zona de tests</a>
-					<a class="hidden btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user">
-						<i class="fa fa-cog"></i>
-					</a>
+
+
 				</div>
 
 				<ul class="nav navbar-nav hidden-xs">
@@ -78,7 +78,14 @@
 						<i class="fa fa-arrow-left"></i>
 					</a>
 					<a href="#" class="navbar-brand"></a>
-
+					
+					<div style="display:none" class="btn-group btn-menu pull-right" >
+						<a class="btn-menu btn btn-link visible-xs" data-toggle="dropdown">
+							<i class="fa fa-ellipsis-v"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right" role="menu">
+						</ul>
+					</div>
 				</div>
 			</span>
 	  	</header>
@@ -185,8 +192,7 @@
 	</section>
 
 
-	<div class="modal fade" id="frmPausa">
-	    
+	<div class="modal fade" id="frmPausa">  
 	    <div class="modal-dialog">
 	      <div class="modal-content">
 	        <div class="modal-body">
@@ -217,8 +223,10 @@
 	        <div class="modal-footer"></div>
 	      </div> 
 		</div> 
-
 	</div> 
+
+	<div class="modal fade" id="frmPresentacion">
+	</div>
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.js"></script>

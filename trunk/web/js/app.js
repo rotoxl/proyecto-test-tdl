@@ -331,7 +331,8 @@ function Controlador(){
 	this.init()
 
 	if ( isPhone() )
-		this.config.servidor='http://rotoxl.alwaysdata.net/'
+		// this.config.servidor='http://rotoxl.alwaysdata.net/'
+		this.config.servidor='http://192.168.0.196:8888/proyectotest/'
 	else
 		this.config.servidor='./'
 	this.config.url=this.config.servidor+'index_r.php'
@@ -481,6 +482,18 @@ Controlador.prototype.lanzaTest=function(test, resp, vistaOrigen){
 
 	}
 Controlador.prototype.cargaVistaInicio=function(){
+	var self=this
+	if (app.cache.usuario==null){
+		this.esperandoCredenciales=this.esperandoCredenciales || 0
+		this.esperandoCredenciales++
+
+		if (this.esperandoCredenciales<5){
+			console.info('hay que esperar a las credenciales')
+			setTimeout(function(){self.cargaVistaInicio()}, 500*this.esperandoCredenciales)
+			return
+			}
+		}
+
 	var hash=(document.location.hash+'').substring(1)
 	if (hash=='vistaMigraTest')
 		this.cargaVistaMigraTest(true)
@@ -490,8 +503,8 @@ Controlador.prototype.cargaVistaInicio=function(){
 		this.cargaVistaTienda(true, true)
 		// this.continuarTest(true)
 		}
-	// else if (hash=='vistaSocial')
-		// this.cargaVistaSocial()
+	else if (hash=='vistaSocial' )
+		this.cargaVistaSocial()
 	// else if (hash=='vistaEstadisticas')
 	//  this.cargaVistaEstadisticas()
 
@@ -505,7 +518,10 @@ Controlador.prototype.cargaVistaTienda=function(desdeHistorial, entornoLocal){
 	vt.toDOM()
 	this.cierraNavDrawer()
 	}
-Controlador.prototype.cargaVistaSocial=function(desdeHistorial){}
+Controlador.prototype.cargaVistaSocial=function(desdeHistorial){
+	new VistaSocial(desdeHistorial).toDOM()
+	this.cierraNavDrawer()
+	}
 Controlador.prototype.cargaVistaEstadisticas=function(desdeHistorial){}
 Controlador.prototype.pushState=function(id){
 	window.history.pushState({vista:id}, id, '#'+id)
@@ -532,7 +548,9 @@ Vista.prototype.calculaAnchoTarjetas=function(){
 Vista.prototype.tipos={
 	vistaTest:'vistaTest', 
 	vistaTienda:'vistaTienda', 
-	vistaSocial:'vistaSocial', 
+	
+	vistaSocial:'vistaSocial', // vistaGrupo:'vistaGrupo',
+
 	vistaEstadisticas:'vistaEstadisticas', 
 	vistaMigraTest:'vistaMigraTest'
 	}
@@ -541,11 +559,16 @@ Vista.prototype.toDOM=function(){
 	if (app) app.vistaActiva=this
 
 	this.domHeader=jQuery(this.getHeader())
-	this.domBody=jQuery(this.getBody())
+	
+	var tb=this.getBody()
+	if (tb instanceof Array)
+		this.domBody=jQuery(tb[0])
+	else
+		this.domBody=jQuery(tb)
 	
 	xd.empty()
 		.append(this.domHeader)
-		.append(this.domBody)
+		.append(tb)
 		.removeClass( Object.keys(this.tipos).join(' '))
 		.addClass('vista '+this.id)
 
@@ -761,11 +784,23 @@ VistaTest.prototype.creaDiapo=function(i, cont){
 	}
 VistaTest.prototype.generaDomPreguntas=function(preg, resp){
 	var self=this
+	
+	var t=creaT('')
+	if (preg.img){
+		// t=creaObjProp('div', {className:'recurso pre', 'style.backgroundImage':'url(./res/carne-conducir/'+preg.img+')'})
+		t=creaObjProp('div', {className:'recurso pre', hijos:[
+				creaObjProp('img', {src:'./res/carne-conducir/'+preg.img})
+				] })
+		}
+
 	return creaObjProp('table',{hijos:[
 				creaObjProp('tr', {hijos:[
 					creaObjProp('td', {className:'clave', onclick:function(){self.toggleEstrella(this)}, i:(resp.estrella?'fa-star':'fa fa-star-o')}),
-					creaObjProp('td', {className:'valor', texto:(preg.i+1)+'-'+preg.pregunta})
-					]}) 
+					creaObjProp('td', {className:'valor', hijos:[
+						creaObjProp('span', {className:'texto pre', texto:(preg.i+1)+'-'+preg.pregunta}),
+						t
+						]}),
+					]})
 				]})
 	}
 VistaTest.prototype.generaDomRespuestas=function(preg, resp){
@@ -775,9 +810,16 @@ VistaTest.prototype.generaDomRespuestas=function(preg, resp){
 		var opcion=preg.respuestas[i]
 		if (opcion.texto==null || opcion.texto=='') 
 			continue
+
+		var hijos=[creaT(opcion.texto)]
+		// if (opcion.img){
+		// 	hijos.push( creaObjProp('div', {className:'recurso resp', 'style.backgroundImage':'url(./res/carne-conducir/'+opcion.img+')'}) )
+		// 	hijos.push( creaObjProp('div', {className:'recurso textoayuda', texto:opcion.texto_recurso}) )
+		// }
+
 		xr.push( creaObjProp('tr', {onclick:function(){self.marcaResp(this)}, hijos:[
 			creaObjProp('td', {className:'clave '+ estilos[i], texto:letras.substr(i,1) }),
-			creaObjProp('td', {className:'valor', texto:opcion.texto }),
+			creaObjProp('td', {className:'valor', hijos:hijos }),
 			]}))
 		}
 	if (resp.respuestaUsuario!=null){
@@ -1756,7 +1798,7 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 
 		if (this.esperandoCredenciales<5){
 			console.info('hay que esperar a las credenciales')
-			setTimeout(function(){self.leeTestTienda(fnCallBack)}, 800)
+			setTimeout(function(){self.leeTestTienda(fnCallBack)}, 500*this.esperandoCredenciales)
 			return
 			}
 		else{
@@ -2083,6 +2125,419 @@ VistaTienda.prototype.testData=function(){
 			{cd_test:601, ds_test:'Test TIC 11', 		liscat:'3'},
 			{cd_test:701, ds_test:'Test TIC 12', 		liscat:'3'},
 		]
+	}
+////////////////////////////////////////////////
+function VistaSocial(desdeHistorial){
+	this.id='vistaSocial'
+	app.muestraNodoEnNavDrawer('liVistaSocial')
+
+	this.txtEnviarMensaje=null
+	this.domMenu=jQuery('.barra.vista .btn-menu')
+	this.domChatGrupo=null
+	this.domEditarGrupo=null
+
+	if (!desdeHistorial) 
+		app.pushState(this.id)
+	}
+VistaSocial.prototype=new Vista
+VistaSocial.prototype.getHeader=function(){
+	return null //creaObjProp('header', {className:'vista-header', 'style.display':'none'})
+	}
+VistaSocial.prototype.getBody=function(){
+	var self=this
+	this.txtEnviarMensaje=jQuery( creaObjProp('input', {type:'text', className:'form-control input-sm', placeholder:'Teclea aquí'}) )
+	this.domChatGrupo=jQuery( creaObjProp('div', {className:'vista-detalle-grupo', 'style.display':'none', hijos:[
+		creaObjProp('div', {className:'chat flowable'}),
+		creaObjProp('footer', {className:'', hijos:[
+			creaObjProp('div', {className:'input-group', hijos:[
+				this.txtEnviarMensaje[0],
+				creaObjProp('span', {className:'input-group-addon input-sm', i:'fa-comment-o', onclick:function(){self.enviaMsg()}}),
+				]})
+			]}),
+		]}) )
+
+	this.domEditarGrupo=jQuery( creaObjProp('div', {className:'vista-editar-grupo flowable container', 'style.display':'none', hijos:[
+		creaObjProp('div', {className:'row nombre', onclick:function(){self.btnCambiaNombreGrupo()}, hijos:[
+			creaObjProp('small', {className:'bl', texto:'Nombre del grupo'}),
+			creaObjProp('span',  {className:'col-xs-11 txtNombreGrupo', texto:'Nombre del grupo'}),
+			creaObjProp('i', {className:'col-xs-1 pull-right btnNombreGrupo fa fa-pencil'}),
+			]}),
+		creaObjProp('div', {className:'row', hijos:[
+			creaObjProp('small', {className:'bl', texto:'Miembros'}),
+			]}),
+		creaObjProp('div', {className:'row miembros', hijos:[
+			creaObjProp('button', {className:'bl member btnMemberAdd', onclick:function(){self.btnAnhadirMiembro()}, hijos:[
+				creaT('Añadir nuevo miembro'),
+				creaObjProp('i', {className:'fa fa-plus-circle pull-right'})
+				]})
+			]}),
+		
+		]})
+	)
+
+	this.domGrupos=jQuery(creaObjProp('div', {className:'bl grupos', hijos:[]}))
+	return [
+		creaObjProp('div', {className:'vista-body flowable', hijos:[
+			creaObjProp('div', {className:'bl row head', hijos:[
+				creaObjProp('span', {className:'thumb-sm avatar pull-left', hijos:[
+					creaObjProp('img', {src:app.cache.usuario.picture})
+					]}),
+				creaObjProp('div', {className:'resultados', hijos:[
+					creaObjProp('div', {className:'col-xs-4', hijos:[
+												creaObjProp('span', {className:'small', texto:'Grupos'}), 
+												creaObjProp('span', {className:'bold', texto:3 }) 
+												]}),
+					creaObjProp('div', {className:'col-xs-4', hijos:[
+												creaObjProp('span', {className:'small', texto:'Medallas'}), 
+												creaObjProp('span', {className:'bold', texto:13 }) 
+												]}),
+					creaObjProp('div', {className:'col-xs-4', hijos:[
+												creaObjProp('span', {className:'small', texto:'Tests'}), 
+												creaObjProp('span', {className:'bold', texto:5 }) 
+												]}),
+					]}),
+
+				]}),
+			this.domGrupos[0]
+			]}),
+		this.domChatGrupo[0],
+		this.domEditarGrupo[0],
+		]
+	}
+VistaSocial.prototype.resize=function(){
+	jQuery('#content').height( jQuery(document).innerHeight()- jQuery('#navigation_bar').innerHeight() )
+
+	var x=50
+	this.hVista=jQuery('#content').height()
+	this.domBody.height( this.hVista ) //-this.domHeader.outerHeight())
+	
+	this.domChatGrupo.height(this.hVista )
+	var y=40
+	this.domChatGrupo.find('.chat').height(this.hVista-y)
+	}
+VistaSocial.prototype.backButton=function(){
+	if (this.grupo && this.grupo.esNuevo && this.domEditarGrupo.is(':visible')){
+		this.cerrarGrupo()
+		}
+	else if (this.domEditarGrupo.is(':visible')){
+		this.cerrarEditaGrupo()
+		}
+	else if (this.domChatGrupo.is(':visible')){
+		this.cerrarGrupo()
+		}
+	}
+VistaSocial.prototype.tareasPostCarga=function(){
+	this.getData()
+	}
+VistaSocial.prototype.getData=function(){
+	var self=this
+	jQuery.get(app.config.url, {accion:'getMisGrupos'}).success(
+			function(data){
+				var datos=xeval(data)
+				self.grupos=datos.grupos
+				self.rellenaGrupos(datos)
+				}
+			)
+
+	var datos=[
+		{	cd_grupo:150, 
+			ds_grupo:'Academia', 
+			img:'http://aboutfoursquare.ru/wp-content/uploads/2013/03/Joggernaut.png',
+			miembros:[
+				{cd_usuario:'rotoxl@gmail.com', given_name:'Ernesto', family_name:'Molina Carrón', picture:'', admin:true}, 
+				{cd_usuario:'palomagarcianavarro@gmail.com', given_name:'Paloma',}, 
+				{cd_usuario:'dani@gmail.com', given_name:'Daniela',}, 
+				{cd_usuario:'alex@gmail.com', given_name:'Alejandro',}, 
+				],
+			msg:[{from:'palomagarcianavarro@gmail.com',
+					msg:'Chicos, tenéis que hacer este test. Lo he creado yo con los apuntes de clase. Chicos, tenéis que hacer este test. Lo he creado yo con los apuntes de clase. Chicos, tenéis que hacer este test. Lo he creado yo con los apuntes de clase', 
+					test:119,
+					url:null,
+					badge:null,
+					f:new Date()-3600000},
+				{from:'palomagarcianavarro@gmail.com',
+					test:120,
+					f:new Date()-1720000},
+				{from:'dani@gmail.com',
+					msg:'Daniela ha alcanzado el nivel 12',
+					badge:'./images/logo.png'},
+				{from:'rotoxl@gmail.com',
+					msg:'Wow', f:new Date()-20000},
+				]
+			}, 
+		{	cd_grupo:200, 
+			ds_grupo:'Colegas', 
+			img:'http://www.badgeunlock.com/wp-content/uploads/2011/08/GOVKG23YMBWECX1F.png',
+			miembros:[
+				{cd_usuario:'rotoxl@gmail.com', given_name:'Ernesto', family_name:'Molina Carrón', picture:''}, 
+				{cd_usuario:'xxx@gmail.com', 	given_name:'Kiri', 	  family_name:'García García', admin:true}, 
+				{cd_usuario:'javivi@gmail.com', given_name:'Javivi',}, 
+				],
+			msg:[
+				{from:'xxx@gmail.com', msg:"C'mon kids"},
+				{from:'javivi@gmail.com', msg:'The magic clap'},
+				]
+			}, 
+		]
+
+	this.grupos=datos
+	this.pintaGrupos()
+	}
+VistaSocial.prototype.pintaGrupos=function(){
+	var self=this
+	this.domGrupos.empty()
+	for (var i=0; i<this.grupos.length; i++){
+		var g=this.grupos[i]
+
+		var hijos=[]
+		for (var j=0; j<g.miembros.length; j++){
+			var m=g.miembros[j]
+
+			if (m.cd_usuario==app.cache.usuario.cd_usuario)
+				continue
+			else if (hijos.length<3){
+				if (j>0 && j==g.miembros.length-1)
+					hijos.push( creaObjProp('span', {className:'persona sep', texto:' y '}))
+				else if (hijos.length) 
+					hijos.push(creaObjProp('span', {className:'persona sep', texto:', '}) )
+
+				hijos.push(
+					creaObjProp('span', {className:'persona', hijos:[
+						creaObjProp('img', {className:'thumb-sm pic avatar pull-left', src:m.picture || './images/avatar_default.png',}),
+						creaObjProp('span', {className:'nombre', texto:m.given_name}),
+						]})
+					)
+				}
+			else {
+				hijos.push(creaObjProp('span', {className:'persona sep', texto:' y '+(g.miembros.length-j)+'+' }) )
+				break
+				}
+			}
+		this.domGrupos.append(
+			creaObjProp('div', {onclick:function(){ self.verGrupo(jQuery(this).closest('.grupo').data('id') )}, className:'bl grupo row', 'data-id':g.cd_grupo, hijos:[
+				creaObjProp('img', {className:'pull-left avatar grupo-img col-xs-3', src:g.img}),
+				creaObjProp('h5',  {className:'grupo-title pull-right col-xs-9', texto:g.ds_grupo}),
+				creaObjProp('span',{className:'grupo-personas pull-right col-xs-9', hijos:hijos}),
+
+				]})
+			)
+		}
+
+	this.domGrupos.append(
+		creaObjProp('div', {onclick:function(){self.crearGrupo()}, className:'bl grupo row', 'data-id':g.cd_grupo, hijos:[
+			creaObjProp('i', {className:'pull-left grupo-img col-xs-3 fa fa-plus-circle'}),
+			creaObjProp('h5',  {className:'grupo-title pull-right col-xs-9', texto:'Crear nuevo grupo'}),
+
+			]})
+		)
+	}
+//////////
+VistaSocial.prototype.verGrupo=function(gid){
+	var grupo=buscaFilas(this.grupos, {cd_grupo:gid})[0]
+	this.grupo=grupo
+	
+	this.domChatGrupo.show()
+	this.domEditarGrupo.hide()
+	this.domHeader.show()
+	this.domBody.hide()
+
+	this.cambiaHeaderApp(grupo.ds_grupo)
+	this.cargarMsgGrupo()
+	this.inflateMenuGrupo()
+	}
+VistaSocial.prototype.cambiaGrupo=function(gid){
+	var grupo=buscaFilas(this.grupos, {cd_grupo:gid})[0]
+	this.grupo=grupo
+
+	this.cambiaHeaderApp(grupo.ds_grupo)
+	this.cargarMsgGrupo()
+	}
+VistaSocial.prototype.cerrarGrupo=function(){
+	this.restauraHeaderApp()
+
+	this.domChatGrupo.hide()
+	this.domEditarGrupo.hide()
+	this.domHeader.hide()
+	this.domBody.show()
+
+	this.domMenu.hide()
+	}
+VistaSocial.prototype.cargarMsgGrupo=function(){
+	this.domChatGrupo.find('.chat').empty()
+	for (var i=0; i<this.grupo.msg.length; i++){
+		var xmsg=this.grupo.msg[i]
+		this.domChatGrupo.find('.chat').append( this.carga1MsgGrupo(xmsg) )
+		}
+	this.scrollChat()
+	}
+VistaSocial.prototype.inflateMenuGrupo=function(){
+	var self=this
+	this.domMenu.show()
+	var xul=this.domMenu.find('ul')
+	if (xul.find('li').length==0){
+		xul.append(creaObjProp('li', {hijos:[
+			creaObjProp('a', {texto:'Información sobre el grupo', onclick:function(){self.abrirEditaGrupo()} } )
+			]}))
+		}
+	}
+VistaSocial.prototype.scrollChat=function(){
+	var bocadillo=this.domChatGrupo.find('.chat')
+	this.domChatGrupo.find('.chat').animate({ scrollTop:bocadillo[0].scrollHeight }, 600)
+	}
+VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
+	var yo=app.cache.usuario.cd_usuario
+
+	var cls=(xmsg.from==yo?'msg-mio':'')+
+			(xmsg.badge?'has-badge':'')+
+			(xmsg.test?'has-test':'')
+	
+	var f=formato.fechaUHora(xmsg.f)
+	var usu=buscaFilas(this.grupo.miembros, {cd_usuario:xmsg.from})[0]
+	var hijos=[
+		creaObjProp('img', {className:'thumb-xs pull-left m-r-sm img-circle', src:usu.picture || './images/avatar_default.png'}),
+		creaObjProp('small', {className:'pull-right text-muted', texto:f}),
+		creaObjProp('div', {className:'row texto', hijos:[
+			creaObjProp('span', {className:'nombre', texto:usu.nombre}),
+			creaObjProp('span', {texto:xmsg.msg || espacioDuro})
+			]}),
+		]
+	if (xmsg.test)
+		hijos.push( creaObjProp('div', {className:'row has-test pull-right', texto:'Test adjunto', i:'fa fa-paperclip pull-right'}) )
+	//else  if (xmsg.badge)
+	// 	hijos.push(creaObjProp('div', {className:'row has-badge pull-left '+xmsg.badge}) )
+	
+	return creaObjProp('div', {className:'bocadillo '+cls, hijos:hijos})
+	}
+VistaSocial.prototype.enviaMsg=function(){
+	var t=this.txtEnviarMensaje.val()
+	var xmsg={from:app.cache.usuario.cd_usuario, msg:t, f:new Date()}
+	this.domChatGrupo.find('.chat').append( this.carga1MsgGrupo(xmsg) )
+	this.txtEnviarMensaje.val('')
+
+	this.scrollChat()
+
+	// jQuery.post(app.config.url,{accion:'enviaMsgGrupo',
+	// 							grupo:this.grupo.cd_grupo, 
+	// 							msg:JSON.encode(xmsg),
+	// 						}).success(
+	// 		function(data){
+	// 			var datos=xeval(data)
+	// 		}
+	// 	)
+	}
+//////////
+VistaSocial.prototype.crearGrupo=function(){
+	this.grupo={
+		cd_grupo:150, 
+		ds_grupo:'Sin nombre', 
+		img:'',
+		miembros:[app.cache.usuario],
+		msg:[],
+		esNuevo:true
+		}
+	this.abrirEditaGrupo()
+	}
+VistaSocial.prototype.abrirEditaGrupo=function(){
+	var self=this
+	
+	this.domBody.hide()
+	this.domChatGrupo.hide()
+	this.domEditarGrupo.show()
+
+	this.domHeader.show()
+	this.domMenu.hide()
+
+	this.cambiaHeaderApp('Información sobre el grupo')
+	var btnMemberAdd=this.domEditarGrupo.find('.btnMemberAdd')
+
+	this.domEditarGrupo.find('.miembros button:not(.btnMemberAdd)').remove()
+	for (var i=0; i<this.grupo.miembros.length; i++){
+		var m=this.grupo.miembros[i]
+		var d=creaObjProp('button', {'data-id':m.cd_usuario, onclick:function(){self.btnQuitarMiembro(this)}, className:'bl member', i:'fa-minus-circle pull-right', texto:m.given_name })
+		jQuery(d).insertBefore(btnMemberAdd)
+		}
+
+	this.domEditarGrupo.find('.txtNombreGrupo').text(this.grupo.ds_grupo)
+
+	this.domEditarGrupo.show()
+	}
+VistaSocial.prototype.cerrarEditaGrupo=function(){
+	var self=this
+
+	this.domBody.hide()
+	this.domChatGrupo.show()
+	this.domEditarGrupo.hide()
+
+	this.domHeader.show()
+	this.domMenu.show()
+
+	if (this.grupo.esModif || this.grupo.esNuevo){
+		var m=[]
+		for (var i=0; i<this.grupo.miembros.length; i++){
+			m.push( this.grupo.miembros[i].cd_usuario )
+			}
+		jQuery.post(app.config.url, {accion:'guardarGrupo', 
+									cd_grupo:this.grupo.cd_grupo,
+									ds_grupo:this.grupo.ds_grupo,
+									miembros:m,
+									esNuevo:this.grupo.esNuevo,
+									esModif:this.grupo.esModif,
+									}).success(
+			function(data){
+				self.grupos.datos.grupos
+				self.pintaGrupos()
+				})
+		}
+	}
+VistaSocial.prototype.btnCambiaNombreGrupo=function(){
+	var self=this
+	navigator.notification.prompt(
+	    'Nombre del grupo',
+	    function( result ) { //result.buttonIndex y result.input1
+	        switch ( result.buttonIndex ) {
+	            case 1:
+					self.grupo.esModif=true
+					self.grupo.ds_grupo=result.input1
+					self.domEditarGrupo.find('.txtNombreGrupo').text(result.input1)
+	                break;
+	            case 2:
+	                break;
+	        }
+	    },
+	    'Información sobre el grupo',     // a title
+	    [ "Aceptar", "Cancelar" ], // text of the buttons
+	    this.grupo.ds_grupo
+		)
+	}
+VistaSocial.prototype.btnAnhadirMiembro=function(d){
+	var self=this
+	navigator.contacts.pickContact(function(contact){
+		if (contact.emails==null){
+			navigator.notification.alert('No se pueden añadir contactos que no tengan correo electrónico', null, 'Información sobre el grupo')
+			return
+			}
+		var nm={
+			cd_usuario:contact.emails[0],
+			nombre:contact.nickname || contact.displayName,
+			picture:contact.photos[0].value
+			}
+		self.grupo.miembros.push(nm)
+
+		var d=creaObjProp('button', {'data-id':nm.cd_usuario, onclick:function(){self.btnQuitarMiembro(this)}, className:'bl member', i:'fa-minus-circle pull-right', texto:nm.nombre })
+		jQuery(d).insertBefore('.btnMemberAdd')
+
+		self.grupo.esModif=true
+		})
+	}
+VistaSocial.prototype.btnQuitarMiembro=function(d){
+	var cd_usuario=jQuery(d).data('id')
+	var idxBorrar=getIndiceFila(this.grupo.miembros, {cd_usuario:cd_usuario})
+	if (idxBorrar>-1){
+		this.grupo.miembros.splice(idxBorrar, 1)
+
+		jQuery('.member[data-id="'+cd_usuario+'"]').remove()
+		this._hayQueGuardarGrupo=true
+		}
 	}
 ////////////////////////////////////////////////
 Controlador.prototype.cargaVistaMigraTest=function(desdeHistorial){
