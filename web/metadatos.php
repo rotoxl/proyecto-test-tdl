@@ -86,7 +86,12 @@ class Metadatos{
 			}
 		}
 	//////
-	public function numerador($tabla, $col, $arr=null, $paratran=false){ // Uso: numerador ('centroscoste', array('id_empresa'=>1 ))
+	private function sendPush($arrDispositivos, $datos){}
+	public function sendPushGrupo($cd_grupo, $datos){}
+	public function sendPushUsuario($cd_usuario, $datos){}
+	private function getArrDispositivos(){}
+	//////
+	public function numerador($tabla, $col, $arr=null, $paratran=false){ // Uso: numerador ('centroscoste', 'colNumerador', array('id_empresa'=>1 ))
 		$params=array();
 		$sql='select max('. $col .') from ' . $tabla;
 		if (!is_null($arr)){
@@ -368,8 +373,71 @@ class Metadatos{
 		}
 	//////
 	public function getMisGrupos($cd_usuario){
-		$sql="";
+		$sql='select g.cd_grupo, g.ds_grupo, g.picture, g.admin from grupos g
+				where exists (select cd_usuario from usuarios_grupos ug
+							where g.cd_grupo=ug.cd_grupo and cd_usuario=?)';
+		return $this->conn->lookupFilas($sql, array($cd_usuario));
 		}
-	
+	public function getMiembrosGrupo($cd_grupo){
+		$sql='select cd_usuario, nombre as given_name, apellidos as family_name, picture from usuarios where cd_usuario in (select cd_usuario from usuarios_grupos where cd_grupo=?)';
+		return $this->conn->lookupFilas($sql, array($cd_grupo));
+		}
+	public function getMsgGrupo($cd_grupo){
+		$sql='select cd_usuario as "from", texto as msg, cd_test as test, badge, f_msg as f from usuarios_grupos_mensajes where cd_grupo=? order by cd_mensaje';
+		return $this->conn->lookupFilas($sql, array($cd_grupo));
+		}
+	public function nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg){
+		$sql="insert into usuarios_grupos_mensajes (cd_usuario, cd_grupo, cd_mensaje, texto, cd_test, badge) values (?, ?, ?, ?, ?, ?)";
+
+		$idx=$this->numerador('usuarios_grupos_mensajes', 'cd_mensaje', array('cd_usuario'=>$cd_usuario, 'cd_grupo'=>$cd_grupo));
+		$this->conn->ejecuta($sql, array($cd_usuario, $cd_grupo, $idx, $msg, null, null));
+		}
+	public function guardarGrupo($datos, $cd_usuario){
+		$arrSql=array(); $ususQueNoExisten=null;
+
+		if ($datos['esBorrado']==1){
+			$par=array($datos['cd_grupo']);
+			$arrSql=array(
+				new Sql("delete from usuarios_grupos where cd_grupo=?", $par),
+				new Sql("delete from usuarios_grupos_mensajes where cd_grupo=?", $par),
+				new Sql("delete from grupos where cd_grupo=?", $par)
+				);
+			}
+		else {
+			if ($datos['esNuevo']==1){
+				$sql="insert into grupos (cd_grupo, ds_grupo, picture, admin) values (?, ?, ?, ?)";
+				$idx=$this->numerador('grupos', 'cd_grupo');
+				$datos['cd_grupo']=$idx;
+
+				$arr=array($idx, $datos['ds_grupo'], null, $cd_usuario);
+
+				array_push($arrSql, new Sql($sql, $arr));
+				}
+			else {
+				$sql="update grupos set ds_grupo=?, picture=? where cd_grupo=?";
+				$arr=array($datos['ds_grupo'], null, $datos['cd_grupo']);
+
+				array_push($arrSql, new Sql($sql, $arr));
+				}
+		
+			$ususQueNoExisten=array();
+			array_push($arrSql, new Sql( "delete from usuarios_grupos where cd_grupo=?", array($datos['cd_grupo']) ));
+			for ($i=0; $i<count($datos['miembros']); $i++ ){
+				$m=$datos['miembros'][$i];
+
+				$existe=$this->conn->lookupSimple("select cd_usuario from usuarios where cd_usuario=?", array($m));
+				if ($existe!=$m){
+					array_push($arrSql, new Sql( "insert into usuarios (cd_usuario) values (?)", array($m) ));
+					array_push($ususQueNoExisten, $m);
+					}
+				array_push($arrSql, new Sql( "insert into usuarios_grupos (cd_usuario, cd_grupo) values (?, ?)", array($m, $datos['cd_grupo']) ));
+				}
+			}
+		
+
+		$this->conn->ejecutaLote($arrSql);
+		return $ususQueNoExisten;
+		}
+
 }
 ?>

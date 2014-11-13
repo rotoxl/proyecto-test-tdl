@@ -1095,6 +1095,7 @@ section#main_container{
 		
 		.grupo{
 			border-top:1px solid rgba(173, 190, 206, .1);
+			min-height: 85px;
 			padding-bottom:10px;
 			> .avatar{
 				border:0;
@@ -1120,7 +1121,11 @@ section#main_container{
 					
 					.nombre{font-size:12px; float:left; margin-top:5px;margin-left:3px}
 
-					&.sep{margin-top:6px; margin-left:2px;}
+					&.sep{
+						margin-top: 5px;
+						margin-left: 3px;
+						margin-right: 2px;
+					}
 				}
 				
 			}
@@ -1179,11 +1184,34 @@ section#main_container{
 				&.btnMemberAdd{
 					color:#adbece;
 				}
+
+				&.member.admin:after {
+					content: "(Admin)";
+					float: right;
+					color: rgba(173, 190, 206, 0.6);
+				}
 			}
 			small.bl{
 				padding-bottom: 0px;
 				text-transform: uppercase;
 				border-top: 1px solid rgba(173, 190, 206, .3);
+			}
+
+
+		.btnDeleteGroup{
+			width: 90%;
+			margin-top: 3rem;
+			background: transparent;
+			border-color: white;
+			color: white;
+			margin-left: 5%;
+		}
+
+		i.btnNombreGrupo, button.member i, .btnMemberAdd, .btnDeleteGroup {display:none;}
+			&.admin{
+				i.btnNombreGrupo, button.member i, .btnMemberAdd, .btnDeleteGroup {
+					display: block;
+				}
 			}
 		}
 		.chat{
@@ -1239,6 +1267,9 @@ section#main_container{
 					}
 				}
 				
+				&.vacio{
+					text-align: center;
+				}
 			}	
 		}
 		footer{
@@ -1260,8 +1291,15 @@ section#main_container{
 				height:40px;
 			}
 		}
-		
 	}
+
+	&.vista.cargando{
+		min-height: 100%;
+		position: absolute;
+		background:$navigation_bar_bgcolor url("../images/throbber-white.gif") no-repeat center center;
+		background-size:50px;
+	}
+	
 }
 
 //Modales

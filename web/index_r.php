@@ -10,7 +10,6 @@ require_once('metadatos.php');
 try{
     @session_start();
     if ($accion=='login'){
-        // $usu=null;
         }
     else {
         $usu=new Usuario();//saca los datos de la sesión
@@ -28,14 +27,12 @@ catch (Exception $ee){
 
 $md=new Metadatos($conn, $usu);
 
-
 $ret=null;
 // $showSQL=true;
 try {
     switch ($accion) {
         case 'getPreviewCategorias':
-            $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_EMAIL);
-
+            $cd_usuario=$usu->cd_usuario;
             $categorias=$md->getListaCategorias($cd_usuario)->filas;
 
             $tests=array(); $arrCats=array();
@@ -51,17 +48,17 @@ try {
                        'tests' => $testsCat, 
                        'sql' => $md->__logSQL(),
                        );
-            echo(json_encode($ret));
+            echo json_encode($ret);
             break;
         case 'getPreviewTest':
-            $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_STRING);
+            $cd_usuario=$usu->cd_usuario;
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
            
             $ret=array('retorno' => 1, 
                         'test' => $md->getPreviewTest($cd_usuario, $cd_test), 
                         'sql' => $md->__logSQL(),
                        );
-            echo(json_encode($ret));
+            echo json_encode($ret);
             break;
         case 'getTest':
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
@@ -70,21 +67,21 @@ try {
                        'test' => $md->getTest($cd_test),
                        'sql' => $md->__logSQL(),
                        );
-            echo(json_encode($ret));
+            echo json_encode($ret);
             break;
         case 'creaBorradorTest':
-            $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_STRING);
+            $cd_usuario=$usu->cd_usuario;
             $datos=json_decode( filter_input($REQ, 'datos', FILTER_UNSAFE_RAW) );
             $cd_test=$md->creaBorradorTest($datos, $cd_usuario);
 
             $ret=array('retorno' => 1, 
                         'cd_test'=>$cd_test,
                         'sql' => $md->__logSQL(),);
-            echo(json_encode($ret));
+            echo json_encode($ret);
             break;
         case 'like+':
         case 'like-':
-            $cd_usuario=filter_input($REQ, 'cd_usuario', FILTER_SANITIZE_STRING);
+            $cd_usuario=$usu->cd_usuario;
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
 
             $md->toggleLike($accion, $cd_usuario, $cd_test);
@@ -95,10 +92,65 @@ try {
             break;
         //--------------------------------------------------------
         case 'getMisGrupos':
-            
+            $cd_usuario=$usu->cd_usuario;
             $ret=array('retorno' => 1, 
+                    'grupos'=>fnGetMisGrupos($cd_usuario),
                     'sql' => $md->__logSQL(),);
-            echo(json_encode($ret));
+
+            echo json_encode($ret);
+            break;
+        case 'nuevoMsgGrupo':
+            $cd_usuario=$usu->cd_usuario;
+            $cd_grupo=filter_input($REQ, 'cd_grupo', FILTER_VALIDATE_INT);
+            $msg=filter_input($REQ, 'msg', FILTER_SANITIZE_STRING);
+
+            $md->nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg);
+
+            $datos=array('vista'=>'vistaSocial', 'accion'=>'nuevomsg', 
+                        'cd_grupo'=>$cd_grupo, 'from'=>$cd_usuario, 'msg'=>$msg, 'f'=>date('d/m/Y H:i:s'));
+            $md->sendPushGrupo($cd_grupo, $datos);
+
+            $ret=array('retorno'=>1, 
+                        'sql' => $conn->arrResultSet,
+                        );
+            echo json_encode($ret);
+            break;
+        case 'guardarGrupo':
+            $cd_usuario=$usu->cd_usuario;
+
+            $cd_grupo=filter_input($REQ, 'cd_grupo',  FILTER_VALIDATE_INT);
+            $ds_grupo=filter_input($REQ, 'ds_grupo',  FILTER_SANITIZE_STRING);
+            
+            $esModif=filter_input($REQ, 'esModif',    FILTER_VALIDATE_INT);
+            
+            if (isset($_POST['esNuevo']))
+                $esNuevo=filter_input($REQ, 'esNuevo',FILTER_VALIDATE_INT);
+            else 
+                $esNuevo=0;
+
+            if (isset($_POST['esBorrado']))
+                $esBorrado=filter_input($REQ, 'esBorrado',FILTER_VALIDATE_INT);
+            else 
+                $esBorrado=0;
+
+            $miembros=filter_input($REQ, 'miembros', FILTER_UNSAFE_RAW);
+
+            $bundle=array(
+                'cd_grupo'=>$cd_grupo,
+                'ds_grupo'=>$ds_grupo,
+                'esNuevo'=>$esNuevo,
+                'esModif'=>$esModif,
+                'esBorrado'=>$esBorrado,
+                'miembros'=>json_decode($miembros),
+                );
+
+            $ususQueNoExisten=$md->guardarGrupo($bundle, $cd_usuario);
+            $ret=array('retorno'=>1, 
+                        'grupos'=>fnGetMisGrupos($cd_usuario),
+                        'usuariosQueNoExisten'=>$ususQueNoExisten,
+                        'sql'=>$conn->arrResultSet,
+                        );
+            echo json_encode($ret);
             break;
         //--------------------------------------------------------
         case 'login':
@@ -116,7 +168,7 @@ try {
                         'esUsuarioNuevo'=>$esUsuarioNuevo,
                         'sql' => $md->__logSQL(), 
                         );
-            echo(json_encode($ret));
+            echo json_encode($ret);
             break;
         case 'logout':
             $conn->logInfo('Logout', 'LOGIN');
@@ -126,7 +178,7 @@ try {
                 'sesionDestruida'=>1,
                 'sql' => $md->__logSQL(),
                 );
-            echo(json_encode($ret) ); 
+            echo json_encode($ret);
             break;
         default:
             trigger_error('¡Accion '. $accion . ' no implementada!');
@@ -134,7 +186,24 @@ try {
     
     }
 catch (Exception $ee){
-    echo json_encode(array('retorno'=>0, 'error'=>1, 'msgError'=>$ee->getMessage()));
+    $ret=array('retorno'=>0, 
+                'error'=>1, 
+                'msgError'=>$ee->getMessage(),
+                'sql' => $conn->arrResultSet,
+                );
+    echo json_encode(array($ret));
     }
-    
+
+function fnGetMisGrupos($cd_usuario){
+    global $md;
+    $gru=$md->getMisGrupos($cd_usuario);
+    $arrIDs=array();
+    for ($i=0; $i<count($gru->filas); $i++){
+        $cd_grupo=$gru->filas[$i]['cd_grupo'];
+
+        $gru->filas[$i]['miembros']=$md->getMiembrosGrupo($cd_grupo)->filas;
+        $gru->filas[$i]['msg']=$md->getMsgGrupo($cd_grupo)->filas;
+        }
+    return $gru->filas;
+    }
 ?>
