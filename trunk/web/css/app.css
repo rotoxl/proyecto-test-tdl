@@ -806,6 +806,7 @@ section#main_container {
         border-color: rgba(255, 255, 255, 0.1); }
     #content.vista.vistaSocial .grupo {
       border-top: 1px solid rgba(173, 190, 206, 0.1);
+      min-height: 85px;
       padding-bottom: 10px; }
       #content.vista.vistaSocial .grupo > .avatar {
         border: 0;
@@ -836,8 +837,9 @@ section#main_container {
             margin-top: 5px;
             margin-left: 3px; }
           #content.vista.vistaSocial .grupo span.grupo-personas .persona.sep {
-            margin-top: 6px;
-            margin-left: 2px; }
+            margin-top: 5px;
+            margin-left: 3px;
+            margin-right: 2px; }
       #content.vista.vistaSocial .grupo i {
         font-size: 26px;
         padding-right: 0px;
@@ -882,10 +884,25 @@ section#main_container {
         color: inherit; }
       #content.vista.vistaSocial .vista-editar-grupo .member.btnMemberAdd {
         color: #adbece; }
+      #content.vista.vistaSocial .vista-editar-grupo .member.member.admin:after {
+        content: "(Admin)";
+        float: right;
+        color: rgba(173, 190, 206, 0.6); }
     #content.vista.vistaSocial .vista-editar-grupo small.bl {
       padding-bottom: 0px;
       text-transform: uppercase;
       border-top: 1px solid rgba(173, 190, 206, 0.3); }
+    #content.vista.vistaSocial .vista-editar-grupo .btnDeleteGroup {
+      width: 90%;
+      margin-top: 3rem;
+      background: transparent;
+      border-color: white;
+      color: white;
+      margin-left: 5%; }
+    #content.vista.vistaSocial .vista-editar-grupo i.btnNombreGrupo, #content.vista.vistaSocial .vista-editar-grupo button.member i, #content.vista.vistaSocial .vista-editar-grupo .btnMemberAdd, #content.vista.vistaSocial .vista-editar-grupo .btnDeleteGroup {
+      display: none; }
+    #content.vista.vistaSocial .vista-editar-grupo.admin i.btnNombreGrupo, #content.vista.vistaSocial .vista-editar-grupo.admin button.member i, #content.vista.vistaSocial .vista-editar-grupo.admin .btnMemberAdd, #content.vista.vistaSocial .vista-editar-grupo.admin .btnDeleteGroup {
+      display: block; }
     #content.vista.vistaSocial .chat {
       overflow: auto;
       position: relative;
@@ -934,6 +951,8 @@ section#main_container {
           #content.vista.vistaSocial .chat .bocadillo .row.has-badge i, #content.vista.vistaSocial .chat .bocadillo .row.has-test i {
             margin-top: 2px;
             font-size: 120%; }
+        #content.vista.vistaSocial .chat .bocadillo.vacio {
+          text-align: center; }
     #content.vista.vistaSocial footer {
       height: 50px;
       background-color: #25313e;
@@ -950,6 +969,11 @@ section#main_container {
         border-top: 1px solid;
         font-size: 16px;
         height: 40px; }
+  #content.vista.cargando {
+    min-height: 100%;
+    position: absolute;
+    background: #25313e url("../images/throbber-white.gif") no-repeat center center;
+    background-size: 50px; }
 
 .modal-backdrop {
   background-color: #2e3e4e; }

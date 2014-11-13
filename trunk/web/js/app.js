@@ -451,6 +451,21 @@ Controlador.prototype.logout=function(){
 	document.location='index.html'
 	}
 /////
+Controlador.prototype.pushReceived=function(datos){
+	if (app.cache.usuario==null){
+		}
+	// else if (datos.vista=='vistaTienda'){
+	// 	}
+	// else if (datos.vista=='vistaTest'){
+	// 	}
+	else if (datos.vista=='vistaSocial'){
+		if (datos.accion=='nuevomsg'){
+			}
+		else if (datos.accion=='invitaciongrupo'){
+			}
+		}
+	}
+/////
 Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
 	var arbol=jQuery('.aside-md .nav-primary')
 	arbol.find('li.active').removeClass('.active')
@@ -488,7 +503,7 @@ Controlador.prototype.cargaVistaInicio=function(){
 		this.esperandoCredenciales++
 
 		if (this.esperandoCredenciales<5){
-			console.info('hay que esperar a las credenciales')
+			console.info('hay que esperar a las credenciales: inicio')
 			setTimeout(function(){self.cargaVistaInicio()}, 500*this.esperandoCredenciales)
 			return
 			}
@@ -571,6 +586,7 @@ Vista.prototype.toDOM=function(){
 		.append(tb)
 		.removeClass( Object.keys(this.tipos).join(' '))
 		.addClass('vista '+this.id)
+		.removeClass('cargando')
 
 	this.dom=xd
 	this.resize()
@@ -1797,7 +1813,7 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 		this.esperandoCredenciales++
 
 		if (this.esperandoCredenciales<5){
-			console.info('hay que esperar a las credenciales')
+			console.info('hay que esperar a las credenciales: tienda')
 			setTimeout(function(){self.leeTestTienda(fnCallBack)}, 500*this.esperandoCredenciales)
 			return
 			}
@@ -1808,7 +1824,7 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 				)
 			}
 		}
-	jQuery.post(app.config.url, {accion:'getPreviewCategorias', cd_usuario:app.cache.usuario.cd_usuario}).success(
+	jQuery.post(app.config.url, {accion:'getPreviewCategorias'}).success(
 		function(data){
 			var datos=xeval(data)
 			if (datos.retorno==1){
@@ -1851,7 +1867,7 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 		}
 	else {
 		var self=this
-		jQuery.get(app.config.url, {accion:'getPreviewTest', cd_usuario:app.cache.usuario.cd_usuario, cd_test:cd_test}).success(
+		jQuery.get(app.config.url, {accion:'getPreviewTest', cd_test:cd_test}).success(
 			function(data){
 				var test=xeval(data).test
 				self._testPreview(test, null, false)
@@ -2059,7 +2075,7 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 	xbtn.text('Descargando...').addClass('cargando')
 
 	console.info('Iniciamos descarga test '+cd_test)
-	jQuery.post(app.config.url, {accion:'getTest', cd_test:cd_test, cd_usuario:app.cache.usuario.cd_usuario}).success(
+	jQuery.post(app.config.url, {accion:'getTest', cd_test:cd_test}).success(
 		function(data){
 			var datos=xeval(data)
 			if (datos.retorno==1){
@@ -2171,7 +2187,9 @@ VistaSocial.prototype.getBody=function(){
 				creaObjProp('i', {className:'fa fa-plus-circle pull-right'})
 				]})
 			]}),
-		
+		creaObjProp('div', {className:'row', hijos:[
+			creaObjProp('button', {className:'btn btnDeleteGroup btnDanger', texto:'Eliminar grupo', onclick:function(){self.btnDeleteGroup()}})
+			]})
 		]})
 	)
 
@@ -2185,15 +2203,15 @@ VistaSocial.prototype.getBody=function(){
 				creaObjProp('div', {className:'resultados', hijos:[
 					creaObjProp('div', {className:'col-xs-4', hijos:[
 												creaObjProp('span', {className:'small', texto:'Grupos'}), 
-												creaObjProp('span', {className:'bold', texto:3 }) 
+												creaObjProp('span', {className:'bold txtNumGrupos', texto:0 }) 
 												]}),
 					creaObjProp('div', {className:'col-xs-4', hijos:[
 												creaObjProp('span', {className:'small', texto:'Medallas'}), 
-												creaObjProp('span', {className:'bold', texto:13 }) 
+												creaObjProp('span', {className:'bold txtNumMedallas', texto:0 }) 
 												]}),
 					creaObjProp('div', {className:'col-xs-4', hijos:[
 												creaObjProp('span', {className:'small', texto:'Tests'}), 
-												creaObjProp('span', {className:'bold', texto:5 }) 
+												creaObjProp('span', {className:'bold txtNumTests', texto:0 }) 
 												]}),
 					]}),
 
@@ -2217,6 +2235,8 @@ VistaSocial.prototype.resize=function(){
 	}
 VistaSocial.prototype.backButton=function(){
 	if (this.grupo && this.grupo.esNuevo && this.domEditarGrupo.is(':visible')){
+		if (this.grupo.esModif)
+			this.guardarCambiosGrupo()
 		this.cerrarGrupo()
 		}
 	else if (this.domEditarGrupo.is(':visible')){
@@ -2235,11 +2255,12 @@ VistaSocial.prototype.getData=function(){
 			function(data){
 				var datos=xeval(data)
 				self.grupos=datos.grupos
-				self.rellenaGrupos(datos)
+				self.pintaGrupos(datos)
 				}
 			)
-
-	var datos=[
+	}
+VistaSocial.prototype.testData=function(){
+	return [
 		{	cd_grupo:150, 
 			ds_grupo:'Academia', 
 			img:'http://aboutfoursquare.ru/wp-content/uploads/2013/03/Joggernaut.png',
@@ -2279,13 +2300,13 @@ VistaSocial.prototype.getData=function(){
 				]
 			}, 
 		]
-
-	this.grupos=datos
-	this.pintaGrupos()
 	}
 VistaSocial.prototype.pintaGrupos=function(){
 	var self=this
 	this.domGrupos.empty()
+
+	jQuery('.txtNumGrupos').text(this.grupos.length)
+	jQuery('.txtNumTests').text( get('tapp37_listaTest').length ) 
 	for (var i=0; i<this.grupos.length; i++){
 		var g=this.grupos[i]
 
@@ -2293,10 +2314,11 @@ VistaSocial.prototype.pintaGrupos=function(){
 		for (var j=0; j<g.miembros.length; j++){
 			var m=g.miembros[j]
 
-			if (m.cd_usuario==app.cache.usuario.cd_usuario)
-				continue
-			else if (hijos.length<3){
-				if (j>0 && j==g.miembros.length-1)
+			// if (m.cd_usuario==app.cache.usuario.cd_usuario)
+			// 	continue
+			// else 
+			if (hijos.length<3){
+				if (j>0 && hijos.length && j==g.miembros.length-1)
 					hijos.push( creaObjProp('span', {className:'persona sep', texto:' y '}))
 				else if (hijos.length) 
 					hijos.push(creaObjProp('span', {className:'persona sep', texto:', '}) )
@@ -2315,7 +2337,7 @@ VistaSocial.prototype.pintaGrupos=function(){
 			}
 		this.domGrupos.append(
 			creaObjProp('div', {onclick:function(){ self.verGrupo(jQuery(this).closest('.grupo').data('id') )}, className:'bl grupo row', 'data-id':g.cd_grupo, hijos:[
-				creaObjProp('img', {className:'pull-left avatar grupo-img col-xs-3', src:g.img}),
+				creaObjProp('img', {className:'pull-left avatar grupo-img col-xs-3', src:g.picture}),
 				creaObjProp('h5',  {className:'grupo-title pull-right col-xs-9', texto:g.ds_grupo}),
 				creaObjProp('span',{className:'grupo-personas pull-right col-xs-9', hijos:hijos}),
 
@@ -2363,12 +2385,16 @@ VistaSocial.prototype.cerrarGrupo=function(){
 	this.domMenu.hide()
 	}
 VistaSocial.prototype.cargarMsgGrupo=function(){
-	this.domChatGrupo.find('.chat').empty()
+	var xc=this.domChatGrupo.find('.chat').empty()
 	for (var i=0; i<this.grupo.msg.length; i++){
 		var xmsg=this.grupo.msg[i]
-		this.domChatGrupo.find('.chat').append( this.carga1MsgGrupo(xmsg) )
+		xc.append( this.carga1MsgGrupo(xmsg) )
 		}
 	this.scrollChat()
+
+	if (this.grupo.msg.length==0){
+		xc.append( creaObjProp('div', {className:'bocadillo vacio', texto:'Todavía no hay mensajes'} ) )
+		}
 	}
 VistaSocial.prototype.inflateMenuGrupo=function(){
 	var self=this
@@ -2387,6 +2413,7 @@ VistaSocial.prototype.scrollChat=function(){
 VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 	var yo=app.cache.usuario.cd_usuario
 
+	this.domChatGrupo.find('.chat .bocadillo.vacio').remove()
 	var cls=(xmsg.from==yo?'msg-mio':'')+
 			(xmsg.badge?'has-badge':'')+
 			(xmsg.test?'has-test':'')
@@ -2416,24 +2443,25 @@ VistaSocial.prototype.enviaMsg=function(){
 
 	this.scrollChat()
 
-	// jQuery.post(app.config.url,{accion:'enviaMsgGrupo',
-	// 							grupo:this.grupo.cd_grupo, 
-	// 							msg:JSON.encode(xmsg),
-	// 						}).success(
-	// 		function(data){
-	// 			var datos=xeval(data)
-	// 		}
-	// 	)
+	jQuery.post(app.config.url,{accion:'nuevoMsgGrupo',
+								cd_grupo:this.grupo.cd_grupo, 
+								msg:t,
+							}).success(
+			function(data){
+				var datos=xeval(data)
+			}
+		)
 	}
 //////////
 VistaSocial.prototype.crearGrupo=function(){
 	this.grupo={
-		cd_grupo:150, 
+		cd_grupo:null, 
 		ds_grupo:'Sin nombre', 
-		img:'',
+		picture:'',
 		miembros:[app.cache.usuario],
 		msg:[],
-		esNuevo:true
+		esNuevo:true,
+		admin:app.cache.usuario.cd_usuario,
 		}
 	this.abrirEditaGrupo()
 	}
@@ -2450,10 +2478,21 @@ VistaSocial.prototype.abrirEditaGrupo=function(){
 	this.cambiaHeaderApp('Información sobre el grupo')
 	var btnMemberAdd=this.domEditarGrupo.find('.btnMemberAdd')
 
+	if (app.cache.usuario.cd_usuario==this.grupo.admin)
+		this.domEditarGrupo.addClass('admin')
+	else
+		this.domEditarGrupo.removeClass('admin')
+
 	this.domEditarGrupo.find('.miembros button:not(.btnMemberAdd)').remove()
 	for (var i=0; i<this.grupo.miembros.length; i++){
 		var m=this.grupo.miembros[i]
-		var d=creaObjProp('button', {'data-id':m.cd_usuario, onclick:function(){self.btnQuitarMiembro(this)}, className:'bl member', i:'fa-minus-circle pull-right', texto:m.given_name })
+
+		var clsAdmin=''
+		if (m.cd_usuario==this.grupo.admin)
+			clsAdmin=' admin'
+
+		var d=creaObjProp('button', {'data-id':m.cd_usuario, onclick:function(){self.btnQuitarMiembro(this)}, 
+									className:'bl member'+clsAdmin, i:'fa-minus-circle pull-right', texto:m.given_name })
 		jQuery(d).insertBefore(btnMemberAdd)
 		}
 
@@ -2471,25 +2510,40 @@ VistaSocial.prototype.cerrarEditaGrupo=function(){
 	this.domHeader.show()
 	this.domMenu.show()
 
-	if (this.grupo.esModif || this.grupo.esNuevo){
+	this.guardarCambiosGrupo()
+	}
+VistaSocial.prototype.guardarCambiosGrupo=function(fnCallBack){
+	if (this.grupo.esModif){
 		var m=[]
 		for (var i=0; i<this.grupo.miembros.length; i++){
 			m.push( this.grupo.miembros[i].cd_usuario )
 			}
+		var self=this
 		jQuery.post(app.config.url, {accion:'guardarGrupo', 
 									cd_grupo:this.grupo.cd_grupo,
 									ds_grupo:this.grupo.ds_grupo,
-									miembros:m,
-									esNuevo:this.grupo.esNuevo,
-									esModif:this.grupo.esModif,
+									miembros:JSON.stringify(m),
+									esNuevo:this.grupo.esNuevo?1:0,
+									esModif:this.grupo.esModif?1:0,
+									esBorrado:this.grupo.esBorrado?1:0,
+									
 									}).success(
 			function(data){
-				self.grupos.datos.grupos
-				self.pintaGrupos()
+				var datos=xeval(data)
+				if (datos.retorno==1){
+					self.grupos=datos.grupos
+					self.pintaGrupos()
+
+					if (fnCallBack)
+						fnCallBack()
+					}
 				})
 		}
 	}
 VistaSocial.prototype.btnCambiaNombreGrupo=function(){
+	if (this.grupo.admin!=app.cache.usuario.cd_usuario)
+		return
+
 	var self=this
 	navigator.notification.prompt(
 	    'Nombre del grupo',
@@ -2510,6 +2564,9 @@ VistaSocial.prototype.btnCambiaNombreGrupo=function(){
 		)
 	}
 VistaSocial.prototype.btnAnhadirMiembro=function(d){
+	if (this.grupo.admin!=app.cache.usuario.cd_usuario)
+		return
+
 	var self=this
 	navigator.contacts.pickContact(function(contact){
 		if (contact.emails==null){
@@ -2517,7 +2574,7 @@ VistaSocial.prototype.btnAnhadirMiembro=function(d){
 			return
 			}
 		var nm={
-			cd_usuario:contact.emails[0],
+			cd_usuario:contact.emails[0].value,
 			nombre:contact.nickname || contact.displayName,
 			picture:contact.photos[0].value
 			}
@@ -2530,6 +2587,9 @@ VistaSocial.prototype.btnAnhadirMiembro=function(d){
 		})
 	}
 VistaSocial.prototype.btnQuitarMiembro=function(d){
+	if (this.grupo.admin!=app.cache.usuario.cd_usuario)
+		return
+
 	var cd_usuario=jQuery(d).data('id')
 	var idxBorrar=getIndiceFila(this.grupo.miembros, {cd_usuario:cd_usuario})
 	if (idxBorrar>-1){
@@ -2538,6 +2598,27 @@ VistaSocial.prototype.btnQuitarMiembro=function(d){
 		jQuery('.member[data-id="'+cd_usuario+'"]').remove()
 		this._hayQueGuardarGrupo=true
 		}
+	}
+VistaSocial.prototype.btnDeleteGroup=function(d){
+	if (this.grupo.admin!=app.cache.usuario.cd_usuario)
+		return
+
+	var self=this
+	navigator.notification.confirm(
+	    'Atención: esta acción no se puede deshacer. ¿Confirmas que deseas eliminar el grupo? Se perderá la conversación completa',
+	    function( buttonIndex ) { 
+	        switch ( buttonIndex ) {
+	            case 1:
+	            	self.grupo.esModif=true
+	            	self.grupo.esBorrado=true
+					self.guardarCambiosGrupo(function(){self.cerrarGrupo()})
+	                break;
+	        	}
+	    	},
+	    'Confirmar eliminación', 
+	    ['Sí, eliminar','Cancelar']
+
+		)
 	}
 ////////////////////////////////////////////////
 Controlador.prototype.cargaVistaMigraTest=function(desdeHistorial){
@@ -2686,7 +2767,6 @@ VistaMigraTest.prototype._procesa1Pregunta=function(i){
 VistaMigraTest.prototype.uploadTest=function(){
 	if (this.test){
 		jQuery.post(app.config.url, {accion:'creaBorradorTest', 
-									cd_usuario:app.cache.usuario.cd_usuario,
 									datos:JSON.stringify(this.test) }).success(
 		function(data){
 			var datos=xeval(data)
