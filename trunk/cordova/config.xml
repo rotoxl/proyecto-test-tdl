@@ -6,10 +6,8 @@
     </description>
     <author email="rotoxl@gmail.com" href="http://cordova.io">Carrón Sisters </author>
     <content src="lnk/index.html" />
-    
     <access origin="*" />
-    <!-- <access origin="https://*.googleapis.com"/>
-    <access origin="https://*.gstatic.com"/> -->
+    
 
     <feature name="InAppBrowser">
 	    <param name="android-package" value="org.apache.cordova.InAppBrowser" />
@@ -18,12 +16,13 @@
     <preference name="webviewbounce" value="true" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="true" />
-    
 </widget>
 
 <!--
 
  *  Evitar cambios de orientación 
     AndroidManifest, activity => android:screenOrientation="sensorPortrait" 
+
+    app -> android:hardwareAccelerated="true" 
 
 //-->
