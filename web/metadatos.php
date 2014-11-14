@@ -120,71 +120,31 @@ class Metadatos{
 			}
 		}
 	//////
-	public function getListaCategorias($cd_usuario){
-		global $limitePreview;
-
-		$sql="select 
-				'(título dinamico nuevos y actualizados)' as ds_categoria, 
-				-1 as cd_categoria, 
-				'fa-fire' as i,
-				(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat,
-				1 as listarComoCategoria, 
-				null as cd_categoriapadre
-			
-			/* union
-				select 
-					'(título dinamico los más valorados)' as ds_categoria, 
-					-2 as cd_categoria, 
-					'fa-love' as i,
-					10 as numTestsPorCat,
-					1 as listarComoCategoria, 
-					null as cd_categoriapadre */
-			union
-				select
+	public function getCategoriasPersonalizadas($cd_usuario){
+		$sql="	select
 				 	c.ds_categoria, c.cd_categoria, c.i,
-					(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat,
+					(select count(*) from vs_testpreview vt where vt.liscat like concat('%,', c.cd_categoria, ',%') ) as numTestsPorCat,
 					c.listarComoCategoria,
-					c.cd_categoriapadre
+					c.cd_categoriapadre,
+					(select group_concat(cc.cd_categoria) from categorias cc where cc.cd_categoriapadre=c.cd_categoria) as cd_categoriashijas
 				 from categorias c, usuarios_categorias uc
 					where c.cd_categoria=uc.cd_categoria and uc.cd_usuario=?
-			order by cd_categoria
-			limit ?
-			";
-		$filas=$this->conn->lookupFilas($sql, array($cd_usuario, $limitePreview));
-
-		if ($filas->numFilas<=1){//sí, 1, porque hemos metido una cat ficticia
-			$sql="select  
-					'(título dinamico nuevos y actualizados)' as ds_categoria, 
-					-1 as cd_categoria, 
-					'fa-fire' as i,
-					(select count(*) from vs_testpreview where fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)) as numTestsPorCat,
-					1 as listarComoCategoria, 
-					null as cd_categoriapadre
-				
-				/* union
-					select 
-						'(título dinamico los más valorados)' as ds_categoria, 
-						-2 as cd_categoria, 
-						'fa-love' as i,
-						10 as numTestsPorCat,
-						1 as listarComoCategoria, 
-					null as cd_categoriapadre */
-
-				union
-					select
-						c.ds_categoria,
-						c.cd_categoria,  
-						c.i,
-						(select count(*) from vs_testpreview vt where vt.liscat like concat('%', c.cd_categoria, ',%') ) as numTestsPorCat,
-						c.listarComoCategoria,
-						c.cd_categoriapadre
-					from categorias c 
-						having numTestsPorCat > 0
 				order by cd_categoria";
-			$filas=$this->conn->lookupFilas($sql, array($limitePreview));			
-			}
-		
-		return $filas;
+		return $this->conn->lookupFilas($sql, array($cd_usuario));
+		}
+	public function getCategorias(){
+		$sql="select
+					c.ds_categoria,
+					c.cd_categoria,  
+					c.i,
+					(select count(*) from vs_testpreview vt where vt.liscat like concat('%,', c.cd_categoria, ',%') ) as numTestsPorCat,
+					c.listarComoCategoria,
+					c.cd_categoriapadre,
+					(select group_concat(cc.cd_categoria) from categorias cc where cc.cd_categoriapadre=c.cd_categoria) as cd_categoriashijas
+				from categorias c 
+				-- having numTestsPorCat > 0
+				order by cd_categoria";
+		return $this->conn->lookupFilas($sql, array());
 		}
 	public function getPreviewCategoria($arrCats){
 		global $limitePreview;
@@ -253,12 +213,12 @@ class Metadatos{
 				'img'=>$f['recursopregunta'],
 				'cd_respuestacorrecta'=>$f['cd_respuestacorrecta'],
 				'respuestas'=>array(
-					array( 'texto'=>$f['respuesta0'], 'img'=>$f['recursorespuesta0'], 'texto_recurso'=>$f['textorecursorespuesta0']),
-					array( 'texto'=>$f['respuesta1'], 'img'=>$f['recursorespuesta1'], 'texto_recurso'=>$f['textorecursorespuesta1']),
-					array( 'texto'=>$f['respuesta2'], 'img'=>$f['recursorespuesta2'], 'texto_recurso'=>$f['textorecursorespuesta2']),
-					array( 'texto'=>$f['respuesta3'], 'img'=>$f['recursorespuesta3'], 'texto_recurso'=>$f['textorecursorespuesta3']),
-					array( 'texto'=>$f['respuesta4'], 'img'=>$f['recursorespuesta4'], 'texto_recurso'=>$f['textorecursorespuesta4']),
-					array( 'texto'=>$f['respuesta5'], 'img'=>$f['recursorespuesta5'], 'texto_recurso'=>$f['textorecursorespuesta5']),
+					array( 'texto'=>$f['respuesta0'], 'img'=>$f['recursorespuesta0']),//, 'texto_recurso'=>$f['textorecursorespuesta0']),
+					array( 'texto'=>$f['respuesta1'], 'img'=>$f['recursorespuesta1']),//, 'texto_recurso'=>$f['textorecursorespuesta1']),
+					array( 'texto'=>$f['respuesta2'], 'img'=>$f['recursorespuesta2']),//, 'texto_recurso'=>$f['textorecursorespuesta2']),
+					array( 'texto'=>$f['respuesta3'], 'img'=>$f['recursorespuesta3']),//, 'texto_recurso'=>$f['textorecursorespuesta3']),
+					array( 'texto'=>$f['respuesta4'], 'img'=>$f['recursorespuesta4']),//, 'texto_recurso'=>$f['textorecursorespuesta4']),
+					array( 'texto'=>$f['respuesta5'], 'img'=>$f['recursorespuesta5']),//, 'texto_recurso'=>$f['textorecursorespuesta5']),
 					)
 				);
 			array_push($arrPreguntas, $pregunta);

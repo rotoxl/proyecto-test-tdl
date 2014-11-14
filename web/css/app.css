@@ -300,8 +300,14 @@ section#main_container {
   max-width: 100%;
   vertical-align: middle; }
 
+h1, h2, h3, h4, h4, small {
+  -webkit-font-smoothing: antialiased; }
+
 .m-n {
   margin: 0 !important; }
+
+.m-b-none {
+  margin-bottom: 0; }
 
 .m-r-sm {
   margin-right: 10px; }
@@ -459,7 +465,7 @@ section#main_container {
         color: #9db1c5 !important;
         border-radius: 500px; }
         #content.vista .vista-body article.pack i {
-          margin-top: 35px;
+          margin-top: 15px;
           font-size: 90px !important;
           color: inherit !important; }
         #content.vista .vista-body article.pack footer {
@@ -969,6 +975,13 @@ section#main_container {
         border-top: 1px solid;
         font-size: 16px;
         height: 40px; }
+  #content.vista.vistaEstadisticas .row {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 10px;
+    padding-right: 10px; }
+  #content.vista.vistaEstadisticas .panelCat {
+    min-height: 300px; }
   #content.vista.cargando {
     min-height: 100%;
     position: absolute;
