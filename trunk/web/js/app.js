@@ -398,17 +398,59 @@ Controlador.prototype.setCategorias=function(lis){
 	if (! (this.cache.categorias instanceof Array))
 		this.cache.categorias=[{}]
 	
-
-	// if (this.entornoLocal){
-	// 	app.cache.categorias[0].ds_categoria='Últimos realizados o descargados'
-	// 	}
-	// else
 	this.cache.categorias[0].ds_categoria='Nuevos y actualizados'
 	this.cache.categorias[0].i='fa-clock-o'
 
+	this.cache.categoriasLocales=this.catsConTestLocales()
 
 	save('tapp37_categorias', lis)
 	}
+Controlador.prototype.catsConTestLocales=function(){
+	if (this.cache.testLocales==null || this.cache.testLocales.length==0)
+		this.cache.testLocales=this.getTestLocales()
+
+	return this._getCatsDeTestsORespuestasLocales(this.cache.testLocales)
+	}
+Controlador.prototype.catsConRespuestasLocales=function(){
+	if (this.cache.respuestasLocales==null)
+		this.cache.respuestasLocales=this.getRespuestasLocales()
+
+	return this._getCatsDeTestsORespuestasLocales(this.cache.respuestasLocales)
+	}
+Controlador.prototype._getCatsDeTestsORespuestasLocales=function(col){
+	var lisIdCat=[]
+	for (var i=0; i<col.length; i++){
+		var temp=col[i].liscat.split(',')
+		for (var j=0; j<temp.length; j++){
+			var idcat=temp[j]
+			
+			if (idcat && lisIdCat.indexOf(idcat)==-1)
+				lisIdCat.push(idcat)
+			}
+		}
+	lisIdCat.sort()
+
+	var ret=[]
+	for (var i=0; i<lisIdCat.length; i++){
+		var cats=buscaFilas(this.cache.categorias, {cd_categoria:lisIdCat[i]} )
+		if (cats)
+			ret.push( cats[0])
+		}
+	return ret
+	}
+Controlador.prototype.getTestLocales=function(){
+	var ret=get('tapp37_listaTest') //VistaTienda.prototype.testData()
+	if (! (ret instanceof Array) )
+		ret=[]
+	return ret
+	}
+Controlador.prototype.getRespuestasLocales=function(){
+	var ret=get('tapp37_listaTestRespuestas')//{cd_test:1, respuestas:{}}
+	if (! (ret instanceof Array) )
+		ret=[]
+	return ret
+	}
+/////
 Controlador.prototype.loginEnMiNube=function(){
 	var self=this
 	
@@ -468,7 +510,7 @@ Controlador.prototype.pushReceived=function(datos){
 /////
 Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
 	var arbol=jQuery('.aside-md .nav-primary')
-	arbol.find('li.active').removeClass('.active')
+	arbol.find('li.active').removeClass('active')
 
 	arbol.find('.'+idLi).addClass('active')
 	
@@ -482,7 +524,7 @@ Controlador.prototype.cierraNavDrawer=function(){
 	jQuery('#main_container aside.nav-off-screen').removeClass('nav-off-screen')
 	jQuery('.btn-navdrawer.active').removeClass('active')
 	}
-//
+/////
 Controlador.prototype.continuarTest=function(desdeHistorial){
 	this.lanzaTest( VistaTest.prototype.testData() )
 	this.cierraNavDrawer()
@@ -507,6 +549,8 @@ Controlador.prototype.cargaVistaInicio=function(){
 			setTimeout(function(){self.cargaVistaInicio()}, 500*this.esperandoCredenciales)
 			return
 			}
+
+		document.location='login.html'
 		}
 
 	var hash=(document.location.hash+'').substring(1)
@@ -520,8 +564,8 @@ Controlador.prototype.cargaVistaInicio=function(){
 		}
 	else if (hash=='vistaSocial' )
 		this.cargaVistaSocial()
-	// else if (hash=='vistaEstadisticas')
-	//  this.cargaVistaEstadisticas()
+	else if (hash=='vistaEstadisticas')
+	 this.cargaVistaEstadisticas()
 
 	else {
 		this.cargaVistaTienda(false, true)//ojo, sólo a local
@@ -537,7 +581,10 @@ Controlador.prototype.cargaVistaSocial=function(desdeHistorial){
 	new VistaSocial(desdeHistorial).toDOM()
 	this.cierraNavDrawer()
 	}
-Controlador.prototype.cargaVistaEstadisticas=function(desdeHistorial){}
+Controlador.prototype.cargaVistaEstadisticas=function(desdeHistorial){
+	new VistaEstadisticas(desdeHistorial).toDOM()
+	this.cierraNavDrawer()
+	}
 Controlador.prototype.pushState=function(id){
 	window.history.pushState({vista:id}, id, '#'+id)
 	}
@@ -597,8 +644,8 @@ Vista.prototype.getBody=function(){}
 Vista.prototype.resize=function(){
 	jQuery('#content').height( jQuery(document).innerHeight()- jQuery('#navigation_bar').innerHeight() )
 
-	this.hVista=jQuery('#content').height()//-jQuery('#navigation_bar').innerHeight()
-	this.domBody.height( this.hVista-this.domHeader.outerHeight() )
+	this.hVista=jQuery('#content').height()
+	this.domBody.height( this.hVista- (this.domHeader?this.domHeader.outerHeight():0) )
 	}
 Vista.prototype.tareasPostCarga=function(){}
 Vista.prototype.backButton=function(){}
@@ -660,8 +707,8 @@ function VistaTest(test, respuestas, desdeHistorial){
 
 	this.mapaInicializado=false
 
-	this.preguntas=this.test.preguntas
-	this.respuestas=respuestas? respuestas.respuestas: this.generaObjRespuestas()
+	this.preguntas=this.quitaPortadas(this.test.preguntas) //por si acaso
+	this.respuestas=this.quitaPortadas(respuestas? respuestas.respuestas: this.generaObjRespuestas())
 
 	this.examen={
 		fallosrestan:this.test.fallosrestan,
@@ -961,7 +1008,6 @@ VistaTest.prototype.tiempoAcabado=function(){
 	this.muestraFormPausa('fintiempo')
 	}
 VistaTest.prototype.finExamen=function(){
-	this.guardaEstadoExamen(true)
 	this.frmdom.modal('hide')
 	app.cargaVistaInicio()
 	}
@@ -971,9 +1017,8 @@ VistaTest.prototype.guardaEstadoExamen=function(finalizado){
 	
 	var respuestas=this.quitaPortadas(this.respuestas)
 
-	this.respuestasTestLocales=get('tapp37_listaTestRespuestas')//{cd_test:1, respuestas:{}}
-	this.respuestasTestLocales=this.respuestasTestLocales || []
-	var idx=getIndiceFila(this.respuestasTestLocales, {cd_test:this.test.cd_test}), resp
+	this.respuestasLocales=app.getRespuestasLocales()
+	var idx=getIndiceFila(this.respuestasLocales, {cd_test:this.test.cd_test}), resp
 
 	var nel={cd_test:this.test.cd_test, 
 			respuestas:respuestas, 
@@ -986,10 +1031,13 @@ VistaTest.prototype.guardaEstadoExamen=function(finalizado){
 
 	if (finalizado){
 		var corregido=this.corrigeTest()
-		nel.aciertos= corregido.aciertos
-		nel.fallos= corregido.fallos
-		nel.nc= corregido.nc
-		nel.nota= corregido.nota
+		
+		nel.aciertos=corregido.aciertos
+		nel.fallos=corregido.fallos
+		nel.nc=corregido.nc
+		
+		nel.nota=corregido.nota
+		nel.liscat=this.test.liscat
 		}
 	else {
 		var stats=this.generaEstadisticasPausa()
@@ -1004,11 +1052,11 @@ VistaTest.prototype.guardaEstadoExamen=function(finalizado){
 		}
 
 	if (idx==-1)
-		this.respuestasTestLocales.push(nel)
+		this.respuestasLocales.push(nel)
 	else 
-		this.respuestasTestLocales[idx]=nel
+		this.respuestasLocales[idx]=nel
 		
-	save('tapp37_listaTestRespuestas', this.respuestasTestLocales)
+	save('tapp37_listaTestRespuestas', this.respuestasLocales)
 	}
 VistaTest.prototype.muestraFormPausa=function(tipo){
 	var self=this
@@ -1035,7 +1083,7 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 			])
 
 		frmfooter.empty().append([
-			creaObjProp('button', {onclick:function(){self.muestraFormPausa('fin')}, className:'btn btn-sm btn-dark transparent', texto:'Finalizar'}),
+			creaObjProp('button', {onclick:function(){self.guardaEstadoExamen(true);self.muestraFormPausa('fin')}, className:'btn btn-sm btn-dark transparent', texto:'Finalizar'}),
 			creaObjProp('button', {onclick:function(){self.frmdom.modal('hide'); app.cargaVistaInicio()}, className:'btn btn-sm btn-dark transparent', texto:'Pausar y salir'}),
 			creaObjProp('button', {onclick:function(){self.pausaTiempo(); self.frmdom.modal('hide')}, className:'btn btn-sm btn-success', texto:'Continuar'}),
 			])
@@ -1093,7 +1141,7 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 	}
 VistaTest.prototype.quitaPortadas=function(arr){
 	if (arr[0]==null)
-	 	return arr.slice(1, this.preguntas.length-1)
+	 	return arr.slice(1, arr.length-1)
 	return arr
 	}
 VistaTest.prototype.generaEstadisticasPausa=function(){
@@ -1358,8 +1406,11 @@ VistaTienda.prototype.getBody=function(){
 VistaTienda.prototype.tareasPostCarga=function(){
 	this.cargaListaCategorias()
 
-	if (this.entornoLocal)
-		this.pintaListaTests(this.testLocales)
+	if (this.entornoLocal){
+		if (app.cache.catsConTestLocales==null || app.cache.catsConTestLocales.length==0)
+			app.cache.catsConTestLocales=app.catsConTestLocales()
+		this.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
+		}
 	else
 		this.cambiaEntorno(jQuery('button.tienda'))
 		
@@ -1416,12 +1467,15 @@ VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 
 	if (pressed.hasClass('dispositivo')){
 		this.entornoLocal=true
-		this.pintaListaTests(this.testLocales)
+
+		if (app.cache.catsConTestLocales==null || app.cache.catsConTestLocales.length==0)
+			app.cache.catsConTestLocales=app.catsConTestLocales()
+		this.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
 		}
 	else {
 		this.entornoLocal=false
 		var self=this
-		this.leeTestTienda( function(datos){self.pintaListaTests(datos)} )
+		this.leeTestTienda( function(datos){self.pintaPortadaTienda(app.cache.categorias, datos)} )
 		}
 
 	if (!fromHistory) 
@@ -1468,7 +1522,7 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	if (blSel.length==0){
 		blSel=jQuery(
 			creaObjProp('section', {id:'cat-'+this.cat.cd_categoria, className:'bloque cat pack', 'data-id':this.cat.cd_categoria, hijos:[
-				creaObjProp('h4', {className:'titulo', texto:this.cat.ds_categoria+' (colección)' })
+				creaObjProp('h4', {className:'titulo', texto:this.cat.ds_categoria })
 				]} )
 			)
 		this.domBody.append(blSel[0])
@@ -1480,6 +1534,49 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 		}
 
 	this.cargarMas(this.cat.cd_categoria, cd_pack)
+	}
+VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
+	var tanda=10, packs=[]
+	//this.cat
+	var blCat=this.domBody.find('.cat#cat-'+cd_categoria)
+
+	var xcat=buscaFilas(app.cache.categorias, {cd_categoria:cd_categoria})[0]
+
+	blCat.find('.titulo .cargarMas').hide()//el principal lo ocultamos, el resto se eliminan
+	blCat.find('.cargarMas.aunMas').remove()
+
+	var num=blCat.find('article.card').length
+
+	var lista=(this.entornoLocal?app.cache.testLocales:this.testTienda)
+
+	packs=buscaFilas(app.cache.categorias, {cd_categoriapadre:cd_categoria})
+	for (var j=0; j<packs.length; j++){
+		var pack=packs[j]
+
+		if (jQuery(blCat).find('#pack-'+ pack.cd_categoria).length==0){
+			var dpack=this._generaDomPack(pack, j, pack)
+			jQuery(blCat).append( dpack )
+			this.ajustaAlturaCard(dpack)
+			}
+		}
+
+	var sl=buscaFilas( lista, {_contains_liscat:cd_categoria})
+
+	var aPintar=sl.slice(0)
+	aPintar=aPintar.slice(num,num+tanda)
+	for (var j=0;  j<aPintar.length; j++){
+		if (packs.length && this.testEstaEnPack(aPintar[j], packs))
+			continue
+		
+		if (blCat.find('article.card#test-'+aPintar[j].cd_test).length==0)
+			blCat.append( this._generaDomTest(aPintar[j], j, xcat ) )
+		}
+
+	if (sl.length>(num+tanda) && jQuery(blCat).find('article.card').length==(num+tanda) ){
+		blCat.append( this.generaBtnCargarMas(cd_categoria, 'aunMas') )
+		}
+	this.ajustaAlturaCard(blCat.find('article.card.test'))
+
 	}
 VistaTienda.prototype.navegaPack=function(cd_categoria, fromHistory){
 	console.log('> click pack')
@@ -1501,7 +1598,7 @@ VistaTienda.prototype.escogeTestsCatDinamica=function(cd_categoria, lista){
 		}
 	return tests
 	}
-VistaTienda.prototype.pintaListaTests=function(lista){
+VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 	var xl=[]
 	
 	this.anchoTarjetas=this.calculaAnchoTarjetas()
@@ -1519,12 +1616,15 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 		return
 		}
 
-	var xcat=app.cache.categorias
 	for (var i=0; i<xcat.length; i++){
 		var cat=xcat[i]
 		var packs=[]
 
-		if (cat.listarcomocategoria==0) 
+		
+		if (this.entornoLocal){
+			//pass
+			}
+		else if ( cat.listarcomocategoria==0 || cat.cd_categoriapadre!=null) 
 			continue
 
 		var totalPorCat, sl
@@ -1534,28 +1634,30 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 			cat.numtestsporcat=sl.length//aquí no queremos botón de más
 			}
 		else{
-			packs=buscaFilas(app.cache.categorias, {listarcomocategoria:0, cd_categoriapadre:cat.cd_categoria})
+			packs=buscaFilas(app.cache.categorias, {cd_categoriapadre:cat.cd_categoria})
 			totalPorCat=buscaFilas(lista, {_contains_liscat:cat.cd_categoria})
 			cat.numtestsporcat=totalPorCat.length
 			sl=totalPorCat.slice(0,4) //Sacamos sólo unos pocos
 			}
 
-		if (sl.length==0) continue
-
+		//if (sl.length==0) continue
 		var d=creaObjProp('section', {id:'cat-'+cat.cd_categoria, className:'bloque cat', 'data-id':cat.cd_categoria, hijos:[
 			creaObjProp('h4', {onclick:fnNavega, className:'titulo', hijos:[
 				creaT(cat.ds_categoria)
 				] })
 			]} )
 
-		for (var j=0;  j<packs.length; j++){
-			var pack=packs[j]
+		if (!this.entornoLocal){
+			for (var j=0;  j<packs.length; j++){
+				var pack=packs[j]
 
-			if (jQuery(d).find('#pack-'+ pack.cd_categoria).length==0){
-				var dpack=this._generaDomPack(pack, j, cat)
-				d.appendChild( dpack )
+				if (jQuery(d).find('#pack-'+ pack.cd_categoria).length==0){
+					var dpack=this._generaDomPack(pack, j, cat)
+					d.appendChild( dpack )
+					}
 				}
 			}
+
 		for (var j=0;  j<sl.length; j++){
 			var t=sl[j]
 			if (packs.length && this.testEstaEnPack(t, packs)){
@@ -1565,6 +1667,7 @@ VistaTienda.prototype.pintaListaTests=function(lista){
 				d.appendChild( this._generaDomTest(t, j, cat) )
 				}
 			}
+			
 
 		xl.push( d )
 		}
@@ -1620,7 +1723,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 		domPrecio=creaObjProp('span', {className:'col-xs-2 loTengo', i:'fa-check-circle'})
 
 		var notaTest=''
-		var respTodas=buscaFilas(this.respuestasTestLocales, {cd_test:test.cd_test})
+		var respTodas=buscaFilas(this.respuestasLocales, {cd_test:test.cd_test})
 		if (respTodas)
 			resp=respTodas[0]
 		if (resp){
@@ -1654,7 +1757,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 
 		}
 	else {
-		loTengo=buscaFilas(this.testLocales, {cd_test:test.cd_test}).length
+		loTengo=buscaFilas(app.cache.testLocales, {cd_test:test.cd_test}).length
 
 		if (loTengo)
 			domPrecio=creaObjProp('span', {className:'col-xs-6 loTengo', i:'fa-check-circle'})
@@ -1686,15 +1789,15 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 VistaTienda.prototype._generaDomPack=function(pack, j, cat){
 	var self=this
 	var ret= creaObjProp('article', {'style.width':this.anchoTarjetas+'px', id:'pack-'+pack.cd_categoria, 'data-id':pack.cd_categoria, className:'main card pack', hijos:[
-			creaObjProp('div', {className:'body', i:cat.i}),
+			creaObjProp('div', {className:'body', i:pack.i}),
 			creaObjProp('footer', {hijos:[
 				// dFecha,
 				
 				creaObjProp('div', {className:'frow', hijos:[
-					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:pack.ds_categoria}) 
+					creaObjProp('span', {className:'bl nombre NOellipsis col-xs-12', texto:pack.ds_categoria}) 
 					]}),
 				creaObjProp('div', {className:'frow', hijos:[
-					creaObjProp('small', {texto:'Colección de tests'})
+					// creaObjProp('small', {texto:'Colección de tests'})
 					]}),
 				]})
 			]})
@@ -1733,52 +1836,9 @@ VistaTienda.prototype.ajustaAlturaCard=function(ret){
 			}
 		else{
 			diff=-diff
-			xret.css({'margin-left':diff/2, 'margin-right':diff/2, 'width':h})
+			xret.css({'margin-left':diff/2, 'margin-right':diff/2+5, 'width':h})
 			}
 		}
-	}
-VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
-	var tanda=10, packs=[]
-	//this.cat
-	var blCat=this.domBody.find('.cat#cat-'+cd_categoria)
-
-	var xcat=buscaFilas(app.cache.categorias, {cd_categoria:cd_categoria})[0]
-
-	blCat.find('.titulo .cargarMas').hide()//el principal lo ocultamos, el resto se eliminan
-	blCat.find('.cargarMas.aunMas').remove()
-
-	var num=blCat.find('article.card').length
-
-	var lista=(this.entornoLocal?this.testLocales:this.testTienda)
-
-	packs=buscaFilas(app.cache.categorias, {listarcomocategoria:0, cd_categoriapadre:cd_categoria})
-	for (var j=0; j<packs.length; j++){
-		var pack=packs[j]
-
-		if (jQuery(blCat).find('#pack-'+ pack.cd_categoria).length==0){
-			var dpack=this._generaDomPack(pack, j, pack)
-			jQuery(blCat).append( dpack )
-			this.ajustaAlturaCard(dpack)
-			}
-		}
-
-	var sl=buscaFilas( lista, {_contains_liscat:cd_categoria})
-
-	var aPintar=sl.slice(0)
-	aPintar=aPintar.slice(num,num+tanda)
-	for (var j=0;  j<aPintar.length; j++){
-		if (packs.length && this.testEstaEnPack(aPintar[j], packs))
-			continue
-		
-		if (blCat.find('article.card#test-'+aPintar[j].cd_test).length==0)
-			blCat.append( this._generaDomTest(aPintar[j], j, xcat ) )
-		}
-
-	if (sl.length>(num+tanda) && jQuery(blCat).find('article.card').length==(num+tanda) ){
-		blCat.append( this.generaBtnCargarMas(cd_categoria, 'aunMas') )
-		}
-	this.ajustaAlturaCard(blCat.find('article.card.test'))
-
 	}
 //////
 VistaTienda.prototype.leeTestTienda=function(fnCallBack){
@@ -1859,8 +1919,8 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 		this.domBody.hide()
 		}
 
-	var loTengo=buscaFilas(this.testLocales, {cd_test:cd_test})
-	var loHice=buscaFilas(this.respuestasTestLocales, {cd_test:cd_test})
+	var loTengo=buscaFilas(app.cache.testLocales, {cd_test:cd_test})
+	var loHice=buscaFilas(this.respuestasLocales, {cd_test:cd_test})
 
 	if (loTengo.length>0){ //no hace falta consultar al servidor
 		this._testPreview(loTengo[0], loHice[0], true)
@@ -2002,31 +2062,34 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 		}
 	}
 VistaTienda.prototype.lanzaTest=function(cd_test){
-	var test=buscaFilas(this.testLocales, {cd_test:cd_test})[0]
-	var resp=buscaFilas(this.respuestasTestLocales, {cd_test:cd_test})[0]
+	var test=buscaFilas(app.cache.testLocales, {cd_test:cd_test})[0]
+	var resp=buscaFilas(this.respuestasLocales, {cd_test:cd_test})[0]
 	app.lanzaTest(test, resp, this)
 	}
 //////
 VistaTienda.prototype.anhadeATestLocales=function(test){
-	this.testLocales.push(test)
+	app.cache.testLocales.push(test)
 	this.salvaTestLocales()
+	app.cache.catsConTestLocales=null
 	}
 VistaTienda.prototype.desinstalarTest=function(cd_test){
-	var idxBorrar=getIndiceFila(this.testLocales, {cd_test:cd_test})
-	this.testLocales.splice(idxBorrar, 1)
+	var idxBorrar=getIndiceFila(app.cache.testLocales, {cd_test:cd_test})
+	app.cache.testLocales.splice(idxBorrar, 1)
+	this.salvaTestLocales()
+
+	app.cache.catsConTestLocales=app.catsConTestLocales()
 
 	this.domDetalleTest.removeClass('tengo-este-test')
 
-	if (this.entornoLocal)
-		this.pintaListaTests(this.testLocales)
+	if (this.entornoLocal){
+		this.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
 		// jQuery('article.main.card[data-id='+cd_test+']').remove()
+		}
 	else
 		jQuery('article.main.card[data-id='+cd_test+'] .loTengo').remove()
-
-	this.salvaTestLocales()
 	}
 VistaTienda.prototype.salvaTestLocales=function(){
-	save('tapp37_listaTest', this.testLocales)
+	save('tapp37_listaTest', app.cache.testLocales)
 	}
 VistaTienda.prototype.ordenaPorFecha=function(lista){
 	lista.sort(function(a, b){
@@ -2050,22 +2113,11 @@ VistaTienda.prototype.ordenaPorFecha=function(lista){
 	return lista
 	}
 VistaTienda.prototype.leeTestLocales=function(fnCallBack){
-	this.respuestasTestLocales=get('tapp37_listaTestRespuestas') //VistaTienda.prototype.testData()
-	this.testLocales=get('tapp37_listaTest') //VistaTienda.prototype.testData()
-	if (! (this.testLocales instanceof Array) )
-		this.testLocales=[]
-
-
-	// this.testLocales.sort(function(a,b){
-	// 				if (a.md.favorito==b.md.favorito)
-	// 					return 0
-	// 				else if (a.md.favorito>b.md.favorito)
-	// 					return -1
-	// 				else
-	// 					return 1
-	// 				})
+	if (app.cache.testLocales==null)
+		app.cache.testLocales=app.getTestLocales()
+	
 	if (fnCallBack)
-		fnCallBack(this.testLocales)
+		fnCallBack(app.cache.testLocales)
 	}
 VistaTienda.prototype.descargaTest=function(cd_test){
 	var self=this
@@ -2082,11 +2134,15 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 				datos.test.fu_modificacion=new Date()
 
 				self.anhadeATestLocales(datos.test)
+				app.cache.catsConTestLocales=app.catsConTestLocales()
 
-				if (self.entornoLocal)
-					self.pintaListaTests(self.testLocales)
-				else
-					self.pintaListaTests(self.testTienda)
+				if (self.entornoLocal){
+						
+					self.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
+					}
+				else{
+					self.pintaPortadaTienda(app.cache.categorias, self.testTienda)
+					}
 
 				setTimeout(function(){
 					self.domDetalleTest.addClass('tengo-este-test')
@@ -2108,8 +2164,8 @@ VistaTienda.prototype.toggleLike=function(cd_test){
 	if (!btn.hasClass('btn-success'))
 		param.accion='like-'
 	
-	var idx=getIndiceFila(this.testLocales, {cd_test:cd_test})
-	this.testLocales[idx].likeit=btn.hasClass('btn-success')
+	var idx=getIndiceFila(app.cache.testLocales, {cd_test:cd_test})
+	app.cache.testLocales[idx].likeit=btn.hasClass('btn-success')
 	this.salvaTestLocales()
 
 	jQuery.post(app.config.url, param).success(function(data){
@@ -2353,7 +2409,7 @@ VistaSocial.prototype.pintaGrupos=function(){
 			]})
 		)
 	}
-//////////
+////
 VistaSocial.prototype.verGrupo=function(gid){
 	var grupo=buscaFilas(this.grupos, {cd_grupo:gid})[0]
 	this.grupo=grupo
@@ -2452,7 +2508,7 @@ VistaSocial.prototype.enviaMsg=function(){
 			}
 		)
 	}
-//////////
+////
 VistaSocial.prototype.crearGrupo=function(){
 	this.grupo={
 		cd_grupo:null, 
@@ -2619,6 +2675,49 @@ VistaSocial.prototype.btnDeleteGroup=function(d){
 	    ['Sí, eliminar','Cancelar']
 
 		)
+	}
+////////////////////////////////////////////////
+function VistaEstadisticas(desdeHistorial){
+	this.id='vistaEstadisticas'
+	app.muestraNodoEnNavDrawer('liVistaEstadisticas')
+
+	// this.domMenu=jQuery('.barra.vista .btn-menu')
+	if (!desdeHistorial) 
+		app.pushState(this.id)
+	}
+VistaEstadisticas.prototype=new Vista
+VistaEstadisticas.prototype.getHeader=function(){
+	return null //creaObjProp('header', {className:'vista-header', 'style.display':'none'})
+	}
+VistaEstadisticas.prototype.getBody=function(){
+	var self=this
+
+	var paneles=[]
+
+	this.cats=app.catsConRespuestasLocales()
+	this.resps=app.respuestasLocales
+
+	for (var i=0; i<this.cats.length; i++){
+		var cat=this.cats[i]
+		paneles.push(
+			creaObjProp('div', {className:'row panelCat', 'data-id':cat.cd_categoria, hijos:[
+				creaObjProp('h3', {className:'row-header m-b-none', texto:cat.ds_categoria}),
+				creaObjProp('small', {texto:'7 tests realizados entre Nov-14 y hoy'}),
+				creaObjProp('div', {className:'bl row-body'}),
+				]})
+			)
+		}
+	if (this.cats.length==0)
+		paneles.push(
+			this.admonition('Sin datos', 'Hasta que no termines algún test no habrá estadísticas', 'fa-ban fa-4x')
+			)
+
+	return creaObjProp('div', {className:'vista-body flowable', hijos:paneles})
+	}
+VistaEstadisticas.prototype.backButton=function(){
+	}
+VistaEstadisticas.prototype.tareasPostCarga=function(){
+	// this.getData()
 	}
 ////////////////////////////////////////////////
 Controlador.prototype.cargaVistaMigraTest=function(desdeHistorial){

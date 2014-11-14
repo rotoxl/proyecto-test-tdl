@@ -29,17 +29,41 @@ $md=new Metadatos($conn, $usu);
 
 $ret=null;
 // $showSQL=true;
-try {
+// try {
     switch ($accion) {
         case 'getPreviewCategorias':
             $cd_usuario=$usu->cd_usuario;
-            $categorias=$md->getListaCategorias($cd_usuario)->filas;
+            $categorias=$md->getCategoriasPersonalizadas($cd_usuario)->filas;
+            if (count($categorias)==0)
+                $categorias=$md->getCategorias()->filas;
 
+            //añadimos las cats virtuales
+            $d1=array(
+                'ds_categoria'=>'(título dinamico nuevos y actualizados)',
+                'cd_categoria'=>-1,
+                'i'=>'fa-fire',
+                'numtestsporcat'=>10, 'listarComoCategoria'=>1, 'cd_categoriapadre'=>null, 
+                );
+            /* $d2=array(
+                 'ds_categoria'=>'(título dinamico los más valorados)',
+                 'cd_categoria'=>-2,
+                 'i'=>'fa-love',
+                 'numtestsporcat'=>10, 'listarComoCategoria'=>1, 'cd_categoriapadre'=>null,
+                 );
+             $d3=array(
+                 'ds_categoria'=>'(título dinamico recomendaciones para ti)',
+                 'cd_categoria'=>-3,
+                 'i'=>'fa-birthday-cake',
+                 'numtestsporcat'=>10, 'listarComoCategoria'=>1, 'cd_categoriapadre'=>null,
+                 ); */
+            array_splice($categorias, 0, 0, array($d1) );
+            
             $tests=array(); $arrCats=array();
             for ($i=0; $i<count($categorias); $i++){
                 $fila=$categorias[$i];
 
-                array_push($arrCats, $fila['cd_categoria'] );
+                if ($fila['cd_categoria']>0 && $fila['numtestsporcat']>0)
+                    array_push($arrCats, $fila['cd_categoria'] );
                 }
             $testsCat=$md->getPreviewCategoria( $arrCats )->filas;
 
@@ -184,15 +208,15 @@ try {
             trigger_error('¡Accion '. $accion . ' no implementada!');
         }
     
-    }
-catch (Exception $ee){
-    $ret=array('retorno'=>0, 
-                'error'=>1, 
-                'msgError'=>$ee->getMessage(),
-                'sql' => $conn->arrResultSet,
-                );
-    echo json_encode(array($ret));
-    }
+//     }
+// catch (Exception $ee){
+//     $ret=array('retorno'=>0, 
+//                 'error'=>1, 
+//                 'msgError'=>$ee->getMessage(),
+//                 'sql' => $conn->arrResultSet,
+//                 );
+//     echo json_encode(array($ret));
+//     }
 
 function fnGetMisGrupos($cd_usuario){
     global $md;
