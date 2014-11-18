@@ -2413,7 +2413,7 @@ VistaSocial.prototype.pintaGrupos=function(){
 		}
 
 	this.domGrupos.append(
-		creaObjProp('div', {onclick:function(){self.crearGrupo()}, className:'bl grupo row', 'data-id':g.cd_grupo, hijos:[
+		creaObjProp('div', {onclick:function(){self.crearGrupo()}, className:'bl grupo row', hijos:[
 			creaObjProp('i', {className:'pull-left grupo-img col-xs-3 fa fa-plus-circle'}),
 			creaObjProp('h5',  {className:'grupo-title pull-right col-xs-9', texto:'Crear nuevo grupo'}),
 
@@ -2701,46 +2701,49 @@ VistaEstadisticas.prototype.getHeader=function(){
 	return null //creaObjProp('header', {className:'vista-header', 'style.display':'none'})
 	}
 VistaEstadisticas.prototype.getBody=function(){
-	app.cache.respuestasLocales=this.testData()
+	var todos=app.getRespuestasLocales() //this.testData()
+	app.cache.respuestasLocales=buscaFilas(todos, {finalizado:true})
 
-	var self=this
 	var paneles=[]
-	
-	this.cats=app.catsConRespuestasLocales()
-	this.resps=buscaFilas( app.cache.respuestasLocales, {finalizado:true} )
+	if (app.cache.respuestasLocales.length>0){
+		var self=this
+		
+		this.cats=app.catsConRespuestasLocales()
+		this.resps=buscaFilas( app.cache.respuestasLocales, {finalizado:true} )
 
-	this.resps.sort(function(a,b){return new Date(a.fecha)>new Date(b.fecha)})
+		this.resps.sort(function(a,b){return new Date(a.fecha)>new Date(b.fecha)})
 
-	var _idx=0
-	this.resps.map(function(el){el._idx=_idx; _idx++})
+		var _idx=0
+		this.resps.map(function(el){el._idx=_idx; _idx++})
 
-	for (var i=0; i<this.cats.length; i++){
-		var cat=this.cats[i]
+		for (var i=0; i<this.cats.length; i++){
+			var cat=this.cats[i]
 
-		var respsCat=buscaFilas(this.resps, {_contains_liscat:cat.cd_categoria})
-		this.cats[i].resps=respsCat
+			var respsCat=buscaFilas(this.resps, {_contains_liscat:cat.cd_categoria})
+			this.cats[i].resps=respsCat
 
-		var fIni=formato.fechaDDMMYYYY(respsCat[0].fecha)
-		var fFin=formato.fechaDDMMYYYY(respsCat[respsCat.length-1].fecha)
-		if (fFin==formato.fechaDDMMYYYY(new Date()))
-			fFin='hoy'
+			var fIni=formato.fechaDDMMYYYY(respsCat[0].fecha)
+			var fFin=formato.fechaDDMMYYYY(respsCat[respsCat.length-1].fecha)
+			if (fFin==formato.fechaDDMMYYYY(new Date()))
+				fFin='hoy'
 
-		var domgra1=creaObjProp('div', {className:'bl row-body gra gra1'})
+			var domgra1=creaObjProp('div', {className:'bl row-body gra gra1'})
 
-		paneles.push(
-			creaObjProp('div', {className:'row panelCat', 'data-id':cat.cd_categoria, hijos:[
-				creaObjProp('h3', {className:'row-header m-b-none', texto:cat.ds_categoria}),
-				creaObjProp('small', {texto:respsCat.length+' tests realizados entre '+fIni+' y '+fFin}),
-				this.creaPanel('Aciertos y fallos por test', domgra1),
-				]})
-			)
-		this.fnPintaGraficaEstadisticasPorExamen(domgra1, i)
+			paneles.push(
+				creaObjProp('div', {className:'row panelCat', 'data-id':cat.cd_categoria, hijos:[
+					creaObjProp('h3', {className:'row-header m-b-none', texto:cat.ds_categoria}),
+					creaObjProp('small', {texto:respsCat.length+' tests realizados entre '+fIni+' y '+fFin}),
+					this.creaPanel('Aciertos y fallos por test', domgra1),
+					]})
+				)
+			this.fnPintaGraficaEstadisticasPorExamen(domgra1, i)
+			}
 		}
-
-	if (this.cats.length==0)
+	else {
 		paneles.push(
 			this.admonition('Sin datos', 'Hasta que no termines algún test no habrá estadísticas', 'fa-ban fa-4x')
 			)
+		}
 
 	return creaObjProp('div', {className:'vista-body flowable', hijos:paneles})
 	}
@@ -2783,7 +2786,7 @@ VistaEstadisticas.prototype.pintaGraficaEstadisticasPorExamen=function(panel){
                 fillColor: { colors: [{opacity: 0.3}, {opacity: 0.1}] }
             	},
             points: {radius: 5, show: true},
-            grow: {active: true, steps: 15},
+            grow: {active: true, steps: 5},
             shadowSize: 2
         	},
         grid: {
