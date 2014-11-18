@@ -98,7 +98,7 @@ var googleMobileApi = {
         return './prod.html?token='+data.access_token+'&expires='+expires+refresh_token
         },
     prepareSilentLogin:function(refresh_token){
-      var $loginStatus = jQuery('body > .login p.status');
+      var $loginStatus = jQuery('.login p.status');
       googleMobileApi.doSilentLogin(refresh_token).done(function(data) {
               document.location.replace( googleMobileApi.getURL(data) )
               })
@@ -127,12 +127,15 @@ var googleMobileApi = {
         return deferred.promise()
         },
     prepareLogin:function(){
-        jQuery('body > *').hide()
-        jQuery('body > .login').show()
+        jQuery('.login > section').show()
 
-        var $loginButton = jQuery('body > .login a.btn-mobile')
-        var $loginStatus = jQuery('body > .login p.status')
-        var $throbber=jQuery('body > .login .throbber')
+        var $loginButton = jQuery('.login a.btn-mobile')
+        var $loginStatus = jQuery('.login p.status')
+        var $throbber=jQuery('.login .throbber')
+
+        $loginStatus
+            .html('<i class="fa fa-asterisk"></i> Sin registro previo, sólo necesitamos saber tu nombre y tu dirección de correo electrónico')
+            .addClass('sinRegistroPrevio')
 
         $loginButton.fadeIn()
         $throbber.hide()
@@ -146,7 +149,7 @@ var googleMobileApi = {
             }).fail(function(data) {
                 $loginButton.fadeIn()
                 $throbber.hide()
-                $loginStatus.html(data.error);
+                $loginStatus.removeClass('sinRegistroPrevio').html(data.error);
               })
           })
         },
@@ -198,9 +201,13 @@ var googleWebApi={
         var btn=jQuery('.btn-web').show()
         btn.find('.g-signin').attr('data-clientid', options.web.client_id)
 
-        var $throbber=jQuery('body > .login .throbber')
-        $throbber.hide()
+        var $throbber=jQuery('.login .throbber')
+        var $loginStatus = jQuery('.login p.status')
 
+        $throbber.hide()
+        $loginStatus
+            .html('<i class="fa fa-asterisk"></i> Sin registro previo, sólo necesitamos saber tu nombre y tu dirección de correo electrónico')
+            .addClass('sinRegistroPrevio')
         },
     getURL:function(data){
         var expires
@@ -238,6 +245,7 @@ var googleWebApi={
             //   "access_denied": el usuario ha denegado el acceso a la aplicación.
             //   "immediate_failed": no se ha podido dar acceso al usuario de forma automática.
             console.log('There was an error: ' + authResult['error']);
+            $loginStatus.removeClass('sinRegistroPrevio').html( authResult['error'] )
             }
         },
     disconnectUser:function(access_token) {

@@ -152,15 +152,25 @@ footer{
 
 	color: white;
 
-	.social{}
+	.social{
+		.autores, .soc{display:inline-block;}
+	}
 	.pags{text-align:right;}
 	a, a:hover, a:active {
 
-		&.fb{
-			padding: 2px 5px 3px;
-			background-color:#335397;
-			color:white;
+		&.mailto{
+				color:white
 
+			}
+		&.soc{
+			padding: 2px 5px 3px;
+			border-radius:3px;
+			
+			&.fb{
+				background-color:#335397;
+				color:white;
+			}
+			
 			i{
 				margin-right: 4px;
 				border-right: 1px solid rgba(255, 255, 255, .3);
