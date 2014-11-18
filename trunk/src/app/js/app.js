@@ -2373,7 +2373,7 @@ VistaSocial.prototype.pintaGrupos=function(){
 	this.domGrupos.empty()
 
 	jQuery('.txtNumGrupos').text(this.grupos.length)
-	jQuery('.txtNumTests').text( get('tapp37_listaTest').length ) 
+	jQuery('.txtNumTests').text( app.getTestLocales().length ) 
 	for (var i=0; i<this.grupos.length; i++){
 		var g=this.grupos[i]
 
@@ -2762,7 +2762,7 @@ VistaEstadisticas.prototype.pintaGraficaEstadisticasPorExamen=function(panel){
 	var catID=jQuery(panel).closest('.panelCat').data('id')
 
 	var col=buscaFilas(this.cats, {cd_categoria:catID})[0].resps
-	var maxPuntos=10
+	var maxPuntos=8
 	var p0=Math.max(col.length-maxPuntos, 0)
 
 	var aciertos=[], fallos=[], nc=[]
@@ -2780,7 +2780,7 @@ VistaEstadisticas.prototype.pintaGraficaEstadisticasPorExamen=function(panel){
                 show: true,
                 lineWidth: 2,
                 fill: true,
-                fillColor: { colors: [{opacity: 0.2}, {opacity: 0.1}] }
+                fillColor: { colors: [{opacity: 0.3}, {opacity: 0.1}] }
             	},
             points: {radius: 5, show: true},
             grow: {active: true, steps: 15},
@@ -2792,7 +2792,7 @@ VistaEstadisticas.prototype.pintaGraficaEstadisticasPorExamen=function(panel){
             tickColor: "#f0f0f0",
             borderWidth: 0
         	},
-        colors: ["#89cb4e", "#fb6b5b", "#dddddd",],
+        colors: ["#25313e", "#fb6b5b", "#dddddd",],
         xaxis: {ticks: 5, show:false},
         yaxis: {ticks: 5},
         tooltip: true,

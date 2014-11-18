@@ -30,44 +30,48 @@ body {
 body > .vbox {
   overflow: hidden; }
 
-body > .login {
-  color: white;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  top: 0;
-  height: 100%;
-  background: #2e3e4e; }
-  body > .login div.screens {
-    height: 255px;
-    width: 100%;
+body.login {
+  background: #25313e; }
+  body.login > section {
+    color: white;
     left: 0;
-    background-image: url(../images/ico250.png);
-    background-position: center center;
-    background-repeat: no-repeat; }
-  body > .login .btn {
-    width: 220px;
-    margin: 0 auto;
-    display: inherit;
-    padding: 10px 12px;
-    font-size: 18px; }
-  body > .login .throbber {
-    background: url("../images/throbber-white.gif") no-repeat center center;
-    display: block;
-    height: 40px;
-    background-size: 30px; }
-  body > .login p.status {
-    margin: 15px;
-    font-size: 16px;
-    text-align: center; }
-    body > .login p.status.sinRegistroPrevio {
-      margin-top: 50px;
-      margin-left: 15%;
-      margin-right: 15%;
-      font-size: 12px;
-      border-top: 1px dashed rgba(232, 232, 232, 0.7);
-      color: rgba(232, 232, 232, 0.7);
-      padding-top: 5px; }
+    width: 100%;
+    max-width: 400px;
+    margin: 15% auto; }
+    body.login > section div.screens {
+      height: 250px;
+      width: 250px;
+      left: 0;
+      margin-bottom: 5px;
+      margin: 0 auto;
+      border-radius: 500px;
+      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+      background-image: url(../images/ico250.png);
+      background-position: center center;
+      background-repeat: no-repeat; }
+    body.login > section .btn {
+      width: 220px;
+      margin: 0 auto;
+      display: inherit;
+      padding: 10px 12px;
+      font-size: 18px; }
+    body.login > section .throbber {
+      background: url("../images/throbber-white.gif") no-repeat center center;
+      display: block;
+      height: 40px;
+      background-size: 30px; }
+    body.login > section p.status {
+      margin: 15px;
+      font-size: 16px;
+      text-align: center; }
+      body.login > section p.status.sinRegistroPrevio {
+        margin-top: 50px;
+        margin-left: 15%;
+        margin-right: 15%;
+        font-size: 12px;
+        border-top: 1px dashed rgba(232, 232, 232, 0.7);
+        color: rgba(232, 232, 232, 0.7);
+        padding-top: 5px; }
 
 body.no-connection > .login div.screens {
   background-image: url(../images/no-connection.png); }
@@ -358,8 +362,8 @@ h1, h2, h3, h4, h4, small {
 
 .btn-dark {
   color: #fff !important;
-  background-color: #2e3e4e !important;
-  border-color: #2e3e4e; }
+  background-color: #25313e !important;
+  border-color: #25313e; }
 
 .btn-success {
   color: #fff !important;
@@ -373,7 +377,7 @@ h1, h2, h3, h4, h4, small {
 
 .btn.btn-dark.transparent {
   background-color: transparent !important;
-  color: #2e3e4e !important; }
+  color: #25313e !important; }
 
 .btn:active, .btn.active {
   background: rgba(0, 0, 0, 0.1) !important;
@@ -817,7 +821,8 @@ h1, h2, h3, h4, h4, small {
     #content.vista.vistaSocial .resultados {
       height: 40px; }
       #content.vista.vistaSocial .resultados div {
-        border-color: rgba(255, 255, 255, 0.1); }
+        border-color: rgba(255, 255, 255, 0.1);
+        min-height: 35px; }
     #content.vista.vistaSocial .grupo {
       border-top: 1px solid rgba(173, 190, 206, 0.1);
       min-height: 85px;
@@ -1026,7 +1031,7 @@ h1, h2, h3, h4, h4, small {
     margin-top: 2px; }
 
 .modal-backdrop {
-  background-color: #2e3e4e; }
+  background-color: #25313e; }
 
 .modal .modal-footer button {
   font-weight: 500;
@@ -1076,7 +1081,8 @@ h1, h2, h3, h4, h4, small {
     background: white;
     border-radius: 8px; }
 .modal#frmPausa .modal-footer {
-  border-top: 1px dashed #e5e5e5; }
+  border-top: 1px dashed #e5e5e5;
+  white-space: nowrap; }
 
 @media (max-width: 767px) {
   body > .login div.screens {
@@ -1197,7 +1203,7 @@ h1, h2, h3, h4, h4, small {
     top: 0;
     bottom: 0;
     z-index: 1950;
-    background: #2e3e4e;
+    background: #25313e;
     opacity: .4; }
 
   .navbar-header {
@@ -1302,7 +1308,7 @@ h1, h2, h3, h4, h4, small {
   #swipeview-slider > div.portada {
     font-size: 28px;
     font-style: italic;
-    background-color: #2e3e4e;
+    background-color: #25313e;
     color: white; }
     #swipeview-slider > div.portada span {
       width: 100%;

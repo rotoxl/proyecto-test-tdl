@@ -46,51 +46,59 @@ body {
 body > .vbox{
 	overflow:hidden
 }
-body > .login{
-	color:white;
-	position: absolute;
-	left:0; width:100%;
-	top:0; height:100%;
+body.login{
+	background:$navigation_bar_bgcolor;
 
-	background:#2e3e4e;
+	> section{
+		color: white;
+		left: 0;
+		width: 100%;
+		max-width: 400px;
+		margin: 15% auto;
 
-	div.screens{
-		// margin-top:30%;
-		height:255px; width:100%; left:0;
 
-		background-image:url(../images/ico250.png);
-		background-position: center center;
-		background-repeat: no-repeat;
-	}
+		div.screens{
+			// margin-top:30%;
+			height:250px; width:250px; left:0; margin-bottom:5px;
+			margin:0 auto;
+			border-radius:500px; box-shadow:inset 0 0 100px rgba(0,0,0,.5);
 
-	.btn {
-		width:220px; 
-		margin:0 auto; 
-		display:inherit;
-		padding: 10px 12px;
-		font-size: 18px;
-	}
-	.throbber{
-		background:url("../images/throbber-white.gif") no-repeat center center;
-		display: block;
-		height:40px;
-		background-size:30px;
-	}
-	p.status{
-		margin: 15px;
-		font-size: 16px;
-		text-align: center;
 
-		&.sinRegistroPrevio{
-			margin-top:50px;
-			margin-left:15%; margin-right:15%;
-			font-size: 12px;
-			border-top:1px dashed rgba(232, 232, 232, .7);
-			color:rgba(232, 232, 232, .7);
-			padding-top:5px;
+			background-image:url(../images/ico250.png);
+			background-position: center center;
+			background-repeat: no-repeat;
 		}
-	}
-}
+
+		.btn {
+			width:220px; 
+			margin:0 auto; 
+			display:inherit;
+			padding: 10px 12px;
+			font-size: 18px;
+		}
+		.throbber{
+			background:url("../images/throbber-white.gif") no-repeat center center;
+			display: block;
+			height:40px;
+			background-size:30px;
+		}
+		p.status{
+			margin: 15px;
+			font-size: 16px;
+			text-align: center;
+
+			&.sinRegistroPrevio{
+				margin-top:50px;
+				margin-left:15%; margin-right:15%;
+				font-size: 12px;
+				border-top:1px dashed rgba(232, 232, 232, .7);
+				color:rgba(232, 232, 232, .7);
+				padding-top:5px;
+			}
+		}
+
+	} 
+} 
 body.no-connection > .login {
 	div.screens{
 		background-image:url(../images/no-connection.png)
@@ -436,8 +444,8 @@ h1, h2, h3, h4, h4, small{
 	}
 .btn-dark {
 	color: #fff !important;
-	background-color: #2e3e4e!important;
-	border-color: #2e3e4e;
+	background-color: $navigation_bar_bgcolor!important;
+	border-color: $navigation_bar_bgcolor;
 	}
 
 .btn-success{
@@ -452,7 +460,7 @@ h1, h2, h3, h4, h4, small{
 }
 .btn.btn-dark.transparent{
 	background-color:transparent!important;
-	color:#2e3e4e !important;
+	color:$navigation_bar_bgcolor !important;
 	}
 .btn:active, .btn.active{
 	background:rgba(0,0,0,.1)!important;
@@ -739,7 +747,7 @@ h1, h2, h3, h4, h4, small{
 			
 			background: #89cc97;
 			color: white;//color:rgb(113, 113, 113);
-			//border-bottom:1px solid #2e3e4e;
+			//border-bottom:1px solid $navigation_bar_bgcolor;
 			table {
 				margin-top:15px; 
 				td.clave{
@@ -1103,7 +1111,10 @@ h1, h2, h3, h4, h4, small{
 		.resultados{ 
 			height:40px;
 
-			div {border-color:rgba(255, 255, 255,.1);}
+			div {
+				border-color:rgba(255, 255, 255,.1);
+				min-height: 35px;
+			}
 
 			}
 		
@@ -1365,7 +1376,7 @@ h1, h2, h3, h4, h4, small{
 
 //Modales
 .modal-backdrop {
-	background-color: #2e3e4e;
+	background-color: $navigation_bar_bgcolor;
 	}
 .modal .modal-footer button{
 	font-weight: 500;
@@ -1437,6 +1448,7 @@ h1, h2, h3, h4, h4, small{
 	}
 	.modal-footer{
 		border-top:1px dashed #e5e5e5;
+		white-space: nowrap;
 		}
 }
 
@@ -1595,7 +1607,7 @@ h1, h2, h3, h4, h4, small{
 		top: 0;
 		bottom: 0;
 		z-index: 1950;
-		background:#2e3e4e; opacity:.4;
+		background:$navigation_bar_bgcolor; opacity:.4;
 		}
 
 	.navbar-header {
@@ -1730,7 +1742,7 @@ h1, h2, h3, h4, h4, small{
 			&.fin div.visual{ background-image:url("../images/m-swipe-right.png"); }
 			
 			font-size:28px; font-style:italic; 
-			background-color:#2e3e4e; color:white;
+			background-color:$navigation_bar_bgcolor; color:white;
 		}
 	}
 
