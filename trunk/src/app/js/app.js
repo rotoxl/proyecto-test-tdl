@@ -2410,7 +2410,7 @@ VistaSocial.prototype.pintaGrupos=function(){
 		this.domGrupos.append(
 			creaObjProp('div', {onclick:function(){ self.verGrupo(jQuery(this).closest('.grupo').data('id') )}, className:'bl grupo row', 'data-id':g.cd_grupo, hijos:[
 				(g.picture? 
-					creaObjProp('img', {className:'pull-left avatar grupo-img col-xs-3', src:g.picture}),
+					creaObjProp('img', {className:'pull-left avatar grupo-img col-xs-3', src:g.picture}):
 					creaT('')
 					),
 				creaObjProp('h5',  {className:'grupo-title pull-right col-xs-9', texto:g.ds_grupo}),
