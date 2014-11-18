@@ -81,7 +81,7 @@ class Metadatos{
 			}
 		else {
 			$sql='insert into usuarios (cd_usuario, nombre, apellidos, picture) values (?, ?, ?, ?)';
-			$md->ejecuta($sql, array($d['cd_usuario'], $d['given_name'], $d['family_name'], $d['picture'] ));
+			$this->ejecuta($sql, array($d['cd_usuario'], $d['given_name'], $d['family_name'], $d['picture'] ));
 			return true; //devolvemos esUsuarioNuevo
 			}
 		}
