@@ -331,8 +331,8 @@ function Controlador(){
 	this.init()
 
 	if ( isPhone() )
-		// this.config.servidor='http://rotoxl.alwaysdata.net/'
-		this.config.servidor='http://192.168.0.196:8888/proyectotest/'
+		this.config.servidor='http://rotoxl.alwaysdata.net/app/'
+		// this.config.servidor='http://192.168.0.196:8888/proyectotest/'
 	else
 		this.config.servidor='./'
 	this.config.url=this.config.servidor+'index_r.php'
