@@ -1,1 +1,0 @@
-/Users/rotoxl/dev/proyectotest/cordova/createCordova.sh
