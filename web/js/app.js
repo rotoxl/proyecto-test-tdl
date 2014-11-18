@@ -420,6 +420,7 @@ Controlador.prototype.catsConRespuestasLocales=function(){
 Controlador.prototype._getCatsDeTestsORespuestasLocales=function(col){
 	var lisIdCat=[]
 	for (var i=0; i<col.length; i++){
+		if (col[i].liscat==null) continue
 		var temp=col[i].liscat.split(',')
 		for (var j=0; j<temp.length; j++){
 			var idcat=temp[j]
@@ -460,7 +461,11 @@ Controlador.prototype.loginEnMiNube=function(){
 	jQuery.post(this.config.url, {accion:'login', token:this.cache.token, tz:tz}).success(
 		function(data){
 			var datos=xeval(data)
-			if (datos.retorno==1)
+			
+			if (datos.retorno==0){//sesión caducó, a login
+				document.location='login.html'
+				}
+			else if (datos.retorno==1)
 				self.userDataReceived(datos.userData)
 			
 			if (datos.esUsuarioNuevo)
@@ -551,6 +556,7 @@ Controlador.prototype.cargaVistaInicio=function(){
 			}
 
 		document.location='login.html'
+		return
 		}
 
 	var hash=(document.location.hash+'').substring(1)
@@ -642,7 +648,7 @@ Vista.prototype.toDOM=function(){
 Vista.prototype.getHeader=function(){}
 Vista.prototype.getBody=function(){}
 Vista.prototype.resize=function(){
-	jQuery('#content').height( jQuery(document).innerHeight()- jQuery('#navigation_bar').innerHeight() )
+	jQuery('#content').height( window.innerHeight- jQuery('#navigation_bar').innerHeight() )
 
 	this.hVista=jQuery('#content').height()
 	this.domBody.height( this.hVista- (this.domHeader?this.domHeader.outerHeight():0) )
@@ -1017,8 +1023,8 @@ VistaTest.prototype.guardaEstadoExamen=function(finalizado){
 	
 	var respuestas=this.quitaPortadas(this.respuestas)
 
-	this.respuestasLocales=app.getRespuestasLocales()
-	var idx=getIndiceFila(this.respuestasLocales, {cd_test:this.test.cd_test}), resp
+	app.cache.respuestasLocales=app.getRespuestasLocales()
+	var idx=getIndiceFila(app.cache.respuestasLocales, {cd_test:this.test.cd_test}), resp
 
 	var nel={cd_test:this.test.cd_test, 
 			respuestas:respuestas, 
@@ -1052,11 +1058,11 @@ VistaTest.prototype.guardaEstadoExamen=function(finalizado){
 		}
 
 	if (idx==-1)
-		this.respuestasLocales.push(nel)
+		app.cache.respuestasLocales.push(nel)
 	else 
-		this.respuestasLocales[idx]=nel
+		app.cache.respuestasLocales[idx]=nel
 		
-	save('tapp37_listaTestRespuestas', this.respuestasLocales)
+	save('tapp37_listaTestRespuestas', app.cache.respuestasLocales)
 	}
 VistaTest.prototype.muestraFormPausa=function(tipo){
 	var self=this
@@ -1369,6 +1375,8 @@ function VistaTienda(desdeHistorial, entornoLocal){
 	app.muestraNodoEnNavDrawer('liVistaTienda')
 
 	this.leeTestLocales()
+	this.leeRespuestasLocales()
+
 	this.entornoLocal=entornoLocal
 	// this.domDetalleTest=null
 
@@ -1395,7 +1403,7 @@ VistaTienda.prototype.getHeader=function(){
 					]}),
 
 					creaObjProp('button', {onclick:function(){self.cambiaEntorno(this)}, texto:'Tienda', i:'fa-shopping-cart', className:'pull-right btn btn-warning tienda '+(this.entornoLocal?'':'active') }),
-					creaObjProp('button', {onclick:function(){self.cambiaEntorno(this)}, texto:'Dispositivo'/*, i:'fa-download'*/, className:'pull-right btn btn-warning dispositivo '+(this.entornoLocal?'active':'') }),
+					creaObjProp('button', {onclick:function(){self.cambiaEntorno(this)}, texto:'Mis tests'/*, i:'fa-download'*/, className:'pull-right btn btn-warning dispositivo '+(this.entornoLocal?'active':'') }),
 			]}),
 			
 		]})
@@ -1618,6 +1626,8 @@ VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 
 	for (var i=0; i<xcat.length; i++){
 		var cat=xcat[i]
+
+		if (cat==null) continue //puede deberse a alguna categoría que ha desaparecido
 		var packs=[]
 
 		
@@ -1723,7 +1733,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 		domPrecio=creaObjProp('span', {className:'col-xs-2 loTengo', i:'fa-check-circle'})
 
 		var notaTest=''
-		var respTodas=buscaFilas(this.respuestasLocales, {cd_test:test.cd_test})
+		var respTodas=buscaFilas(app.cache.respuestasLocales, {cd_test:test.cd_test})
 		if (respTodas)
 			resp=respTodas[0]
 		if (resp){
@@ -1920,7 +1930,7 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 		}
 
 	var loTengo=buscaFilas(app.cache.testLocales, {cd_test:cd_test})
-	var loHice=buscaFilas(this.respuestasLocales, {cd_test:cd_test})
+	var loHice=buscaFilas(app.cache.respuestasLocales, {cd_test:cd_test})
 
 	if (loTengo.length>0){ //no hace falta consultar al servidor
 		this._testPreview(loTengo[0], loHice[0], true)
@@ -1973,7 +1983,7 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 			creaObjProp('div', {className:'col-xs-9 data', hijos:[
 				creaObjProp('h1', {className:'bl titulo', texto:test.ds_test}),
 				creaObjProp('span', {className:'bl', hijos:[
-					creaObjProp('span', {className:'small organismo', texto:test.organismo}),
+					creaObjProp('small', {className:'organismo', texto:test.organismo}),
 					// creaObjProp('span', {texto:test.organismo==null? '': espacioDuro2}),
 					creaObjProp('span', {className:'fecha', texto: formato.fechaDDMMYYYY(test.f_examen) }),
 					]}),
@@ -2025,7 +2035,7 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 			var cls='text-danger', ico='fa-times-circle', texto='No aprobado ('+estadisticas.nota+')'
 			if (estadisticas.nota>5){
 				cls='text-success'
-				ico='fa-ok-circle'
+				ico='fa-check-circle'
 				texto='Aprobado ('+estadisticas.nota+')'
 				}
 
@@ -2034,7 +2044,7 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 					creaObjProp('div', {className:'col-xs-3 visual', 'style.paddingLeft':'15px', hijos:[
 						creaObjProp('span', {className:'fa-stack pull-left fa-2x', hijos:[
 							creaObjProp('i', {className:'fa fa-circle fa-stack-2x '+cls}),
-							creaObjProp('i', {className:'fa fa-pause text-white fa-stack-1x '+ico}),
+							creaObjProp('i', {className:'fa text-white fa-stack-1x '+ico}),
 							]})
 						]}),
 					creaObjProp('div', {className:'col-xs-9 data', hijos:[
@@ -2063,7 +2073,7 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 	}
 VistaTienda.prototype.lanzaTest=function(cd_test){
 	var test=buscaFilas(app.cache.testLocales, {cd_test:cd_test})[0]
-	var resp=buscaFilas(this.respuestasLocales, {cd_test:cd_test})[0]
+	var resp=buscaFilas(app.cache.respuestasLocales, {cd_test:cd_test})[0]
 	app.lanzaTest(test, resp, this)
 	}
 //////
@@ -2112,12 +2122,13 @@ VistaTienda.prototype.ordenaPorFecha=function(lista){
 		})
 	return lista
 	}
-VistaTienda.prototype.leeTestLocales=function(fnCallBack){
+VistaTienda.prototype.leeTestLocales=function(){
 	if (app.cache.testLocales==null)
 		app.cache.testLocales=app.getTestLocales()
-	
-	if (fnCallBack)
-		fnCallBack(app.cache.testLocales)
+	}
+VistaTienda.prototype.leeRespuestasLocales=function(){
+	if (app.cache.respuestasLocales==null)
+		app.cache.respuestasLocales=app.getRespuestasLocales()
 	}
 VistaTienda.prototype.descargaTest=function(cd_test){
 	var self=this
@@ -2690,23 +2701,42 @@ VistaEstadisticas.prototype.getHeader=function(){
 	return null //creaObjProp('header', {className:'vista-header', 'style.display':'none'})
 	}
 VistaEstadisticas.prototype.getBody=function(){
+	app.cache.respuestasLocales=this.testData()
+
 	var self=this
-
 	var paneles=[]
-
+	
 	this.cats=app.catsConRespuestasLocales()
-	this.resps=app.respuestasLocales
+	this.resps=buscaFilas( app.cache.respuestasLocales, {finalizado:true} )
+
+	this.resps.sort(function(a,b){return new Date(a.fecha)>new Date(b.fecha)})
+
+	var _idx=0
+	this.resps.map(function(el){el._idx=_idx; _idx++})
 
 	for (var i=0; i<this.cats.length; i++){
 		var cat=this.cats[i]
+
+		var respsCat=buscaFilas(this.resps, {_contains_liscat:cat.cd_categoria})
+		this.cats[i].resps=respsCat
+
+		var fIni=formato.fechaDDMMYYYY(respsCat[0].fecha)
+		var fFin=formato.fechaDDMMYYYY(respsCat[respsCat.length-1].fecha)
+		if (fFin==formato.fechaDDMMYYYY(new Date()))
+			fFin='hoy'
+
+		var domgra1=creaObjProp('div', {className:'bl row-body gra gra1'})
+
 		paneles.push(
 			creaObjProp('div', {className:'row panelCat', 'data-id':cat.cd_categoria, hijos:[
 				creaObjProp('h3', {className:'row-header m-b-none', texto:cat.ds_categoria}),
-				creaObjProp('small', {texto:'7 tests realizados entre Nov-14 y hoy'}),
-				creaObjProp('div', {className:'bl row-body'}),
+				creaObjProp('small', {texto:respsCat.length+' tests realizados entre '+fIni+' y '+fFin}),
+				this.creaPanel('Aciertos y fallos por test', domgra1),
 				]})
 			)
+		this.fnPintaGraficaEstadisticasPorExamen(domgra1, i)
 		}
+
 	if (this.cats.length==0)
 		paneles.push(
 			this.admonition('Sin datos', 'Hasta que no termines algún test no habrá estadísticas', 'fa-ban fa-4x')
@@ -2716,8 +2746,114 @@ VistaEstadisticas.prototype.getBody=function(){
 	}
 VistaEstadisticas.prototype.backButton=function(){
 	}
-VistaEstadisticas.prototype.tareasPostCarga=function(){
-	// this.getData()
+VistaEstadisticas.prototype.creaPanel=function(tit, cont){
+	return creaObjProp('section', {className:'panel panel-default', hijos:[
+					creaObjProp('header', {className:'panel-heading', texto:tit}),
+					creaObjProp('div', {className:'panel-body', hijo:cont}),
+					]})
+	}
+VistaEstadisticas.prototype.fnPintaGraficaEstadisticasPorExamen=function(panel, i){
+	var self=this
+	setTimeout( function(){self.pintaGraficaEstadisticasPorExamen(panel)}, 200*i)
+	}
+VistaEstadisticas.prototype.pintaGraficaEstadisticasPorExamen=function(panel){
+	var self=this
+
+	var catID=jQuery(panel).closest('.panelCat').data('id')
+
+	var col=buscaFilas(this.cats, {cd_categoria:catID})[0].resps
+	var maxPuntos=10
+	var p0=Math.max(col.length-maxPuntos, 0)
+
+	var aciertos=[], fallos=[], nc=[]
+	for (var i=p0; i<col.length; i++){
+		var r=col[i]
+
+		aciertos.push([i, r.aciertos])
+		fallos.push([i, r.fallos])
+		nc.push([i, r.nc])
+		}
+
+	var gridOptions={ 
+		series: {
+        	lines: {
+                show: true,
+                lineWidth: 2,
+                fill: true,
+                fillColor: { colors: [{opacity: 0.2}, {opacity: 0.1}] }
+            	},
+            points: {radius: 5, show: true},
+            grow: {active: true, steps: 15},
+            shadowSize: 2
+        	},
+        grid: {
+            hoverable: true,
+            // clickable: true,
+            tickColor: "#f0f0f0",
+            borderWidth: 0
+        	},
+        colors: ["#89cb4e", "#fb6b5b", "#dddddd",],
+        xaxis: {ticks: 5, show:false},
+        yaxis: {ticks: 5},
+        tooltip: true,
+        tooltipOpts: {
+          	content: function(label, xval, yval, flotItem){
+          		return self.graphTooltip(catID, label, xval, yval, flotItem)
+          		},
+          	defaultTheme: false,
+          	shifts: {x: 0,y: 20}
+        	}
+      	}
+
+  	jQuery.plot(panel, 
+  				[{data: aciertos,label: ' % Aciertos'}, {data: fallos, label: ' % Fallos'}, {data: nc, label: ' % No contestadas'}],
+      			gridOptions)
+	}
+VistaEstadisticas.prototype.graphTooltip=function(catID, label, xval, yval, flotItem){
+	var resps=buscaFilas(this.cats, {cd_categoria:catID})[0].resps
+	var r=resps[xval]
+
+	return  'Nota: '+r.nota+
+			'<small class="f">'+formato.fechaDDMMYYYY(r.fecha)+'</small>'+
+			'<br/>'+
+			//+'(idx '+xval+')'+
+			'<small>'+r.aciertos+' aciertos, '+
+			r.fallos+' fallos y '+
+			r.nc+' nc </small>'
+	}
+VistaEstadisticas.prototype.rnd=function(n, m){
+	return Math.floor((Math.random() * m) + n)
+	}
+VistaEstadisticas.prototype.testData=function(){
+	var numpreg=100, fr=.333
+	var ret=[]
+
+	for (var i=0; i<35; i++){
+		// var a=i, f=0, nc=0
+		var a=this.rnd(1,numpreg)
+		var f=this.rnd(0, numpreg-a)
+		var nc=numpreg-a-f
+
+		var tn= (a-(f*fr))/numpreg
+		if (tn<0) tn=0
+		var nota=Math.floor(tn*100)/10
+
+		var el={
+				fecha: new Date(new Date()-3600*1000*24*this.rnd(0,10)),
+				aciertos:a,
+				fallos:f,
+				nc:nc,
+				nota:nota,
+				liscat:','+([201,250,104][this.rnd(0,3)])+',',
+				finalizado:true,
+				}
+		// jQuery.extend(el, { aciertos:i, fallos:80-i, nc:5, nota:0, 
+		// 					fecha:new Date(new Date().getTime()+3600*1000*24*(i-30)),
+		// 					liscat:',201,'})
+
+		ret.push(el)
+		}
+	return ret
 	}
 ////////////////////////////////////////////////
 Controlador.prototype.cargaVistaMigraTest=function(desdeHistorial){

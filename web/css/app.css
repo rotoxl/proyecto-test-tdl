@@ -39,10 +39,10 @@ body > .login {
   height: 100%;
   background: #2e3e4e; }
   body > .login div.screens {
-    height: 200px;
+    height: 255px;
     width: 100%;
     left: 0;
-    background-image: url(../images/screens.png);
+    background-image: url(../images/ico250.png);
     background-position: center center;
     background-repeat: no-repeat; }
   body > .login .btn {
@@ -60,6 +60,14 @@ body > .login {
     margin: 15px;
     font-size: 16px;
     text-align: center; }
+    body > .login p.status.sinRegistroPrevio {
+      margin-top: 50px;
+      margin-left: 15%;
+      margin-right: 15%;
+      font-size: 12px;
+      border-top: 1px dashed rgba(232, 232, 232, 0.7);
+      color: rgba(232, 232, 232, 0.7);
+      padding-top: 5px; }
 
 body.no-connection > .login div.screens {
   background-image: url(../images/no-connection.png); }
@@ -975,18 +983,47 @@ h1, h2, h3, h4, h4, small {
         border-top: 1px solid;
         font-size: 16px;
         height: 40px; }
-  #content.vista.vistaEstadisticas .row {
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 10px;
-    padding-right: 10px; }
-  #content.vista.vistaEstadisticas .panelCat {
-    min-height: 300px; }
+  #content.vista.vistaEstadisticas {
+    background-color: #f7f7f7; }
+    #content.vista.vistaEstadisticas .row {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 10px;
+      padding-right: 10px; }
+    #content.vista.vistaEstadisticas .panelCat {
+      min-height: 300px; }
+    #content.vista.vistaEstadisticas .panel {
+      margin-top: 10px;
+      background-color: #fff;
+      border-radius: 2px;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
+      #content.vista.vistaEstadisticas .panel .panel-heading {
+        background-color: #f5f5f5;
+        color: #717171; }
+      #content.vista.vistaEstadisticas .panel .panel-body {
+        padding: 15px !important; }
+    #content.vista.vistaEstadisticas .gra.gra1 {
+      height: 240px; }
   #content.vista.cargando {
     min-height: 100%;
     position: absolute;
     background: #25313e url("../images/throbber-white.gif") no-repeat center center;
     background-size: 50px; }
+
+#flotTip {
+  padding: 3px 5px;
+  background-color: #000;
+  z-index: 100;
+  color: #fff;
+  opacity: .7;
+  filter: alpha(opacity=70);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }
+  #flotTip .f {
+    float: right;
+    margin-top: 2px; }
 
 .modal-backdrop {
   background-color: #2e3e4e; }
