@@ -73,11 +73,12 @@ body.login {
         color: rgba(232, 232, 232, 0.7);
         padding-top: 5px; }
 
-body.no-connection > .login div.screens {
-  background-image: url(../images/no-connection.png); }
-body.no-connection > .login .btn-mobile, body.no-connection > .login .btn-web {
+body.login.no-connection div.screens {
+  background-image: url(../images/no-connection.png);
+  box-shadow: none; }
+body.login.no-connection .btn-mobile, body.login.no-connection .btn-web {
   display: none !important; }
-body.no-connection > .login .btn-no-connection {
+body.login.no-connection .btn-no-connection {
   display: block !important; }
 
 .ellipsis {

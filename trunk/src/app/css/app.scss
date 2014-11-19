@@ -99,9 +99,10 @@ body.login{
 
 	} 
 } 
-body.no-connection > .login {
+body.login.no-connection  {
 	div.screens{
-		background-image:url(../images/no-connection.png)
+		background-image:url(../images/no-connection.png);
+		box-shadow:none;
 	}
 	.btn-mobile, .btn-web {display:none !important;}
 	.btn-no-connection{display:block !important;}

@@ -1706,7 +1706,7 @@ VistaTienda.prototype.testEstaEnPack=function(test, packs){
 	}
 VistaTienda.prototype._formatoPrecio=function(domPrecio, precio, moneda){
 	if (precio==0) {
-		domPrecio.appendChild( creaT(espacioDuro) )
+		domPrecio.appendChild( creaT('GRATIS') )
 		return
 		}
 

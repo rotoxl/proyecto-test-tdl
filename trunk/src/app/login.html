@@ -67,7 +67,7 @@
 		function prepareLoginSinConexion(){
 			jQuery('body').addClass('no-connection')	
 			jQuery('.status').html('<p>No se ha podido conectar con el servidor.  </p> <p>Puedes entrar y continuar con los tests que ya tengas, pero no podrás descargar nuevos.</p>')
-			jQuery('body > .login .throbber').hide()
+			jQuery('.login .throbber').hide()
 			}
 		function loginSinConexion(){
 			document.location.replace('./prod.html?noHayDatos')
