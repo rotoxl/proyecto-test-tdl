@@ -84,11 +84,15 @@ body.no-header .respuesta {
     .container.body .row:nth-child(2n+1) > div:first-child {
       float: right; }
     .container.body .row .texto h4 {
-      font-size: 23px;
+      font-size: 2em;
+      font-weight: 100;
       color: #9db1c5; }
     .container.body .row .texto p {
       color: inherit;
       font-size: 17px; }
+      .container.body .row .texto p.subtitulo {
+        font-style: oblique;
+        color: gray; }
     .container.body .row .icon {
       margin: 0 auto;
       text-align: center; }
