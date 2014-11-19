@@ -343,7 +343,7 @@ class Metadatos{
 		return $this->conn->lookupFilas($sql, array($cd_grupo));
 		}
 	public function getMsgGrupo($cd_grupo){
-		$sql='select cd_usuario as "from", texto as msg, cd_test as test, badge, f_msg as f from usuarios_grupos_mensajes where cd_grupo=? order by cd_mensaje';
+		$sql='select cd_usuario as "from", texto as msg, cd_test as test, badge, f_msg as f from usuarios_grupos_mensajes where cd_grupo=? order by cd_mensaje desc';
 		return $this->conn->lookupFilas($sql, array($cd_grupo));
 		}
 	public function nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg){
