@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>
+	<meta charset="utf-8" />
+  	<title>octopusApp.es | Migrador de Tests de oposiciones</title>
+  	<meta name="author" content="Carrón Sisters"/>
+
+  	<link rel="stylesheet" href="bootstrap.css" type="text/css" />
+  	<link rel="stylesheet" href="migrador.css" type="text/css" />
+</head>
+<body >
+	
+	<div class="container">
+
+		<div class="row botonera">
+			<div class="col-xs-12">
+				<button class="btn-success" onclick="app.procesa()">Procesa</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<textarea class="col-xs-12" id="txtOrigen"></textarea>
+			</div>
+
+			<div class="col-xs-6">
+				<textarea  class="col-xs-12" id="txtOrigen"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.js"></script>
+
+	<script src="migrador.js"></script>
+
+	<script>
+		function init(){
+			app=new XApp()
+			app.cargaArchivoRemoto('Cuaderno_2009_1_E.txt')
+		}
+		
+      	jQuery(document).ready(function(){init()} )
+	</script>
+</body>
+</html>
