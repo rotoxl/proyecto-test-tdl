@@ -48,7 +48,9 @@ body.no-header .pregunta {
   margin-bottom: 2px;
   display: block;
   color: #9db1c5;
-  font-size: 20px; }
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer; }
 body.no-header .respuesta {
   font-size: 16px; }
 

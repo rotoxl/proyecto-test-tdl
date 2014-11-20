@@ -48,6 +48,7 @@ body {
 		.beta{
 			color:rgb(157, 177, 197);
 		}
+		
 	}
 }
 
@@ -68,6 +69,8 @@ body.no-header{
 		display:block; 
 		color:$azulEnlace;
 		font-size: 20px;
+
+		text-decoration: none; cursor:pointer;
 	}
 	.respuesta{
 			font-size:16px
