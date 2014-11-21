@@ -1034,6 +1034,14 @@ h1, h2, h3, h4, h4, small{
 	}
 
 	&.vista.vistaMigraTest{
+		button.btn{ width:100%;}
+		span.msgError{
+			margin-top: 10px;
+			display: block;
+			font-size: 14px;
+			white-space: normal;
+		}
+
 		.vista-body{
 			padding:1rem;
 			padding-top:3rem;
@@ -1043,7 +1051,7 @@ h1, h2, h3, h4, h4, small{
 
 
 		}
-		ul#listatests{
+		ul{
 			max-height:600px; overflow:auto;
 			}
 	}

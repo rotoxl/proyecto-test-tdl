@@ -772,13 +772,20 @@ h1, h2, h3, h4, h4, small {
       display: block !important; }
     #content.vista.vistaTienda .detalle-test.tengo-este-test .btnDescargar {
       display: none; }
+  #content.vista.vistaMigraTest button.btn {
+    width: 100%; }
+  #content.vista.vistaMigraTest span.msgError {
+    margin-top: 10px;
+    display: block;
+    font-size: 14px;
+    white-space: normal; }
   #content.vista.vistaMigraTest .vista-body {
     padding: 1rem;
     padding-top: 3rem;
     text-align: center; }
     #content.vista.vistaMigraTest .vista-body .btn {
       margin-top: 1rem; }
-  #content.vista.vistaMigraTest ul#listatests {
+  #content.vista.vistaMigraTest ul {
     max-height: 600px;
     overflow: auto; }
   #content.vista.vistaSocial {

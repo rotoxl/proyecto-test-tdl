@@ -1,7 +1,7 @@
 "use strict"
 jQuery.noConflict()
 
-var app, espacioDuro='\xA0', espacioDuro2='\xA0\xA0'
+var app, espacioDuro='\xA0', espacioDuro2='\xA0\xA0', vbCrLf='\n'
 function isPhone(){
 	if (document.URL.indexOf("http://") === -1 && 
 			document.URL.indexOf("https://") === -1) {
@@ -2879,18 +2879,22 @@ function VistaMigraTest(desdeHistorial){
 VistaMigraTest.prototype=new Vista
 VistaMigraTest.prototype.getHeader=function(){
 	var self=this
+
+	this.ulCategorias=jQuery( 
+						creaObjProp('ul', {id:'listatests', className:'btn3_1 dropdown-menu animated fadeInRight', role:'menu', hijos:[
+							creaObjProp('span', {className:'arrow top'}),
+							]})
+						)
+
 	return creaObjProp('header', {className:'btn-primary vista-header btn-dark' , hijos:[
 			creaObjProp('div', {className:'btn-group', hijos:[
 
 				creaObjProp('div', {className:'btn-group', hijos:[
 					creaObjProp('button', {className:'btn btn-dark dropdown-toggle', 'data-toggle':'dropdown', hijos:[
-						creaT(' Tests '),
+						creaT(' Lista de categorias '),
 						creaObjProp('b', {className:'caret'})
 						]}), 
-					creaObjProp('ul', {id:'listatests', className:'btn3_1 dropdown-menu animated fadeInRight', role:'menu', hijos:[
-						creaObjProp('span', {className:'arrow top'}),
-
-						]}),
+					this.ulCategorias[0],
 					]}),
 
 			]}),
@@ -2898,54 +2902,95 @@ VistaMigraTest.prototype.getHeader=function(){
 		]})
 	}
 VistaMigraTest.prototype.getBody=function(){
-	this.btn=creaObjProp('button', {texto:'Procesa test y sube', 
+	this.btn=jQuery( creaObjProp('button', {texto:'Verifica test y sube', 
 									i:'fa-cloud-upload', 
-									className:'btn btn-default btn-lg', 
-									disabled:1, 
-									onclick:function(){app.vistaActiva.uploadTest()} })
+									className:'btn btn-default btn-lg',  
+									'style.width':'100%',
+									onclick:function(){app.vistaActiva.uploadTest()} }) 
+				)
+	this.txtDatos= jQuery( creaObjProp('textarea', {'style.width':'100%', 'style.height':'150px', className:'bl', id:'txtDatos'}) )
+	this.txtPreguntas= jQuery( creaObjProp('textarea', {'style.width':'100%', 'style.height':'200px', className:'bl', id:'txtPreguntas'}) )
+	this.spError=jQuery( creaObjProp('span', {className:'msgError label label-danger'}) )
+
 	return creaObjProp('div', {className:'vista-body', hijos:[
-			creaObjProp('span', {className:'bl', texto:'Selecciona un test del desplegable'}),
-			this.btn
+			creaObjProp('span', 	{className:'bl', texto:'JSON datos generales'}),
+			this.txtDatos[0],
+			
+			creaObjProp('span', 	{className:'bl', texto:'JSON preguntas'}),
+			this.txtPreguntas[0],
+			
+			this.btn[0],
+			this.spError[0]
 		]})
 	}
 VistaMigraTest.prototype.tareasPostCarga=function(){
-	var l=[], lista=[], self=this
+	var plantillaDG={
+		ds_test:'Identificación del examen',
+		organismo:'Organismo (por ej, "Administración General del Estado")',
+		numpreguntas:100,
+		minutos:100,
+		fallosrestan:.5,
+		precio:0, 
+		liscat:'201',
+		}
+	var plantillaPreguntas={
+		cd_pregunta:0,
+		pregunta: "Texto pregunta",
+		cd_respuestacorrecta: 0,
 
-	for (var i=1; i<=24; i++){
-		l.push('test_bloque_B2_'+lpad(i, '0', 4)+'.js') //'test_0001.js',
+		respuesta0:"Respuesta1",
+		respuesta1:"Respuesta2",
+		respuesta2:"Respuesta3",
+		respuesta3:"Respuesta4",
+		respuesta4:"Respuesta5",
+
+		notas:'Unidad u otros datos'
 		}
 
-	for (var i=0; i<l.length; i++){
-		var f=l[i]
-		lista.push( creaObjProp('li', {hijos:[
-			creaObjProp('a', {texto:f, onclick:function(){self.cargaArchivoRemoto(this)} })
-			]}) )
-		}
-	this.domHeader.find('#listatests').append(lista)
+	var plantillaDG='{'+vbCrLf+
+		'  "ds_test": "Identificaci\u00f3n del examen",'+vbCrLf+
+		'  "organismo": "Organismo",'+vbCrLf+
+		'  "numpreguntas": 100,'+vbCrLf+
+		'  "minutos": 100,'+vbCrLf+
+		'  "fallosrestan": 0.5,'+vbCrLf+
+		'  "precio": 0,'+vbCrLf+
+		'  "liscat": "201"'+vbCrLf+
+		'}'
+	var plantillaPreguntas='{'+vbCrLf+
+		'  "cd_pregunta": 0,'+vbCrLf+
+		'  "pregunta": "Texto pregunta",'+vbCrLf+
+		'  "cd_respuestacorrecta": 0,'+vbCrLf+
+		'  "respuesta0": "Respuesta1",'+vbCrLf+
+		'  "respuesta1": "Respuesta2",'+vbCrLf+
+		'  "respuesta2": "Respuesta3",'+vbCrLf+
+		'  "respuesta3": "Respuesta4",'+vbCrLf+
+		'  "respuesta4": "Respuesta5",'+vbCrLf+
+		'  "notas": "Unidad u otros datos"'+vbCrLf+
+		'}'
+
+	this.txtDatos.val( plantillaDG )
+	this.txtPreguntas.val( '['+plantillaPreguntas+']' )
+
+	this.cargaListaCategorias()
 	}
-//////
-VistaMigraTest.prototype.cargaArchivoRemoto=function(enlace){
+VistaMigraTest.prototype.cargaListaCategorias=function(){
 	var self=this
+	
+	var xl=[]
+	// var fn=function(){
+	// 	var idcat=jQuery(this).data('id')
+	// 	self.navegaCat(idcat) 
+	// 	}
 
-	var n=jQuery(enlace).text()
-	jQuery.ajax({
-		type:'GET',
-		dataType:'script',
-		url:'./paramigrar/'+n
-		})
-	.success(
-		function(data){
-			console.info('LISTOS')
+	for (var i=0; i<app.cache.categorias.length; i++){
+		var cat=app.cache.categorias[i]
 
-			jQuery(self.domBody).find('span.bl').text("Archivo '"+n+"' seleccionado")
-			self.procesa(n)
-			jQuery(self.btn).attr('disabled', false)
-			}
-		)
-	.error(
-		function(a,b,c){
-			console.error(a)
-		})
+		// if (cat.cd_categoriapadre==null)// if (cat.listarcomocategoria==1)
+		if (cat.cd_categoria<0) continue
+
+		xl.push( creaObjProp('li', {hijo:creaObjProp('a', {texto:cat.cd_categoria+'-'+cat.ds_categoria})} ) )
+		}
+	this.ulCategorias.empty().append(xl)
 	}
 VistaMigraTest.prototype.quitaAcutes=function(s){
 	var trans={
@@ -2977,50 +3022,45 @@ VistaMigraTest.prototype.quitaAcutes=function(s){
 		s=s.substring(esta+3)
 	return s
 	}
-VistaMigraTest.prototype.procesa=function(n){
-	this.test={
-		ds_test:'Examen '+Number(n.substring(15,19))+'/Tests de Preparatic XXII',
-		organismo:'Administración General del Estado',
-		numpreguntas:100,
-		minutos:100,
-		fallosrestan:.5,
-		precio:0, 
-		liscat:'103,104,108',
-		}
-
-	var preguntas=[]
-	for (var i=0; i<questions.length; i++){
-		preguntas.push( this._procesa1Pregunta(i) )
-		}
-
-	this.test.preguntas=preguntas
+VistaMigraTest.prototype.xeval=function(s){
+	var s=s.replace(/(\r\n|\n|\r)/gm,"")
+	return JSON.parse(s)
 	}
-VistaMigraTest.prototype._procesa1Pregunta=function(i){
-	var p={
-		cd_pregunta:i,
-		pregunta: this.quitaAcutes( questions[i] ),
-		cd_respuestacorrecta: choices[i].indexOf(answers[i]),
+VistaMigraTest.prototype.montaTest=function(){
+	this.spError.text('')
 
-		respuesta0:this.quitaAcutes(choices[i][0]),
-		respuesta1:this.quitaAcutes(choices[i][1]),
-		respuesta2:this.quitaAcutes(choices[i][2]),
-		respuesta3:this.quitaAcutes(choices[i][3]),
+	var test=this.xeval( this.txtDatos.val() )
+	var preguntas=this.xeval( this.txtPreguntas.val() )
+	test.preguntas=preguntas
 
-		notas:'Unidad '+units[i]+', '+comments[i]
-		}
-	return p
+	this.assert(preguntas instanceof Array, 'No viene un array de preguntas')
+	this.assert(preguntas.length==test.numpreguntas, 'El número de preguntas indicado en datos generales ('+test.numpreguntas+
+												') no coincide con la cantidad de preguntas introducida ('+preguntas.length+')')
+	return test
+	}
+VistaMigraTest.prototype.assert=function(condition, message){
+    if (!condition) {
+        message = message || "Assertion failed";
+        // if (typeof Error !== "undefined") {
+        //     throw new Error(message);
+        // 	}
+        // throw message; // Fallback
+        this.spError.text(message)
+        throw message;
+    	}
 	}
 VistaMigraTest.prototype.uploadTest=function(){
-	if (this.test){
-		jQuery.post(app.config.url, {accion:'creaBorradorTest', 
-									datos:JSON.stringify(this.test) }).success(
-		function(data){
-			var datos=xeval(data)
-			if (datos.retorno==1){
-				alert('Test '+datos.cd_test+' creado')
-				}
-			else
-				console.error(data)
-			})
-		}
+	var test=this.montaTest()
+	
+	jQuery.post(app.config.url, {accion:'creaBorradorTest', 
+								datos:JSON.stringify(test) }).success(
+	function(data){
+		var datos=xeval(data)
+		if (datos.retorno==1){
+			alert('Test '+datos.cd_test+' creado')
+			}
+		else
+			console.error(data)
+		})
+
 	}
