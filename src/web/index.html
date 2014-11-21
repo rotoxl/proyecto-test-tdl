@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="app">
 <head>
+	<meta charset="utf-8" />
   	<title>octopusApp.es | Tests de oposiciones, certificaciones y más</title>
   	<meta name="author" content="Carrón Sisters"/>
   	<meta name="theme-color" content="#25313e">
-
-  	<meta charset="utf-8" />
   
   	<meta name="description" content="octopusapp.es, tests, oposiciones, certificaciones, app, web app" />
 
@@ -15,13 +14,22 @@
 	<link rel="stylesheet" href="css/font.css" type="text/css" />
 
 	<link rel="stylesheet" href="css/web.css" type="text/css" />
+
+	<link href="images/icon144.png" sizes="144x144"  rel="apple-touch-icon-precomposed">
+    <link href="images/icon114.png" sizes="114x114"  rel="apple-touch-icon-precomposed">
+    <link href="images/icon72.png"  sizes="72x72"  	rel="apple-touch-icon-precomposed">
+    <link href="images/icon57.png"  sizes="57x57"  	rel="apple-touch-icon-precomposed">
+    <link href="images/icon16.png"    rel="shortcut icon">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
 </head>
 <body class="">
 	<div class="jumbotron">
 	  <div class="container">
 	  		<div class="row"> 
-		    	<div class="col-xs-6">
-		    		<div class="icon"></div>
+		    	<div class="col-xs-6 icon">
+		    		<div></div>
 		    	</div>
 		    	<div class="col-xs-6 titulo">
 		    		<h1>Octopus</h1>
@@ -35,7 +43,7 @@
 	</div>
 
 	<div class="container body">
-		<div class="row"> 
+		<div class="row tienda"> 
 	    	<div class="col-xs-6">
 	    		<div class="icon">
 	    			<img src="images/tienda-tests.png" class="caracteristica"/>
@@ -48,7 +56,7 @@
 	    	</div>
 		</div>
 
-		<div class="row"> 
+		<div class="row test"> 
 	    	<div class="col-xs-6">
 	    		<div class="icon">
 	    			<img src="images/test-1.png" class="caracteristica"/>
@@ -60,7 +68,7 @@
 	    	</div>
 		</div>
 		
-		<div class="row"> 
+		<div class="row estadisticas"> 
 	    	<div class="col-xs-6">
 	    		<div class="icon">
 	    			<img src="images/estadisticas-1.png" class="caracteristica"/>
@@ -75,7 +83,7 @@
 	    	</div>
 	    </div> 
 
-		<div class="row"> 
+		<div class="row gamificacion"> 
 	    	<div class="col-xs-6">
 	    		<div class="icon">
 	    			<img src="images/test-1.png" class="caracteristica"/>
@@ -92,7 +100,7 @@
 	    	</div>
 	    </div> 
 
-	    <div class="row"> 
+	    <div class="row social"> 
 	    	<div class="col-xs-6">
 	    		<div class="icon">
 	    			<img src="images/social-1.png" class="caracteristica"/>
@@ -125,17 +133,27 @@
 	<footer>
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-9 social">
+				<div class="col-xs-5 col-sm-9 social">
 					<a class="mailto" href="mailto:8ctopusapp@gmail.com">
-						<i class="fa fa-at"></i>Carrón sisters
-					</a> /
+						<i class="fa fa-fw fa-at"></i>
+						<span>Carrón sisters</span>
+					</a>
+					<span class="sep">/</span>
 					<a href="https://www.facebook.com/octopusapp" class="soc fb"> 
-						<i class="fa fa-facebook"></i>octopusApp 
+						<i class="fa fa-fw fa-facebook"></i>
+						<span>octopusApp</span>
+					</a>
+					<span class="sep">/</span>
+					<a href="https://plus.google.com/u/2/communities/112522435551821842894" class="soc googleplus"> 
+						<i class="fa fa-fw fa-google-plus"></i>
+						<span>octopusApp</span>
 					</a>
 				</div>
-				<div class="col-xs-3 pags">
-					<a href="index.html">Producto</a> /
-					<a href="faq.html">FAQ</a> 
+				
+				<div class="col-xs-7 col-sm-3 pags">
+					<a class="pag" href="index.html">Producto</a> 
+						<span class="sep">/</span>
+					<a class="pag" href="faq.html">FAQ</a> 
 				</div>
 			</div>
 		</div>

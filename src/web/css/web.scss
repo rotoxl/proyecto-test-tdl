@@ -24,7 +24,7 @@ body {
 
 	margin:0 auto;
 	
-	.icon{
+	.icon div{
 		height:250px; width:250px; 
 		border-radius:500px; box-shadow:inset 0 0 100px rgba(0,0,0,.5);
 		margin:0 auto;
@@ -160,7 +160,9 @@ footer{
 
 	color: white;
 
+	span.sep{color:rgba(255, 255, 255, .2)}
 	.social{
+		float:left;
 		.autores, .soc{display:inline-block;}
 	}
 	.pags{text-align:right;}
@@ -178,6 +180,10 @@ footer{
 				background-color:#335397;
 				color:white;
 			}
+			&.googleplus{
+				background-color:rgb(218,39,19);
+				color:white;
+			}
 			
 			i{
 				margin-right: 4px;
@@ -188,5 +194,124 @@ footer{
 				padding-left: 2px;
 			}
 		}
+	}
+}
+
+//*********************
+//	MEDIA QUERIES
+//*********************
+@media screen and (max-width: 768px) {//telefonos
+	.jumbotron{
+		padding-top:20px;
+		padding-bottom:10px;
+
+		
+		.titulo {
+			padding:0; 
+			h1 {
+				margin-top: 10px;
+				font-size: 1.5em;
+			}
+			p {
+				font-size:16px;
+			}
+		}
+		.icon {
+			padding-left:0;
+			div{
+				height: 150px;
+				width: 150px;
+				background-size: contain;
+				box-shadow:none;
+			}
+		}
+	}
+	.container.body{
+		padding:30px 15px !important;
+
+		.row{
+			margin-top:0; margin-bottom:20px;
+
+			.texto {
+				h4{font-size:1.3em}
+				p{font-size:14px;}
+			}
+			.icon{
+				img{
+					margin-top:1rem;
+					max-width: 100%;
+				}
+			}
+
+			&:last-child{
+				margin-bottom:0;
+			}
+			&.test .icon img{margin-top:4rem;}
+			&.social .icon img{margin-top:6rem;}
+		}
+	}
+	footer .container{
+		padding:5px 15px 15px!important;
+		
+		.row, .pags, .social{margin-left:0; margin-right:0; padding-left:0; padding-right:0;}
+		.pags{padding-left:0; padding-top:15px;}
+		.social{float:left; margin-top:10px;}
+
+		a.mailto, a.soc{
+			border-radius:500px;
+
+			padding-right: 2px;
+			padding-left: 8px;
+			padding-bottom: 5px;
+			font-size: 18px;
+
+			height: 32px;
+			width: 32px;
+			padding-top: 5px;
+
+			i{border-right:0;}
+			span{display:none;}
+		}
+		a.soc{padding-left:6px!important;}
+		a.mailto{
+			width: 19px; height:19px; padding-left: 5px; padding-right: 0px; margin-right:4px;
+			background-color:white; 
+			color:$navigation_bar_bgcolor;
+		}
+		a.pag{padding:11px 5px 11px 7px;}
+
+		//.sep{display:none;}
+	}
+
+	body.no-header{
+		.container.header{
+			padding:0px 15px 10px !important;
+
+			.row{
+				padding-bottom:0;
+				margin-left:0; margin-right:0;
+			}
+		}
+		.container.body{
+			padding:0px 15px 20px !important;
+
+			.row{
+				margin-left:0; margin-right:0;
+			}
+		}
+		.pregunta{font-size:16px;}
+		.respuesta{
+			font-size:14px;
+			img{max-width:100%;}
+		}
+
+
+	}
+}
+@media only screen  and (min-device-width : 768px) 
+					and (max-device-width : 1024px)
+					and (-webkit-min-device-pixel-ratio: 1)  {//tabletas
+	.container.body{
+		padding:30px 15px !important;
 	}
 }
