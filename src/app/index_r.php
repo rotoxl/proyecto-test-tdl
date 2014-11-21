@@ -29,7 +29,7 @@ $md=new Metadatos($conn, $usu);
 
 $ret=null;
 // $showSQL=true;
-try {
+// try {
     switch ($accion) {
         case 'getPreviewCategorias':
             $cd_usuario=$usu->cd_usuario;
@@ -208,15 +208,15 @@ try {
             trigger_error('¡Accion '. $accion . ' no implementada!');
         }
     
-    }
-catch (Exception $ee){
-    $ret=array('retorno'=>0, 
-                'error'=>1, 
-                'msgError'=>$ee->getMessage(),
-                'sql' => $conn->arrResultSet,
-                );
-    echo json_encode($ret);
-    }
+//     }
+// catch (Exception $ee){
+//     $ret=array('retorno'=>0, 
+//                 'error'=>1, 
+//                 'msgError'=>$ee->getMessage(),
+//                 'sql' => $conn->arrResultSet,
+//                 );
+//     echo json_encode($ret);
+//     }
 
 function fnGetMisGrupos($cd_usuario){
     global $md;

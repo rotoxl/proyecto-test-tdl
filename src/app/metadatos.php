@@ -259,7 +259,7 @@ class Metadatos{
 		if (!in_array($cd_usuario, array('emolina@tax-i.co', 'rotoxl@gmail.com', 'carlos.amc@gmail.com') )) {
 			throw new Exception($cd_usuario.' no está autorizado para subir tests');
 			}
-
+		
 		$nuevoCD_Test=$this->numerador('tests', 'cd_test');;
 		$datos=$this->completaCamposOpcionales($datos, array('region', 'organismo', 'img', 'f_examen', 'admiteReordenarPreguntas', 'admiteReordenarRespuestas', 'precio', 'cd_moneda') );
 		
