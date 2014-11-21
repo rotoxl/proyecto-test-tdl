@@ -15,7 +15,7 @@ body {
   background-color: transparent;
   color: white;
   margin: 0 auto; }
-  .jumbotron .icon {
+  .jumbotron .icon div {
     height: 250px;
     width: 250px;
     border-radius: 500px;
@@ -107,8 +107,12 @@ footer {
   footer .container {
     padding: 40px 15%;
     width: 100%; }
-  footer .social .autores, footer .social .soc {
-    display: inline-block; }
+  footer span.sep {
+    color: rgba(255, 255, 255, 0.2); }
+  footer .social {
+    float: left; }
+    footer .social .autores, footer .social .soc {
+      display: inline-block; }
   footer .pags {
     text-align: right; }
   footer a.mailto, footer a:hover.mailto, footer a:active.mailto {
@@ -119,6 +123,9 @@ footer {
     footer a.soc.fb, footer a:hover.soc.fb, footer a:active.soc.fb {
       background-color: #335397;
       color: white; }
+    footer a.soc.googleplus, footer a:hover.soc.googleplus, footer a:active.soc.googleplus {
+      background-color: #da2713;
+      color: white; }
     footer a.soc i, footer a:hover.soc i, footer a:active.soc i {
       margin-right: 4px;
       border-right: 1px solid rgba(255, 255, 255, 0.3);
@@ -126,5 +133,103 @@ footer {
       padding-top: 3px;
       padding-bottom: 3px;
       padding-left: 2px; }
+
+@media screen and (max-width: 768px) {
+  .jumbotron {
+    padding-top: 20px;
+    padding-bottom: 10px; }
+    .jumbotron .titulo {
+      padding: 0; }
+      .jumbotron .titulo h1 {
+        margin-top: 10px;
+        font-size: 1.5em; }
+      .jumbotron .titulo p {
+        font-size: 16px; }
+    .jumbotron .icon {
+      padding-left: 0; }
+      .jumbotron .icon div {
+        height: 150px;
+        width: 150px;
+        background-size: contain;
+        box-shadow: none; }
+
+  .container.body {
+    padding: 30px 15px !important; }
+    .container.body .row {
+      margin-top: 0;
+      margin-bottom: 20px; }
+      .container.body .row .texto h4 {
+        font-size: 1.3em; }
+      .container.body .row .texto p {
+        font-size: 14px; }
+      .container.body .row .icon img {
+        margin-top: 1rem;
+        max-width: 100%; }
+      .container.body .row:last-child {
+        margin-bottom: 0; }
+      .container.body .row.test .icon img {
+        margin-top: 4rem; }
+      .container.body .row.social .icon img {
+        margin-top: 6rem; }
+
+  footer .container {
+    padding: 5px 15px 15px !important; }
+    footer .container .row, footer .container .pags, footer .container .social {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0;
+      padding-right: 0; }
+    footer .container .pags {
+      padding-left: 0;
+      padding-top: 15px; }
+    footer .container .social {
+      float: left;
+      margin-top: 10px; }
+    footer .container a.mailto, footer .container a.soc {
+      border-radius: 500px;
+      padding-right: 2px;
+      padding-left: 8px;
+      padding-bottom: 5px;
+      font-size: 18px;
+      height: 32px;
+      width: 32px;
+      padding-top: 5px; }
+      footer .container a.mailto i, footer .container a.soc i {
+        border-right: 0; }
+      footer .container a.mailto span, footer .container a.soc span {
+        display: none; }
+    footer .container a.soc {
+      padding-left: 6px !important; }
+    footer .container a.mailto {
+      width: 19px;
+      height: 19px;
+      padding-left: 5px;
+      padding-right: 0px;
+      margin-right: 4px;
+      background-color: white;
+      color: #25313e; }
+    footer .container a.pag {
+      padding: 11px 5px 11px 7px; }
+
+  body.no-header .container.header {
+    padding: 0px 15px 10px !important; }
+    body.no-header .container.header .row {
+      padding-bottom: 0;
+      margin-left: 0;
+      margin-right: 0; }
+  body.no-header .container.body {
+    padding: 0px 15px 20px !important; }
+    body.no-header .container.body .row {
+      margin-left: 0;
+      margin-right: 0; }
+  body.no-header .pregunta {
+    font-size: 16px; }
+  body.no-header .respuesta {
+    font-size: 14px; }
+    body.no-header .respuesta img {
+      max-width: 100%; } }
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .container.body {
+    padding: 30px 15px !important; } }
 
 /*# sourceMappingURL=web.css.map */
