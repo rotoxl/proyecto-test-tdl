@@ -13,6 +13,9 @@ cordova plugin add org.apache.cordova.contacts
 cordova plugin add org.apache.cordova.dialogs
 cordova plugin add org.apache.cordova.network-information
 
+cordova plugin add org.apache.cordova.device
+cordova plugin add https://github.com/phonegap-build/PushPlugin.git
+
 cordova platform add android
 
 # rm -rf /Users/rotoxl/dev/proyectotest/$BASE_DIR/platforms/android/res/drawable
