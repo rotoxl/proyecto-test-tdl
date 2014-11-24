@@ -85,10 +85,11 @@ $ret=null;
             echo json_encode($ret);
             break;
         case 'getTest':
+            $cd_usuario=$usu->cd_usuario;
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
             
             $ret=array('retorno' => 1, 
-                       'test' => $md->getTest($cd_test),
+                       'test' => $md->getTest($cd_usuario, $cd_test),
                        'sql' => $md->__logSQL(),
                        );
             echo json_encode($ret);
@@ -129,11 +130,6 @@ $ret=null;
             $msg=filter_input($REQ, 'msg', FILTER_SANITIZE_STRING);
 
             $md->nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg);
-
-            $datos=array('vista'=>'vistaSocial', 'accion'=>'nuevomsg', 
-                        'cd_grupo'=>$cd_grupo, 'from'=>$cd_usuario, 'msg'=>$msg, 'f'=>date('d/m/Y H:i:s'));
-            $md->sendPushGrupo($cd_grupo, $datos);
-
             $ret=array('retorno'=>1, 
                         'sql' => $conn->arrResultSet,
                         );
@@ -203,6 +199,15 @@ $ret=null;
                 'sql' => $md->__logSQL(),
                 );
             echo json_encode($ret);
+            break;
+        case 'sendPushDeviceID':
+            $cd_usuario=$usu->cd_usuario;
+            $cd_gcm=filter_input($REQ, 'cd_gcm', FILTER_UNSAFE_RAW);
+            $md->guardaID_Dispositivo($cd_usuario, $cd_gcm);
+
+            $ret=array('retorno' => 1, 
+                        'sql' => $md->__logSQL(),);
+            echo(json_encode($ret));
             break;
         default:
             trigger_error('¡Accion '. $accion . ' no implementada!');

@@ -50,6 +50,38 @@ class Metadatos{
 		return $this->conn->arrResultSet;
 		}
 	//////
+	public function numerador($tabla, $col, $arr=null, $paratran=false){ // Uso: numerador ('centroscoste', 'colNumerador', array('id_empresa'=>1 ))
+		$params=array();
+		$sql='select max('. $col .') from ' . $tabla;
+		if (!is_null($arr)){
+			$sql = $sql . ' where ';
+
+			for ($i=0; $i< count(array_keys($arr)); $i++){
+				$k=array_keys($arr)[$i];
+				$v=$arr[$k];
+
+				if ($i > 0) {
+					$sql = $sql . ' AND ';
+					}
+				$sql = $sql . $k . '= ?';
+				array_push($params, $v);
+				}
+			}
+		if($paratran) {
+			return new Sql($sql, $params);
+			} 
+		else {
+			$ret=$this->conn->lookupSimple($sql, $params);
+			if ($ret == null) {
+				return 1;
+				}
+			return 1+$ret;
+			}
+		}
+	private function fechaHora(){
+		return date('d/m/Y H:i:s');
+		}
+	//////
     function getGoogleUserProfile($token){
     	$url = 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=';
 		
@@ -86,38 +118,74 @@ class Metadatos{
 			}
 		}
 	//////
-	private function sendPush($arrDispositivos, $datos){}
-	public function sendPushGrupo($cd_grupo, $datos){}
-	public function sendPushUsuario($cd_usuario, $datos){}
-	private function getArrDispositivos(){}
-	//////
-	public function numerador($tabla, $col, $arr=null, $paratran=false){ // Uso: numerador ('centroscoste', 'colNumerador', array('id_empresa'=>1 ))
-		$params=array();
-		$sql='select max('. $col .') from ' . $tabla;
-		if (!is_null($arr)){
-			$sql = $sql . ' where ';
+	private function sendPush($arrDispositivos, $messageData){
+		if (count($arrDispositivos)==0) return;
 
-			for ($i=0; $i< count(array_keys($arr)); $i++){
-				$k=array_keys($arr)[$i];
-				$v=$arr[$k];
+		global $GCM_SERVER_KEY;
+		$apiKey = $GCM_SERVER_KEY; //server or browser key
 
-				if ($i > 0) {
-					$sql = $sql . ' AND ';
-					}
-				$sql = $sql . $k . '= ?';
-				array_push($params, $v);
+		// var_dump($apiKey);
+
+		if ($messageData==null)
+		   	$messageData=array();
+		else if (!is_array($messageData))
+			$messageData=array($messageData);	
+
+		$headers = array("Content-Type:" . "application/json", "Authorization:" . "key=" . $apiKey);
+		$payload = array(
+		   	'data' => $messageData,
+		   	'registration_ids' => $arrDispositivos,
+		   	);
+
+		$ch = curl_init();
+
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers ); 
+		curl_setopt( $ch, CURLOPT_URL, "https://android.googleapis.com/gcm/send" );
+		curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 0 );
+		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($payload) );
+
+		$response = curl_exec($ch);
+		curl_close($ch);
+
+		$this->conn->logInfo(json_encode($response), 'PUSH');
+  		return $response;
+		}
+	public function sendPushGrupo($cd_grupo, $excluir, $datos){
+		$gr=$this->conn->lookupFilas('select cd_dispositivo, ug.cd_usuario from usuarios u, usuarios_grupos ug 
+										where ug.cd_usuario=u.cd_usuario and f_aceptacion is not null and cd_grupo=?', 
+									array($cd_grupo))->filas;
+		$arr=array();
+		for ($i=0; $i<count($gr); $i++){
+			$u=$gr[$i]['cd_usuario'];
+
+			if ($u==$excluir){
+				continue;
+				}
+
+			$d=$gr[$i]['cd_dispositivo'];
+			if ($d!=null ){
+				array_push( $arr, $d );
 				}
 			}
-		if($paratran) {
-			return new Sql($sql, $params);
-			} 
-		else {
-			$ret=$this->conn->lookupSimple($sql, $params);
-			if ($ret == null) {
-				return 1;
-				}
-			return 1+$ret;
-			}
+		$this->sendPush($arr, $datos); 
+		}
+	// public function sendPushUsuario($cd_usuario, $datos){}
+	// private function getArrDispositivos(){}
+	public function guardaID_Dispositivo($cd_usuario, $cd_gcm){
+		$sql="update usuarios set cd_dispositivo=? where cd_usuario=?";
+		$this->conn->ejecuta($sql, array($cd_gcm, $cd_usuario));
+		}
+	private function genDatosPush($modulo, $accion, $datos, $msgAlt='Hay alguna actualización en Octopus. Por favor, entra en la app'){
+		return array(
+			'f_push'=>$this->fechaHora(),
+			'vista'=>$modulo,
+			'accion'=>$accion,
+			'datos'=>$datos,
+
+			'message'=> $msgAlt//texto que se mostrará en notif emergente cuando la app esté en segundo plano
+			);
 		}
 	//////
 	public function getCategoriasPersonalizadas($cd_usuario){
@@ -195,9 +263,9 @@ class Metadatos{
 
 		return $test;
 		}
-	public function getTest($cd_test){
+	public function getTest($cd_usuario, $cd_test){
 		$md=$this->conn->lookupDict(
-			"select cd_test, f_examen, ds_test, liscat, region, organismo, img, fallosRestan, minutos, numPreguntas, precio from vs_testpreview t where cd_test=?", 
+			"select cd_test, f_examen, ds_test, liscat, region, organismo, img, fallosRestan, minutos, numPreguntas, precio, cd_moneda from vs_testpreview t where cd_test=?", 
 			array($cd_test));
 
 		if ($md['precio']>0){
@@ -225,6 +293,8 @@ class Metadatos{
 			}
 
 		$md['preguntas']=$arrPreguntas;
+
+		$this->vinculaTestConUsuario($cd_usuario, $cd_test, $md['precio'], $md['cd_moneda']);
 		return $md;
 		}
 	//////
@@ -239,6 +309,14 @@ class Metadatos{
 			$this->sql_test_t($cd_test, $cd_usuario, FasesTramitacion::Favorito, $accion)
 			);
 		$this->conn->ejecutaLote($arr);
+		}
+	//////
+	public function vinculaTestConUsuario($cd_usuario, $cd_test, $precio, $cd_moneda){
+		$existe=$this->conn->lookupSimple('select cd_test from usuarios_tests where cd_usuario=? and cd_test=?', array($cd_usuario, $cd_test));
+		if ($existe != $cd_test){
+			$sql="insert into usuarios_tests (cd_usuario, cd_test, precio, cd_moneda) values (?, ?, ?, ?)";
+			$this->conn->ejecuta($sql, array($cd_usuario, $cd_test, $precio, $cd_moneda));
+			}
 		}
 	//////
 	private function sql_test_t($cd_test, $cd_usuario, $fase, $ds_operacion){
@@ -343,7 +421,7 @@ class Metadatos{
 		return $this->conn->lookupFilas($sql, array($cd_grupo));
 		}
 	public function getMsgGrupo($cd_grupo){
-		$sql='select cd_usuario as "from", texto as msg, cd_test as test, badge, f_msg as f from usuarios_grupos_mensajes where cd_grupo=? order by cd_mensaje desc';
+		$sql='select cd_usuario, texto as msg, cd_test, badge, f_msg as f from usuarios_grupos_mensajes where cd_grupo=? order by cd_mensaje desc';
 		return $this->conn->lookupFilas($sql, array($cd_grupo));
 		}
 	public function nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg){
@@ -351,6 +429,17 @@ class Metadatos{
 
 		$idx=$this->numerador('usuarios_grupos_mensajes', 'cd_mensaje', array('cd_usuario'=>$cd_usuario, 'cd_grupo'=>$cd_grupo));
 		$this->conn->ejecuta($sql, array($cd_usuario, $cd_grupo, $idx, $msg, null, null));
+
+		$datos=array(
+			'cd_grupo'=>$cd_grupo,
+			'cd_usuario'=>    $cd_usuario,
+			'msg'=>   $msg,
+			'cd_test'=> null,
+			'badge'=>   null,
+			'f_msg'=>	$this->fechaHora(),
+			);
+		$msgAlt='Nuevo mensaje de '.$cd_usuario.': '.$msg;
+		$this->sendPushGrupo($cd_grupo, null, $this->genDatosPush('vistaSocial', 'mensajeGrupo', $datos, $msgAlt) );
 		}
 	public function guardarGrupo($datos, $cd_usuario){
 		$arrSql=array(); $ususQueNoExisten=null;

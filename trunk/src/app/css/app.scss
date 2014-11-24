@@ -664,6 +664,8 @@ h1, h2, h3, h4, h4, small{
 			}
 			ul#mapatest{
 				max-width: 400px;
+				max-height: 500px;
+				overflow-y: auto;
 				span.arrow{
 					&:after{border-bottom-color:#65bd77;}
 				}
@@ -731,11 +733,18 @@ h1, h2, h3, h4, h4, small{
 			}
 		.recurso.pre{
 			width: 100%;
-			margin-top:20px;
+			margin-top:20px; margin-bottom:20px;
 			text-align: center;
 
+			.aviso{
+				text-align: left;
+				color: whitesmoke;
+				opacity: .5;
+				font-size: 12px;
+			}
 			img{
-				margin-left:-25px;
+				max-width:100%;
+				//margin-left:-25px;
 				box-shadow:1px 2px 13px darkslategrey;
 			}
 		}
@@ -772,14 +781,17 @@ h1, h2, h3, h4, h4, small{
 			table{
 				border-bottom:1px solid rgba(0, 0, 0, 0.05);
 				
-				tr.active{
-					background-color:rgba(0,0,0,0.05);
-				}
-				tr.atenuada{
-					opacity: .6;
-				}
-				td{
-					border-top:1px solid rgba(0,0,0,0.05);
+				tr{
+					cursor: pointer;
+					&.active{
+						background-color:rgba(0,0,0,0.05);
+					}
+					&.atenuada{
+						opacity: .6;
+					}
+					td{
+						border-top:1px solid rgba(0,0,0,0.05);
+					}
 				}
 			}
 			
@@ -1172,6 +1184,20 @@ h1, h2, h3, h4, h4, small{
 			&:last-child{
 				border-bottom:1px solid rgba(173, 190, 206, .1);
 			}
+
+			&.msg-no-leido{
+				background-color: rgba(173, 190, 206, .5);
+				color:rgb(37, 49, 62);
+
+				span.badge{display:block;}
+			}
+
+			span.badge{
+				display:none;
+				float: right;
+				background: #f0ad4e;
+				margin-right: 10px;
+			}
 		}
 
 		.vista-detalle-grupo{
@@ -1460,7 +1486,13 @@ h1, h2, h3, h4, h4, small{
 		white-space: nowrap;
 		}
 }
-
+.modal#frmImgAmpliada{
+	background-color:black;
+	//background-size:cover;
+	background-position:center center;
+	background-image:none;
+	background-repeat:no-repeat;
+}
 
 //media queries
 @media (max-width: 767px){

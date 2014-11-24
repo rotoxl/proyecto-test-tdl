@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" class="app">
 <head>
-  	<title></title>
+	<meta charset="utf-8" />
 
-  	<meta charset="utf-8" />
-  
-  	<meta name="description" content="app, web app, responsive, onetest, flat, flat ui, ui kit, off screen nav" />
-  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  	<title>Login octopusApp.es | Tests de oposiciones, certificaciones y más</title>
+  	<meta name="author" content="Carrón Sisters"/>
+  	<meta name="theme-color" content="#25313e">
 
-  	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  	<meta name="mobile-web-app-capable" content="yes">
+  	<meta name="description" content="octopusapp.es, tests, oposiciones, certificaciones, app, web app" />
 
-	<!-- <link rel="shortcut icon" 				sizes="144x144" href="static/taxiconipadhi.png">
-	<link rel="shortcut icon" 				sizes="72x72" 	href="static/taxiphone4.png">
-	<link rel="apple-touch-icon" 			sizes="144x144" href="static/taxiconipadhi.png">
-	<link rel="apple-touch-icon-precomposed"sizes="72x72" 	href="static/taxiphone4.png"> -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  	<meta content="320" name="MobileOptimized">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+
+	<link href="images/icon144.png" sizes="144x144"  rel="apple-touch-icon-precomposed">
+    <link href="images/icon114.png" sizes="114x114"  rel="apple-touch-icon-precomposed">
+    <link href="images/icon72.png"  sizes="72x72"  	rel="apple-touch-icon-precomposed">
+    <link href="images/icon57.png"  sizes="57x57"  	rel="apple-touch-icon-precomposed">
+    <link href="images/icon57.png"    rel="shortcut icon">
 
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+
 	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
 	<link rel="stylesheet" href="css/font.css" type="text/css" />
 	<link rel="stylesheet" href="css/app.css" type="text/css" />
@@ -85,8 +91,17 @@
 					googleWebApi.prepareLogin()
 					}
 				}
-			else 
-				googleMobileApi.prepareLogin()
+			else {
+				var rt=get('tapp37_refresh_token')
+				if (rt!=null){
+					setTimeout(function(){googleMobileApi.prepareTokenRefresh(rt)}, 100)
+					}
+				else if (get('tapp37_yanoshavisitado')=='1')
+					setTimeout(function(){googleMobileApi.silentLogin()}, 100)
+				else {
+					googleMobileApi.prepareLogin()
+					}
+				}
 			}
 		if (isPhone())
           	document.addEventListener('deviceready', function(){init()}, true)

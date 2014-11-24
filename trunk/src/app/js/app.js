@@ -327,12 +327,15 @@ function Controlador(){
 	var self=this
 
 	this.cache={}
-	this.config={}
+	this.config={
+				pushSenderID:GCM_SENDER_ID,
+				imgBase: 'https://s3-eu-west-1.amazonaws.com/octopus.res/',
+			}
 	this.init()
 
 	if ( isPhone() )
-		this.config.servidor='http://rotoxl.alwaysdata.net/app/'
-		// this.config.servidor='http://192.168.0.196:8888/proyectotest/'
+		// this.config.servidor='http://rotoxl.alwaysdata.net/app/'
+		this.config.servidor='http://192.168.0.196:8888/octopus/'
 	else
 		this.config.servidor='./'
 	this.config.url=this.config.servidor+'index_r.php'
@@ -393,6 +396,87 @@ Controlador.prototype.init=function(){
 	var self=this
 	jQuery(window).bind('popstate', function(){self.backButton()} )
 	}
+////
+Controlador.prototype.registerPush=function(){
+	var self=this 
+	this.pushNotification = null
+	try {
+		this.pushNotification=window.plugins.pushNotification
+
+		if ( device.platform.toLowerCase() == 'android'){
+		    this.pushNotification.register(
+		        registerPush_success,
+		        registerPush_error, {
+		            senderID:''+this.config.pushSenderID,
+		            ecb:"onPushGCM"
+		        })
+			}
+		else if (device.platform.toLowerCase() == 'ios') {
+		    this.pushNotification.register(
+		        registerPush_token,
+		        registerPush_error, {
+		            badge:"true",
+		            sound:"true",
+		            alert:"true",
+		            ecb:"onPushAPN"
+		        })
+			}
+		}
+	catch (e){
+		
+		}	
+	}
+function registerPush_success(result){app.registerPush_success(result)}
+function registerPush_error(result){app.registerPush_error(result)}
+function registerPush_token(result){app.registerPush_token(result)}
+Controlador.prototype.registerPush_success=function(result){
+	console.info('Push registrado: '+result)
+	}
+Controlador.prototype.registerPush_error=function(result){
+    console.error('error = ' + result);
+	}
+Controlador.prototype.registerPush_token=function(result){
+    // Your iOS push server needs to know the token before it can push to this device
+    // here is where you might want to send it the token for later use.
+   	app.sendPushDeviceID(result)
+	}
+function onPushGCM(e){
+	console.log('Push: EVENT -> RECEIVED:' + JSON.stringify(e) )
+
+    switch( e.event ){
+	    case 'registered':
+	        if ( e.regid.length > 0 ){
+	           	app.sendPushDeviceID(e.regid)
+				}
+	    	break;
+	    case 'message':
+	    	app.pushReceived(e)
+	    	break;
+	    case 'error':
+	        xlog('Push: ERROR -> MSG:' + e.msg);
+	    	break;
+	    default:
+	        xlog('Push: EVENT -> Unknown, an event was received and we do not know what it is');
+	    break;
+	  	}
+	}
+var onPushAPN=function(event){
+	var d={payload:event.aps}
+	app.pushReceived(d)
+    }
+Controlador.prototype.sendPushDeviceID=function(regid){
+	var self=this
+	jQuery.post(app.config.url, {accion:'sendPushDeviceID', cd_gcm:regid}).success(
+		function(data){
+			var datos=xeval(data)
+			self.hayPush= datos.retorno==1
+			})
+	}
+Controlador.prototype.unregisterPush=function(){
+	this.pushNotification.unregister(self.registerPush_success, self.registerPush_error)
+	this.hayPush=false
+	}
+////
 Controlador.prototype.setCategorias=function(lis){
 	this.cache.categorias=lis
 	
@@ -471,6 +555,7 @@ Controlador.prototype.loginEnMiNube=function(){
 			
 			if (datos.esUsuarioNuevo)
 				self.lanzaTourAplicacion()
+			self.registerPush()
 		})
 	}
 Controlador.prototype.userDataReceived=function(data){
@@ -481,6 +566,7 @@ Controlador.prototype.userDataReceived=function(data){
 	this.cache.usuario.loginEnMiNube=true
 
 	save('tapp37_userdata', JSON.stringify(data))
+	save('tapp37_yanoshavisitado', 1)
 	this.actualizaDomUsuario()
 	}
 Controlador.prototype.actualizaDomUsuario=function(){
@@ -495,23 +581,48 @@ Controlador.prototype.logout=function(){
 	
 	localStorage.removeItem('tapp37_userdata')
 	localStorage.removeItem('tapp37_refresh_token')
+	localStorage.removeItem('tapp37_yanoshavisitado')
 	
 	document.location='index.html'
 	}
 /////
 Controlador.prototype.pushReceived=function(datos){
+	var pl=datos.payload
+
 	if (app.cache.usuario==null){
+		return
 		}
-	// else if (datos.vista=='vistaTienda'){
-	// 	}
-	// else if (datos.vista=='vistaTest'){
-	// 	}
-	else if (datos.vista=='vistaSocial'){
-		if (datos.accion=='nuevomsg'){
+	
+	app.vistaActiva.pushReceived(datos.vista, pl.accion, pl.datos)
+	}
+Controlador.prototype.sendNotification=function(titulo, texto, icono, ongoing) {
+    if ( device.platform.toLowerCase() == 'ios' )
+    	icon=null
+
+	try {
+		app.notifs={}
+		var param={
+		    title:   titulo,
+		    message: texto,
+		    autoCancel:  !ongoing,
+		    ongoing:ongoing,
+
+		    sound: (!ongoing? 'TYPE_NOTIFICATION': null),
+		    // icon:'notificacion', //NO es posible sacar la foto del usuario
+		    smallIcon:'notificacion'
 			}
-		else if (datos.accion=='invitaciongrupo'){
-			}
+
+		window.plugin.notification.local.add(param)
 		}
+	catch (e){
+		app.vibrate()
+		}
+	}
+Controlador.prototype.clearNotification=function(icono) {
+	setTimeout(function(){
+		try{ window.plugin.notification.local.cancelAll() }
+		catch(e){}
+		}, 1)
 	}
 /////
 Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
@@ -660,6 +771,17 @@ Vista.prototype.resize=function(){
 	}
 Vista.prototype.tareasPostCarga=function(){}
 Vista.prototype.backButton=function(){}
+Vista.prototype.getUsuDeGrupo=function(cd_grupo, cd_usuario){
+	var gr=buscaFilas(this.grupos, {cd_grupo:cd_grupo})[0]
+	var u=buscaFilas(gr.miembros, {cd_usuario:cd_usuario})[0]
+	return u
+	}
+Vista.prototype.pushReceived=function(vista, accion, datos){
+	if (vista=='vistaSocial' && accion=='mensajeGrupo'){ 	
+		var u=this.getUsuDeGrupo(datos.cd_grupo, datos.cd_usuario)
+		app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture)
+		}
+	}
 Vista.prototype.cerrar=function(){}
 Vista.prototype.cambiaHeaderApp=function(titulo){
 	var nb=jQuery('#navigation_bar')
@@ -863,8 +985,18 @@ VistaTest.prototype.generaDomPreguntas=function(preg, resp){
 	if (preg.img){
 		// t=creaObjProp('div', {className:'recurso pre', 'style.backgroundImage':'url(./res/carne-conducir/'+preg.img+')'})
 		t=creaObjProp('div', {className:'recurso pre', hijos:[
-				creaObjProp('img', {src:'./res/carne-conducir/'+preg.img})
+				creaObjProp('span', {className:'aviso', texto:'Toca la imagen para ampliar'}),
 				] })
+		var temp=preg.img.split(',')	
+		for (var i=0; i<temp.length; i++){
+
+			t.appendChild( 
+				creaObjProp('img', {className:'img-thumbnail', 
+									src:app.config.imgBase+temp[i].trim(),
+									onclick:this.fnAmpliarImg(temp[i].trim()) })
+				)
+			}
+
 		}
 
 	return creaObjProp('table',{hijos:[
@@ -902,6 +1034,17 @@ VistaTest.prototype.generaDomRespuestas=function(preg, resp){
 		}
 	return creaObjProp('table', {hijos:xr})
 	}
+VistaTest.prototype.fnAmpliarImg=function(ruta){
+	return function(){
+		var frm=jQuery('#frmImgAmpliada')
+		frm.css('backgroundImage', 'url('+app.config.imgBase+ruta+')')
+		frm.modal({backdrop:false, keyboard:true})
+		}
+	}
+VistaTest.prototype.cerrarAmpliarImg=function(){
+	jQuery('#frmImgAmpliada').modal('hide')
+	}
+VistaTest.prototype.ampliarImg=function(ruta){}
 //////
 VistaTest.prototype.convierteSegundosAHora=function(numSegundos){
 	return this.convierteMinutosAHora(numSegundos/60)
@@ -2234,6 +2377,12 @@ VistaSocial.prototype.getHeader=function(){
 VistaSocial.prototype.getBody=function(){
 	var self=this
 	this.txtEnviarMensaje=jQuery( creaObjProp('input', {type:'text', className:'form-control input-sm', placeholder:'Teclea aquí'}) )
+	this.txtEnviarMensaje.keydown(function(e){ 
+	    var code = e.which
+	    if(code==13)
+	    	self.enviaMsg()
+		})
+
 	this.domChatGrupo=jQuery( creaObjProp('div', {className:'vista-detalle-grupo', 'style.display':'none', hijos:[
 		creaObjProp('div', {className:'chat flowable'}),
 		creaObjProp('footer', {className:'', hijos:[
@@ -2305,6 +2454,36 @@ VistaSocial.prototype.resize=function(){
 	var y=40
 	this.domChatGrupo.find('.chat').height(this.hVista-y)
 	}
+VistaSocial.prototype.pushReceived=function(accion, datos){
+	if (accion=='mensajeGrupo'){ 
+		if (this.grupo && this.grupo.cd_grupo!=datos.cd_grupo){
+			//estamos en otro grupo: notificación
+			var u=this.getUsuDeGrupo(datos.cd_grupo, datos.cd_usuario)
+			app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture)
+			}
+		else if (this.domChatGrupo.is(':visible') ){
+			//en el chat: vibración y sacar el msg
+			if (navigator.notification) navigator.notification.beep(1)
+			this.domChatGrupo.find('.chat').append( this.carga1MsgGrupo(datos) )
+			this.scrollChat()
+			}
+		else if (this.domEditarGrupo.is(':visible') ){
+			//en el grupo, viendo los miembros: notificacion
+			var u=this.getUsuDeGrupo(datos.cd_grupo, datos.cd_usuario)
+			app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture)
+			}
+		else if (this.domBody.is(':visible')){
+			//en pantalla general de grupos
+			var idfila=getIndiceFila(this.grupos, {cd_grupo:datos.cd_grupo})
+			this.grupos[idfila].msg.push(datos)
+
+			var d=this.domBody.find('.grupo[data-id='+datos.cd_grupo+']')
+			d.addClass('msg-no-leido')
+			d.find('.badge').text('1')
+			}
+
+		}
+	}
 VistaSocial.prototype.backButton=function(){
 	if (this.grupo && this.grupo.esNuevo && this.domEditarGrupo.is(':visible')){
 		if (this.grupo.esModif)
@@ -2327,6 +2506,13 @@ VistaSocial.prototype.getData=function(){
 			function(data){
 				var datos=xeval(data)
 				self.grupos=datos.grupos
+				
+				for (var i=0; i<self.grupos.length; i++){
+					for (var j=0; j<self.grupos[i].miembros.length; j++){
+						var u=self.grupos[i].miembros[j]
+						self.grupos[i].miembros[j].given_name=u.given_name || u.family_name || u.cd_usuario
+					}
+				}
 				self.pintaGrupos(datos)
 				}
 			)
@@ -2342,19 +2528,19 @@ VistaSocial.prototype.testData=function(){
 				{cd_usuario:'dani@gmail.com', given_name:'Daniela',}, 
 				{cd_usuario:'alex@gmail.com', given_name:'Alejandro',}, 
 				],
-			msg:[{from:'palomagarcianavarro@gmail.com',
+			msg:[{cd_usuario:'palomagarcianavarro@gmail.com',
 					msg:'Chicos, tenéis que hacer este test. Lo he creado yo con los apuntes de clase. Chicos, tenéis que hacer este test. Lo he creado yo con los apuntes de clase. Chicos, tenéis que hacer este test. Lo he creado yo con los apuntes de clase', 
-					test:119,
+					cd_test:119,
 					url:null,
 					badge:null,
 					f:new Date()-3600000},
-				{from:'palomagarcianavarro@gmail.com',
-					test:120,
+				{cd_usuario:'palomagarcianavarro@gmail.com',
+					cd_test:120,
 					f:new Date()-1720000},
-				{from:'dani@gmail.com',
+				{cd_usuario:'dani@gmail.com',
 					msg:'Daniela ha alcanzado el nivel 12',
 					badge:'./images/logo.png'},
-				{from:'rotoxl@gmail.com',
+				{cd_usuario:'rotoxl@gmail.com',
 					msg:'Wow', f:new Date()-20000},
 				]
 			}, 
@@ -2407,6 +2593,7 @@ VistaSocial.prototype.pintaGrupos=function(){
 				break
 				}
 			}
+		hijos.push(creaObjProp('span', {className:'badge', texto:1}))
 		this.domGrupos.append(
 			creaObjProp('div', {onclick:function(){ self.verGrupo(jQuery(this).closest('.grupo').data('id') )}, className:'bl grupo row', 'data-id':g.cd_grupo, hijos:[
 				(g.picture? 
@@ -2415,7 +2602,6 @@ VistaSocial.prototype.pintaGrupos=function(){
 					),
 				creaObjProp('h5',  {className:'grupo-title pull-right col-xs-9', texto:g.ds_grupo}),
 				creaObjProp('span',{className:'grupo-personas pull-right col-xs-9', hijos:hijos}),
-
 				]})
 			)
 		}
@@ -2489,12 +2675,12 @@ VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 	var yo=app.cache.usuario.cd_usuario
 
 	this.domChatGrupo.find('.chat .bocadillo.vacio').remove()
-	var cls=(xmsg.from==yo?'msg-mio':'')+
+	var cls=(xmsg.cd_usuario==yo?'msg-mio':'')+
 			(xmsg.badge?'has-badge':'')+
-			(xmsg.test?'has-test':'')
+			(xmsg.cd_test?'has-test':'')
 	
 	var f=formato.fechaUHora(xmsg.f)
-	var usu=buscaFilas(this.grupo.miembros, {cd_usuario:xmsg.from})[0]
+	var usu=buscaFilas(this.grupo.miembros, {cd_usuario:xmsg.cd_usuario})[0]
 	var hijos=[
 		creaObjProp('img', {className:'thumb-xs pull-left m-r-sm img-circle', src:usu.picture || './images/avatar_default.png'}),
 		creaObjProp('small', {className:'pull-right text-muted', texto:f}),
@@ -2503,7 +2689,7 @@ VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 			creaObjProp('span', {texto:xmsg.msg || espacioDuro})
 			]}),
 		]
-	if (xmsg.test)
+	if (xmsg.cd_test)
 		hijos.push( creaObjProp('div', {className:'row has-test pull-right', texto:'Test adjunto', i:'fa fa-paperclip pull-right'}) )
 	//else  if (xmsg.badge)
 	// 	hijos.push(creaObjProp('div', {className:'row has-badge pull-left '+xmsg.badge}) )
@@ -2512,11 +2698,12 @@ VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 	}
 VistaSocial.prototype.enviaMsg=function(){
 	var t=this.txtEnviarMensaje.val()
-	var xmsg={from:app.cache.usuario.cd_usuario, msg:t, f:new Date()}
+	var xmsg={cd_usuario:app.cache.usuario.cd_usuario, msg:t, f:new Date()}
 	this.domChatGrupo.find('.chat').append( this.carga1MsgGrupo(xmsg) )
 	this.txtEnviarMensaje.val('')
 
 	this.scrollChat()
+	this.txtEnviarMensaje.focus()
 
 	jQuery.post(app.config.url,{accion:'nuevoMsgGrupo',
 								cd_grupo:this.grupo.cd_grupo, 
@@ -2694,6 +2881,10 @@ VistaSocial.prototype.btnDeleteGroup=function(d){
 	    ['Sí, eliminar','Cancelar']
 
 		)
+	}
+////
+VistaSocial.prototype.testPushMensajeGrupo=function(){
+	this.pushReceived('mensajeGrupo', {cd_grupo:3, cd_usuario:'rotoxl@gmail.com', badge:null, cd_test:null, msg:'prueba push', f:new Date()})
 	}
 ////////////////////////////////////////////////
 function VistaEstadisticas(desdeHistorial){

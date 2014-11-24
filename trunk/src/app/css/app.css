@@ -520,7 +520,9 @@ h1, h2, h3, h4, h4, small {
     right: 15px;
     position: absolute; }
   #content.vista.vistaTest .vista-header ul#mapatest {
-    max-width: 400px; }
+    max-width: 400px;
+    max-height: 500px;
+    overflow-y: auto; }
     #content.vista.vistaTest .vista-header ul#mapatest span.arrow:after {
       border-bottom-color: #65bd77; }
     #content.vista.vistaTest .vista-header ul#mapatest table {
@@ -568,9 +570,15 @@ h1, h2, h3, h4, h4, small {
   #content.vista.vistaTest .recurso.pre {
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 20px;
     text-align: center; }
+    #content.vista.vistaTest .recurso.pre .aviso {
+      text-align: left;
+      color: whitesmoke;
+      opacity: .5;
+      font-size: 12px; }
     #content.vista.vistaTest .recurso.pre img {
-      margin-left: -25px;
+      max-width: 100%;
       box-shadow: 1px 2px 13px darkslategrey; }
   #content.vista.vistaTest .pregunta {
     position: absolute;
@@ -599,12 +607,14 @@ h1, h2, h3, h4, h4, small {
     background-color: #ececec; }
     #content.vista.vistaTest footer.respuestas table {
       border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
-      #content.vista.vistaTest footer.respuestas table tr.active {
-        background-color: rgba(0, 0, 0, 0.05); }
-      #content.vista.vistaTest footer.respuestas table tr.atenuada {
-        opacity: .6; }
-      #content.vista.vistaTest footer.respuestas table td {
-        border-top: 1px solid rgba(0, 0, 0, 0.05); }
+      #content.vista.vistaTest footer.respuestas table tr {
+        cursor: pointer; }
+        #content.vista.vistaTest footer.respuestas table tr.active {
+          background-color: rgba(0, 0, 0, 0.05); }
+        #content.vista.vistaTest footer.respuestas table tr.atenuada {
+          opacity: .6; }
+        #content.vista.vistaTest footer.respuestas table tr td {
+          border-top: 1px solid rgba(0, 0, 0, 0.05); }
   #content.vista.vistaTienda .vista-header {
     background-color: #f0ad4e;
     color: white; }
@@ -874,6 +884,16 @@ h1, h2, h3, h4, h4, small {
         padding-left: 40px; }
       #content.vista.vistaSocial .grupo:last-child {
         border-bottom: 1px solid rgba(173, 190, 206, 0.1); }
+      #content.vista.vistaSocial .grupo.msg-no-leido {
+        background-color: rgba(173, 190, 206, 0.5);
+        color: #25313e; }
+        #content.vista.vistaSocial .grupo.msg-no-leido span.badge {
+          display: block; }
+      #content.vista.vistaSocial .grupo span.badge {
+        display: none;
+        float: right;
+        background: #f0ad4e;
+        margin-right: 10px; }
     #content.vista.vistaSocial .vista-detalle-grupo {
       background-color: #9db1c5;
       color: #25313e; }
@@ -1091,6 +1111,12 @@ h1, h2, h3, h4, h4, small {
 .modal#frmPausa .modal-footer {
   border-top: 1px dashed #e5e5e5;
   white-space: nowrap; }
+
+.modal#frmImgAmpliada {
+  background-color: black;
+  background-position: center center;
+  background-image: none;
+  background-repeat: no-repeat; }
 
 @media (max-width: 767px) {
   body > .login div.screens {
