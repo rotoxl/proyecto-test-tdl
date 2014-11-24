@@ -97,9 +97,9 @@ var googleMobileApi = {
         var refresh_token=data.refresh_token?'&refresh_token='+data.refresh_token:''
         return './prod.html?token='+data.access_token+'&expires='+expires+refresh_token
         },
-    prepareSilentLogin:function(refresh_token){
+    prepareTokenRefresh:function(refresh_token){
       var $loginStatus = jQuery('.login p.status');
-      googleMobileApi.doSilentLogin(refresh_token).done(function(data) {
+      googleMobileApi.tokenRefresh(refresh_token).done(function(data) {
               document.location.replace( googleMobileApi.getURL(data) )
               })
           .fail(function(data) {
@@ -107,15 +107,16 @@ var googleMobileApi = {
               googleMobileApi.prepareLogin()
               })
         },
-    doSilentLogin: function(refresh_token){
+    tokenRefresh: function(refresh_token){
         if (refresh_token[0]=='"')
           refresh_token=refresh_token.substring(1, refresh_token.length-1)
 
         var deferred = $.Deferred()
         $.post('https://accounts.google.com/o/oauth2/token', {
             refresh_token: refresh_token,
-            client_id: options.web.client_id,
+            client_id: options.web.client_email,
             client_secret: options.web.client_secret,
+            // access_type:'offline', -> Parameter not allowed for this message type: access_type
             grant_type: 'refresh_token'
             })
         .done(function(data) {
@@ -123,6 +124,8 @@ var googleMobileApi = {
             })
         .fail(function(response) {
             deferred.reject(response.responseJSON);
+            // localStorage.removeItem('tapp37_yanoshavisitado')
+            localStorage.removeItem('tapp37_refresh_token')
             })
         return deferred.promise()
         },
@@ -150,8 +153,15 @@ var googleMobileApi = {
                 $loginButton.fadeIn()
                 $throbber.hide()
                 $loginStatus.removeClass('sinRegistroPrevio').html(data.error);
+                localStorage.removeItem('tapp37_yanoshavisitado')
               })
           })
+        },
+    silentLogin:function(){
+        googleMobileApi.authorize().done(function(data) {
+                // console.info('Access Token: ' + data.access_token);
+                document.location.replace( googleMobileApi.getURL(data) )
+            })
         },
     // getDataProfile:function(token, fnCallBack){
     //     //funciona, pero ahora lo hacemos en el servidor
