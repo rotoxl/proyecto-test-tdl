@@ -67,15 +67,15 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1130"
-     inkscape:window-height="956"
+     inkscape:window-width="553"
+     inkscape:window-height="699"
      id="namedview65"
      showgrid="false"
      inkscape:zoom="0.44500587"
-     inkscape:cx="-628.75473"
-     inkscape:cy="-1889.5146"
-     inkscape:window-x="659"
-     inkscape:window-y="0"
+     inkscape:cx="326.28885"
+     inkscape:cy="-720.99069"
+     inkscape:window-x="414"
+     inkscape:window-y="77"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg2"
      inkscape:snap-page="true" />
@@ -499,7 +499,10 @@
        style="fill:#ffffff" />
   </g>
   <g
-     id="g3057">
+     id="g3057"
+     inkscape:export-filename="/Users/rotoxl/dev/proyectotest/recursos/imágenes/icon144.png"
+     inkscape:export-xdpi="34.91"
+     inkscape:export-ydpi="34.91">
     <path
        sodipodi:type="arc"
        style="fill:#9db1c5;fill-opacity:1;stroke:none"
