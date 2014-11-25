@@ -483,8 +483,11 @@ Controlador.prototype.setCategorias=function(lis){
 	if (! (this.cache.categorias instanceof Array))
 		this.cache.categorias=[{}]
 	
-	this.cache.categorias[0].ds_categoria='Nuevos y actualizados'
-	this.cache.categorias[0].i='fa-clock-o'
+	this.cache.categorias[0].ds_categoria='Los más valorados'
+	this.cache.categorias[0].i='fa-heart'
+
+	this.cache.categorias[1].ds_categoria='Nuevos y actualizados'
+	this.cache.categorias[1].i='fa-clock-o'
 
 	this.cache.categoriasLocales=this.catsConTestLocales()
 
@@ -727,7 +730,9 @@ Vista.prototype.calculaAnchoTarjetas=function(){
 	var w=jQuery('#content').width() 
 	var anchoMinCards=140
 	var numtarjetas=Math.floor( (w-10)/anchoMinCards)
-	return (w/numtarjetas)-10
+	
+	this.numTarjetasPorAncho=numtarjetas
+	this.anchoTarjetas=(w/numtarjetas)-10
 	}
 Vista.prototype.tipos={
 	vistaTest:'vistaTest', 
@@ -1613,6 +1618,10 @@ VistaTienda.prototype.navegaEl=function(nvista, from){
 VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 	var pressed=jQuery(xbtn)
 	
+	this.nav=[]//reseteamos la pila de navegación
+	this.restauraHeaderApp()
+	////
+
 	this.domHeader.find('.btn.tienda, .btn.dispositivo').removeClass('active')
 	pressed.addClass('active')
 
@@ -1716,7 +1725,11 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 			}
 		}
 
-	var sl=buscaFilas( lista, {_contains_liscat:cd_categoria})
+	var sl
+	if (cd_categoria<0)
+		sl=this.escogeTestsCatDinamica(cd_categoria, lista)
+	else
+		sl=buscaFilas( lista, {_contains_liscat:cd_categoria})
 
 	var aPintar=sl.slice(0)
 	aPintar=aPintar.slice(num,num+tanda)
@@ -1750,19 +1763,32 @@ VistaTienda.prototype.escogeTestsCatDinamica=function(cd_categoria, lista){
 		tests=this.ordenaPorFecha(lista).slice(0,10)
 		}
 	else {
-		tests=this.ordenaPorFecha(lista).slice(0,10)
+		if (cd_categoria==-1)
+			tests=this.ordenaPorFecha(lista).slice(0,10)
+		else if (cd_categoria==-2){
+			tests=lista
+			tests.sort(function(a,b){
+				var na=Number(a.likes); var nb=Number(b.likes)
+				if (na==nb)
+					return 0
+				else if (na>nb)
+					return -1
+				else
+					return 1
+				})
+			}
 		}
 	return tests
 	}
 VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 	var xl=[]
 	
-	this.anchoTarjetas=this.calculaAnchoTarjetas()
+	this.calculaAnchoTarjetas()
 	var self=this
 	var fnNavega=function(){
-			console.log('> click cat')
-			self.navegaCat(jQuery(this).closest('.bloque').data('id'))
-			}
+		console.log('> click cat')
+		self.navegaCat(jQuery(this).closest('.bloque').data('id'))
+		}
 	this.domBody.empty()
 	if (lista.length==0){
 		var titulo='No hay tests'
@@ -1785,20 +1811,21 @@ VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 		else if ( cat.listarcomocategoria==0 || cat.cd_categoriapadre!=null) 
 			continue
 
+
 		var totalPorCat, sl
 		if (cat.cd_categoria<=0){
 			totalPorCat=this.escogeTestsCatDinamica(cat.cd_categoria, lista)
-			sl=totalPorCat.slice(0,6)
+			// sl=totalPorCat.slice(0,6)
+			sl=totalPorCat
 			cat.numtestsporcat=sl.length//aquí no queremos botón de más
 			}
-		else{
+		else {
 			packs=buscaFilas(app.cache.categorias, {cd_categoriapadre:cat.cd_categoria})
 			totalPorCat=buscaFilas(lista, {_contains_liscat:cat.cd_categoria})
 			cat.numtestsporcat=totalPorCat.length
 			sl=totalPorCat.slice(0,4) //Sacamos sólo unos pocos
 			}
 
-		//if (sl.length==0) continue
 		var d=creaObjProp('section', {id:'cat-'+cat.cd_categoria, className:'bloque cat', 'data-id':cat.cd_categoria, hijos:[
 			creaObjProp('h4', {onclick:fnNavega, className:'titulo', hijos:[
 				creaT(cat.ds_categoria)
@@ -1816,16 +1843,25 @@ VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 				}
 			}
 
-		for (var j=0;  j<sl.length; j++){
+		for (var j=0;  j<Math.min(this.numTarjetasPorAncho, sl.length); j++){
 			var t=sl[j]
 			if (packs.length && this.testEstaEnPack(t, packs)){
 				continue
 				}
 			else if (jQuery(d).find('#test-'+ t.cd_test).length==0){
-				d.appendChild( this._generaDomTest(t, j, cat) )
+				var xdom=jQuery(this._generaDomTest(t, j, cat))
+				xdom.addClass('main')
+				d.appendChild( xdom[0] )
 				}
 			}
+		if (sl.length>this.numTarjetasPorAncho){
+			var h4=jQuery(d).find('h4')
+			var t=h4.text()
+			h4.text('').append([
+				this.generaBtnCargarMas(cat.cd_categoria),
+				creaT(t)])
 			
+		}
 
 		xl.push( d )
 		}
@@ -1933,7 +1969,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 		}
 
 	var self=this
-	return creaObjProp('article', {'style.width':this.anchoTarjetas+'px', onclick:onclick, id:'test-'+test.cd_test, 'data-id':test.cd_test, className:'main card test', hijos:[
+	return creaObjProp('article', {'style.width':this.anchoTarjetas+'px', onclick:onclick, id:'test-'+test.cd_test, 'data-id':test.cd_test, className:'card test', hijos:[
 			creaObjProp('div', {className:'body', i:cat.i}),
 			creaObjProp('footer', {hijos:[
 				dFecha,
@@ -2136,8 +2172,8 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 					creaObjProp('span', {className:'fecha', texto: formato.fechaDDMMYYYY(test.f_examen) }),
 					]}),
 				creaObjProp('span', {className:'bl cats', texto: self.concatCategoriasTest(test), omiteNulo:true, i:'fa-tags' }),
-				creaObjProp('span', {className:'bl', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos'}),
-				creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'Este test está en tu colección'}),
+				creaObjProp('span', {className:'bl preguntas', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos'}),
+				creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'En tu colección'}),
 				]}),
 			]}),
 		creaObjProp('section', {className:'row botonera', hijos:[
@@ -2220,9 +2256,32 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 		}
 	}
 VistaTienda.prototype.lanzaTest=function(cd_test){
+	var self=this
+
 	var test=buscaFilas(app.cache.testLocales, {cd_test:cd_test})[0]
 	var resp=buscaFilas(app.cache.respuestasLocales, {cd_test:cd_test})[0]
-	app.lanzaTest(test, resp, this)
+
+	if (resp){
+		var options = {
+	        title: resp.finalizado?'Este test está a medias, ¿deseas continuar desde donde lo dejaste o empezar de nuevo?':
+	        						'Este test ya ha sido realizado, ¿deseas empezar de nuevo? Se perderán las estadísticas actuales',
+	        buttonLabels: resp.finalizado?['Continuar', 'Empezar de nuevo']:['Empezar de nuevo']
+		    }
+		window.plugins.actionsheet.show(options, function(buttonIndex){
+			if (resp.finalizado){
+				if (buttonIndex==0)
+					app.lanzaTest(test, resp, self)
+				else
+					app.lanzaTest(test, null, self)	
+				}
+			else {
+				app.lanzaTest(test, null, self)	
+				}
+			})
+		}
+	else {
+		app.lanzaTest(test, resp, self)	
+		}
 	}
 //////
 VistaTienda.prototype.anhadeATestLocales=function(test){
