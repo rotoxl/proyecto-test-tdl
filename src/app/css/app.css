@@ -647,6 +647,11 @@ h1, h2, h3, h4, h4, small {
           font-size: 16px;
           text-transform: uppercase;
           border-radius: 0; }
+      #content.vista.vistaTienda .vista-body .bloque .titulo .cargarMas {
+        margin-right: 2px;
+        float: right;
+        margin-top: -8px;
+        width: 60px; }
       #content.vista.vistaTienda .vista-body .bloque .card {
         min-height: 120px;
         color: #979797; }
@@ -674,7 +679,8 @@ h1, h2, h3, h4, h4, small {
             padding-left: 0px;
             padding-right: 0px; }
         #content.vista.vistaTienda .vista-body .bloque .card footer span.love {
-          color: #aaa; }
+          color: #aaa;
+          padding-left: 1px; }
         #content.vista.vistaTienda .vista-body .bloque .card footer span.precio, #content.vista.vistaTienda .vista-body .bloque .card footer span.loTengo {
           color: #f0ad4e;
           text-align: right; }
@@ -768,7 +774,17 @@ h1, h2, h3, h4, h4, small {
     #content.vista.vistaTienda .detalle-test .btn-sm {
       text-transform: uppercase; }
     #content.vista.vistaTienda .detalle-test .cats {
-      font-size: 12px; }
+      font-size: 12px;
+      text-transform: uppercase;
+      border-width: 1px 0;
+      border-style: solid;
+      border-color: rgba(192, 192, 192, 0.4);
+      padding: 3px 0;
+      font-weight: 100; }
+    #content.vista.vistaTienda .detalle-test .preguntas {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 100; }
     #content.vista.vistaTienda .detalle-test .btnLove {
       margin-right: 5px;
       margin-left: 5px; }
@@ -782,6 +798,11 @@ h1, h2, h3, h4, h4, small {
       display: block !important; }
     #content.vista.vistaTienda .detalle-test.tengo-este-test .btnDescargar {
       display: none; }
+    #content.vista.vistaTienda .detalle-test span.precio, #content.vista.vistaTienda .detalle-test span.loTengo {
+      font-size: 13px;
+      margin-top: 20px;
+      margin-bottom: 0 !important;
+      text-align: right; }
   #content.vista.vistaMigraTest button.btn {
     width: 100%; }
   #content.vista.vistaMigraTest span.msgError {

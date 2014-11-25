@@ -44,19 +44,20 @@ $ret=null;
                 'i'=>'fa-fire',
                 'numtestsporcat'=>10, 'listarComoCategoria'=>1, 'cd_categoriapadre'=>null, 
                 );
-            /* $d2=array(
+            $d2=array(
                  'ds_categoria'=>'(título dinamico los más valorados)',
                  'cd_categoria'=>-2,
                  'i'=>'fa-love',
                  'numtestsporcat'=>10, 'listarComoCategoria'=>1, 'cd_categoriapadre'=>null,
                  );
-             $d3=array(
+            /* 
+            $d3=array(
                  'ds_categoria'=>'(título dinamico recomendaciones para ti)',
                  'cd_categoria'=>-3,
                  'i'=>'fa-birthday-cake',
                  'numtestsporcat'=>10, 'listarComoCategoria'=>1, 'cd_categoriapadre'=>null,
                  ); */
-            array_splice($categorias, 0, 0, array($d1) );
+            array_splice($categorias, 0, 0, array($d2, $d1) );
             
             $tests=array(); $arrCats=array();
             for ($i=0; $i<count($categorias); $i++){

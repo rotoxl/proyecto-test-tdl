@@ -313,7 +313,7 @@ class Metadatos{
 	//////
 	public function vinculaTestConUsuario($cd_usuario, $cd_test, $precio, $cd_moneda){
 		$existe=$this->conn->lookupSimple('select cd_test from usuarios_tests where cd_usuario=? and cd_test=?', array($cd_usuario, $cd_test));
-		if ($existe != $cd_test){
+		if ($existe){
 			$sql="insert into usuarios_tests (cd_usuario, cd_test, precio, cd_moneda) values (?, ?, ?, ?)";
 			$this->conn->ejecuta($sql, array($cd_usuario, $cd_test, $precio, $cd_moneda));
 			}
