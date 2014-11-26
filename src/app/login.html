@@ -29,9 +29,9 @@
 </head>
 <body class="login">
 	<section>
-		<div class="screens"></div>
+		<div class="screens" style="display:none" ></div>
 
-		<a href="#" style="display:none" class="btn-mobile btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
+		<!-- <a href="#" style="display:none" class="btn-mobile btn btn-google btn-info btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a> -->
 
 		<span id="signinButton" style="display:none" onclick="googleWebApi.signIn()" class="btn btn-web btn-google btn-rounded btn-danger" >
 			<span
@@ -46,6 +46,8 @@
 		</span>
 
 		<a style="display:none" onclick="loginSinConexion()" class="btn-no-connection btn btn-warning btn-rounded"><i class="fa fa-sign-in"></i> Entrar</a>
+
+		<a href="#" style="display:none" onclick="nativeApi.doLogin()" class="btn-native btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
 
 		<div class="throbber cargando"></div>
 		<p class="status"></p>
@@ -98,10 +100,17 @@
 				// 	setTimeout(function(){googleMobileApi.prepareTokenRefresh(rt)}, 100)
 				// 	}
 				// else 
+
+				// if (get('tapp37_yanoshavisitado')=='1')
+				// 	setTimeout(function(){googleMobileApi.silentLogin()}, 100)
+				// else {
+				// 	googleMobileApi.prepareLogin()
+				// 	}
+
 				if (get('tapp37_yanoshavisitado')=='1')
-					setTimeout(function(){googleMobileApi.silentLogin()}, 100)
+					setTimeout(function(){nativeApi.doSilentLogin()}, 100)
 				else {
-					googleMobileApi.prepareLogin()
+					nativeApi.prepareLogin()
 					}
 				}
 			}

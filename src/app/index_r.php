@@ -9,7 +9,7 @@ $REQ=($getopost == 'GET'?INPUT_GET:INPUT_POST);
 require_once('metadatos.php'); 
 try{
     @session_start();
-    if ($accion=='login'){
+    if ($accion=='login' || $accion=='loginNativo'){
         }
     else {
         $usu=new Usuario();//saca los datos de la sesión
@@ -30,7 +30,7 @@ $md=new Metadatos($conn, $usu);
 $ret=null;
 
 global $showSQL;
-try {
+// try {
     switch ($accion) {
         case 'getPreviewCategorias':
             $cd_usuario=$usu->cd_usuario;
@@ -187,6 +187,28 @@ try {
 
             break;
         //--------------------------------------------------------
+        case 'loginNativo':
+            $obj=json_decode( filter_input($REQ, 'datosUsu', FILTER_UNSAFE_RAW) );
+            $tz=filter_input($REQ, $tz, FILTER_SANITIZE_STRING);
+            
+            $datosUsu=array(
+                'cd_usuario'=>$obj->email,
+                'email'=>$obj->email,
+                'family_name'=>$obj->family_name,
+                'given_name'=>$obj->given_name,
+                'picture'=>$obj->picture
+                );
+
+            Usuario::guardaEnSesion($datosUsu);
+            $conn->logInfo('Login '.$datosUsu['cd_usuario'], 'LOGIN');
+
+            $esUsuarioNuevo=$md->altaUsuario($datosUsu, $tz);
+
+            $ret=array('retorno' => 1, 
+                        'sql' => $md->__logSQL($showSQL), 
+                        );
+            echo json_encode($ret);
+            break;
         case 'login':
             $token=filter_input($REQ, 'token', FILTER_SANITIZE_STRING);
             $tz=filter_input($REQ, $tz, FILTER_SANITIZE_STRING);
@@ -227,15 +249,15 @@ try {
             trigger_error('¡Accion '. $accion . ' no implementada!');
         }
     
-    }
-catch (Exception $ee){
-    $ret=array('retorno'=>0, 
-                'error'=>1, 
-                'msgError'=>$ee->getMessage(),
-                'sql' => $conn->arrResultSet,
-                );
-    echo json_encode($ret);
-    }
+//     }
+// catch (Exception $ee){
+//     $ret=array('retorno'=>0, 
+//                 'error'=>1, 
+//                 'msgError'=>$ee->getMessage(),
+//                 'sql' => $conn->arrResultSet,
+//                 );
+//     echo json_encode($ret);
+//     }
 
 function fnGetMisGrupos($cd_usuario){
     global $md;

@@ -3,12 +3,10 @@ jQuery.noConflict()
 
 var app, espacioDuro='\xA0', espacioDuro2='\xA0\xA0', vbCrLf='\n'
 function isPhone(){
-	if (document.URL.indexOf("http://") === -1 && 
-			document.URL.indexOf("https://") === -1) {
-					return true
-				}
+	if (document.URL.indexOf("http://") === 0 || document.URL.indexOf("https://") === 0) 
+		return false
 	else
-			return false 
+		return true
 	}
 function creaObjProp(tipo, dicPropiedades){
 	var subtipo
@@ -334,15 +332,16 @@ function Controlador(){
 	this.init()
 
 	if ( isPhone() )
-		// this.config.servidor='http://rotoxl.alwaysdata.net/app/'
-		this.config.servidor='http://192.168.0.196:8888/octopus/'
+		this.config.servidor='http://rotoxl.alwaysdata.net/app/'
+		// this.config.servidor='http://192.168.0.196:8888/octopus/'
 	else
 		this.config.servidor='./'
 	this.config.url=this.config.servidor+'index_r.php'
 
 	//////////
 	var sr=document.location.search+''
-	if (sr.indexOf('?token=')==0){//teléfonos: no se produce el error por Access-Control-Allow-Origin
+
+	if (sr.indexOf('?token=')==0){//web
 		this.cache.token=sr.substring('?token='.length).split('&')[0]
 		var refresh_token=sr.substring( sr.indexOf('refresh_token=')+14 ).split('&')[0]
 		if (refresh_token.length>10)
@@ -355,6 +354,24 @@ function Controlador(){
 			var expires=sr.substring( sr.indexOf('expires=')+8).split('&')[0]
 			this.cache.loginExpires=new Date(expires-2*60*1000)//2 minutos de margen
 			}
+		}
+	else if (sr.indexOf('?nativo=')==0){//Teléfonos, login nativo
+		this.cache.token=null
+		this.cache.loginExpires=null
+		
+		var l=sr.split('&'), obj={}
+		for (var j=0; j<l.length; j++){
+			var temp=l[j].split('=')
+			if (temp[0]=='?nativo')
+				continue
+			obj[temp[0]]=temp[1]
+			}
+		this.loginEnMiNubeSinToken(obj)
+		var yanoshavisitado=get('tapp37_yanoshavisitado')
+		this.userDataReceived(obj)
+
+		if (!yanoshavisitado)
+			this.lanzaTourAplicacion()
 		}
 	else if (sr.indexOf('?noHayDatos')==0){
 		var s=get('tapp37_userdata')
@@ -483,11 +500,14 @@ Controlador.prototype.setCategorias=function(lis){
 	if (! (this.cache.categorias instanceof Array))
 		this.cache.categorias=[{}]
 	
-	this.cache.categorias[0].ds_categoria='Los más valorados'
-	this.cache.categorias[0].i='fa-heart'
-
-	this.cache.categorias[1].ds_categoria='Nuevos y actualizados'
-	this.cache.categorias[1].i='fa-clock-o'
+	if (this.cache.categorias[0]){
+		this.cache.categorias[0].ds_categoria='Los más valorados'
+		this.cache.categorias[0].i='fa-heart'
+		}
+	if (this.cache.categorias[1]){
+		this.cache.categorias[1].ds_categoria='Nuevos y actualizados'
+		this.cache.categorias[1].i='fa-clock-o'
+		}
 
 	this.cache.categoriasLocales=this.catsConTestLocales()
 
@@ -540,6 +560,19 @@ Controlador.prototype.getRespuestasLocales=function(){
 	return ret
 	}
 /////
+Controlador.prototype.loginEnMiNubeSinToken=function(obj){
+	var self=this
+	
+	var desfaseUTC=new Date().getTimezoneOffset()/-60
+    var tz=(desfaseUTC<0?'-':'+')+lpad(desfaseUTC, '0', 2)+':00'
+
+	jQuery.post(this.config.url, {accion:'loginNativo', datosUsu:JSON.stringify(obj), tz:tz}).success(
+		function(data){
+			var datos=xeval(data)
+			if (datos.retorno==1)
+				self.registerPush()
+		})
+	}
 Controlador.prototype.loginEnMiNube=function(){
 	var self=this
 	
@@ -580,13 +613,15 @@ Controlador.prototype.actualizaDomUsuario=function(){
 		jQuery('.liVistaUploadTest').removeClass('hidden')
 	}
 Controlador.prototype.logout=function(){
-	googleMobileApi.disconnectUser(app.cache.token)
-	
+	//if (googleMobileApi) googleMobileApi.disconnectUser(app.cache.token)
+	if (isPhone())
+		window.plugins.googleplus.disconnect()
+
 	localStorage.removeItem('tapp37_userdata')
 	localStorage.removeItem('tapp37_refresh_token')
 	localStorage.removeItem('tapp37_yanoshavisitado')
 	
-	document.location='index.html'
+	document.location='login.html'
 	}
 /////
 Controlador.prototype.pushReceived=function(datos){
@@ -745,6 +780,7 @@ Vista.prototype.tipos={
 	vistaTienda:'vistaTienda', 
 	
 	vistaSocial:'vistaSocial', // vistaGrupo:'vistaGrupo',
+	vistaAjustes:'vistaAjustes', 
 
 	vistaEstadisticas:'vistaEstadisticas', 
 	vistaMigraTest:'vistaMigraTest'
