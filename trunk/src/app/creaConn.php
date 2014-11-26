@@ -1,7 +1,7 @@
 <?php
 $tz='+00:00';
 
-require_once(__DIR__.'/paramBD.php'); 
+require_once(__DIR__.'/paramBD.nosvn.php'); 
 $dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset=utf8";
 
 class nullableInt{
