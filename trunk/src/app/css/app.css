@@ -527,7 +527,8 @@ h1, h2, h3, h4, h4, small {
       margin-left: 0;
       margin-right: 0;
       font-size: 16px;
-      text-align: left; }
+      text-align: left;
+      padding-bottom: 10px; }
       #content.vista .config .row > * {
         padding-left: 0;
         padding-right: 0; }
@@ -1076,18 +1077,19 @@ h1, h2, h3, h4, h4, small {
       margin-right: 0;
       color: #adbece; }
       #content.vista.vistaAjustes .bl span {
-        font-size: 21px;
+        font-size: 19px;
         color: white; }
     #content.vista.vistaAjustes .espacio {
       width: 100%;
       display: block; }
     #content.vista.vistaAjustes .valor {
-      font-size: 21px;
+      font-size: 19px;
       color: white; }
     #content.vista.vistaAjustes .row.sin-titulo {
       margin-top: 10px; }
     #content.vista.vistaAjustes .row i {
-      margin-top: 4px; }
+      margin-top: 6px;
+      font-size: 19px; }
   #content.vista.cargando {
     min-height: 100%;
     position: absolute;

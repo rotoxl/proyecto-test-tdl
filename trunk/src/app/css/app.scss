@@ -661,7 +661,7 @@ h1, h2, h3, h4, h4, small{
 			.row{
 
 				padding-bottom:5px; margin-left:0; margin-right:0;
-				font-size: 16px; text-align:left;
+				font-size: 16px; text-align:left; padding-bottom:10px;
 				> *{
 					padding-left:0; padding-right:0;
 				}
@@ -1435,7 +1435,7 @@ h1, h2, h3, h4, h4, small{
 			//padding-bottom:20px;
 
 			span{
-				font-size: 21px;
+				font-size: 19px;
 				color: white;
 			}	
 		}
@@ -1444,11 +1444,11 @@ h1, h2, h3, h4, h4, small{
 			display: block;
 		}
 		.valor{
-			font-size: 21px;
+			font-size: 19px;
 			color: white;
 		}
 		.row.sin-titulo{margin-top:10px;}
-		.row i{margin-top:4px;}
+		.row i{margin-top:6px; font-size:19px;;}
 	}
 	&.vista.cargando{
 		min-height: 100%;
