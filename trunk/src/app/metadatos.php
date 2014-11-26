@@ -46,8 +46,11 @@ class Metadatos{
                $conn->setUsu($usu);
                }
           }
-	function __logSQL(){
-		return $this->conn->arrResultSet;
+	function __logSQL($mostrar){
+		if ($mostrar)
+			return $this->conn->arrResultSet;
+		else 
+			return null;
 		}
 	//////
 	public function numerador($tabla, $col, $arr=null, $paratran=false){ // Uso: numerador ('centroscoste', 'colNumerador', array('id_empresa'=>1 ))
@@ -421,10 +424,14 @@ class Metadatos{
 		return $this->conn->lookupFilas($sql, array($cd_grupo));
 		}
 	public function getMsgGrupo($cd_grupo){
-		$sql='select cd_usuario, texto as msg, cd_test, badge, f_msg as f from usuarios_grupos_mensajes where cd_grupo=? order by cd_mensaje desc';
+		$sql='select cd_usuario, texto as msg, cd_test, badge, f_msg as f from usuarios_grupos_mensajes where cd_grupo=? order by cd_mensaje desc limit 50';
 		return $this->conn->lookupFilas($sql, array($cd_grupo));
 		}
 	public function nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg){
+		//verificamos que el grupo sigue vivo
+		$sigueVivo=$this->conn->lookupSimple("select cd_grupo from grupos where cd_grupo=? and f_borrado is null", array($cd_grupo));
+		if ($cd_grupo!=$sigueVivo) return;
+
 		$sql="insert into usuarios_grupos_mensajes (cd_usuario, cd_grupo, cd_mensaje, texto, cd_test, badge) values (?, ?, ?, ?, ?, ?)";
 
 		$idx=$this->numerador('usuarios_grupos_mensajes', 'cd_mensaje', array('cd_usuario'=>$cd_usuario, 'cd_grupo'=>$cd_grupo));
@@ -439,7 +446,7 @@ class Metadatos{
 			'f_msg'=>	$this->fechaHora(),
 			);
 		$msgAlt='Nuevo mensaje de '.$cd_usuario.': '.$msg;
-		$this->sendPushGrupo($cd_grupo, null, $this->genDatosPush('vistaSocial', 'mensajeGrupo', $datos, $msgAlt) );
+		$this->sendPushGrupo($cd_grupo, $cd_usuario, $this->genDatosPush('vistaSocial', 'mensajeGrupo', $datos, $msgAlt) );
 		}
 	public function guardarGrupo($datos, $cd_usuario){
 		$arrSql=array(); $ususQueNoExisten=null;
@@ -447,9 +454,9 @@ class Metadatos{
 		if ($datos['esBorrado']==1){
 			$par=array($datos['cd_grupo']);
 			$arrSql=array(
-				new Sql("delete from usuarios_grupos where cd_grupo=?", $par),
-				new Sql("delete from usuarios_grupos_mensajes where cd_grupo=?", $par),
-				new Sql("delete from grupos where cd_grupo=?", $par)
+				// new Sql("delete from usuarios_grupos where cd_grupo=?", $par),
+				// new Sql("delete from usuarios_grupos_mensajes where cd_grupo=?", $par),
+				new Sql("update grupos set f_borrado=now() where cd_grupo=?", $par)
 				);
 			}
 		else {
@@ -487,6 +494,44 @@ class Metadatos{
 		$this->conn->ejecutaLote($arrSql);
 		return $ususQueNoExisten;
 		}
+	//////
+	public function compruebaCodigoPromocional($cd_usuario, $cod){
+		$sql="select 
+				count(up.CD_Promocion)>p.maxUsuarios as agotada,
+				now()>f_caducidad as caducada,
+				(select 1 from usuarios_promociones xup 
+					where xup.cd_promocion=p.cd_promocion and cd_usuario=?) as usuYaEnPromocion,
+				count(up.CD_Promocion) as numUsu,
+				p.*
+			from 
+				promociones p left join usuarios_promociones up 
+					on (up.cd_promocion=p.cd_promocion)
+			where 
+					p.clave_promocion=?";
+		$promo=$this->conn->lookupDict($sql, array($cd_usuario, $cod) );
 
+		if ($promo['usuyaenpromocion']=='1' || 
+				$promo['agotada']=='1' || 
+				$promo['caducada']=='1'){
+			return array(
+				'usuyaenpromocion'=>$promo['usuyaenpromocion'],
+				'agotada'=>$promo['agotada'],
+				'caducada'=>$promo['caducada']
+				);
+			}
+		else if ($promo['cd_promocion']==null){
+			return array('promocioninexistente'=>1);
+			}
+		else {
+			$this->conn->ejecuta("insert into usuarios_promociones (cd_usuario, cd_promocion) values (?, ?)", 
+								array($cd_usuario, $promo['cd_promocion']) );
+			return array(
+				'cd_promocion'=>$promo['cd_promocion'],
+				'ds_promocion'=>$promo['ds_promocion'],
+				'resp_promocion'=>$promo['resp_promocion'],
+				);
+			}
+
+		}
 }
 ?>

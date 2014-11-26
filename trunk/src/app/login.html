@@ -92,11 +92,13 @@
 					}
 				}
 			else {
-				var rt=get('tapp37_refresh_token')
-				if (rt!=null){
-					setTimeout(function(){googleMobileApi.prepareTokenRefresh(rt)}, 100)
-					}
-				else if (get('tapp37_yanoshavisitado')=='1')
+				// refresh_token no funciona
+				// var rt=get('tapp37_refresh_token')
+				// if (rt!=null){
+				// 	setTimeout(function(){googleMobileApi.prepareTokenRefresh(rt)}, 100)
+				// 	}
+				// else 
+				if (get('tapp37_yanoshavisitado')=='1')
 					setTimeout(function(){googleMobileApi.silentLogin()}, 100)
 				else {
 					googleMobileApi.prepareLogin()
