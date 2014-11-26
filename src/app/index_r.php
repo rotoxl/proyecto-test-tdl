@@ -28,8 +28,9 @@ catch (Exception $ee){
 $md=new Metadatos($conn, $usu);
 
 $ret=null;
-// $showSQL=true;
-// try {
+
+global $showSQL;
+try {
     switch ($accion) {
         case 'getPreviewCategorias':
             $cd_usuario=$usu->cd_usuario;
@@ -71,7 +72,7 @@ $ret=null;
             $ret=array('retorno' => 1, 
                        'categorias' => $categorias,
                        'tests' => $testsCat, 
-                       'sql' => $md->__logSQL(),
+                       'sql' => $md->__logSQL($showSQL),
                        );
             echo json_encode($ret);
             break;
@@ -81,7 +82,7 @@ $ret=null;
            
             $ret=array('retorno' => 1, 
                         'test' => $md->getPreviewTest($cd_usuario, $cd_test), 
-                        'sql' => $md->__logSQL(),
+                        'sql' => $md->__logSQL($showSQL),
                        );
             echo json_encode($ret);
             break;
@@ -91,7 +92,7 @@ $ret=null;
             
             $ret=array('retorno' => 1, 
                        'test' => $md->getTest($cd_usuario, $cd_test),
-                       'sql' => $md->__logSQL(),
+                       'sql' => $md->__logSQL($showSQL),
                        );
             echo json_encode($ret);
             break;
@@ -102,7 +103,7 @@ $ret=null;
 
             $ret=array('retorno' => 1, 
                         'cd_test'=>$cd_test,
-                        'sql' => $md->__logSQL(),);
+                        'sql' => $md->__logSQL($showSQL),);
             echo json_encode($ret);
             break;
         case 'like+':
@@ -113,7 +114,7 @@ $ret=null;
             $md->toggleLike($accion, $cd_usuario, $cd_test);
 
             $ret=array('retorno' => 1, 
-                    'sql' => $md->__logSQL(),);
+                    'sql' => $md->__logSQL($showSQL),);
             echo(json_encode($ret));
             break;
         //--------------------------------------------------------
@@ -121,7 +122,7 @@ $ret=null;
             $cd_usuario=$usu->cd_usuario;
             $ret=array('retorno' => 1, 
                     'grupos'=>fnGetMisGrupos($cd_usuario),
-                    'sql' => $md->__logSQL(),);
+                    'sql' => $md->__logSQL($showSQL),);
 
             echo json_encode($ret);
             break;
@@ -174,6 +175,18 @@ $ret=null;
             echo json_encode($ret);
             break;
         //--------------------------------------------------------
+        case 'compruebaCodigoPromocional':
+            $cd_usuario=$usu->cd_usuario;
+            $cod=filter_input($REQ, 'cod', FILTER_UNSAFE_RAW);
+            $resp=$md->compruebaCodigoPromocional($cd_usuario, $cod);
+
+            $ret=array('retorno'=> 1, 
+                        'resp'=>    $resp,
+                        'sql'=>     $md->__logSQL($showSQL),);
+            echo(json_encode($ret));
+
+            break;
+        //--------------------------------------------------------
         case 'login':
             $token=filter_input($REQ, 'token', FILTER_SANITIZE_STRING);
             $tz=filter_input($REQ, $tz, FILTER_SANITIZE_STRING);
@@ -187,7 +200,7 @@ $ret=null;
             $ret=array('retorno' => 1, 
                         'userData'=>$datosUsu, 
                         'esUsuarioNuevo'=>$esUsuarioNuevo,
-                        'sql' => $md->__logSQL(), 
+                        'sql' => $md->__logSQL($showSQL), 
                         );
             echo json_encode($ret);
             break;
@@ -197,7 +210,7 @@ $ret=null;
 
             $ret=array('retorno' => 1, 
                 'sesionDestruida'=>1,
-                'sql' => $md->__logSQL(),
+                'sql' => $md->__logSQL($showSQL),
                 );
             echo json_encode($ret);
             break;
@@ -207,22 +220,22 @@ $ret=null;
             $md->guardaID_Dispositivo($cd_usuario, $cd_gcm);
 
             $ret=array('retorno' => 1, 
-                        'sql' => $md->__logSQL(),);
+                        'sql' => $md->__logSQL($showSQL),);
             echo(json_encode($ret));
             break;
         default:
             trigger_error('¡Accion '. $accion . ' no implementada!');
         }
     
-//     }
-// catch (Exception $ee){
-//     $ret=array('retorno'=>0, 
-//                 'error'=>1, 
-//                 'msgError'=>$ee->getMessage(),
-//                 'sql' => $conn->arrResultSet,
-//                 );
-//     echo json_encode($ret);
-//     }
+    }
+catch (Exception $ee){
+    $ret=array('retorno'=>0, 
+                'error'=>1, 
+                'msgError'=>$ee->getMessage(),
+                'sql' => $conn->arrResultSet,
+                );
+    echo json_encode($ret);
+    }
 
 function fnGetMisGrupos($cd_usuario){
     global $md;

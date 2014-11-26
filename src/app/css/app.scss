@@ -648,6 +648,37 @@ h1, h2, h3, h4, h4, small{
 				}
 			}
 		}
+
+		.fila{
+			width: 100%;
+			text-align: left;
+			background: transparent;
+			border: 0; color:white;
+			padding-top:5px; padding-bottom:15px;
+		}
+
+		.config{
+			.row{
+
+				padding-bottom:5px; margin-left:0; margin-right:0;
+				font-size: 16px; text-align:left;
+				> *{
+					padding-left:0; padding-right:0;
+				}
+			}
+			i {
+				margin-top: 0px;
+				font-size: 25px;
+				margin-right: 14px;
+				color:inherit;
+			}
+			small.bl{
+				padding-bottom: 0px;
+				text-transform: uppercase;
+				border-top: 1px solid rgba(173, 190, 206, .3);
+			}
+		}
+
 	}
 
 	&.vista.vistaTest{
@@ -664,7 +695,7 @@ h1, h2, h3, h4, h4, small{
 			}
 			ul#mapatest{
 				max-width: 400px;
-				max-height: 500px;
+				max-height: 350px;
 				overflow-y: auto;
 				span.arrow{
 					&:after{border-bottom-color:#65bd77;}
@@ -1047,12 +1078,12 @@ h1, h2, h3, h4, h4, small{
 				border-style: solid;
 				border-color: rgba(192, 192, 192, .4);
 				padding: 3px 0;
-				font-weight: 100;
+				font-weight: normal;
 			}
 			.preguntas{
 				text-transform: uppercase;
 				font-size: 12px;
-				font-weight: 100;
+				font-weight: normal;
 			}
 			.btnLove{margin-right:5px; margin-left:5px;}
 			.btnAbrir, .btnLove, .loTengo, .btnDesinstalar{display:none !important;}
@@ -1170,6 +1201,11 @@ h1, h2, h3, h4, h4, small{
 			border-top:1px solid rgba(173, 190, 206, .1);
 			min-height: 85px;
 			padding-bottom:10px;
+
+			&.cargando{
+				background:url("../images/throbber-white.gif") no-repeat center center;
+				background-size:50px;
+			}
 			> .avatar{
 				border:0;
 				padding-left:10px; 
@@ -1232,13 +1268,12 @@ h1, h2, h3, h4, h4, small{
 			color:$navigation_bar_bgcolor;
 		}
 
-		.vista-editar-grupo{
-			.row{
-				padding-bottom:5px; margin-left:0; margin-right:0;
-				font-size: 16px; text-align:left;
-				> *{
-					padding-left:0; padding-right:0;
-				}
+		.config{
+			.bl{
+				padding-top: 10px; margin-left:0px; margin-right:0;
+
+				color:#adbece;
+				//padding-bottom:20px;
 			}
 			.txtNombreGrupo{
 				font-size: 21px;
@@ -1255,35 +1290,15 @@ h1, h2, h3, h4, h4, small{
 				}
 			}
 
-			.member{
-				width: 100%;
-				text-align: left;
-				background: transparent;
-				border: 0; color:white;
-				padding-top:5px; padding-bottom:15px;
-				i{
-					margin-top: 0px;
-					font-size: 25px;
-					margin-right: 14px;
-					color:inherit;
-				}
-
-				&.btnMemberAdd{
-					color:#adbece;
-				}
-
-				&.member.admin:after {
-					content: "(Admin)";
-					float: right;
-					color: rgba(173, 190, 206, 0.6);
-				}
-			}
-			small.bl{
-				padding-bottom: 0px;
-				text-transform: uppercase;
-				border-top: 1px solid rgba(173, 190, 206, .3);
+			&.btnMemberAdd{
+				color:#adbece;
 			}
 
+			&.member.admin:after {
+				content: "(Admin)";
+				float: right;
+				color: rgba(173, 190, 206, 0.6);
+			}
 
 		.btnDeleteGroup{
 			width: 90%;
@@ -1410,6 +1425,31 @@ h1, h2, h3, h4, h4, small{
 
 	}
 
+	&.vista.vistaAjustes{
+		background-color:$navigation_bar_bgcolor;
+		color:#adbece;
+
+		.bl{
+			padding-top: 10px; margin-left:0px; margin-right:0;
+			color:#adbece;
+			//padding-bottom:20px;
+
+			span{
+				font-size: 21px;
+				color: white;
+			}	
+		}
+		.espacio{
+			width: 100%;
+			display: block;
+		}
+		.valor{
+			font-size: 21px;
+			color: white;
+		}
+		.row.sin-titulo{margin-top:10px;}
+		.row i{margin-top:4px;}
+	}
 	&.vista.cargando{
 		min-height: 100%;
 		position: absolute;

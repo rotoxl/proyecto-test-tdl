@@ -506,7 +506,7 @@ Controlador.prototype.catsConRespuestasLocales=function(){
 	return this._getCatsDeTestsORespuestasLocales(this.cache.respuestasLocales)
 	}
 Controlador.prototype._getCatsDeTestsORespuestasLocales=function(col){
-	var lisIdCat=[]
+	var lisIdCat=[-1]
 	for (var i=0; i<col.length; i++){
 		if (col[i].liscat==null) continue
 		var temp=col[i].liscat.split(',')
@@ -686,7 +686,9 @@ Controlador.prototype.cargaVistaInicio=function(){
 	else if (hash=='vistaSocial' )
 		this.cargaVistaSocial()
 	else if (hash=='vistaEstadisticas')
-	 this.cargaVistaEstadisticas()
+	 	this.cargaVistaEstadisticas()
+	else if (hash=='vistaAjustes')
+		this.cargaVistaAjustes()
 
 	else {
 		this.cargaVistaTienda(false, true)//ojo, sólo a local
@@ -704,6 +706,10 @@ Controlador.prototype.cargaVistaSocial=function(desdeHistorial){
 	}
 Controlador.prototype.cargaVistaEstadisticas=function(desdeHistorial){
 	new VistaEstadisticas(desdeHistorial).toDOM()
+	this.cierraNavDrawer()
+	}
+Controlador.prototype.cargaVistaAjustes=function(desdeHistorial){
+	new VistaAjustes(desdeHistorial).toDOM()
 	this.cierraNavDrawer()
 	}
 Controlador.prototype.pushState=function(id){
@@ -1813,7 +1819,10 @@ VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 
 
 		var totalPorCat, sl
-		if (cat.cd_categoria<=0){
+		if (cat.cd_categoria<0){
+			if (this.entornoLocal)
+				cat.ds_categoria='Recientes'
+
 			totalPorCat=this.escogeTestsCatDinamica(cat.cd_categoria, lista)
 			// sl=totalPorCat.slice(0,6)
 			sl=totalPorCat
@@ -2263,19 +2272,21 @@ VistaTienda.prototype.lanzaTest=function(cd_test){
 
 	if (resp){
 		var options = {
-	        title: resp.finalizado?'Este test está a medias, ¿deseas continuar desde donde lo dejaste o empezar de nuevo?':
-	        						'Este test ya ha sido realizado, ¿deseas empezar de nuevo? Se perderán las estadísticas actuales',
-	        buttonLabels: resp.finalizado?['Continuar', 'Empezar de nuevo']:['Empezar de nuevo']
+	        title: (resp.finalizado?'Test terminado ¿empezar de nuevo? Se perderán estadísticas':
+	        						'Test a medias, ¿continuar o empezar de nuevo?'),
+	        						
+	        buttonLabels: resp.finalizado?['Empezar de nuevo', 'Cancelar']:['Continuar', 'Empezar de nuevo', 'Cancelar']
 		    }
 		window.plugins.actionsheet.show(options, function(buttonIndex){
 			if (resp.finalizado){
-				if (buttonIndex==0)
-					app.lanzaTest(test, resp, self)
-				else
+				if (buttonIndex==1)
 					app.lanzaTest(test, null, self)	
 				}
 			else {
-				app.lanzaTest(test, null, self)	
+				if (buttonIndex==1)
+					app.lanzaTest(test, resp, self)
+				else if (buttonIndex==2)//el botón atrás llega aquí como buttonIndex=2
+					app.lanzaTest(test, null, self)	
 				}
 			})
 		}
@@ -2452,7 +2463,7 @@ VistaSocial.prototype.getBody=function(){
 			]}),
 		]}) )
 
-	this.domEditarGrupo=jQuery( creaObjProp('div', {className:'vista-editar-grupo flowable container', 'style.display':'none', hijos:[
+	this.domEditarGrupo=jQuery( creaObjProp('div', {className:'vista-editar-grupo config flowable container', 'style.display':'none', hijos:[
 		creaObjProp('div', {className:'row nombre', onclick:function(){self.btnCambiaNombreGrupo()}, hijos:[
 			creaObjProp('small', {className:'bl', texto:'Nombre del grupo'}),
 			creaObjProp('span',  {className:'col-xs-11 txtNombreGrupo', texto:'Nombre del grupo'}),
@@ -2462,7 +2473,7 @@ VistaSocial.prototype.getBody=function(){
 			creaObjProp('small', {className:'bl', texto:'Miembros'}),
 			]}),
 		creaObjProp('div', {className:'row miembros', hijos:[
-			creaObjProp('button', {className:'bl member btnMemberAdd', onclick:function(){self.btnAnhadirMiembro()}, hijos:[
+			creaObjProp('button', {className:'bl member fila btnMemberAdd', onclick:function(){self.btnAnhadirMiembro()}, hijos:[
 				creaT('Añadir nuevo miembro'),
 				creaObjProp('i', {className:'fa fa-plus-circle pull-right'})
 				]})
@@ -2666,12 +2677,15 @@ VistaSocial.prototype.pintaGrupos=function(){
 		}
 
 	this.domGrupos.append(
-		creaObjProp('div', {onclick:function(){self.crearGrupo()}, className:'bl grupo row', hijos:[
+		creaObjProp('div', {onclick:function(){self.crearGrupo()}, className:'bl grupo row anhadir', hijos:[
 			creaObjProp('i', {className:'pull-left grupo-img col-xs-3 fa fa-plus-circle'}),
 			creaObjProp('h5',  {className:'grupo-title pull-right col-xs-9', texto:'Crear nuevo grupo'}),
 
 			]})
 		)
+	}
+VistaSocial.prototype.anhadeThrobberAGrupos=function(){
+	this.domGrupos.find('.anhadir').empty().addClass('cargando')
 	}
 ////
 VistaSocial.prototype.verGrupo=function(gid){
@@ -2813,7 +2827,7 @@ VistaSocial.prototype.abrirEditaGrupo=function(){
 			clsAdmin=' admin'
 
 		var d=creaObjProp('button', {'data-id':m.cd_usuario, onclick:function(){self.btnQuitarMiembro(this)}, 
-									className:'bl member'+clsAdmin, i:'fa-minus-circle pull-right', texto:m.given_name })
+									className:'bl fila member'+clsAdmin, i:'fa-minus-circle pull-right', texto:m.given_name })
 		jQuery(d).insertBefore(btnMemberAdd)
 		}
 
@@ -2840,6 +2854,8 @@ VistaSocial.prototype.guardarCambiosGrupo=function(fnCallBack){
 			m.push( this.grupo.miembros[i].cd_usuario )
 			}
 		var self=this
+		if (this.grupo.esNuevo)
+			self.anhadeThrobberAGrupos()
 		jQuery.post(app.config.url, {accion:'guardarGrupo', 
 									cd_grupo:this.grupo.cd_grupo,
 									ds_grupo:this.grupo.ds_grupo,
@@ -2896,12 +2912,12 @@ VistaSocial.prototype.btnAnhadirMiembro=function(d){
 			}
 		var nm={
 			cd_usuario:contact.emails[0].value,
-			nombre:contact.nickname || contact.displayName,
+			nombre:contact.nickname || contact.displayName || contact.emails[0].value,
 			picture:contact.photos[0].value
 			}
 		self.grupo.miembros.push(nm)
 
-		var d=creaObjProp('button', {'data-id':nm.cd_usuario, onclick:function(){self.btnQuitarMiembro(this)}, className:'bl member', i:'fa-minus-circle pull-right', texto:nm.nombre })
+		var d=creaObjProp('button', {'data-id':nm.cd_usuario, onclick:function(){self.btnQuitarMiembro(this)}, className:'bl fila member', i:'fa-minus-circle pull-right', texto:nm.nombre })
 		jQuery(d).insertBefore('.btnMemberAdd')
 
 		self.grupo.esModif=true
@@ -3115,6 +3131,93 @@ VistaEstadisticas.prototype.testData=function(){
 		ret.push(el)
 		}
 	return ret
+	}
+////////////////////////////////////////////////
+function VistaAjustes(desdeHistorial){
+	this.id='vistaAjustes'
+	app.muestraNodoEnNavDrawer('liVistaAjustes')
+
+	this.txtEnviarMensaje=null
+	this.domMenu=jQuery('.barra.vista .btn-menu')
+
+	if (!desdeHistorial) 
+		app.pushState(this.id)
+	}
+VistaAjustes.prototype=new Vista
+VistaAjustes.prototype.getHeader=function(){
+	return null //creaObjProp('header', {className:'vista-header', 'style.display':'none'})
+	}
+VistaAjustes.prototype.getBody=function(){
+	var self=this
+	var paneles=[
+		this.nfila('Códigos promocionales',
+					'Toca aquí para introducir un nuevo código', 
+					'txtCodPromo',
+					null,
+					function(){self.btnIntroducirCodigo()}),
+		this.nfila(null, 
+					'Información sobre promociones', 
+					null, 
+					'fa-external-link',
+					function(){self.btnMasInfoPromociones()})
+		]
+	return creaObjProp('div', {className:'vista-body container config', hijos:paneles})
+	}
+VistaAjustes.prototype.nfila=function(literal, valor, id, i, onclick){
+	var title=literal? creaObjProp('small', {className:'bl', texto:literal}): 
+						creaObjProp('span', {className:'espacio'})
+
+	return creaObjProp('div', {className:'row '+(literal?'':'sin-titulo'), onclick:onclick, hijos:[
+				title,
+				creaObjProp('span', {className:'col-xs-10 valor ellipsis '+id, texto:valor}),
+				creaObjProp('i', {className:'col-xs-1 pull-right fa '+i})
+	 		]})
+	}
+VistaAjustes.prototype.btnIntroducirCodigo=function(){
+	var self=this
+	navigator.notification.prompt(
+	    'Código promocional',
+	    function( result ) { //result.buttonIndex y result.input1
+	        switch ( result.buttonIndex ) {
+	            case 1:
+	            	jQuery.post(app.config.url,{accion:'compruebaCodigoPromocional', 
+	            								cod:result.input1 }).success(
+						function(data){
+							var datos=xeval(data)
+							if (datos.retorno==1){
+								var resp=datos.resp, msg
+
+								if (resp.promocioninexistente || resp.usuyaenpromocion || resp.agotada || resp.caducada){
+									if (resp.promocioninexistente=='1')
+										msg='Código incorrecto'
+									else if (resp.usuyaenpromocion=='1')
+										msg='Ya te has beneficiado de esta promoción'
+									else if (resp.agotada=='1')
+										msg='Lo lamentamos, esta promoción ya está agotada'
+									else if (resp.caducada=='1')
+										msg='Lo lamentamos, esta promoción ya ha terminado'
+									}
+								else {
+									msg=resp.resp_promocion
+									}
+								self.domBody.find('#txtCodPromo').text(result.input1)
+								navigator.notification.alert(msg, null, 'Código promocional')
+								}
+            				
+							})
+						
+	                break;
+	            case 2:
+	                break;
+	        }
+	    },
+	    'Octopus',     // a title
+	    [ "Aceptar", "Cancelar" ], // text of the buttons
+	    null //valor por defecto
+		)
+	}
+VistaAjustes.prototype.btnMasInfoPromociones=function(){
+	window.open('http://www.octopusapp.es/web/faq.html#convenios', '_system')
 	}
 ////////////////////////////////////////////////
 Controlador.prototype.cargaVistaMigraTest=function(desdeHistorial){

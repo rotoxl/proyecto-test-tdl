@@ -514,6 +514,32 @@ h1, h2, h3, h4, h4, small {
           display: block;
           text-align: left;
           font-size: 17px; }
+    #content.vista .fila {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      color: white;
+      padding-top: 5px;
+      padding-bottom: 15px; }
+    #content.vista .config .row {
+      padding-bottom: 5px;
+      margin-left: 0;
+      margin-right: 0;
+      font-size: 16px;
+      text-align: left; }
+      #content.vista .config .row > * {
+        padding-left: 0;
+        padding-right: 0; }
+    #content.vista .config i {
+      margin-top: 0px;
+      font-size: 25px;
+      margin-right: 14px;
+      color: inherit; }
+    #content.vista .config small.bl {
+      padding-bottom: 0px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(173, 190, 206, 0.3); }
   #content.vista.vistaTest .vista-header .btn .fa-pause {
     float: right;
     margin-top: 2px;
@@ -521,7 +547,7 @@ h1, h2, h3, h4, h4, small {
     position: absolute; }
   #content.vista.vistaTest .vista-header ul#mapatest {
     max-width: 400px;
-    max-height: 500px;
+    max-height: 350px;
     overflow-y: auto; }
     #content.vista.vistaTest .vista-header ul#mapatest span.arrow:after {
       border-bottom-color: #65bd77; }
@@ -780,11 +806,11 @@ h1, h2, h3, h4, h4, small {
       border-style: solid;
       border-color: rgba(192, 192, 192, 0.4);
       padding: 3px 0;
-      font-weight: 100; }
+      font-weight: normal; }
     #content.vista.vistaTienda .detalle-test .preguntas {
       text-transform: uppercase;
       font-size: 12px;
-      font-weight: 100; }
+      font-weight: normal; }
     #content.vista.vistaTienda .detalle-test .btnLove {
       margin-right: 5px;
       margin-left: 5px; }
@@ -866,6 +892,9 @@ h1, h2, h3, h4, h4, small {
       border-top: 1px solid rgba(173, 190, 206, 0.1);
       min-height: 85px;
       padding-bottom: 10px; }
+      #content.vista.vistaSocial .grupo.cargando {
+        background: url("../images/throbber-white.gif") no-repeat center center;
+        background-size: 50px; }
       #content.vista.vistaSocial .grupo > .avatar {
         border: 0;
         padding-left: 10px;
@@ -918,58 +947,37 @@ h1, h2, h3, h4, h4, small {
     #content.vista.vistaSocial .vista-detalle-grupo {
       background-color: #9db1c5;
       color: #25313e; }
-    #content.vista.vistaSocial .vista-editar-grupo .row {
-      padding-bottom: 5px;
-      margin-left: 0;
+    #content.vista.vistaSocial .config .bl {
+      padding-top: 10px;
+      margin-left: 0px;
       margin-right: 0;
-      font-size: 16px;
-      text-align: left; }
-      #content.vista.vistaSocial .vista-editar-grupo .row > * {
-        padding-left: 0;
-        padding-right: 0; }
-    #content.vista.vistaSocial .vista-editar-grupo .txtNombreGrupo {
+      color: #adbece; }
+    #content.vista.vistaSocial .config .txtNombreGrupo {
       font-size: 21px;
       color: white; }
-    #content.vista.vistaSocial .vista-editar-grupo i {
+    #content.vista.vistaSocial .config i {
       background-color: transparent;
       border: 0;
       color: white; }
-      #content.vista.vistaSocial .vista-editar-grupo i.btnNombreGrupo {
+      #content.vista.vistaSocial .config i.btnNombreGrupo {
         margin-top: -40px;
         font-size: 25px; }
-    #content.vista.vistaSocial .vista-editar-grupo .member {
-      width: 100%;
-      text-align: left;
-      background: transparent;
-      border: 0;
-      color: white;
-      padding-top: 5px;
-      padding-bottom: 15px; }
-      #content.vista.vistaSocial .vista-editar-grupo .member i {
-        margin-top: 0px;
-        font-size: 25px;
-        margin-right: 14px;
-        color: inherit; }
-      #content.vista.vistaSocial .vista-editar-grupo .member.btnMemberAdd {
-        color: #adbece; }
-      #content.vista.vistaSocial .vista-editar-grupo .member.member.admin:after {
-        content: "(Admin)";
-        float: right;
-        color: rgba(173, 190, 206, 0.6); }
-    #content.vista.vistaSocial .vista-editar-grupo small.bl {
-      padding-bottom: 0px;
-      text-transform: uppercase;
-      border-top: 1px solid rgba(173, 190, 206, 0.3); }
-    #content.vista.vistaSocial .vista-editar-grupo .btnDeleteGroup {
+    #content.vista.vistaSocial .config.btnMemberAdd {
+      color: #adbece; }
+    #content.vista.vistaSocial .config.member.admin:after {
+      content: "(Admin)";
+      float: right;
+      color: rgba(173, 190, 206, 0.6); }
+    #content.vista.vistaSocial .config .btnDeleteGroup {
       width: 90%;
       margin-top: 3rem;
       background: transparent;
       border-color: white;
       color: white;
       margin-left: 5%; }
-    #content.vista.vistaSocial .vista-editar-grupo i.btnNombreGrupo, #content.vista.vistaSocial .vista-editar-grupo button.member i, #content.vista.vistaSocial .vista-editar-grupo .btnMemberAdd, #content.vista.vistaSocial .vista-editar-grupo .btnDeleteGroup {
+    #content.vista.vistaSocial .config i.btnNombreGrupo, #content.vista.vistaSocial .config button.member i, #content.vista.vistaSocial .config .btnMemberAdd, #content.vista.vistaSocial .config .btnDeleteGroup {
       display: none; }
-    #content.vista.vistaSocial .vista-editar-grupo.admin i.btnNombreGrupo, #content.vista.vistaSocial .vista-editar-grupo.admin button.member i, #content.vista.vistaSocial .vista-editar-grupo.admin .btnMemberAdd, #content.vista.vistaSocial .vista-editar-grupo.admin .btnDeleteGroup {
+    #content.vista.vistaSocial .config.admin i.btnNombreGrupo, #content.vista.vistaSocial .config.admin button.member i, #content.vista.vistaSocial .config.admin .btnMemberAdd, #content.vista.vistaSocial .config.admin .btnDeleteGroup {
       display: block; }
     #content.vista.vistaSocial .chat {
       overflow: auto;
@@ -1059,6 +1067,27 @@ h1, h2, h3, h4, h4, small {
         padding: 15px !important; }
     #content.vista.vistaEstadisticas .gra.gra1 {
       height: 240px; }
+  #content.vista.vistaAjustes {
+    background-color: #25313e;
+    color: #adbece; }
+    #content.vista.vistaAjustes .bl {
+      padding-top: 10px;
+      margin-left: 0px;
+      margin-right: 0;
+      color: #adbece; }
+      #content.vista.vistaAjustes .bl span {
+        font-size: 21px;
+        color: white; }
+    #content.vista.vistaAjustes .espacio {
+      width: 100%;
+      display: block; }
+    #content.vista.vistaAjustes .valor {
+      font-size: 21px;
+      color: white; }
+    #content.vista.vistaAjustes .row.sin-titulo {
+      margin-top: 10px; }
+    #content.vista.vistaAjustes .row i {
+      margin-top: 4px; }
   #content.vista.cargando {
     min-height: 100%;
     position: absolute;
