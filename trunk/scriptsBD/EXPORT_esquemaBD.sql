@@ -46,6 +46,7 @@ CREATE TABLE `grupos` (
   `ds_grupo` varchar(250) DEFAULT NULL,
   `picture` varchar(250) DEFAULT NULL,
   `admin` varchar(250) DEFAULT NULL,
+  `f_borrado` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`cd_grupo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -89,11 +90,13 @@ DROP TABLE IF EXISTS `promociones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `promociones` (
-  `CD_Promocion` varchar(45) NOT NULL,
+  `CD_Promocion` smallint(6) NOT NULL,
+  `Clave_Promocion` varchar(45) NOT NULL,
   `DS_Promocion` varchar(250) DEFAULT NULL,
   `maxUsuarios` smallint(6) DEFAULT NULL,
   `F_Registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `F_Caducidad` timestamp NULL DEFAULT NULL,
+  `Resp_Promocion` varchar(250) DEFAULT NULL COMMENT 'Texto de la respuesta que se dará al usuario ("te ha correspondido acceso a XX durante XX tiempo")',
   PRIMARY KEY (`CD_Promocion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -176,6 +179,7 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(100) DEFAULT NULL,
   `apellidos` varchar(200) DEFAULT NULL,
   `picture` varchar(250) DEFAULT NULL,
+  `cd_dispositivo` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`cd_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -265,11 +269,10 @@ DROP TABLE IF EXISTS `usuarios_promociones`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios_promociones` (
   `CD_Usuario` varchar(250) NOT NULL,
-  `CD_Promocion` varchar(45) DEFAULT NULL,
+  `CD_Promocion` smallint(6) NOT NULL DEFAULT '0',
   `F_Registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`CD_Usuario`),
+  PRIMARY KEY (`CD_Usuario`,`CD_Promocion`),
   KEY `fk_promociones_idx` (`CD_Promocion`),
-  CONSTRAINT `fk_promociones` FOREIGN KEY (`CD_Promocion`) REFERENCES `promociones` (`CD_Promocion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usus` FOREIGN KEY (`CD_Usuario`) REFERENCES `usuarios` (`cd_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -286,7 +289,7 @@ CREATE TABLE `usuarios_tests` (
   `cd_test` int(11) DEFAULT NULL,
   `f_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `precio` decimal(2,2) DEFAULT '0.00',
-  `moneda` varchar(2) DEFAULT '€',
+  `cd_moneda` varchar(2) DEFAULT '€',
   PRIMARY KEY (`cd_usuario`),
   KEY `fk_testssss_idx` (`cd_test`),
   CONSTRAINT `fk__tests` FOREIGN KEY (`cd_test`) REFERENCES `tests` (`cd_test`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -366,7 +369,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vs_preguntasconcaracteresextranhos` AS select `preguntas_tests`.`cd_test` AS `cd_test`,`preguntas_tests`.`cd_pregunta` AS `cd_pregunta`,`preguntas_tests`.`pregunta` AS `pregunta`,`preguntas_tests`.`cd_respuestacorrecta` AS `cd_respuestacorrecta`,`preguntas_tests`.`respuesta0` AS `respuesta0`,`preguntas_tests`.`respuesta1` AS `respuesta1`,`preguntas_tests`.`respuesta2` AS `respuesta2`,`preguntas_tests`.`respuesta3` AS `respuesta3`,`preguntas_tests`.`respuesta4` AS `respuesta4`,`preguntas_tests`.`respuesta5` AS `respuesta5`,`preguntas_tests`.`recursopregunta` AS `recursopregunta`,`preguntas_tests`.`recursorespuesta0` AS `recursorespuesta0`,`preguntas_tests`.`recursorespuesta1` AS `recursorespuesta1`,`preguntas_tests`.`recursorespuesta2` AS `recursorespuesta2`,`preguntas_tests`.`recursorespuesta3` AS `recursorespuesta3`,`preguntas_tests`.`recursorespuesta4` AS `recursorespuesta4`,`preguntas_tests`.`recursorespuesta5` AS `recursorespuesta5`,`preguntas_tests`.`notas` AS `notas` from `preguntas_tests` where (concat(`preguntas_tests`.`pregunta`,`preguntas_tests`.`respuesta0`,`preguntas_tests`.`respuesta1`,`preguntas_tests`.`respuesta2`,`preguntas_tests`.`respuesta3`) like '%quo%') */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -385,7 +388,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013  */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vs_testpreview` AS select `t`.`cd_test` AS `cd_test`,`t`.`ds_test` AS `ds_test`,`t`.`matricula` AS `matricula`,`t`.`img` AS `img`,`t`.`f_examen` AS `f_examen`,`t`.`organismo` AS `organismo`,`t`.`numPreguntas` AS `numPreguntas`,`t`.`fallosRestan` AS `fallosRestan`,`t`.`admiteReordenarPreguntas` AS `admiteReordenarPreguntas`,`t`.`admiteReordenarRespuestas` AS `admiteReordenarRespuestas`,`t`.`minutos` AS `minutos`,`t`.`region` AS `region`,`t`.`precio` AS `precio`,`t`.`cd_moneda` AS `cd_moneda`,(select count(`l`.`CD_Usuario`) from `usuarios_likes` `l` where (`t`.`cd_test` = `l`.`CD_Test`)) AS `likes`,concat(',',(select group_concat(`tc2`.`cd_categoria` separator ',') from `test_categorias` `tc2` where (`t`.`cd_test` = `tc2`.`cd_test`)),',') AS `lisCat`,`tt`.`f_ejecucion` AS `fu_modificacion` from (`tests` `t` left join `tests_t` `tt` on(((`t`.`cd_test` = `tt`.`cd_test`) and (`tt`.`cd_operacion` = 'Alta')))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -400,4 +403,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-18 20:02:18
+-- Dump completed on 2014-11-26 19:13:49
