@@ -30,6 +30,8 @@ $md=new Metadatos($conn, $usu);
 $ret=null;
 
 global $showSQL;
+
+$json_order=null;
 // try {
     switch ($accion) {
         case 'getPreviewCategorias':
@@ -86,12 +88,14 @@ global $showSQL;
                        );
             echo json_encode($ret);
             break;
+        case 'getTestComprado':
+            $json_order=json_decode( filter_input($REQ, 'pruebaCompra', FILTER_UNSAFE_RAW) );
         case 'getTest':
             $cd_usuario=$usu->cd_usuario;
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
             
             $ret=array('retorno' => 1, 
-                       'test' => $md->getTest($cd_usuario, $cd_test),
+                       'test' => $md->getTest($cd_usuario, $cd_test, $json_order),
                        'sql' => $md->__logSQL($showSQL),
                        );
             echo json_encode($ret);

@@ -332,8 +332,8 @@ function Controlador(){
 	this.init()
 
 	if ( isPhone() )
-		this.config.servidor='http://rotoxl.alwaysdata.net/app/'
-		// this.config.servidor='http://192.168.0.196:8888/octopus/'
+		// this.config.servidor='http://rotoxl.alwaysdata.net/app/'
+		this.config.servidor='http://192.168.0.196:8888/octopus/'
 	else
 		this.config.servidor='./'
 	this.config.url=this.config.servidor+'index_r.php'
@@ -1950,8 +1950,14 @@ VistaTienda.prototype._formatoPrecio=function(domPrecio, precio, moneda){
 			// 				},
 			// 			{type:'currency'} )
 			// }
-	else 
-		domPrecio.appendChild( creaT( formato.moneda(precio, moneda) ) )
+	else {
+		domPrecio.appendChild( creaT( formato.moneda(this.precioMinimo(precio), moneda) ) )
+		}
+	}
+VistaTienda.prototype.precioMinimo=function(p){
+	if (p>0 && p<0.50)//precio mínimo Android
+	 	p=0.50
+	return p
 	}
 VistaTienda.prototype._generaDomTest=function(test, j, cat){
 	var self=this
@@ -2192,10 +2198,11 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 		fnDescargar=function(){self.descargaTest(test.cd_test)}
 		}
 	else{
-		textoBotonDescargar=formato.moneda(test.precio, test.moneda)+' - Comprar aún no funciona'
-		// fnDescargar=function(){self.descargaTest(test.cd_test)}
+		textoBotonDescargar=formato.moneda( this.precioMinimo(test.precio), test.moneda)+' - Comprar/EN PRUEBAS'
+		fnDescargar=function(){self.compraTest(test)}
 		}
 
+	var tieneImagenes=Number(test.tieneImagenes)? creaObjProp('span', {className:'bl imagenes', texto:'Contiene imágenes', i:'fa-file-image-o'}) :creaT('') 
 	var visual=creaObjProp('div', {className:'col-xs-3 visual'})
 	if (test.img==null || test.img=='')
 		// visual.appendChild( creaObjProp('i', {className:'fa fa-file-text-o fa-8x'}) )
@@ -2218,6 +2225,7 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 					]}),
 				creaObjProp('span', {className:'bl cats', texto: self.concatCategoriasTest(test), omiteNulo:true, i:'fa-tags' }),
 				creaObjProp('span', {className:'bl preguntas', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos'}),
+				tieneImagenes,
 				creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'En tu colección'}),
 				]}),
 			]}),
@@ -2384,7 +2392,7 @@ VistaTienda.prototype.leeRespuestasLocales=function(){
 	if (app.cache.respuestasLocales==null)
 		app.cache.respuestasLocales=app.getRespuestasLocales()
 	}
-VistaTienda.prototype.descargaTest=function(cd_test){
+VistaTienda.prototype.descargaTest=function(cd_test, pruebaCompra){
 	var self=this
 
 	var xbtn=this.domDetalleTest.find('.btnDescargar')
@@ -2392,7 +2400,7 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 	xbtn.text('Descargando...').addClass('cargando')
 
 	console.info('Iniciamos descarga test '+cd_test)
-	jQuery.post(app.config.url, {accion:'getTest', cd_test:cd_test}).success(
+	jQuery.post(app.config.url, {accion:(pruebaCompra?'getTestComprado':'getTest'), cd_test:cd_test, pruebaCompra:pruebaCompra?JSON.stringify(pruebaCompra):null}).success(
 		function(data){
 			var datos=xeval(data)
 			if (datos.retorno==1){
@@ -2402,7 +2410,6 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 				app.cache.catsConTestLocales=app.catsConTestLocales()
 
 				if (self.entornoLocal){
-						
 					self.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
 					}
 				else{
@@ -2418,6 +2425,106 @@ VistaTienda.prototype.descargaTest=function(cd_test){
 			else
 				console.error(data)
 		})
+	}
+VistaTienda.prototype.compraTest=function(test){
+	var self=this
+
+	this.procesandoOrden=null
+	this.compraCancelada=null
+
+	var xbtn=this.domDetalleTest.find('.btnDescargar')
+	var oldText=xbtn.text()
+	xbtn.text('Conectando...').addClass('cargando')
+	
+	if (!window.store) {
+        navigator.notification.alert('Ha habido un problema al tratar de acceder a la tienda', null, 'Tienda no disponible')
+        console.log('Store not available')
+        return
+    	}
+
+    store.verbosity = store.DEBUG // Enable maximum logging level
+
+	var prod
+    if (test.precio<=.5)
+    	prod='test_050eur'
+    else if (test.precio=.6)
+    	prod='test_060eur'
+
+    // Inform the store of your products
+    console.log('registerProducts');
+    store.register({
+        id:     prod,
+        alias: 	prod,
+        type:   store.CONSUMABLE
+    	})
+
+    // When any product gets updated, refresh the HTML.
+    store.when(prod).updated(function (p) {
+    	if (self.compraCancelada)
+    		return
+
+    	if (p.order)
+    		xbtn.removeClass('cargando').text('Comprado')
+    	else
+			xbtn.addClass('cargando').text('Procesando')
+
+        if (!p.owned){
+        	self.doIAP(p)
+        	}
+
+        self.lastState=p.state
+	    })
+
+	store.when(prod).cancelled(function(p){
+		self.compraCancelada=true
+		self.procesandoOrden=null
+		xbtn.removeClass('cargando').text(oldText)
+		store.refresh()
+		})
+
+ 	// When purchase of the full version is approved,
+    // show some logs and finish the transaction.
+    store.when(prod).approved(function (order) {
+        xbtn.removeClass('cargando').text('Comprado')
+        order.finish()
+    	})
+
+    store.when(prod).finished(function (order) {
+        self.descargaTest(test.cd_test, order.transaction)
+        setTimeout(function(){xbtn.removeClass('cargando').text('Comprado')}, 500)
+    	})
+
+    // When store is ready, activate the "refresh" button;
+    store.ready(function() {
+    	console.log('Store ready')
+        store.refresh()
+    	})
+
+    // Log all errors
+    store.error(function(error) {
+    	console.log('ERROR ' + error.code + ': ' + error.message)
+    	navigator.notification.alert('ERROR ' + error.code + ': ' + error.message, null, 'Error en tienda')
+    	})
+
+    store.refresh();
+	}
+VistaTienda.prototype.doIAP=function(p){
+    if (!p.loaded) {
+    	console.log('renderIAP: not loaded')
+    	}
+    else if (!p.valid) {
+    	console.log('renderIAP: not valid')
+    	}
+    else if (p.valid) {
+    	console.log('renderIAP: valid!!')
+
+        if (p.canPurchase) {
+        	if (this.procesandoOrden==null) {
+        		store.order(p.id)
+	            this.procesandoOrden=p.id
+	            }
+        	}
+    	}
 	}
 VistaTienda.prototype.toggleLike=function(cd_test){
 	var btn=this.domDetalleTest.find('.btnLove')
