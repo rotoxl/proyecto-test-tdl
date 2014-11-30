@@ -264,14 +264,15 @@ class Metadatos{
 		$test['preguntas']=$preg->filas;
 		$test['likeit']=($likeit==$cd_usuario);
 
+		$test['tieneImagenes']=$this->conn->lookupSimple("select count(recursopregunta) from preguntas_tests where cd_test=?", array($cd_test));
 		return $test;
 		}
-	public function getTest($cd_usuario, $cd_test){
+	public function getTest($cd_usuario, $cd_test, $json_order){
 		$md=$this->conn->lookupDict(
 			"select cd_test, f_examen, ds_test, liscat, region, organismo, img, fallosRestan, minutos, numPreguntas, precio, cd_moneda from vs_testpreview t where cd_test=?", 
 			array($cd_test));
 
-		if ($md['precio']>0){
+		if ($md['precio']>0 && is_null($json_order) ){
 			throw new Exception('No se permite descargar este test, no es gratuito');
 		}
 
@@ -297,7 +298,7 @@ class Metadatos{
 
 		$md['preguntas']=$arrPreguntas;
 
-		$this->vinculaTestConUsuario($cd_usuario, $cd_test, $md['precio'], $md['cd_moneda']);
+		$this->vinculaTestConUsuario($cd_usuario, $cd_test, $json_order, $md['precio'], $md['cd_moneda']);
 		return $md;
 		}
 	//////
@@ -314,11 +315,11 @@ class Metadatos{
 		$this->conn->ejecutaLote($arr);
 		}
 	//////
-	public function vinculaTestConUsuario($cd_usuario, $cd_test, $precio, $cd_moneda){
+	public function vinculaTestConUsuario($cd_usuario, $cd_test, $json_order, $precio, $cd_moneda){
 		$existe=$this->conn->lookupSimple('select cd_test from usuarios_tests where cd_usuario=? and cd_test=?', array($cd_usuario, $cd_test));
-		if ($existe){
-			$sql="insert into usuarios_tests (cd_usuario, cd_test, precio, cd_moneda) values (?, ?, ?, ?)";
-			$this->conn->ejecuta($sql, array($cd_usuario, $cd_test, $precio, $cd_moneda));
+		if ($existe==false){
+			$sql="insert into usuarios_tests (cd_usuario, cd_test, json_order, precio, cd_moneda) values (?, ?, ?, ?, ?)";
+			$this->conn->ejecuta($sql, array($cd_usuario, $cd_test, json_encode($json_order), $precio, $cd_moneda));
 			}
 		}
 	//////

@@ -1041,11 +1041,11 @@ h1, h2, h3, h4, h4, small{
 
 				.btn.btnDescargar{
 					&.cargando{
-						background-image: url(../images/throbber-white.gif);
+						background-image: url(../images/throbber.gif);
 						background-position: 5px center;
 						background-repeat: no-repeat;
 						background-size: 16px;
-						padding-left: 25px;
+						padding-left: 26px;
 					}
 				}
 
@@ -1076,11 +1076,16 @@ h1, h2, h3, h4, h4, small{
 				text-transform: uppercase;
 				border-width: 1px 0;
 				border-style: solid;
-				border-color: rgba(192, 192, 192, .4);
+				border-color: #e8e8e8;
 				padding: 3px 0;
 				font-weight: normal;
 			}
 			.preguntas{
+				text-transform: uppercase;
+				font-size: 12px;
+				font-weight: normal;
+			}
+			.imagenes{
 				text-transform: uppercase;
 				font-size: 12px;
 				font-weight: normal;
