@@ -1574,6 +1574,7 @@ function VistaTienda(desdeHistorial, entornoLocal){
 
 	this.entornoLocal=entornoLocal
 	// this.domDetalleTest=null
+	this.domMenu=jQuery('.barra .btn-menu')
 
 	this.nav=[]
 
@@ -1607,17 +1608,32 @@ VistaTienda.prototype.getBody=function(){
 	return creaObjProp('div', {className:'vista-body tienda cargando'})
 	}
 VistaTienda.prototype.tareasPostCarga=function(){
-	this.cargaListaCategorias()
-
 	if (this.entornoLocal){
 		if (app.cache.catsConTestLocales==null || app.cache.catsConTestLocales.length==0)
 			app.cache.catsConTestLocales=app.catsConTestLocales()
+
+		this.cargaListaCategorias(app.cache.catsConTestLocales, true)
 		this.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
 		}
 	else
 		this.cambiaEntorno(jQuery('button.tienda'))
 		
 	this.nav.push({entornoLocal:this.entornoLocal})
+	this.inflateMenu()
+	}
+VistaTienda.prototype.inflateMenu=function(){
+	var self=this
+	this.domMenu.show()
+	
+	var xul=this.domMenu.find('ul')
+	for (var i=0; i<xul.length; i++){
+		var xxul=jQuery(xul[i])
+		if (xxul.find('li').length==0){
+			xxul.append(creaObjProp('li', {hijos:[
+				creaObjProp('a', {texto:'Buscar test', onclick:function(){self.buscarTest()} } )
+				]}))
+			}
+		}
 	}
 VistaTienda.prototype.backButton=function(){
 	var from=this.nav.pop()
@@ -1657,7 +1673,56 @@ VistaTienda.prototype.navegaEl=function(nvista, from){
 		}
 	}
 //////
+VistaTienda.prototype.buscarTest=function(){
+	var self=this
+
+	navigator.notification.prompt(
+	    null, //'Matrícula, nombre...',
+	    function( result ) { //result.buttonIndex y result.input1
+	        switch ( result.buttonIndex ) {
+	            case 1:
+					self.strBuscar=result.input1
+					self.doBuscar(self.strBuscar)
+	                break;
+	            case 2:
+	                break;
+	        }
+	    },
+	    'Buscar test',     // a title
+	    [ "Buscar", "Cancelar" ], // text of the buttons
+	    self.strBuscar
+		)
+	}
+VistaTienda.prototype.doBuscar=function(s){
+	var self=this
+
+	self.domBody.empty().addClass('cargando')
+	jQuery.post(app.config.url, {accion:'buscaTests', q:s}).success(
+		function(data){
+			var datos=xeval(data)
+			if (datos.retorno==1){
+				//ojo, no llamar a cambiaEntorno
+				self.domHeader.find('.btn.tienda, .btn.dispositivo').removeClass('active')
+				self.domHeader.find('.btn.tienda').addClass('active')
+				self.entornoLocal=false
+
+				self.resultadosBusqueda=datos.tests || []
+
+				self.ftestTienda=null
+				
+				var xcat=[
+					{cd_categoria:-100, ds_categoria:'Resultados de la búsqueda', i:'fa-search'}
+					]
+
+				self.pintaPortadaTienda(xcat, self.resultadosBusqueda)
+				self.domBody.removeClass('cargando')
+				}
+			else
+				console.error(data)
+		})
+	}
 VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
+	var self=this
 	var pressed=jQuery(xbtn)
 	
 	this.nav=[]//reseteamos la pila de navegación
@@ -1677,18 +1742,20 @@ VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 
 		if (app.cache.catsConTestLocales==null || app.cache.catsConTestLocales.length==0)
 			app.cache.catsConTestLocales=app.catsConTestLocales()
+
+		this.cargaListaCategorias(app.cache.catsConTestLocales, true)
 		this.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
 		}
 	else {
 		this.entornoLocal=false
-		var self=this
+
 		this.leeTestTienda( function(datos){self.pintaPortadaTienda(app.cache.categorias, datos)} )
 		}
 
 	if (!fromHistory) 
 		app.pushState(this.entornoLocal?'vistaTienda:dispositivo':'vistaTienda:tienda')
 	}
-VistaTienda.prototype.cargaListaCategorias=function(){
+VistaTienda.prototype.cargaListaCategorias=function(lis, todosLosNiveles){
 	var self=this
 	//http://www.oposiciones.de/oposiciones.htm, opción "según estudios"
 
@@ -1698,13 +1765,35 @@ VistaTienda.prototype.cargaListaCategorias=function(){
 		self.navegaCat(idcat) 
 		}
 
-	for (var i=0; i<app.cache.categorias.length; i++){
-		var cat=app.cache.categorias[i]
+	for (var i=0; i<lis.length; i++){
+		var cat=lis[i]
 
-		if (cat.cd_categoriapadre==null)// if (cat.listarcomocategoria==1)
+		if (todosLosNiveles){
+			var hijos=[]
+			// var el=this.sacaPadresCategoria(cat) || []
+			// var hijos=el.map(function(xel){return creaObjProp('span', {texto:xel, i:'fa-angle-right', className:'padre'})})
+
+			hijos.push(creaT(cat.ds_categoria))
+			xl.push( creaObjProp('li', {hijo:creaObjProp('a', {hijos:hijos, 
+										'data-id':cat.cd_categoria, 
+										onclick:fn})} ) )
+			}
+		else if (cat.cd_categoriapadre==null)// if (cat.listarcomocategoria==1)
 			xl.push( creaObjProp('li', {hijo:creaObjProp('a', {texto:cat.ds_categoria, 'data-id':cat.cd_categoria, onclick:fn})} ) )
 		}
 	jQuery('ul#categorias').empty().append(xl)
+	}
+VistaTienda.prototype.sacaPadresCategoria=function(cat){
+	// app.cache.categorias
+	if (cat.cd_categoriapadre==null)
+		return null
+
+	var r=[]
+	while (cat.cd_categoriapadre!=null){
+		cat=buscaFilas(app.cache.categorias, {cd_categoria:cat.cd_categoriapadre})[0]
+		r.push(cat.ds_categoria)
+		}
+	return r.reverse()
 	}
 VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	if (!fromHistory) 
@@ -1819,6 +1908,8 @@ VistaTienda.prototype.escogeTestsCatDinamica=function(cd_categoria, lista){
 					return 1
 				})
 			}
+		else
+			tests=lista
 		}
 	return tests
 	}
@@ -2002,10 +2093,14 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 
 		}
 	else {
-		loTengo=buscaFilas(app.cache.testLocales, {cd_test:test.cd_test}).length
+		loTengo=buscaFilas(app.cache.testLocales, {cd_test:test.cd_test}).length || test.lotengo=='1'
 
-		if (loTengo)
-			domPrecio=creaObjProp('span', {className:'col-xs-6 loTengo', i:'fa-check-circle'})
+		if (loTengo){
+			if (test.precio>0 && test.lotengo=='1')
+				domPrecio=creaObjProp('span', {className:'col-xs-6  bl precio', texto:'COMPRADO'})	
+			else
+				domPrecio=creaObjProp('span', {className:'col-xs-6 loTengo', i:'fa-check-circle'})
+			}
 		else {
 			domPrecio=creaObjProp('span', {className:'col-xs-6  bl precio'})
 			this._formatoPrecio(domPrecio, test.precio, test.moneda)
@@ -2103,6 +2198,7 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 	if (this.ftestTienda && (new Date()-this.ftestTienda<120000)){//120s
 		console.info('leeTestTienda: la última lectura es reciente, la reaprovechamos')
 		if (fnCallBack){
+			this.cargaListaCategorias(app.cache.categorias)
 			fnCallBack(this.testTienda)
 			this.domBody.removeClass('cargando')
 			}
@@ -2137,7 +2233,7 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 				self.ftestTienda=new Date()
 				
 				app.setCategorias(datos.categorias)
-				self.cargaListaCategorias()
+				self.cargaListaCategorias(datos.categorias)
 
 				if (fnCallBack){
 					fnCallBack(self.testTienda)
@@ -2175,6 +2271,7 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 		jQuery.get(app.config.url, {accion:'getPreviewTest', cd_test:cd_test}).success(
 			function(data){
 				var test=xeval(data).test
+				test.lotengo=test.lotengo=='1'
 				self._testPreview(test, null, false)
 				}
 			)
@@ -2193,16 +2290,24 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 		textoBotonDescargar='Descargar'
 		fnDescargar=function(){self.descargaTest(test.cd_test)}
 		}
-	else if (test.precio==0){
+	else if (test.precio==0 || test.lotengo){
 		textoBotonDescargar='Descargar'
 		fnDescargar=function(){self.descargaTest(test.cd_test)}
 		}
 	else{
-		textoBotonDescargar=formato.moneda( this.precioMinimo(test.precio), test.moneda)+' - Comprar/EN PRUEBAS'
-		fnDescargar=function(){self.compraTest(test)}
+		if (isPhone()){
+			textoBotonDescargar=formato.moneda( this.precioMinimo(test.precio), test.moneda)+' - Comprar'
+			fnDescargar=function(){self.compraTest(test)}
+			}
+		else {
+			textoBotonDescargar=formato.moneda( this.precioMinimo(test.precio), test.moneda)+' - Compra no disponible - +INFO'
+			fnDescargar=function(){
+				navigator.notification.alert('La compra de tests no está disponible para tu plataforma (actualmente sólo es posible realizar compras desde nuestra app para Android)', null, 'Compra no disponible')
+				}
+			}
 		}
 
-	var tieneImagenes=Number(test.tieneImagenes)? creaObjProp('span', {className:'bl imagenes', texto:'Contiene imágenes', i:'fa-file-image-o'}) :creaT('') 
+	var tieneImagenes=Number(test.tieneImagenes)? creaObjProp('span', {className:'bl imagenes', texto:'Contiene imágenes'}) :creaT('') 
 	var visual=creaObjProp('div', {className:'col-xs-3 visual'})
 	if (test.img==null || test.img=='')
 		// visual.appendChild( creaObjProp('i', {className:'fa fa-file-text-o fa-8x'}) )

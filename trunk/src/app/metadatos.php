@@ -121,6 +121,25 @@ class Metadatos{
 			}
 		}
 	//////
+	function compruebaCert($json_order){
+		//comprobamos que realmente es una compra: 
+		//	http://stackoverflow.com/questions/16535025/android-in-app-billing-v3-with-php
+ 		global $GPLAY_BILLINGKEY;
+
+ 		$key = "-----BEGIN PUBLIC KEY-----\n" . chunk_split($GPLAY_BILLINGKEY, 64, "\n") . "-----END PUBLIC KEY-----";
+ 		$ret= openssl_verify($json_order->receipt, base64_decode($json_order->signature), $key);
+
+
+ 		$this->conn->logInfo('Resultado comprobación certificado de recibo de compra: '.$ret==1?'OK':'ERROR', 'SSL');
+ 		// var_dump( array(
+ 		// 	$ret,
+ 		// 	$json_order->receipt, 
+ 		// 	$json_order->signature,
+ 		// 	$GPLAY_BILLINGKEY,
+ 		// 	));
+ 		return $ret;
+		}
+	//////
 	private function sendPush($arrDispositivos, $messageData){
 		if (count($arrDispositivos)==0) return;
 
@@ -217,7 +236,7 @@ class Metadatos{
 				order by cd_categoria";
 		return $this->conn->lookupFilas($sql, array());
 		}
-	public function getPreviewCategoria($arrCats){
+	public function getPreviewCategoria($cd_usuario, $arrCats){
 		global $limitePreview;
 
 		$sql=''; $arr=array();
@@ -225,34 +244,65 @@ class Metadatos{
 			$cd_categoria=$arrCats[$i];
 
 			if ($cd_categoria==-1){//últimos actualizados
-				if ($sql!='')
-					$sql=$sql . " UNION ALL ";
+				// if ($sql!='')
+				// 	$sql=$sql . " UNION ALL ";
 
-				$sql=$sql . "(select t.* from vs_testpreview t
-					where t.fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)
-					order by t.likes, t.fu_modificacion desc
-					limit ?)";
-				array_push($arr, $limitePreview);
+				// $sql=$sql . "(select t.* from vs_testpreview t
+				// 	where t.fu_modificacion>DATE_SUB(CURDATE(),INTERVAL 30 DAY)
+				// 	order by t.likes, t.fu_modificacion desc
+				// 	limit ?)";
+				// array_push($arr, $limitePreview);
 				}
 			else {
 				if ($sql!='')
 					$sql=$sql . " UNION ALL ";
 
-				$sql=$sql . "(select t.* from vs_testpreview t 
+				$sql=$sql . "(select t.*,
+								exists (select * from usuarios_tests ut where ut.cd_test=t.cd_test and ut.cd_usuario=?) as lotengo
+						from vs_testpreview t 
 						where t.liscat like concat('%', ?, ',%')
 						order by t.likes desc , t.cd_test 
 						limit ?)";
-				array_push($arr, $cd_categoria, $limitePreview);
+				array_push($arr, $cd_usuario, $cd_categoria, $limitePreview);
 				}
 			}
-		$sql="select * from (".$sql.") xx group by cd_test order by likes desc, cd_test";
+		$sql="select * from (".$sql.") xx group by cd_test order by lotengo desc, likes desc, cd_test";
 		return $this->conn->lookupFilas($sql, $arr);
+		}
+	public function getPreviewCategoriaValorados($cd_usuario, $cd_categoria){
+		global $limitePreview;
+		$sql="select 
+				v.cd_test, v.ds_test, 
+				v.matricula, v.img, v.f_examen, v.organismo,
+				v.numpreguntas, v.fallosrestan, 
+				v.admiteReordenarPreguntas, v.admiteReordenarRespuestas, v.minutos, v.region, v.precio, v.cd_moneda, v.likes, v.fu_modificacion,
+				concat(',', ?, ',') as lisCat,
+				exists (select * from usuarios_tests ut where ut.cd_test=v.cd_test and ut.cd_usuario=?) as lotengo
+			from vs_testpreview v
+			where v.likes>0
+			order by v.likes desc limit ?";
+		return $this->conn->lookupFilas($sql, array($cd_categoria, $cd_usuario, $limitePreview));
+		}
+	public function getPreviewCategoriaNuevosActualizados($cd_usuario, $cd_categoria){
+		global $limitePreview;
+		$sql="select 
+				v.cd_test, v.ds_test, 
+				v.matricula, v.img, v.f_examen, v.organismo,
+				v.numpreguntas, v.fallosrestan, 
+				v.admiteReordenarPreguntas, v.admiteReordenarRespuestas, v.minutos, v.region, v.precio, v.cd_moneda, v.likes, v.fu_modificacion,
+				concat(',', ?, ',') as lisCat,
+				exists (select * from usuarios_tests ut where ut.cd_test=v.cd_test and ut.cd_usuario=?) as lotengo
+			from vs_testpreview v
+			order by v.fu_modificacion desc limit ?";
+		return $this->conn->lookupFilas($sql, array($cd_categoria, $cd_usuario, $limitePreview));
 		}
 	public function getPreviewTest($cd_usuario, $cd_test){
 		$porcentajePreguntas=10;
 
-		$sql="select * from vs_testpreview t where cd_test=?";
-		$test=$this->conn->lookupDict($sql, array($cd_test));
+		$sql="select *, 
+					 exists (select * from usuarios_tests ut where ut.cd_test=t.cd_test and ut.cd_usuario=?) as lotengo 
+				from vs_testpreview t where cd_test=?";
+		$test=$this->conn->lookupDict($sql, array($cd_usuario, $cd_test));
 
 		$maxCD_Pregunta=$porcentajePreguntas*$test['numpreguntas']/100;
 
@@ -269,12 +319,21 @@ class Metadatos{
 		}
 	public function getTest($cd_usuario, $cd_test, $json_order){
 		$md=$this->conn->lookupDict(
-			"select cd_test, f_examen, ds_test, liscat, region, organismo, img, fallosRestan, minutos, numPreguntas, precio, cd_moneda from vs_testpreview t where cd_test=?", 
+			"select cd_test, 1 as lotengo, f_examen, ds_test, liscat, region, organismo, img, fallosRestan, minutos, numPreguntas, precio, cd_moneda from vs_testpreview t where cd_test=?", 
 			array($cd_test));
 
-		if ($md['precio']>0 && is_null($json_order) ){
+		$yaComprado=$this->conn->lookupSimple("select cd_test from usuarios_tests where cd_usuario=? and cd_test=?", array($cd_usuario, $cd_test));
+		if ($md['precio']==0){
+			}
+		else if ($md['precio']>0 && $yaComprado==$cd_test ){
+			$this->conn->logInfo('Este test es de pago, pero el usuario ya lo compró');
+			}
+		else if ($md['precio']>0 && isset($json_order) ){
+			$this->conn->logInfo('Este test es de pago, vamos a verificar el json de google play');
+			}
+		else{
 			throw new Exception('No se permite descargar este test, no es gratuito');
-		}
+			}
 
 		$preg=$this->conn->lookupFilas("select * from preguntas_tests where cd_test=? order by cd_pregunta", array($cd_test));
 		$arrPreguntas=array();
@@ -300,6 +359,27 @@ class Metadatos{
 
 		$this->vinculaTestConUsuario($cd_usuario, $cd_test, $json_order, $md['precio'], $md['cd_moneda']);
 		return $md;
+		}
+	public function buscaTests($cd_usuario, $q){
+		global $limitePreview;
+		$sql="select 
+				v.cd_test, v.ds_test, 
+				v.matricula, v.img, v.f_examen, v.organismo,
+				v.numpreguntas, v.fallosrestan, 
+				v.admiteReordenarPreguntas, v.admiteReordenarRespuestas, v.minutos, v.region, v.precio, v.cd_moneda, v.likes, v.fu_modificacion,
+				',-100,' as lisCat,
+				exists (select * from usuarios_tests ut where ut.cd_test=v.cd_test and ut.cd_usuario=?) as lotengo
+			from vs_testpreview v
+			where 
+				concat(v.cd_test, ' ', 
+						v.ds_test, ' ', 
+						v.matricula, ' ', 
+						ifnull(v.organismo, ''), ' ', 
+						ifnull(v.region, ''), ' ', 
+						case f_examen when  not null then date_format(f_examen, 'dd-mm-yyyy') else  '' end
+						) like concat('%', ?,'%') 
+			order by v.likes desc limit ?";
+		return $this->conn->lookupFilas($sql, array($cd_usuario, $q, $limitePreview))->filas;
 		}
 	//////
 	public function toggleLike($accion, $cd_usuario, $cd_test){

@@ -523,6 +523,7 @@ h1, h2, h3, h4, h4, small {
       padding-top: 5px;
       padding-bottom: 15px; }
     #content.vista .config .row {
+      cursor: pointer;
       padding-bottom: 5px;
       margin-left: 0;
       margin-right: 0;
@@ -747,7 +748,7 @@ h1, h2, h3, h4, h4, small {
         padding-bottom: 1rem;
         border-top-style: dashed; }
       #content.vista.vistaTienda .detalle-test section.row .data {
-        padding-right: 5px;
+        padding-right: 1rem;
         padding-left: 0px; }
         #content.vista.vistaTienda .detalle-test section.row .data span.bl, #content.vista.vistaTienda .detalle-test section.row .data .btn-group {
           display: block; }
