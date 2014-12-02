@@ -32,7 +32,7 @@ $ret=null;
 global $showSQL;
 
 $json_order=null;
-// try {
+try {
     switch ($accion) {
         case 'getPreviewCategorias':
             $cd_usuario=$usu->cd_usuario;
@@ -69,7 +69,10 @@ $json_order=null;
                 if ($fila['cd_categoria']>0 && $fila['numtestsporcat']>0)
                     array_push($arrCats, $fila['cd_categoria'] );
                 }
-            $testsCat=$md->getPreviewCategoria( $arrCats )->filas;
+            $testsCat=$md->getPreviewCategoria($cd_usuario, $arrCats )->filas;
+            // #optimizar: en vez de hacer merge, añadir únicamente aquellos tests que no estén ya
+            $testsCat=array_merge($md->getPreviewCategoriaValorados($cd_usuario, -2)->filas, $testsCat);
+            $testsCat=array_merge($md->getPreviewCategoriaNuevosActualizados($cd_usuario, -1)->filas, $testsCat);
 
             $ret=array('retorno' => 1, 
                        'categorias' => $categorias,
@@ -90,6 +93,15 @@ $json_order=null;
             break;
         case 'getTestComprado':
             $json_order=json_decode( filter_input($REQ, 'pruebaCompra', FILTER_UNSAFE_RAW) );
+            $valido=$md->compruebaCert($json_order);
+            if ($valido==0){
+                $ret=array('retorno'=> 0, 
+                            'error'=> 1,
+                            'msgError'=> 'La firma de la orden de compra no coincide con la firma del desarrollador'
+                       );
+                echo json_encode($ret);
+                return;
+            }
         case 'getTest':
             $cd_usuario=$usu->cd_usuario;
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
@@ -120,6 +132,16 @@ $json_order=null;
             $ret=array('retorno' => 1, 
                     'sql' => $md->__logSQL($showSQL),);
             echo(json_encode($ret));
+            break;
+        case 'buscaTests':
+            $cd_usuario=$usu->cd_usuario;
+            $q=filter_input($REQ, 'q', FILTER_SANITIZE_STRING);
+
+            $ret=array('retorno' => 1, 
+                        'tests' => $md->buscaTests($cd_usuario, $q), 
+                        'sql' => $md->__logSQL($showSQL),
+                       );
+            echo json_encode($ret);
             break;
         //--------------------------------------------------------
         case 'getMisGrupos':
@@ -253,15 +275,15 @@ $json_order=null;
             trigger_error('¡Accion '. $accion . ' no implementada!');
         }
     
-//     }
-// catch (Exception $ee){
-//     $ret=array('retorno'=>0, 
-//                 'error'=>1, 
-//                 'msgError'=>$ee->getMessage(),
-//                 'sql' => $conn->arrResultSet,
-//                 );
-//     echo json_encode($ret);
-//     }
+    }
+catch (Exception $ee){
+    $ret=array('retorno'=>0, 
+                'error'=>1, 
+                'msgError'=>$ee->getMessage(),
+                'sql' => $conn->arrResultSet,
+                );
+    echo json_encode($ret);
+    }
 
 function fnGetMisGrupos($cd_usuario){
     global $md;

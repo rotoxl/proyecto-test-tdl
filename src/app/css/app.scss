@@ -659,7 +659,7 @@ h1, h2, h3, h4, h4, small{
 
 		.config{
 			.row{
-
+				cursor:pointer;
 				padding-bottom:5px; margin-left:0; margin-right:0;
 				font-size: 16px; text-align:left; padding-bottom:10px;
 				> *{
@@ -991,7 +991,7 @@ h1, h2, h3, h4, h4, small{
 				}
 				
 				.data{
-					padding-right:5px;
+					padding-right:1rem;
 					padding-left:0px;
 
 					span.bl, .btn-group{
