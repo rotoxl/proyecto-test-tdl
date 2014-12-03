@@ -261,23 +261,25 @@ var googleWebApi={
         access_token;
 
         // Realiza una solicitud GET asíncrona.
-        $.ajax({
+        jQuery.ajax({
             type: 'GET',
             url: revokeUrl,
             async: false,
             contentType: "application/json",
             dataType: 'jsonp',
             success: function(nullResponse) {
-              // Lleva a cabo una acción ahora que el usuario está desconectado
-              // La respuesta siempre está indefinida.
-            },
-          error: function(e) {
-              // Gestiona el error
-              // console.log(e);
-              // Puedes indicar a los usuarios que se desconecten de forma manual si se produce un error
-              // https://plus.google.com/apps
-              }
-          })
+                // Lleva a cabo una acción ahora que el usuario está desconectado
+                // La respuesta siempre está indefinida.
+                },
+            error: function(e) {
+                // Gestiona el error
+                // console.log(e);
+                // Puedes indicar a los usuarios que se desconecten de forma manual si se produce un error
+                // https://plus.google.com/apps
+                }
+            })
+
+        gapi.auth.signOut()
         }
     }
 

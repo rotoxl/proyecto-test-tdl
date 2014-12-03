@@ -112,6 +112,16 @@ try {
                        );
             echo json_encode($ret);
             break;
+        case 'getDatosTest': //datos generales
+            $cd_usuario=$usu->cd_usuario;
+            $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
+            $ret=array('retorno' => 1, 
+                    'test'=>$md->getDatosTest($cd_test),
+                    'sql' => $md->__logSQL($showSQL),);
+
+            echo json_encode($ret);
+            break;
+            break;
         case 'creaBorradorTest':
             $cd_usuario=$usu->cd_usuario;
             $datos=json_decode( filter_input($REQ, 'datos', FILTER_UNSAFE_RAW) );
@@ -155,12 +165,27 @@ try {
         case 'nuevoMsgGrupo':
             $cd_usuario=$usu->cd_usuario;
             $cd_grupo=filter_input($REQ, 'cd_grupo', FILTER_VALIDATE_INT);
-            $msg=filter_input($REQ, 'msg', FILTER_SANITIZE_STRING);
+            $msg=null; $cd_test=null; $cd_badge=null;
 
-            $md->nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg);
+            if (isset($_POST['msg']))
+                $msg=filter_input($REQ, 'msg', FILTER_SANITIZE_STRING);
+
+            if (isset($_POST['cd_test']))
+                $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
+
+            $md->nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg, $cd_test, $cd_badge);
             $ret=array('retorno'=>1, 
                         'sql' => $conn->arrResultSet,
                         );
+            echo json_encode($ret);
+            break;
+        case 'getMsgMisGrupos':
+            $cd_usuario=$usu->cd_usuario;
+            $from=preg_replace('([^0-9/])', '', $_GET['from']); //fiter_sanitize_date
+            $ret=array('retorno' => 1, 
+                    'grupos'=>fnGetMisGrupos($cd_usuario, $from),
+                    'sql' => $md->__logSQL($showSQL),);
+
             echo json_encode($ret);
             break;
         case 'guardarGrupo':
@@ -285,7 +310,7 @@ catch (Exception $ee){
     echo json_encode($ret);
     }
 
-function fnGetMisGrupos($cd_usuario){
+function fnGetMisGrupos($cd_usuario, $from=null){
     global $md;
     $gru=$md->getMisGrupos($cd_usuario);
     $arrIDs=array();
@@ -293,7 +318,7 @@ function fnGetMisGrupos($cd_usuario){
         $cd_grupo=$gru->filas[$i]['cd_grupo'];
 
         $gru->filas[$i]['miembros']=$md->getMiembrosGrupo($cd_grupo)->filas;
-        $gru->filas[$i]['msg']=$md->getMsgGrupo($cd_grupo)->filas;
+        $gru->filas[$i]['msg']=$md->getMsgGrupo($cd_grupo, $from)->filas;
         }
     return $gru->filas;
     }
