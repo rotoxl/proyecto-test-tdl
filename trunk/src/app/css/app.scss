@@ -108,6 +108,9 @@ body.login.no-connection  {
 	.btn-no-connection{display:block !important;}
 }
 
+header#navigation_bar, section#main_container{
+	min-width:320px; //iphone5
+	}
 .ellipsis{
 	white-space: nowrap;
 	overflow: hidden;
@@ -484,6 +487,11 @@ h1, h2, h3, h4, h4, small{
 	
 	}
 
+.btn-icon.btn-rounded{
+	padding-right: 4px!important;
+	padding-left: 4px!important;
+	width: 32px!important;
+}
 .btn-info-t{
 	color:#46b8da;
 	border-color:#46b8da;
@@ -521,12 +529,40 @@ h1, h2, h3, h4, h4, small{
 	}
 }
 
+
+article.card, article.pack{
+	display:inline-block;
+	min-height:80px; width:49%;
+	margin-top:5px; 
+
+	border-radius:3px; 
+	border:1px solid #E0DADA;
+
+	box-shadow: 0 1px 2px #aaa;
+	//box-shadow: 0 0 0;
+	
+	overflow:hidden;
+	background: white;
+	cursor: pointer;
+	div.body{
+		height:60px;
+	}
+	footer{
+		padding-left:2px; 
+		padding-right:2px;
+		height:61px; 
+
+		border-top: 1px solid #f0f0f0;
+		background-color:rgba(50, 50, 50, 0.1);
+	}
+}
+
 #content{
 	
 	width: 100%;
 	min-height: 80%;
 
-	&.vista{
+	.vista{
 		background-color:rgba(50, 50, 50, 0.1);
 
 		.btn{
@@ -563,32 +599,7 @@ h1, h2, h3, h4, h4, small{
 				margin-left:5px; margin-right:5px;
 				padding-top:10px
 			}
-			article.card, article.pack{
-				display:inline-block;
-				min-height:80px; width:49%;
-				margin-top:5px; 
-
-				border-radius:3px; 
-				border:1px solid #E0DADA;
-
-				box-shadow: 0 1px 2px #aaa;
-				//box-shadow: 0 0 0;
-				
-				overflow:hidden;
-				background: white;
-				cursor: pointer;
-				div.body{
-					height:60px;
-				}
-				footer{
-					padding-left:2px; 
-					padding-right:2px;
-					height:61px; 
-
-					border-top: 1px solid #f0f0f0;
-					background-color:rgba(50, 50, 50, 0.1);
-				}
-			}
+			
 			article.pack{
 				background-color: rgba(46, 62, 78, .8);
 				color: #9db1c5!important;
@@ -610,7 +621,7 @@ h1, h2, h3, h4, h4, small{
 							max-width: 70%;
 							margin-left: 15%;
 							height:20px!important;
-							white-space: nowrap;
+							white-space: normal;
 						}
 						small{
 							text-align: center;
@@ -679,9 +690,70 @@ h1, h2, h3, h4, h4, small{
 			}
 		}
 
+		.card{
+			min-height: 120px;
+			color:#979797;
+			.body{
+				min-height:80px;
+
+				text-align: center;
+
+
+				i {
+					opacity: .1;
+					font-size: 160px;
+					color:darkslategray;
+				}
+			}
+
+			.fecha{
+				//position: absolute; 
+				margin-top:-102px;
+				background-color:rgba(50, 50, 50, 0.1);
+				text-transform: uppercase;
+				font-size: 10px;
+				> *{
+					text-align:center;
+				}
+			}
+			footer{
+				.frow{
+					width:100%;
+					display: block;
+
+					span.nombre{
+						white-space: normal;
+						height:40px;
+					}
+					> *{
+						padding-left:0px; padding-right:0px;
+
+					}
+				}
+
+				span.love{
+					color:#aaa;
+					padding-left:1px;
+				}
+				span.precio, span.loTengo{
+					color:#f0ad4e; 
+					// color:#fb6b5b;
+					text-align:right;
+				}
+				span.notaTest{
+					text-transform: uppercase;
+					color: rgb(113, 113, 113);
+					text-indent: inherit;
+					font-weight: 500;
+					font-size: 12px;
+					line-height: 19px;
+				}
+			}			
+		}
+
 	}
 
-	&.vista.vistaTest{
+	.vista.vistaTest{
 		.vista-header{
 			.btn{
 				.fa-pause{
@@ -830,7 +902,7 @@ h1, h2, h3, h4, h4, small{
 		}
 
 	}
-	&.vista.vistaTienda{
+	.vista.vistaTienda{
 		
 		.vista-header {
 			background-color:#f0ad4e;
@@ -886,69 +958,6 @@ h1, h2, h3, h4, h4, small{
 					width:60px;
 				}
 
-				.card{
-					min-height: 120px;
-					color:#979797;
-					.body{
-						min-height:80px;
-
-						text-align: center;
-
-
-						i {
-							opacity: .1;
-							font-size: 160px;
-							color:darkslategray;
-						}
-					}
-
-					.fecha{
-						//position: absolute; 
-						margin-top:-102px;
-						background-color:rgba(50, 50, 50, 0.1);
-						text-transform: uppercase;
-						font-size: 10px;
-						> *{
-							text-align:center;
-						}
-					}
-					footer{
-						.frow{
-							width:100%;
-							display: block;
-
-							span.nombre{
-								white-space: normal;
-								height:40px;
-							}
-							> *{
-								padding-left:0px; padding-right:0px;
-
-							}
-						}
-
-						span.love{
-							color:#aaa;
-							padding-left:1px;
-						}
-						span.precio, span.loTengo{
-							color:#f0ad4e; 
-							// color:#fb6b5b;
-							text-align:right;
-						}
-						span.notaTest{
-							text-transform: uppercase;
-							color: rgb(113, 113, 113);
-							text-indent: inherit;
-							font-weight: 500;
-							font-size: 12px;
-							line-height: 19px;
-						}
-					}
-
-					
-				}
-
 				&#cat-1 .body{
 					// background:url(../images/cat-1.png) no-repeat center center;
 					// background-size:cover;
@@ -973,6 +982,10 @@ h1, h2, h3, h4, h4, small{
 				box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 				//box-shadow: 0 0 0;
 
+				&.body{
+					border-width: 0px 1px;
+					padding:5px 1.5rem;
+				}
 				.visual{
 					padding-left:0px;
 					//min-height: 150px;
@@ -1023,6 +1036,12 @@ h1, h2, h3, h4, h4, small{
 						margin-top:10px;
 					}
 
+					h2.tit{padding-bottom:8px;}
+					.progress-text{
+						text-transform: uppercase;
+						font-size: 12px;
+						margin-top: 10px;
+					}
 					.progress{
 						margin-top:5px;
 						margin-bottom: 10px;
@@ -1031,7 +1050,7 @@ h1, h2, h3, h4, h4, small{
 						}
 					}
 					.bl{
-						margin-bottom:10px;
+						margin-bottom:5px;
 					}
 
 					.grupo{
@@ -1048,7 +1067,7 @@ h1, h2, h3, h4, h4, small{
 						padding-left: 26px;
 					}
 				}
-
+				.btn.btnCompartir{margin-left:4px;}
 				&.resultadoUltimoExamen{
 					margin-top:10px;
 				}
@@ -1077,20 +1096,16 @@ h1, h2, h3, h4, h4, small{
 				border-width: 1px 0;
 				border-style: solid;
 				border-color: #e8e8e8;
-				padding: 3px 0;
+				padding: 6px 0;
 				font-weight: normal;
 			}
-			.preguntas{
+			.preguntas, .imagenes, .matricula{
 				text-transform: uppercase;
 				font-size: 12px;
 				font-weight: normal;
+				padding:1px 0;
 			}
-			.imagenes{
-				text-transform: uppercase;
-				font-size: 12px;
-				font-weight: normal;
-			}
-			.btnLove{margin-right:5px; margin-left:5px;}
+			.btn-icon.btn-rounded.btnLove{padding-left:6px!important; margin-right:5px; margin-left:5px;}
 			.btnAbrir, .btnLove, .loTengo, .btnDesinstalar{display:none !important;}
 			.btnDescargar{display:inline-block;}
 
@@ -1108,7 +1123,7 @@ h1, h2, h3, h4, h4, small{
 		}
 	}
 
-	&.vista.vistaMigraTest{
+	.vista.vistaMigraTest{
 		button.btn{ width:100%;}
 		span.msgError{
 			margin-top: 10px;
@@ -1131,7 +1146,7 @@ h1, h2, h3, h4, h4, small{
 			}
 	}
 
-	&.vista.vistaSocial{
+	.vista.vistaSocial{
 		background-color:$navigation_bar_bgcolor;
 
 
@@ -1172,7 +1187,7 @@ h1, h2, h3, h4, h4, small{
 		.vista-header{
 
 		}
-		.bl{
+		.bl.grupo, .bl.head{
 			padding-top: 10px; margin-left:0px; margin-right:0;
 
 			color:#adbece;
@@ -1271,6 +1286,27 @@ h1, h2, h3, h4, h4, small{
 		.vista-detalle-grupo{
 			background-color:rgb(157, 177, 197);;
 			color:$navigation_bar_bgcolor;
+
+			> footer{
+				height:50px;
+				background-color:$navigation_bar_bgcolor;
+				color:rgb(157, 177, 197);
+
+				span.input-group-addon{
+					background: none;
+					color: white;
+					border: 0;
+					padding-left:15px; padding-right:15px;
+				}
+				input{
+					border: 1px solid transparent;
+					border-radius: 0;
+					border-top: 1px solid;
+					font-size: 16px;
+					height:40px;
+				}
+			}
+
 		}
 
 		.config{
@@ -1334,11 +1370,37 @@ h1, h2, h3, h4, h4, small{
 				border: 1px solid #ddd;
 
 				font-size: 13px;
-				.nombre{font-weight:bold; margin-right:5px; }
+				> .nombre{font-weight:bold; margin-right:5px; }
 				
 				&.has-test .row.texto, 
 				&.has-badge .row.texto{
 					padding-bottom: 20px!important;
+				}
+
+				&.has-test{
+					min-height:170px;
+
+					> .card.test{
+						float:right;
+						margin-right: 45px;
+						margin-top: -40px;
+					}
+					> .row.has-test{
+						float:right; margin-right: 60px;
+
+						border: 1px solid lightgray;
+						box-shadow: 1px 1px 1px;
+						min-height: 95px;
+						margin-top:-35px;
+						width: 140px;
+						cursor: pointer;
+						background-color:white;
+
+						&.cargando{
+							background:url("../images/throbber.gif") no-repeat center center;
+							background-size:50px;
+						}
+					}
 				}
 
 				&:nth-child(2n){
@@ -1379,28 +1441,10 @@ h1, h2, h3, h4, h4, small{
 				}
 			}	
 		}
-		footer{
-			height:50px;
-			background-color:$navigation_bar_bgcolor;
-			color:rgb(157, 177, 197);
-
-			span.input-group-addon{
-				background: none;
-				color: white;
-				border: 0;
-				padding-left:15px; padding-right:15px;
-			}
-			input{
-				border: 1px solid transparent;
-				border-radius: 0;
-				border-top: 1px solid;
-				font-size: 16px;
-				height:40px;
-			}
-		}
+		
 	}
 
-	&.vista.vistaEstadisticas{
+	.vista.vistaEstadisticas{
 		background-color:rgb(247,247,247);
 		.row {
 			margin-left:0; margin-right:0; 
@@ -1430,7 +1474,7 @@ h1, h2, h3, h4, h4, small{
 
 	}
 
-	&.vista.vistaAjustes{
+	.vista.vistaAjustes{
 		background-color:$navigation_bar_bgcolor;
 		color:#adbece;
 
@@ -1455,7 +1499,7 @@ h1, h2, h3, h4, h4, small{
 		.row.sin-titulo{margin-top:10px;}
 		.row i{margin-top:6px; font-size:19px;;}
 	}
-	&.vista.cargando{
+	&.cargando{
 		min-height: 100%;
 		position: absolute;
 		background:$navigation_bar_bgcolor url("../images/throbber-white.gif") no-repeat center center;
@@ -1816,6 +1860,12 @@ h1, h2, h3, h4, h4, small{
 		margin-right: -15px;
 	}
 
+}
+
+@media (max-width: 320px){
+	#content .vista.vistaTienda .detalle-test section.row .data{
+		padding-left:1rem;
+	}
 }
 
 

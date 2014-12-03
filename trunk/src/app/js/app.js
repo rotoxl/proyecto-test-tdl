@@ -136,7 +136,7 @@ function buscaFilas(filas, dicBuscado){
 				var kt=k.substr( '_contains_'.length )
 
 				var temp=element[kt].split(',')
-				if (temp.indexOf(dicBuscado[k])==-1)
+				if (temp.indexOf( (dicBuscado[k]+'') )==-1)
 					return false
 				}
 			else if (dicBuscado[k]!=element[k]){
@@ -324,6 +324,7 @@ var formato=new Formato()
 function Controlador(){
 	var self=this
 
+	this.nav=[]
 	this.cache={}
 	this.config={
 				pushSenderID:GCM_SENDER_ID,
@@ -616,6 +617,8 @@ Controlador.prototype.logout=function(){
 	//if (googleMobileApi) googleMobileApi.disconnectUser(app.cache.token)
 	if (isPhone())
 		window.plugins.googleplus.disconnect()
+	else 
+		googleWebApi.disconnectUser(this.cache.token)
 
 	localStorage.removeItem('tapp37_userdata')
 	localStorage.removeItem('tapp37_refresh_token')
@@ -712,14 +715,15 @@ Controlador.prototype.cargaVistaInicio=function(){
 	var hash=(document.location.hash+'').substring(1)
 	if (hash=='vistaMigraTest')
 		this.cargaVistaMigraTest(true)
-	else if (hash=='vistaTienda' || hash=='vistaTienda:dispositivo' || hash=='vistaTienda:tienda')
-		this.cargaVistaTienda(true, hash=='vistaTienda:dispositivo')
+	else if (hash.indexOf('vistaTienda')>-1){
+		this.cargaVistaTienda(true, hash)
+		}
 	else if (hash=='vistaTest'){
 		this.cargaVistaTienda(true, true)
 		// this.continuarTest(true)
 		}
-	else if (hash=='vistaSocial' )
-		this.cargaVistaSocial()
+	else if (hash.indexOf('vistaSocial')>-1 )
+		this.cargaVistaSocial(true, hash)
 	else if (hash=='vistaEstadisticas')
 	 	this.cargaVistaEstadisticas()
 	else if (hash=='vistaAjustes')
@@ -729,30 +733,89 @@ Controlador.prototype.cargaVistaInicio=function(){
 		this.cargaVistaTienda(false, true)//ojo, sólo a local
 		}
 
+	if (this.vistaSocial==null){
+		this.vistaSocial=new VistaSocial(false)
+		this.vistaSocial.getData()
+		}
+	if (this.vistaTienda==null){
+		this.vistaTienda=new VistaTienda(false)
+		}
 	}
 Controlador.prototype.cargaVistaTienda=function(desdeHistorial, entornoLocal){
-	var vt=new VistaTienda(desdeHistorial, entornoLocal)
-	vt.toDOM()
+	var cd_test
+	if (entornoLocal!=null && typeof(entornoLocal)=='string'){
+		var temp=entornoLocal
+		entornoLocal=temp.indexOf(':dispositivo')>-1
+		cd_test=temp.split(':')[2]
+		}
+
+	if (this.vistaTienda==null)
+		this.vistaTienda=new VistaTienda(desdeHistorial, entornoLocal, cd_test)
+	else {
+		this.vistaTienda.entornoLocal=entornoLocal
+		this.vistaTienda.recuperarPosicion=cd_test
+		}
+		
+	if (this.vistaTienda.domBody)
+		this.vistaTienda.show()
+	else
+		this.vistaTienda.toDOM()
+
 	this.cierraNavDrawer()
 	}
-Controlador.prototype.cargaVistaSocial=function(desdeHistorial){
-	new VistaSocial(desdeHistorial).toDOM()
+Controlador.prototype.cargaVistaSocial=function(desdeHistorial, hash){
+	if (this.vistaSocial==null)
+		this.vistaSocial=new VistaSocial(desdeHistorial)
+
+	if (hash){ 
+		var gid=hash.split(':')[1]
+		this.vistaSocial.recuperarPosicion=gid
+		}
+	
+	if (this.vistaSocial.domBody)
+		this.vistaSocial.show()
+	else
+		this.vistaSocial.toDOM()
+
 	this.cierraNavDrawer()
 	}
 Controlador.prototype.cargaVistaEstadisticas=function(desdeHistorial){
-	new VistaEstadisticas(desdeHistorial).toDOM()
+	if (this.vistaEstadisticas==null)
+		this.vistaEstadisticas=new VistaEstadisticas(desdeHistorial)
+
+	if (this.vistaEstadisticas.domBody)
+		this.vistaEstadisticas.show()
+	else
+		this.vistaEstadisticas.toDOM()
+
 	this.cierraNavDrawer()
 	}
 Controlador.prototype.cargaVistaAjustes=function(desdeHistorial){
-	new VistaAjustes(desdeHistorial).toDOM()
+	if (this.vistaAjustes==null)
+		this.vistaAjustes=new VistaAjustes(desdeHistorial)
+	
+	if (this.vistaAjustes.domBody)
+		this.vistaAjustes.show()
+	else
+		this.vistaAjustes.toDOM()
+
 	this.cierraNavDrawer()
 	}
 Controlador.prototype.pushState=function(id){
 	window.history.pushState({vista:id}, id, '#'+id)
 	}
 Controlador.prototype.backButton=function(){
-	if (this.vistaActiva)
-		this.vistaActiva.backButton()
+	// if (this.vistaActiva)
+	var vFrom=app.nav.pop()
+	var vTo=app.nav[app.nav.length-1]
+
+	if (vTo==null) return
+	if (vTo.vista=='vistaSocial')
+		this.vistaSocial.backButton(vTo, vFrom)
+	else if (vTo.vista=='vistaTienda')
+		this.vistaTienda.backButton(vTo, vFrom)
+	else if (vTo.vista=='vistaTest')
+		this.vistaTest.backButton(vTo, vFrom)
 	}
 Controlador.prototype.resize=function(){
 	if (this.vistaActiva)
@@ -786,6 +849,8 @@ Vista.prototype.tipos={
 	vistaMigraTest:'vistaMigraTest'
 	}
 Vista.prototype.toDOM=function(){
+	app.muestraNodoEnNavDrawer('li'+this.id.slice(0,1).toUpperCase()+this.id.slice(1))
+
 	var xd=jQuery('#content')
 	if (app) app.vistaActiva=this
 
@@ -797,16 +862,31 @@ Vista.prototype.toDOM=function(){
 	else
 		this.domBody=jQuery(tb)
 	
-	xd.empty()
+	xd.find('.vista').hide()
+
+	this.domCont=jQuery(creaObjProp('section', {'style.height':'100%'}))
+	xd.append(this.domCont)
+	
+	this.domCont
 		.append(this.domHeader)
 		.append(tb)
 		.removeClass( Object.keys(this.tipos).join(' '))
 		.addClass('vista '+this.id)
-		.removeClass('cargando')
+		
+	xd.removeClass('cargando')
 
 	this.dom=xd
 	this.resize()
 	this.tareasPostCarga()
+	}
+Vista.prototype.show=function(){
+	app.muestraNodoEnNavDrawer('li'+this.id.slice(0,1).toUpperCase()+this.id.slice(1))
+
+	var xd=jQuery('#content')
+	xd.find('.vista').hide()
+	this.domCont.show()
+
+	app.vistaActiva=this
 	}
 Vista.prototype.getHeader=function(){}
 Vista.prototype.getBody=function(){}
@@ -817,7 +897,10 @@ Vista.prototype.resize=function(){
 	this.domBody.height( this.hVista- (this.domHeader?this.domHeader.outerHeight():0) )
 	}
 Vista.prototype.tareasPostCarga=function(){}
-Vista.prototype.backButton=function(){}
+Vista.prototype.backButton=function(){
+	if (app.vistaActiva!=this)
+		this.show()
+	}
 Vista.prototype.getUsuDeGrupo=function(cd_grupo, cd_usuario){
 	var gr=buscaFilas(this.grupos, {cd_grupo:cd_grupo})[0]
 	var u=buscaFilas(gr.miembros, {cd_usuario:cd_usuario})[0]
@@ -858,6 +941,8 @@ Vista.prototype.concatCategoriasTest=function(test){
 	var ret=''
 	var t=test.liscat.split(',').reverse()
 	for (var i=0; i<t.length; i++){
+		// if (Number(t[i])<0) continue;
+
 		var cat=buscaFilas(app.cache.categorias, {cd_categoria:t[i] } )[0]
 		if (cat) 
 			ret=ret+', '+cat.ds_categoria
@@ -1440,7 +1525,10 @@ VistaTest.prototype.tickCrono=function(){
 		this.crono=null
 		}
 	}
-VistaTest.prototype.backButton=function(){
+VistaTest.prototype.backButton=function(vTo, vFrom){
+	if (app.vistaActiva!=this)
+		this.show()
+
 	var mapa=jQuery('ul#mapatest')
 	if (mapa.is(':visible')){
 		mapa.closest('.open').removeClass('open')
@@ -1564,10 +1652,10 @@ function VistaRepasoTest(test){
 VistaRepasoTest.prototype=new VistaTest
 ////////////////////////////////////////////////
 
-function VistaTienda(desdeHistorial, entornoLocal){
+function VistaTienda(desdeHistorial, entornoLocal, cd_test){
 	this.id='vistaTienda'
 	this.cat=null
-	app.muestraNodoEnNavDrawer('liVistaTienda')
+	this.recuperarPosicion=cd_test
 
 	this.leeTestLocales()
 	this.leeRespuestasLocales()
@@ -1575,8 +1663,6 @@ function VistaTienda(desdeHistorial, entornoLocal){
 	this.entornoLocal=entornoLocal
 	// this.domDetalleTest=null
 	this.domMenu=jQuery('.barra .btn-menu')
-
-	this.nav=[]
 
 	if (!desdeHistorial) 
 		app.pushState(this.id)
@@ -1618,7 +1704,7 @@ VistaTienda.prototype.tareasPostCarga=function(){
 	else
 		this.cambiaEntorno(jQuery('button.tienda'))
 		
-	this.nav.push({entornoLocal:this.entornoLocal})
+	app.nav.push({vista:this.id, entornoLocal:this.entornoLocal})
 	this.inflateMenu()
 	}
 VistaTienda.prototype.inflateMenu=function(){
@@ -1635,14 +1721,14 @@ VistaTienda.prototype.inflateMenu=function(){
 			}
 		}
 	}
-VistaTienda.prototype.backButton=function(){
-	var from=this.nav.pop()
-	var nvista=this.nav[this.nav.length-1]
-	this.navegaEl(nvista, from)
+VistaTienda.prototype.backButton=function(vTo, vFrom){
+	if (app.vistaActiva!=this)
+		this.show()
+	this.navegaEl(vTo, vFrom)
 	}
-VistaTienda.prototype.navegaEl=function(nvista, from){
-	if (nvista && nvista.cd_test){
-		this.testPreview(nvista.cd_test, true)
+VistaTienda.prototype.navegaEl=function(vTo, vFrom){
+	if (vTo && vTo.cd_test){
+		this.testPreview(vTo.cd_test, true)
 		}
 	else  {
 		if (this.domDetalleTest && this.domDetalleTest.is(':visible')){
@@ -1650,10 +1736,16 @@ VistaTienda.prototype.navegaEl=function(nvista, from){
 			this.domDetalleTest.hide()
 			}
 
-		if (nvista && nvista.cd_categoria && nvista.cd_pack)
-			this.navegaCat(nvista.cd_categoria, true, nvista.cd_pack)
-		else if (nvista && nvista.cd_categoria)
-			this.navegaCat(nvista.cd_categoria, true)
+		if (vFrom && vFrom.cd_categoria==-100 && vFrom.cd_test==null){//búsqueda
+			if (this.entornoLocal)
+				this.cambiaEntorno(jQuery('button.dispositivo'))
+			else
+				this.cambiaEntorno(jQuery('button.tienda'))
+			}
+		else if (vTo && vTo.cd_categoria && vTo.cd_pack)
+			this.navegaCat(vTo.cd_categoria, true, vTo.cd_pack)
+		else if (vTo && vTo.cd_categoria)
+			this.navegaCat(vTo.cd_categoria, true)
 		else { //
 			this.cat=null
 			this.restauraHeaderApp() 
@@ -1667,36 +1759,49 @@ VistaTienda.prototype.navegaEl=function(nvista, from){
 			//ocultamos los packs en su forma expandida
 			this.domBody.find('.bloque.cat.pack').hide()
 
-			if (from && from.cd_categoria)
-				this.domBody.scrollTop( this.domBody.find('#cat-'+from.cd_categoria).offset().top-100 )
+			if (vFrom && vFrom.cd_categoria)
+				this.domBody.scrollTop( this.domBody.find('#cat-'+vFrom.cd_categoria).offset().top-100 )
 			}
+		}
+	}
+VistaTienda.prototype.show=function(){
+	Vista.prototype.show.call(this)
+	if (this.recuperarPosicion!=null){
+		this.doBuscarTest(this.recuperarPosicion, true)
 		}
 	}
 //////
 VistaTienda.prototype.buscarTest=function(){
 	var self=this
 
-	navigator.notification.prompt(
-	    null, //'Matrícula, nombre...',
-	    function( result ) { //result.buttonIndex y result.input1
-	        switch ( result.buttonIndex ) {
-	            case 1:
-					self.strBuscar=result.input1
-					self.doBuscar(self.strBuscar)
-	                break;
-	            case 2:
-	                break;
-	        }
-	    },
-	    'Buscar test',     // a title
-	    [ "Buscar", "Cancelar" ], // text of the buttons
-	    self.strBuscar
-		)
+	if (isPhone()){
+		navigator.notification.prompt(
+		    null, //'Matrícula, nombre...',
+		    function( result ) { //result.buttonIndex y result.input1
+		        switch ( result.buttonIndex ) {
+		            case 1:
+						self.strBuscar=result.input1
+						self.doBuscarTest(self.strBuscar)
+		                break;
+		            case 2:
+		                break;
+		        }
+		    },
+		    'Buscar test',     // a title
+		    [ "Buscar", "Cancelar" ], // text of the buttons
+		    self.strBuscar
+			)
+		}
+	else {
+		self.strBuscar = prompt('Buscar test', self.strBuscar)
+		if (self.doBuscarTest!=null)
+			self.doBuscarTest(self.strBuscar)
+		}
 	}
-VistaTienda.prototype.doBuscar=function(s){
+VistaTienda.prototype.doBuscarTest=function(s, situar){
 	var self=this
 
-	self.domBody.empty().addClass('cargando')
+	// self.domBody.empty().addClass('cargando')
 	jQuery.post(app.config.url, {accion:'buscaTests', q:s}).success(
 		function(data){
 			var datos=xeval(data)
@@ -1706,26 +1811,34 @@ VistaTienda.prototype.doBuscar=function(s){
 				self.domHeader.find('.btn.tienda').addClass('active')
 				self.entornoLocal=false
 
-				self.resultadosBusqueda=datos.tests || []
+				var resultadosBusqueda=datos.tests || []
 
 				self.ftestTienda=null
 				
-				var xcat=[
-					{cd_categoria:-100, ds_categoria:'Resultados de la búsqueda', i:'fa-search'}
-					]
+				app.cache.categorias=app.cache.categorias || []
+				var xcat={cd_categoria:-100, ds_categoria:'Resultados de la búsqueda', i:'fa-search', cd_categoriapadre:-200}
+				app.cache.categorias.push(xcat)
 
-				self.pintaPortadaTienda(xcat, self.resultadosBusqueda)
+				if (situar==null){
+					self.testTienda=(self.testTienda || []).concat(resultadosBusqueda)
+					self.navegaCat(xcat.cd_categoria)
+					}
+				else {
+					//self.pintaPortadaTienda(app.cache.categorias, self.testTienda)
+					self.testPreview(resultadosBusqueda[0].cd_test, false)
+					}
 				self.domBody.removeClass('cargando')
 				}
 			else
 				console.error(data)
 		})
 	}
+//////
 VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 	var self=this
 	var pressed=jQuery(xbtn)
 	
-	this.nav=[]//reseteamos la pila de navegación
+	//app.nav=[]//reseteamos la pila de navegación
 	this.restauraHeaderApp()
 	////
 
@@ -1749,11 +1862,38 @@ VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 	else {
 		this.entornoLocal=false
 
-		this.leeTestTienda( function(datos){self.pintaPortadaTienda(app.cache.categorias, datos)} )
+		this.leeTestTienda( 
+			function(datos){
+				self.pintaPortadaTienda(app.cache.categorias, datos)
+				self.doRecuperarPosicion()
+				} )
 		}
 
-	if (!fromHistory) 
+	if (!fromHistory) {
 		app.pushState(this.entornoLocal?'vistaTienda:dispositivo':'vistaTienda:tienda')
+		app.nav.push({vista:this.id, entornoLocal:this.entornoLocal})
+		}
+	
+	}
+VistaTienda.prototype.doRecuperarPosicion=function(){
+	if (this.recuperarPosicion){
+		if (this.entornoLocal){
+			var colTests=app.cache.testLocales
+
+			var b
+			if (isNaN(this.recuperarPosicion))
+				b={matricula:this.recuperarPosicion}
+			else
+				b={cd_test:this.recuperarPosicion}
+
+			var tst=buscaFilas(colTests, b)[0]
+			this.testPreview(tst.cd_test, true)
+			}
+		else {
+			this.doBuscarTest(this.recuperarPosicion, true)
+			}
+		this.recuperarPosicion=null
+		}
 	}
 VistaTienda.prototype.cargaListaCategorias=function(lis, todosLosNiveles){
 	var self=this
@@ -1797,7 +1937,7 @@ VistaTienda.prototype.sacaPadresCategoria=function(cat){
 	}
 VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	if (!fromHistory) 
-		this.nav.push({entornoLocal:this.entornoLocal, cd_categoria:cd_categoria, cd_pack:cd_pack})
+		app.nav.push({vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:cd_categoria, cd_pack:cd_pack})
 
 	if (this.domDetalleTest && this.domDetalleTest.is(':visible')){
 		this.domBody.show()
@@ -1817,7 +1957,7 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	var blSel=this.domBody.find('.bloque.cat#cat-'+this.cat.cd_categoria)
 	if (blSel.length==0){
 		blSel=jQuery(
-			creaObjProp('section', {id:'cat-'+this.cat.cd_categoria, className:'bloque cat pack', 'data-id':this.cat.cd_categoria, hijos:[
+			creaObjProp('section', {id:'cat-'+this.cat.cd_categoria, className:'bloque cat'+(cd_pack==null?'':' pack'), 'data-id':this.cat.cd_categoria, hijos:[
 				creaObjProp('h4', {className:'titulo', texto:this.cat.ds_categoria })
 				]} )
 			)
@@ -1843,7 +1983,7 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 
 	var num=blCat.find('article.card').length
 
-	var lista=(this.entornoLocal?app.cache.testLocales:this.testTienda)
+	var lista=(this.entornoLocal?this.testLocales:this.testTienda)
 
 	packs=buscaFilas(app.cache.categorias, {cd_categoriapadre:cd_categoria})
 	for (var j=0; j<packs.length; j++){
@@ -1909,7 +2049,7 @@ VistaTienda.prototype.escogeTestsCatDinamica=function(cd_categoria, lista){
 				})
 			}
 		else
-			tests=lista
+			tests=buscaFilas(lista, {_contains_liscat:cd_categoria})
 		}
 	return tests
 	}
@@ -2020,30 +2160,10 @@ VistaTienda.prototype.testEstaEnPack=function(test, packs){
 	return false
 	}
 VistaTienda.prototype._formatoPrecio=function(domPrecio, precio, moneda){
-	if (precio==0) {
+	if (precio==0) 
 		domPrecio.appendChild( creaT('GRATIS') )
-		return
-		}
-
-	this.cachePrecios=this.cachePrecios|| {}
-	if ( ('p'+precio) in this.cachePrecios){
-		domPrecio.appendChild( creaT( this.cachePrecios['p'+precio] ) )
-		}
-	// else {
-			// navigator.globalization.stringToNumber(
-			// 			test.precio, 
-			// 			function(number){
-			// 				this.cachePrecios['p'+test.precio]=number.value
-			// 				do,mPrecio.appendChild(creaT(number.value))
-			// 				}, 
-			// 			function(err){
-			// 				console.error('Error globalization: '+test.precio)
-			// 				},
-			// 			{type:'currency'} )
-			// }
-	else {
+	else 
 		domPrecio.appendChild( creaT( formato.moneda(this.precioMinimo(precio), moneda) ) )
-		}
 	}
 VistaTienda.prototype.precioMinimo=function(p){
 	if (p>0 && p<0.50)//precio mínimo Android
@@ -2244,23 +2364,29 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 				console.error(data)
 		})
 	}
-VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
-	if (!fromHistory) 
-		this.nav.push({entornoLocal:this.entornoLocal, cd_categoria:this.cat?this.cat.cd_categoria:null, cd_test:cd_test})
-
-	this.cambiaHeaderApp('cargando')
-
+VistaTienda.prototype.testPreview_montaDiv=function(){
 	if (this.domDetalleTest==null){
 		this.domDetalleTest=jQuery(creaObjProp('div', {'style.height':this.domBody.innerHeight(), className:'vista-body detalle-test flowable cargando'}))
-		this.dom.append(this.domDetalleTest)
+		this.domCont.append(this.domDetalleTest)
 		this.domBody.hide()
 		}
 	else {
 		this.domDetalleTest.show().empty().addClass('cargando')
 		this.domBody.hide()
 		}
+	}
+VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
+	if (!fromHistory) 
+		app.nav.push({vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:this.cat?this.cat.cd_categoria:null, cd_test:cd_test})
 
-	var loTengo=buscaFilas(app.cache.testLocales, {cd_test:cd_test})
+	this.cambiaHeaderApp('cargando')
+
+	this.testPreview_montaDiv()
+
+	var loTengo=buscaFilas(this.testLocales, {cd_test:cd_test})
+	if (loTengo.length==0)
+		loTengo=buscaFilas(this.testTienda, {cd_test:cd_test})
+
 	var loHice=buscaFilas(app.cache.respuestasLocales, {cd_test:cd_test})
 
 	if (loTengo.length>0){ //no hace falta consultar al servidor
@@ -2282,7 +2408,7 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 
 	var textoBotonDescargar, fnDescargar
 
-	self.cambiaHeaderApp(test.ds_test)
+	self.cambiaHeaderApp('Detalles del test')//test.ds_test)
 	self.domDetalleTest.removeClass('cargando tengo-este-test')
 
 	if (loTengo){
@@ -2307,7 +2433,7 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 			}
 		}
 
-	var tieneImagenes=Number(test.tieneImagenes)? creaObjProp('span', {className:'bl imagenes', texto:'Contiene imágenes'}) :creaT('') 
+	var tieneImagenes=Number(test.tieneImagenes)? creaObjProp('span', {className:'bl imagenes', texto:'Contiene imágenes', i:'fa-camera'}) :creaT('') 
 	var visual=creaObjProp('div', {className:'col-xs-3 visual'})
 	if (test.img==null || test.img=='')
 		// visual.appendChild( creaObjProp('i', {className:'fa fa-file-text-o fa-8x'}) )
@@ -2328,17 +2454,21 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 					// creaObjProp('span', {texto:test.organismo==null? '': espacioDuro2}),
 					creaObjProp('span', {className:'fecha', texto: formato.fechaDDMMYYYY(test.f_examen) }),
 					]}),
-				creaObjProp('span', {className:'bl cats', texto: self.concatCategoriasTest(test), omiteNulo:true, i:'fa-tags' }),
-				creaObjProp('span', {className:'bl preguntas', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos'}),
-				tieneImagenes,
-				creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'En tu colección'}),
 				]}),
+			]}),
+		creaObjProp('section', {className:'body row', hijos:[
+				creaObjProp('span', {className:'bl cats', texto: self.concatCategoriasTest(test), omiteNulo:true, i:'fa-tags' }),
+				creaObjProp('span', {className:'bl preguntas', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos', i:'fa-clock-o'}),
+				tieneImagenes,
+				creaObjProp('span', {className:'bl matricula', texto:'Matrícula '+test.matricula, i:'fa-bookmark'}),
+				creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'En tu colección'}),
 			]}),
 		creaObjProp('section', {className:'row botonera', hijos:[
 			// creaObjProp('div', {className:'bl grupo pull-right', hijos:[
 			creaObjProp('button', {className:'btnAbrir btn btn-info-t btn-sm pull-right', texto:'ABRIR', onclick:function(){self.lanzaTest(test.cd_test)} }),
-			creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm btn-sm'+(test.likeit?' btn-success':' btn-default'), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
+			creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm'+(test.likeit?' btn-success':' btn-default'), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
 			creaObjProp('button', {className:'btnDesinstalar btn btn-default btn-sm', texto:'Desinstalar', onclick:function(){self.desinstalarTest(test.cd_test)} }),
+			creaObjProp('button', {className:'btnCompartir btn btn-rounded btn-icon btn-sm btn-default', i:'fa-share-alt fa-fw', onclick:function(){self.compartir(test)} }),
 
 			creaObjProp('button', {className:'btnDescargar btn btn-success-t pull-right btn-sm', texto:textoBotonDescargar, onclick:fnDescargar })
 			// ]})
@@ -2356,15 +2486,15 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 							]})
 						]}),
 					creaObjProp('div', {className:'col-xs-9 data', hijos:[
-						creaObjProp('h2', {texto:'Tienes este test a medias'}),
+						creaObjProp('h2', {className:'tit', texto:'Tienes este test a medias'}),
 						creaObjProp('div', {hijos:[
-							creaT('Preguntas respondidas: '+estadisticas.minutosPorcentaje+'%'),
+							creaObjProp('span', {className:'progress-text', texto:'Preguntas respondidas: '+estadisticas.minutosPorcentaje+'%'}),
 							creaObjProp('div', {className:'progress progress-sm', hijos:[
 								creaObjProp('div', {className:'progress-bar', 'style.width':estadisticas.minutosPorcentaje+'%', role:'progressbar'})
 								]})
 							]}),
 						creaObjProp('div', {hijos:[
-							creaT('Tiempo consumido: '+estadisticas.respondidasPorcentaje+'%'),
+							creaObjProp('span', {className:'progress-text', texto:'Tiempo consumido: '+estadisticas.respondidasPorcentaje+'%'}),
 							creaObjProp('div', {className:'progress progress-sm', hijos:[
 								creaObjProp('div', {className:'progress-bar', 'style.width':estadisticas.respondidasPorcentaje+'%', role:'progressbar'})
 								]})
@@ -2412,6 +2542,9 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 				)
 			}
 		}
+	
+	var xurl=(this.entornoLocal?'vistaTienda:dispositivo:':'vistaTienda:tienda:')+test.matricula
+	app.pushState(xurl)
 	}
 VistaTienda.prototype.lanzaTest=function(cd_test){
 	var self=this
@@ -2441,6 +2574,43 @@ VistaTienda.prototype.lanzaTest=function(cd_test){
 		}
 	else {
 		app.lanzaTest(test, resp, self)	
+		}
+	}
+VistaTienda.prototype.compartir=function(test){
+	var gr=app.vistaSocial.grupos, hijos=[]
+
+	if (app.vistaSocial.grupos.length==0){
+		if (isPhone())
+			navigator.notification.alert('No hay ningún grupo creado en la vista Social', null, 'Compartir')
+		else
+			alert('No hay ningún grupo creado en la vista Social')
+		return
+		}
+
+	for (var i=0; i<gr.length; i++){
+		hijos.push( gr[i].ds_grupo )
+		}
+	if (isPhone()){
+		window.plugins.actionsheet.show({
+		        title:'Compartir',				
+		        buttonLabels: hijos
+			    }, 
+		    function(buttonIndex){	
+		    	console.log(buttonIndex)
+
+		    	if (buttonIndex==app.vistaSocial.grupos)
+		    		return //cancel
+
+		    	var gr=app.vistaSocial.grupos[buttonIndex-1]
+				app.vistaSocial.enviaTest(gr, test)
+				app.cargaVistaSocial(true, ':'+gr.cd_grupo)
+				})
+		}
+	else {//
+		console.log('Comparto con el primer grupo que haya')
+		var gr=app.vistaSocial.grupos[0]
+		app.vistaSocial.enviaTest(gr, test)	
+		app.cargaVistaSocial(true, ':'+gr.cd_grupo)
 		}
 	}
 //////
@@ -2676,14 +2846,16 @@ VistaTienda.prototype.testData=function(){
 		]
 	}
 ////////////////////////////////////////////////
-function VistaSocial(desdeHistorial){
+function VistaSocial(desdeHistorial, gid){
 	this.id='vistaSocial'
-	app.muestraNodoEnNavDrawer('liVistaSocial')
 
+	this.recuperarPosicion=gid
 	this.txtEnviarMensaje=null
 	this.domMenu=jQuery('.barra.vista .btn-menu')
 	this.domChatGrupo=null
 	this.domEditarGrupo=null
+
+	this.cache={}
 
 	if (!desdeHistorial) 
 		app.pushState(this.id)
@@ -2802,16 +2974,23 @@ VistaSocial.prototype.pushReceived=function(accion, datos){
 
 		}
 	}
-VistaSocial.prototype.backButton=function(){
-	if (this.grupo && this.grupo.esNuevo && this.domEditarGrupo.is(':visible')){
-		if (this.grupo.esModif)
+VistaSocial.prototype.backButton=function(vTo, vFrom){
+	if (app.vistaActiva!=this)
+		this.show()
+	//cd_grupo:this.grupo.cd_grupo, abrirEditaGrupo:true
+	if (vFrom.abrirEditaGrupo){
+		if (this.grupo && this.grupo.esModif)
 			this.guardarCambiosGrupo()
-		this.cerrarGrupo()
 		}
-	else if (this.domEditarGrupo.is(':visible')){
-		this.cerrarEditaGrupo()
+
+	if (vTo.abrirEditaGrupo){
+		this.grupo=buscaFilas(this.grupos, {cd_grupo:vTo.cd_grupo} )[0]
+		this.abrirEditaGrupo()
 		}
-	else if (this.domChatGrupo.is(':visible')){
+	else if (vTo.cd_grupo){
+		this.verGrupo(vTo.cd_grupo)
+		}
+	else {
 		this.cerrarGrupo()
 		}
 	}
@@ -2829,11 +3008,45 @@ VistaSocial.prototype.getData=function(){
 					for (var j=0; j<self.grupos[i].miembros.length; j++){
 						var u=self.grupos[i].miembros[j]
 						self.grupos[i].miembros[j].given_name=u.given_name || u.family_name || u.cd_usuario
+						}
+					}
+				if (app.vistaActiva==self){
+					self.pintaGrupos(datos)
+					app.nav.push({vista:self.id})
+
+					if (self.recuperarPosicion)
+						self.verGrupo(self.recuperarPosicion)
 					}
 				}
-				self.pintaGrupos(datos)
-				}
 			)
+	}
+VistaSocial.prototype.getNuevosMsg=function(){
+	var self=this
+
+	var lastDate=new Date('1900-01-01')
+	for (var i=0; i<this.grupos.length; i++){
+		var f=this.grupos[i].f
+		lastDate=(f>lastDate?f:lastDate)
+		}
+	jQuery.get(app.config.url, {accion:'getMsgMisGrupos', from:lastDate}).success(
+		function(data){
+			var datos=xeval(data)
+			if (datos.retorno==1){
+				for (var i=0; i<datos.grupos.length; i++){
+					var grNuevo=datos.grupos[i]
+					var grActual=buscaFilas(self.grupos, {cd_grupo: grNuevo.cd_grupo})[0]
+					for (var j=0; j<grNuevo.msg.length; j++){
+						var msg=grNuevo.msg[j]
+						msg.cd_grupo=grNuevo.cd_grupo
+						var ultimoMsgActual=grActual.msg[grActual.msg.length-1]
+						if (Number(msg.cd_mensaje)> Number(ultimoMsgActual.cd_mensaje) ){
+							grActual.msg.push(msg)
+							self.pushReceived('mensajeGrupo', msg)
+							}
+						}
+					}
+				}
+		})
 	}
 VistaSocial.prototype.testData=function(){
 	return [
@@ -2931,6 +3144,8 @@ VistaSocial.prototype.pintaGrupos=function(){
 
 			]})
 		)
+
+	app.pushState('vistaSocial')
 	}
 VistaSocial.prototype.anhadeThrobberAGrupos=function(){
 	this.domGrupos.find('.anhadir').empty().addClass('cargando')
@@ -2948,6 +3163,11 @@ VistaSocial.prototype.verGrupo=function(gid){
 	this.cambiaHeaderApp(grupo.ds_grupo)
 	this.cargarMsgGrupo()
 	this.inflateMenuGrupo()
+
+	app.pushState('vistaSocial:'+gid)
+	app.nav.push({vista:this.id, cd_grupo:gid})
+
+	this.getNuevosMsg()
 	}
 VistaSocial.prototype.cambiaGrupo=function(gid){
 	var grupo=buscaFilas(this.grupos, {cd_grupo:gid})[0]
@@ -2972,7 +3192,7 @@ VistaSocial.prototype.cargarMsgGrupo=function(){
 		var xmsg=this.grupo.msg[i]
 		xc.append( this.carga1MsgGrupo(xmsg) )
 		}
-	this.scrollChat()
+	this.scrollChat(1)
 
 	if (this.grupo.msg.length==0){
 		xc.append( creaObjProp('div', {className:'bocadillo vacio', texto:'Todavía no hay mensajes'} ) )
@@ -2988,17 +3208,18 @@ VistaSocial.prototype.inflateMenuGrupo=function(){
 			]}))
 		}
 	}
-VistaSocial.prototype.scrollChat=function(){
+VistaSocial.prototype.scrollChat=function(t){
+	if (t==null) t=600
 	var bocadillo=this.domChatGrupo.find('.chat')
-	this.domChatGrupo.find('.chat').animate({ scrollTop:bocadillo[0].scrollHeight }, 600)
+	this.domChatGrupo.find('.chat').animate({ scrollTop:bocadillo[0].scrollHeight }, t)
 	}
 VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 	var yo=app.cache.usuario.cd_usuario
 
 	this.domChatGrupo.find('.chat .bocadillo.vacio').remove()
 	var cls=(xmsg.cd_usuario==yo?'msg-mio':'')+
-			(xmsg.badge?'has-badge':'')+
-			(xmsg.cd_test?'has-test':'')
+			(xmsg.badge?' has-badge':'')+
+			(xmsg.cd_test?' has-test':'')
 	
 	var f=formato.fechaUHora(xmsg.f)
 	var usu=buscaFilas(this.grupo.miembros, {cd_usuario:xmsg.cd_usuario})[0]
@@ -3010,12 +3231,46 @@ VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 			creaObjProp('span', {texto:xmsg.msg || espacioDuro})
 			]}),
 		]
-	if (xmsg.cd_test)
-		hijos.push( creaObjProp('div', {className:'row has-test pull-right', texto:'Test adjunto', i:'fa fa-paperclip pull-right'}) )
+	if (xmsg.cd_test){
+		//tenemos los datos?
+		var test=buscaFilas(app.vistaTienda.testTienda, {cd_test:xmsg.cd_test})[0] || 
+				 buscaFilas(app.vistaTienda.testLocales, {cd_test:xmsg.cd_test})[0]
+
+		if (test)
+			hijos.push( this.generaDomTest(test) )
+		else {
+			hijos.push( creaObjProp('div', {className:'row has-test cargando', 'data-id':xmsg.cd_test}) )
+			this.getDatosTest(xmsg.cd_test)
+			}
+		}
+	else if (xmsg.test){
+		hijos.push( this.generaDomTest(test) )
+		}
 	//else  if (xmsg.badge)
 	// 	hijos.push(creaObjProp('div', {className:'row has-badge pull-left '+xmsg.badge}) )
 	
-	return creaObjProp('div', {className:'bocadillo '+cls, hijos:hijos})
+	return creaObjProp('div', {className:'bocadillo '+cls, 'data-id':xmsg.cd_mensaje,  hijos:hijos})
+	}
+VistaSocial.prototype.getDatosTest=function(cd_test){
+	var self=this
+	
+	this.cache.test=this.cache.test || []
+	var xt=buscaFilas(this.cache.test, {cd_test:cd_test})[0]
+	if (xt){
+		var d=jQuery('.row.has-test[data-id='+cd_test+']')
+		d.replaceWith(self.generaDomTest(xt) )
+		return
+		}
+
+	jQuery.post(app.config.url, {accion:'getDatosTest', cd_test:cd_test}).success(
+		function(data){
+			var datos=xeval(data)
+			if (datos.retorno==1){
+				var d=jQuery('.row.has-test[data-id='+cd_test+']')
+				d.replaceWith(self.generaDomTest(datos.test) )
+				self.cache.test.push(datos.test)
+				}
+			})
 	}
 VistaSocial.prototype.enviaMsg=function(){
 	var t=this.txtEnviarMensaje.val()
@@ -3035,6 +3290,47 @@ VistaSocial.prototype.enviaMsg=function(){
 			}
 		)
 	}
+VistaSocial.prototype.enviaTest=function(grupo, test){
+	jQuery.post(app.config.url,{accion:'nuevoMsgGrupo',
+								cd_grupo:grupo.cd_grupo, 
+								msg:null,
+								cd_test:test.cd_test
+								// test:test.cd_test,
+							}).success(
+			function(data){
+				var datos=xeval(data)
+			}
+		)
+	}
+////
+VistaSocial.prototype.generaDomTest=function(test){
+	this.anchoTarjetas=180
+
+	var tprecio= (test.precio==0? 'GRATIS' : formato.moneda(VistaTienda.prototype.precioMinimo(test.precio), test.moneda))
+		
+	var infoTienda=[
+		creaObjProp('span', {className:'col-xs-6 bl love', texto:test.likes, i:(test.likes>0?'fa-heart':'fa-heart-o') }),
+		creaObjProp('span', {className:'col-xs-6  bl precio', texto:tprecio}),
+		]
+
+	var cat=buscaFilas(app.cache.categorias, {cd_categoria:test.liscat.split(',')[1]} )[0]
+
+	var self=this
+	var onclick=function(){
+		app.cargaVistaTienda(true, 'vista:tienda:'+test.cd_test)
+		}
+
+	return creaObjProp('article', {'style.width':this.anchoTarjetas+'px', onclick:onclick, id:'test-'+test.cd_test, 'data-id':test.cd_test, className:'card test', hijos:[
+			creaObjProp('div', {className:'body', i:cat.i || 'fa-share-alt'}),
+			creaObjProp('footer', {hijos:[
+				//dFecha,
+				creaObjProp('div', {className:'frow', hijos:infoTienda}),
+				creaObjProp('div', {className:'frow', hijos:[
+					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:test.ds_test}) 
+					]}),
+				]})
+			]})
+	}
 ////
 VistaSocial.prototype.crearGrupo=function(){
 	this.grupo={
@@ -3051,6 +3347,8 @@ VistaSocial.prototype.crearGrupo=function(){
 VistaSocial.prototype.abrirEditaGrupo=function(){
 	var self=this
 	
+	app.nav.push({vista:self.id, cd_grupo:this.grupo.cd_grupo, abrirEditaGrupo:true})
+
 	this.domBody.hide()
 	this.domChatGrupo.hide()
 	this.domEditarGrupo.show()
@@ -3130,23 +3428,31 @@ VistaSocial.prototype.btnCambiaNombreGrupo=function(){
 		return
 
 	var self=this
-	navigator.notification.prompt(
-	    'Nombre del grupo',
-	    function( result ) { //result.buttonIndex y result.input1
-	        switch ( result.buttonIndex ) {
-	            case 1:
-					self.grupo.esModif=true
-					self.grupo.ds_grupo=result.input1
-					self.domEditarGrupo.find('.txtNombreGrupo').text(result.input1)
-	                break;
-	            case 2:
-	                break;
-	        }
-	    },
-	    'Información sobre el grupo',     // a title
-	    [ "Aceptar", "Cancelar" ], // text of the buttons
-	    this.grupo.ds_grupo
-		)
+	if (isPhone()){
+		navigator.notification.prompt(
+		    'Nombre del grupo',
+		    function( result ) { //result.buttonIndex y result.input1
+		        switch ( result.buttonIndex ) {
+		            case 1:
+						self.grupo.esModif=true
+						self.grupo.ds_grupo=result.input1
+						self.domEditarGrupo.find('.txtNombreGrupo').text(result.input1)
+		                break;
+		            case 2:
+		                break;
+		        }
+		    },
+		    'Información sobre el grupo',     // a title
+		    [ "Aceptar", "Cancelar" ], // text of the buttons
+		    this.grupo.ds_grupo
+			)
+		}
+	else {
+		var s=prompt('Nombre del grupo',this.grupo.ds_grupo)
+		self.grupo.esModif=true
+		self.grupo.ds_grupo=s
+		self.domEditarGrupo.find('.txtNombreGrupo').text(s)
+		}
 	}
 VistaSocial.prototype.btnAnhadirMiembro=function(d){
 	if (this.grupo.admin!=app.cache.usuario.cd_usuario)
@@ -3212,7 +3518,6 @@ VistaSocial.prototype.testPushMensajeGrupo=function(){
 ////////////////////////////////////////////////
 function VistaEstadisticas(desdeHistorial){
 	this.id='vistaEstadisticas'
-	app.muestraNodoEnNavDrawer('liVistaEstadisticas')
 
 	// this.domMenu=jQuery('.barra.vista .btn-menu')
 	if (!desdeHistorial) 
@@ -3240,6 +3545,7 @@ VistaEstadisticas.prototype.getBody=function(){
 
 		for (var i=0; i<this.cats.length; i++){
 			var cat=this.cats[i]
+			if (cat.cd_categoria<0) continue
 
 			var respsCat=buscaFilas(this.resps, {_contains_liscat:cat.cd_categoria})
 			this.cats[i].resps=respsCat
@@ -3383,7 +3689,6 @@ VistaEstadisticas.prototype.testData=function(){
 ////////////////////////////////////////////////
 function VistaAjustes(desdeHistorial){
 	this.id='vistaAjustes'
-	app.muestraNodoEnNavDrawer('liVistaAjustes')
 
 	this.txtEnviarMensaje=null
 	this.domMenu=jQuery('.barra.vista .btn-menu')

@@ -297,13 +297,12 @@ class Metadatos{
 		return $this->conn->lookupFilas($sql, array($cd_categoria, $cd_usuario, $limitePreview));
 		}
 	public function getPreviewTest($cd_usuario, $cd_test){
-		$porcentajePreguntas=10;
-
 		$sql="select *, 
 					 exists (select * from usuarios_tests ut where ut.cd_test=t.cd_test and ut.cd_usuario=?) as lotengo 
 				from vs_testpreview t where cd_test=?";
 		$test=$this->conn->lookupDict($sql, array($cd_usuario, $cd_test));
-
+	
+		$porcentajePreguntas=10;
 		$maxCD_Pregunta=$porcentajePreguntas*$test['numpreguntas']/100;
 
 		$sqlPreguntas="select pregunta from preguntas_tests where cd_test=? and cd_pregunta<?";
@@ -317,9 +316,18 @@ class Metadatos{
 		$test['tieneImagenes']=$this->conn->lookupSimple("select count(recursopregunta) from preguntas_tests where cd_test=?", array($cd_test));
 		return $test;
 		}
+	public function getDatosTest($cd_test){
+		$sql="select 
+			 	v.cd_test, v.ds_test, 
+				v.matricula, v.img, v.f_examen, v.organismo,
+				v.numpreguntas, v.liscat,
+				v.region, v.precio, v.cd_moneda, v.likes, v.fu_modificacion
+			from vs_testpreview v where v.cd_test=?";
+		return $this->conn->lookupDict($sql, array($cd_test));
+		}
 	public function getTest($cd_usuario, $cd_test, $json_order){
 		$md=$this->conn->lookupDict(
-			"select cd_test, 1 as lotengo, f_examen, ds_test, liscat, region, organismo, img, fallosRestan, minutos, numPreguntas, precio, cd_moneda from vs_testpreview t where cd_test=?", 
+			"select cd_test, 1 as lotengo, matricula, f_examen, ds_test, liscat, region, organismo, img, fallosRestan, minutos, numPreguntas, precio, cd_moneda from vs_testpreview t where cd_test=?", 
 			array($cd_test));
 
 		$yaComprado=$this->conn->lookupSimple("select cd_test from usuarios_tests where cd_usuario=? and cd_test=?", array($cd_usuario, $cd_test));
@@ -504,25 +512,37 @@ class Metadatos{
 		$sql='select cd_usuario, nombre as given_name, apellidos as family_name, picture from usuarios where cd_usuario in (select cd_usuario from usuarios_grupos where cd_grupo=?)';
 		return $this->conn->lookupFilas($sql, array($cd_grupo));
 		}
-	public function getMsgGrupo($cd_grupo){
-		$sql='select cd_usuario, texto as msg, cd_test, badge, f_msg as f from usuarios_grupos_mensajes where cd_grupo=? order by cd_mensaje desc limit 50';
-		return $this->conn->lookupFilas($sql, array($cd_grupo));
+	public function getMsgGrupo($cd_grupo, $lastDate){
+		if (isset($lastDate)){
+			$sql='select cd_usuario, cd_mensaje, texto as msg, cd_test, badge, f_msg as f from usuarios_grupos_mensajes where cd_grupo=? and f_msg>=? order by cd_mensaje asc';
+			return $this->conn->lookupFilas($sql, array($cd_grupo, $lastDate));
+			}
+		else { //50 últimos
+			$sql='select * from (select cd_usuario, cd_mensaje, texto as msg, cd_test, badge, f_msg as f from usuarios_grupos_mensajes where cd_grupo=? order by cd_mensaje desc limit 50) s order by cd_mensaje asc';
+			return $this->conn->lookupFilas($sql, array($cd_grupo));
+			}
 		}
-	public function nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg){
+	public function nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg, $cd_test, $cd_badge){
 		//verificamos que el grupo sigue vivo
 		$sigueVivo=$this->conn->lookupSimple("select cd_grupo from grupos where cd_grupo=? and f_borrado is null", array($cd_grupo));
 		if ($cd_grupo!=$sigueVivo) return;
 
 		$sql="insert into usuarios_grupos_mensajes (cd_usuario, cd_grupo, cd_mensaje, texto, cd_test, badge) values (?, ?, ?, ?, ?, ?)";
 
-		$idx=$this->numerador('usuarios_grupos_mensajes', 'cd_mensaje', array('cd_usuario'=>$cd_usuario, 'cd_grupo'=>$cd_grupo));
-		$this->conn->ejecuta($sql, array($cd_usuario, $cd_grupo, $idx, $msg, null, null));
+		$idx=$this->numerador('usuarios_grupos_mensajes', 'cd_mensaje', array('cd_grupo'=>$cd_grupo));
+		$this->conn->ejecuta($sql, array($cd_usuario, $cd_grupo, $idx, $msg, $cd_test, $cd_badge));
 
+		//ahora el push
+		$test=null;
+		if (isset($cd_test) ){
+			$test=$this->getDatosTest($cd_test);
+			}
+		
 		$datos=array(
 			'cd_grupo'=>$cd_grupo,
 			'cd_usuario'=>    $cd_usuario,
 			'msg'=>   $msg,
-			'cd_test'=> null,
+			'test'=> $test,
 			'badge'=>   null,
 			'f_msg'=>	$this->fechaHora(),
 			);
