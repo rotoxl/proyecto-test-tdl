@@ -757,9 +757,9 @@ Controlador.prototype.cargaVistaTienda=function(desdeHistorial, entornoLocal){
 		}
 		
 	if (this.vistaTienda.domBody)
-		this.vistaTienda.show()
+		this.vistaTienda.show(desdeHistorial)
 	else
-		this.vistaTienda.toDOM()
+		this.vistaTienda.toDOM(desdeHistorial)
 
 	this.cierraNavDrawer()
 	}
@@ -804,6 +804,11 @@ Controlador.prototype.cargaVistaAjustes=function(desdeHistorial){
 Controlador.prototype.pushState=function(id){
 	window.history.pushState({vista:id}, id, '#'+id)
 	}
+Controlador.prototype.resize=function(){
+	if (this.vistaActiva)
+		this.vistaActiva.resize()
+	}
+/////
 Controlador.prototype.backButton=function(){
 	// if (this.vistaActiva)
 	var vFrom=app.nav.pop()
@@ -817,9 +822,9 @@ Controlador.prototype.backButton=function(){
 	else if (vTo.vista=='vistaTest')
 		this.vistaTest.backButton(vTo, vFrom)
 	}
-Controlador.prototype.resize=function(){
-	if (this.vistaActiva)
-		this.vistaActiva.resize()
+Controlador.prototype.addToNav=function(el){
+	console.log(el)
+	app.nav.push(el)
 	}
 ////////////////////////////////////////////////
 
@@ -848,7 +853,7 @@ Vista.prototype.tipos={
 	vistaEstadisticas:'vistaEstadisticas', 
 	vistaMigraTest:'vistaMigraTest'
 	}
-Vista.prototype.toDOM=function(){
+Vista.prototype.toDOM=function(desdeHistorial){
 	app.muestraNodoEnNavDrawer('li'+this.id.slice(0,1).toUpperCase()+this.id.slice(1))
 
 	var xd=jQuery('#content')
@@ -877,9 +882,12 @@ Vista.prototype.toDOM=function(){
 
 	this.dom=xd
 	this.resize()
-	this.tareasPostCarga()
+	this.tareasPostCarga(desdeHistorial)
+	
+	if (!desdeHistorial)
+		app.addToNav({vista:this.id})
 	}
-Vista.prototype.show=function(){
+Vista.prototype.show=function(desdeHistorial){
 	app.muestraNodoEnNavDrawer('li'+this.id.slice(0,1).toUpperCase()+this.id.slice(1))
 
 	var xd=jQuery('#content')
@@ -887,6 +895,10 @@ Vista.prototype.show=function(){
 	this.domCont.show()
 
 	app.vistaActiva=this
+
+	if (!desdeHistorial)
+		app.addToNav({vista:this.id})
+
 	}
 Vista.prototype.getHeader=function(){}
 Vista.prototype.getBody=function(){}
@@ -1527,7 +1539,7 @@ VistaTest.prototype.tickCrono=function(){
 	}
 VistaTest.prototype.backButton=function(vTo, vFrom){
 	if (app.vistaActiva!=this)
-		this.show()
+		this.show(true)
 
 	var mapa=jQuery('ul#mapatest')
 	if (mapa.is(':visible')){
@@ -1703,8 +1715,7 @@ VistaTienda.prototype.tareasPostCarga=function(){
 		}
 	else
 		this.cambiaEntorno(jQuery('button.tienda'))
-		
-	app.nav.push({vista:this.id, entornoLocal:this.entornoLocal})
+	
 	this.inflateMenu()
 	}
 VistaTienda.prototype.inflateMenu=function(){
@@ -1723,7 +1734,7 @@ VistaTienda.prototype.inflateMenu=function(){
 	}
 VistaTienda.prototype.backButton=function(vTo, vFrom){
 	if (app.vistaActiva!=this)
-		this.show()
+		this.show(true)
 	this.navegaEl(vTo, vFrom)
 	}
 VistaTienda.prototype.navegaEl=function(vTo, vFrom){
@@ -1764,10 +1775,14 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			}
 		}
 	}
-VistaTienda.prototype.show=function(){
-	Vista.prototype.show.call(this)
-	if (this.recuperarPosicion!=null){
-		this.doBuscarTest(this.recuperarPosicion, true)
+VistaTienda.prototype.show=function(fromHistory){
+	Vista.prototype.show.call(this, fromHistory)
+
+	if (this.recuperarPosicion!=null)
+		this.doBuscarTest(null, this.recuperarPosicion, true) 
+	else {
+		var xbtn=this.entornoLocal?jQuery('.btn.dispositivo'):jQuery('.btn.tienda')
+		this.cambiaEntorno(xbtn, fromHistory)
 		}
 	}
 //////
@@ -1798,11 +1813,16 @@ VistaTienda.prototype.buscarTest=function(){
 			self.doBuscarTest(self.strBuscar)
 		}
 	}
-VistaTienda.prototype.doBuscarTest=function(s, situar){
+VistaTienda.prototype.doBuscarTest=function(s, id, situar){
 	var self=this
 
 	// self.domBody.empty().addClass('cargando')
-	jQuery.post(app.config.url, {accion:'buscaTests', q:s}).success(
+	if (isNaN(id)){
+		s=id
+		id=null
+		}
+
+	jQuery.post(app.config.url, {accion:'buscaTests', search:s, cd_test:id}).success(
 		function(data){
 			var datos=xeval(data)
 			if (datos.retorno==1){
@@ -1871,9 +1891,8 @@ VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 
 	if (!fromHistory) {
 		app.pushState(this.entornoLocal?'vistaTienda:dispositivo':'vistaTienda:tienda')
-		app.nav.push({vista:this.id, entornoLocal:this.entornoLocal})
+		// app.addToNav({vista:this.id, entornoLocal:this.entornoLocal})
 		}
-	
 	}
 VistaTienda.prototype.doRecuperarPosicion=function(){
 	if (this.recuperarPosicion){
@@ -1890,7 +1909,7 @@ VistaTienda.prototype.doRecuperarPosicion=function(){
 			this.testPreview(tst.cd_test, true)
 			}
 		else {
-			this.doBuscarTest(this.recuperarPosicion, true)
+			this.doBuscarTest(null, this.recuperarPosicion, true)
 			}
 		this.recuperarPosicion=null
 		}
@@ -1937,7 +1956,7 @@ VistaTienda.prototype.sacaPadresCategoria=function(cat){
 	}
 VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	if (!fromHistory) 
-		app.nav.push({vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:cd_categoria, cd_pack:cd_pack})
+		app.addToNav({vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:cd_categoria, cd_pack:cd_pack})
 
 	if (this.domDetalleTest && this.domDetalleTest.is(':visible')){
 		this.domBody.show()
@@ -2377,7 +2396,7 @@ VistaTienda.prototype.testPreview_montaDiv=function(){
 	}
 VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 	if (!fromHistory) 
-		app.nav.push({vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:this.cat?this.cat.cd_categoria:null, cd_test:cd_test})
+		app.addToNav({vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:this.cat?this.cat.cd_categoria:null, cd_test:cd_test})
 
 	this.cambiaHeaderApp('cargando')
 
@@ -2976,7 +2995,7 @@ VistaSocial.prototype.pushReceived=function(accion, datos){
 	}
 VistaSocial.prototype.backButton=function(vTo, vFrom){
 	if (app.vistaActiva!=this)
-		this.show()
+		this.show(true)
 	//cd_grupo:this.grupo.cd_grupo, abrirEditaGrupo:true
 	if (vFrom.abrirEditaGrupo){
 		if (this.grupo && this.grupo.esModif)
@@ -2988,7 +3007,7 @@ VistaSocial.prototype.backButton=function(vTo, vFrom){
 		this.abrirEditaGrupo()
 		}
 	else if (vTo.cd_grupo){
-		this.verGrupo(vTo.cd_grupo)
+		this.verGrupo(vTo.cd_grupo, true)
 		}
 	else {
 		this.cerrarGrupo()
@@ -2997,6 +3016,10 @@ VistaSocial.prototype.backButton=function(vTo, vFrom){
 VistaSocial.prototype.tareasPostCarga=function(){
 	this.getData()
 	}
+VistaSocial.prototype.show=function(desdeHistorial){
+	Vista.prototype.show.call(this, desdeHistorial)
+	}
+////
 VistaSocial.prototype.getData=function(){
 	var self=this
 	jQuery.get(app.config.url, {accion:'getMisGrupos'}).success(
@@ -3012,8 +3035,6 @@ VistaSocial.prototype.getData=function(){
 					}
 				if (app.vistaActiva==self){
 					self.pintaGrupos(datos)
-					app.nav.push({vista:self.id})
-
 					if (self.recuperarPosicion)
 						self.verGrupo(self.recuperarPosicion)
 					}
@@ -3151,8 +3172,11 @@ VistaSocial.prototype.anhadeThrobberAGrupos=function(){
 	this.domGrupos.find('.anhadir').empty().addClass('cargando')
 	}
 ////
-VistaSocial.prototype.verGrupo=function(gid){
+VistaSocial.prototype.verGrupo=function(gid, fromHistory){
 	var grupo=buscaFilas(this.grupos, {cd_grupo:gid})[0]
+	if (this.grupo==grupo) 
+		return
+
 	this.grupo=grupo
 	
 	this.domChatGrupo.show()
@@ -3164,8 +3188,10 @@ VistaSocial.prototype.verGrupo=function(gid){
 	this.cargarMsgGrupo()
 	this.inflateMenuGrupo()
 
-	app.pushState('vistaSocial:'+gid)
-	app.nav.push({vista:this.id, cd_grupo:gid})
+	if (!fromHistory){
+		app.pushState('vistaSocial:'+gid)
+		app.addToNav({vista:this.id, cd_grupo:gid})
+		}
 
 	this.getNuevosMsg()
 	}
@@ -3254,21 +3280,34 @@ VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 VistaSocial.prototype.getDatosTest=function(cd_test){
 	var self=this
 	
-	this.cache.test=this.cache.test || []
-	var xt=buscaFilas(this.cache.test, {cd_test:cd_test})[0]
-	if (xt){
-		var d=jQuery('.row.has-test[data-id='+cd_test+']')
-		d.replaceWith(self.generaDomTest(xt) )
-		return
+	this.cache.test=this.cache.test || {} //{'121':test}
+
+	if (cd_test in this.cache.test){
+		if (this.cache.test[cd_test]!=null){
+			var xt=this.cache.test[cd_test]
+
+			var d=jQuery('.row.has-test[data-id='+cd_test+']')
+			for (var i=0; i<d.length; i++){
+				var dl=jQuery(d[i])	
+				dl.replaceWith(self.generaDomTest(xt) )
+				}
+			return
+			}
 		}
+	else
+		this.cache.test[cd_test]=null
 
 	jQuery.post(app.config.url, {accion:'getDatosTest', cd_test:cd_test}).success(
 		function(data){
 			var datos=xeval(data)
 			if (datos.retorno==1){
+				self.cache.test[cd_test]=datos.test
+				
 				var d=jQuery('.row.has-test[data-id='+cd_test+']')
-				d.replaceWith(self.generaDomTest(datos.test) )
-				self.cache.test.push(datos.test)
+				for (var i=0; i<d.length; i++){
+					var dl=jQuery(d[i])	
+					dl.replaceWith(self.generaDomTest(datos.test) )
+					}
 				}
 			})
 	}
@@ -3304,6 +3343,7 @@ VistaSocial.prototype.enviaTest=function(grupo, test){
 	}
 ////
 VistaSocial.prototype.generaDomTest=function(test){
+	var self=this
 	this.anchoTarjetas=180
 
 	var tprecio= (test.precio==0? 'GRATIS' : formato.moneda(VistaTienda.prototype.precioMinimo(test.precio), test.moneda))
@@ -3315,21 +3355,31 @@ VistaSocial.prototype.generaDomTest=function(test){
 
 	var cat=buscaFilas(app.cache.categorias, {cd_categoria:test.liscat.split(',')[1]} )[0]
 
-	var self=this
-	var onclick=function(){
-		app.cargaVistaTienda(true, 'vista:tienda:'+test.cd_test)
-		}
-
-	return creaObjProp('article', {'style.width':this.anchoTarjetas+'px', onclick:onclick, id:'test-'+test.cd_test, 'data-id':test.cd_test, className:'card test', hijos:[
+	return creaObjProp('article', {'style.width':this.anchoTarjetas+'px', 
+									// onclick:function(){self.navega(this)}, 
+									onclick:this.fnNavega(test), 
+									id:'test-'+test.cd_test, 
+									'data-id':test.cd_test, 
+									className:'card test', 
+									hijos:[
 			creaObjProp('div', {className:'body', i:cat.i || 'fa-share-alt'}),
 			creaObjProp('footer', {hijos:[
 				//dFecha,
 				creaObjProp('div', {className:'frow', hijos:infoTienda}),
 				creaObjProp('div', {className:'frow', hijos:[
-					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:test.ds_test}) 
+					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:test.cd_test}) 
 					]}),
 				]})
 			]})
+	}
+VistaSocial.prototype.fnNavega=function(test){
+	var self=this
+	console.log('>>'+test.cd_test)
+	return function(){self.navega(this)}
+	}
+VistaSocial.prototype.navega=function(dom){
+	var cd_test=jQuery(dom).data('id')
+	app.cargaVistaTienda(true, 'vista:tienda:'+cd_test)
 	}
 ////
 VistaSocial.prototype.crearGrupo=function(){
@@ -3347,7 +3397,7 @@ VistaSocial.prototype.crearGrupo=function(){
 VistaSocial.prototype.abrirEditaGrupo=function(){
 	var self=this
 	
-	app.nav.push({vista:self.id, cd_grupo:this.grupo.cd_grupo, abrirEditaGrupo:true})
+	app.addToNav({vista:self.id, cd_grupo:this.grupo.cd_grupo, abrirEditaGrupo:true})
 
 	this.domBody.hide()
 	this.domChatGrupo.hide()
