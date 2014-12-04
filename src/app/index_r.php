@@ -145,10 +145,18 @@ try {
             break;
         case 'buscaTests':
             $cd_usuario=$usu->cd_usuario;
-            $q=filter_input($REQ, 'q', FILTER_SANITIZE_STRING);
-
+            
+            if (isset($_POST['search']) && $_POST['search']!=''){
+                $q=filter_input($REQ, 'search', FILTER_SANITIZE_STRING);
+                $res=$md->buscaTests($cd_usuario, $q);
+                }
+            else if (isset($_POST['cd_test'])){
+                $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
+                $res=$md->getPreviewTest($cd_usuario, $cd_test);
+                }
+            
             $ret=array('retorno' => 1, 
-                        'tests' => $md->buscaTests($cd_usuario, $q), 
+                        'tests' => array($res), 
                         'sql' => $md->__logSQL($showSQL),
                        );
             echo json_encode($ret);
