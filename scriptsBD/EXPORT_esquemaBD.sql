@@ -286,14 +286,15 @@ DROP TABLE IF EXISTS `usuarios_tests`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios_tests` (
   `cd_usuario` varchar(250) NOT NULL,
-  `cd_test` int(11) DEFAULT NULL,
+  `cd_test` int(11) NOT NULL,
   `f_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `precio` decimal(2,2) DEFAULT '0.00',
-  `cd_moneda` varchar(2) DEFAULT '€',
-  PRIMARY KEY (`cd_usuario`),
+  `precio` decimal(10,0) DEFAULT '0',
+  `cd_moneda` varchar(3) DEFAULT 'EUR',
+  `json_order` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`cd_usuario`,`cd_test`),
   KEY `fk_testssss_idx` (`cd_test`),
-  CONSTRAINT `fk__tests` FOREIGN KEY (`cd_test`) REFERENCES `tests` (`cd_test`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk__usu` FOREIGN KEY (`cd_usuario`) REFERENCES `usuarios` (`cd_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_usuariosss` FOREIGN KEY (`cd_usuario`) REFERENCES `usuarios` (`cd_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_testssss` FOREIGN KEY (`cd_test`) REFERENCES `tests` (`cd_test`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -324,6 +325,27 @@ SET character_set_client = utf8;
   `recursorespuesta4` tinyint NOT NULL,
   `recursorespuesta5` tinyint NOT NULL,
   `notas` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `vs_preguntasqueempiezanporcarraros`
+--
+
+DROP TABLE IF EXISTS `vs_preguntasqueempiezanporcarraros`;
+/*!50001 DROP VIEW IF EXISTS `vs_preguntasqueempiezanporcarraros`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vs_preguntasqueempiezanporcarraros` (
+  `cd_test` tinyint NOT NULL,
+  `cd_pregunta` tinyint NOT NULL,
+  `pregunta` tinyint NOT NULL,
+  `respuesta0` tinyint NOT NULL,
+  `respuesta1` tinyint NOT NULL,
+  `respuesta2` tinyint NOT NULL,
+  `respuesta3` tinyint NOT NULL,
+  `respuesta4` tinyint NOT NULL,
+  `respuesta5` tinyint NOT NULL
 ) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
@@ -376,6 +398,25 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `vs_preguntasqueempiezanporcarraros`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vs_preguntasqueempiezanporcarraros`*/;
+/*!50001 DROP VIEW IF EXISTS `vs_preguntasqueempiezanporcarraros`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vs_preguntasqueempiezanporcarraros` AS select `preguntas_tests`.`cd_test` AS `cd_test`,`preguntas_tests`.`cd_pregunta` AS `cd_pregunta`,`preguntas_tests`.`pregunta` AS `pregunta`,`preguntas_tests`.`respuesta0` AS `respuesta0`,`preguntas_tests`.`respuesta1` AS `respuesta1`,`preguntas_tests`.`respuesta2` AS `respuesta2`,`preguntas_tests`.`respuesta3` AS `respuesta3`,`preguntas_tests`.`respuesta4` AS `respuesta4`,`preguntas_tests`.`respuesta5` AS `respuesta5` from `preguntas_tests` where (not((`preguntas_tests`.`pregunta` regexp '^[[:alpha:]]'))) order by `preguntas_tests`.`pregunta` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vs_testpreview`
 --
 
@@ -403,4 +444,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-26 19:13:49
+-- Dump completed on 2014-12-05 12:15:06
