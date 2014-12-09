@@ -147,7 +147,7 @@ function buscaFilas(filas, dicBuscado){
 		}
 	return jQuery.grep(filas, fn)
 	}
-function getIndiceFila(filas, dicBuscado){
+function getIndiceFila(filas, dicBuscado, todas){
 	if (filas==null) return -1
 	var _idx=0
 	filas.map(function(el){el._idx=_idx; _idx++})
@@ -156,8 +156,17 @@ function getIndiceFila(filas, dicBuscado){
 	if (filas.length==0) 
 		return -1
 
-	var idxBorrar=filas[0]._idx
-	return idxBorrar
+	if (todas!=null && todas==true){
+		var ret=[]
+		for (var i=0; i<filas.length;i++){
+			ret.push( filas[i]._idx )
+			}
+		return ret
+		}
+	else{
+		var idxBorrar=filas[0]._idx
+		return idxBorrar
+		}
 	}
 function get(s){return JSON.parse( localStorage.getItem(s) )}
 function save(s,v){
@@ -333,8 +342,8 @@ function Controlador(){
 	this.init()
 
 	if ( isPhone() )
-		// this.config.servidor='http://rotoxl.alwaysdata.net/app/'
-		this.config.servidor='http://192.168.0.196:8888/octopus/'
+		this.config.servidor='http://octopusapp.elasticbeanstalk.com/app/'
+		// this.config.servidor='http://192.168.0.196:8888/octopus/'
 	else
 		this.config.servidor='./'
 	this.config.url=this.config.servidor+'index_r.php'
@@ -772,10 +781,12 @@ Controlador.prototype.cargaVistaSocial=function(desdeHistorial, hash){
 		this.vistaSocial.recuperarPosicion=gid
 		}
 	
-	if (this.vistaSocial.domBody)
-		this.vistaSocial.show()
+	if (this.vistaSocial.domBody){
+		this.vistaSocial.show(desdeHistorial)
+		this.vistaSocial.inicio()
+		}
 	else
-		this.vistaSocial.toDOM()
+		this.vistaSocial.toDOM(desdeHistorial)
 
 	this.cierraNavDrawer()
 	}
@@ -814,7 +825,11 @@ Controlador.prototype.backButton=function(){
 	var vFrom=app.nav.pop()
 	var vTo=app.nav[app.nav.length-1]
 
-	if (vTo==null) return
+	if (vTo==null) {
+		//lo mandamos al inicio, que no se quede bloqueado
+		if (app.vistaActiva) app.vistaActiva.inicio(true)
+		return
+		}
 	if (vTo.vista=='vistaSocial')
 		this.vistaSocial.backButton(vTo, vFrom)
 	else if (vTo.vista=='vistaTienda')
@@ -823,6 +838,9 @@ Controlador.prototype.backButton=function(){
 		this.vistaTest.backButton(vTo, vFrom)
 	}
 Controlador.prototype.addToNav=function(el){
+	//no metemos duplicados
+	if (JSON.stringify(el) === JSON.stringify(app.nav[app.nav.length-1]) )
+		return
 	console.log(el)
 	app.nav.push(el)
 	}
@@ -896,6 +914,7 @@ Vista.prototype.show=function(desdeHistorial){
 
 	app.vistaActiva=this
 
+	this.inflateMenu()
 	if (!desdeHistorial)
 		app.addToNav({vista:this.id})
 
@@ -961,6 +980,7 @@ Vista.prototype.concatCategoriasTest=function(test){
 		}
 	return ret.substring(2)
 	}
+Vista.prototype.inicio=function(fromHistory){}
 ////////////////////////////////////////////////
 
 function VistaPantallaCompleta(){}
@@ -1705,7 +1725,7 @@ VistaTienda.prototype.getHeader=function(){
 VistaTienda.prototype.getBody=function(){
 	return creaObjProp('div', {className:'vista-body tienda cargando'})
 	}
-VistaTienda.prototype.tareasPostCarga=function(){
+VistaTienda.prototype.tareasPostCarga=function(fromHistory){
 	if (this.entornoLocal){
 		if (app.cache.catsConTestLocales==null || app.cache.catsConTestLocales.length==0)
 			app.cache.catsConTestLocales=app.catsConTestLocales()
@@ -1714,7 +1734,7 @@ VistaTienda.prototype.tareasPostCarga=function(){
 		this.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
 		}
 	else
-		this.cambiaEntorno(jQuery('button.tienda'))
+		this.cambiaEntorno(jQuery('button.tienda'), fromHistory)
 	
 	this.inflateMenu()
 	}
@@ -1725,11 +1745,9 @@ VistaTienda.prototype.inflateMenu=function(){
 	var xul=this.domMenu.find('ul')
 	for (var i=0; i<xul.length; i++){
 		var xxul=jQuery(xul[i])
-		if (xxul.find('li').length==0){
-			xxul.append(creaObjProp('li', {hijos:[
-				creaObjProp('a', {texto:'Buscar test', onclick:function(){self.buscarTest()} } )
-				]}))
-			}
+		xxul.empty().append(creaObjProp('li', {hijos:[
+			creaObjProp('a', {texto:'Buscar test', onclick:function(){self.buscarTest()} } )
+			]}))
 		}
 	}
 VistaTienda.prototype.backButton=function(vTo, vFrom){
@@ -1748,10 +1766,7 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			}
 
 		if (vFrom && vFrom.cd_categoria==-100 && vFrom.cd_test==null){//búsqueda
-			if (this.entornoLocal)
-				this.cambiaEntorno(jQuery('button.dispositivo'))
-			else
-				this.cambiaEntorno(jQuery('button.tienda'))
+			this.inicio(fromHistory)
 			}
 		else if (vTo && vTo.cd_categoria && vTo.cd_pack)
 			this.navegaCat(vTo.cd_categoria, true, vTo.cd_pack)
@@ -1781,9 +1796,12 @@ VistaTienda.prototype.show=function(fromHistory){
 	if (this.recuperarPosicion!=null)
 		this.doBuscarTest(null, this.recuperarPosicion, true) 
 	else {
-		var xbtn=this.entornoLocal?jQuery('.btn.dispositivo'):jQuery('.btn.tienda')
-		this.cambiaEntorno(xbtn, fromHistory)
+		this.inicio()
 		}
+	}
+VistaTienda.prototype.inicio=function(fromHistory){
+	var xbtn=this.entornoLocal?jQuery('.btn.dispositivo'):jQuery('.btn.tienda')
+	this.cambiaEntorno(xbtn, fromHistory)
 	}
 //////
 VistaTienda.prototype.buscarTest=function(){
@@ -1817,7 +1835,7 @@ VistaTienda.prototype.doBuscarTest=function(s, id, situar){
 	var self=this
 
 	// self.domBody.empty().addClass('cargando')
-	if (isNaN(id)){
+	if (id!=null && isNaN(id)){
 		s=id
 		id=null
 		}
@@ -1837,14 +1855,20 @@ VistaTienda.prototype.doBuscarTest=function(s, id, situar){
 				
 				app.cache.categorias=app.cache.categorias || []
 				var xcat={cd_categoria:-100, ds_categoria:'Resultados de la búsqueda', i:'fa-search', cd_categoriapadre:-200}
-				app.cache.categorias.push(xcat)
+				if (buscaFilas(app.cache.categorias, {cd_categoria:xcat.cd_categoria}).length==0)
+					app.cache.categorias.push(xcat)
 
 				if (situar==null){
-					self.testTienda=(self.testTienda || []).concat(resultadosBusqueda)
+					//si hay resultados de una búsqueda anterior, los quitamos
+					var indicesBorrar=getIndiceFila(app.cache.testTienda, {_contains_liscat:xcat.cd_categoria}, true)
+					for (var i=indicesBorrar.length-1; i>=0; i--){
+						app.cache.testTienda.splice(indicesBorrar[i], 1)
+						}
+					app.cache.testTienda=(app.cache.testTienda || []).concat(resultadosBusqueda)
 					self.navegaCat(xcat.cd_categoria)
 					}
 				else {
-					//self.pintaPortadaTienda(app.cache.categorias, self.testTienda)
+					//self.pintaPortadaTienda(app.cache.categorias, app.cache.testTienda)
 					self.testPreview(resultadosBusqueda[0].cd_test, false)
 					}
 				self.domBody.removeClass('cargando')
@@ -1890,9 +1914,9 @@ VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 		}
 
 	if (!fromHistory) {
-		app.pushState(this.entornoLocal?'vistaTienda:dispositivo':'vistaTienda:tienda')
-		// app.addToNav({vista:this.id, entornoLocal:this.entornoLocal})
+		app.addToNav({vista:this.id, entornoLocal:this.entornoLocal})
 		}
+	app.pushState(this.entornoLocal?'vistaTienda:dispositivo':'vistaTienda:tienda')
 	}
 VistaTienda.prototype.doRecuperarPosicion=function(){
 	if (this.recuperarPosicion){
@@ -1969,7 +1993,8 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	bloques.find('.titulo .cargarMas').show()
 	bloques.find('.cargarMas.aunMas').remove()
 
-	this.cat=buscaFilas(app.cache.categorias, {cd_categoria: cd_categoria})[0]
+	this.cat=buscaFilas((this.entornoLocal?app.cache.categoriasLocales:app.cache.categorias), 
+						{cd_categoria: cd_categoria})[0]
 	this.cambiaHeaderApp(this.cat.ds_categoria)
 
 	this.domBody.find('.admonition').remove()
@@ -2002,7 +2027,7 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 
 	var num=blCat.find('article.card').length
 
-	var lista=(this.entornoLocal?this.testLocales:this.testTienda)
+	var lista=(this.entornoLocal?app.cache.testLocales:app.cache.testTienda)
 
 	packs=buscaFilas(app.cache.categorias, {cd_categoriapadre:cd_categoria})
 	for (var j=0; j<packs.length; j++){
@@ -2232,10 +2257,10 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 
 		}
 	else {
-		loTengo=buscaFilas(app.cache.testLocales, {cd_test:test.cd_test}).length || test.lotengo=='1'
+		loTengo=buscaFilas(app.cache.testLocales, {cd_test:test.cd_test}).length || test.lotengo
 
 		if (loTengo){
-			if (test.precio>0 && test.lotengo=='1')
+			if (test.precio>0 && test.lotengo)
 				domPrecio=creaObjProp('span', {className:'col-xs-6  bl precio', texto:'COMPRADO'})	
 			else
 				domPrecio=creaObjProp('span', {className:'col-xs-6 loTengo', i:'fa-check-circle'})
@@ -2246,7 +2271,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 			}
 		
 		infoTienda=[
-			creaObjProp('span', {className:'col-xs-6 bl love', texto:test.likes, i:(test.likes>0?'fa-heart':'fa-heart-o') }),
+			creaObjProp('span', {className:'col-xs-6 bl love', hijo:creaObjProp('span', {texto:test.likes}), i:(test.likes>0?'fa-heart':'fa-heart-o') }),
 			domPrecio,
 			]
 
@@ -2338,7 +2363,7 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 		console.info('leeTestTienda: la última lectura es reciente, la reaprovechamos')
 		if (fnCallBack){
 			this.cargaListaCategorias(app.cache.categorias)
-			fnCallBack(this.testTienda)
+			fnCallBack(app.cache.testTienda)
 			this.domBody.removeClass('cargando')
 			}
 		return
@@ -2368,14 +2393,14 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 		function(data){
 			var datos=xeval(data)
 			if (datos.retorno==1){
-				self.testTienda=datos.tests || []
+				app.cache.testTienda=datos.tests || []
 				self.ftestTienda=new Date()
 				
 				app.setCategorias(datos.categorias)
 				self.cargaListaCategorias(datos.categorias)
 
 				if (fnCallBack){
-					fnCallBack(self.testTienda)
+					fnCallBack(app.cache.testTienda)
 					self.domBody.removeClass('cargando')
 					}
 				}
@@ -2402,21 +2427,22 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 
 	this.testPreview_montaDiv()
 
-	var loTengo=buscaFilas(this.testLocales, {cd_test:cd_test})
+	var loTengoEnLocal=buscaFilas(app.cache.testLocales, {cd_test:cd_test})
+	var loTengo=loTengoEnLocal
 	if (loTengo.length==0)
-		loTengo=buscaFilas(this.testTienda, {cd_test:cd_test})
+		loTengo=buscaFilas(app.cache.testTienda, {cd_test:cd_test})
 
 	var loHice=buscaFilas(app.cache.respuestasLocales, {cd_test:cd_test})
 
 	if (loTengo.length>0){ //no hace falta consultar al servidor
-		this._testPreview(loTengo[0], loHice[0], true)
+		this._testPreview(loTengo[0], loHice[0], loTengoEnLocal.length>0)
 		}
 	else {
 		var self=this
 		jQuery.get(app.config.url, {accion:'getPreviewTest', cd_test:cd_test}).success(
 			function(data){
 				var test=xeval(data).test
-				test.lotengo=test.lotengo=='1'
+				test.lotengo=test.lotengo
 				self._testPreview(test, null, false)
 				}
 			)
@@ -2425,6 +2451,7 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 	var self=this
 
+	this.recuperarPosicion=null
 	var textoBotonDescargar, fnDescargar
 
 	self.cambiaHeaderApp('Detalles del test')//test.ds_test)
@@ -2445,9 +2472,12 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 			fnDescargar=function(){self.compraTest(test)}
 			}
 		else {
-			textoBotonDescargar=formato.moneda( this.precioMinimo(test.precio), test.moneda)+' - Compra no disponible - +INFO'
+			textoBotonDescargar=formato.moneda( this.precioMinimo(test.precio), test.moneda)+' - Compra no disponible'
 			fnDescargar=function(){
-				navigator.notification.alert('La compra de tests no está disponible para tu plataforma (actualmente sólo es posible realizar compras desde nuestra app para Android)', null, 'Compra no disponible')
+				if (isPhone())
+					navigator.notification.alert('La compra de tests no está disponible para tu plataforma (actualmente sólo es posible realizar compras desde nuestra app para Android)', null, 'Compra no disponible')
+				else
+					alert('La compra de tests no está disponible para tu plataforma (actualmente sólo es posible realizar compras desde nuestra app para Android)')
 				}
 			}
 		}
@@ -2707,7 +2737,7 @@ VistaTienda.prototype.descargaTest=function(cd_test, pruebaCompra){
 					self.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
 					}
 				else{
-					self.pintaPortadaTienda(app.cache.categorias, self.testTienda)
+					self.pintaPortadaTienda(app.cache.categorias, app.cache.testTienda)
 					}
 
 				setTimeout(function(){
@@ -2830,9 +2860,30 @@ VistaTienda.prototype.toggleLike=function(cd_test){
 	if (!btn.hasClass('btn-success'))
 		param.accion='like-'
 	
-	var idx=getIndiceFila(app.cache.testLocales, {cd_test:cd_test})
+	var res
+	var idx=getIndiceFila(app.cache.testTienda, {cd_test:cd_test}, true)
+	if (idx.length){
+		res= Number(app.cache.testTienda[idx[0]].likes)+(btn.hasClass('btn-success')?1:-1)
+		for (var i=0; i<idx.length; i++){
+			app.cache.testTienda[idx[0]].likes=res
+			app.cache.testTienda[idx[0]].fu_modificacion=new Date()
+			}
+		}
+
+	var idx=getIndiceFila(app.cache.testLocales, {cd_test:cd_test}, true)
+	if (idx.length){
+		if (res==null)
+			res= Number(app.cache.testLocales[idx[0]].likes)+(btn.hasClass('btn-success')?1:-1)
+
+		for (var i=0; i<idx.length; i++){
+			app.cache.testLocales[idx[0]].likes=res
+			app.cache.testLocales[idx[0]].fu_modificacion=new Date()
+			}
+		}
 	app.cache.testLocales[idx].likeit=btn.hasClass('btn-success')
 	this.salvaTestLocales()
+
+	jQuery('.card.test[data-id='+cd_test+'] .love span').text( res )
 
 	jQuery.post(app.config.url, param).success(function(data){
 		var datos=xeval(data)
@@ -2870,7 +2921,7 @@ function VistaSocial(desdeHistorial, gid){
 
 	this.recuperarPosicion=gid
 	this.txtEnviarMensaje=null
-	this.domMenu=jQuery('.barra.vista .btn-menu')
+	this.domMenu=jQuery('.barra.vista .btn-menu, .barra.global .btn-menu')
 	this.domChatGrupo=null
 	this.domEditarGrupo=null
 
@@ -3015,9 +3066,13 @@ VistaSocial.prototype.backButton=function(vTo, vFrom){
 	}
 VistaSocial.prototype.tareasPostCarga=function(){
 	this.getData()
+	this.domMenu.hide()
+	this.inflateMenu()
 	}
 VistaSocial.prototype.show=function(desdeHistorial){
 	Vista.prototype.show.call(this, desdeHistorial)
+	app.pushState('vistaSocial')
+	this.domMenu.hide()
 	}
 ////
 VistaSocial.prototype.getData=function(){
@@ -3172,9 +3227,25 @@ VistaSocial.prototype.anhadeThrobberAGrupos=function(){
 	this.domGrupos.find('.anhadir').empty().addClass('cargando')
 	}
 ////
+VistaSocial.prototype.inicio=function(fromHistory){
+	if (this.recuperarPosicion){
+		this.verGrupo(this.recuperarPosicion, fromHistory)
+		this.recuperarPosicion=null
+		}
+	else if (this.domChatGrupo.is(':visible'))
+		this.cerrarGrupo()
+	else if (this.domEditarGrupo.is(':visible')){
+		this.cerrarEditaGrupo()
+		this.cerrarGrupo()
+		}
+
+	}
 VistaSocial.prototype.verGrupo=function(gid, fromHistory){
 	var grupo=buscaFilas(this.grupos, {cd_grupo:gid})[0]
-	if (this.grupo==grupo) 
+	
+	if (this.grupo==null){
+		}
+	else if (this.grupo.cd_grupo==grupo.cd_grupo && this.domChatGrupo.is(':visible') )
 		return
 
 	this.grupo=grupo
@@ -3183,10 +3254,10 @@ VistaSocial.prototype.verGrupo=function(gid, fromHistory){
 	this.domEditarGrupo.hide()
 	this.domHeader.show()
 	this.domBody.hide()
+	this.domMenu.show()
 
 	this.cambiaHeaderApp(grupo.ds_grupo)
 	this.cargarMsgGrupo()
-	this.inflateMenuGrupo()
 
 	if (!fromHistory){
 		app.pushState('vistaSocial:'+gid)
@@ -3224,15 +3295,13 @@ VistaSocial.prototype.cargarMsgGrupo=function(){
 		xc.append( creaObjProp('div', {className:'bocadillo vacio', texto:'Todavía no hay mensajes'} ) )
 		}
 	}
-VistaSocial.prototype.inflateMenuGrupo=function(){
+VistaSocial.prototype.inflateMenu=function(){
 	var self=this
-	this.domMenu.show()
+	// this.domMenu.show()
 	var xul=this.domMenu.find('ul')
-	if (xul.find('li').length==0){
-		xul.append(creaObjProp('li', {hijos:[
-			creaObjProp('a', {texto:'Información sobre el grupo', onclick:function(){self.abrirEditaGrupo()} } )
-			]}))
-		}
+	xul.empty().append(creaObjProp('li', {hijos:[
+		creaObjProp('a', {texto:'Información sobre el grupo', onclick:function(){self.abrirEditaGrupo()} } )
+		]}))
 	}
 VistaSocial.prototype.scrollChat=function(t){
 	if (t==null) t=600
@@ -3259,8 +3328,8 @@ VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 		]
 	if (xmsg.cd_test){
 		//tenemos los datos?
-		var test=buscaFilas(app.vistaTienda.testTienda, {cd_test:xmsg.cd_test})[0] || 
-				 buscaFilas(app.vistaTienda.testLocales, {cd_test:xmsg.cd_test})[0]
+		var test=buscaFilas(app.cache.testTienda, {cd_test:xmsg.cd_test})[0] || 
+				 buscaFilas(app.cache.testLocales, {cd_test:xmsg.cd_test})[0]
 
 		if (test)
 			hijos.push( this.generaDomTest(test) )
@@ -3349,7 +3418,7 @@ VistaSocial.prototype.generaDomTest=function(test){
 	var tprecio= (test.precio==0? 'GRATIS' : formato.moneda(VistaTienda.prototype.precioMinimo(test.precio), test.moneda))
 		
 	var infoTienda=[
-		creaObjProp('span', {className:'col-xs-6 bl love', texto:test.likes, i:(test.likes>0?'fa-heart':'fa-heart-o') }),
+		creaObjProp('span', {className:'col-xs-6 bl love', hijo:creaObjProp('span', {texto:test.likes}), i:(test.likes>0?'fa-heart':'fa-heart-o') }),
 		creaObjProp('span', {className:'col-xs-6  bl precio', texto:tprecio}),
 		]
 
@@ -3367,7 +3436,7 @@ VistaSocial.prototype.generaDomTest=function(test){
 				//dFecha,
 				creaObjProp('div', {className:'frow', hijos:infoTienda}),
 				creaObjProp('div', {className:'frow', hijos:[
-					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:test.cd_test}) 
+					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:test.ds_test}) 
 					]}),
 				]})
 			]})

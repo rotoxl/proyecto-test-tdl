@@ -1411,7 +1411,10 @@ article.card, article.pack {
     margin-right: -15px; } }
 @media (max-width: 320px) {
   #content .vista.vistaTienda .detalle-test section.row .data {
-    padding-left: 1rem; } }
+    padding-left: 1rem; }
+
+  .dropdown-menu {
+    min-width: 300px; } }
 #swipeview-slider > div {
   min-height: 400px;
   position: relative;

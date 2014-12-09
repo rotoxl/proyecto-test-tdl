@@ -76,7 +76,7 @@ try {
 
             $ret=array('retorno' => 1, 
                        'categorias' => $categorias,
-                       'tests' => $testsCat, 
+                       'tests' => convierteBoolLista($testsCat), 
                        'sql' => $md->__logSQL($showSQL),
                        );
             echo json_encode($ret);
@@ -86,7 +86,7 @@ try {
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
            
             $ret=array('retorno' => 1, 
-                        'test' => $md->getPreviewTest($cd_usuario, $cd_test), 
+                        'test' => convierteBool( $md->getPreviewTest($cd_usuario, $cd_test) ), 
                         'sql' => $md->__logSQL($showSQL),
                        );
             echo json_encode($ret);
@@ -101,13 +101,14 @@ try {
                        );
                 echo json_encode($ret);
                 return;
-            }
+                }
+            //sin break, continua a getTest
         case 'getTest':
             $cd_usuario=$usu->cd_usuario;
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
             
             $ret=array('retorno' => 1, 
-                       'test' => $md->getTest($cd_usuario, $cd_test, $json_order),
+                       'test' => convierteBool ($md->getTest($cd_usuario, $cd_test, $json_order) ),
                        'sql' => $md->__logSQL($showSQL),
                        );
             echo json_encode($ret);
@@ -116,7 +117,7 @@ try {
             $cd_usuario=$usu->cd_usuario;
             $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
             $ret=array('retorno' => 1, 
-                    'test'=>$md->getDatosTest($cd_test),
+                    'test'=> $md->getDatosTest($cd_test),
                     'sql' => $md->__logSQL($showSQL),);
 
             echo json_encode($ret);
@@ -148,15 +149,15 @@ try {
             
             if (isset($_POST['search']) && $_POST['search']!=''){
                 $q=filter_input($REQ, 'search', FILTER_SANITIZE_STRING);
-                $res=$md->buscaTests($cd_usuario, $q);
+                $res=convierteBoolLista($md->buscaTests($cd_usuario, $q) );
                 }
             else if (isset($_POST['cd_test'])){
                 $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
-                $res=$md->getPreviewTest($cd_usuario, $cd_test);
+                $res=convierteBoolLista( array( $md->getPreviewTest($cd_usuario, $cd_test) ));
                 }
             
             $ret=array('retorno' => 1, 
-                        'tests' => array($res), 
+                        'tests' => $res, 
                         'sql' => $md->__logSQL($showSQL),
                        );
             echo json_encode($ret);
@@ -329,5 +330,17 @@ function fnGetMisGrupos($cd_usuario, $from=null){
         $gru->filas[$i]['msg']=$md->getMsgGrupo($cd_grupo, $from)->filas;
         }
     return $gru->filas;
+    }
+function convierteBoolLista($lista){
+    for ($i=0; $i<count($lista); $i++){
+        $lista[$i]=convierteBool($lista[$i]);
+        }
+    return $lista;
+    }
+function convierteBool($el){
+    if (isset($el['lotengo'])){
+        $el['lotengo']= ($el['lotengo']=='1');
+        return $el;
+        }
     }
 ?>

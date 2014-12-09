@@ -112,6 +112,8 @@ class Metadatos{
 		$yaExiste=$this->conn->lookupSimple('select cd_usuario from usuarios where cd_usuario=?', array($cd_usuario));
 
 		if ($yaExiste==$cd_usuario){
+			$sql="update usuarios set nombre=?, apellidos=?, picture=? where cd_usuario=?";
+			$this->conn->ejecuta($sql, array($d['given_name'], $d['family_name'], $d['picture'], $d['cd_usuario'] ));
 			return false; //devolvemos esUsuarioNuevo
 			}
 		else {
@@ -379,7 +381,7 @@ class Metadatos{
 				exists (select * from usuarios_tests ut where ut.cd_test=v.cd_test and ut.cd_usuario=?) as lotengo
 			from vs_testpreview v
 			where 
-				concat(v.cd_test, ' ', 
+				concat(
 						v.ds_test, ' ', 
 						v.matricula, ' ', 
 						ifnull(v.organismo, ''), ' ', 
