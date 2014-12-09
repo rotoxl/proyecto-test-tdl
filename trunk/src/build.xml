@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="octopusapp" default="ebs" basedir=".">
+     <!-- set global properties for this build -->
+     <target name="ebs">
+         <mkdir dir="../target"/>
+         <zip destfile="../target/octopusapp.zip">
+            <zipfileset dir="app" excludes=".svn" prefix="app" />
+            <zipfileset dir="web" excludes=".svn" prefix="web" />
+            <zipfileset dir="." includes="*.html,*.php,.htaccess" />
+         </zip>        
+     </target> 
+</project>
