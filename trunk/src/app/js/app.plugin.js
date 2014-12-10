@@ -227,19 +227,22 @@ var googleWebApi={
         return './prod.html?token='+data.access_token+'&expires='+expires+refresh_token
         },
     signIn:function() {
-        console.log("signing in...");
+        console.log("signing in...")
+        var $throbber=jQuery('.login .throbber')
+        $throbber.show()
         gapi.auth.authorize({
-              client_id: options.web.client_id,
-              immediate: false,
-              response_type: "token",
-              scope: options.web.scope, //["https://www.googleapis.com/auth/plus.login"],
-
-              //request_visible_actions: "https://schemas.google.com/AddActivity"
-              }, 
-          function(data) {// callback
-              console.log("done!", data);
-              document.location.replace( googleWebApi.getURL(data) )
-              })
+                client_id: options.web.client_id,
+                immediate: false,
+                response_type: "token",
+                scope: options.web.scope, 
+                }, 
+            function(data) {// callback
+                console.log("done!", data);
+                document.location.replace( googleWebApi.getURL(data) )
+                }, 
+            function(){
+                $throbber.hide()
+                })
         },
     signinCallback:function(authResult){
         if (authResult['access_token']) {
@@ -314,6 +317,7 @@ var nativeApi={
         var $loginStatus = jQuery('.login p.status')
         var $throbber=jQuery('.login .throbber')
 
+        $throbber.show()
     	window.plugins.googleplus.login({
     	      	// 'iOSApiKey': options.installed.client_id
                 // there is no API key for Android; you app is wired to the Google+ API by listing your package name in the google dev console and signing your apk (which you have done in chapter 4)

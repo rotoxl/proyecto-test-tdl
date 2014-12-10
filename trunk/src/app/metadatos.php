@@ -148,7 +148,7 @@ class Metadatos{
 		global $GCM_SERVER_KEY;
 		$apiKey = $GCM_SERVER_KEY; //server or browser key
 
-		// var_dump($apiKey);
+		$this->conn->logInfo(json_encode($messageData), 'PUSH-envio: ');
 
 		if ($messageData==null)
 		   	$messageData=array();
@@ -173,12 +173,12 @@ class Metadatos{
 		$response = curl_exec($ch);
 		curl_close($ch);
 
-		$this->conn->logInfo(json_encode($response), 'PUSH');
+		$this->conn->logInfo(json_encode($response), 'PUSH-ret: ');
   		return $response;
 		}
 	public function sendPushGrupo($cd_grupo, $excluir, $datos){
 		$gr=$this->conn->lookupFilas('select cd_dispositivo, ug.cd_usuario from usuarios u, usuarios_grupos ug 
-										where ug.cd_usuario=u.cd_usuario and f_aceptacion is not null and cd_grupo=?', 
+										where ug.cd_usuario=u.cd_usuario and cd_grupo=?', 
 									array($cd_grupo))->filas;
 		$arr=array();
 		for ($i=0; $i<count($gr); $i++){
@@ -201,14 +201,15 @@ class Metadatos{
 		$sql="update usuarios set cd_dispositivo=? where cd_usuario=?";
 		$this->conn->ejecuta($sql, array($cd_gcm, $cd_usuario));
 		}
-	private function genDatosPush($modulo, $accion, $datos, $msgAlt='Hay alguna actualización en Octopus. Por favor, entra en la app'){
+	private function genDatosPush($modulo, $accion, $datos, $titAlt='Hay alguna actualización en Octopus', $msgAlt='Por favor, entra en la app'){
 		return array(
 			'f_push'=>$this->fechaHora(),
 			'vista'=>$modulo,
 			'accion'=>$accion,
 			'datos'=>$datos,
 
-			'message'=> $msgAlt//texto que se mostrará en notif emergente cuando la app esté en segundo plano
+			'title'=> $titAlt,  //
+			'message'=> $msgAlt //texto que se mostrará en notif emergente cuando la app esté en segundo plano
 			);
 		}
 	//////
@@ -543,13 +544,15 @@ class Metadatos{
 		$datos=array(
 			'cd_grupo'=>$cd_grupo,
 			'cd_usuario'=>    $cd_usuario,
-			'msg'=>   $msg,
-			'test'=> $test,
-			'badge'=>   null,
-			'f_msg'=>	$this->fechaHora(),
+			'msg'=>    $msg,
+			'cd_msg'=> $idx,
+			'test'=>   $test,
+			'badge'=>  null,
+			'f_msg'=>  $this->fechaHora(),
 			);
-		$msgAlt='Nuevo mensaje de '.$cd_usuario.': '.$msg;
-		$this->sendPushGrupo($cd_grupo, $cd_usuario, $this->genDatosPush('vistaSocial', 'mensajeGrupo', $datos, $msgAlt) );
+
+		$titAlt='Nuevo mensaje de '.$cd_usuario; $msgAlt=$msg;
+		$this->sendPushGrupo($cd_grupo, $cd_usuario, $this->genDatosPush('vistaSocial', 'mensajeGrupo', $datos, $titAlt, $msgAlt) );
 		}
 	public function guardarGrupo($datos, $cd_usuario){
 		$arrSql=array(); $ususQueNoExisten=null;

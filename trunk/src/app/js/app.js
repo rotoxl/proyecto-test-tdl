@@ -2,11 +2,15 @@
 jQuery.noConflict()
 
 var app, espacioDuro='\xA0', espacioDuro2='\xA0\xA0', vbCrLf='\n'
+var _isPhone=null
 function isPhone(){
-	if (document.URL.indexOf("http://") === 0 || document.URL.indexOf("https://") === 0) 
-		return false
-	else
-		return true
+	if (_isPhone==null){
+		if (document.URL.indexOf("http://") === 0 || document.URL.indexOf("https://") === 0) 
+			_isPhone=false
+		else
+			_isPhone=true
+		}
+	return _isPhone
 	}
 function creaObjProp(tipo, dicPropiedades){
 	var subtipo
@@ -65,7 +69,13 @@ function modObjProp(obj, dicPropiedades){
 				}
 		 	else if (prop=='stack'){
 				var icon_stack=document.createElement('span')
-				icon_stack.className='fa-stack icon-stack'
+				var lg=''
+				if (valor.indexOf('fa-lg')>-1){
+					lg=' fa-lg'
+					valor=valor.replace('fa-lg', '')
+				}
+				icon_stack.className='fa-stack icon-stack'+lg
+
 
 				var icon_circle=document.createElement('i')
 				icon_circle.className='fa fa-circle fa-stack-2x'
@@ -337,7 +347,7 @@ function Controlador(){
 	this.cache={}
 	this.config={
 				pushSenderID:GCM_SENDER_ID,
-				imgBase: 'https://s3-eu-west-1.amazonaws.com/octopus.res/',
+				imgBase: 'https://s3-eu-west-1.amazonaws.com/octopus.recursos/',
 			}
 	this.init()
 
@@ -580,7 +590,7 @@ Controlador.prototype.loginEnMiNubeSinToken=function(obj){
 		function(data){
 			var datos=xeval(data)
 			if (datos.retorno==1)
-				self.registerPush()
+				setTimeout(function(){self.registerPush()}, 2000)
 		})
 	}
 Controlador.prototype.loginEnMiNube=function(){
@@ -643,14 +653,18 @@ Controlador.prototype.pushReceived=function(datos){
 		return
 		}
 	
-	app.vistaActiva.pushReceived(datos.vista, pl.accion, pl.datos)
+	if (pl.vista=='vistaSocial')
+		this.vistaSocial.pushReceived(pl.accion, pl.datos)
+	else if (pl.vista=='vistaTienda')
+		this.vistaTienda.pushReceived(pl.accion, pl.datos)
+	else if (pl.vista=='vistaTest')
+		this.vistaTest.pushReceived(pl.accion, pl.datos)
 	}
 Controlador.prototype.sendNotification=function(titulo, texto, icono, ongoing) {
     if ( device.platform.toLowerCase() == 'ios' )
     	icon=null
 
 	try {
-		app.notifs={}
 		var param={
 		    title:   titulo,
 		    message: texto,
@@ -700,6 +714,7 @@ Controlador.prototype.lanzaTourAplicacion=function(){
 	console.warn('Lanza tour Aplicación')
 	}
 Controlador.prototype.lanzaTest=function(test, resp, vistaOrigen){
+	jQuery('.vista.vistaTest').remove()
 	var nv=new VistaTest(test, resp)
 	nv.returnTo=vistaOrigen
 	nv.toDOM()
@@ -821,13 +836,34 @@ Controlador.prototype.resize=function(){
 	}
 /////
 Controlador.prototype.backButton=function(){
-	// if (this.vistaActiva)
+	if (jQuery('#main_container aside').hasClass('nav-off-screen')){
+		this.cierraNavDrawer()
+		return
+		}
+	else if (jQuery('.btn-group.btn-menu').hasClass('open')){
+		jQuery('.btn-group.btn-menu').removeClass('open')
+		return
+		}
+	else if (jQuery('.vista .vista-header .btn-group').hasClass('open')){
+		jQuery('.vista .vista-header .btn-group').removeClass('open')
+		return
+		}
+	else if (jQuery('.modal#frmImgAmpliada').is(':visible')){
+		jQuery('.modal#frmImgAmpliada').modal('hide')
+
+		return
+		}
+
 	var vFrom=app.nav.pop()
 	var vTo=app.nav[app.nav.length-1]
 
-	if (vTo==null) {
+	if (vFrom==null && vTo==null && isPhone()){
+		navigator.app.exitApp()
+		return
+		}
+	else if (vTo==null) {
 		//lo mandamos al inicio, que no se quede bloqueado
-		if (app.vistaActiva) app.vistaActiva.inicio(true)
+		if (app.vistaActiva) app.vistaActiva.inicio(true, vFrom)
 		return
 		}
 	if (vTo.vista=='vistaSocial')
@@ -902,8 +938,10 @@ Vista.prototype.toDOM=function(desdeHistorial){
 	this.resize()
 	this.tareasPostCarga(desdeHistorial)
 	
-	if (!desdeHistorial)
+	if (!desdeHistorial){
 		app.addToNav({vista:this.id})
+		app.pushState(this.id)
+		}
 	}
 Vista.prototype.show=function(desdeHistorial){
 	app.muestraNodoEnNavDrawer('li'+this.id.slice(0,1).toUpperCase()+this.id.slice(1))
@@ -928,6 +966,7 @@ Vista.prototype.resize=function(){
 	this.domBody.height( this.hVista- (this.domHeader?this.domHeader.outerHeight():0) )
 	}
 Vista.prototype.tareasPostCarga=function(){}
+Vista.prototype.inflateMenu=function(){}
 Vista.prototype.backButton=function(){
 	if (app.vistaActiva!=this)
 		this.show()
@@ -937,12 +976,7 @@ Vista.prototype.getUsuDeGrupo=function(cd_grupo, cd_usuario){
 	var u=buscaFilas(gr.miembros, {cd_usuario:cd_usuario})[0]
 	return u
 	}
-Vista.prototype.pushReceived=function(vista, accion, datos){
-	if (vista=='vistaSocial' && accion=='mensajeGrupo'){ 	
-		var u=this.getUsuDeGrupo(datos.cd_grupo, datos.cd_usuario)
-		app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture)
-		}
-	}
+Vista.prototype.pushReceived=function(accion, datos){}
 Vista.prototype.cerrar=function(){}
 Vista.prototype.cambiaHeaderApp=function(titulo){
 	var nb=jQuery('#navigation_bar')
@@ -1020,6 +1054,8 @@ function VistaTest(test, respuestas, desdeHistorial){
 	this.preguntas.splice(0,0, null); this.preguntas.push(null)
 	this.respuestas.splice(0,0, null); this.respuestas.push(null)
 
+	this.domMenu=jQuery('.barra .btn-menu')
+
 	if (!desdeHistorial) 
 		app.pushState(this.id)
 	}
@@ -1047,7 +1083,7 @@ VistaTest.prototype.getHeader=function(){
 							creaT(' de '+this.examen.numpreguntas+' '), 
 							creaObjProp('b', {className:'caret'})
 							]}),
-						creaObjProp('ul', {id:'mapatest', className:'btn2_1 dropdown-menu XXanimated XXfadeInRight btn-primary', role:'menu', hijos:[
+						creaObjProp('ul', {id:'mapatest', className:'btn2_1 dropdown-menu btn-primary', role:'menu', hijos:[
 							creaObjProp('span', {className:'arrow top'}),
 
 							]}),
@@ -1064,6 +1100,7 @@ VistaTest.prototype.getBody=function(){
 	return creaObjProp('div', {className:'vista-body', id:'swypeWrapper'})
 	}
 VistaTest.prototype.tareasPostCarga=function(){
+	this.domMenu.hide()
 	this.initMapa()
 	this.iniciaTiempo()
 
@@ -1696,8 +1733,8 @@ function VistaTienda(desdeHistorial, entornoLocal, cd_test){
 	// this.domDetalleTest=null
 	this.domMenu=jQuery('.barra .btn-menu')
 
-	if (!desdeHistorial) 
-		app.pushState(this.id)
+	// if (!desdeHistorial) 
+	// 	app.pushState(this.id)
 	}
 VistaTienda.prototype=new Vista
 VistaTienda.prototype.getHeader=function(){
@@ -1710,7 +1747,7 @@ VistaTienda.prototype.getHeader=function(){
 						creaT(' Categorías '),
 						creaObjProp('b', {className:'caret'})
 						]}), 
-					creaObjProp('ul', {id:'categorias', className:'btn3_1 dropdown-menu animated fadeInRight', role:'menu', hijos:[
+					creaObjProp('ul', {id:'categorias', className:'btn3_1 dropdown-menu fadeInRight', role:'menu', hijos:[
 						creaObjProp('span', {className:'arrow top'}),
 
 						]}),
@@ -1785,8 +1822,10 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			//ocultamos los packs en su forma expandida
 			this.domBody.find('.bloque.cat.pack').hide()
 
-			if (vFrom && vFrom.cd_categoria)
-				this.domBody.scrollTop( this.domBody.find('#cat-'+vFrom.cd_categoria).offset().top-100 )
+			if (vFrom && vFrom.cd_categoria){
+				var cat=buscaFilas(app.cache.categorias, {cd_categoria:vFrom.cd_categoria})[0]
+				this.domBody.scrollTop( this.domBody.find('#cat-'+cat.cd_categoriapadre).offset().top-100 )
+				}
 			}
 		}
 	}
@@ -1796,12 +1835,16 @@ VistaTienda.prototype.show=function(fromHistory){
 	if (this.recuperarPosicion!=null)
 		this.doBuscarTest(null, this.recuperarPosicion, true) 
 	else {
-		this.inicio()
+		this.inicio(fromHistory)
 		}
 	}
-VistaTienda.prototype.inicio=function(fromHistory){
+VistaTienda.prototype.inicio=function(fromHistory, vFrom){
 	var xbtn=this.entornoLocal?jQuery('.btn.dispositivo'):jQuery('.btn.tienda')
 	this.cambiaEntorno(xbtn, fromHistory)
+	if (fromHistory && vFrom){
+		var cat=buscaFilas(app.cache.categorias, {cd_categoria:vFrom.cd_categoria})[0]
+		this.domBody.scrollTop( this.domBody.find('#cat-'+cat.cd_categoriapadre).offset().top-100 )
+		}
 	}
 //////
 VistaTienda.prototype.buscarTest=function(){
@@ -1809,7 +1852,7 @@ VistaTienda.prototype.buscarTest=function(){
 
 	if (isPhone()){
 		navigator.notification.prompt(
-		    null, //'Matrícula, nombre...',
+		    '', //'Matrícula, nombre...',
 		    function( result ) { //result.buttonIndex y result.input1
 		        switch ( result.buttonIndex ) {
 		            case 1:
@@ -1890,7 +1933,7 @@ VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 	pressed.addClass('active')
 
 	if (this.domDetalleTest && this.domDetalleTest.is(':visible')){
-		this.domBody.show()
+		this.domBody
 		this.domDetalleTest.hide()
 		}
 
@@ -2186,7 +2229,7 @@ VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 		xl.push( d )
 		}
 
-	this.domBody.addClass('flowable').append(xl).removeClass('cargando')
+	this.domBody.addClass('flowable').append(xl).removeClass('cargando').show()
 	this.ajustaAlturaCard(jQuery('.card.pack'))
 	if (this.entornoLocal) 
 		this.ajustaAlturaCard(jQuery('.card.test'))
@@ -2261,17 +2304,17 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 
 		if (loTengo){
 			if (test.precio>0 && test.lotengo)
-				domPrecio=creaObjProp('span', {className:'col-xs-6  bl precio', texto:'COMPRADO'})	
+				domPrecio=creaObjProp('span', {className:'col-xs-8  bl precio', texto:'COMPRADO'})	
 			else
-				domPrecio=creaObjProp('span', {className:'col-xs-6 loTengo', i:'fa-check-circle'})
+				domPrecio=creaObjProp('span', {className:'col-xs-8 loTengo', i:'fa-check-circle'})
 			}
 		else {
-			domPrecio=creaObjProp('span', {className:'col-xs-6  bl precio'})
+			domPrecio=creaObjProp('span', {className:'col-xs-8  bl precio'})
 			this._formatoPrecio(domPrecio, test.precio, test.moneda)
 			}
 		
 		infoTienda=[
-			creaObjProp('span', {className:'col-xs-6 bl love', hijo:creaObjProp('span', {texto:test.likes}), i:(test.likes>0?'fa-heart':'fa-heart-o') }),
+			creaObjProp('span', {className:'col-xs-4 bl love', hijo:creaObjProp('span', {texto:test.likes}), i:(test.likes>0?'fa-heart':'fa-heart-o') }),
 			domPrecio,
 			]
 
@@ -2409,6 +2452,9 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 		})
 	}
 VistaTienda.prototype.testPreview_montaDiv=function(){
+	if (this.domCont==null)
+		return
+
 	if (this.domDetalleTest==null){
 		this.domDetalleTest=jQuery(creaObjProp('div', {'style.height':this.domBody.innerHeight(), className:'vista-body detalle-test flowable cargando'}))
 		this.domCont.append(this.domDetalleTest)
@@ -2493,6 +2539,9 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 	else
 		visual.style.backgroundImage='url('+test.img+')'
 
+	var tags=creaObjProp('span', {className:'bl cats row', hijo:creaObjProp('span', {'style.paddingLeft':'0px', className:'col-xs-10', texto:self.concatCategoriasTest(test)}), omiteNulo:true, stack:'fa-tags' })
+	jQuery(tags).find('.fa-stack').addClass('col-xs-1')
+
 	self.domDetalleTest.empty().append([
 		creaObjProp('section', {className:'cabecera row', hijos:[
 			visual,
@@ -2506,18 +2555,18 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 				]}),
 			]}),
 		creaObjProp('section', {className:'body row', hijos:[
-				creaObjProp('span', {className:'bl cats', texto: self.concatCategoriasTest(test), omiteNulo:true, i:'fa-tags' }),
-				creaObjProp('span', {className:'bl preguntas', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos', i:'fa-clock-o'}),
+				tags,
+				creaObjProp('span', {className:'bl preguntas', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos', stack:'fa-clock-o'}),
 				tieneImagenes,
-				creaObjProp('span', {className:'bl matricula', texto:'Matrícula '+test.matricula, i:'fa-bookmark'}),
+				creaObjProp('span', {className:'bl matricula', texto:'Matrícula '+test.matricula, stack:'fa-bookmark'}),
 				creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'En tu colección'}),
 			]}),
 		creaObjProp('section', {className:'row botonera', hijos:[
 			// creaObjProp('div', {className:'bl grupo pull-right', hijos:[
 			creaObjProp('button', {className:'btnAbrir btn btn-info-t btn-sm pull-right', texto:'ABRIR', onclick:function(){self.lanzaTest(test.cd_test)} }),
-			creaObjProp('button', {className:'btnLove btn btn-rounded btn-icon btn-sm'+(test.likeit?' btn-success':' btn-default'), i:'fa-heart fa-fw', onclick:function(){self.toggleLike(test.cd_test) } }),
+			creaObjProp('button', {className:'btnLove btn btn-stack btn-sm'+(test.likeit?' on':''), stack:'fa-heart fa-lg', onclick:function(){self.toggleLike(test.cd_test) } }),
 			creaObjProp('button', {className:'btnDesinstalar btn btn-default btn-sm', texto:'Desinstalar', onclick:function(){self.desinstalarTest(test.cd_test)} }),
-			creaObjProp('button', {className:'btnCompartir btn btn-rounded btn-icon btn-sm btn-default', i:'fa-share-alt fa-fw', onclick:function(){self.compartir(test)} }),
+			creaObjProp('button', {className:'btnCompartir btn btn-stack btn-sm btn-default', stack:'fa-share-alt fa-lg', onclick:function(){self.compartir(test)} }),
 
 			creaObjProp('button', {className:'btnDescargar btn btn-success-t pull-right btn-sm', texto:textoBotonDescargar, onclick:fnDescargar })
 			// ]})
@@ -2528,13 +2577,13 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 		if (!estadisticas.finalizado){
 			self.domDetalleTest.append(
 				creaObjProp('section', {className:'cabecera row', hijos:[
-					creaObjProp('div', {className:'col-xs-3 visual', 'style.paddingLeft':'15px', hijos:[
+					creaObjProp('div', {className:'col-xs-2 visual', hijos:[
 						creaObjProp('span', {className:'fa-stack pull-left fa-2x', hijos:[
 							creaObjProp('i', {className:'fa fa-circle text-info fa-stack-2x'}),
 							creaObjProp('i', {className:'fa fa-pause text-white fa-stack-1x'}),
 							]})
 						]}),
-					creaObjProp('div', {className:'col-xs-9 data', hijos:[
+					creaObjProp('div', {className:'col-xs-10 data', hijos:[
 						creaObjProp('h2', {className:'tit', texto:'Tienes este test a medias'}),
 						creaObjProp('div', {hijos:[
 							creaObjProp('span', {className:'progress-text', texto:'Preguntas respondidas: '+estadisticas.minutosPorcentaje+'%'}),
@@ -2562,13 +2611,13 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 
 			self.domDetalleTest.append(
 				creaObjProp('section', {className:'row resultadoUltimoExamen', hijos:[
-					creaObjProp('div', {className:'col-xs-3 visual', 'style.paddingLeft':'15px', hijos:[
+					creaObjProp('div', {className:'col-xs-2 visual', hijos:[
 						creaObjProp('span', {className:'fa-stack pull-left fa-2x', hijos:[
 							creaObjProp('i', {className:'fa fa-circle fa-stack-2x '+cls}),
 							creaObjProp('i', {className:'fa text-white fa-stack-1x '+ico}),
 							]})
 						]}),
-					creaObjProp('div', {className:'col-xs-9 data', hijos:[
+					creaObjProp('div', {className:'col-xs-10 data', hijos:[
 						creaObjProp('h2', {texto:texto}),
 						creaObjProp('small', {texto: formato.fechaUHora(estadisticas.fecha) }),
 
@@ -2602,24 +2651,30 @@ VistaTienda.prototype.lanzaTest=function(cd_test){
 	var resp=buscaFilas(app.cache.respuestasLocales, {cd_test:cd_test})[0]
 
 	if (resp){
-		var options = {
-	        title: (resp.finalizado?'Test terminado ¿empezar de nuevo? Se perderán estadísticas':
-	        						'Test a medias, ¿continuar o empezar de nuevo?'),
-	        						
-	        buttonLabels: resp.finalizado?['Empezar de nuevo', 'Cancelar']:['Continuar', 'Empezar de nuevo', 'Cancelar']
-		    }
-		window.plugins.actionsheet.show(options, function(buttonIndex){
-			if (resp.finalizado){
-				if (buttonIndex==1)
-					app.lanzaTest(test, null, self)	
-				}
-			else {
-				if (buttonIndex==1)
-					app.lanzaTest(test, resp, self)
-				else if (buttonIndex==2)//el botón atrás llega aquí como buttonIndex=2
-					app.lanzaTest(test, null, self)	
-				}
-			})
+		if (isPhone()){
+			var options = {
+		        title: (resp.finalizado?'Test terminado ¿empezar de nuevo? Se perderán estadísticas':
+		        						'Test a medias, ¿continuar o empezar de nuevo?'),
+		        						
+		        buttonLabels: resp.finalizado?['Empezar de nuevo', 'Cancelar']:['Continuar', 'Empezar de nuevo', 'Cancelar']
+			    }
+			window.plugins.actionsheet.show(options, function(buttonIndex){
+				if (resp.finalizado){
+					if (buttonIndex==1)
+						app.lanzaTest(test, null, self)	
+					}
+				else {
+					if (buttonIndex==1)
+						app.lanzaTest(test, resp, self)
+					else if (buttonIndex==2)//el botón atrás llega aquí como buttonIndex=2
+						app.lanzaTest(test, null, self)	
+					}
+				})
+			}
+		else {
+			//web: lanzamos respetando lo anterior
+			app.lanzaTest(test, resp, self)
+			}
 		}
 	else {
 		app.lanzaTest(test, resp, self)	
@@ -2630,7 +2685,7 @@ VistaTienda.prototype.compartir=function(test){
 
 	if (app.vistaSocial.grupos.length==0){
 		if (isPhone())
-			navigator.notification.alert('No hay ningún grupo creado en la vista Social', null, 'Compartir')
+			navigator.notification.alert('No hay ningún grupo creado en la vista Social', null, 'Compartir con')
 		else
 			alert('No hay ningún grupo creado en la vista Social')
 		return
@@ -2647,12 +2702,14 @@ VistaTienda.prototype.compartir=function(test){
 		    function(buttonIndex){	
 		    	console.log(buttonIndex)
 
-		    	if (buttonIndex==app.vistaSocial.grupos)
+		    	if (buttonIndex>=app.vistaSocial.grupos.length)
 		    		return //cancel
-
-		    	var gr=app.vistaSocial.grupos[buttonIndex-1]
-				app.vistaSocial.enviaTest(gr, test)
-				app.cargaVistaSocial(true, ':'+gr.cd_grupo)
+		    	else {
+			    	var gr=app.vistaSocial.grupos[buttonIndex-1]
+					app.vistaSocial.enviaTest(gr, test)
+					app.cargaVistaSocial(true, ':'+gr.cd_grupo)
+					app.vistaSocial.getNuevosMsg()
+					}
 				})
 		}
 	else {//
@@ -2660,6 +2717,7 @@ VistaTienda.prototype.compartir=function(test){
 		var gr=app.vistaSocial.grupos[0]
 		app.vistaSocial.enviaTest(gr, test)	
 		app.cargaVistaSocial(true, ':'+gr.cd_grupo)
+		app.vistaSocial.getNuevosMsg()
 		}
 	}
 //////
@@ -2853,17 +2911,17 @@ VistaTienda.prototype.doIAP=function(p){
 VistaTienda.prototype.toggleLike=function(cd_test){
 	var btn=this.domDetalleTest.find('.btnLove')
 	
-	var cls='btn-default btn-success'
+	var cls='on'
 	btn.toggleClass(cls)
 
 	var param={accion:'like+', cd_usuario:app.cache.usuario.cd_usuario, cd_test:cd_test}
-	if (!btn.hasClass('btn-success'))
+	if (!btn.hasClass('on'))
 		param.accion='like-'
 	
 	var res
 	var idx=getIndiceFila(app.cache.testTienda, {cd_test:cd_test}, true)
 	if (idx.length){
-		res= Number(app.cache.testTienda[idx[0]].likes)+(btn.hasClass('btn-success')?1:-1)
+		res= Number(app.cache.testTienda[idx[0]].likes)+(btn.hasClass('on')?1:-1)
 		for (var i=0; i<idx.length; i++){
 			app.cache.testTienda[idx[0]].likes=res
 			app.cache.testTienda[idx[0]].fu_modificacion=new Date()
@@ -2873,14 +2931,14 @@ VistaTienda.prototype.toggleLike=function(cd_test){
 	var idx=getIndiceFila(app.cache.testLocales, {cd_test:cd_test}, true)
 	if (idx.length){
 		if (res==null)
-			res= Number(app.cache.testLocales[idx[0]].likes)+(btn.hasClass('btn-success')?1:-1)
+			res= Number(app.cache.testLocales[idx[0]].likes)+(btn.hasClass('on')?1:-1)
 
 		for (var i=0; i<idx.length; i++){
 			app.cache.testLocales[idx[0]].likes=res
 			app.cache.testLocales[idx[0]].fu_modificacion=new Date()
 			}
 		}
-	app.cache.testLocales[idx].likeit=btn.hasClass('btn-success')
+	app.cache.testLocales[idx].likeit=btn.hasClass('on')
 	this.salvaTestLocales()
 
 	jQuery('.card.test[data-id='+cd_test+'] .love span').text( res )
@@ -2926,9 +2984,6 @@ function VistaSocial(desdeHistorial, gid){
 	this.domEditarGrupo=null
 
 	this.cache={}
-
-	if (!desdeHistorial) 
-		app.pushState(this.id)
 	}
 VistaSocial.prototype=new Vista
 VistaSocial.prototype.getHeader=function(){
@@ -2974,7 +3029,7 @@ VistaSocial.prototype.getBody=function(){
 		]})
 	)
 
-	this.domGrupos=jQuery(creaObjProp('div', {className:'bl grupos', hijos:[]}))
+	this.domGrupos=jQuery(creaObjProp('div', {className:'bl grupos cargando', hijos:[]}))
 	return [
 		creaObjProp('div', {className:'vista-body flowable', hijos:[
 			creaObjProp('div', {className:'bl row head', hijos:[
@@ -2982,7 +3037,7 @@ VistaSocial.prototype.getBody=function(){
 					creaObjProp('img', {src:app.cache.usuario.picture})
 					]}),
 				creaObjProp('div', {className:'resultados', hijos:[
-					creaObjProp('div', {className:'col-xs-4', hijos:[
+					creaObjProp('div', {className:'col-xs-4 col-xs-offset-2', hijos:[
 												creaObjProp('span', {className:'small', texto:'Grupos'}), 
 												creaObjProp('span', {className:'bold txtNumGrupos', texto:0 }) 
 												]}),
@@ -2990,10 +3045,10 @@ VistaSocial.prototype.getBody=function(){
 												creaObjProp('span', {className:'small', texto:'Medallas'}), 
 												creaObjProp('span', {className:'bold txtNumMedallas', texto:0 }) 
 												]}),
-					creaObjProp('div', {className:'col-xs-4', hijos:[
-												creaObjProp('span', {className:'small', texto:'Tests'}), 
-												creaObjProp('span', {className:'bold txtNumTests', texto:0 }) 
-												]}),
+					// creaObjProp('div', {className:'col-xs-4', hijos:[
+					// 							creaObjProp('span', {className:'small', texto:'Tests'}), 
+					// 							creaObjProp('span', {className:'bold txtNumTests', texto:0 }) 
+					// 							]}),
 					]}),
 
 				]}),
@@ -3021,25 +3076,33 @@ VistaSocial.prototype.pushReceived=function(accion, datos){
 			var u=this.getUsuDeGrupo(datos.cd_grupo, datos.cd_usuario)
 			app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture)
 			}
-		else if (this.domChatGrupo.is(':visible') ){
+		else if (this.domChatGrupo && this.domChatGrupo.is(':visible') ){
 			//en el chat: vibración y sacar el msg
 			if (navigator.notification) navigator.notification.beep(1)
 			this.domChatGrupo.find('.chat').append( this.carga1MsgGrupo(datos) )
 			this.scrollChat()
 			}
-		else if (this.domEditarGrupo.is(':visible') ){
+		else if (this.domEditarGrupo && this.domEditarGrupo.is(':visible') ){
 			//en el grupo, viendo los miembros: notificacion
 			var u=this.getUsuDeGrupo(datos.cd_grupo, datos.cd_usuario)
 			app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture)
 			}
-		else if (this.domBody.is(':visible')){
+		else if (this.domBody && this.domBody.is(':visible')){
 			//en pantalla general de grupos
 			var idfila=getIndiceFila(this.grupos, {cd_grupo:datos.cd_grupo})
 			this.grupos[idfila].msg.push(datos)
 
 			var d=this.domBody.find('.grupo[data-id='+datos.cd_grupo+']')
 			d.addClass('msg-no-leido')
-			d.find('.badge').text('1')
+
+			var n=1
+			var r=Number(d.find('.badge').text())
+			if (!isNaN(r))
+				n=r+1
+			d.find('.badge').text(n)
+			}
+		else {
+			app.sendNotification('Mensaje de '+datos.cd_usuario, datos.msg)
 			}
 
 		}
@@ -3073,14 +3136,16 @@ VistaSocial.prototype.show=function(desdeHistorial){
 	Vista.prototype.show.call(this, desdeHistorial)
 	app.pushState('vistaSocial')
 	this.domMenu.hide()
+
+	//por si aca
+	if (this.grupos.length==0) this.getData()
 	}
-////
 VistaSocial.prototype.getData=function(){
 	var self=this
 	jQuery.get(app.config.url, {accion:'getMisGrupos'}).success(
 			function(data){
 				var datos=xeval(data)
-				self.grupos=datos.grupos
+				self.grupos=datos.grupos || []
 				
 				for (var i=0; i<self.grupos.length; i++){
 					for (var j=0; j<self.grupos[i].miembros.length; j++){
@@ -3088,6 +3153,7 @@ VistaSocial.prototype.getData=function(){
 						self.grupos[i].miembros[j].given_name=u.given_name || u.family_name || u.cd_usuario
 						}
 					}
+
 				if (app.vistaActiva==self){
 					self.pintaGrupos(datos)
 					if (self.recuperarPosicion)
@@ -3168,7 +3234,7 @@ VistaSocial.prototype.testData=function(){
 	}
 VistaSocial.prototype.pintaGrupos=function(){
 	var self=this
-	this.domGrupos.empty()
+	this.domGrupos.empty().removeClass('cargando')
 
 	jQuery('.txtNumGrupos').text(this.grupos.length)
 	jQuery('.txtNumTests').text( app.getTestLocales().length ) 
@@ -3200,13 +3266,10 @@ VistaSocial.prototype.pintaGrupos=function(){
 				break
 				}
 			}
-		hijos.push(creaObjProp('span', {className:'badge', texto:1}))
+		hijos.push(creaObjProp('span', {className:'badge', texto:0}))
 		this.domGrupos.append(
 			creaObjProp('div', {onclick:function(){ self.verGrupo(jQuery(this).closest('.grupo').data('id') )}, className:'bl grupo row', 'data-id':g.cd_grupo, hijos:[
-				(g.picture? 
-					creaObjProp('img', {className:'pull-left avatar grupo-img col-xs-3', src:g.picture}):
-					creaT('')
-					),
+				creaObjProp('img', {className:'pull-left avatar grupo-img col-xs-3', src:g.picture || './images/avatar_grupo'+(g.cd_grupo%6)+'.png'}),
 				creaObjProp('h5',  {className:'grupo-title pull-right col-xs-9', texto:g.ds_grupo}),
 				creaObjProp('span',{className:'grupo-personas pull-right col-xs-9', hijos:hijos}),
 				]})
@@ -3314,7 +3377,8 @@ VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 	this.domChatGrupo.find('.chat .bocadillo.vacio').remove()
 	var cls=(xmsg.cd_usuario==yo?'msg-mio':'')+
 			(xmsg.badge?' has-badge':'')+
-			(xmsg.cd_test?' has-test':'')
+			(xmsg.cd_test?' has-test':'')+
+			(xmsg.test?' has-test':'')
 	
 	var f=formato.fechaUHora(xmsg.f)
 	var usu=buscaFilas(this.grupo.miembros, {cd_usuario:xmsg.cd_usuario})[0]
@@ -3326,27 +3390,29 @@ VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 			creaObjProp('span', {texto:xmsg.msg || espacioDuro})
 			]}),
 		]
+
+	var ret=creaObjProp('div', {className:'bocadillo '+cls, 'data-id':xmsg.cd_mensaje, hijos:hijos})
 	if (xmsg.cd_test){
 		//tenemos los datos?
 		var test=buscaFilas(app.cache.testTienda, {cd_test:xmsg.cd_test})[0] || 
 				 buscaFilas(app.cache.testLocales, {cd_test:xmsg.cd_test})[0]
 
 		if (test)
-			hijos.push( this.generaDomTest(test) )
+			ret.appendChild( this.generaDomTest(test) )
 		else {
-			hijos.push( creaObjProp('div', {className:'row has-test cargando', 'data-id':xmsg.cd_test}) )
-			this.getDatosTest(xmsg.cd_test)
+			ret.appendChild( creaObjProp('div', {className:'row has-test cargando', 'data-id':xmsg.cd_test}) )
+			this.getDatosTest(xmsg.cd_test, ret)
 			}
 		}
 	else if (xmsg.test){
-		hijos.push( this.generaDomTest(test) )
+		ret.appendChild( this.generaDomTest(xmsg.test) )
 		}
 	//else  if (xmsg.badge)
 	// 	hijos.push(creaObjProp('div', {className:'row has-badge pull-left '+xmsg.badge}) )
 	
-	return creaObjProp('div', {className:'bocadillo '+cls, 'data-id':xmsg.cd_mensaje,  hijos:hijos})
+	return ret
 	}
-VistaSocial.prototype.getDatosTest=function(cd_test){
+VistaSocial.prototype.getDatosTest=function(cd_test, dom){
 	var self=this
 	
 	this.cache.test=this.cache.test || {} //{'121':test}
@@ -3356,6 +3422,10 @@ VistaSocial.prototype.getDatosTest=function(cd_test){
 			var xt=this.cache.test[cd_test]
 
 			var d=jQuery('.row.has-test[data-id='+cd_test+']')
+			if (d.length==0){
+				d=jQuery(dom).find('.row.has-test[data-id='+cd_test+']')
+				}
+
 			for (var i=0; i<d.length; i++){
 				var dl=jQuery(d[i])	
 				dl.replaceWith(self.generaDomTest(xt) )
@@ -3448,6 +3518,8 @@ VistaSocial.prototype.fnNavega=function(test){
 	}
 VistaSocial.prototype.navega=function(dom){
 	var cd_test=jQuery(dom).data('id')
+	// app.vistaTienda.show()
+	app.vistaTienda.testPreview_montaDiv()
 	app.cargaVistaTienda(true, 'vista:tienda:'+cd_test)
 	}
 ////
@@ -3814,6 +3886,7 @@ function VistaAjustes(desdeHistorial){
 
 	if (!desdeHistorial) 
 		app.pushState(this.id)
+
 	}
 VistaAjustes.prototype=new Vista
 VistaAjustes.prototype.getHeader=function(){
@@ -3836,60 +3909,74 @@ VistaAjustes.prototype.getBody=function(){
 	return creaObjProp('div', {className:'vista-body container config', hijos:paneles})
 	}
 VistaAjustes.prototype.nfila=function(literal, valor, id, i, onclick){
-	var title=literal? creaObjProp('small', {className:'bl', texto:literal}): 
+	var title=literal? creaObjProp('small', {className:'bl texto-sep', texto:literal}): 
 						creaObjProp('span', {className:'espacio'})
 
 	return creaObjProp('div', {className:'row '+(literal?'':'sin-titulo'), onclick:onclick, hijos:[
 				title,
-				creaObjProp('span', {className:'col-xs-10 valor ellipsis '+id, texto:valor}),
+				creaObjProp('span', {className:(i!=null?'col-xs-10':'col-xs-12')+' valor ellipsis '+id, texto:valor}),
 				creaObjProp('i', {className:'col-xs-1 pull-right fa '+i})
 	 		]})
 	}
 VistaAjustes.prototype.btnIntroducirCodigo=function(){
 	var self=this
-	navigator.notification.prompt(
-	    'Código promocional',
-	    function( result ) { //result.buttonIndex y result.input1
-	        switch ( result.buttonIndex ) {
-	            case 1:
-	            	jQuery.post(app.config.url,{accion:'compruebaCodigoPromocional', 
-	            								cod:result.input1 }).success(
-						function(data){
-							var datos=xeval(data)
-							if (datos.retorno==1){
-								var resp=datos.resp, msg
 
-								if (resp.promocioninexistente || resp.usuyaenpromocion || resp.agotada || resp.caducada){
-									if (resp.promocioninexistente=='1')
-										msg='Código incorrecto'
-									else if (resp.usuyaenpromocion=='1')
-										msg='Ya te has beneficiado de esta promoción'
-									else if (resp.agotada=='1')
-										msg='Lo lamentamos, esta promoción ya está agotada'
-									else if (resp.caducada=='1')
-										msg='Lo lamentamos, esta promoción ya ha terminado'
+	// if (isPhone()){
+		navigator.notification.prompt(
+		    'Código promocional',
+		    function( result ) { //result.buttonIndex y result.input1
+		        switch ( result.buttonIndex ) {
+		            case 1:
+		            	jQuery.post(app.config.url,{accion:'compruebaCodigoPromocional', 
+		            								cod:result.input1 }).success(
+							function(data){
+								var datos=xeval(data)
+								if (datos.retorno==1){
+									var resp=datos.resp, msg
+
+									if (resp.promocioninexistente || resp.usuyaenpromocion || resp.agotada || resp.caducada){
+										if (resp.promocioninexistente=='1')
+											msg='Código incorrecto'
+										else if (resp.usuyaenpromocion=='1')
+											msg='Ya te has beneficiado de esta promoción'
+										else if (resp.agotada=='1')
+											msg='Lo lamentamos, esta promoción ya está agotada'
+										else if (resp.caducada=='1')
+											msg='Lo lamentamos, esta promoción ya ha terminado'
+										}
+									else {
+										msg=resp.resp_promocion
+										}
+									self.domBody.find('#txtCodPromo').text(result.input1)
+									navigator.notification.alert(msg, null, 'Código promocional')
 									}
-								else {
-									msg=resp.resp_promocion
-									}
-								self.domBody.find('#txtCodPromo').text(result.input1)
-								navigator.notification.alert(msg, null, 'Código promocional')
-								}
-            				
-							})
-						
-	                break;
-	            case 2:
-	                break;
-	        }
-	    },
-	    'Octopus',     // a title
-	    [ "Aceptar", "Cancelar" ], // text of the buttons
-	    null //valor por defecto
-		)
+	            				
+								})
+							
+		                break;
+		            case 2:
+		                break;
+		        }
+		    },
+		    'Octopus',     // a title
+		    [ "Aceptar", "Cancelar" ], // text of the buttons
+		    null //valor por defecto
+			)
+	// 	}
+	// else {
+		
+	// 	}
 	}
 VistaAjustes.prototype.btnMasInfoPromociones=function(){
 	window.open('http://www.octopusapp.es/web/faq.html#convenios', '_system')
+	}
+VistaAjustes.prototype.show=function(){
+	Vista.prototype.show.call(this, desdeHistorial)
+	this.domMenu.hide()
+	}
+VistaAjustes.prototype.tareasPostCarga=function(){
+	Vista.prototype.tareasPostCarga.call(this)
+	this.domMenu.hide()
 	}
 ////////////////////////////////////////////////
 Controlador.prototype.cargaVistaMigraTest=function(desdeHistorial){

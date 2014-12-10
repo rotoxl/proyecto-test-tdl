@@ -32,6 +32,16 @@ body > .vbox {
 
 body.login {
   background: #25313e; }
+  body.login .throbber {
+    background: url("../images/throbber-white.gif") no-repeat center right;
+    display: block;
+    height: 40px;
+    background-size: 30px;
+    position: absolute;
+    bottom: 0;
+    height: 110px;
+    width: 95%;
+    left: 0; }
   body.login > section {
     color: white;
     left: 0;
@@ -55,11 +65,6 @@ body.login {
       display: inherit;
       padding: 10px 12px;
       font-size: 18px; }
-    body.login > section .throbber {
-      background: url("../images/throbber-white.gif") no-repeat center center;
-      display: block;
-      height: 40px;
-      background-size: 30px; }
     body.login > section p.status {
       margin: 15px;
       font-size: 16px;
@@ -442,7 +447,7 @@ article.card, article.pack {
   margin-top: 5px;
   border-radius: 3px;
   border: 1px solid #E0DADA;
-  box-shadow: 0 1px 2px #aaa;
+  box-shadow: 0px 2px 2px #AAA;
   overflow: hidden;
   background: white;
   cursor: pointer; }
@@ -729,7 +734,6 @@ article.card, article.pack {
         margin-top: -8px;
         width: 60px; }
   #content .vista.vistaTienda .detalle-test {
-    background-color: #f7f7f7;
     padding: 20px 10px;
     color: #979797; }
     #content .vista.vistaTienda .detalle-test section.row {
@@ -738,10 +742,10 @@ article.card, article.pack {
       padding-top: 10px;
       padding-bottom: 10px;
       background: #fefefe;
-      border: 1px solid #e8e8e8;
+      border: 1px solid #E0DADA;
       border-bottom-width: 0px;
       border-radius: 2px;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
+      box-shadow: 0px 2px 2px #AAA; }
       #content .vista.vistaTienda .detalle-test section.row.body {
         border-width: 0px 1px;
         padding: 5px 1.5rem; }
@@ -804,8 +808,6 @@ article.card, article.pack {
         background-repeat: no-repeat;
         background-size: 16px;
         padding-left: 26px; }
-      #content .vista.vistaTienda .detalle-test section.row .btn.btnCompartir {
-        margin-left: 4px; }
       #content .vista.vistaTienda .detalle-test section.row.resultadoUltimoExamen {
         margin-top: 10px; }
     #content .vista.vistaTienda .detalle-test hr {
@@ -822,22 +824,49 @@ article.card, article.pack {
     #content .vista.vistaTienda .detalle-test .btn-sm {
       text-transform: uppercase; }
     #content .vista.vistaTienda .detalle-test .cats {
+      margin: 0;
       font-size: 12px;
       text-transform: uppercase;
       border-width: 1px 0;
       border-style: solid;
       border-color: #e8e8e8;
       padding: 6px 0;
-      font-weight: normal; }
+      font-weight: normal;
+      margin-bottom: 10px; }
+      #content .vista.vistaTienda .detalle-test .cats .fa-stack {
+        padding-left: 0; }
     #content .vista.vistaTienda .detalle-test .preguntas, #content .vista.vistaTienda .detalle-test .imagenes, #content .vista.vistaTienda .detalle-test .matricula {
       text-transform: uppercase;
       font-size: 12px;
       font-weight: normal;
       padding: 1px 0; }
-    #content .vista.vistaTienda .detalle-test .btn-icon.btn-rounded.btnLove {
-      padding-left: 6px !important;
-      margin-right: 5px;
-      margin-left: 5px; }
+    #content .vista.vistaTienda .detalle-test .btn-stack {
+      border: 0; }
+      #content .vista.vistaTienda .detalle-test .btn-stack .fa-stack {
+        border: 1px solid #cccccc;
+        border-radius: 50%; }
+      #content .vista.vistaTienda .detalle-test .btn-stack .fa-circle {
+        color: transparent; }
+      #content .vista.vistaTienda .detalle-test .btn-stack .fa-inverse {
+        color: #717171; }
+      #content .vista.vistaTienda .detalle-test .btn-stack.btnLove {
+        margin-right: 0px;
+        margin-left: 0px;
+        background-color: transparent !important; }
+      #content .vista.vistaTienda .detalle-test .btn-stack.btnLove.on .fa-circle {
+        color: #8ec165; }
+      #content .vista.vistaTienda .detalle-test .btn-stack.btnLove.on .fa-inverse {
+        color: white; }
+      #content .vista.vistaTienda .detalle-test .btn-stack.btnLove.on .fa-stack {
+        background-color: #8ec165;
+        border-color: #8ec165; }
+      #content .vista.vistaTienda .detalle-test .btn-stack.btnCompartir {
+        background-color: transparent;
+        margin-left: -2px; }
+    #content .vista.vistaTienda .detalle-test .btnDesinstalar {
+      margin-left: -3px; }
+    #content .vista.vistaTienda .detalle-test .btnAbrir {
+      margin-top: 5px; }
     #content .vista.vistaTienda .detalle-test .btnAbrir, #content .vista.vistaTienda .detalle-test .btnLove, #content .vista.vistaTienda .detalle-test .loTengo, #content .vista.vistaTienda .detalle-test .btnDesinstalar {
       display: none !important; }
     #content .vista.vistaTienda .detalle-test .btnDescargar {
@@ -896,6 +925,10 @@ article.card, article.pack {
         top: 5px;
         border: 4px solid #fff;
         border-radius: 500px; }
+    #content .vista.vistaSocial .grupos.cargando {
+      background: url("../images/throbber-white.gif") no-repeat center center;
+      background-size: 25px;
+      min-height: 100px; }
     #content .vista.vistaSocial .bl.grupo, #content .vista.vistaSocial .bl.head {
       padding-top: 10px;
       margin-left: 0px;
@@ -1121,17 +1154,22 @@ article.card, article.pack {
       #content .vista.vistaAjustes .bl span {
         font-size: 19px;
         color: white; }
+      #content .vista.vistaAjustes .bl.texto-sep {
+        padding-bottom: 14px; }
     #content .vista.vistaAjustes .espacio {
       width: 100%;
       display: block; }
     #content .vista.vistaAjustes .valor {
-      font-size: 19px;
+      font-size: 17px;
       color: white; }
-    #content .vista.vistaAjustes .row.sin-titulo {
-      margin-top: 10px; }
-    #content .vista.vistaAjustes .row i {
-      margin-top: 6px;
-      font-size: 19px; }
+    #content .vista.vistaAjustes .row {
+      padding-bottom: 7px;
+      padding-top: 7px; }
+      #content .vista.vistaAjustes .row .sin-titulo {
+        margin-top: 10px; }
+      #content .vista.vistaAjustes .row i {
+        margin-top: 6px;
+        font-size: 19px; }
   #content.cargando {
     min-height: 100%;
     position: absolute;
@@ -1211,6 +1249,13 @@ article.card, article.pack {
   background-position: center center;
   background-image: none;
   background-repeat: no-repeat; }
+  .modal#frmImgAmpliada .cerrar {
+    position: absolute;
+    bottom: 0;
+    background: white;
+    width: 100%;
+    text-align: center;
+    padding: 5px; }
 
 @media (max-width: 767px) {
   body > .login div.screens {
@@ -1414,7 +1459,11 @@ article.card, article.pack {
     padding-left: 1rem; }
 
   .dropdown-menu {
-    min-width: 300px; } }
+    min-width: 300px;
+    max-height: 300px; }
+
+  #content .vista.vistaTest .vista-header .btn .fa-pause {
+    right: 10px; } }
 #swipeview-slider > div {
   min-height: 400px;
   position: relative;

@@ -49,6 +49,18 @@ body > .vbox{
 body.login{
 	background:$navigation_bar_bgcolor;
 
+	.throbber{
+		background: url("../images/throbber-white.gif") no-repeat center right;
+		display: block;
+		height: 40px;
+		background-size: 30px;
+		position: absolute;
+		bottom: 0;
+		height: 110px;
+		width: 95%;
+		left: 0;
+	}
+
 	> section{
 		color: white;
 		left: 0;
@@ -75,12 +87,6 @@ body.login{
 			display:inherit;
 			padding: 10px 12px;
 			font-size: 18px;
-		}
-		.throbber{
-			background:url("../images/throbber-white.gif") no-repeat center center;
-			display: block;
-			height:40px;
-			background-size:30px;
 		}
 		p.status{
 			margin: 15px;
@@ -538,7 +544,7 @@ article.card, article.pack{
 	border-radius:3px; 
 	border:1px solid #E0DADA;
 
-	box-shadow: 0 1px 2px #aaa;
+	box-shadow: 0px 2px 2px #AAA;
 	//box-shadow: 0 0 0;
 	
 	overflow:hidden;
@@ -966,7 +972,6 @@ article.card, article.pack{
 	
 		}
 		.detalle-test{
-			background-color:rgb(247, 247, 247);
 			padding:20px 10px;
 			color:#979797;
 
@@ -976,10 +981,10 @@ article.card, article.pack{
 				padding-bottom:10px;
 
 				background: #fefefe;
-				border: 1px solid #e8e8e8;
+				border: 1px solid #E0DADA;
 				border-bottom-width:0px;
 				border-radius: 2px;
-				box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+				box-shadow: 0px 2px 2px #AAA;
 				//box-shadow: 0 0 0;
 
 				&.body{
@@ -1067,7 +1072,7 @@ article.card, article.pack{
 						padding-left: 26px;
 					}
 				}
-				.btn.btnCompartir{margin-left:4px;}
+				
 				&.resultadoUltimoExamen{
 					margin-top:10px;
 				}
@@ -1091,13 +1096,18 @@ article.card, article.pack{
 
 			}
 			.cats{
+				margin:0;
 				font-size:12px;
+				//min-height: 35px;
 				text-transform: uppercase;
 				border-width: 1px 0;
 				border-style: solid;
 				border-color: #e8e8e8;
 				padding: 6px 0;
 				font-weight: normal;
+				margin-bottom: 10px;
+
+				.fa-stack{padding-left:0;}
 			}
 			.preguntas, .imagenes, .matricula{
 				text-transform: uppercase;
@@ -1105,7 +1115,39 @@ article.card, article.pack{
 				font-weight: normal;
 				padding:1px 0;
 			}
-			.btn-icon.btn-rounded.btnLove{padding-left:6px!important; margin-right:5px; margin-left:5px;}
+			.btn-stack{
+				border:0;
+
+				.fa-stack{
+					border: 1px solid rgb(204, 204, 204);
+					border-radius: 50%;
+				}
+				.fa-circle{
+					color:transparent;	
+				}
+				.fa-inverse{
+					color:rgb(113, 113, 113);
+				}
+
+				&.btnLove{
+					margin-right:0px; 
+					margin-left:0px; 
+					background-color:transparent!important;
+					}
+				&.btnLove.on{
+					.fa-circle{color:#8ec165;}
+					.fa-inverse{color:white;}
+					.fa-stack{
+						background-color:#8ec165;
+						border-color:#8ec165;
+					}
+
+				}
+				&.btnCompartir{background-color:transparent; margin-left:-2px;}
+			}
+			.btnDesinstalar{margin-left:-3px;}
+
+			.btnAbrir{margin-top:5px;}
 			.btnAbrir, .btnLove, .loTengo, .btnDesinstalar{display:none !important;}
 			.btnDescargar{display:inline-block;}
 
@@ -1183,7 +1225,12 @@ article.card, article.pack{
 			}
 		}
 		
-		
+		.grupos.cargando{
+			background:url("../images/throbber-white.gif") no-repeat center center;
+			background-size:25px;
+			min-height: 100px;
+		}
+
 		.vista-header{
 
 		}
@@ -1201,9 +1248,6 @@ article.card, article.pack{
 					margin: 20px auto;
 					padding: 5px;
 				}
-			}
-			&.grupos{
-				
 			}
 		}
 
@@ -1230,7 +1274,9 @@ article.card, article.pack{
 				border:0;
 				padding-left:10px; 
 				padding-right:10px; 
+
 			}
+
 			h5 {
 				margin-top:5px; margin-bottom:0;
 				margin-left: 0; padding-left:0;
@@ -1480,25 +1526,36 @@ article.card, article.pack{
 
 		.bl{
 			padding-top: 10px; margin-left:0px; margin-right:0;
+
 			color:#adbece;
 			//padding-bottom:20px;
 
 			span{
 				font-size: 19px;
 				color: white;
-			}	
+			}
+
+			&.texto-sep{
+				padding-bottom:14px;
+			}
 		}
 		.espacio{
 			width: 100%;
 			display: block;
 		}
 		.valor{
-			font-size: 19px;
+			font-size: 17px;
 			color: white;
 		}
-		.row.sin-titulo{margin-top:10px;}
-		.row i{margin-top:6px; font-size:19px;;}
+		.row{
+			padding-bottom: 7px;
+			padding-top: 7px;
+			.sin-titulo{margin-top:10px;}
+			i{margin-top:6px; font-size:19px;}
+		}
+		
 	}
+
 	&.cargando{
 		min-height: 100%;
 		position: absolute;
@@ -1608,6 +1665,15 @@ article.card, article.pack{
 	background-position:center center;
 	background-image:none;
 	background-repeat:no-repeat;
+
+	.cerrar{
+		position: absolute;
+		bottom: 0;
+		background: white;
+		width: 100%;
+		text-align: center;
+		padding: 5px;
+	}
 }
 
 //media queries
@@ -1867,8 +1933,13 @@ article.card, article.pack{
 		padding-left:1rem;
 	}
 	.dropdown-menu {
-		min-width:300px
+		min-width:300px;
+		max-height: 300px;
 	}
+	#content .vista.vistaTest .vista-header .btn .fa-pause{
+		right:10px;
+	}
+
 }
 
 
