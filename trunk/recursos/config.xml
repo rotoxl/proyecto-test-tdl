@@ -1,21 +1,32 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="es.octopusapp.cli" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="es.octopusapp.cli" version="0.4.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Octopus</name>
     <description>
         App para realizar tests de oposiciones y de otros tipos; incluye tienda de tests organizada por materias, estadísticas de tus avances, méritos...
     </description>
     <author email="8ctopusapp@gmail.com" href="http://www.octopusapp.es">Carrón Sisters </author>
     <content src="lnk/index.html" />
-    <access origin="*" />
     
+    <access origin="http://octopusapp.elasticbeanstalk.com" subdomains="true"/>
+    <access origin="https://octopusapp.elasticbeanstalk.com" subdomains="true"/>
+    <access origin="http://www.octopusapp.es" subdomains="true"/>
+    <access origin="https://s3-eu-west-1.amazonaws.com/octopus.recursos" subdomains="true"/>
+
+    <access origin="https://*.googleusercontent.com" subdomains="true"/>
+    <access origin="https://accounts.google.com/o/oauth2" subdomains="true"/>
+    <access origin="https://apis.google.com" subdomains="true"/>
+    <access origin="https://*.googleapis.com" subdomains="true"/>
+    <access origin="https://*.gstatic.com" subdomains="true"/>
 
     <feature name="InAppBrowser">
-	    <param name="android-package" value="org.apache.cordova.InAppBrowser" />
-	</feature>
+        <param name="android-package" value="org.apache.cordova.InAppBrowser" />
+    </feature>
 
     <preference name="webviewbounce" value="true" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="true" />
+
+    <preference name="orientation" value="portrait" />
 </widget>
 
 <!--
@@ -24,5 +35,11 @@
     AndroidManifest, activity => android:screenOrientation="sensorPortrait" 
 
     app -> android:hardwareAccelerated="true" 
+    app -> android:debuggable
+
+<supports-screens android:smallScreens="true"
+                  android:normalScreens="true"
+                  android:largeScreens="false"
+                  android:xlargeScreens="false"/>
 
 //-->

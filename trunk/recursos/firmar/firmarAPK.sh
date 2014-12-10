@@ -10,9 +10,14 @@ cd "/Users/rotoxl/dev/proyectotest/apk/platforms/android/ant-build/"
 
 rm ./CordovaApp-release-signed-unaligned.apk ./CordovaApp-release-signed-aligned.apk
 
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /Users/rotoxl/dev/proyectotest/recursos/firmar/apk-key.keystore CordovaApp-release-unsigned.apk alias_name
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /Users/rotoxl/dev/proyectotest/recursos/firmar/apk-key.keystore -storepass onTheRocks CordovaApp-release-unsigned.apk alias_name 
 
 cp CordovaApp-release-unsigned.apk CordovaApp-release-signed-unaligned.apk
 
-/Applications/sdk/build-tools/21.0.2/zipalign -v 4 CordovaApp-release-unsigned.apk CordovaApp-release-signed-aligned.apk
+/Applications/sdk/build-tools/21.0.2/zipalign -v 4 CordovaApp-release-signed-unaligned.apk CordovaApp-release-signed-aligned.apk
 
+rm -rf ./CordovaApp-release-signed-unaligned.apk ./CordovaApp-release-unsigned.apk
+ 
+echo ---------------------------
+echo **  COMPILADO Y FIRMADO  **
+echo ---------------------------
