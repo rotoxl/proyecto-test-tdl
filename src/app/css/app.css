@@ -358,10 +358,6 @@ h1, h2, h3, h4, h4, small {
   background-color: #8ec165;
   color: #ebf4e4; }
 
-.bg-info {
-  background-color: #4cc0c1;
-  color: #d1efef; }
-
 .btn-warning {
   border-color: #f0ad4e; }
 
@@ -383,8 +379,17 @@ h1, h2, h3, h4, h4, small {
   border-color: #8ec165; }
 
 .btn-success-t {
-  color: #8ec165;
+  color: #8ec165 !important;
   border-color: #8ec165;
+  background-color: transparent; }
+
+.bg-info {
+  background-color: #4cc0c1;
+  color: #d1efef; }
+
+.btn-info-t {
+  color: #4cc0c1 !important;
+  border-color: #4cc0c1;
   background-color: transparent; }
 
 .btn.btn-dark.transparent {
@@ -411,11 +416,6 @@ h1, h2, h3, h4, h4, small {
   padding-right: 4px !important;
   padding-left: 4px !important;
   width: 32px !important; }
-
-.btn-info-t {
-  color: #46b8da;
-  border-color: #46b8da;
-  background-color: transparent; }
 
 .btn-default {
   color: #717171 !important; }
@@ -600,6 +600,18 @@ article.card, article.pack {
         font-weight: 500;
         font-size: 12px;
         line-height: 19px; }
+  #content .vista.vistaTest.vistaRepasoTest ul#mapatest {
+    width: 100%;
+    max-width: 100% !important; }
+  #content .vista.vistaTest.vistaRepasoTest .pregunta {
+    background: #ececec;
+    color: #717171; }
+  #content .vista.vistaTest.vistaRepasoTest footer.respuestas table tr td.bg-danger {
+    color: white !important; }
+  #content .vista.vistaTest.vistaRepasoTest footer.respuestas table tr td.bg-success {
+    color: white !important; }
+  #content .vista.vistaTest.vistaRepasoTest .recurso.pre .aviso {
+    color: #717171; }
   #content .vista.vistaTest .vista-header .btn .fa-pause {
     float: right;
     margin-top: 2px;
@@ -607,7 +619,7 @@ article.card, article.pack {
     position: absolute; }
   #content .vista.vistaTest .vista-header ul#mapatest {
     max-width: 400px;
-    max-height: 350px;
+    max-height: 360px;
     overflow-y: auto; }
     #content .vista.vistaTest .vista-header ul#mapatest span.arrow:after {
       border-bottom-color: #65bd77; }
