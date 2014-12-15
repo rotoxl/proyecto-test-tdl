@@ -432,6 +432,20 @@ Controlador.prototype.init=function(){
 
 	var self=this
 	jQuery(window).bind('popstate', function(){self.backButton()} )
+
+	if (!isPhone())
+		this.includeJS('js/jwerty.js')
+
+	}
+Controlador.prototype.includeJS=function(src, fnCallBack){
+    jQuery.getScript(src, function() {
+        if (fnCallBack)
+        	fnCallBack()
+    	})
+	}
+Controlador.prototype.jwerty=function(t, fn, fnContext){
+	if (isPhone()) return
+	jwerty.key(t, fn, fnContext)
 	}
 ////
 Controlador.prototype.registerPush=function(){
@@ -1115,6 +1129,18 @@ VistaTest.prototype.tareasPostCarga=function(){
 	// this.goToPage(xpregActiva)
 
 	this.inflateMenu()
+
+	var self=this
+	app.jwerty('←', function(){self.tecladoDiapoAnterior()})
+	app.jwerty('→', function(){self.tecladoDiapoSiguiente()})
+	}
+VistaTest.prototype.tecladoDiapoAnterior=function(){
+	console.log('←')
+	this.gallery.prev()
+	}
+VistaTest.prototype.tecladoDiapoSiguiente=function(){
+	console.log('→')
+	this.gallery.next()
 	}
 VistaTest.prototype.inflateMenu=function(){
 	var self=this
