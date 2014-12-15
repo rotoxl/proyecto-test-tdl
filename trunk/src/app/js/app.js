@@ -1205,7 +1205,7 @@ VistaTest.prototype.creaDiapo=function(i, cont){
 			creaObjProp('div', {className:'visual'})
 			])
 
-		console.info('> crea portada, cont '+cont.id)
+		// console.info('> crea portada, cont '+cont.id)
 		}
 	else {
 		var preg=this.preguntas[i] //la 0 es la portada
@@ -1213,14 +1213,14 @@ VistaTest.prototype.creaDiapo=function(i, cont){
 
 		jQuery(cont).removeClass('portada inicio fin').empty()
 			.append (creaObjProp('div', {'style.height':this.hFija/2, 
-										className:'pregunta noselect', 
+										className:'pregunta noselect '+this.getClassPregMapa(preg, resp), 
 										hijo:this.generaDomPreguntas(preg, resp)}) )
 			.append (creaObjProp('footer', {'style.height':this.hFija/2, 
 											className:'footer respuestas noselect', 
 											hijo:this.generaDomRespuestas(preg, resp)}) )
 			.attr('data-cd-pregunta', i)
 
-			console.info('> crea diapo '+i+', cont '+cont.id)
+			// console.info('> crea diapo '+i+', cont '+cont.id)
 
 		}
 	}
@@ -1257,28 +1257,31 @@ VistaTest.prototype.generaDomPreguntas=function(preg, resp){
 	}
 VistaTest.prototype.generaDomRespuestas=function(preg, resp){
 	var self=this
-	var xr=[], letras='ABCDE', estilos=['bg-danger', 'bg-warning', 'bg-success', 'bg-info', 'bg-primary']
+	var xr=[], letras='ABCDE'
 	for (var i=0; i<preg.respuestas.length; i++){
 		var opcion=preg.respuestas[i]
 		if (opcion.texto==null || opcion.texto=='') 
 			continue
 
 		var hijos=[creaT(opcion.texto)]
-		// if (opcion.img){
-		// 	hijos.push( creaObjProp('div', {className:'recurso resp', 'style.backgroundImage':'url(./res/carne-conducir/'+opcion.img+')'}) )
-		// 	hijos.push( creaObjProp('div', {className:'recurso textoayuda', texto:opcion.texto_recurso}) )
-		// }
 
+		var estilos=this.getEstilosDomRespuestas(preg, resp, i)
 		xr.push( creaObjProp('tr', {onclick:function(){self.marcaResp(this)}, hijos:[
-			creaObjProp('td', {className:'clave '+ estilos[i], texto:letras.substr(i,1) }),
-			creaObjProp('td', {className:'valor', hijos:hijos }),
+			creaObjProp('td', {className:'clave '+ estilos[0], texto:letras.substr(i,1) }),
+			creaObjProp('td', {className:'valor '+estilos[1], hijos:hijos }),
 			]}))
 		}
-	if (resp.respuestaUsuario!=null){
+	if (this instanceof VistaRepasoTest){
+		}
+	else if (resp.respuestaUsuario!=null){
 		jQuery(xr).addClass('atenuada')
 		jQuery(xr[resp.respuestaUsuario]).removeClass('atenuada').addClass('active')
 		}
 	return creaObjProp('table', {hijos:xr})
+	}
+VistaTest.prototype.getEstilosDomRespuestas=function(preg, resp, i){
+	var estilos=['bg-danger', 'bg-warning', 'bg-success', 'bg-info', 'bg-primary']
+	return [estilos[i], '']
 	}
 VistaTest.prototype.fnAmpliarImg=function(ruta){
 	return function(){
@@ -1303,41 +1306,45 @@ VistaTest.prototype.initMapa=function(){
 	this.mapaInicializado=true
 	var elPorFila=10
 
-	var preg=this.respuestas
 	// var numfilas=Math.floor(this.preguntas.length/elPorFila)
 	var col=0,tr=creaObjProp('tr'), trs=[], ta=creaObjProp('table')
 	
 	//no reflejamos portada ni contraportada
-	for (var i=1; i<preg.length-1; i++){
+	for (var i=1; i<this.respuestas.length-1; i++){
 		if (col>=elPorFila){
 			ta.appendChild(tr)
 			tr=creaObjProp('tr')
 			col=0
 			}
-		var pra=preg[i]
+		var preg=this.preguntas[i]
+		var resp=this.respuestas[i]
 
 		var hijo
-		if (pra.estrella){
+		if (resp.estrella){
 			hijo=this.generaDomEstrella(i)
 		}
 		else 
 			hijo=creaObjProp('span', {texto:i})
 
 		var self=this
-		tr.appendChild( creaObjProp('td', { className:(pra.respuestaUsuario!=null? 'contestada':''), 
-																				id:'mapa_preg'+pra.i, 
-																				// 'data-id':
-																				hijo:hijo, 
-																				onclick:function(){
-																					var n=Number(jQuery(this).text())
-																					self.goToPage(n)
-																				} }) ) 
+		tr.appendChild( creaObjProp('td', {
+							className:this.getClassPregMapa(preg, resp), 
+							id:'mapa_preg'+resp.i, 
+							// 'data-id':
+							hijo:hijo, 
+							onclick:function(){
+								var n=Number(jQuery(this).text())
+								self.goToPage(n)
+							} }) ) 
 		col++
 		}
 	if (tr.childNodes.length)
 		ta.appendChild(tr)
 
 	this.dom.find('#mapatest').append(ta)
+	}
+VistaTest.prototype.getClassPregMapa=function(preg, resp){
+	return (resp.respuestaUsuario!=null? 'contestada':'')
 	}
 VistaTest.prototype.actualizaMapa=function(preg, resp){
 	var td=jQuery('#mapa_preg'+resp.i)
@@ -1509,14 +1516,14 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 			creaObjProp('p', {className:'resp fallos',  texto:corrige.fallos+' fallo(s)', i:'fa-times-circle fa-fw'}),
 			creaObjProp('p', {className:'resp nc',      texto:corrige.nc+' no respondida(s)', i:'fa-dot-circle-o fa-fw'}),
 
-			creaObjProp('p', {className:'respondidas', texto:stats.respondidas+' de '+stats.preguntas+' preguntas respondidas ('+stats.minutosPorcentaje+'%)', i:'fa-pie-chart fa-fw'}),
+			creaObjProp('p', {className:'respondidas', texto:stats.respondidas+' de '+stats.preguntas+' preguntas respondidas ('+stats.respondidasPorcentaje+'%)', i:'fa-pie-chart fa-fw'}),
 			creaObjProp('p', {className:'tiempo', texto:stats.minutosConsumidos+' de '+stats.minutosTotal+' minutos consumidos ('+stats.minutosPorcentaje+'%)', i:'fa-clock-o fa-fw'}),
 			creaObjProp('p', {className:'estrellas', texto:stats.estrellas+' preguntas marcadas', i:'fa-star-o fa-fw'}),
 			])
 
 		frmfooter.empty().append([
 			creaObjProp('button', {onclick:function(){self.finExamen()}, className:'btn btn-sm btn-dark transparent', texto:'Cerrar test'}),
-			//creaObjProp('button', {onclick:function(){self.repasarExamen(); self.frmdom.modal('hide')}, className:'btn btn-sm btn-success', texto:'Repasar'}),
+			creaObjProp('button', {onclick:function(){app.vistaTienda.repasarExamen(self.test.cd_test); self.frmdom.modal('hide')}, className:'btn btn-sm btn-success', texto:'Repasar'}),
 			])
 		}
 	else {
@@ -1760,10 +1767,52 @@ VistaTest.prototype.testData=function(){
 	}
 ////////////////////////////////////////////////
 
-function VistaRepasoTest(test){
-	VistaTest.call(this, test)
+function VistaRepasoTest(test, respuestas, desdeHistorial){
+	VistaTest.call(this, test, respuestas, desdeHistorial)
+	this.id='vistaTest vistaRepasoTest'
 	}
 VistaRepasoTest.prototype=new VistaTest
+VistaRepasoTest.prototype.getClassPregMapa=function(preg, resp){
+	if (resp.respuestaUsuario==null)
+		return ''
+	else if (resp.respuestaUsuario==preg.cd_respuestacorrecta)
+		return 'bg-success'
+	else
+		return 'bg-danger'
+	}
+VistaTest.prototype.getEstilosDomRespuestas=function(preg, resp, i){
+	console.log( [resp.respuestaUsuario, preg.cd_respuestacorrecta, i] )
+	var estilos=['bg-default', 'bg-warning', 'bg-success', 'bg-info', 'bg-primary']
+	
+	if (preg.cd_respuestacorrecta==i)
+		return ['bg-success', 'bg-success']
+	else if (resp.respuestaUsuario==i)
+		return ['bg-danger', 'bg-danger']
+	else
+		return ['bg-default', '']
+	}
+VistaRepasoTest.prototype.iniciaTiempo=function(){}
+VistaRepasoTest.prototype.getHeader=function(){
+	var self=this
+	return creaObjProp('header', {className:'vista-header marcadores' , hijos:[
+				creaObjProp('div', {className:'btn-group btn-dark', hijos:[
+						creaObjProp('button', {className:'btn btn-primary col-md-12 col-sm-12 col-xs-12 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', hijos:[
+							creaT(' Pregunta '),
+							creaObjProp('span', {id:'numPag', texto:1}),
+							creaT(' de '+this.examen.numpreguntas+' '), 
+							creaObjProp('b', {className:'caret'})
+							]}),
+						creaObjProp('ul', {id:'mapatest', className:'btn2_1 dropdown-menu btn-primary', role:'menu', hijos:[
+							creaObjProp('span', {className:'arrow top'}),
+
+							]}),
+						
+					]})
+				]})
+	}
+VistaRepasoTest.prototype.guardaEstadoExamen=function(){}
+VistaRepasoTest.prototype.toggleEstrella=function(){}
+VistaRepasoTest.prototype.marcaResp=function(){}
 ////////////////////////////////////////////////
 
 function VistaTienda(desdeHistorial, entornoLocal, cd_test){
@@ -2686,6 +2735,9 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 								]}),
 							]})
 						]}),
+					]}),
+				creaObjProp('section', {className:'row botonera', hijos:[
+					creaObjProp('button', {className:'btnAbrir btn btn-default btn-sm pull-right', texto:'REPASAR EXAMEN', onclick:function(){self.repasarExamen(test.cd_test)} }),
 					]})
 				)
 			}
@@ -2769,6 +2821,11 @@ VistaTienda.prototype.compartir=function(test){
 		app.cargaVistaSocial(true, ':'+gr.cd_grupo)
 		app.vistaSocial.getNuevosMsg()
 		}
+	}
+VistaTienda.prototype.repasarExamen=function(cd_test){
+	var test=buscaFilas(app.cache.testLocales, {cd_test:cd_test})[0]
+	var resp=buscaFilas(app.cache.respuestasLocales, {cd_test:cd_test})[0]
+	new VistaRepasoTest(test, resp, false).toDOM()
 	}
 //////
 VistaTienda.prototype.anhadeATestLocales=function(test){

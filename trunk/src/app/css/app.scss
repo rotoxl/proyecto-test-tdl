@@ -32,7 +32,11 @@ $navigation_bar_fgcolor_hover:#fff;
 
 $navigation_drawer_bgcolor:#41586e;
 // $navigation_drawer_bgcolor:#9db1c5;
-
+$infoColor:#4cc0c1;
+$successColor:#8ec165;
+$primaryColor:#65bd77;
+$warningColor:#ffc333;
+$dangerColor:#fb6b5b;
 
 * > i{margin-right:2px;}
 
@@ -284,7 +288,7 @@ section#main_container{
 			}
 
 			li.continuarTest b.bg{
-				background-color:#fb6b5b; //tomato
+				background-color:$dangerColor; //tomato
 			}
 
 		}
@@ -310,8 +314,9 @@ section#main_container{
 	width: 100%;
 	text-align: center;
 	}
-.text-success {color: #8ec165;}
-.text-danger{color:#fb6b5b;}
+
+.text-success {color: $successColor;}
+.text-danger{color:$dangerColor;}
 .text-info {color: #4cc0c1;}
 .text-white{color:white;}
 ///////////
@@ -425,11 +430,11 @@ h1, h2, h3, h4, h4, small{
 .b-l {border-left: 1px solid #cfcfcf;}
 ///////////
 .bg-primary {
-	background-color: #65bd77;
+	background-color: $primaryColor;
 	color: #e2f3e5;
 	}
 .bg-danger {
-	background-color: #fb6b5b;
+	background-color: $dangerColor;
 	color: #ffffff;
 	}
 .bg-warning {
@@ -437,12 +442,8 @@ h1, h2, h3, h4, h4, small{
 	color: #fff8e6;
 	}
 .bg-success {
-	background-color: #8ec165;
+	background-color: $successColor;
 	color: #ebf4e4;
-	}
-.bg-info {
-	background-color: #4cc0c1;
-	color: #d1efef;
 	}
 //////////
 .btn-warning{
@@ -453,8 +454,8 @@ h1, h2, h3, h4, h4, small{
 .btn-primary:focus, .btn-primary:active,
 .open .dropdown-toggle.btn-primary{
 	color: #fff !important;
-	background-color: #65bd77;
-	border-color: #65bd77;
+	background-color: $primaryColor;
+	border-color: $primaryColor;
 	}
 .btn-dark {
 	color: #fff !important;
@@ -464,14 +465,25 @@ h1, h2, h3, h4, h4, small{
 
 .btn-success{
 	color: #fff !important;
-	background-color: #8ec165;
-	border-color: #8ec165;
+	background-color: $successColor;
+	border-color: $successColor;
 	}
 .btn-success-t{
-	color:#8ec165;
-	border-color:#8ec165;
+	color:$successColor!important;
+	border-color:$successColor;
 	background-color:transparent;
 }
+
+.bg-info {
+	background-color: #4cc0c1;
+	color: #d1efef;
+	}
+.btn-info-t{
+	color:$infoColor!important;
+	border-color:$infoColor;
+	background-color:transparent;
+}
+
 .btn.btn-dark.transparent{
 	background-color:transparent!important;
 	color:$navigation_bar_bgcolor !important;
@@ -501,11 +513,6 @@ h1, h2, h3, h4, h4, small{
 	padding-right: 4px!important;
 	padding-left: 4px!important;
 	width: 32px!important;
-}
-.btn-info-t{
-	color:#46b8da;
-	border-color:#46b8da;
-	background-color:transparent;
 }
 
 .btn-default{color:#717171 !important}
@@ -748,7 +755,7 @@ article.card, article.pack{
 				}
 				span.precio, span.loTengo{
 					color:#f0ad4e; 
-					// color:#fb6b5b;
+					// color:$dangerColor;
 					text-align:right;
 				}
 				span.notaTest{
@@ -765,6 +772,29 @@ article.card, article.pack{
 	}
 
 	.vista.vistaTest{
+		&.vistaRepasoTest{
+			ul#mapatest{
+				width: 100%;
+				max-width: 100%!important;
+			}
+
+			.pregunta{
+				background: #ececec;
+				color:rgb(113,113,113);
+			}
+
+			footer.respuestas table tr td.bg-danger{
+				color:white !important;
+			}
+			footer.respuestas table tr td.bg-success{
+				color:white !important;
+			}
+
+			.recurso.pre .aviso {
+				color:rgb(113,113,113);
+			}
+
+		}
 		.vista-header{
 			.btn{
 				.fa-pause{
@@ -778,10 +808,10 @@ article.card, article.pack{
 			}
 			ul#mapatest{
 				max-width: 400px;
-				max-height: 350px;
+				max-height: 360px;
 				overflow-y: auto;
 				span.arrow{
-					&:after{border-bottom-color:#65bd77;}
+					&:after{border-bottom-color:$primaryColor;}
 				}
 				table{
 					margin-top:10px;
@@ -803,7 +833,7 @@ article.card, article.pack{
 						&.active span{
 							background-color:rgb(235, 244, 228);
 							
-							color:#65bd77;
+							color:$primaryColor;
 
 
 							display: inline-block;
@@ -816,7 +846,7 @@ article.card, article.pack{
 
 						.stack-text{
 							margin-top:-.1rem;
-							color:#65bd77;
+							color:$primaryColor;
 						}
 					}
 				}
@@ -1142,11 +1172,11 @@ article.card, article.pack{
 					background-color:transparent!important;
 					}
 				&.btnLove.on{
-					.fa-circle{color:#8ec165;}
+					.fa-circle{color:$successColor;}
 					.fa-inverse{color:white;}
 					.fa-stack{
-						background-color:#8ec165;
-						border-color:#8ec165;
+						background-color:$successColor;
+						border-color:$successColor;
 					}
 
 				}
