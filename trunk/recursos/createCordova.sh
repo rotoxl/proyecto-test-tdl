@@ -16,6 +16,7 @@ cordova plugin add org.apache.cordova.device
 
 cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-actionsheet.git
 cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git
+cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 cordova plugin add de.appplant.cordova.plugin.local-notification
 
