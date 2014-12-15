@@ -246,6 +246,18 @@ try {
             echo(json_encode($ret));
 
             break;
+        case 'informarErrorPregunta':
+            $cd_usuario=$usu->cd_usuario;
+
+            $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
+            $cd_pregunta=filter_input($REQ, 'cd_pregunta', FILTER_VALIDATE_INT);
+            $motivo=filter_input($REQ, 'msg', FILTER_SANITIZE_STRING);
+
+            $md->informarErrorPregunta($cd_usuario, $cd_test, $cd_pregunta, $motivo);
+            $ret=array('retorno'=> 1, 
+                        'sql'=>     $md->__logSQL($showSQL),);
+            echo(json_encode($ret));
+            break;
         //--------------------------------------------------------
         case 'loginNativo':
             $obj=json_decode( filter_input($REQ, 'datosUsu', FILTER_UNSAFE_RAW) );

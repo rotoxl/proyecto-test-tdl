@@ -688,6 +688,9 @@ Controlador.prototype.clearNotification=function(icono) {
 		catch(e){}
 		}, 1)
 	}
+Controlador.prototype.showToast=function(msg){
+	if (isPhone()) window.plugins.toast.showShortBottom(msg)
+	}
 /////
 Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
 	var arbol=jQuery('.aside-md .nav-primary')
@@ -892,10 +895,10 @@ function Vista(){
 Vista.prototype.calculaAnchoTarjetas=function(){
 	var w=jQuery('#content').width() 
 	var anchoMinCards=140
-	var numtarjetas=Math.floor( (w-10)/anchoMinCards)
+	var numtarjetas=Math.floor( (w-30)/anchoMinCards)
 	
 	this.numTarjetasPorAncho=numtarjetas
-	this.anchoTarjetas=(w/numtarjetas)-10
+	this.anchoTarjetas=(w/numtarjetas)-18
 	}
 Vista.prototype.tipos={
 	vistaTest:'vistaTest', 
@@ -1110,6 +1113,48 @@ VistaTest.prototype.tareasPostCarga=function(){
 	//ojo, la 0 es la portada y la última la contraportada
 	var xpregActiva=(this.examen.preguntaActiva) || 1
 	// this.goToPage(xpregActiva)
+
+	this.inflateMenu()
+	}
+VistaTest.prototype.inflateMenu=function(){
+	var self=this
+	this.domMenu.show()
+	
+	var xul=this.domMenu.find('ul')
+	for (var i=0; i<xul.length; i++){
+		var xxul=jQuery(xul[i])
+		xxul.empty().append(creaObjProp('li', {hijos:[
+			creaObjProp('a', {texto:'Informar de error en pregunta', onclick:function(){self.informarErrorPregunta()} } )
+			]}))
+		}
+	}
+VistaTest.prototype.informarErrorPregunta=function(){
+	var self=this
+	if (isPhone()){
+		var options = {
+	        title: 'Indica el tipo de error',
+	        buttonLabels: ['Ortografía', 'Redacción confusa', 'Pregunta/respuestas incorrectas', 'Faltan imágenes o recursos', 'Sin especificar']
+		    }
+
+		window.plugins.actionsheet.show(options, function(buttonIndex){	
+			if (buttonIndex==buttonLabels.length)
+				return
+			self.domInformarErrorPregunta(self.test.cd_test, self.preg.i, options.buttonLabels[buttonIndex])
+			})
+		}
+	else {
+		self.domInformarErrorPregunta(self.test.cd_test, self.preg.i, 'Sin especificar')	
+		}
+	}
+VistaTest.prototype.domInformarErrorPregunta=function(cd_test, cd_pregunta, msg){
+	msg=msg || 'Sin especificar'
+	jQuery.post(app.config.url, {accion:'informarErrorPregunta', 
+								cd_test:cd_test, 
+								cd_pregunta:cd_pregunta, 
+								msg:msg}).success(
+		function(data){
+			app.showToast('Se ha informado del error para subsanarlo. Gracias por colaborar')
+			})
 	}
 //////
 VistaTest.prototype.initSwype=function(xpregActiva){
@@ -2328,7 +2373,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 				dFecha,
 				creaObjProp('div', {className:'frow', hijos:infoTienda}),
 				creaObjProp('div', {className:'frow', hijos:[
-					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:test.ds_test}) 
+					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto: (test.anho?test.anho+', ':'')+test.ds_test}) 
 					]}),
 				]})
 			]})
@@ -2556,8 +2601,13 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 			]}),
 		creaObjProp('section', {className:'body row', hijos:[
 				tags,
+				(test.anho?
+					creaObjProp('span', {className:'bl anho', texto:'Año '+test.anho, stack:'fa-calendar'}):
+					creaT('')
+				),
 				creaObjProp('span', {className:'bl preguntas', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos', stack:'fa-clock-o'}),
 				tieneImagenes,
+				
 				creaObjProp('span', {className:'bl matricula', texto:'Matrícula '+test.matricula, stack:'fa-bookmark'}),
 				creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'En tu colección'}),
 			]}),
@@ -4061,12 +4111,18 @@ VistaMigraTest.prototype.tareasPostCarga=function(){
 
 	var plantillaDG='{'+vbCrLf+
 		'  "ds_test": "Identificaci\u00f3n del examen",'+vbCrLf+
+		
+		'  "anho": "2018",'+vbCrLf+
+		'  "grupo": "Grupo X",'+vbCrLf+
+
 		'  "organismo": "Organismo",'+vbCrLf+
 		'  "numpreguntas": 100,'+vbCrLf+
 		'  "minutos": 100,'+vbCrLf+
 		'  "fallosrestan": 0.5,'+vbCrLf+
 		'  "precio": 0,'+vbCrLf+
-		'  "liscat": "201"'+vbCrLf+
+		'  "liscat": "201",'+vbCrLf+
+		
+		'  "archivos": "2014/nombreArchivo1.pdf,"'+vbCrLf+
 		'}'
 	var plantillaPreguntas='{'+vbCrLf+
 		'  "cd_pregunta": 0,'+vbCrLf+
