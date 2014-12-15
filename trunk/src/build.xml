@@ -6,7 +6,7 @@
          <zip destfile="../target/octopusapp.zip">
             <zipfileset dir="app" excludes=".svn" prefix="app" />
             <zipfileset dir="web" excludes=".svn" prefix="web" />
-            <zipfileset dir="." includes="*.html,*.php,.htaccess" />
+            <zipfileset dir="." includes="*.html,*.php,.htaccess, robots.txt" />
          </zip>        
      </target> 
 </project>

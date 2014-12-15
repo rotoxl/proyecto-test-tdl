@@ -17,9 +17,10 @@ $conn=new Conn();
 
 class FasesTramitacion{ // tests_t
     const Alta='Alta';
-    const Borrador='Borrador';
+    // const Borrador='Borrador';
     const Favorito='Favorito';
     // const CambioPrecio='CambioPrecio';
+    const InformarError='InformarError';
  	}
 function uneArray($arr, $arrUObj){
 	if (!is_array($arr)){
@@ -121,6 +122,9 @@ class Metadatos{
 			$this->conn->ejecuta($sql, array($d['cd_usuario'], $d['given_name'], $d['family_name'], $d['picture'] ));
 			return true; //devolvemos esUsuarioNuevo
 			}
+		}
+	private function correoe($destino, $asunto, $mensaje){
+		mail($destino, $asunto, $mensaje, 'From: <8ctopusapp@gmail.com>');
 		}
 	//////
 	function compruebaCert($json_order){
@@ -276,6 +280,7 @@ class Metadatos{
 		global $limitePreview;
 		$sql="select 
 				v.cd_test, v.ds_test, 
+				v.anho, v.grupo,
 				v.matricula, v.img, v.f_examen, v.organismo,
 				v.numpreguntas, v.fallosrestan, 
 				v.admiteReordenarPreguntas, v.admiteReordenarRespuestas, v.minutos, v.region, v.precio, v.cd_moneda, v.likes, v.fu_modificacion,
@@ -290,6 +295,7 @@ class Metadatos{
 		global $limitePreview;
 		$sql="select 
 				v.cd_test, v.ds_test, 
+				v.anho, v.grupo, 
 				v.matricula, v.img, v.f_examen, v.organismo,
 				v.numpreguntas, v.fallosrestan, 
 				v.admiteReordenarPreguntas, v.admiteReordenarRespuestas, v.minutos, v.region, v.precio, v.cd_moneda, v.likes, v.fu_modificacion,
@@ -322,6 +328,7 @@ class Metadatos{
 	public function getDatosTest($cd_test){
 		$sql="select 
 			 	v.cd_test, v.ds_test, 
+			 	v.anho, v.grupo, 
 				v.matricula, v.img, v.f_examen, v.organismo,
 				v.numpreguntas, v.liscat,
 				v.region, v.precio, v.cd_moneda, v.likes, v.fu_modificacion
@@ -330,7 +337,7 @@ class Metadatos{
 		}
 	public function getTest($cd_usuario, $cd_test, $json_order){
 		$md=$this->conn->lookupDict(
-			"select cd_test, 1 as lotengo, matricula, f_examen, ds_test, liscat, region, organismo, img, fallosRestan, minutos, numPreguntas, precio, cd_moneda from vs_testpreview t where cd_test=?", 
+			"select cd_test, 1 as lotengo, anho, grupo, matricula, f_examen, ds_test, liscat, region, organismo, img, fallosRestan, minutos, numPreguntas, precio, cd_moneda from vs_testpreview t where cd_test=?", 
 			array($cd_test));
 
 		$yaComprado=$this->conn->lookupSimple("select cd_test from usuarios_tests where cd_usuario=? and cd_test=?", array($cd_usuario, $cd_test));
@@ -374,7 +381,7 @@ class Metadatos{
 	public function buscaTests($cd_usuario, $q){
 		global $limitePreview;
 		$sql="select 
-				v.cd_test, v.ds_test, 
+				v.cd_test, v.ds_test, anho, grupo, 
 				v.matricula, v.img, v.f_examen, v.organismo,
 				v.numpreguntas, v.fallosrestan, 
 				v.admiteReordenarPreguntas, v.admiteReordenarRespuestas, v.minutos, v.region, v.precio, v.cd_moneda, v.likes, v.fu_modificacion,
@@ -382,7 +389,8 @@ class Metadatos{
 				exists (select * from usuarios_tests ut where ut.cd_test=v.cd_test and ut.cd_usuario=?) as lotengo
 			from vs_testpreview v
 			where 
-				concat(
+				concat( anho,  ' ',
+						grupo, ' ', 
 						v.ds_test, ' ', 
 						v.matricula, ' ', 
 						ifnull(v.organismo, ''), ' ', 
@@ -437,13 +445,17 @@ class Metadatos{
 		$datos=$this->completaCamposOpcionales($datos, array('region', 'organismo', 'img', 'f_examen', 'admiteReordenarPreguntas', 'admiteReordenarRespuestas', 'precio', 'cd_moneda') );
 		
 		$arr=array(
-			new Sql('insert into tests (cd_test, ds_test, region, organismo, img, f_examen, 
+			new Sql('insert into tests (cd_test, ds_test, anho, grupo, region, organismo, img, f_examen, 
 										fallosRestan, minutos, numpreguntas, admiteReordenarPreguntas, admiteReordenarRespuestas, 
 										precio, cd_moneda, matricula) 
-					values (?,?,?,?,?, ?,?,?,?,?, ?,?,?, generaMatricula_Test() )',
+					values (?,?,?,?,?,?,?, ?,?,?,?,?, ?,?,?, generaMatricula_Test() )',
 					array(
 						$nuevoCD_Test,
 						$datos->ds_test, 
+
+						$datos->anho, 
+						$datos->grupo, 
+
 						$datos->region, 
 						$datos->organismo, 
 						$datos->img, 
@@ -494,15 +506,30 @@ class Metadatos{
 					);
 			}
 
+		$archivos=explode(',', $datos->archivos); // ruta1, ruta2
+		for ($i=0; $i<count($archivos); $i++){
+			if ($archivos[$i]=='')
+				continue;
+
+			array_push($arr, 
+				new Sql( "insert into archivos_tests (cd_test, cd_archivo) values (?, ?)", array($nuevoCD_Test, $archivos[$i] ))
+				);
+			}
+
 		array_push($arr, 
 			$this->sql_test_t($nuevoCD_Test, $cd_usuario, FasesTramitacion::Alta, null, null)
 			);
 
-
-
 		$this->conn->ejecutaLote($arr);
 
 		return $nuevoCD_Test;
+		}
+	public function informarErrorPregunta($cd_usuario, $cd_test, $cd_pregunta, $motivo){
+		$arr=array(
+			$this->sql_test_t($cd_test, $cd_usuario, FasesTramitacion::InformarError, 'Pregunta CD_Pregunta='.$cd_pregunta.'/Motivo:'.$motivo)
+			);
+		$this->conn->ejecutaLote($arr);
+		$this->correoe('8ctopusapp@gmail.com', FasesTramitacion::InformarError, 'CD_Test='.$cd_test.'/Pregunta CD_Pregunta='.$cd_pregunta.'/Motivo:'.$motivo);
 		}
 	//////
 	public function getMisGrupos($cd_usuario){

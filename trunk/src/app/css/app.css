@@ -123,9 +123,12 @@ header#navigation_bar {
     padding: 0 15px;
     float: none;
     text-align: center;
-    font-size: 20px;
     color: inherit;
-    font-weight: 200; }
+    font-size: 17px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal; }
     header#navigation_bar a.navbar-brand img {
       max-height: 30px;
       margin-top: -4px;
@@ -151,7 +154,7 @@ section#main_container {
     background-color: #41586e;
     color: #9db1c5; }
     section#main_container aside .header, section#main_container aside .footer {
-      min-height: 50px;
+      min-height: 52px;
       padding: 0 15px; }
     section#main_container aside .header {
       background-color: #89cc97; }
@@ -471,11 +474,13 @@ article.card, article.pack {
       height: 50px;
       background-color: rgba(50, 50, 50, 0.1); }
       #content .vista .vista-header > .btn-group {
-        width: 100%; }
+        width: 100%;
+        height: 50px; }
       #content .vista .vista-header .btn {
         border-radius: 0;
         padding-top: 15px;
-        padding-bottom: 13px; }
+        padding-bottom: 13px;
+        min-height: 50px; }
     #content .vista .vista-body {
       min-height: 50px; }
       #content .vista .vista-body.flowable {
@@ -484,8 +489,8 @@ article.card, article.pack {
         background: url("../images/throbber.gif") no-repeat center center;
         background-size: 50px; }
       #content .vista .vista-body section.bloque {
-        margin-left: 5px;
-        margin-right: 5px;
+        margin-left: 15px !important;
+        margin-right: 15px !important;
         padding-top: 10px; }
       #content .vista .vista-body article.pack {
         background-color: rgba(46, 62, 78, 0.8);
@@ -700,7 +705,8 @@ article.card, article.pack {
     background-color: #f0ad4e;
     color: white; }
     #content .vista.vistaTienda .vista-header button {
-      background: transparent; }
+      background: transparent;
+      padding-left: 15px; }
       #content .vista.vistaTienda .vista-header button i {
         float: left;
         font-size: 250%;
@@ -710,8 +716,8 @@ article.card, article.pack {
   #content .vista.vistaTienda .vista-body {
     padding-bottom: 10px; }
     #content .vista.vistaTienda .vista-body .bloque {
-      margin-left: 5px;
-      margin-right: 5px; }
+      margin-left: 15px !important;
+      margin-right: 15px !important; }
       #content .vista.vistaTienda .vista-body .bloque .titulo {
         cursor: pointer; }
       #content .vista.vistaTienda .vista-body .bloque .cargarMas {
@@ -848,6 +854,7 @@ article.card, article.pack {
       #content .vista.vistaTienda .detalle-test .btn-stack .fa-circle {
         color: transparent; }
       #content .vista.vistaTienda .detalle-test .btn-stack .fa-inverse {
+        font-size: 13.5px;
         color: #717171; }
       #content .vista.vistaTienda .detalle-test .btn-stack.btnLove {
         margin-right: 0px;
@@ -1258,6 +1265,13 @@ article.card, article.pack {
     padding: 5px; }
 
 @media (max-width: 767px) {
+  header#navigation_bar a.navbar-brand {
+    width: 80%;
+    text-align: left;
+    font-size: 19px; }
+    header#navigation_bar a.navbar-brand img {
+      display: none; }
+
   body > .login div.screens {
     margin-top: 30%; }
 
