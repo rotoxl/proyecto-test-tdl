@@ -415,10 +415,16 @@ class Metadatos{
 		}
 	//////
 	public function vinculaTestConUsuario($cd_usuario, $cd_test, $json_order, $precio, $cd_moneda){
+		$sql=vinculaTestConUsuario_getSql($cd_usuario, $cd_test, $json_order, $precio, $cd_moneda);
+		if ($sql!=null){
+			$this->conn->ejecuta($sql->sql, $sql->param);
+			}
+		}
+	public function vinculaTestConUsuario_getSql($cd_usuario, $cd_test, $json_order, $precio, $cd_moneda){
 		$existe=$this->conn->lookupSimple('select cd_test from usuarios_tests where cd_usuario=? and cd_test=?', array($cd_usuario, $cd_test));
 		if ($existe==false){
 			$sql="insert into usuarios_tests (cd_usuario, cd_test, json_order, precio, cd_moneda) values (?, ?, ?, ?, ?)";
-			$this->conn->ejecuta($sql, array($cd_usuario, $cd_test, json_encode($json_order), $precio, $cd_moneda));
+			return new Sql($sql, array($cd_usuario, $cd_test, json_encode($json_order), $precio, $cd_moneda));
 			}
 		}
 	//////
@@ -530,6 +536,17 @@ class Metadatos{
 			);
 		$this->conn->ejecutaLote($arr);
 		$this->correoe('8ctopusapp@gmail.com', FasesTramitacion::InformarError, 'CD_Test='.$cd_test.'/Pregunta CD_Pregunta='.$cd_pregunta.'/Motivo:'.$motivo);
+		}
+	public function guardaResultadosTest($cd_usuario, $cd_test, $datos_json){
+		$arr=array();
+		$sql=$this->vinculaTestConUsuario_getSql($cd_usuario, $cd_test, null, null, null);
+
+		if ($sql!=null)	array_push($arr, $sql);
+		array_push($arr, new Sql(
+				'update usuarios_tests set json_actividad=? where cd_usuario=? and cd_test=?', 
+				array($datos_json, $cd_usuario, $cd_test)
+				));
+		$this->conn->ejecutaLote($arr);
 		}
 	//////
 	public function getMisGrupos($cd_usuario){

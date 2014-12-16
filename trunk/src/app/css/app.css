@@ -208,6 +208,9 @@ section#main_container {
       section#main_container aside nav.nav-primary li.continuarTest b.bg {
         background-color: #fb6b5b; }
 
+.nomargin {
+  margin: 0; }
+
 .fa-8x, .fa-stack-8x {
   font-size: 8em; }
 
@@ -278,7 +281,8 @@ section#main_container {
     content: ""; }
 
 .dropdown-menu {
-  min-width: 330px; }
+  min-width: 330px;
+  overflow-y: auto; }
 
 .dropdown-menu > li > a {
   white-space: normal;
@@ -573,6 +577,7 @@ article.card, article.pack {
           color: darkslategray; }
       #content .vista .card .fecha {
         margin-top: -102px;
+        min-width: 22px;
         background-color: rgba(50, 50, 50, 0.1);
         text-transform: uppercase;
         font-size: 10px; }
@@ -729,7 +734,7 @@ article.card, article.pack {
     padding-bottom: 10px; }
     #content .vista.vistaTienda .vista-body .bloque {
       margin-left: 15px !important;
-      margin-right: 15px !important; }
+      margin-right: 0px !important; }
       #content .vista.vistaTienda .vista-body .bloque .titulo {
         cursor: pointer; }
       #content .vista.vistaTienda .vista-body .bloque .cargarMas {
@@ -747,7 +752,7 @@ article.card, article.pack {
           text-transform: uppercase;
           border-radius: 0; }
       #content .vista.vistaTienda .vista-body .bloque .titulo .cargarMas {
-        margin-right: 2px;
+        margin-right: 5px;
         float: right;
         margin-top: -8px;
         width: 60px; }
@@ -853,13 +858,14 @@ article.card, article.pack {
       margin-bottom: 10px; }
       #content .vista.vistaTienda .detalle-test .cats .fa-stack {
         padding-left: 0; }
-    #content .vista.vistaTienda .detalle-test .preguntas, #content .vista.vistaTienda .detalle-test .imagenes, #content .vista.vistaTienda .detalle-test .matricula {
+    #content .vista.vistaTienda .detalle-test .preguntas, #content .vista.vistaTienda .detalle-test .imagenes, #content .vista.vistaTienda .detalle-test .matricula, #content .vista.vistaTienda .detalle-test .grupo, #content .vista.vistaTienda .detalle-test .anho {
       text-transform: uppercase;
       font-size: 12px;
       font-weight: normal;
       padding: 1px 0; }
     #content .vista.vistaTienda .detalle-test .btn-stack {
-      border: 0; }
+      border: 0;
+      padding-top: 0; }
       #content .vista.vistaTienda .detalle-test .btn-stack .fa-stack {
         border: 1px solid #cccccc;
         border-radius: 50%; }
@@ -1189,6 +1195,58 @@ article.card, article.pack {
       #content .vista.vistaAjustes .row i {
         margin-top: 6px;
         font-size: 19px; }
+  #content .vista.vistaTourAplicacion {
+    position: absolute !important;
+    top: 0 !important;
+    height: 100% !important;
+    left: 0 !important;
+    width: 100% !important;
+    background-color: white;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5); }
+    #content .vista.vistaTourAplicacion #swypeWrapper {
+      position: absolute !important;
+      width: 100%;
+      left: 0;
+      top: 0%;
+      bottom: 0; }
+      #content .vista.vistaTourAplicacion #swypeWrapper .slide-img {
+        max-width: 80%;
+        margin-left: 10%; }
+      #content .vista.vistaTourAplicacion #swypeWrapper .slide-t {
+        padding: 40px 10px 20px 10px;
+        width: 100%;
+        text-align: center;
+        font-size: 120%; }
+      #content .vista.vistaTourAplicacion #swypeWrapper #swipeview-slider > div {
+        box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5); }
+    #content .vista.vistaTourAplicacion footer {
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.4);
+      bottom: 0;
+      height: 55px;
+      width: 100%;
+      position: absolute; }
+      #content .vista.vistaTourAplicacion footer .btn-group {
+        width: 100%; }
+        #content .vista.vistaTourAplicacion footer .btn-group button {
+          background: transparent;
+          color: white;
+          border: 0;
+          height: 100%;
+          padding: 10px; }
+      #content .vista.vistaTourAplicacion footer ul {
+        text-align: center; }
+        #content .vista.vistaTourAplicacion footer ul li {
+          background-color: rgba(255, 255, 255, 0.3);
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          margin-top: 13px;
+          margin-left: 5px;
+          margin-right: 5px; }
+          #content .vista.vistaTourAplicacion footer ul li.active {
+            background-color: rgba(255, 255, 255, 0.8); }
   #content.cargando {
     min-height: 100%;
     position: absolute;
@@ -1221,8 +1279,7 @@ article.card, article.pack {
   padding: 10px;
   background-color: #f5f5f5;
   border: 1px solid #d6d6d6;
-  font-weight: 300;
-  font-size: 105%; }
+  font-weight: 300; }
   .modal#frmPausa .details i {
     margin-right: 5px; }
   .modal#frmPausa .details .titulo {
