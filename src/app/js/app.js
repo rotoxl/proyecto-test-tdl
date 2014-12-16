@@ -728,14 +728,12 @@ Controlador.prototype.continuarTest=function(desdeHistorial){
 	this.cierraNavDrawer()
 	}
 Controlador.prototype.lanzaTourAplicacion=function(){
-	console.warn('Lanza tour Aplicación')
+	new VistaTourAplicacion().toDOM()
 	}
 Controlador.prototype.lanzaTest=function(test, resp, vistaOrigen){
 	jQuery('.vista.vistaTest').remove()
-	var nv=new VistaTest(test, resp)
-	nv.returnTo=vistaOrigen
-	nv.toDOM()
-
+	this.vistaTest=new VistaTest(test, resp)
+	this.vistaTest.toDOM()
 	}
 Controlador.prototype.cargaVistaInicio=function(){
 	var self=this
@@ -909,10 +907,10 @@ function Vista(){
 Vista.prototype.calculaAnchoTarjetas=function(){
 	var w=jQuery('#content').width() 
 	var anchoMinCards=140
-	var numtarjetas=Math.floor( (w-30)/anchoMinCards)
+	var numtarjetas=Math.floor( (w-20)/anchoMinCards)
 	
 	this.numTarjetasPorAncho=numtarjetas
-	this.anchoTarjetas=(w/numtarjetas)-18
+	this.anchoTarjetas=(w/numtarjetas)-20
 	}
 Vista.prototype.tipos={
 	vistaTest:'vistaTest', 
@@ -1032,22 +1030,148 @@ Vista.prototype.concatCategoriasTest=function(test){
 	return ret.substring(2)
 	}
 Vista.prototype.inicio=function(fromHistory){}
+Vista.prototype.initSwype=function(cont, numPaginas, conPortada){
+	var self=this
+
+	// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	var gallery=new SwipeView(cont, {numberOfPages:numPaginas, loop:false });
+
+	// // Load initial data
+	var page
+	for (var i=0; i<3; i++) {
+		// var page = i==0 ? this.preguntas.length-1 : i-1;
+		
+		if (conPortada)
+			page = i==0 ? 0 : i-1;
+		else
+			page = i==0 ? numPaginas-1 : i-1
+
+		this.creaDiapo(page, gallery.masterPages[i])
+		}
+
+	gallery.onFlip(function () {
+		var el,
+			upcoming,
+			i;
+
+		for (i=0; i<3; i++) {
+			upcoming = gallery.masterPages[i].dataset.upcomingPageIndex;
+
+			if (upcoming != gallery.masterPages[i].dataset.pageIndex) {
+				self.cambiaDiapo(upcoming, gallery.masterPages[ i ])
+				}
+			}
+
+		self.indicaPreguntaActivaEnMarcador(gallery.page)
+		});
+
+	gallery.onMoveOut(function () {
+		var cmp=jQuery(gallery.masterPages[gallery.currentMasterPage])
+		cmp.removeClass('swipeview-active')
+		})
+
+	gallery.onMoveIn(function () {
+		var cmp=jQuery(gallery.masterPages[gallery.currentMasterPage])
+		cmp.addClass('swipeview-active')
+		})
+
+	this.gallery=gallery
+	}
 ////////////////////////////////////////////////
 
-function VistaPantallaCompleta(){}
-VistaPantallaCompleta.prototype.title='Nombre de la vista'
-VistaPantallaCompleta.prototype=new Vista
-VistaPantallaCompleta.prototype.toDOM=function(){
-	Vista.prototype.toDOM.call(this)
-	this.cambiaHeaderApp(this.title)
+function VistaTourAplicacion(){
+	Vista.call(this)
+	this.id='vistaTourAplicacion'
 	}
-VistaPantallaCompleta.prototype.cerrar=function(){
-	this.restauraHeaderApp()
+VistaTourAplicacion.prototype=new Vista
+VistaTourAplicacion.prototype.getBody=function(){
+	var self=this
+
+	var raiz='-android'
+	// 
+	this.slides=[
+		{html:'Toca en el icono de la <b>hamburguesa</b> para desplegar el menú', img:'./images/tour-1'+raiz+'.png', bgcolor:'#66CC99', fgcolor:'white'},
+		{html:'Descarga algún test de la <b>tienda</b>', img:'./images/tour-2'+raiz+'.png', bgcolor:'#65C6BB', fgcolor:'white'},
+		{html:'Realiza tu test, ¡cuidado con el <b>tiempo</b>!', img:'./images/tour-3'+raiz+'.png', bgcolor:'#1BA39C', fgcolor:'white'},
+		{html:'Comprueba tus <b>progresos</b>', img:'./images/tour-4'+raiz+'.png', bgcolor:'#86e2d5', fgcolor:'white'},
+		]
+
+	var puntos=[]
+	for (var i=0; i<this.slides.length; i++){
+		puntos.push( creaObjProp('li', {className:(i==0?'active':'')}) )
+		}
+
+	this.btnOmitir=jQuery( creaObjProp('button', {className:'col-xs-3', texto:'OMITIR', onclick:function(){self.clickBtnOmitir()} }) )
+	this.ulLista=jQuery(creaObjProp('ul', {className:'col-xs-6 nav', hijos:puntos}))
+	this.btnSiguiente= jQuery( creaObjProp('button', {className:'col-xs-3 pull-right', i:'fa-angle-right', onclick:function(){self.clickBtnSiguiente()}}) )
+
+	return [
+		creaObjProp('div', {className:'vista-body', id:'swypeWrapper'}),
+		creaObjProp('footer', {hijos:[
+			creaObjProp('div', {className:'btn-group row nomargin', hijos:[
+				this.btnOmitir[0],
+				this.ulLista[0],
+				this.btnSiguiente[0]
+				]})
+			]})
+		]
 	}
-//////////
+VistaTourAplicacion.prototype.tareasPostCarga=function(){
+	this.initSwype('#swypeWrapper', this.slides.length)
+	}
+VistaTourAplicacion.prototype.cambiaDiapo=function(i, cont){
+	if (i>this.slides.length) return
+	var slide=this.slides[i]
+
+	var cnt=jQuery(cont)
+
+	cnt .css('color', slide.fgcolor)
+		.css('backgroundColor', slide.bgcolor)
+		.find('.slide-t').html(slide.html)
+
+	var img=cnt.find('.slide-img')[0]
+	img.src=slide.img
+	}
+VistaTourAplicacion.prototype.creaDiapo=function(i, cont){
+	if (i>this.slides.length) return
+
+	console.log('>>generando diapo '+i)
+
+	var slide=this.slides[i]
+	jQuery(cont)
+		.append( creaObjProp('div', {className:'slide-t', html:slide.html}) )
+		.append( creaObjProp('img', {className:'slide-img', src:slide.img}) )
+		.css('color', slide.fgcolor)
+		.css('backgroundColor', slide.bgcolor)
+	}
+VistaTourAplicacion.prototype.indicaPreguntaActivaEnMarcador=function(i){
+	if (i==this.slides.length-1){
+		this.btnOmitir.css('opacity', 0)
+		this.btnSiguiente.text('LISTO')
+		}
+	else {
+		this.btnOmitir.css('opacity', 1)
+		this.btnSiguiente.html(creaObjProp('i', {className:'fa fa-angle-right'}))
+		}
+	this.ulLista.find('li.active').removeClass('active')
+	this.ulLista.find('li:eq('+i+')').addClass('active')
+	}
+VistaTourAplicacion.prototype.clickBtnOmitir=function(){
+	app.cargaVistaInicio()
+	}
+VistaTourAplicacion.prototype.clickBtnSiguiente=function(){
+	if (this.gallery.pageIndex==this.slides.length-1) 
+		this.clickBtnOmitir()
+	else
+		this.gallery.next()
+	}
+VistaTourAplicacion.prototype.resize=function(){
+	//css	
+	}
+////////////
 function VistaTest(test, respuestas, desdeHistorial){
 	if (test==null) return
-	VistaPantallaCompleta.call(this)
+	Vista.call(this)
 
 	this.test=test
 	this.id='vistaTest'
@@ -1076,7 +1200,7 @@ function VistaTest(test, respuestas, desdeHistorial){
 	if (!desdeHistorial) 
 		app.pushState(this.id)
 	}
-VistaTest.prototype=new VistaPantallaCompleta
+VistaTest.prototype=new Vista
 VistaTest.prototype.generaObjRespuestas=function(){
 	var contestadas=[]
 	for (var i=0; i<this.preguntas.length; i++){
@@ -1121,11 +1245,11 @@ VistaTest.prototype.tareasPostCarga=function(){
 	this.initMapa()
 	this.iniciaTiempo()
 
-	this.initSwype(xpregActiva)
+	this.initSwype('#swypeWrapper', this.preguntas.length, true)
 	jQuery(this.dom).addClass('noselect')
 
 	//ojo, la 0 es la portada y la última la contraportada
-	var xpregActiva=(this.examen.preguntaActiva) || 1
+	// var xpregActiva=(this.examen.preguntaActiva) || 1
 	// this.goToPage(xpregActiva)
 
 	this.inflateMenu()
@@ -1183,46 +1307,8 @@ VistaTest.prototype.domInformarErrorPregunta=function(cd_test, cd_pregunta, msg)
 			})
 	}
 //////
-VistaTest.prototype.initSwype=function(xpregActiva){
-	var self=this
-
-	// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-	var gallery=new SwipeView('#swypeWrapper', {numberOfPages:this.preguntas.length, loop:false });
-
-	// // Load initial data
-	for (var i=0; i<3; i++) {
-		// var page = i==0 ? this.preguntas.length-1 : i-1;
-		var page = i==0 ? 0 : i-1;
-		this.creaDiapo(page, gallery.masterPages[i])
-		}
-
-	gallery.onFlip(function () {
-		var el,
-			upcoming,
-			i;
-
-		for (i=0; i<3; i++) {
-			upcoming = gallery.masterPages[i].dataset.upcomingPageIndex;
-
-			if (upcoming != gallery.masterPages[i].dataset.pageIndex) {
-				self.creaDiapo(upcoming, gallery.masterPages[ i ])
-				}
-			}
-
-		self.indicaPreguntaActivaEnMarcador(gallery.page)
-		});
-
-	gallery.onMoveOut(function () {
-			var cmp=jQuery(gallery.masterPages[gallery.currentMasterPage])
-			cmp.removeClass('swipeview-active')
-			})
-
-	gallery.onMoveIn(function () {
-			var cmp=jQuery(gallery.masterPages[gallery.currentMasterPage])
-			cmp.addClass('swipeview-active')
-		})
-
-	this.gallery=gallery
+VistaTest.prototype.cambiaDiapo=function(i, cont){
+	this.creaDiapo(i,cont)
 	}
 VistaTest.prototype.creaDiapo=function(i, cont){
 	if (i==0 || i==this.preguntas.length-1){
@@ -1490,6 +1576,24 @@ VistaTest.prototype.guardaEstadoExamen=function(finalizado){
 		app.cache.respuestasLocales[idx]=nel
 		
 	save('tapp37_listaTestRespuestas', app.cache.respuestasLocales)
+	
+	if (finalizado){//de momento no guardamos resultados parciales
+		var self=this
+		jQuery.post(app.config.url,{accion:'guardaResultadosTest', 
+									datos:JSON.stringify(nel), 
+									cd_test:this.test.cd_test}).success(
+			function(data){
+				var datos=xeval(data)
+				if (datos.retorno==1){
+					var idx=getIndiceFila(app.cache.respuestasLocales, {cd_test:self.test.cd_test})
+					app.cache.respuestasLocales[idx].sincronizado=true
+					}
+				})
+		}
+	}
+VistaTest.prototype.btnContinuarTest=function(){
+	this.pausaTiempo()
+	this.frmdom.modal('hide')
 	}
 VistaTest.prototype.muestraFormPausa=function(tipo){
 	var self=this
@@ -1518,7 +1622,7 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 		frmfooter.empty().append([
 			creaObjProp('button', {onclick:function(){self.guardaEstadoExamen(true);self.muestraFormPausa('fin')}, className:'btn btn-sm btn-dark transparent', texto:'Finalizar'}),
 			creaObjProp('button', {onclick:function(){self.frmdom.modal('hide'); app.cargaVistaInicio()}, className:'btn btn-sm btn-dark transparent', texto:'Pausar y salir'}),
-			creaObjProp('button', {onclick:function(){self.pausaTiempo(); self.frmdom.modal('hide')}, className:'btn btn-sm btn-success', texto:'Continuar'}),
+			creaObjProp('button', {onclick:function(){self.btnContinuarTest()}, className:'btn btn-sm btn-success', texto:'Continuar'}),
 			])
 		}
 	else if (tipo=='fin' || tipo=='fintiempo'){
@@ -1569,6 +1673,8 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 		])
 	if (md.img)
 		this.frmdom.find('.info .visual')[0].src=md.img
+
+	app.addToNav({vista:this.id, accion:'frmPausa'})
 
 	this.frmdom.modal({backdrop:'static', keyboard:false})
 	}
@@ -1676,6 +1782,11 @@ VistaTest.prototype.backButton=function(vTo, vFrom){
 	if (app.vistaActiva!=this)
 		this.show(true)
 
+	if (jQuery('.modal#frmPausa').is(':visible')){
+		this.btnContinuarTest()
+		return
+	}
+
 	var mapa=jQuery('ul#mapatest')
 	if (mapa.is(':visible')){
 		mapa.closest('.open').removeClass('open')
@@ -1685,21 +1796,21 @@ VistaTest.prototype.backButton=function(vTo, vFrom){
 	var sRestantes=(this.examen.horaFinal-new Date())/1000
 	var segundosConsumidos=(this.examen.minutos*60-sRestantes)
 
-	if (segundosConsumidos<10) {
-		//salimos sin más, ha debido entrar por error
-		if (this.returnTo){
-			if (this.returnTo.id==this.tipos.vistaTienda){
-				var nel=this.returnTo.nav[this.returnTo.nav.length-1]
+	// if (segundosConsumidos<10) {
+	// 	//salimos sin más, ha debido entrar por error
+	// 	if (this.returnTo){
+	// 		if (this.returnTo.id==this.tipos.vistaTienda){
+	// 			var nel=this.returnTo.nav[this.returnTo.nav.length-1]
 			
-				var nv=new VistaTienda(true, true)
-				nv.toDOM()
+	// 			var nv=new VistaTienda(true, true)
+	// 			nv.toDOM()
 
-				nv.nav=this.returnTo.nav
-				nv.navegaEl(nel)
-				}
-			}
-		}
-	else 
+	// 			nv.nav=this.returnTo.nav
+	// 			nv.navegaEl(nel)
+	// 			}
+	// 		}
+	// 	}
+	// else 
 		this.pausaTiempo()
 	}
 //////
@@ -1806,7 +1917,7 @@ VistaRepasoTest.prototype.getClassPregMapa=function(preg, resp){
 	else
 		return 'bg-danger'
 	}
-VistaTest.prototype.getEstilosDomRespuestas=function(preg, resp, i){
+VistaRepasoTest.prototype.getEstilosDomRespuestas=function(preg, resp, i){
 	console.log( [resp.respuestaUsuario, preg.cd_respuestacorrecta, i] )
 	var estilos=['bg-default', 'bg-warning', 'bg-success', 'bg-info', 'bg-primary']
 	
@@ -1908,9 +2019,15 @@ VistaTienda.prototype.inflateMenu=function(){
 		}
 	}
 VistaTienda.prototype.backButton=function(vTo, vFrom){
-	if (app.vistaActiva!=this)
-		this.show(true)
-	this.navegaEl(vTo, vFrom)
+	if (vFrom.vista==app.vistaTest.id){
+		//estaba haciendo un test
+		app.vistaTest.pausaTiempo()
+		}
+	else {
+		if (app.vistaActiva!=this)
+			this.show(true)
+		this.navegaEl(vTo, vFrom)
+		}
 	}
 VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 	if (vTo && vTo.cd_test){
@@ -1944,7 +2061,9 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 
 			if (vFrom && vFrom.cd_categoria){
 				var cat=buscaFilas(app.cache.categorias, {cd_categoria:vFrom.cd_categoria})[0]
-				this.domBody.scrollTop( this.domBody.find('#cat-'+cat.cd_categoriapadre).offset().top-100 )
+
+				var oldcat=this.domBody.find('#cat-'+cat.cd_categoriapadre).offset()
+				if (oldcat) this.domBody.scrollTop( oldcat.top-100 )
 				}
 			}
 		}
@@ -2053,9 +2172,11 @@ VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 	pressed.addClass('active')
 
 	if (this.domDetalleTest && this.domDetalleTest.is(':visible')){
-		this.domBody
+		this.domBody.show()
 		this.domDetalleTest.hide()
 		}
+	if (!this.domBody.is(':visible'))
+		this.domBody.show()
 
 	if (pressed.hasClass('dispositivo')){
 		this.entornoLocal=true
@@ -2209,18 +2330,23 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 	else
 		sl=buscaFilas( lista, {_contains_liscat:cd_categoria})
 
-	var aPintar=sl.slice(0)
-	aPintar=aPintar.slice(num,num+tanda)
-	for (var j=0;  j<aPintar.length; j++){
-		if (packs.length && this.testEstaEnPack(aPintar[j], packs))
-			continue
-		
-		if (blCat.find('article.card#test-'+aPintar[j].cd_test).length==0)
-			blCat.append( this._generaDomTest(aPintar[j], j, xcat ) )
+	if (sl.length==0 && packs.length==0){
+		blCat.append(this.admonition('No hay tests en esta categoría', null, (xcat.i || 'fa-ban')+' fa-4x' ) )
 		}
+	else{
+		var aPintar=sl.slice(0)
+		aPintar=aPintar.slice(num,num+tanda)
+		for (var j=0;  j<aPintar.length; j++){
+			if (packs.length && this.testEstaEnPack(aPintar[j], packs))
+				continue
+			
+			if (blCat.find('article.card#test-'+aPintar[j].cd_test).length==0)
+				blCat.append( this._generaDomTest(aPintar[j], j, xcat ) )
+			}
 
-	if (sl.length>(num+tanda) && jQuery(blCat).find('article.card').length==(num+tanda) ){
-		blCat.append( this.generaBtnCargarMas(cd_categoria, 'aunMas') )
+		if (sl.length>(num+tanda) && jQuery(blCat).find('article.card').length==(num+tanda) ){
+			blCat.append( this.generaBtnCargarMas(cd_categoria, 'aunMas') )
+			}
 		}
 	this.ajustaAlturaCard(blCat.find('article.card.test'))
 
@@ -2241,21 +2367,22 @@ VistaTienda.prototype.escogeTestsCatDinamica=function(cd_categoria, lista){
 		tests=this.ordenaPorFecha(lista).slice(0,10)
 		}
 	else {
-		if (cd_categoria==-1)
-			tests=this.ordenaPorFecha(lista).slice(0,10)
-		else if (cd_categoria==-2){
-			tests=lista
-			tests.sort(function(a,b){
-				var na=Number(a.likes); var nb=Number(b.likes)
-				if (na==nb)
-					return 0
-				else if (na>nb)
-					return -1
-				else
-					return 1
-				})
-			}
-		else
+
+		// if (cd_categoria==-1)
+		// 	tests=this.ordenaPorFecha(lista).slice(0,10)
+		// else if (cd_categoria==-2){
+		// 	tests=lista
+		// 	tests.sort(function(a,b){
+		// 		var na=Number(a.likes); var nb=Number(b.likes)
+		// 		if (na==nb)
+		// 			return 0
+		// 		else if (na>nb)
+		// 			return -1
+		// 		else
+		// 			return 1
+		// 		})
+		// 	}
+		// else
 			tests=buscaFilas(lista, {_contains_liscat:cd_categoria})
 		}
 	return tests
@@ -2349,7 +2476,7 @@ VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 		xl.push( d )
 		}
 
-	this.domBody.addClass('flowable').append(xl).removeClass('cargando').show()
+	this.domBody.addClass('flowable').append(xl).removeClass('cargando')//.show()
 	this.ajustaAlturaCard(jQuery('.card.pack'))
 	if (this.entornoLocal) 
 		this.ajustaAlturaCard(jQuery('.card.test'))
@@ -2552,7 +2679,7 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 				)
 			}
 		}
-	jQuery.post(app.config.url, {accion:'getPreviewCategorias'}).success(
+	jQuery.post(app.config.url, {accion:'getPortadaTienda'}).success(
 		function(data){
 			var datos=xeval(data)
 			if (datos.retorno==1){
@@ -2680,10 +2807,14 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 					creaObjProp('span', {className:'bl anho', texto:'Año '+test.anho, stack:'fa-calendar'}):
 					creaT('')
 				),
+				(test.grupo?
+					creaObjProp('span', {className:'bl grupo', texto:'Grupo '+test.grupo, stack:'fa-mortar-board'}):
+					creaT('')
+				),
 				creaObjProp('span', {className:'bl preguntas', texto:test.numpreguntas+' preguntas/'+test.minutos+' minutos', stack:'fa-clock-o'}),
 				tieneImagenes,
 				
-				creaObjProp('span', {className:'bl matricula', texto:'Matrícula '+test.matricula, stack:'fa-bookmark'}),
+				//creaObjProp('span', {className:'bl matricula', texto:'Matrícula '+test.matricula, stack:'fa-bookmark'}),
 				creaObjProp('span', {className:'bl loTengo', i:'fa-check-circle', texto:'En tu colección'}),
 			]}),
 		creaObjProp('section', {className:'row botonera', hijos:[
@@ -3056,8 +3187,8 @@ VistaTienda.prototype.toggleLike=function(cd_test){
 	if (idx.length){
 		res= Number(app.cache.testTienda[idx[0]].likes)+(btn.hasClass('on')?1:-1)
 		for (var i=0; i<idx.length; i++){
-			app.cache.testTienda[idx[0]].likes=res
-			app.cache.testTienda[idx[0]].fu_modificacion=new Date()
+			app.cache.testTienda[idx[i]].likes=res
+			app.cache.testTienda[idx[i]].fu_modificacion=new Date()
 			}
 		}
 
@@ -3067,8 +3198,8 @@ VistaTienda.prototype.toggleLike=function(cd_test){
 			res= Number(app.cache.testLocales[idx[0]].likes)+(btn.hasClass('on')?1:-1)
 
 		for (var i=0; i<idx.length; i++){
-			app.cache.testLocales[idx[0]].likes=res
-			app.cache.testLocales[idx[0]].fu_modificacion=new Date()
+			app.cache.testLocales[idx[i]].likes=res
+			app.cache.testLocales[idx[i]].fu_modificacion=new Date()
 			}
 		}
 	app.cache.testLocales[idx].likeit=btn.hasClass('on')

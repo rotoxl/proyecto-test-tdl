@@ -34,7 +34,7 @@ global $showSQL;
 $json_order=null;
 try {
     switch ($accion) {
-        case 'getPreviewCategorias':
+        case 'getPortadaTienda':
             $cd_usuario=$usu->cd_usuario;
             $categorias=$md->getCategoriasPersonalizadas($cd_usuario)->filas;
             if (count($categorias)==0)
@@ -256,6 +256,17 @@ try {
             $md->informarErrorPregunta($cd_usuario, $cd_test, $cd_pregunta, $motivo);
             $ret=array('retorno'=> 1, 
                         'sql'=>     $md->__logSQL($showSQL),);
+            echo(json_encode($ret));
+            break;
+        case 'guardaResultadosTest':
+            $cd_usuario=$usu->cd_usuario;
+
+            $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
+            $datos_json=filter_input($REQ, 'datos', FILTER_UNSAFE_RAW);
+
+            $md->guardaResultadosTest($cd_usuario, $cd_test, $datos_json);
+            $ret=array('retorno'=> 1, 
+                        'sql'=> $md->__logSQL($showSQL),);
             echo(json_encode($ret));
             break;
         //--------------------------------------------------------
