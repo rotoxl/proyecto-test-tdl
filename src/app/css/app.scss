@@ -206,14 +206,14 @@ section#main_container{
 		color:#9db1c5;
 
 		.header, .footer {
-			min-height: 52px;
+			min-height: 50px;
 			padding: 0 15px;
 		}
 
 		.header{
 			background-color: #89cc97;
 		}
-		nav.nav-primary{
+		nav{
 			border-bottom: 1px solid rgba(255,255,255,0.05);
 
 			li {
@@ -298,6 +298,7 @@ section#main_container{
 }
 ///////////
 .nomargin{margin:0}
+.nopadding{padding:0}
 
 .fa-8x, .fa-stack-8x{font-size: 8em;}
 .fa-7x, .fa-stack-7x{font-size: 7em;}
@@ -405,7 +406,7 @@ section#main_container{
 	}
 }
 .thumb-xs{
-	width: 18px;
+	width: 38px;
 	display: inline-block;
 }
 .m-r-sm {
@@ -448,7 +449,7 @@ h1, h2, h3, h4, h4, small{
 	color: #ebf4e4;
 	}
 //////////
-.btn-warning{
+.btn-warning, .btn-warning:active{
 	border-color:#f0ad4e;
 }
 //////////
@@ -490,7 +491,8 @@ h1, h2, h3, h4, h4, small{
 	background-color:transparent!important;
 	color:$navigation_bar_bgcolor !important;
 	}
-.btn:active, .btn.active{
+.vista-header .btn:active, 
+.vista-header .btn.active{
 	background:rgba(0,0,0,.1)!important;
 	box-shadow:0 0 0;
 	border-color:rgba(0,0,0,.1)!important;
@@ -966,7 +968,7 @@ article.card, article.pack{
 
 		}
 		.vista-body{
-			padding-bottom:10px;
+			padding-bottom:30px;
 			
 			
 			.bloque{
@@ -993,6 +995,9 @@ article.card, article.pack{
 
 						text-transform: uppercase;
 						border-radius:0;
+						box-shadow:0 0 0;
+						background:#f0ad4e!important;
+						color:white;
 						}
 				}
 
@@ -1043,7 +1048,7 @@ article.card, article.pack{
 			
 				&.botonera{
 					padding-left:.3rem; padding-right:1rem;
-					padding-bottom:1rem;
+					padding-top: 5px; padding-bottom: 3px;
 					border-top-style:dashed;
 				}
 				
@@ -1156,7 +1161,7 @@ article.card, article.pack{
 			}
 			.btn-stack{
 				border:0;
-				padding-top:0;
+				padding-top:0; margin-top:5px;
 
 				.fa-stack{
 					border: 1px solid rgb(204, 204, 204);
@@ -1459,18 +1464,19 @@ article.card, article.pack{
 				font-size: 13px;
 				> .nombre{font-weight:bold; margin-right:5px; }
 				
+
 				&.has-test .row.texto, 
 				&.has-badge .row.texto{
 					padding-bottom: 20px!important;
 				}
 
 				&.has-test{
-					min-height:170px;
+					min-height:185px;
 
 					> .card.test{
 						float:right;
 						margin-right: 65px;
-						margin-top: -40px;
+						margin-top: -50px;
 					}
 					> .row.has-test{
 						float:right; margin-right: 60px;
@@ -1493,6 +1499,16 @@ article.card, article.pack{
 				&:nth-child(2n){
 					background-color:rgb(248,248,248)!important;
 				}
+
+				.fecha{float:right;}
+				img.thumb-xs{float:left;}
+				&.msg-mio {
+					.fecha{
+						float:left; 
+						margin-left:5px;
+					}
+					img.thumb-xs{float:right}
+					}
 
 				img{margin-left:15px;}
 				
@@ -1606,12 +1622,13 @@ article.card, article.pack{
 		width:100%!important;
 
 		background-color:white;
-		box-shadow:inset 0 0 100px rgba(0,0,0,.5);
+		//box-shadow:inset 0 0 100px rgba(0,0,0,.5);
 
 		#swypeWrapper{
 			position:absolute!important;
 			width: 100%; left:0;
 			top:0%; bottom:0;//bottom:15%;
+			background-color: #86e2d5;
 
 			.slide-img{
 				max-width: 80%;
@@ -1624,7 +1641,7 @@ article.card, article.pack{
 				font-size: 120%;
 			}
 			#swipeview-slider > div{
-				box-shadow:inset 0 0 100px rgba(0,0,0,.5);
+				//box-shadow:inset 0 0 100px rgba(0,0,0,.5);
 			}
 		}
 		footer{
@@ -1634,7 +1651,9 @@ article.card, article.pack{
 			width: 100%;
 			position: absolute;
 
-			.btn-group{width:100%;
+			.btn-group{
+				width:100%;
+				font-size:20px;
 				button{
 					background: transparent;
 					color: white;
@@ -1646,13 +1665,14 @@ article.card, article.pack{
 
 			ul {
 				text-align:center;
+				padding-left:0; padding-right:0;
 				li {
 					background-color: rgba(255, 255, 255, 0.3);
 					display: inline-block;
 					width: 12px;
 					height: 12px;
 					border-radius: 50%;
-					margin-top: 13px;
+					margin-top: 15px;
 					margin-left: 5px;
 					margin-right: 5px;
 					&.active{
@@ -1809,25 +1829,43 @@ article.card, article.pack{
 
 	aside .vbox > footer {
 		position: absolute;
-		bottom: 10px;
+		bottom: 0px;
 		
-		left: 2.5%;
-		width: 95%;
-		min-height:45px; height:45px;
+		left: 0;
+		width: 100%;
+		min-height:145px; 
 
 		color:#adbece;
-		padding: 5px 5px 0 5px!important;
+		padding: 5px 0px 0 0px!important;
 
-		.ajustes, .logout{
-			font-size:22px; 
+		.btn-group{
+			width: 100%;
+			padding:5px 0 5px 1px;
+
+		}
+		li {height:40px;}
+
+		.ajustes, .tour{
 			line-height: 26px;
-			width:44px!important;
+			color:#adbece!important;
+			background:inherit!important;
+			i {
+				margin-right:23px;
+			}
+		}
+
+		.logout{
+			font-size:22px; 
+			line-height: 30px;
+			width:50px!important;
 			color:#adbece!important;
 		}
 		.avatar{
-			width:50%;
+			padding-left:6px;
+			width:70%;
 			.pic {
 				width: 30px;
+				margin-right:12px;
 			}
 			.nombre{
 				float: left;
@@ -2039,10 +2077,19 @@ article.card, article.pack{
 
 }
 
-@media (max-width: 320px){
+@media (max-width: 384px){//desde iphone a n4
+	// #content .vista.vistaTienda .vista-body .bloque .titulo .cargarMas{
+	// 	margin-right: 0!important;
+	// }
+	// #content .vista.vistaTienda .vista-body .bloque{
+	// 	margin-right: 10px !important;
+	// }
 	#content .vista.vistaTienda .detalle-test section.row .data{
 		padding-left:1rem;
 	}
+	// #content .vista.vistaTienda .vista-body .bloque article.card.test:nth-child(2n+1){
+	// 	float:right
+	// }
 	.dropdown-menu {
 		min-width:300px;
 		max-height: 300px;

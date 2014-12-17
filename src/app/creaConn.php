@@ -84,7 +84,9 @@ class Conn{
 			$tz=substr($tz, 1);
 		try {
 			$this->con->query("set time_zone='". $tz ."'");
-		} catch (Exception $e){
+			$this->logInfo("set time_zone='". $tz ."'");
+			} 
+		catch (Exception $e){
 			$this->con->query("set time_zone='-00:30'");
 			}
 		}

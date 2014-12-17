@@ -1,6 +1,7 @@
 <?php
 error_reporting(E_ALL | E_STRICT);
 $usu=null;
+global $tz;
 
 $getopost=filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
 $accion = ($getopost == 'GET')? filter_input(INPUT_GET, 'accion', FILTER_SANITIZE_STRING): filter_input(INPUT_POST, 'accion', FILTER_SANITIZE_STRING);
@@ -14,6 +15,7 @@ try{
     else {
         $usu=new Usuario();//saca los datos de la sesión
         $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+        $tz=$_SESSION['tz'];
         }
     }
 catch (Exception $ee){
@@ -182,8 +184,9 @@ try {
             if (isset($_POST['cd_test']))
                 $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
 
-            $md->nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg, $cd_test, $cd_badge);
+            $cd_mensaje=$md->nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg, $cd_test, $cd_badge);
             $ret=array('retorno'=>1, 
+                        'cd_mensaje'=>$cd_mensaje,
                         'sql' => $conn->arrResultSet,
                         );
             echo json_encode($ret);
@@ -272,7 +275,7 @@ try {
         //--------------------------------------------------------
         case 'loginNativo':
             $obj=json_decode( filter_input($REQ, 'datosUsu', FILTER_UNSAFE_RAW) );
-            $tz=filter_input($REQ, $tz, FILTER_SANITIZE_STRING);
+            $tz=filter_input($REQ, 'tz', FILTER_SANITIZE_STRING);
             
             $datosUsu=array(
                 'cd_usuario'=>$obj->email,
@@ -282,7 +285,7 @@ try {
                 'picture'=>$obj->picture
                 );
 
-            Usuario::guardaEnSesion($datosUsu);
+            Usuario::guardaEnSesion($datosUsu, $tz);
             $conn->logInfo('Login '.$datosUsu['cd_usuario'], 'LOGIN');
 
             $esUsuarioNuevo=$md->altaUsuario($datosUsu, $tz);
@@ -294,13 +297,13 @@ try {
             break;
         case 'login':
             $token=filter_input($REQ, 'token', FILTER_SANITIZE_STRING);
-            $tz=filter_input($REQ, $tz, FILTER_SANITIZE_STRING);
+            $tz=filter_input($REQ, 'tz', FILTER_SANITIZE_STRING);
             
             $datosUsu=$md->getGoogleUserProfile($token);
-            Usuario::guardaEnSesion($datosUsu);
+            Usuario::guardaEnSesion($datosUsu, $tz);
             $conn->logInfo('Login '.$datosUsu['cd_usuario'], 'LOGIN');
 
-            $esUsuarioNuevo=$md->altaUsuario($datosUsu, $tz);
+            $esUsuarioNuevo=$md->altaUsuario($datosUsu);
 
             $ret=array('retorno' => 1, 
                         'userData'=>$datosUsu, 

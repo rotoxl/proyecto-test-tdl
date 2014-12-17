@@ -374,6 +374,7 @@ function Controlador(){
 			var expires=sr.substring( sr.indexOf('expires=')+8).split('&')[0]
 			this.cache.loginExpires=new Date(expires-2*60*1000)//2 minutos de margen
 			}
+
 		}
 	else if (sr.indexOf('?nativo=')==0){//Teléfonos, login nativo
 		this.cache.token=null
@@ -387,11 +388,7 @@ function Controlador(){
 			obj[temp[0]]=temp[1]
 			}
 		this.loginEnMiNubeSinToken(obj)
-		var yanoshavisitado=get('tapp37_yanoshavisitado')
 		this.userDataReceived(obj)
-
-		if (!yanoshavisitado)
-			this.lanzaTourAplicacion()
 		}
 	else if (sr.indexOf('?noHayDatos')==0){
 		var s=get('tapp37_userdata')
@@ -603,9 +600,19 @@ Controlador.prototype.loginEnMiNubeSinToken=function(obj){
 	jQuery.post(this.config.url, {accion:'loginNativo', datosUsu:JSON.stringify(obj), tz:tz}).success(
 		function(data){
 			var datos=xeval(data)
-			if (datos.retorno==1)
-				setTimeout(function(){self.registerPush()}, 2000)
-		})
+			
+			if (datos.retorno==0){
+				document.location='login.html'
+				return
+				}
+			
+			if (!get('tapp37_tourRealizado'))
+				app.lanzaTourAplicacion()
+			else
+				app.cargaVistaInicio()
+			
+			setTimeout(function(){self.registerPush()}, 2000)
+			})
 	}
 Controlador.prototype.loginEnMiNube=function(){
 	var self=this
@@ -619,14 +626,18 @@ Controlador.prototype.loginEnMiNube=function(){
 			
 			if (datos.retorno==0){//sesión caducó, a login
 				document.location='login.html'
+				return
 				}
-			else if (datos.retorno==1)
-				self.userDataReceived(datos.userData)
 			
-			if (datos.esUsuarioNuevo)
-				self.lanzaTourAplicacion()
+			self.userDataReceived(datos.userData)
+			
+			if (!get('tapp37_tourRealizado'))
+				app.lanzaTourAplicacion()
+			else
+				app.cargaVistaInicio()
+
 			self.registerPush()
-		})
+			})
 	}
 Controlador.prototype.userDataReceived=function(data){
 	data.token=this.cache.token
@@ -728,7 +739,16 @@ Controlador.prototype.continuarTest=function(desdeHistorial){
 	this.cierraNavDrawer()
 	}
 Controlador.prototype.lanzaTourAplicacion=function(){
-	new VistaTourAplicacion().toDOM()
+	this.cierraNavDrawer()
+
+	if (this.vistaTourAplicacion==null){
+		this.vistaTourAplicacion=new VistaTourAplicacion()
+		this.vistaTourAplicacion.toDOM()	
+		}
+	else {
+		this.vistaTourAplicacion.show()
+		this.vistaTourAplicacion.inicio()
+		}
 	}
 Controlador.prototype.lanzaTest=function(test, resp, vistaOrigen){
 	jQuery('.vista.vistaTest').remove()
@@ -769,7 +789,7 @@ Controlador.prototype.cargaVistaInicio=function(){
 		this.cargaVistaAjustes()
 
 	else {
-		this.cargaVistaTienda(false, true)//ojo, sólo a local
+		this.cargaVistaTienda(false, false)
 		}
 
 	if (this.vistaSocial==null){
@@ -894,6 +914,8 @@ Controlador.prototype.addToNav=function(el){
 		return
 	console.log(el)
 	app.nav.push(el)
+
+	app.vistaActiva.navActivo=el
 	}
 ////////////////////////////////////////////////
 
@@ -1090,10 +1112,11 @@ VistaTourAplicacion.prototype.getBody=function(){
 	var raiz='-android'
 	// 
 	this.slides=[
-		{html:'Toca en el icono de la <b>hamburguesa</b> para desplegar el menú', img:'./images/tour-1'+raiz+'.png', bgcolor:'#66CC99', fgcolor:'white'},
-		{html:'Descarga algún test de la <b>tienda</b>', img:'./images/tour-2'+raiz+'.png', bgcolor:'#65C6BB', fgcolor:'white'},
-		{html:'Realiza tu test, ¡cuidado con el <b>tiempo</b>!', img:'./images/tour-3'+raiz+'.png', bgcolor:'#1BA39C', fgcolor:'white'},
-		{html:'Comprueba tus <b>progresos</b>', img:'./images/tour-4'+raiz+'.png', bgcolor:'#86e2d5', fgcolor:'white'},
+		{html:'<b>Bienvenido a Octopus</b>. <br> Si lo deseas, ahora puedes realizar una visita guiada. <br> <small>Desliza el dedo para continuar.</small>', img:'./images/m-swipe-left.png', bgcolor:'#65C6BB', fgcolor:'white'},
+		{html:'Toca en el icono de la <b>hamburguesa</b> (arriba, izquierda) para desplegar el menú', img:'./images/tour-1'+raiz+'.png', bgcolor:'#1BBC9B', fgcolor:'white'},
+		{html:'Descarga algún test de la <b>tienda</b>', img:'./images/tour-2'+raiz+'.png', bgcolor:'#1BA39C', fgcolor:'white'},
+		{html:'Realiza tu test, ¡cuidado con el <b>tiempo</b>!', img:'./images/tour-3'+raiz+'.png', bgcolor:'#66cc99', fgcolor:'white'},
+		{html:'Comprueba tus <b>progresos</b>', img:'./images/tour-4'+raiz+'.png', bgcolor:'#36d7b7', fgcolor:'white'},
 		]
 
 	var puntos=[]
@@ -1127,6 +1150,7 @@ VistaTourAplicacion.prototype.cambiaDiapo=function(i, cont){
 
 	cnt .css('color', slide.fgcolor)
 		.css('backgroundColor', slide.bgcolor)
+		.css('maxWidth', slide.maxWidth)
 		.find('.slide-t').html(slide.html)
 
 	var img=cnt.find('.slide-img')[0]
@@ -1141,6 +1165,7 @@ VistaTourAplicacion.prototype.creaDiapo=function(i, cont){
 	jQuery(cont)
 		.append( creaObjProp('div', {className:'slide-t', html:slide.html}) )
 		.append( creaObjProp('img', {className:'slide-img', src:slide.img}) )
+		.css('maxWidth', slide.maxWidth)
 		.css('color', slide.fgcolor)
 		.css('backgroundColor', slide.bgcolor)
 	}
@@ -1156,8 +1181,12 @@ VistaTourAplicacion.prototype.indicaPreguntaActivaEnMarcador=function(i){
 	this.ulLista.find('li.active').removeClass('active')
 	this.ulLista.find('li:eq('+i+')').addClass('active')
 	}
+VistaTourAplicacion.prototype.inicio=function(){
+	this.gallery.goToPage(0)
+	}
 VistaTourAplicacion.prototype.clickBtnOmitir=function(){
 	app.cargaVistaInicio()
+	save('tapp37_tourRealizado', 1)
 	}
 VistaTourAplicacion.prototype.clickBtnSiguiente=function(){
 	if (this.gallery.pageIndex==this.slides.length-1) 
@@ -2019,18 +2048,20 @@ VistaTienda.prototype.inflateMenu=function(){
 		}
 	}
 VistaTienda.prototype.backButton=function(vTo, vFrom){
-	if (vFrom.vista==app.vistaTest.id){
+	if (app.vistaTest && vFrom.vista==app.vistaTest.id){
 		//estaba haciendo un test
 		app.vistaTest.pausaTiempo()
 		}
 	else {
 		if (app.vistaActiva!=this)
-			this.show(true)
+			this.show(true, true)
 		this.navegaEl(vTo, vFrom)
 		}
 	}
 VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 	if (vTo && vTo.cd_test){
+
+
 		this.testPreview(vTo.cd_test, true)
 		}
 	else  {
@@ -2038,6 +2069,11 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			this.domBody.show()
 			this.domDetalleTest.hide()
 			}
+		
+		if (vFrom.vista==this.id && JSON.stringify(vTo)==JSON.stringify(this.urlBody)){
+			//la vista de domBody se puede mantener tal cual está
+			return
+		}
 
 		if (vFrom && vFrom.cd_categoria==-100 && vFrom.cd_test==null){//búsqueda
 			this.inicio(fromHistory)
@@ -2068,21 +2104,28 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			}
 		}
 	}
-VistaTienda.prototype.show=function(fromHistory){
+VistaTienda.prototype.show=function(fromHistory, willReposition){
 	Vista.prototype.show.call(this, fromHistory)
 
-	if (this.recuperarPosicion!=null)
-		this.doBuscarTest(null, this.recuperarPosicion, true) 
-	else {
-		this.inicio(fromHistory)
+	if (willReposition==null){
+		if (this.recuperarPosicion!=null)
+			this.doBuscarTest(null, this.recuperarPosicion, true) 
+		else {
+			this.inicio(fromHistory)
+			}
 		}
 	}
 VistaTienda.prototype.inicio=function(fromHistory, vFrom){
 	var xbtn=this.entornoLocal?jQuery('.btn.dispositivo'):jQuery('.btn.tienda')
 	this.cambiaEntorno(xbtn, fromHistory)
 	if (fromHistory && vFrom){
-		var cat=buscaFilas(app.cache.categorias, {cd_categoria:vFrom.cd_categoria})[0]
-		this.domBody.scrollTop( this.domBody.find('#cat-'+cat.cd_categoriapadre).offset().top-100 )
+		if (vFrom.cd_categoria){
+			var cat=buscaFilas(app.cache.categorias, {cd_categoria:vFrom.cd_categoria})[0]
+			
+			var xp=this.domBody.find('#cat-'+cat.cd_categoriapadre)
+			if (xp.length)
+				this.domBody.scrollTop( xp.offset().top-100 )
+			}
 		}
 	}
 //////
@@ -2091,7 +2134,7 @@ VistaTienda.prototype.buscarTest=function(){
 
 	if (isPhone()){
 		navigator.notification.prompt(
-		    '', //'Matrícula, nombre...',
+		    ' ', //'Matrícula, nombre...',
 		    function( result ) { //result.buttonIndex y result.input1
 		        switch ( result.buttonIndex ) {
 		            case 1:
@@ -2265,7 +2308,7 @@ VistaTienda.prototype.sacaPadresCategoria=function(cat){
 VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	if (!fromHistory) 
 		app.addToNav({vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:cd_categoria, cd_pack:cd_pack})
-
+	
 	if (this.domDetalleTest && this.domDetalleTest.is(':visible')){
 		this.domBody.show()
 		this.domDetalleTest.hide()
@@ -2300,6 +2343,8 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	this.cargarMas(this.cat.cd_categoria, cd_pack)
 	}
 VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
+	this.urlBody={vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:cd_categoria, cd_pack:cd_pack}
+
 	var tanda=10, packs=[]
 	//this.cat
 	var blCat=this.domBody.find('.cat#cat-'+cd_categoria)
@@ -2358,7 +2403,7 @@ VistaTienda.prototype.navegaPack=function(cd_categoria, fromHistory){
 VistaTienda.prototype.generaBtnCargarMas=function(cd_categoria, cssAdicional){
 	var self=this
 	return creaObjProp('button', {onclick:function(){self.cargarMas(cd_categoria)}, className:'cargarMas '+cssAdicional, hijos:[
-		creaObjProp('span', {className:'btn btn-warning', texto:'Más'})
+		creaObjProp('span', {className:'btn', texto:'Más'})
 		]} )
 	}
 VistaTienda.prototype.escogeTestsCatDinamica=function(cd_categoria, lista){
@@ -2717,7 +2762,6 @@ VistaTienda.prototype.testPreview=function(cd_test, fromHistory){
 		app.addToNav({vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:this.cat?this.cat.cd_categoria:null, cd_test:cd_test})
 
 	this.cambiaHeaderApp('cargando')
-
 	this.testPreview_montaDiv()
 
 	var loTengoEnLocal=buscaFilas(app.cache.testLocales, {cd_test:cd_test})
@@ -2961,12 +3005,13 @@ VistaTienda.prototype.compartir=function(test){
 		    function(buttonIndex){	
 		    	console.log(buttonIndex)
 
-		    	if (buttonIndex>=app.vistaSocial.grupos.length)
+		    	if (buttonIndex>app.vistaSocial.grupos.length)
 		    		return //cancel
 		    	else {
 			    	var gr=app.vistaSocial.grupos[buttonIndex-1]
 					app.vistaSocial.enviaTest(gr, test)
 					app.cargaVistaSocial(true, ':'+gr.cd_grupo)
+					app.addToNav({vista:app.vistaSocial.id, cd_grupo:gr.cd_grupo})
 					app.vistaSocial.getNuevosMsg()
 					}
 				})
@@ -2976,6 +3021,7 @@ VistaTienda.prototype.compartir=function(test){
 		var gr=app.vistaSocial.grupos[0]
 		app.vistaSocial.enviaTest(gr, test)	
 		app.cargaVistaSocial(true, ':'+gr.cd_grupo)
+		app.addToNav({vista:app.vistaSocial.id, cd_grupo:gr.cd_grupo})
 		app.vistaSocial.getNuevosMsg()
 		}
 	}
@@ -3068,9 +3114,11 @@ VistaTienda.prototype.descargaTest=function(cd_test, pruebaCompra){
 					},1500)
 				console.info('test '+cd_test+' descargado!, '+datos.test.numpreguntas+' preguntas')
 				}
-			else
+			else {
 				console.error(data)
-		})
+				xbtn.removeClass('cargando').addClass('btn-danger').text('Error al descargar')
+				}
+			})
 	}
 VistaTienda.prototype.compraTest=function(test){
 	var self=this
@@ -3092,17 +3140,25 @@ VistaTienda.prototype.compraTest=function(test){
 
 	var prod
     if (test.precio<=.5)
-    	prod='test_050eur'
+    	prod='test050eur'
     else if (test.precio=.6)
-    	prod='test_060eur'
+    	prod='test060eur'
 
     // Inform the store of your products
     console.log('registerProducts');
-    store.register({
-        id:     prod,
-        alias: 	prod,
-        type:   store.CONSUMABLE
-    	})
+    var xkeys=Object.keys(store.products.byAlias)
+    if (xkeys.indexOf(prod)==-1){
+	    store.register({
+	        id:     prod,
+	        alias: 	prod,
+	        type:   store.CONSUMABLE
+	    	})
+	    }
+
+	if ((store.get(prod).state==store.VALID || store.get(prod).state==store.REGISTERED) && this.procesandoOrden==null){
+		store.order(prod)
+		this.procesandoOrden=prod
+	}
 
     // When any product gets updated, refresh the HTML.
     store.when(prod).updated(function (p) {
@@ -3341,10 +3397,17 @@ VistaSocial.prototype.pushReceived=function(accion, datos){
 			app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture)
 			}
 		else if (this.domChatGrupo && this.domChatGrupo.is(':visible') ){
-			//en el chat: vibración y sacar el msg
-			if (navigator.notification) navigator.notification.beep(1)
-			this.domChatGrupo.find('.chat').append( this.carga1MsgGrupo(datos) )
-			this.scrollChat()
+			var bc=this.carga1MsgGrupo(datos)
+
+			if (bc==null){//ya existe
+				}
+			else {
+				//en el chat: vibración y sacar el msg
+				if (navigator.notification) navigator.notification.beep(1)
+
+				this.domChatGrupo.find('.chat').append(bc)
+				this.scrollChat()
+				}
 			}
 		else if (this.domEditarGrupo && this.domEditarGrupo.is(':visible') ){
 			//en el grupo, viendo los miembros: notificacion
@@ -3636,6 +3699,11 @@ VistaSocial.prototype.scrollChat=function(t){
 	this.domChatGrupo.find('.chat').animate({ scrollTop:bocadillo[0].scrollHeight }, t)
 	}
 VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
+	if (xmsg.cd_mensaje){
+		var msg=this.domChatGrupo.find('.bocadillo[data-id='+xmsg.cd_mensaje+']')
+		if (msg.length) return null
+		}
+
 	var yo=app.cache.usuario.cd_usuario
 
 	this.domChatGrupo.find('.chat .bocadillo.vacio').remove()
@@ -3647,8 +3715,8 @@ VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 	var f=formato.fechaUHora(xmsg.f)
 	var usu=buscaFilas(this.grupo.miembros, {cd_usuario:xmsg.cd_usuario})[0]
 	var hijos=[
-		creaObjProp('img', {className:'thumb-xs pull-left m-r-sm img-circle', src:usu.picture || './images/avatar_default.png'}),
-		creaObjProp('small', {className:'pull-right text-muted', texto:f}),
+		creaObjProp('img', {className:'thumb-xs m-r-sm img-circle', src:usu.picture || './images/avatar_default.png'}),
+		creaObjProp('small', {className:'fecha text-muted', texto:f}),
 		creaObjProp('div', {className:'row texto', hijos:[
 			creaObjProp('span', {className:'nombre', texto:usu.nombre}),
 			creaObjProp('span', {texto:xmsg.msg || espacioDuro})
@@ -3715,20 +3783,29 @@ VistaSocial.prototype.getDatosTest=function(cd_test, dom){
 			})
 	}
 VistaSocial.prototype.enviaMsg=function(){
+	var self=this
+
 	var t=this.txtEnviarMensaje.val()
+	if (t=='') return
 	var xmsg={cd_usuario:app.cache.usuario.cd_usuario, msg:t, f:new Date()}
-	this.domChatGrupo.find('.chat').append( this.carga1MsgGrupo(xmsg) )
+
 	this.txtEnviarMensaje.val('')
-
-	this.scrollChat()
 	this.txtEnviarMensaje.focus()
-
+	
 	jQuery.post(app.config.url,{accion:'nuevoMsgGrupo',
 								cd_grupo:this.grupo.cd_grupo, 
 								msg:t,
 							}).success(
 			function(data){
 				var datos=xeval(data)
+
+				// var yaExiste=self.domChatGrupo.find('.bocadillo[data-id='+datos.cd_mensaje+']')
+				// xmsg.cd_mensaje=datos.cd_mensaje
+				// if (yaExiste.length==0){
+				// 	var xdom=self.carga1MsgGrupo(xmsg)
+				// 	self.domChatGrupo.find('.chat').append( xdom )
+				// 	self.scrollChat()
+				// 	}
 			}
 		)
 	}
@@ -3770,7 +3847,7 @@ VistaSocial.prototype.generaDomTest=function(test){
 				//dFecha,
 				creaObjProp('div', {className:'frow', hijos:infoTienda}),
 				creaObjProp('div', {className:'frow', hijos:[
-					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:test.ds_test}) 
+					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto:(test.anho?test.anho+', ':'')+test.ds_test}) 
 					]}),
 				]})
 			]})
@@ -4234,7 +4311,7 @@ VistaAjustes.prototype.btnIntroducirCodigo=function(){
 VistaAjustes.prototype.btnMasInfoPromociones=function(){
 	window.open('http://www.octopusapp.es/web/faq.html#convenios', '_system')
 	}
-VistaAjustes.prototype.show=function(){
+VistaAjustes.prototype.show=function(desdeHistorial){
 	Vista.prototype.show.call(this, desdeHistorial)
 	this.domMenu.hide()
 	}
