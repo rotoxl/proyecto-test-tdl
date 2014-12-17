@@ -16,6 +16,22 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `archivos_tests`
+--
+
+DROP TABLE IF EXISTS `archivos_tests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `archivos_tests` (
+  `cd_test` int(11) NOT NULL,
+  `cd_archivo` varchar(250) NOT NULL,
+  `ds_archivo` varchar(250) DEFAULT NULL,
+  `tipo_archivo` varchar(250) DEFAULT NULL COMMENT 'preguntas, respuestas, imágenes, anexo...',
+  PRIMARY KEY (`cd_test`,`cd_archivo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `categorias`
 --
 
@@ -131,6 +147,8 @@ CREATE TABLE `tests` (
   `ds_test` varchar(250) DEFAULT NULL,
   `region` varchar(250) DEFAULT NULL,
   `organismo` varchar(250) DEFAULT NULL,
+  `grupo` varchar(50) DEFAULT NULL,
+  `anho` varchar(4) DEFAULT NULL,
   `img` varchar(400) DEFAULT NULL,
   `f_examen` datetime DEFAULT NULL,
   `fallosRestan` decimal(3,2) DEFAULT NULL COMMENT 'Ej: 0.25',
@@ -291,10 +309,11 @@ CREATE TABLE `usuarios_tests` (
   `precio` decimal(10,0) DEFAULT '0',
   `cd_moneda` varchar(3) DEFAULT 'EUR',
   `json_order` varchar(2000) DEFAULT NULL,
+  `json_actividad` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`cd_usuario`,`cd_test`),
   KEY `fk_testssss_idx` (`cd_test`),
-  CONSTRAINT `fk_usuariosss` FOREIGN KEY (`cd_usuario`) REFERENCES `usuarios` (`cd_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_testssss` FOREIGN KEY (`cd_test`) REFERENCES `tests` (`cd_test`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_testssss` FOREIGN KEY (`cd_test`) REFERENCES `tests` (`cd_test`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuariosss` FOREIGN KEY (`cd_usuario`) REFERENCES `usuarios` (`cd_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -361,6 +380,8 @@ SET character_set_client = utf8;
   `cd_test` tinyint NOT NULL,
   `ds_test` tinyint NOT NULL,
   `matricula` tinyint NOT NULL,
+  `anho` tinyint NOT NULL,
+  `grupo` tinyint NOT NULL,
   `img` tinyint NOT NULL,
   `f_examen` tinyint NOT NULL,
   `organismo` tinyint NOT NULL,
@@ -391,7 +412,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013  */
 /*!50001 VIEW `vs_preguntasconcaracteresextranhos` AS select `preguntas_tests`.`cd_test` AS `cd_test`,`preguntas_tests`.`cd_pregunta` AS `cd_pregunta`,`preguntas_tests`.`pregunta` AS `pregunta`,`preguntas_tests`.`cd_respuestacorrecta` AS `cd_respuestacorrecta`,`preguntas_tests`.`respuesta0` AS `respuesta0`,`preguntas_tests`.`respuesta1` AS `respuesta1`,`preguntas_tests`.`respuesta2` AS `respuesta2`,`preguntas_tests`.`respuesta3` AS `respuesta3`,`preguntas_tests`.`respuesta4` AS `respuesta4`,`preguntas_tests`.`respuesta5` AS `respuesta5`,`preguntas_tests`.`recursopregunta` AS `recursopregunta`,`preguntas_tests`.`recursorespuesta0` AS `recursorespuesta0`,`preguntas_tests`.`recursorespuesta1` AS `recursorespuesta1`,`preguntas_tests`.`recursorespuesta2` AS `recursorespuesta2`,`preguntas_tests`.`recursorespuesta3` AS `recursorespuesta3`,`preguntas_tests`.`recursorespuesta4` AS `recursorespuesta4`,`preguntas_tests`.`recursorespuesta5` AS `recursorespuesta5`,`preguntas_tests`.`notas` AS `notas` from `preguntas_tests` where (concat(`preguntas_tests`.`pregunta`,`preguntas_tests`.`respuesta0`,`preguntas_tests`.`respuesta1`,`preguntas_tests`.`respuesta2`,`preguntas_tests`.`respuesta3`) like '%quo%') */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -410,7 +431,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013  */
 /*!50001 VIEW `vs_preguntasqueempiezanporcarraros` AS select `preguntas_tests`.`cd_test` AS `cd_test`,`preguntas_tests`.`cd_pregunta` AS `cd_pregunta`,`preguntas_tests`.`pregunta` AS `pregunta`,`preguntas_tests`.`respuesta0` AS `respuesta0`,`preguntas_tests`.`respuesta1` AS `respuesta1`,`preguntas_tests`.`respuesta2` AS `respuesta2`,`preguntas_tests`.`respuesta3` AS `respuesta3`,`preguntas_tests`.`respuesta4` AS `respuesta4`,`preguntas_tests`.`respuesta5` AS `respuesta5` from `preguntas_tests` where (not((`preguntas_tests`.`pregunta` regexp '^[[:alpha:]]'))) order by `preguntas_tests`.`pregunta` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -429,8 +450,8 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vs_testpreview` AS select `t`.`cd_test` AS `cd_test`,`t`.`ds_test` AS `ds_test`,`t`.`matricula` AS `matricula`,`t`.`img` AS `img`,`t`.`f_examen` AS `f_examen`,`t`.`organismo` AS `organismo`,`t`.`numPreguntas` AS `numPreguntas`,`t`.`fallosRestan` AS `fallosRestan`,`t`.`admiteReordenarPreguntas` AS `admiteReordenarPreguntas`,`t`.`admiteReordenarRespuestas` AS `admiteReordenarRespuestas`,`t`.`minutos` AS `minutos`,`t`.`region` AS `region`,`t`.`precio` AS `precio`,`t`.`cd_moneda` AS `cd_moneda`,(select count(`l`.`CD_Usuario`) from `usuarios_likes` `l` where (`t`.`cd_test` = `l`.`CD_Test`)) AS `likes`,concat(',',(select group_concat(`tc2`.`cd_categoria` separator ',') from `test_categorias` `tc2` where (`t`.`cd_test` = `tc2`.`cd_test`)),',') AS `lisCat`,`tt`.`f_ejecucion` AS `fu_modificacion` from (`tests` `t` left join `tests_t` `tt` on(((`t`.`cd_test` = `tt`.`cd_test`) and (`tt`.`cd_operacion` = 'Alta')))) */;
+/*!50013  */
+/*!50001 VIEW `vs_testpreview` AS select `t`.`cd_test` AS `cd_test`,`t`.`ds_test` AS `ds_test`,`t`.`matricula` AS `matricula`,`t`.`anho` AS `anho`,`t`.`grupo` AS `grupo`,`t`.`img` AS `img`,`t`.`f_examen` AS `f_examen`,`t`.`organismo` AS `organismo`,`t`.`numPreguntas` AS `numPreguntas`,`t`.`fallosRestan` AS `fallosRestan`,`t`.`admiteReordenarPreguntas` AS `admiteReordenarPreguntas`,`t`.`admiteReordenarRespuestas` AS `admiteReordenarRespuestas`,`t`.`minutos` AS `minutos`,`t`.`region` AS `region`,`t`.`precio` AS `precio`,`t`.`cd_moneda` AS `cd_moneda`,(select count(`l`.`CD_Usuario`) from `usuarios_likes` `l` where (`t`.`cd_test` = `l`.`CD_Test`)) AS `likes`,concat(',',(select group_concat(`tc2`.`cd_categoria` separator ',') from `test_categorias` `tc2` where (`t`.`cd_test` = `tc2`.`cd_test`)),',') AS `lisCat`,`tt`.`f_ejecucion` AS `fu_modificacion` from (`tests` `t` left join `tests_t` `tt` on(((`t`.`cd_test` = `tt`.`cd_test`) and (`tt`.`cd_operacion` = 'Alta')))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -444,4 +465,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-05 12:15:06
+-- Dump completed on 2014-12-17  9:12:39
