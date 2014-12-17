@@ -181,7 +181,7 @@ class Metadatos{
   		return $response;
 		}
 	public function sendPushGrupo($cd_grupo, $excluir, $datos){
-		$gr=$this->conn->lookupFilas('select cd_dispositivo, ug.cd_usuario from usuarios u, usuarios_grupos ug 
+		$gr=$this->conn->lookupFilas('select distinct cd_dispositivo, ug.cd_usuario from usuarios u, usuarios_grupos ug 
 										where ug.cd_usuario=u.cd_usuario and cd_grupo=?', 
 									array($cd_grupo))->filas;
 		$arr=array();
@@ -389,10 +389,10 @@ class Metadatos{
 				exists (select * from usuarios_tests ut where ut.cd_test=v.cd_test and ut.cd_usuario=?) as lotengo
 			from vs_testpreview v
 			where 
-				concat( anho,  ' ',
-						grupo, ' ', 
+				concat( ifnull(anho, ''),  ' ',
+						ifnull(grupo, ''), ' ', 
 						v.ds_test, ' ', 
-						v.matricula, ' ', 
+						ifnull(v.matricula, ''), ' ', 
 						ifnull(v.organismo, ''), ' ', 
 						ifnull(v.region, ''), ' ', 
 						case f_examen when  not null then date_format(f_examen, 'dd-mm-yyyy') else  '' end
@@ -415,7 +415,7 @@ class Metadatos{
 		}
 	//////
 	public function vinculaTestConUsuario($cd_usuario, $cd_test, $json_order, $precio, $cd_moneda){
-		$sql=vinculaTestConUsuario_getSql($cd_usuario, $cd_test, $json_order, $precio, $cd_moneda);
+		$sql=$this->vinculaTestConUsuario_getSql($cd_usuario, $cd_test, $json_order, $precio, $cd_moneda);
 		if ($sql!=null){
 			$this->conn->ejecuta($sql->sql, $sql->param);
 			}
@@ -589,7 +589,7 @@ class Metadatos{
 			'cd_grupo'=>$cd_grupo,
 			'cd_usuario'=>    $cd_usuario,
 			'msg'=>    $msg,
-			'cd_msg'=> $idx,
+			'cd_mensaje'=> $idx,
 			'test'=>   $test,
 			'badge'=>  null,
 			'f_msg'=>  $this->fechaHora(),
@@ -597,6 +597,7 @@ class Metadatos{
 
 		$titAlt='Nuevo mensaje de '.$cd_usuario; $msgAlt=$msg;
 		$this->sendPushGrupo($cd_grupo, $cd_usuario, $this->genDatosPush('vistaSocial', 'mensajeGrupo', $datos, $titAlt, $msgAlt) );
+		return $idx;
 		}
 	public function guardarGrupo($datos, $cd_usuario){
 		$arrSql=array(); $ususQueNoExisten=null;

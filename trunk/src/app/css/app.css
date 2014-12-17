@@ -154,17 +154,17 @@ section#main_container {
     background-color: #41586e;
     color: #9db1c5; }
     section#main_container aside .header, section#main_container aside .footer {
-      min-height: 52px;
+      min-height: 50px;
       padding: 0 15px; }
     section#main_container aside .header {
       background-color: #89cc97; }
-    section#main_container aside nav.nav-primary {
+    section#main_container aside nav {
       border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-      section#main_container aside nav.nav-primary li {
+      section#main_container aside nav li {
         line-height: 1.5;
         position: relative;
         display: block; }
-        section#main_container aside nav.nav-primary li a {
+        section#main_container aside nav li a {
           padding: 11px 15px;
           position: relative;
           font-weight: bold;
@@ -173,11 +173,11 @@ section#main_container {
           border-color: rgba(255, 255, 255, 0.05);
           transition: color .3s ease-in-out 0s;
           color: #adbece; }
-          section#main_container aside nav.nav-primary li a:hover {
+          section#main_container aside nav li a:hover {
             background-color: rgba(0, 0, 0, 0.05); }
-            section#main_container aside nav.nav-primary li a:hover i b {
+            section#main_container aside nav li a:hover i b {
               width: 100%; }
-          section#main_container aside nav.nav-primary li a i {
+          section#main_container aside nav li a i {
             margin: -12px -15px;
             line-height: 44px;
             width: 44px;
@@ -189,10 +189,10 @@ section#main_container {
             position: relative;
             overflow: hidden;
             color: #fff; }
-            section#main_container aside nav.nav-primary li a i:before {
+            section#main_container aside nav li a i:before {
               position: relative;
               z-index: 2; }
-            section#main_container aside nav.nav-primary li a i b {
+            section#main_container aside nav li a i b {
               position: absolute;
               left: 0;
               width: 1px;
@@ -200,16 +200,19 @@ section#main_container {
               bottom: 0;
               z-index: 0;
               transition: left .25s; }
-        section#main_container aside nav.nav-primary li.active a {
+        section#main_container aside nav li.active a {
           background-color: rgba(0, 0, 0, 0.05);
           color: white; }
-          section#main_container aside nav.nav-primary li.active a i b {
+          section#main_container aside nav li.active a i b {
             width: 100%; }
-      section#main_container aside nav.nav-primary li.continuarTest b.bg {
+      section#main_container aside nav li.continuarTest b.bg {
         background-color: #fb6b5b; }
 
 .nomargin {
   margin: 0; }
+
+.nopadding {
+  padding: 0; }
 
 .fa-8x, .fa-stack-8x {
   font-size: 8em; }
@@ -317,7 +320,7 @@ section#main_container {
     border-radius: 500px; }
 
 .thumb-xs {
-  width: 18px;
+  width: 38px;
   display: inline-block; }
 
 .m-r-sm {
@@ -362,7 +365,7 @@ h1, h2, h3, h4, h4, small {
   background-color: #8ec165;
   color: #ebf4e4; }
 
-.btn-warning {
+.btn-warning, .btn-warning:active {
   border-color: #f0ad4e; }
 
 .btn-primary, .btn-primary:hover, .btn-primary.active,
@@ -400,7 +403,8 @@ h1, h2, h3, h4, h4, small {
   background-color: transparent !important;
   color: #25313e !important; }
 
-.btn:active, .btn.active {
+.vista-header .btn:active,
+.vista-header .btn.active {
   background: rgba(0, 0, 0, 0.1) !important;
   box-shadow: 0 0 0;
   border-color: rgba(0, 0, 0, 0.1) !important; }
@@ -731,7 +735,7 @@ article.card, article.pack {
         margin-top: 4px;
         opacity: 0.3; }
   #content .vista.vistaTienda .vista-body {
-    padding-bottom: 10px; }
+    padding-bottom: 30px; }
     #content .vista.vistaTienda .vista-body .bloque {
       margin-left: 15px !important;
       margin-right: 0px !important; }
@@ -750,7 +754,10 @@ article.card, article.pack {
           padding: 3px 9px;
           font-size: 16px;
           text-transform: uppercase;
-          border-radius: 0; }
+          border-radius: 0;
+          box-shadow: 0 0 0;
+          background: #f0ad4e !important;
+          color: white; }
       #content .vista.vistaTienda .vista-body .bloque .titulo .cargarMas {
         margin-right: 5px;
         float: right;
@@ -784,7 +791,8 @@ article.card, article.pack {
       #content .vista.vistaTienda .detalle-test section.row.botonera {
         padding-left: .3rem;
         padding-right: 1rem;
-        padding-bottom: 1rem;
+        padding-top: 5px;
+        padding-bottom: 3px;
         border-top-style: dashed; }
       #content .vista.vistaTienda .detalle-test section.row .data {
         padding-right: 1rem;
@@ -865,7 +873,8 @@ article.card, article.pack {
       padding: 1px 0; }
     #content .vista.vistaTienda .detalle-test .btn-stack {
       border: 0;
-      padding-top: 0; }
+      padding-top: 0;
+      margin-top: 5px; }
       #content .vista.vistaTienda .detalle-test .btn-stack .fa-stack {
         border: 1px solid #cccccc;
         border-radius: 50%; }
@@ -1097,11 +1106,11 @@ article.card, article.pack {
         #content .vista.vistaSocial .chat .bocadillo.has-test .row.texto, #content .vista.vistaSocial .chat .bocadillo.has-badge .row.texto {
           padding-bottom: 20px !important; }
         #content .vista.vistaSocial .chat .bocadillo.has-test {
-          min-height: 170px; }
+          min-height: 185px; }
           #content .vista.vistaSocial .chat .bocadillo.has-test > .card.test {
             float: right;
             margin-right: 65px;
-            margin-top: -40px; }
+            margin-top: -50px; }
           #content .vista.vistaSocial .chat .bocadillo.has-test > .row.has-test {
             float: right;
             margin-right: 60px;
@@ -1117,6 +1126,15 @@ article.card, article.pack {
               background-size: 50px; }
         #content .vista.vistaSocial .chat .bocadillo:nth-child(2n) {
           background-color: #f8f8f8 !important; }
+        #content .vista.vistaSocial .chat .bocadillo .fecha {
+          float: right; }
+        #content .vista.vistaSocial .chat .bocadillo img.thumb-xs {
+          float: left; }
+        #content .vista.vistaSocial .chat .bocadillo.msg-mio .fecha {
+          float: left;
+          margin-left: 5px; }
+        #content .vista.vistaSocial .chat .bocadillo.msg-mio img.thumb-xs {
+          float: right; }
         #content .vista.vistaSocial .chat .bocadillo img {
           margin-left: 15px; }
         #content .vista.vistaSocial .chat .bocadillo .row.texto {
@@ -1201,14 +1219,14 @@ article.card, article.pack {
     height: 100% !important;
     left: 0 !important;
     width: 100% !important;
-    background-color: white;
-    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5); }
+    background-color: white; }
     #content .vista.vistaTourAplicacion #swypeWrapper {
       position: absolute !important;
       width: 100%;
       left: 0;
       top: 0%;
-      bottom: 0; }
+      bottom: 0;
+      background-color: #86e2d5; }
       #content .vista.vistaTourAplicacion #swypeWrapper .slide-img {
         max-width: 80%;
         margin-left: 10%; }
@@ -1217,8 +1235,6 @@ article.card, article.pack {
         width: 100%;
         text-align: center;
         font-size: 120%; }
-      #content .vista.vistaTourAplicacion #swypeWrapper #swipeview-slider > div {
-        box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5); }
     #content .vista.vistaTourAplicacion footer {
       z-index: 1;
       background: rgba(0, 0, 0, 0.4);
@@ -1227,7 +1243,8 @@ article.card, article.pack {
       width: 100%;
       position: absolute; }
       #content .vista.vistaTourAplicacion footer .btn-group {
-        width: 100%; }
+        width: 100%;
+        font-size: 20px; }
         #content .vista.vistaTourAplicacion footer .btn-group button {
           background: transparent;
           color: white;
@@ -1235,14 +1252,16 @@ article.card, article.pack {
           height: 100%;
           padding: 10px; }
       #content .vista.vistaTourAplicacion footer ul {
-        text-align: center; }
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0; }
         #content .vista.vistaTourAplicacion footer ul li {
           background-color: rgba(255, 255, 255, 0.3);
           display: inline-block;
           width: 12px;
           height: 12px;
           border-radius: 50%;
-          margin-top: 13px;
+          margin-top: 15px;
           margin-left: 5px;
           margin-right: 5px; }
           #content .vista.vistaTourAplicacion footer ul li.active {
@@ -1358,22 +1377,34 @@ article.card, article.pack {
 
   aside .vbox > footer {
     position: absolute;
-    bottom: 10px;
-    left: 2.5%;
-    width: 95%;
-    min-height: 45px;
-    height: 45px;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    min-height: 145px;
     color: #adbece;
-    padding: 5px 5px 0 5px !important; }
-    aside .vbox > footer .ajustes, aside .vbox > footer .logout {
-      font-size: 22px;
+    padding: 5px 0px 0 0px !important; }
+    aside .vbox > footer .btn-group {
+      width: 100%;
+      padding: 5px 0 5px 1px; }
+    aside .vbox > footer li {
+      height: 40px; }
+    aside .vbox > footer .ajustes, aside .vbox > footer .tour {
       line-height: 26px;
-      width: 44px !important;
+      color: #adbece !important;
+      background: inherit !important; }
+      aside .vbox > footer .ajustes i, aside .vbox > footer .tour i {
+        margin-right: 23px; }
+    aside .vbox > footer .logout {
+      font-size: 22px;
+      line-height: 30px;
+      width: 50px !important;
       color: #adbece !important; }
     aside .vbox > footer .avatar {
-      width: 50%; }
+      padding-left: 6px;
+      width: 70%; }
       aside .vbox > footer .avatar .pic {
-        width: 30px; }
+        width: 30px;
+        margin-right: 12px; }
       aside .vbox > footer .avatar .nombre {
         float: left;
         font-size: 13px;
@@ -1537,7 +1568,7 @@ article.card, article.pack {
 
   .navbar-nav.navbar-right:last-child {
     margin-right: -15px; } }
-@media (max-width: 320px) {
+@media (max-width: 384px) {
   #content .vista.vistaTienda .detalle-test section.row .data {
     padding-left: 1rem; }
 
