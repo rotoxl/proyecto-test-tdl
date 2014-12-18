@@ -121,6 +121,10 @@ body.login.no-connection  {
 header#navigation_bar, section#main_container{
 	min-width:320px; //iphone5
 	}
+section#main_container{
+	overflow-x:hidden!important;
+	}
+
 .ellipsis{
 	white-space: nowrap;
 	overflow: hidden;
@@ -968,8 +972,6 @@ article.card, article.pack{
 
 		}
 		.vista-body{
-			padding-bottom:30px;
-			
 			
 			.bloque{
 				margin-left:15px!important; margin-right:0px!important;
@@ -1012,6 +1014,10 @@ article.card, article.pack{
 					// background:url(../images/cat-1.png) no-repeat center center;
 					// background-size:cover;
 				}//enfermeria
+			
+				&:last-child{
+					padding-bottom:20px;
+				}
 			}
 	
 		}
@@ -1193,7 +1199,7 @@ article.card, article.pack{
 			}
 			.btnDesinstalar{margin-left:-3px;}
 
-			.btnAbrir{margin-top:5px;}
+			.btnAbrir, .btnDescargar{margin-top:5px;}
 			.btnAbrir, .btnLove, .loTengo, .btnDesinstalar{display:none !important;}
 			.btnDescargar{display:inline-block;}
 
@@ -1298,7 +1304,7 @@ article.card, article.pack{
 		}
 
 		.resultados{ 
-			height:40px;
+			height:40px; display:none;
 
 			div {
 				border-color:rgba(255, 255, 255,.1);
@@ -1320,13 +1326,13 @@ article.card, article.pack{
 				border:0;
 				padding-left:10px; 
 				padding-right:10px; 
-
+				max-width: 65px;
 			}
 
 			h5 {
 				margin-top:5px; margin-bottom:0;
 				margin-left: 0; padding-left:0;
-				font-weight: bold; font-size:13px;
+				font-size:14px;
 			}
 			span.grupo-personas{
 				margin-left: 0; padding-left:0;

@@ -420,7 +420,9 @@ Controlador.prototype.init=function(){
 					($targets[index] !='#') && jQuery($targets[index]).toggleClass($classes[index]);
 					});
 			$this.toggleClass('active');
-			});
+
+			app.toggleMenuGlobal( !jQuery('.aside-md').hasClass('nav-off-screen') )
+			})
 	
 	document.addEventListener('backbutton', function(){app.backButton()}, false)
 	window.addEventListener('resize', function(){app.resize()}, false)
@@ -728,10 +730,14 @@ Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
 	}
 Controlador.prototype.abreNavDrawer=function(){
 	jQuery('aside.aside-md').addClass('nav-off-screen')
+
+	this.toggleMenuGlobal(false)
 	}
 Controlador.prototype.cierraNavDrawer=function(){
 	jQuery('#main_container aside.nav-off-screen').removeClass('nav-off-screen')
 	jQuery('.btn-navdrawer.active').removeClass('active')
+
+	this.toggleMenuGlobal(true)
 	}
 /////
 Controlador.prototype.continuarTest=function(desdeHistorial){
@@ -917,6 +923,9 @@ Controlador.prototype.addToNav=function(el){
 
 	app.vistaActiva.navActivo=el
 	}
+Controlador.prototype.toggleMenuGlobal=function(visible, inmediate){
+	app.vistaActiva.toggleMenuGlobal(visible, inmediate)
+	}
 ////////////////////////////////////////////////
 
 //Todas las vistas tienen un vista-header y un vista-body
@@ -997,9 +1006,8 @@ Vista.prototype.show=function(desdeHistorial){
 Vista.prototype.getHeader=function(){}
 Vista.prototype.getBody=function(){}
 Vista.prototype.resize=function(){
-	jQuery('#content').height( window.innerHeight- jQuery('#navigation_bar').innerHeight() )
-
-	this.hVista=jQuery('#content').height()
+	this.hVista=window.innerHeight- jQuery('#navigation_bar').innerHeight()
+	jQuery('#content').height( this.hVista )
 	this.domBody.height( this.hVista- (this.domHeader?this.domHeader.outerHeight():0) )
 	}
 Vista.prototype.tareasPostCarga=function(){}
@@ -1020,10 +1028,13 @@ Vista.prototype.cambiaHeaderApp=function(titulo){
 	nb.find('.barra.global').hide()
 	nb.find('.barra.vista').show()
 	nb.find('.barra.vista .navbar-brand').text(titulo)
+	this.toggleMenuGlobal(false)
 	}
 Vista.prototype.restauraHeaderApp=function(){
 	var nb=jQuery('#navigation_bar')
+	this.toggleMenuGlobal(true, true)
 	nb.find('.barra.global').show()
+
 	nb.find('.barra.vista').hide()
 	}
 Vista.prototype.admonition=function(titulo, texto, icono, subtexto){
@@ -1098,6 +1109,14 @@ Vista.prototype.initSwype=function(cont, numPaginas, conPortada){
 		})
 
 	this.gallery=gallery
+	}
+Vista.prototype.toggleMenuGlobal=function(visible, inmediate){
+	var menu=jQuery('.barra.global .btn-menu')	
+	
+	if (visible)
+		menu.fadeIn()
+	else 
+		menu.fadeOut()
 	}
 ////////////////////////////////////////////////
 
@@ -1197,6 +1216,10 @@ VistaTourAplicacion.prototype.clickBtnSiguiente=function(){
 VistaTourAplicacion.prototype.resize=function(){
 	//css	
 	}
+VistaTourAplicacion.prototype.toggleMenuGlobal=function(visible, inmediate){
+	var menu=jQuery('.barra.global .btn-menu')	
+	menu.fadeOut()
+	}
 ////////////
 function VistaTest(test, respuestas, desdeHistorial){
 	if (test==null) return
@@ -1224,7 +1247,7 @@ function VistaTest(test, respuestas, desdeHistorial){
 	this.preguntas.splice(0,0, null); this.preguntas.push(null)
 	this.respuestas.splice(0,0, null); this.respuestas.push(null)
 
-	this.domMenu=jQuery('.barra .btn-menu')
+	this.domMenu=jQuery('.barra.vista .btn-menu')
 
 	if (!desdeHistorial) 
 		app.pushState(this.id)
@@ -1334,6 +1357,10 @@ VistaTest.prototype.domInformarErrorPregunta=function(cd_test, cd_pregunta, msg)
 		function(data){
 			app.showToast('Se ha informado del error para subsanarlo. Gracias por colaborar')
 			})
+	}
+VistaTest.prototype.toggleMenuGlobal=function(visible, inmediate){
+	var menu=jQuery('.barra.global .btn-menu')	
+	menu.fadeOut()
 	}
 //////
 VistaTest.prototype.cambiaDiapo=function(i, cont){
@@ -1979,6 +2006,10 @@ VistaRepasoTest.prototype.getHeader=function(){
 VistaRepasoTest.prototype.guardaEstadoExamen=function(){}
 VistaRepasoTest.prototype.toggleEstrella=function(){}
 VistaRepasoTest.prototype.marcaResp=function(){}
+VistaRepasoTest.prototype.toggleMenuGlobal=function(visible, inmediate){
+	var menu=jQuery('.barra.global .btn-menu')	
+	menu.fadeOut()
+	}
 ////////////////////////////////////////////////
 
 function VistaTienda(desdeHistorial, entornoLocal, cd_test){
@@ -1991,7 +2022,7 @@ function VistaTienda(desdeHistorial, entornoLocal, cd_test){
 
 	this.entornoLocal=entornoLocal
 	// this.domDetalleTest=null
-	this.domMenu=jQuery('.barra .btn-menu')
+	this.domMenu=jQuery('.barra.vista .btn-menu, .barra.global .btn-menu')
 
 	// if (!desdeHistorial) 
 	// 	app.pushState(this.id)
@@ -2126,6 +2157,22 @@ VistaTienda.prototype.inicio=function(fromHistory, vFrom){
 			if (xp.length)
 				this.domBody.scrollTop( xp.offset().top-100 )
 			}
+		}
+	}
+VistaTienda.prototype.toggleMenuGlobal=function(visible, inmediate){
+	var menu=jQuery('.barra.global .btn-menu')	
+	
+	if (visible){
+		if (inmediate)
+			menu.show()
+		else 
+			menu.fadeIn()
+		}
+	else{
+		if (inmediate)
+			menu.hide()
+		else 
+			menu.fadeOut()
 		}
 	}
 //////
@@ -3017,8 +3064,8 @@ VistaTienda.prototype.compartir=function(test){
 				})
 		}
 	else {//
-		console.log('Comparto con el primer grupo que haya')
-		var gr=app.vistaSocial.grupos[0]
+		console.log('Comparto con el último grupo que haya')
+		var gr=gr[gr.length-1]
 		app.vistaSocial.enviaTest(gr, test)	
 		app.cargaVistaSocial(true, ':'+gr.cd_grupo)
 		app.addToNav({vista:app.vistaSocial.id, cd_grupo:gr.cd_grupo})
@@ -3299,7 +3346,7 @@ function VistaSocial(desdeHistorial, gid){
 
 	this.recuperarPosicion=gid
 	this.txtEnviarMensaje=null
-	this.domMenu=jQuery('.barra.vista .btn-menu, .barra.global .btn-menu')
+	this.domMenu=jQuery('.barra.vista .btn-menu')
 	this.domChatGrupo=null
 	this.domEditarGrupo=null
 
@@ -3403,7 +3450,8 @@ VistaSocial.prototype.pushReceived=function(accion, datos){
 				}
 			else {
 				//en el chat: vibración y sacar el msg
-				if (navigator.notification) navigator.notification.beep(1)
+				if (datos.cd_usuario!=app.cache.usuario.cd_usuario)
+					navigator.notification.beep(1)
 
 				this.domChatGrupo.find('.chat').append(bc)
 				this.scrollChat()
@@ -3467,6 +3515,11 @@ VistaSocial.prototype.show=function(desdeHistorial){
 	//por si aca
 	if (this.grupos.length==0) this.getData()
 	}
+VistaSocial.prototype.toggleMenuGlobal=function(visible){
+	var menu=jQuery('.barra.global .btn-menu')	
+	menu.fadeOut()
+	}
+////
 VistaSocial.prototype.getData=function(){
 	var self=this
 	jQuery.get(app.config.url, {accion:'getMisGrupos'}).success(
@@ -3799,6 +3852,12 @@ VistaSocial.prototype.enviaMsg=function(){
 			function(data){
 				var datos=xeval(data)
 
+				if (isPhone()){
+					xmsg.cd_mensaje=datos.cd_mensaje
+					var xdom=self.carga1MsgGrupo(xmsg)
+					self.domChatGrupo.find('.chat').append( xdom )
+					self.scrollChat()	
+					}
 				// var yaExiste=self.domChatGrupo.find('.bocadillo[data-id='+datos.cd_mensaje+']')
 				// xmsg.cd_mensaje=datos.cd_mensaje
 				// if (yaExiste.length==0){
@@ -4217,6 +4276,14 @@ VistaEstadisticas.prototype.testData=function(){
 		ret.push(el)
 		}
 	return ret
+	}
+VistaEstadisticas.prototype.toggleMenuGlobal=function(visible){
+	var menu=jQuery('.barra.global .btn-menu')	
+	
+	if (visible)
+		menu.fadeIn()
+	else
+		menu.fadeOut()
 	}
 ////////////////////////////////////////////////
 function VistaAjustes(desdeHistorial){
