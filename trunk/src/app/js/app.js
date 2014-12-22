@@ -2119,6 +2119,7 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			}
 		
 		if (vFrom.vista==this.id && JSON.stringify(vTo)==JSON.stringify(this.urlBody)){
+			this.ajustaAlturaCard(jQuery('.card.pack'))
 			//la vista de domBody se puede mantener tal cual está
 			return
 		}
@@ -2728,6 +2729,11 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 			]})
 	}
 VistaTienda.prototype._generaDomPack=function(pack, j, cat){
+	if (this.anchoTarjetas<11) {
+		console.log('error ancho tarjetas')
+		this.calculaAnchoTarjetas()
+		}
+
 	var self=this
 	var ret= creaObjProp('article', {'style.width':this.anchoTarjetas+'px', id:'pack-'+pack.cd_categoria, 'data-id':pack.cd_categoria, className:'main card pack', hijos:[
 			creaObjProp('div', {className:'body', i:pack.i}),
@@ -2755,13 +2761,13 @@ VistaTienda.prototype.ajustaAlturaCard=function(ret){
 
 	if (xret.length>1){
 		var xxret=jQuery(xret[0])
-		h= xxret.innerHeight()
-		w= xxret.innerWidth()
+		h= xxret.outerHeight()
+		w= xxret.outerWidth()
 		esTest= xxret.hasClass('test')
 		}
 	else {
-		h=xret.innerHeight()
-		w=xret.innerWidth()
+		h=xret.outerHeight()
+		w=xret.outerWidth()
 		esTest=xret.hasClass('test')
 		}
 
@@ -3215,12 +3221,17 @@ VistaTienda.prototype.descargaTest=function(cd_test, pruebaCompra){
 				self.anhadeATestLocales(datos.test)
 				app.cache.catsConTestLocales=app.catsConTestLocales()
 
-				if (self.entornoLocal){
-					self.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
-					}
-				else{
-					self.pintaPortadaTienda(app.cache.categorias, app.cache.testTienda)
-					}
+				var idcat=datos.test.liscat.split(',')[0]
+				var cat=buscaFilas(app.cache.categorias, {cd_categoria:idcat})
+				jQuery('article.card[id=test-'+datos.test.cd_test+']').replaceWith(
+					self._generaDomTest(datos.test, null, cat)
+					)
+				// if (self.entornoLocal){
+				// 	self.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
+				// 	}
+				// else{
+				// 	self.pintaPortadaTienda(app.cache.categorias, app.cache.testTienda)
+				// 	}
 
 				setTimeout(function(){
 					self.domDetalleTest.addClass('tengo-este-test')
