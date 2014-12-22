@@ -506,7 +506,8 @@ article.card, article.pack {
       #content .vista .vista-body article.pack {
         background-color: rgba(46, 62, 78, 0.8);
         color: #9db1c5 !important;
-        border-radius: 500px; }
+        border-radius: 500px;
+        min-width: 140px; }
         #content .vista .vista-body article.pack i {
           margin-top: 15px;
           font-size: 90px !important;
