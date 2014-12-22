@@ -74,19 +74,49 @@
 			else
 				return false 
 			}
-		function prepareLoginSinConexion(){
-			jQuery('body').addClass('no-connection')	
-			jQuery('.status').html('<p>No se ha podido conectar con el servidor.  </p> <p>Puedes entrar y continuar con los tests que ya tengas, pero no podrás descargar nuevos.</p>')
-			jQuery('.login .throbber').hide()
+		function prepareLoginSinConexion(sinConexion){
+			if (sinConexion==null || sinConexion==true){
+				jQuery('body').addClass('no-connection')
+				jQuery('.login .screens').show()	
+				jQuery('.status').html('<p>No se ha podido conectar con el servidor.  </p> <p>Puedes entrar y continuar con los tests que ya tengas, pero no podrás descargar nuevos.</p>')
+				jQuery('.login .throbber').hide()
+				jQuery('.btn.btn-native, .btn.btn-web').hide()
+				}
+			else {
+				jQuery('body').removeClass('no-connection')
+				jQuery('.login .screens').show()	
+				jQuery('.status').empty()
+				jQuery('.login .throbber').hide()
+				jQuery('.btn.btn-native, .btn.btn-web, .btn-no-connection').hide()
+				}
+
 			}
 		function loginSinConexion(){
 			document.location.replace('./prod.html?noHayDatos')
 			}
+		function backButton(){
+			navigator.app.exitApp()
+			}
+		
+		function setOffline(v){
+			init()
+			}
+		var eventosColocados=false
 		function init(){
+
+			if (eventosColocados==false){
+				document.addEventListener('backbutton', function(){backButton()}, false)
+				document.addEventListener('offline', function(){setOffline(true)}, false)
+				document.addEventListener('online', function(){setOffline(false)}, false)
+				eventosColocados=true
+				}
+
 			if (navigator.connection && navigator.connection.type==Connection.NONE){
 				prepareLoginSinConexion()
 				return
 				}
+			else
+				prepareLoginSinConexion(false)
 			
 			if (!isPhone() ){
 				if (get('tapp37_yanoshavisitado')=='1')
@@ -116,8 +146,10 @@
 					}
 				}
 			}
-		if (isPhone())
+
+		if (isPhone()) {
           	document.addEventListener('deviceready', function(){init()}, true)
+			}
       	else
           	jQuery(document).ready(function(){init()} )
 	</script>
