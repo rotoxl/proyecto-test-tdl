@@ -144,9 +144,9 @@ function buscaFilas(filas, dicBuscado){
 		for (var k in dicBuscado){
 			if (k.indexOf('_contains_')==0){
 				var kt=k.substr( '_contains_'.length )
-
-				var temp=element[kt].split(',')
-				if (temp.indexOf( (dicBuscado[k]+'') )==-1)
+				var zonaBusqueda=element[kt]
+				
+				if (zonaBusqueda.indexOf( (dicBuscado[k]+'') )==-1)
 					return false
 				}
 			else if (dicBuscado[k]!=element[k]){
@@ -398,9 +398,10 @@ function Controlador(){
 								given_name: 'Desconocido', family_name: 'Desconocido',
 								picture:'./images/avatar_default.png',
 								}
-		this.cache.usuario.loginEnMiNube=false
+		this.offline=true
 		this.cache.usuario.loginExpires=null
 		this.actualizaDomUsuario()
+		setTimeout(function(){app.cargaVistaInicio()}, 300)
 		}
 	else {
 		localStorage.removeItem('tapp37_userdata')
@@ -424,7 +425,15 @@ Controlador.prototype.init=function(){
 			app.toggleMenuGlobal( !jQuery('.aside-md').hasClass('nav-off-screen') )
 			})
 	
-	document.addEventListener('backbutton', function(){app.backButton()}, false)
+	if (isPhone()){
+		var attachFastClick = Origami.fastclick
+		attachFastClick(document.body)
+
+		document.addEventListener('backbutton', function(){app.backButton()}, false)
+		document.addEventListener('offline', function(){app.setOffline(true)}, false)
+		document.addEventListener('online', function(){app.setOffline(false)}, false)
+		}
+
 	window.addEventListener('resize', function(){app.resize()}, false)
 
 	this.setCategorias(get('tapp37_categorias'))
@@ -434,7 +443,6 @@ Controlador.prototype.init=function(){
 
 	if (!isPhone())
 		this.includeJS('js/jwerty.js')
-
 	}
 Controlador.prototype.includeJS=function(src, fnCallBack){
     jQuery.getScript(src, function() {
@@ -445,6 +453,13 @@ Controlador.prototype.includeJS=function(src, fnCallBack){
 Controlador.prototype.jwerty=function(t, fn, fnContext){
 	if (isPhone()) return
 	jwerty.key(t, fn, fnContext)
+	}
+Controlador.prototype.setOffline=function(v){
+	this.offline=v
+	console.log('setOffline:'+v)
+
+	if (this.vistaActiva) 
+		this.vistaActiva.setOffline(v)
 	}
 ////
 Controlador.prototype.registerPush=function(){
@@ -795,7 +810,7 @@ Controlador.prototype.cargaVistaInicio=function(){
 		this.cargaVistaAjustes()
 
 	else {
-		this.cargaVistaTienda(false, false)
+		this.cargaVistaTienda(false, this.offline)
 		}
 
 	if (this.vistaSocial==null){
@@ -924,7 +939,7 @@ Controlador.prototype.addToNav=function(el){
 	app.vistaActiva.navActivo=el
 	}
 Controlador.prototype.toggleMenuGlobal=function(visible, inmediate){
-	app.vistaActiva.toggleMenuGlobal(visible, inmediate)
+	if (this.vistaActiva) this.vistaActiva.toggleMenuGlobal(visible, inmediate)
 	}
 ////////////////////////////////////////////////
 
@@ -935,6 +950,7 @@ function Vista(){
 		console.error('Tipo de vista desconocido: hay que darlo de alta en Vista.prototype.tipos')
 
 	}
+Vista.prototype.setOffline=function(v){}
 Vista.prototype.calculaAnchoTarjetas=function(){
 	var w=jQuery('#content').width() 
 	var anchoMinCards=140
@@ -1228,6 +1244,7 @@ function VistaTest(test, respuestas, desdeHistorial){
 	this.test=test
 	this.id='vistaTest'
 	this.title=test.ds_test 
+	this.cambiaHeaderApp(this.title)
 
 	this.mapaInicializado=false
 
@@ -2175,6 +2192,15 @@ VistaTienda.prototype.toggleMenuGlobal=function(visible, inmediate){
 			menu.fadeOut()
 		}
 	}
+VistaTienda.prototype.setOffline=function(v){
+	var self=this
+	if (!app.offline && app.cache.testTienda.length==0)
+		self.leeTestTienda(function(datos){
+			if (!self.entornoLocal){
+				self.pintaPortadaTienda(app.cache.categorias, datos)
+				}
+			})
+	}
 //////
 VistaTienda.prototype.buscarTest=function(){
 	var self=this
@@ -2212,6 +2238,18 @@ VistaTienda.prototype.doBuscarTest=function(s, id, situar){
 		id=null
 		}
 
+	if (app.offline){
+		//ojo, no llamar a cambiaEntorno
+		self.domHeader.find('.btn.tienda, .btn.dispositivo').removeClass('active')
+		self.domHeader.find('.btn.tienda').addClass('active')
+		self.entornoLocal=false
+
+		var encontrados=buscaFilas(app.cache.testLocales, {_contains_ds_test:s})
+		encontrados.map(function(el){el.liscat=el.liscat+',-100,'})
+		self.doBuscarTest_response(encontrados, situar)
+		return
+		}
+
 	jQuery.post(app.config.url, {accion:'buscaTests', search:s, cd_test:id}).success(
 		function(data){
 			var datos=xeval(data)
@@ -2221,33 +2259,38 @@ VistaTienda.prototype.doBuscarTest=function(s, id, situar){
 				self.domHeader.find('.btn.tienda').addClass('active')
 				self.entornoLocal=false
 
-				var resultadosBusqueda=datos.tests || []
-
-				self.ftestTienda=null
-				
-				app.cache.categorias=app.cache.categorias || []
-				var xcat={cd_categoria:-100, ds_categoria:'Resultados de la búsqueda', i:'fa-search', cd_categoriapadre:-200}
-				if (buscaFilas(app.cache.categorias, {cd_categoria:xcat.cd_categoria}).length==0)
-					app.cache.categorias.push(xcat)
-
-				if (situar==null){
-					//si hay resultados de una búsqueda anterior, los quitamos
-					var indicesBorrar=getIndiceFila(app.cache.testTienda, {_contains_liscat:xcat.cd_categoria}, true)
-					for (var i=indicesBorrar.length-1; i>=0; i--){
-						app.cache.testTienda.splice(indicesBorrar[i], 1)
-						}
-					app.cache.testTienda=(app.cache.testTienda || []).concat(resultadosBusqueda)
-					self.navegaCat(xcat.cd_categoria)
-					}
-				else {
-					//self.pintaPortadaTienda(app.cache.categorias, app.cache.testTienda)
-					self.testPreview(resultadosBusqueda[0].cd_test, false)
-					}
-				self.domBody.removeClass('cargando')
+				self.doBuscarTest_response(datos.tests, situar)
 				}
 			else
 				console.error(data)
 		})
+	}
+VistaTienda.prototype.doBuscarTest_response=function(filas, situar){
+	var self=this
+	var resultadosBusqueda=filas || []
+
+	self.ftestTienda=null
+	
+	app.cache.categorias=app.cache.categorias || []
+	var xcat={cd_categoria:-100, ds_categoria:'Resultados de la búsqueda', i:'fa-search', cd_categoriapadre:-200}
+	if (buscaFilas(app.cache.categorias, {cd_categoria:xcat.cd_categoria}).length==0)
+		app.cache.categorias.push(xcat)
+
+	if (situar==null){
+		//si hay resultados de una búsqueda anterior, los quitamos
+		var indicesBorrar=getIndiceFila(app.cache.testTienda, {_contains_liscat:','+xcat.cd_categoria+','}, true)
+		for (var i=indicesBorrar.length-1; i>=0; i--){
+			app.cache.testTienda.splice(indicesBorrar[i], 1)
+			}
+		app.cache.testTienda=(app.cache.testTienda || []).concat(resultadosBusqueda)
+		self.navegaCat(xcat.cd_categoria)
+		}
+	else {
+		//self.pintaPortadaTienda(app.cache.categorias, app.cache.testTienda)
+		self.testPreview(resultadosBusqueda[0].cd_test, false)
+		}
+
+	self.domBody.removeClass('cargando')
 	}
 //////
 VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
@@ -2420,10 +2463,13 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 	if (cd_categoria<0)
 		sl=this.escogeTestsCatDinamica(cd_categoria, lista)
 	else
-		sl=buscaFilas( lista, {_contains_liscat:cd_categoria})
+		sl=buscaFilas( lista, {_contains_liscat:','+cd_categoria+','})
 
 	if (sl.length==0 && packs.length==0){
-		blCat.append(this.admonition('No hay tests en esta categoría', null, (xcat.i || 'fa-ban')+' fa-4x' ) )
+		if (cd_categoria==-200)//buscar
+			blCat.append(this.admonition('No se han encontrado tests que cumplan con tus criterios de búsqueda', null, (xcat.i || 'fa-ban')+' fa-4x' ) )
+		else
+			blCat.append(this.admonition('No hay tests en esta categoría', null, (xcat.i || 'fa-ban')+' fa-4x' ) )
 		}
 	else{
 		var aPintar=sl.slice(0)
@@ -2475,7 +2521,7 @@ VistaTienda.prototype.escogeTestsCatDinamica=function(cd_categoria, lista){
 		// 		})
 		// 	}
 		// else
-			tests=buscaFilas(lista, {_contains_liscat:cd_categoria})
+			tests=buscaFilas(lista, {_contains_liscat:','+cd_categoria+','})
 		}
 	return tests
 	}
@@ -2490,10 +2536,19 @@ VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 		}
 	this.domBody.empty()
 	if (lista.length==0){
-		var titulo='No hay tests'
-		var texto='Aquí se muestran los tests que tienes almacenados en tu dispositivo, pero ahora mismo no hay ninguno.'
-		var sub='¿Por qué no descargas alguno de la tienda? Hay muchos gratuitos'
-		this.domBody.removeClass('cargando').addClass('flowable').append( this.admonition(titulo, texto, 'fa-ban fa-4x', sub ) )
+		var titulo, texto, sub, i
+		if (this.entornoLocal){
+			titulo='No hay tests'
+			texto='Aquí se muestran los tests que tienes almacenados en tu dispositivo, pero ahora mismo no hay ninguno.'
+			sub='¿Por qué no descargas alguno de la tienda? Hay muchos gratuitos'
+			i='fa-ban fa-4x'
+			}
+		else if (app.offline){
+			titulo='No se ha podido conectar con la tienda'
+			texto='Es posible que haya problemas de conectividad, inténtalo más tarde.'
+			i='fa-wifi fa-4x'
+			}
+		this.domBody.removeClass('cargando').addClass('flowable').append( this.admonition(titulo, texto, i, sub ) )
 		return
 		}
 
@@ -2523,7 +2578,7 @@ VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 			}
 		else {
 			packs=buscaFilas(app.cache.categorias, {cd_categoriapadre:cat.cd_categoria})
-			totalPorCat=buscaFilas(lista, {_contains_liscat:cat.cd_categoria})
+			totalPorCat=buscaFilas(lista, {_contains_liscat:','+cat.cd_categoria+','})
 			cat.numtestsporcat=totalPorCat.length
 			sl=totalPorCat.slice(0,4) //Sacamos sólo unos pocos
 			}
@@ -2771,6 +2826,16 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 				)
 			}
 		}
+
+	if (app.offline){
+		app.cache.testTienda=[]
+		if (fnCallBack){
+			fnCallBack(app.cache.testTienda)
+			self.domBody.removeClass('cargando')
+			}
+		return
+	}
+
 	jQuery.post(app.config.url, {accion:'getPortadaTienda'}).success(
 		function(data){
 			var datos=xeval(data)
@@ -3075,6 +3140,8 @@ VistaTienda.prototype.compartir=function(test){
 VistaTienda.prototype.repasarExamen=function(cd_test){
 	var test=buscaFilas(app.cache.testLocales, {cd_test:cd_test})[0]
 	var resp=buscaFilas(app.cache.respuestasLocales, {cd_test:cd_test})[0]
+
+	jQuery('.vista.vistaTest').remove()
 	new VistaRepasoTest(test, resp, false).toDOM()
 	}
 //////
@@ -3519,9 +3586,19 @@ VistaSocial.prototype.toggleMenuGlobal=function(visible){
 	var menu=jQuery('.barra.global .btn-menu')	
 	menu.fadeOut()
 	}
+VistaSocial.prototype.setOffline=function(v){
+	if (!app.offline && this.grupos.length==0) this.getData()
+	}
 ////
 VistaSocial.prototype.getData=function(){
 	var self=this
+
+	if (app.offline){
+		self.grupos=[]
+		if (app.vistaActiva==self) self.pintaGrupos(self.grupos)
+		return
+		}
+
 	jQuery.get(app.config.url, {accion:'getMisGrupos'}).success(
 			function(data){
 				var datos=xeval(data)
@@ -3535,7 +3612,7 @@ VistaSocial.prototype.getData=function(){
 					}
 
 				if (app.vistaActiva==self){
-					self.pintaGrupos(datos)
+					self.pintaGrupos(self.grupos)
 					if (self.recuperarPosicion)
 						self.verGrupo(self.recuperarPosicion)
 					}
@@ -3618,6 +3695,15 @@ VistaSocial.prototype.pintaGrupos=function(){
 
 	jQuery('.txtNumGrupos').text(this.grupos.length)
 	jQuery('.txtNumTests').text( app.getTestLocales().length ) 
+
+	app.pushState('vistaSocial')
+
+	if (this.grupos.length==0){
+		this.domGrupos.append( 
+			this.admonition('No se ha podido conectar con el servidor', 'Es posible que haya problemas de conectividad, inténtalo más tarde.', 'fa-exclamation-triangle fa-4x')
+			) 
+		return
+	}
 	for (var i=0; i<this.grupos.length; i++){
 		var g=this.grupos[i]
 
@@ -3664,7 +3750,7 @@ VistaSocial.prototype.pintaGrupos=function(){
 			]})
 		)
 
-	app.pushState('vistaSocial')
+	
 	}
 VistaSocial.prototype.anhadeThrobberAGrupos=function(){
 	this.domGrupos.find('.anhadir').empty().addClass('cargando')
@@ -4138,7 +4224,7 @@ VistaEstadisticas.prototype.getBody=function(){
 			var cat=this.cats[i]
 			if (cat.cd_categoria<0) continue
 
-			var respsCat=buscaFilas(this.resps, {_contains_liscat:cat.cd_categoria})
+			var respsCat=buscaFilas(this.resps, {_contains_liscat:','+cat.cd_categoria+','})
 			this.cats[i].resps=respsCat
 
 			var fIni=formato.fechaDDMMYYYY(respsCat[0].fecha)
@@ -4386,6 +4472,10 @@ VistaAjustes.prototype.tareasPostCarga=function(){
 	Vista.prototype.tareasPostCarga.call(this)
 	this.domMenu.hide()
 	}
+VistaAjustes.prototype.toggleMenuGlobal=function(visible, inmediate){
+	var menu=jQuery('.barra.global .btn-menu')		
+	menu.fadeOut()
+	}
 ////////////////////////////////////////////////
 Controlador.prototype.cargaVistaMigraTest=function(desdeHistorial){
 	new VistaMigraTest(desdeHistorial).toDOM()
@@ -4498,6 +4588,10 @@ VistaMigraTest.prototype.tareasPostCarga=function(){
 	this.txtPreguntas.val( '['+plantillaPreguntas+']' )
 
 	this.cargaListaCategorias()
+	}
+VistaMigraTest.prototype.toggleMenuGlobal=function(visible, inmediate){
+	var menu=jQuery('.barra.global .btn-menu')		
+	menu.fadeOut()
 	}
 VistaMigraTest.prototype.cargaListaCategorias=function(){
 	var self=this

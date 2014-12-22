@@ -796,7 +796,8 @@ article.card, article.pack {
         padding-right: 1rem;
         padding-top: 5px;
         padding-bottom: 3px;
-        border-top-style: dashed; }
+        border-top-style: dashed;
+        min-height: 50px; }
       #content .vista.vistaTienda .detalle-test section.row .data {
         padding-right: 1rem;
         padding-left: 0px; }
@@ -937,6 +938,9 @@ article.card, article.pack {
     overflow: auto; }
   #content .vista.vistaSocial {
     background-color: #25313e; }
+    #content .vista.vistaSocial .admonition {
+      margin-top: 0;
+      color: rgba(245, 245, 245, 0.6); }
     #content .vista.vistaSocial.no-header .vista-header {
       display: none; }
     #content .vista.vistaSocial.no-header .vista-body {
