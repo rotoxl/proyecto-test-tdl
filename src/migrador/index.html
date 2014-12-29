@@ -5,33 +5,74 @@
   	<title>octopusApp.es | Migrador de Tests de oposiciones</title>
   	<meta name="author" content="Carrón Sisters"/>
 
-  	<link rel="stylesheet" href="bootstrap.css" type="text/css" />
-  	<link rel="stylesheet" href="migrador.css" type="text/css" />
+  	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+  	<link rel="stylesheet" href="css/migrador.css" type="text/css" />
+  	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+  	<link rel="stylesheet" href="css/iosCheckbox.css" type="text/css" />
 </head>
 <body >
 	
-	<div class="container">
-
-		<div class="row botonera">
-			<div class="col-xs-12">
-				<button class="btn-success" onclick="app.procesa()">Procesa</button>
+	<nav class="navbar navbar-default">
+  		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Migrador</a>
 			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    	<ul class="nav navbar-nav col-xs-10">
+
+		    		<li class="pull-right">
+		    			<a href="javascript:app.sustituyeErratas()">
+		        			<i class="fa fa-font"></i>
+		        			Ortografía
+		        		</a>
+		        	</li>
+
+		        	<li class="pull-right">
+		        		<a href="javascript:app.btnConfig()">
+							<i class="fa fa-gears"></i>
+			        		Configuración
+			        	</a>
+			        </li>
+		        	<li class="pull-right">
+		        		<a href="javascript:app.subirArchivos()">
+							<i class="fa fa-eject"></i>
+			        		Subir archivos
+			        	</a>
+			        </li>
+		        	
+		        	<li><a href="javascript:app.btnProcesa()">
+			        		<i class="fa fa-play"></i>
+			        		Procesar (F3)
+		        		</a>
+		        	</li>
+
+		        	
+		        </ul>
+		    </div>
+  		</div>
+  	</nav>
+
+	<div class="row">
+		<div class="col-xs-9" id="preguntas">
+			
 		</div>
-		<div class="row">
-			<div class="col-xs-6">
-				<textarea class="col-xs-12" id="txtOrigen"></textarea>
-			</div>
 
-			<div class="col-xs-6">
-				<textarea  class="col-xs-12" id="txtDestino"></textarea>
-			</div>
+		<div class="col-xs-3" id="respuestas">
+			<textarea  class="col-xs-12" id="txtRespuestas"></textarea>
 		</div>
 	</div>
 
-	<script src="jquery.min.js"></script>
-	<script src="bootstrap.js"></script>
+	<div class="row alert " role="alert" onclick="app.gotoLastError()">
+		<h4>Mensajes del proceso</h4>
+	</div>
 
-	<script src="migrador.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/jwerty.js"></script>
+	<script src="js/migrador.js"></script>
+	<script src="js/iosCheckbox.min.js"></script>
+	<script src="js/ace-src-min/ace.js" type="text/javascript" charset="utf-8"></script>
 
 	<script>
 		function init(){
@@ -40,5 +81,137 @@
 			}
       	jQuery(document).ready(function(){init()} )
 	</script>
+
+
+	<div class="modal fade frmSubirArchivos">
+		<div class="modal-dialog">
+		<form enctype="multipart/form-data" action="uploader.php" method="post">
+			<div class="modal-content">
+				
+				<div class="modal-body">
+
+					<div class="form-group">
+					    <label for="ctlArchivoPreguntas">Archivo de preguntas</label>
+					    <input type="file" id="ctlArchivoPreguntas" name="ctlArchivoPreguntas">
+					    <p class="help-block">Formato txt.</p>
+					</div>
+
+					<div class="form-group">
+					    <label for="ctlArchivoRespuestas">Archivo de respuestas</label>
+					    <input type="file" id="ctlArchivoRespuestas" name="ctlArchivoRespuestas">
+					    <p class="help-block">Formato txt.</p>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-link" data-dismiss="modal">Cerrar</button>
+					<button type="submit" class="btn btn-warning">Subir archivos</button>
+				</div>
+			</div>
+		</form>
+		</div>
+	</div>
+
+	<div class="modal fade frmConfig">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+
+						<div class="form-group">
+						    <label for="ctlNumPregs">Número de preguntas</label>
+						    <input type="number" id="ctlNumPregs">
+						</div>
+						<div class="form-group">
+						    <label for="ctlNumPregs">Número de respuestas</label>
+						    <input type="number" id="ctlNumResps">
+						</div>
+
+					<hr>
+						<p class="lead">Configuración del procesado de preguntas</p>
+						<div class="form-group">
+						    <label for="sepPregunta">Separador en preguntas</label>
+						    <input type="text" id="sepPregunta">
+						    <p class="help-block">En preguntas enunciadas como en <code>1. Texto pregunta</code>, el separador sería <code>. </code> </p>
+						</div>
+						<div class="form-group">
+						    <label for="sepRespuesta">Separador en respuestas</label>
+						    <input type="text" id="sepRespuesta">
+						    <p class="help-block">En respuestas enunciadas como en <code>a) Respuesta</code>, el separador sería <code>) </code> </p>
+						</div>
+					<hr>
+						<div class="form-group">
+						    <label for="preguntaContieneRetornos">¿las preguntas contienen retornos? (o sea, que ocupa varias líneas)</label>
+						    <input class="pull-right" type="checkbox" id="preguntaContieneRetornos">
+						</div>
+						<div class="form-group">
+						    <label for="respuestaContieneRetornos">¿las respuestas contienen retornos?</label>
+						    <input class="pull-right" type="checkbox" id="respuestaContieneRetornos">
+						</div>
+					
+					<hr>
+						<div class="form-group">
+						    <label for="respuestaEsLetra">Las respuestas van enumeradas con letras</label>
+						    <input class="pull-right" type="checkbox" id="respuestaEsLetra">
+						    <p class="help-block">a), b)...</p>
+						</div>
+						<div class="form-group">
+						    <label for="respuestaEsMayuscula">Las respuestas van enumeradas en MAYÚSCULAS</label>
+						    <input class="pull-right" type="checkbox" id="respuestaEsMayuscula">
+						</div>
+					
+					<hr>
+						<div class="form-group">
+						    <label for="preguntasLlevanNumeroSiempre">Las preguntas siempre llevan número</label>
+						    <input class="pull-right" type="checkbox" id="preguntasLlevanNumeroSiempre">
+						</div>
+
+						<div class="form-group">
+						    <label for="respuestasLlevanLetraSiempre">Las respuestas siempre llevan número o letra de enumeración</label>
+						    <input class="pull-right" type="checkbox" id="respuestasLlevanLetraSiempre">
+						</div>
+					
+					<hr>
+						<div class="form-group">
+						    <label for="variasRespuestasEn1Linea">Hay varias respuestas en una misma línea</label>
+						    <input class="pull-right" type="checkbox" id="variasRespuestasEn1Linea">
+						</div>
+
+						<div class="form-group">
+						    <label for="longMinimaPregResp">Longitud mínima de cada línea</label>
+						    <input type="number" id="longMinimaPregResp">
+						    <p class="help-block">Para obviar las líneas en las que viene 1 sola letra (suele ocurrir al copiar texto desde el PDF)</p>
+						</div>
+
+					<hr>
+						<p class="lead">Configuración del procesado de respuestas</p>
+
+						<div class="form-group">
+						    <label for="contieneImputadas">¿Contiene preguntas imputadas?</label>
+						    <input class="pull-right" type="checkbox" id="contieneImputadas">
+						    <p class="help-block">Las imputadas se deben indicar con el valor X</p>
+						</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-link" data-dismiss="modal">Cerrar</button>
+					<button type="button" onclick="app.guardarConfig()" class="btn btn-warning">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade frmRespuesta">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<textarea></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
