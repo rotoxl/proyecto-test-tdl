@@ -4,6 +4,22 @@ function save(s,v){
 	localStorage.setItem(s, JSON.stringify(v))
 	console.info('localStorage: '+s)
 	}
+function setSelectionRange(input, selectionStart, selectionEnd) {
+  	if (input.setSelectionRange) {
+    	input.focus();
+    	input.setSelectionRange(selectionStart, selectionEnd);
+  		}
+  	else if (input.createTextRange) {
+	    var range = input.createTextRange();
+	    range.collapse(true);
+	    range.moveEnd('character', selectionEnd);
+	    range.moveStart('character', selectionStart);
+	    range.select();
+	  	}
+	}
+function setCaretToPos (input, pos) {
+  	setSelectionRange(input, pos, pos);
+	}
 /////////
 function XApp(){
 	this.sev=0
@@ -30,8 +46,12 @@ function XApp(){
 		longMinimaPregResp:3, //las líneas que midan menos de 3 incluyendo el bullet se ignoran
 		}
 	this.configArchivoRespuestas=get('migrador_config_respuestas') || {
-		contieneImputadas:false
+		contieneImputadas:false,
+		sep:'. '
 		}
+
+	this.cache.numPregs=Number(this.cache.numPregs)
+	this.cache.numResps=Number(this.cache.numResps)
 	}
 XApp.prototype.init=function(){
 	jwerty.key('F3', function(){app.btnProcesa()})
@@ -44,6 +64,8 @@ XApp.prototype.init=function(){
 	
 	this.edRespuestas = $('#txtRespuestas')
 
+	this.edGen = $('#txtGenerado')
+
 	var sr=document.location.search+''
 	if (sr!=''){
 		var temp=sr.substring(1).split('&')
@@ -53,22 +75,24 @@ XApp.prototype.init=function(){
 
 		this.procesaTodo(
 			this.cache.fPreguntas, 
-			this.cache.fRespuestas, 
-			this.cache.numPregs, 
-			this.cache.numResps
+			this.cache.fRespuestas
 			)
 		}
+
+	
 	}
 ///////
 XApp.prototype.reinitAlert=function(){
 	this.sev=0
 	this.domAlert.removeClass('alert-warning alert-danger').find('p').remove()
 	this.gtline=0
+	this.edGen.val('')
 	}
 XApp.prototype.info=function(d){this.log(d, 'info')}
 XApp.prototype.warning=function(d){this.log(d, 'warning')}
 XApp.prototype.danger=function(d){this.log(d, 'danger')}
 XApp.prototype.log=function(d,sev){
+
 	var nsev=this.sevLevels[sev]
 	if (nsev>this.sev)this.sev=nsev
 
@@ -87,14 +111,11 @@ XApp.prototype.log=function(d,sev){
 
 		if (d.obj) this.domAlert.append('<p>'+JSON.stringify(d.obj)+'</p>')	
 		}
+	else if (d instanceof Object)
+		msg=JSON.stringify(d)
+	
 	this.domAlert.append('<p>'+msg+'</p>')
 	
-	}
-function errLocalizado(msg, l, msgExtra, obj){
-	this.msg=msg+' - ' +msgExtra
-	this.l=l
-	this.msgExtra=msgExtra
-	this.obj=obj
 	}
 ///////
 XApp.prototype.btnConfig=function(){
@@ -117,6 +138,7 @@ XApp.prototype.btnConfig=function(){
 	$('.modal.frmConfig').find('#longMinimaPregResp').val(this.configArchivoPreguntas.longMinimaPregResp)
 
 	$('.modal.frmConfig').find('#contieneImputadas').prop('checked', this.configArchivoRespuestas.contieneImputadas)
+	$('.modal.frmConfig').find('#sepPregRespuesta').val(this.configArchivoRespuestas.sep)
 
 	$('.modal.frmConfig .ios-ui-select').remove()
 	$('.modal.frmConfig input[type=checkbox]').iosCheckbox()
@@ -137,6 +159,7 @@ XApp.prototype.guardarConfig=function(){
 	this.configArchivoPreguntas.variasRespuestasEn1Linea = $('.modal.frmConfig').find('#variasRespuestasEn1Linea').prop('checked')
 	this.configArchivoPreguntas.longMinimaPregResp = $('.modal.frmConfig').find('#longMinimaPregResp').val()
 	this.configArchivoRespuestas.contieneImputadas = $('.modal.frmConfig').find('#contieneImputadas').prop('checked')
+	this.configArchivoRespuestas.sep = $('.modal.frmConfig').find('#sepPregRespuesta').val()
 
 	save('migrador_cache', this.cache)
 	save('migrador_config_preguntas', this.configArchivoPreguntas)
@@ -150,8 +173,18 @@ XApp.prototype.gotoLastError=function(){
 	}
 XApp.prototype.btnProcesa=function(){
 	this.reinitAlert()
+
+	this.preguntas=null
+	this.respuestas=null
+
+	this.cache.numPregs=Number(this.cache.numPregs)
+	this.cache.numResps=Number(this.cache.numResps)
+
 	var data=this.edPreguntas.getValue()
 	this.procesaPreguntas(data)
+
+	var dr=this.edRespuestas.val()
+	this.procesaRespuestas(dr)
 	}
 ///////	
 XApp.prototype.sacaFrmRespuesta=function(ret){
@@ -170,7 +203,8 @@ XApp.prototype.procesaPreguntas=function(data){
 		this.preguntas=new CuadernoMSSI().procesa(data)
 		}
 	catch (e){
-		app.danger(e)	
+		app.danger(e)
+		return
 	}
 
 	if (this.respuestas!=null)
@@ -178,24 +212,28 @@ XApp.prototype.procesaPreguntas=function(data){
 	}
 XApp.prototype.procesaRespuestas=function(data){
 	this.edRespuestas.val(data)
-	this.respuestas=new RespuestasMSSI().procesa(data)
-	
+	try{
+		this.respuestas=new RespuestasMSSI().procesa(data)
+		}
+	catch (e){
+		app.danger(e)
+		return
+	}
+
 	if (this.preguntas!=null)
 		this.juntaPreguntasYRespuestas()
 	}
 XApp.prototype.juntaPreguntasYRespuestas=function(){
-	for (var i=0; i<this.numPregs;i++){		
+	for (var i=0; i<this.cache.numPregs;i++){		
 		this.preguntas[i].cd_respuestacorrecta=this.getRespuestaCorrecta(i)
 		}
-	this.txtTo.val( JSON.stringify(this.preguntas) )
+	this.sacaFrmRespuesta(this.preguntas)
 	}
 XApp.prototype.getRespuestaCorrecta=function(i){
 	return Number( this.respuestas[i+1] )-1
 	}
-XApp.prototype.procesaTodo=function(enlacePreguntas, enlaceRespuestas, numPregs, numResps){
+XApp.prototype.procesaTodo=function(enlacePreguntas, enlaceRespuestas){
 	var self=this
-	this.numPregs=numPregs
-	this.numResps=numResps
 	this.cargaArchivoRemoto(enlacePreguntas, function(data){self.procesaPreguntas(data)})
 	this.cargaArchivoRemoto(enlaceRespuestas, function(data){self.procesaRespuestas(data)})
 	}
@@ -215,7 +253,7 @@ XApp.prototype.cargaArchivoRemoto=function(enlace, fnProcesa){
 		)
 	.error(
 		function(a,b,c){
-			app.error(a)
+			app.danger(a)
 		})
 	}
 //////////////////
@@ -230,18 +268,24 @@ CuadernoMSSI.prototype.procesa=function(data){
 		t=data.trim().split('\n')
 
 	var fnFilaPreg=function(i){
-		return i*( Number(app.numResps)+1)+desfase
+		return i*( Number(app.cache.numResps)+1)+desfase
 	}
 	var fnFilaResp=function(i, j){
-		return i*( Number(app.numResps)+1)+j+1+desfase
+		return i*( Number(app.cache.numResps)+1)+j+1+desfase
 	}
 
 	var ret=[]
-	for (var i=0; i<app.numPregs; i++){
+	for (var i=0; i<app.cache.numPregs; i++){
 		
 		var filapreg=fnFilaPreg(i)
 		var tpreg=t[ filapreg ]
 		
+		//las líneas que empiezan por # son comentarios
+		while (tpreg!=null && tpreg.indexOf('#')==0){
+			desfase++
+			tpreg=t[ fnFilaPreg(i) ]
+			}
+
 		//bullet suelto, o una línea vacía?: la ignoramos
 		while (tpreg!=null && tpreg.length<this.config.longMinimaPregResp ){
 			desfase++
@@ -249,8 +293,13 @@ CuadernoMSSI.prototype.procesa=function(data){
 			}
 
 		if (tpreg==null)
-			throw 'error en línea '+filapreg+', ¿el núm de preguntas indicado ('+app.numPregs+') no es correcto? parece que hay menos ('+i+')'
+			throw 'error en línea '+filapreg+', ¿el núm de preguntas indicado ('+app.cache.numPregs+') no es correcto? parece que hay menos ('+i+')'
 
+		if (this.esPrincipioRespuesta(tpreg))
+			throw new errLocalizado('No se puede continuar sin corregir error en pregunta '+(i+1),
+										filapreg,
+										'. Se encontró: '+tpreg,
+										p)
 		if (this.config.preguntaContieneRetornos){
 			filapreg=fnFilaPreg(i)
 			tpreg=t[ filapreg ]
@@ -265,7 +314,7 @@ CuadernoMSSI.prototype.procesa=function(data){
 				}
 
 			if (tFilaSiguiente==null)
-				throw 'error en línea '+filapreg+', ¿el núm de preguntas indicado ('+app.numPregs+') no es correcto? parece que hay menos ('+i+')'
+				throw 'error en línea '+filapreg+', ¿el núm de preguntas indicado ('+app.cache.numPregs+') no es correcto? parece que hay menos ('+i+')'
 			}
 
 		var p={
@@ -294,18 +343,18 @@ CuadernoMSSI.prototype.procesa=function(data){
 		///////////////////////
 		//Respuestas
 		
-		for (var j=0; j<app.numResps; j++){
+		for (var j=0; j<app.cache.numResps; j++){
 			var filaResp
 
 			var tresp=t[ fnFilaResp(i,j) ]
 			//bullet suelto, o una línea vacía?: la ignoramos
-			while (tresp && tresp.length<this.config.longMinimaPregResp){
+			while (tresp!=null && tresp.length<this.config.longMinimaPregResp){
 				desfase++
 				tresp=t[ fnFilaResp(i,j) ]
 				}
 
 			if (tresp==null)
-				throw 'error en línea '+fnFilaResp(i,j)+', ¿el núm de preguntas indicado ('+app.numPregs+') no es correcto? parece que hay menos ('+i+')'
+				throw 'error en línea '+fnFilaResp(i,j)+', ¿el núm de preguntas indicado ('+app.cache.numPregs+') no es correcto? parece que hay menos ('+i+')'
 
 
 			if (this.config.respuestaContieneRetornos){
@@ -338,7 +387,7 @@ CuadernoMSSI.prototype.procesa=function(data){
 
 			//resp empieza por número o letra pero no es el que le corresponde (respuestas desordenadas)
 			var trozo=tresp.split(this.config.sepRespuesta)[0]+this.config.sepRespuesta
-			if ( trozo!=this.bulletRespuesta(j) )
+			if (this.config.respuestasLlevanLetraSiempre && trozo!=this.bulletRespuesta(j) )
 				throw new errLocalizado('No se puede continuar sin corregir error en respuesta '+(i+1)+':'+j,
 										fnFilaResp(i,j),
 										'Se esperaba: '+this.bulletRespuesta(j)+'. Se encontró: '+trozo,
@@ -348,18 +397,19 @@ CuadernoMSSI.prototype.procesa=function(data){
 			}
 
 		ret.push( this.convierteCarRaros(p, app.cache.numResps) )
-		
-		// app.log( JSON.stringify(p) )
-		// app.log('-------------------------')	
+		//--------------------
+		var va=app.edGen.val()
+		if (va!='') va+='\n---------------\n'
+		app.edGen.val( va+JSON.stringify(p, null, 2) )
+
+		setTimeout(function(){setCaretToPos(app.edGen[0], va.length)}, 100)
 		}
 
 	var ultimaLineaProc=fnFilaResp(i-1,j)
-	if (ultimaLineaProc==t.length){
+	if (ultimaLineaProc==t.length)
 		app.info('El num de lineas del archivo de preguntas parece estar bien')
-		app.sacaFrmRespuesta(ret)
-		}
 	else
-		app.error('El num de lineas del archivo de preguntas parece estar mal, elimina las línas vacías al final del doc')
+		throw new err('El num de lineas del archivo de preguntas parece estar mal, elimina las línas vacías al final del doc ('+app.cache.numPregs+' preguntas)')
 	
 
 	return ret
@@ -454,16 +504,6 @@ CuadernoMSSI.prototype.__quitaNumRespuesta=function(s, id){
 	return s
 	}
 //////////////////
-function assert(condition, message) {
-    if (!condition) {
-        message = message || "Assertion failed";
-        if (typeof Error !== "undefined") {
-            throw new Error(message);
-        	}
-        throw message; // Fallback
-    	}
-	}
-//////////////////
 
 function RespuestasMSSI(){}
 RespuestasMSSI.prototype.procesa=function(data){
@@ -480,14 +520,21 @@ RespuestasMSSI.prototype.procesa=function(data){
 
 		var trozos=l.trim().split(this.sepPregResp)
 		for (var j=0; j<trozos.length; j=j+2){
-			var p=trozos[j]
-			var r=this.letraANum(trozos[j+1])
-
-			assert(p>0 && p<app.numPregs+1, '¿numPreguntas=='+app.numPregs+'?')
+			var p, r
+			if (trozos.length==1){//sin número, sólo una letra en cada fila
+				p=i+1
+				r=this.letraANum(trozos[j])
+				}
+			else { //formato 1 A 2 B
+				p=trozos[j]
+				r=this.letraANum(trozos[j+1])
+				}
+			 
+			assert(p>0 && p<app.cache.numPregs+1, '¿numPreguntas=='+app.cache.numPregs+'?')
 			if (!this.config.contieneImputadas)
-				assert(r=='' || (r>0 && r<(app.numResps+1)), '¿Respuestas=='+app.numResps+'?')
+				assert(r=='' || (r>0 && r<(app.cache.numResps+1)), '¿Respuestas=='+app.cache.numResps+'?')
 			else
-				assert( (r>0 && r<(app.numResps+1) || r==null ), '¿Respuestas=='+app.numResps+'?')
+				assert( (r>0 && r<(app.cache.numResps+1) || r==null ), '¿Respuestas=='+app.cache.numResps+'?')
 
 			ret[p]=r
 			}
@@ -495,6 +542,9 @@ RespuestasMSSI.prototype.procesa=function(data){
 	return ret
 	}
 RespuestasMSSI.prototype.letraANum=function(i){
+	if (!app.configArchivoPreguntas.respuestaEsMayuscula && ['A', 'B', 'C', 'D', 'E', 'F', 'G'].indexOf(i)>-1)
+		app.configArchivoPreguntas.respuestaEsMayuscula=true
+
 	var l=['a', 'b', 'c', 'd', 'e', 'f', 'g']
 	if (app.configArchivoPreguntas.respuestaEsMayuscula)
 		l=l.map(function(a){return a.toUpperCase()})
@@ -506,4 +556,25 @@ RespuestasMSSI.prototype.letraANum=function(i){
 		return null
 	else
 		return l.indexOf(i) //la primera es la 1
+	}
+
+
+//////////////////
+function errLocalizado(msg, l, msgExtra, obj){
+	this.msg=msg+' - ' +msgExtra
+	this.l=l
+	this.msgExtra=msgExtra
+	this.obj=obj
+	}
+function err(msg){
+	this.msg=msg
+	}
+function assert(condition, message) {
+    if (!condition) {
+        message = message || "Assertion failed";
+        if (typeof Error !== "undefined") {
+            throw new Error(message);
+        	}
+        throw message; // Fallback
+    	}
 	}
