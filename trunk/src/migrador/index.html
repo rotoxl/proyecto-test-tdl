@@ -6,9 +6,10 @@
   	<meta name="author" content="Carrón Sisters"/>
 
   	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-  	<link rel="stylesheet" href="css/migrador.css" type="text/css" />
   	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
   	<link rel="stylesheet" href="css/iosCheckbox.css" type="text/css" />
+  	<link rel="stylesheet" href="css/migrador.css" type="text/css" />
+
 </head>
 <body >
 	
@@ -54,13 +55,18 @@
   	</nav>
 
 	<div class="row">
-		<div class="col-xs-9" id="preguntas">
+		<div class="col-xs-8" id="preguntas">
 			
 		</div>
 
-		<div class="col-xs-3" id="respuestas">
+		<div class="col-xs-1" id="respuestas">
 			<textarea  class="col-xs-12" id="txtRespuestas"></textarea>
 		</div>
+
+		<div class="col-xs-2" id="gen">
+			<textarea  class="col-xs-12" id="txtGenerado"></textarea>
+		</div>
+
 	</div>
 
 	<div class="row alert " role="alert" onclick="app.gotoLastError()">
@@ -151,6 +157,17 @@
 					
 					<hr>
 						<div class="form-group">
+						    <label for="preguntasLlevanNumeroSiempre">Las preguntas siempre llevan número</label>
+						    <input class="pull-right" type="checkbox" id="preguntasLlevanNumeroSiempre">
+						</div>
+
+						<div class="form-group">
+						    <label for="respuestasLlevanLetraSiempre">Las respuestas siempre llevan número o letra de enumeración</label>
+						    <input class="pull-right" type="checkbox" id="respuestasLlevanLetraSiempre">
+						</div>
+
+					<hr>
+						<div class="form-group">
 						    <label for="respuestaEsLetra">Las respuestas van enumeradas con letras</label>
 						    <input class="pull-right" type="checkbox" id="respuestaEsLetra">
 						    <p class="help-block">a), b)...</p>
@@ -160,16 +177,7 @@
 						    <input class="pull-right" type="checkbox" id="respuestaEsMayuscula">
 						</div>
 					
-					<hr>
-						<div class="form-group">
-						    <label for="preguntasLlevanNumeroSiempre">Las preguntas siempre llevan número</label>
-						    <input class="pull-right" type="checkbox" id="preguntasLlevanNumeroSiempre">
-						</div>
-
-						<div class="form-group">
-						    <label for="respuestasLlevanLetraSiempre">Las respuestas siempre llevan número o letra de enumeración</label>
-						    <input class="pull-right" type="checkbox" id="respuestasLlevanLetraSiempre">
-						</div>
+					
 					
 					<hr>
 						<div class="form-group">
@@ -190,6 +198,11 @@
 						    <label for="contieneImputadas">¿Contiene preguntas imputadas?</label>
 						    <input class="pull-right" type="checkbox" id="contieneImputadas">
 						    <p class="help-block">Las imputadas se deben indicar con el valor X</p>
+						</div>
+						<div class="form-group">
+						    <label for="sepPregRespuesta">Separador entre pregunta y respuesta</label>
+						    <input type="text" id="sepPregRespuesta">
+						    <p class="help-block"><code>12. A</code></p>
 						</div>
 				</div>
 
