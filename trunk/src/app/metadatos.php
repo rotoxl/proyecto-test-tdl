@@ -443,7 +443,11 @@ class Metadatos{
 		return $datos;
 		}
 	public function creaBorradorTest($datos, $cd_usuario){
-		if (!in_array($cd_usuario, array('emolina@tax-i.co', 'rotoxl@gmail.com', 'carlos.amc@gmail.com') )) {
+		if ($_SERVER['HTTP_HOST']=='localhost:8888'){
+			}
+		else if (in_array($cd_usuario, array('emolina@tax-i.co', 'rotoxl@gmail.com', 'carlos.amc@gmail.com', 'palomagarcianavarro@gmail.com') )) {
+			}
+		else {
 			throw new Exception($cd_usuario.' no está autorizado para subir tests');
 			}
 		

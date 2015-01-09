@@ -469,6 +469,11 @@ h1, h2, h3, h4, h4, small{
 	background-color: $navigation_bar_bgcolor!important;
 	border-color: $navigation_bar_bgcolor;
 	}
+.btn-dark2{
+	color: #fff !important;
+	background-color: #41586e!important;
+	border-color: #41586e;
+	}
 
 .btn-success{
 	color: #fff !important;
@@ -1019,6 +1024,8 @@ article.card, article.pack{
 				&:last-child{
 					padding-bottom:20px;
 				}
+
+				article.card.test span.nombre{font-size: 82%; text-transform:uppercase;}
 			}
 	
 		}
