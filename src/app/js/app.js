@@ -346,8 +346,8 @@ function Controlador(){
 	this.nav=[]
 	this.cache={}
 	this.config={
-				pushSenderID:GCM_SENDER_ID,
-				imgBase: 'https://s3-eu-west-1.amazonaws.com/octopus.recursos/',
+			pushSenderID:GCM_SENDER_ID,
+			imgBase: 'https://s3-eu-west-1.amazonaws.com/octopus.recursos/',
 			}
 	this.init()
 
@@ -398,7 +398,10 @@ function Controlador(){
 								given_name: 'Desconocido', family_name: 'Desconocido',
 								picture:'./images/avatar_default.png',
 								}
-		this.offline=true
+		if (isPhone())
+			this.offline=true
+		else
+			this.offline=false
 		this.cache.usuario.loginExpires=null
 		this.actualizaDomUsuario()
 		setTimeout(function(){app.cargaVistaInicio()}, 300)
@@ -671,7 +674,9 @@ Controlador.prototype.actualizaDomUsuario=function(){
 	jQuery('.avatar .pic img').attr('src', this.cache.usuario.picture)
 	jQuery('.avatar .nombre').text(this.cache.usuario.given_name)
 
-	if (!isPhone() && ['rotoxl@gmail.com', 'emolina@tax-i.co', 'carlos.amc@gmail.com'].indexOf(this.cache.usuario.cd_usuario)>-1 )
+	if (!isPhone() && ['rotoxl@gmail.com', 'palomagarcianavarro@gmail.com', 'emolina@tax-i.co', 'carlos.amc@gmail.com'].indexOf(this.cache.usuario.cd_usuario)>-1 )
+		jQuery('.liVistaUploadTest').removeClass('hidden')
+	else if (document.location.origin=='http://localhost:8888')
 		jQuery('.liVistaUploadTest').removeClass('hidden')
 	}
 Controlador.prototype.logout=function(){
@@ -1286,18 +1291,18 @@ VistaTest.prototype.generaIndices=function(){
 VistaTest.prototype.getHeader=function(){
 	var self=this
 	return creaObjProp('header', {className:'vista-header marcadores' , hijos:[
-				creaObjProp('div', {className:'btn-group btn-dark', hijos:[
-						creaObjProp('button', {className:'btn btn-primary col-md-6 col-sm-6 col-xs-6 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', hijos:[
+				creaObjProp('div', {className:'btn-group btn-dark2', hijos:[
+						creaObjProp('button', {className:'btn btn-dark2 col-md-6 col-sm-6 col-xs-6 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', hijos:[
 							creaT(' Pregunta '),
 							creaObjProp('span', {id:'numPag', texto:1}),
 							creaT(' de '+this.examen.numpreguntas+' '), 
 							creaObjProp('b', {className:'caret'})
 							]}),
-						creaObjProp('ul', {id:'mapatest', className:'btn2_1 dropdown-menu btn-primary', role:'menu', hijos:[
+						creaObjProp('ul', {id:'mapatest', className:'btn2_1 dropdown-menu btn-dark2', role:'menu', hijos:[
 							creaObjProp('span', {className:'arrow top'}),
 
 							]}),
-						creaObjProp('button', {onclick:function(){self.pausaTiempo()}, className:'btn btn-dark col-md-6 col-sm-6 col-xs-6', i:'fa-clock-o', hijos:[
+						creaObjProp('button', {onclick:function(){self.pausaTiempo()}, className:'btn btn-dark2 col-md-6 col-sm-6 col-xs-6', i:'fa-clock-o', hijos:[
 							creaT(' '),
 							creaObjProp('span', {id:'tiempoConsumido', texto:this.convierteSegundosAHora(this.examen.segundosConsumidos)}),
 							creaT(' de '+this.convierteMinutosAHora(this.examen.minutos)),
@@ -2723,7 +2728,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 				dFecha,
 				creaObjProp('div', {className:'frow', hijos:infoTienda}),
 				creaObjProp('div', {className:'frow', hijos:[
-					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto: (test.anho?test.anho+', ':'')+test.ds_test}) 
+					creaObjProp('span', {className:'bl nombre ellipsis col-xs-12', texto: (test.anho?test.anho+', ':'')+test.ds_test+ (test.organismo?', '+test.organismo:'') }) 
 					]}),
 				]})
 			]})

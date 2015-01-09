@@ -383,6 +383,11 @@ h1, h2, h3, h4, h4, small {
   background-color: #25313e !important;
   border-color: #25313e; }
 
+.btn-dark2 {
+  color: #fff !important;
+  background-color: #41586e !important;
+  border-color: #41586e; }
+
 .btn-success {
   color: #fff !important;
   background-color: #8ec165;
@@ -767,6 +772,9 @@ article.card, article.pack {
       width: 60px; }
     #content .vista.vistaTienda .vista-body .bloque:last-child {
       padding-bottom: 20px; }
+    #content .vista.vistaTienda .vista-body .bloque article.card.test span.nombre {
+      font-size: 82%;
+      text-transform: uppercase; }
   #content .vista.vistaTienda .detalle-test {
     padding: 20px 10px;
     color: #979797; }

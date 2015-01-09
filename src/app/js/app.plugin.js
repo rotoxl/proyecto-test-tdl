@@ -1,4 +1,4 @@
-var authWindow=null
+var authWindow=null, gapi=null
 
 !function (jQuery) {
 
@@ -201,6 +201,9 @@ var authWindow=null
 //                 });
 //       }
 // }
+function gapiInit(){
+    console.log ('gapiInit')
+}
 
 var googleWebApi={
     prepareLogin:function(){
