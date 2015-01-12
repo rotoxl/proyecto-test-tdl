@@ -1,4 +1,4 @@
-var authWindow=null, gapi=null
+var authWindow=null
 
 !function (jQuery) {
 
