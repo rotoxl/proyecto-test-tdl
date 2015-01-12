@@ -1110,7 +1110,7 @@ article.card, article.pack {
         margin-top: -40px;
         font-size: 25px; }
     #content .vista.vistaSocial .config.btnMemberAdd {
-      color: #adbece; }
+      color: white; }
     #content .vista.vistaSocial .config.member.admin:after {
       content: "(Admin)";
       float: right;
@@ -1126,7 +1126,7 @@ article.card, article.pack {
       display: none; }
     #content .vista.vistaSocial .config.admin i.btnNombreGrupo, #content .vista.vistaSocial .config.admin button.member i, #content .vista.vistaSocial .config.admin .btnMemberAdd, #content .vista.vistaSocial .config.admin .btnDeleteGroup {
       display: block; }
-    #content .vista.vistaSocial .config.admin small.adminLit {
+    #content .vista.vistaSocial .config small.adminLit {
       float: right;
       color: #f0ad4e;
       opacity: 0.3;

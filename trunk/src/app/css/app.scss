@@ -1481,7 +1481,7 @@ article.card, article.pack{
 			}
 
 			&.btnMemberAdd{
-				color:#adbece;
+				color:white;
 			}
 
 			&.member.admin:after {
@@ -1505,13 +1505,13 @@ article.card, article.pack{
 					display: block;
 				}
 
-				small.adminLit{
-					float: right;
-					color: #f0ad4e;
-					opacity: 0.3;
-					border: 1px solid;
-					padding: 0px 2px;
-				}
+			}
+			small.adminLit{
+				float: right;
+				color: #f0ad4e;
+				opacity: 0.3;
+				border: 1px solid;
+				padding: 0px 2px;
 			}
 		}
 		.chat{

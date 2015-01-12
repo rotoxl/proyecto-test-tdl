@@ -1423,7 +1423,8 @@ VistaTest.prototype.informarErrorPregunta=function(){
 			})
 		}
 	else {
-		self.domInformarErrorPregunta(self.test.cd_test, self.preg.i, 'Sin especificar')	
+		if (self.preg)
+			self.domInformarErrorPregunta(self.test.cd_test, self.preg.i, 'Sin especificar')	
 		}
 	}
 VistaTest.prototype.domInformarErrorPregunta=function(cd_test, cd_pregunta, msg){
@@ -1914,8 +1915,14 @@ VistaTest.prototype.tickCrono=function(){
 		}
 	}
 VistaTest.prototype.backButton=function(vTo, vFrom){
-	if (app.vistaActiva!=this)
-		this.show(true)
+	if (app.vistaActiva==this){
+		}
+	else {
+		if (vTo.vista=='vistaRepasoTest')
+			this.show(true)
+		else //con backButton no se puede volver a un test que hayas cerrado
+			return
+		}
 
 	if (jQuery('.modal#frmPausa').is(':visible')){
 		this.btnContinuarTest()
@@ -2192,8 +2199,19 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			}
 		
 		if (vFrom && vFrom.vista==this.id && JSON.stringify(vTo)==JSON.stringify(this.urlBody)){
+
+			var xcat=buscaFilas((this.entornoLocal?app.cache.categoriasLocales:app.cache.categorias), 
+						{cd_categoria: vTo.cd_categoria})[0]
+
+			if (xcat==null){
+				xcat=buscaFilas((!this.entornoLocal?app.cache.categoriasLocales:app.cache.categorias), 
+								{cd_categoria: vTo.cd_categoria})[0]
+				}
+
+			this.cambiaHeaderApp(xcat.ds_categoria)
 			this.ajustaAlturaCard(jQuery('.card.pack'))
 			//la vista de domBody se puede mantener tal cual está
+
 			return
 		}
 
@@ -2400,8 +2418,8 @@ VistaTienda.prototype.marcarCatFavorita=function(cd_cat){
 	jQuery('ul#categorias .btnFav[data-id='+this.catFavorita+']').addClass('on')
 
 	if (this.catFavorita){
-		var cat=buscaFilas(app.cache.categorias, {cd_categoria:this.catFavorita})
-		app.showToast('Has marcado la categoría "'+cat.ds_categoria+'" como favorita. La próxima vez que entres a la tienda te situaremos directamente en ella.')
+		var cat=buscaFilas(app.cache.categorias, {cd_categoria:this.catFavorita})[0]
+		app.showToast('Has marcado la categoría "'+cat.ds_categoria+'" como favorita.')
 		}
 	else{
 		app.showToast('Has eliminado la categoría favorita')
@@ -2492,7 +2510,9 @@ VistaTienda.prototype.cargaListaCategorias=function(lis, todosLosNiveles){
 		var btn=creaT('')
 		if (!this.entornoLocal){
 			var cls=this.catFavorita==cat.cd_categoria?' on':''
-			btn=creaObjProp('button', {className:'btn-xs btn btn-link btnFav '+cls, 'data-id':cat.cd_categoria, i:'fa fa-thumb-tack', onclick:this.fnMarcarCatFavorita(cat.cd_categoria) })
+			btn=creaObjProp('button', {className:'btn-xs btn btn-link btnFav '+cls, 
+										'data-id':cat.cd_categoria, i:'fa fa-thumb-tack', 
+										onclick:this.fnMarcarCatFavorita(cat.cd_categoria) })
 			}
 
 		if (todosLosNiveles){
@@ -2504,7 +2524,7 @@ VistaTienda.prototype.cargaListaCategorias=function(lis, todosLosNiveles){
 		
 			
 			xl.push( creaObjProp('li', {hijos:[
-						creaObjProp('a', {hijos:hijos, 'data-id':ds_cat, onclick:fn}),
+						creaObjProp('a', {hijos:hijos, 'data-id':cat.cd_categoria, onclick:fn}),
 						btn
 						]} ) 
 				)
@@ -3394,8 +3414,6 @@ VistaTienda.prototype.descargaTest=function(cd_test, pruebaCompra){
 				self.anhadeATestLocales(datos.test)
 				app.cache.catsConTestLocales=app.catsConTestLocales()
 
-				app.showToast('Test instalado')
-
 				var idcat=datos.test.liscat.split(',')[0]
 				var cat=buscaFilas(app.cache.categorias, {cd_categoria:idcat})
 				jQuery('article.card[id=test-'+datos.test.cd_test+']').replaceWith(
@@ -3409,6 +3427,7 @@ VistaTienda.prototype.descargaTest=function(cd_test, pruebaCompra){
 				// 	}
 
 				setTimeout(function(){
+					app.showToast('Test instalado')
 					self.domDetalleTest.addClass('tengo-este-test')
 					xbtn.removeClass('cargando').text(oldText)
 					},1500)
@@ -3982,6 +4001,7 @@ VistaSocial.prototype.verGrupo=function(gid, fromHistory){
 	var grupo=buscaFilas(this.grupos, {cd_grupo:gid})[0]
 	
 	if (this.grupo==null){
+		app.vistaActiva.cerrarGrupo()
 		}
 	else if (this.grupo.cd_grupo==grupo.cd_grupo && this.domChatGrupo.is(':visible') )
 		return
@@ -4386,21 +4406,31 @@ VistaSocial.prototype.btnDeleteGroup=function(d){
 		return
 
 	var self=this
-	navigator.notification.confirm(
-	    'Atención: esta acción no se puede deshacer. ¿Confirmas que deseas eliminar el grupo? Se perderá la conversación completa',
-	    function( buttonIndex ) { 
-	        switch ( buttonIndex ) {
-	            case 1:
-	            	self.grupo.esModif=true
-	            	self.grupo.esBorrado=true
-					self.guardarCambiosGrupo(function(){self.cerrarGrupo()})
-	                break;
-	        	}
-	    	},
-	    'Confirmar eliminación', 
-	    ['Sí, eliminar','Cancelar']
+	if (isPhone()){
+		navigator.notification.confirm(
+		    'Atención: esta acción no se puede deshacer. ¿Confirmas que deseas eliminar el grupo? Se perderá la conversación completa',
+		    function( buttonIndex ) { 
+		        switch ( buttonIndex ) {
+		            case 1:
+		            	self.grupo.esModif=true
+		            	self.grupo.esBorrado=true
+						self.guardarCambiosGrupo(function(){self.cerrarGrupo()})
+		                break;
+		        	}
+		    	},
+		    'Confirmar eliminación', 
+		    ['Sí, eliminar','Cancelar']
 
-		)
+			)
+		}
+	else {
+		var r=confirm('Atención: esta acción no se puede deshacer. ¿Confirmas que deseas eliminar el grupo? Se perderá la conversación completa')
+		if (r) {
+			self.grupo.esModif=true
+        	self.grupo.esBorrado=true
+			self.guardarCambiosGrupo(function(){self.cerrarGrupo()})
+			}
+		}
 	}
 ////
 VistaSocial.prototype.testPushMensajeGrupo=function(){
@@ -4416,6 +4446,9 @@ function VistaEstadisticas(desdeHistorial){
 		app.pushState(this.id)
 	}
 VistaEstadisticas.prototype=new Vista
+VistaEstadisticas.prototype.inflateMenu=function(){
+	this.disinflateMenu()
+	}
 VistaEstadisticas.prototype.getHeader=function(){
 	return null //creaObjProp('header', {className:'vista-header', 'style.display':'none'})
 	}
