@@ -368,6 +368,7 @@ section#main_container{
 }
 .dropdown-menu {
 	min-width:330px;
+	max-height:330px;
 	overflow-y: auto;
 }
 .dropdown-menu > li > a{
@@ -464,7 +465,7 @@ h1, h2, h3, h4, h4, small{
 	background-color: $primaryColor;
 	border-color: $primaryColor;
 	}
-.btn-dark {
+.btn-dark,.bg-dark {
 	color: #fff !important;
 	background-color: $navigation_bar_bgcolor!important;
 	border-color: $navigation_bar_bgcolor;
@@ -495,6 +496,7 @@ h1, h2, h3, h4, h4, small{
 	border-color:$infoColor;
 	background-color:transparent;
 }
+
 
 .btn.btn-dark.transparent{
 	background-color:transparent!important;
@@ -843,7 +845,7 @@ article.card, article.pack{
 						//border-top:1px solid rgba(0,0,0,0.05);
 					
 						&.contestada{
-							background-color:#89cc97;
+							color:rgba(137, 204, 151, 0.2);
 						}
 						&.active span{
 							background-color:rgb(235, 244, 228);
@@ -859,6 +861,9 @@ article.card, article.pack{
 							margin-top: -2px;
 						}
 
+						.fa-stack-2x{
+							color:rgba(137, 204, 151, 0.2);
+						}
 						.stack-text{
 							margin-top:-.1rem;
 							color:$primaryColor;
@@ -958,14 +963,26 @@ article.card, article.pack{
 		}
 
 	}
-	.vista.vistaTienda{
+
+	.vista.vistaTienda .vista-header,
+	.vista.vistaTienda .vista-body .bloque .cargarMas span{
+		background-color:#f0ad4e;
+	}
+	
+	.vista.vistaMisTest .vista-header,
+	.vista.vistaMisTest .vista-body .bloque .cargarMas span{
+		background-color:#fb6b5b;
+	}
+
+	.vista.vistaTienda, .vista.vistaMisTest{
 		
 		.vista-header {
-			background-color:#f0ad4e;
+			
 			color:white;
 			button{
 				background:transparent;
 				padding-left:15px;
+				color:white;
 
 				i {
 					float: left;
@@ -974,6 +991,26 @@ article.card, article.pack{
 				    margin-top: 4px;
 				    opacity: 0.3;
 				}
+			}
+			ul#categorias{
+				.aConFav{ float:left; width:85%;}
+				
+				button.btnFav{
+					display: inline-block;
+					float:right;
+					width:15%;
+					margin-top:-3px;
+					min-height: 40px;
+
+					color:rgba(128, 128, 128, .2);
+
+					i{font-size:16px; opacity:1;}
+
+					&.on{
+						color:rgba(46, 62, 78, 0.8);
+					}
+				}
+
 			}
 
 		}
@@ -1004,7 +1041,7 @@ article.card, article.pack{
 						text-transform: uppercase;
 						border-radius:0;
 						box-shadow:0 0 0;
-						background:#f0ad4e!important;
+						//background:#f0ad4e;
 						color:white;
 						}
 				}
@@ -1186,7 +1223,7 @@ article.card, article.pack{
 					color:transparent;	
 				}
 				.fa-inverse{
-					font-size: 13.5px;
+					//font-size: 13.5px;
 					color:rgb(113, 113, 113);
 				}
 
@@ -1397,6 +1434,7 @@ article.card, article.pack{
 		.vista-detalle-grupo{
 			background-color:rgb(157, 177, 197);;
 			color:$navigation_bar_bgcolor;
+			overflow:hidden;
 
 			> footer{
 				height:50px;
@@ -1465,6 +1503,14 @@ article.card, article.pack{
 			&.admin{
 				i.btnNombreGrupo, button.member i, .btnMemberAdd, .btnDeleteGroup {
 					display: block;
+				}
+
+				small.adminLit{
+					float: right;
+					color: #f0ad4e;
+					opacity: 0.3;
+					border: 1px solid;
+					padding: 0px 2px;
 				}
 			}
 		}
@@ -1814,15 +1860,25 @@ article.card, article.pack{
 	.cerrar{
 		position: absolute;
 		bottom: 0;
-		background: white;
+		background: black;
 		width: 100%;
 		text-align: center;
 		padding: 5px;
+		color:white;
 	}
 }
 
 //media queries
 @media (max-width: 767px){
+	body > .vbox{
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+	}
+
 	header#navigation_bar a.navbar-brand{
 		width:80%; text-align:left;
 		font-size: 19px;
@@ -2044,6 +2100,7 @@ article.card, article.pack{
 		border-spacing: 0;
 		width: 100%;
 		height:100%;
+		overflow:hidden;
 	}
 	.vbox{
 		display: table;
@@ -2094,6 +2151,21 @@ article.card, article.pack{
 		margin-right: -15px;
 	}
 
+	#content .vista.vistaTienda .detalle-test section.row, 
+	#content .vista.vistaMisTest .detalle-test section.row{
+		margin-left:auto; margin-right:auto;
+		max-width: 410px;
+	}
+
+	.barra.global{display:block !important;}
+	.barra.vista .aside-md{width:45%;}
+
+	#content.cargando{
+		background-position:40% center;
+	}
+	#content .vista .vista-body.cargando{
+		background-position:50% center;
+	}
 }
 
 @media (max-width: 384px){//desde iphone a n4
