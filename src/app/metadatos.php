@@ -539,7 +539,7 @@ class Metadatos{
 			$this->sql_test_t($cd_test, $cd_usuario, FasesTramitacion::InformarError, 'Pregunta CD_Pregunta='.$cd_pregunta.'/Motivo:'.$motivo)
 			);
 		$this->conn->ejecutaLote($arr);
-		$this->correoe('8ctopusapp@gmail.com', FasesTramitacion::InformarError, 'CD_Test='.$cd_test.'/Pregunta CD_Pregunta='.$cd_pregunta.'/Motivo:'.$motivo);
+		$this->correoe('8ctopusapp@gmail.com', FasesTramitacion::InformarError .': '.$cd_usuario, 'CD_Test='.$cd_test.'/Pregunta CD_Pregunta='.$cd_pregunta.'/Motivo:'.$motivo);
 		}
 	public function guardaResultadosTest($cd_usuario, $cd_test, $datos_json){
 		$arr=array();
@@ -609,9 +609,9 @@ class Metadatos{
 		if ($datos['esBorrado']==1){
 			$par=array($datos['cd_grupo']);
 			$arrSql=array(
-				// new Sql("delete from usuarios_grupos where cd_grupo=?", $par),
-				// new Sql("delete from usuarios_grupos_mensajes where cd_grupo=?", $par),
-				new Sql("update grupos set f_borrado=now() where cd_grupo=?", $par)
+				new Sql("delete from usuarios_grupos_mensajes where cd_grupo=?", $par),
+				new Sql("delete from usuarios_grupos where cd_grupo=?", $par),
+				// new Sql("delete grupos set f_borrado=now() where cd_grupo=?", $par)
 				);
 			}
 		else {
