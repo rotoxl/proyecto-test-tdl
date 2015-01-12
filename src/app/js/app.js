@@ -146,7 +146,7 @@ function buscaFilas(filas, dicBuscado){
 				var kt=k.substr( '_contains_'.length )
 				var zonaBusqueda=element[kt]
 				
-				if (zonaBusqueda.indexOf( (dicBuscado[k]+'') )==-1)
+				if (zonaBusqueda.toLowerCase().indexOf( ( (dicBuscado[k]+'').toLowerCase() ) )==-1)
 					return false
 				}
 			else if (dicBuscado[k]!=element[k]){
@@ -800,6 +800,10 @@ Controlador.prototype.cargaVistaInicio=function(){
 	var hash=(document.location.hash+'').substring(1)
 	if (hash=='vistaMigraTest')
 		this.cargaVistaMigraTest(true)
+	
+	else if (hash.indexOf('vistaMisTest')>-1){
+		this.cargaVistaMisTest(true, hash)
+		}
 	else if (hash.indexOf('vistaTienda')>-1){
 		this.cargaVistaTienda(true, hash)
 		}
@@ -807,6 +811,7 @@ Controlador.prototype.cargaVistaInicio=function(){
 		this.cargaVistaTienda(true, true)
 		// this.continuarTest(true)
 		}
+
 	else if (hash.indexOf('vistaSocial')>-1 )
 		this.cargaVistaSocial(true, hash)
 	else if (hash=='vistaEstadisticas')
@@ -815,7 +820,10 @@ Controlador.prototype.cargaVistaInicio=function(){
 		this.cargaVistaAjustes()
 
 	else {
-		this.cargaVistaTienda(false, this.offline)
+		if (app.getTestLocales().length>0)
+			this.cargaVistaMisTest(false)
+		else 
+			this.cargaVistaTienda(false)
 		}
 
 	if (this.vistaSocial==null){
@@ -826,20 +834,36 @@ Controlador.prototype.cargaVistaInicio=function(){
 		this.vistaTienda=new VistaTienda(false)
 		}
 	}
-Controlador.prototype.cargaVistaTienda=function(desdeHistorial, entornoLocal){
+Controlador.prototype.cargaVistaMisTest=function(desdeHistorial, hash){
 	var cd_test
-	if (entornoLocal!=null && typeof(entornoLocal)=='string'){
-		var temp=entornoLocal
-		entornoLocal=temp.indexOf(':dispositivo')>-1
+	if (hash!=null && typeof(hash)=='string'){
+		var temp=hash
+		cd_test=temp.split(':')[2]
+		}
+
+	if (this.vistaMisTest==null)
+		this.vistaMisTest=new VistaMisTest(desdeHistorial, cd_test)
+	else 
+		this.vistaMisTest.recuperarPosicion=cd_test
+		
+	if (this.vistaMisTest.domBody)
+		this.vistaMisTest.show(desdeHistorial)
+	else
+		this.vistaMisTest.toDOM(desdeHistorial)
+
+	this.cierraNavDrawer()
+	}
+Controlador.prototype.cargaVistaTienda=function(desdeHistorial, hash){
+	var cd_test
+	if (hash!=null && typeof(hash)=='string'){
+		var temp=hash
 		cd_test=temp.split(':')[2]
 		}
 
 	if (this.vistaTienda==null)
-		this.vistaTienda=new VistaTienda(desdeHistorial, entornoLocal, cd_test)
-	else {
-		this.vistaTienda.entornoLocal=entornoLocal
+		this.vistaTienda=new VistaTienda(desdeHistorial, cd_test)
+	else
 		this.vistaTienda.recuperarPosicion=cd_test
-		}
 		
 	if (this.vistaTienda.domBody)
 		this.vistaTienda.show(desdeHistorial)
@@ -896,6 +920,10 @@ Controlador.prototype.resize=function(){
 		this.vistaActiva.resize()
 	}
 /////
+Controlador.prototype.inicio=function(){
+	if (app.vistaActiva)
+		app.vistaActiva.inicio(false)
+	}
 Controlador.prototype.backButton=function(){
 	if (jQuery('#main_container aside').hasClass('nav-off-screen')){
 		this.cierraNavDrawer()
@@ -931,6 +959,8 @@ Controlador.prototype.backButton=function(){
 		this.vistaSocial.backButton(vTo, vFrom)
 	else if (vTo.vista=='vistaTienda')
 		this.vistaTienda.backButton(vTo, vFrom)
+	else if (vTo.vista=='vistaMisTest')
+		this.vistaMisTest.backButton(vTo, vFrom)
 	else if (vTo.vista=='vistaTest')
 		this.vistaTest.backButton(vTo, vFrom)
 	}
@@ -950,6 +980,7 @@ Controlador.prototype.toggleMenuGlobal=function(visible, inmediate){
 
 //Todas las vistas tienen un vista-header y un vista-body
 function Vista(){
+	this.title='Octopus'
 	if (this.id==null) return
 	if (this.tipos.indexOf(this.id)==-1 )
 		console.error('Tipo de vista desconocido: hay que darlo de alta en Vista.prototype.tipos')
@@ -966,6 +997,8 @@ Vista.prototype.calculaAnchoTarjetas=function(){
 	}
 Vista.prototype.tipos={
 	vistaTest:'vistaTest', 
+
+	vistaMisTest:'vistaMisTest', 
 	vistaTienda:'vistaTienda', 
 	
 	vistaSocial:'vistaSocial', // vistaGrupo:'vistaGrupo',
@@ -975,6 +1008,8 @@ Vista.prototype.tipos={
 	vistaMigraTest:'vistaMigraTest'
 	}
 Vista.prototype.toDOM=function(desdeHistorial){
+	this.cambiaTextoHeaderGlobal(this.title)
+
 	app.muestraNodoEnNavDrawer('li'+this.id.slice(0,1).toUpperCase()+this.id.slice(1))
 
 	var xd=jQuery('#content')
@@ -989,6 +1024,10 @@ Vista.prototype.toDOM=function(desdeHistorial){
 		this.domBody=jQuery(tb)
 	
 	xd.find('.vista').hide()
+
+	jQuery('#main_container .aside-md')
+		.removeClass( Object.keys(this.tipos).join(' '))
+		.addClass('vista '+this.id)
 
 	this.domCont=jQuery(creaObjProp('section', {'style.height':'100%'}))
 	xd.append(this.domCont)
@@ -1011,6 +1050,12 @@ Vista.prototype.toDOM=function(desdeHistorial){
 		}
 	}
 Vista.prototype.show=function(desdeHistorial){
+	this.cambiaTextoHeaderGlobal(this.title)
+
+	jQuery('#main_container .aside-md')
+		.removeClass( Object.keys(this.tipos).join(' '))
+		.addClass('vista '+this.id)
+
 	app.muestraNodoEnNavDrawer('li'+this.id.slice(0,1).toUpperCase()+this.id.slice(1))
 
 	var xd=jQuery('#content')
@@ -1032,6 +1077,10 @@ Vista.prototype.resize=function(){
 	this.domBody.height( this.hVista- (this.domHeader?this.domHeader.outerHeight():0) )
 	}
 Vista.prototype.tareasPostCarga=function(){}
+Vista.prototype.disinflateMenu=function(){
+	jQuery('.barra.vista .btn-group.btn-menu').find('.btn-menu').removeClass('hidden')
+	jQuery('.barra.vista .btn-group.btn-menu').find('.btn-button').remove()
+	}
 Vista.prototype.inflateMenu=function(){}
 Vista.prototype.backButton=function(){
 	if (app.vistaActiva!=this)
@@ -1044,12 +1093,17 @@ Vista.prototype.getUsuDeGrupo=function(cd_grupo, cd_usuario){
 	}
 Vista.prototype.pushReceived=function(accion, datos){}
 Vista.prototype.cerrar=function(){}
+Vista.prototype.cambiaTextoHeaderGlobal=function(t){
+	jQuery('#navigation_bar')
+		.find('.barra.global .navbar-brand').text(t)
+
+	}
 Vista.prototype.cambiaHeaderApp=function(titulo){
 	var nb=jQuery('#navigation_bar')
 	nb.find('.barra.global').hide()
 	nb.find('.barra.vista').show()
 	nb.find('.barra.vista .navbar-brand').text(titulo)
-	this.toggleMenuGlobal(false)
+	// this.toggleMenuGlobal(false)
 	}
 Vista.prototype.restauraHeaderApp=function(){
 	var nb=jQuery('#navigation_bar')
@@ -1341,6 +1395,8 @@ VistaTest.prototype.tecladoDiapoSiguiente=function(){
 	this.gallery.next()
 	}
 VistaTest.prototype.inflateMenu=function(){
+	this.disinflateMenu()
+
 	var self=this
 	this.domMenu.show()
 	
@@ -1470,7 +1526,7 @@ VistaTest.prototype.generaDomRespuestas=function(preg, resp){
 	return creaObjProp('table', {hijos:xr})
 	}
 VistaTest.prototype.getEstilosDomRespuestas=function(preg, resp, i){
-	var estilos=['bg-danger', 'bg-warning', 'bg-success', 'bg-info', 'bg-primary']
+	var estilos=['bg-danger', 'bg-warning', 'bg-success', 'bg-info', 'bg-dark']
 	return [estilos[i], '']
 	}
 VistaTest.prototype.fnAmpliarImg=function(ruta){
@@ -1606,6 +1662,7 @@ VistaTest.prototype.tiempoAcabado=function(){
 	}
 VistaTest.prototype.finExamen=function(){
 	this.frmdom.modal('hide')
+
 	app.cargaVistaInicio()
 	}
 VistaTest.prototype.guardaEstadoExamen=function(finalizado){
@@ -2011,13 +2068,13 @@ VistaRepasoTest.prototype.getHeader=function(){
 	var self=this
 	return creaObjProp('header', {className:'vista-header marcadores' , hijos:[
 				creaObjProp('div', {className:'btn-group btn-dark', hijos:[
-						creaObjProp('button', {className:'btn btn-primary col-md-12 col-sm-12 col-xs-12 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', hijos:[
+						creaObjProp('button', {className:'btn btn-dark2 col-md-12 col-sm-12 col-xs-12 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', hijos:[
 							creaT(' Pregunta '),
 							creaObjProp('span', {id:'numPag', texto:1}),
 							creaT(' de '+this.examen.numpreguntas+' '), 
 							creaObjProp('b', {className:'caret'})
 							]}),
-						creaObjProp('ul', {id:'mapatest', className:'btn2_1 dropdown-menu btn-primary', role:'menu', hijos:[
+						creaObjProp('ul', {id:'mapatest', className:'btn2_1 dropdown-menu btn-dark2', role:'menu', hijos:[
 							creaObjProp('span', {className:'arrow top'}),
 
 							]}),
@@ -2034,15 +2091,20 @@ VistaRepasoTest.prototype.toggleMenuGlobal=function(visible, inmediate){
 	}
 ////////////////////////////////////////////////
 
-function VistaTienda(desdeHistorial, entornoLocal, cd_test){
+function VistaTienda(desdeHistorial, cd_test){
+	if (app==null) return
+
 	this.id='vistaTienda'
+	this.title='Tienda de test'
+
+	this.catFavorita=get('tapp37_catfavorita') || null
 	this.cat=null
 	this.recuperarPosicion=cd_test
 
 	this.leeTestLocales()
 	this.leeRespuestasLocales()
 
-	this.entornoLocal=entornoLocal
+	this.entornoLocal=false
 	// this.domDetalleTest=null
 	this.domMenu=jQuery('.barra.vista .btn-menu, .barra.global .btn-menu')
 
@@ -2052,11 +2114,11 @@ function VistaTienda(desdeHistorial, entornoLocal, cd_test){
 VistaTienda.prototype=new Vista
 VistaTienda.prototype.getHeader=function(){
 	var self=this
-	return creaObjProp('header', {className:'btn-warning vista-header' , hijos:[
+	return creaObjProp('header', {className:'vista-header' , hijos:[
 			creaObjProp('div', {className:'btn-group', hijos:[
 
 				creaObjProp('div', {className:'btn-group', hijos:[
-					creaObjProp('button', {className:'btn btn-warning dropdown-toggle', 'data-toggle':'dropdown', hijos:[
+					creaObjProp('button', {className:'btn dropdown-toggle', 'data-toggle':'dropdown', hijos:[
 						creaT(' Categorías '),
 						creaObjProp('b', {className:'caret'})
 						]}), 
@@ -2065,9 +2127,8 @@ VistaTienda.prototype.getHeader=function(){
 
 						]}),
 					]}),
-
-					creaObjProp('button', {onclick:function(){self.cambiaEntorno(this)}, texto:'Tienda', i:'fa-shopping-cart', className:'pull-right btn btn-warning tienda '+(this.entornoLocal?'':'active') }),
-					creaObjProp('button', {onclick:function(){self.cambiaEntorno(this)}, texto:'Mis tests'/*, i:'fa-download'*/, className:'pull-right btn btn-warning dispositivo '+(this.entornoLocal?'active':'') }),
+				
+				//creaObjProp('button', {className:'pull-right btn inicio', texto:'Inicio', onclick:function(){self.inicio()} })
 			]}),
 			
 		]})
@@ -2084,20 +2145,29 @@ VistaTienda.prototype.tareasPostCarga=function(fromHistory){
 		this.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
 		}
 	else
-		this.cambiaEntorno(jQuery('button.tienda'), fromHistory)
+		this.cambiaEntorno(fromHistory)
 	
 	this.inflateMenu()
 	}
 VistaTienda.prototype.inflateMenu=function(){
+	this.disinflateMenu()
+
 	var self=this
 	this.domMenu.show()
 	
-	var xul=this.domMenu.find('ul')
+	this.domMenu.find('.btn-menu').addClass('hidden')
+
+
+	var xul=this.domMenu
 	for (var i=0; i<xul.length; i++){
 		var xxul=jQuery(xul[i])
-		xxul.empty().append(creaObjProp('li', {hijos:[
-			creaObjProp('a', {texto:'Buscar test', onclick:function(){self.buscarTest()} } )
-			]}))
+		// xxul.empty().append(creaObjProp('li', {hijos:[
+		// 	creaObjProp('a', {texto:'Buscar test en '+(this.entornoLocal?'Mis test':'la tienda'), onclick:function(){self.buscarTest()} } )
+		// 	]}))
+		xxul.append(creaObjProp('a', {className:'btn-button btn btn-link visible-xs', 
+										// texto:'Buscar test en '+(this.entornoLocal?'Mis test':'la tienda'),
+										i:'fa-search', 
+										onclick:function(){self.buscarTest()} }) )
 		}
 	}
 VistaTienda.prototype.backButton=function(vTo, vFrom){
@@ -2113,8 +2183,6 @@ VistaTienda.prototype.backButton=function(vTo, vFrom){
 	}
 VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 	if (vTo && vTo.cd_test){
-
-
 		this.testPreview(vTo.cd_test, true)
 		}
 	else  {
@@ -2123,14 +2191,14 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			this.domDetalleTest.hide()
 			}
 		
-		if (vFrom.vista==this.id && JSON.stringify(vTo)==JSON.stringify(this.urlBody)){
+		if (vFrom && vFrom.vista==this.id && JSON.stringify(vTo)==JSON.stringify(this.urlBody)){
 			this.ajustaAlturaCard(jQuery('.card.pack'))
 			//la vista de domBody se puede mantener tal cual está
 			return
 		}
 
 		if (vFrom && vFrom.cd_categoria==-100 && vFrom.cd_test==null){//búsqueda
-			this.inicio(fromHistory)
+			this.inicio(true)
 			}
 		else if (vTo && vTo.cd_categoria && vTo.cd_pack)
 			this.navegaCat(vTo.cd_categoria, true, vTo.cd_pack)
@@ -2140,7 +2208,7 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			this.cat=null
 			this.restauraHeaderApp() 
 			
-			//dejamos una pequeña lista de tests visibles por categoría, y mostramos el botón 'cargar más'
+			//dejamos una pequeña lista de test visibles por categoría, y mostramos el botón 'cargar más'
 			var bloques=this.domBody.find('.bloque.cat:not(.pack)').show()
 			bloques.find('.card').not('.main').remove()
 			bloques.find('.titulo .cargarMas').show()
@@ -2159,7 +2227,13 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 		}
 	}
 VistaTienda.prototype.show=function(fromHistory, willReposition){
+	this.entornoLocal=this instanceof VistaMisTest
 	Vista.prototype.show.call(this, fromHistory)
+
+	if (this.entornoLocal)
+		this.cargaListaCategorias(app.cache.catsConTestLocales, true)
+	else
+		this.cargaListaCategorias(app.cache.categorias)
 
 	if (willReposition==null){
 		if (this.recuperarPosicion!=null)
@@ -2170,17 +2244,22 @@ VistaTienda.prototype.show=function(fromHistory, willReposition){
 		}
 	}
 VistaTienda.prototype.inicio=function(fromHistory, vFrom){
-	var xbtn=this.entornoLocal?jQuery('.btn.dispositivo'):jQuery('.btn.tienda')
-	this.cambiaEntorno(xbtn, fromHistory)
-	if (fromHistory && vFrom){
-		if (vFrom.cd_categoria){
-			var cat=buscaFilas(app.cache.categorias, {cd_categoria:vFrom.cd_categoria})[0]
-			
-			var xp=this.domBody.find('#cat-'+cat.cd_categoriapadre)
-			if (xp.length)
-				this.domBody.scrollTop( xp.offset().top-100 )
-			}
+	this.cambiaEntorno(fromHistory)
+
+	var catVolver=null, navegar=false
+	if (fromHistory && vFrom) 
+		catVolver=vFrom.cd_categoria
+
+	if (catVolver){
+		var cat=buscaFilas(app.cache.categorias, {cd_categoria:catVolver})[0]
+		
+		var xp=this.domBody.find('#cat-'+cat.cd_categoriapadre)
+		if (xp.length)
+			this.domBody.scrollTop( xp.offset().top-100 )
 		}
+	else 
+		this.navegaEl( {vista: this.entornoLocal?'vistaMisTest':'vistaTienda'})
+
 	}
 VistaTienda.prototype.toggleMenuGlobal=function(visible, inmediate){
 	var menu=jQuery('.barra.global .btn-menu')	
@@ -2200,7 +2279,7 @@ VistaTienda.prototype.toggleMenuGlobal=function(visible, inmediate){
 	}
 VistaTienda.prototype.setOffline=function(v){
 	var self=this
-	if (!app.offline && app.cache.testTienda.length==0)
+	if (!app.offline && app.cache.testTienda && app.cache.testTienda.length==0)
 		self.leeTestTienda(function(datos){
 			if (!self.entornoLocal){
 				self.pintaPortadaTienda(app.cache.categorias, datos)
@@ -2224,13 +2303,13 @@ VistaTienda.prototype.buscarTest=function(){
 		                break;
 		        }
 		    },
-		    'Buscar test',     // a title
+		    'Buscar test en '+(this.entornoLocal?'Mis test':'la tienda'),     // a title
 		    [ "Buscar", "Cancelar" ], // text of the buttons
-		    self.strBuscar
+		    ''//self.strBuscar
 			)
 		}
 	else {
-		self.strBuscar = prompt('Buscar test', self.strBuscar)
+		self.strBuscar = prompt('Buscar test en '+(this.entornoLocal?'Mis test':'la tienda'), self.strBuscar)
 		if (self.doBuscarTest!=null)
 			self.doBuscarTest(self.strBuscar)
 		}
@@ -2244,13 +2323,13 @@ VistaTienda.prototype.doBuscarTest=function(s, id, situar){
 		id=null
 		}
 
-	if (app.offline){
-		//ojo, no llamar a cambiaEntorno
-		self.domHeader.find('.btn.tienda, .btn.dispositivo').removeClass('active')
-		self.domHeader.find('.btn.tienda').addClass('active')
-		self.entornoLocal=false
+	if (app.offline || this instanceof VistaMisTest){
+		var encontrados1=buscaFilas(app.cache.testLocales, {_contains_ds_test:s})
+		var encontrados2=buscaFilas(app.cache.testLocales, {_contains_organismo:s})
+		var encontrados3=buscaFilas(app.cache.testLocales, {_contains_ds_test:s})
 
-		var encontrados=buscaFilas(app.cache.testLocales, {_contains_ds_test:s})
+		var encontrados=encontrados1.concat(encontrados2).concat(encontrados3)
+
 		encontrados.map(function(el){el.liscat=el.liscat+',-100,'})
 		self.doBuscarTest_response(encontrados, situar)
 		return
@@ -2261,8 +2340,6 @@ VistaTienda.prototype.doBuscarTest=function(s, id, situar){
 			var datos=xeval(data)
 			if (datos.retorno==1){
 				//ojo, no llamar a cambiaEntorno
-				self.domHeader.find('.btn.tienda, .btn.dispositivo').removeClass('active')
-				self.domHeader.find('.btn.tienda').addClass('active')
 				self.entornoLocal=false
 
 				self.doBuscarTest_response(datos.tests, situar)
@@ -2299,16 +2376,45 @@ VistaTienda.prototype.doBuscarTest_response=function(filas, situar){
 	self.domBody.removeClass('cargando')
 	}
 //////
-VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
+VistaTienda.prototype.fnMarcarCatFavorita=function(cd_cat){
 	var self=this
-	var pressed=jQuery(xbtn)
+	return function(e){
+		self.marcarCatFavorita(cd_cat)
+
+		e=e || window.event
+		if (e && e.stopPropagation) 
+        	e.stopPropagation()
+    	else 
+          	e.cancelBubble = true
+		}
+	}
+VistaTienda.prototype.marcarCatFavorita=function(cd_cat){
+	if (this.catFavorita==cd_cat)
+		this.catFavorita=null
+	else
+		this.catFavorita=cd_cat
+
+	save('tapp37_catfavorita', this.catFavorita)
+
+	jQuery('ul#categorias .btnFav.on').removeClass('on')
+	jQuery('ul#categorias .btnFav[data-id='+this.catFavorita+']').addClass('on')
+
+	if (this.catFavorita){
+		var cat=buscaFilas(app.cache.categorias, {cd_categoria:this.catFavorita})
+		app.showToast('Has marcado la categoría "'+cat.ds_categoria+'" como favorita. La próxima vez que entres a la tienda te situaremos directamente en ella.')
+		}
+	else{
+		app.showToast('Has eliminado la categoría favorita')
+		}
+	}
+//////
+VistaTienda.prototype.cambiaEntorno=function(fromHistory){
+	var self=this
+	// var pressed=jQuery(xbtn)
 	
 	//app.nav=[]//reseteamos la pila de navegación
 	this.restauraHeaderApp()
 	////
-
-	this.domHeader.find('.btn.tienda, .btn.dispositivo').removeClass('active')
-	pressed.addClass('active')
 
 	if (this.domDetalleTest && this.domDetalleTest.is(':visible')){
 		this.domBody.show()
@@ -2317,8 +2423,8 @@ VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 	if (!this.domBody.is(':visible'))
 		this.domBody.show()
 
-	if (pressed.hasClass('dispositivo')){
-		this.entornoLocal=true
+	if (this.entornoLocal){
+		// this.entornoLocal=true
 
 		if (app.cache.catsConTestLocales==null || app.cache.catsConTestLocales.length==0)
 			app.cache.catsConTestLocales=app.catsConTestLocales()
@@ -2327,7 +2433,7 @@ VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 		this.pintaPortadaTienda(app.cache.catsConTestLocales, app.cache.testLocales)
 		}
 	else {
-		this.entornoLocal=false
+		// this.entornoLocal=false
 
 		this.leeTestTienda( 
 			function(datos){
@@ -2339,7 +2445,7 @@ VistaTienda.prototype.cambiaEntorno=function(xbtn, fromHistory){
 	if (!fromHistory) {
 		app.addToNav({vista:this.id, entornoLocal:this.entornoLocal})
 		}
-	app.pushState(this.entornoLocal?'vistaTienda:dispositivo':'vistaTienda:tienda')
+	app.pushState(this.entornoLocal?'vistaMisTest':'vistaTienda')
 	}
 VistaTienda.prototype.doRecuperarPosicion=function(){
 	if (this.recuperarPosicion){
@@ -2360,6 +2466,11 @@ VistaTienda.prototype.doRecuperarPosicion=function(){
 			}
 		this.recuperarPosicion=null
 		}
+	else if (this.catFavorita){
+		if (app.nav.length==0)
+			app.addToNav({vista:this.id, entornoLocal:this.entornoLocal})
+		this.navegaCat(this.catFavorita)
+		}
 	}
 VistaTienda.prototype.cargaListaCategorias=function(lis, todosLosNiveles){
 	var self=this
@@ -2374,18 +2485,36 @@ VistaTienda.prototype.cargaListaCategorias=function(lis, todosLosNiveles){
 	for (var i=0; i<lis.length; i++){
 		var cat=lis[i]
 
+		var ds_cat=cat.ds_categoria
+		if (this.entornoLocal && cat.cd_categoria<0)
+			ds_cat='Recientes'
+
+		var btn=creaT('')
+		if (!this.entornoLocal){
+			var cls=this.catFavorita==cat.cd_categoria?' on':''
+			btn=creaObjProp('button', {className:'btn-xs btn btn-link btnFav '+cls, 'data-id':cat.cd_categoria, i:'fa fa-thumb-tack', onclick:this.fnMarcarCatFavorita(cat.cd_categoria) })
+			}
+
 		if (todosLosNiveles){
 			var hijos=[]
 			// var el=this.sacaPadresCategoria(cat) || []
 			// var hijos=el.map(function(xel){return creaObjProp('span', {texto:xel, i:'fa-angle-right', className:'padre'})})
 
-			hijos.push(creaT(cat.ds_categoria))
-			xl.push( creaObjProp('li', {hijo:creaObjProp('a', {hijos:hijos, 
-										'data-id':cat.cd_categoria, 
-										onclick:fn})} ) )
+			hijos.push(creaT(ds_cat))
+		
+			
+			xl.push( creaObjProp('li', {hijos:[
+						creaObjProp('a', {hijos:hijos, 'data-id':ds_cat, onclick:fn}),
+						btn
+						]} ) 
+				)
 			}
 		else if (cat.cd_categoriapadre==null)// if (cat.listarcomocategoria==1)
-			xl.push( creaObjProp('li', {hijo:creaObjProp('a', {texto:cat.ds_categoria, 'data-id':cat.cd_categoria, onclick:fn})} ) )
+			xl.push( creaObjProp('li', {hijos:[
+				creaObjProp('a', {className:'aConFav', texto:ds_cat, 'data-id':cat.cd_categoria, onclick:fn}),
+				btn
+				]})
+				)
 		}
 	jQuery('ul#categorias').empty().append(xl)
 	}
@@ -2418,6 +2547,11 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 
 	this.cat=buscaFilas((this.entornoLocal?app.cache.categoriasLocales:app.cache.categorias), 
 						{cd_categoria: cd_categoria})[0]
+	if (this.cat==null){
+		this.cat=buscaFilas((!this.entornoLocal?app.cache.categoriasLocales:app.cache.categorias), 
+						{cd_categoria: cd_categoria})[0]
+		}
+
 	this.cambiaHeaderApp(this.cat.ds_categoria)
 
 	this.domBody.find('.admonition').remove()
@@ -2437,6 +2571,7 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 		}
 
 	this.cargarMas(this.cat.cd_categoria, cd_pack)
+	this.ajustaAlturaCard(jQuery('.card.pack'))
 	}
 VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 	this.urlBody={vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:cd_categoria, cd_pack:cd_pack}
@@ -2473,9 +2608,9 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 
 	if (sl.length==0 && packs.length==0){
 		if (cd_categoria==-200)//buscar
-			blCat.append(this.admonition('No se han encontrado tests que cumplan con tus criterios de búsqueda', null, (xcat.i || 'fa-ban')+' fa-4x' ) )
+			blCat.append(this.admonition('No se han encontrado test que cumplan con tus criterios de búsqueda', null, (xcat.i || 'fa-ban')+' fa-4x' ) )
 		else
-			blCat.append(this.admonition('No hay tests en esta categoría', null, (xcat.i || 'fa-ban')+' fa-4x' ) )
+			blCat.append(this.admonition('No hay test en esta categoría', null, (xcat.i || 'fa-ban')+' fa-4x' ) )
 		}
 	else{
 		var aPintar=sl.slice(0)
@@ -2544,8 +2679,8 @@ VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 	if (lista.length==0){
 		var titulo, texto, sub, i
 		if (this.entornoLocal){
-			titulo='No hay tests'
-			texto='Aquí se muestran los tests que tienes almacenados en tu dispositivo, pero ahora mismo no hay ninguno.'
+			titulo='No hay test'
+			texto='Aquí se muestran los test que tienes almacenados en tu dispositivo, pero ahora mismo no hay ninguno.'
 			sub='¿Por qué no descargas alguno de la tienda? Hay muchos gratuitos'
 			i='fa-ban fa-4x'
 			}
@@ -2630,9 +2765,9 @@ VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
 		}
 
 	this.domBody.addClass('flowable').append(xl).removeClass('cargando')//.show()
+	
 	this.ajustaAlturaCard(jQuery('.card.pack'))
-	if (this.entornoLocal) 
-		this.ajustaAlturaCard(jQuery('.card.test'))
+	this.ajustaAlturaCard(jQuery('.card.test'))
 	}
 VistaTienda.prototype.testEstaEnPack=function(test, packs){
 	var temp=test.liscat.split(',')
@@ -2692,7 +2827,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 
 		var f=formato.fechaComps(uo)
 		if (f){
-			dFecha=creaObjProp('span', {className:'fecha pull-right bl', hijos:[
+			dFecha=creaObjProp('span', {className:'fecha pull-right bl hidden', hijos:[
 				creaObjProp('span', {className:'bl dia', texto:f.dia}),
 				creaObjProp('span', {className:'bl mes', texto:f.mesl}),
 				]})
@@ -2749,7 +2884,7 @@ VistaTienda.prototype._generaDomPack=function(pack, j, cat){
 					creaObjProp('span', {className:'bl nombre NOellipsis col-xs-12', texto:pack.ds_categoria}) 
 					]}),
 				creaObjProp('div', {className:'frow', hijos:[
-					// creaObjProp('small', {texto:'Colección de tests'})
+					// creaObjProp('small', {texto:'Colección de test'})
 					]}),
 				]})
 			]})
@@ -2780,7 +2915,9 @@ VistaTienda.prototype.ajustaAlturaCard=function(ret){
 	var diff=h-w; var hFooter=61
 	
 	if (esTest){
-		xret.find('footer .fecha').css('margin-top', -(h-hFooter) )
+		xret.find('footer .fecha')
+			.css('margin-top', -(h-hFooter) )
+			.removeClass('hidden')
 		}
 	else {//packs
 		if (diff>0){
@@ -2788,7 +2925,8 @@ VistaTienda.prototype.ajustaAlturaCard=function(ret){
 			}
 		else{
 			diff=-diff
-			xret.css({'margin-left':diff/2, 'margin-right':diff/2+5, 'width':h})
+			if (diff>0)
+				xret.css({'margin-left':diff/2, 'margin-right':diff/2+5, 'width':h})
 			}
 		}
 	}
@@ -2799,7 +2937,7 @@ VistaTienda.prototype.leeTestTienda=function(fnCallBack){
 		// 		{cd_test:12, ds:'Test Enfermería 2', likes:1, cd_categoria:1, importe:0, url:'https://s3-sa-east-1.amazonaws.com/tax-i/include/static/select2.css'},
 		// 		{cd_test:19, ds:'Test Enfermería 3', likes:0, cd_categoria:1, importe:.6},
 		// 		{cd_test:99, ds:'Test Enfermería 4', likes:1, cd_categoria:1, importe:.2},
-		// 		{cd_test:88, ds:'Paquete 10 Tests Enfermería/legislación', likes:10, cd_categoria:1, importe:.60, contenido:[
+		// 		{cd_test:88, ds:'Paquete 10 Test Enfermería/legislación', likes:10, cd_categoria:1, importe:.60, contenido:[
 		// 				{ds:'Legislación 1'},
 		// 				{ds:'Legislación 2'},
 		// 				{ds:'Legislación 3'},
@@ -2935,9 +3073,9 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 			textoBotonDescargar=formato.moneda( this.precioMinimo(test.precio), test.moneda)+' - Compra no disponible'
 			fnDescargar=function(){
 				if (isPhone())
-					navigator.notification.alert('La compra de tests no está disponible para tu plataforma (actualmente sólo es posible realizar compras desde nuestra app para Android)', null, 'Compra no disponible')
+					navigator.notification.alert('La compra de test no está disponible para tu plataforma (actualmente sólo es posible realizar compras desde nuestra app para Android)', null, 'Compra no disponible')
 				else
-					alert('La compra de tests no está disponible para tu plataforma (actualmente sólo es posible realizar compras desde nuestra app para Android)')
+					alert('La compra de test no está disponible para tu plataforma (actualmente sólo es posible realizar compras desde nuestra app para Android)')
 				}
 			}
 		}
@@ -3067,7 +3205,7 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 			}
 		}
 	
-	var xurl=(this.entornoLocal?'vistaTienda:dispositivo:':'vistaTienda:tienda:')+test.matricula
+	var xurl=(this.entornoLocal?'vistaMisTest':'vistaTienda')+':'+test.matricula
 	app.pushState(xurl)
 	}
 VistaTienda.prototype.lanzaTest=function(cd_test){
@@ -3162,9 +3300,34 @@ VistaTienda.prototype.anhadeATestLocales=function(test){
 	app.cache.catsConTestLocales=null
 	}
 VistaTienda.prototype.desinstalarTest=function(cd_test){
+	var self=this
+
+	if (isPhone()){
+		navigator.notification.confirm(
+		    '¿Deseas desinstalar el test? Puedes volver a instalarlo desde la tienda cuando quieras, sin ningún coste',
+		    function( buttonIndex ) { 
+		        switch ( buttonIndex ) {
+		            case 1:
+		            	self.doDesinstalarTest(cd_test)
+		                break;
+		        	}
+		    	},
+		    'Confirmar desinstalación', 
+		    ['Desinstalar','Cancelar']
+
+			)
+		}
+	else {
+		var r=confirm('¿Deseas desinstalar el test? Puedes volver a instalarlo desde la tienda cuando quieras, sin ningún coste')
+		if (r) this.doDesinstalarTest(cd_test)
+		}
+	}
+VistaTienda.prototype.doDesinstalarTest=function(cd_test){
 	var idxBorrar=getIndiceFila(app.cache.testLocales, {cd_test:cd_test})
 	app.cache.testLocales.splice(idxBorrar, 1)
 	this.salvaTestLocales()
+
+	app.showToast('Test desinstalado')
 
 	app.cache.catsConTestLocales=app.catsConTestLocales()
 
@@ -3223,8 +3386,15 @@ VistaTienda.prototype.descargaTest=function(cd_test, pruebaCompra){
 			if (datos.retorno==1){
 				datos.test.fu_modificacion=new Date()
 
+				var indices=getIndiceFila(app.cache.testTienda, {cd_test:cd_test}, true)
+				for (var i=0; i<indices.length; i++){
+					app.cache.testTienda[ indices[i] ].lotengo=true
+					}
+
 				self.anhadeATestLocales(datos.test)
 				app.cache.catsConTestLocales=app.catsConTestLocales()
+
+				app.showToast('Test instalado')
 
 				var idcat=datos.test.liscat.split(',')[0]
 				var cat=buscaFilas(app.cache.categorias, {cd_categoria:idcat})
@@ -3424,8 +3594,29 @@ VistaTienda.prototype.testData=function(){
 		]
 	}
 ////////////////////////////////////////////////
+function VistaMisTest(desdeHistorial, cd_test){
+	VistaTienda.call(this, desdeHistorial, cd_test)
+
+	this.id='vistaMisTest'
+	this.title='Mis test'
+	this.cat=null
+	this.recuperarPosicion=cd_test
+
+	this.leeTestLocales()
+	this.leeRespuestasLocales()
+
+	this.entornoLocal=true
+	// this.domDetalleTest=null
+	this.domMenu=jQuery('.barra.vista .btn-menu, .barra.global .btn-menu')
+
+	// if (!desdeHistorial) 
+	// 	app.pushState(this.id)
+	}
+VistaMisTest.prototype=new VistaTienda
+////////////////////////////////////////////////
 function VistaSocial(desdeHistorial, gid){
 	this.id='vistaSocial'
+	this.title='Social/Mis grupos'
 
 	this.recuperarPosicion=gid
 	this.txtEnviarMensaje=null
@@ -3496,7 +3687,7 @@ VistaSocial.prototype.getBody=function(){
 												creaObjProp('span', {className:'bold txtNumMedallas', texto:0 }) 
 												]}),
 					// creaObjProp('div', {className:'col-xs-4', hijos:[
-					// 							creaObjProp('span', {className:'small', texto:'Tests'}), 
+					// 							creaObjProp('span', {className:'small', texto:'Test'}), 
 					// 							creaObjProp('span', {className:'bold txtNumTests', texto:0 }) 
 					// 							]}),
 					]}),
@@ -3533,8 +3724,10 @@ VistaSocial.prototype.pushReceived=function(accion, datos){
 				}
 			else {
 				//en el chat: vibración y sacar el msg
-				if (datos.cd_usuario!=app.cache.usuario.cd_usuario)
-					navigator.notification.beep(1)
+				if (datos.cd_usuario!=app.cache.usuario.cd_usuario){
+					if (isPhone()) 
+						navigator.notification.beep(1)
+				}
 
 				this.domChatGrupo.find('.chat').append(bc)
 				this.scrollChat()
@@ -3714,12 +3907,12 @@ VistaSocial.prototype.pintaGrupos=function(){
 
 	app.pushState('vistaSocial')
 
-	if (this.grupos.length==0){
+	if (app.offline && this.grupos.length==0){
 		this.domGrupos.append( 
 			this.admonition('No se ha podido conectar con el servidor', 'Es posible que haya problemas de conectividad, inténtalo más tarde.', 'fa-exclamation-triangle fa-4x')
 			) 
 		return
-	}
+		}
 	for (var i=0; i<this.grupos.length; i++){
 		var g=this.grupos[i]
 
@@ -3841,6 +4034,8 @@ VistaSocial.prototype.cargarMsgGrupo=function(){
 		}
 	}
 VistaSocial.prototype.inflateMenu=function(){
+	this.disinflateMenu()
+
 	var self=this
 	// this.domMenu.show()
 	var xul=this.domMenu.find('ul')
@@ -4062,11 +4257,14 @@ VistaSocial.prototype.abrirEditaGrupo=function(){
 		var m=this.grupo.miembros[i]
 
 		var clsAdmin=''
-		if (m.cd_usuario==this.grupo.admin)
+		var hijos=[creaT(m.given_name)]
+		if (m.cd_usuario==this.grupo.admin){
 			clsAdmin=' admin'
+			hijos.push(creaObjProp('small', {className:'adminLit', texto:'Administrador'}))
+		}
 
 		var d=creaObjProp('button', {'data-id':m.cd_usuario, onclick:function(){self.btnQuitarMiembro(this)}, 
-									className:'bl fila member'+clsAdmin, i:'fa-minus-circle pull-right', texto:m.given_name })
+									className:'bl fila member'+clsAdmin, i:'fa-minus-circle pull-right', hijos:hijos })
 		jQuery(d).insertBefore(btnMemberAdd)
 		}
 
@@ -4211,6 +4409,7 @@ VistaSocial.prototype.testPushMensajeGrupo=function(){
 ////////////////////////////////////////////////
 function VistaEstadisticas(desdeHistorial){
 	this.id='vistaEstadisticas'
+	this.title='Estadísticas'
 
 	// this.domMenu=jQuery('.barra.vista .btn-menu')
 	if (!desdeHistorial) 
@@ -4253,7 +4452,7 @@ VistaEstadisticas.prototype.getBody=function(){
 			paneles.push(
 				creaObjProp('div', {className:'row panelCat', 'data-id':cat.cd_categoria, hijos:[
 					creaObjProp('h3', {className:'row-header m-b-none', texto:cat.ds_categoria}),
-					creaObjProp('small', {texto:respsCat.length+' tests realizados entre '+fIni+' y '+fFin}),
+					creaObjProp('small', {texto:respsCat.length+' test realizados entre '+fIni+' y '+fFin}),
 					this.creaPanel('Aciertos y fallos por test', domgra1),
 					]})
 				)
@@ -4390,6 +4589,7 @@ VistaEstadisticas.prototype.toggleMenuGlobal=function(visible){
 ////////////////////////////////////////////////
 function VistaAjustes(desdeHistorial){
 	this.id='vistaAjustes'
+	this.title='Ajustes'
 
 	this.txtEnviarMensaje=null
 	this.domMenu=jQuery('.barra.vista .btn-menu')
