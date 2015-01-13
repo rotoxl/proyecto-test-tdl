@@ -964,14 +964,30 @@ Controlador.prototype.backButton=function(){
 	else if (vTo.vista=='vistaTest')
 		this.vistaTest.backButton(vTo, vFrom)
 	}
-Controlador.prototype.addToNav=function(el){
+Controlador.prototype.addToNav=function(el, sustituirCat){
 	//no metemos duplicados
 	if (JSON.stringify(el) === JSON.stringify(app.nav[app.nav.length-1]) )
 		return
-	console.log(el)
-	app.nav.push(el)
 
+	if (sustituirCat){
+		// para que volver al raíz de la tienda no sea eterno,
+		//	   no guardaremos el movimiento entre categorías
+		var ultimo=app.nav[app.nav.length-1]
+		if (ultimo.vista==el.vista && 
+			ultimo.entornoLocal==el.entornoLocal && 
+			ultimo.cd_categoria!=null && el.cd_categoria!=null &&
+			ultimo.cd_pack==null && el.cd_pack==null){
+				//navegación a otra categoría
+
+			app.nav[app.nav.length-1].cd_categoria=el.cd_categoria
+			return
+			}
+		}
+
+	app.nav.push(el)
 	app.vistaActiva.navActivo=el
+	
+	console.log(el)
 	}
 Controlador.prototype.toggleMenuGlobal=function(visible, inmediate){
 	if (this.vistaActiva) this.vistaActiva.toggleMenuGlobal(visible, inmediate)
@@ -2552,7 +2568,7 @@ VistaTienda.prototype.sacaPadresCategoria=function(cat){
 	}
 VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 	if (!fromHistory) 
-		app.addToNav({vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:cd_categoria, cd_pack:cd_pack})
+		app.addToNav({vista:this.id, entornoLocal:this.entornoLocal, cd_categoria:cd_categoria, cd_pack:cd_pack}, true)
 	
 	if (this.domDetalleTest && this.domDetalleTest.is(':visible')){
 		this.domBody.show()
@@ -2855,13 +2871,16 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 
 		}
 	else {
-		loTengo=buscaFilas(app.cache.testLocales, {cd_test:test.cd_test}).length || test.lotengo
+		var comprado=test.lotengo
+		loTengo=buscaFilas(app.cache.testLocales, {cd_test:test.cd_test}).length
 
-		if (loTengo){
+		if (comprado || loTengo){
 			if (test.precio>0 && test.lotengo)
 				domPrecio=creaObjProp('span', {className:'col-xs-8  bl precio', texto:'COMPRADO'})	
-			else
+			else if (loTengo)
 				domPrecio=creaObjProp('span', {className:'col-xs-8 loTengo', i:'fa-check-circle'})
+			else 
+				domPrecio=creaObjProp('span', {className:'col-xs-8 bl precio', texto:'DESCARGAR'})
 			}
 		else {
 			domPrecio=creaObjProp('span', {className:'col-xs-8  bl precio'})
