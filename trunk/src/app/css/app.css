@@ -752,6 +752,12 @@ article.card, article.pack {
         line-height: 13px;
         margin-top: 4px;
         opacity: 0.3; }
+    #content .vista.vistaTienda .vista-header span.sep, #content .vista.vistaMisTest .vista-header span.sep {
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0;
+      margin-top: 8px;
+      float: left;
+      min-height: 35px; }
     #content .vista.vistaTienda .vista-header ul#categorias .aConFav, #content .vista.vistaMisTest .vista-header ul#categorias .aConFav {
       float: left;
       width: 85%; }

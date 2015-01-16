@@ -176,6 +176,7 @@ try {
         case 'nuevoMsgGrupo':
             $cd_usuario=$usu->cd_usuario;
             $cd_grupo=filter_input($REQ, 'cd_grupo', FILTER_VALIDATE_INT);
+            $cd_token=filter_input($REQ, 'cd_token', FILTER_SANITIZE_STRING);
             $msg=null; $cd_test=null; $cd_badge=null;
 
             if (isset($_POST['msg']))
@@ -184,7 +185,7 @@ try {
             if (isset($_POST['cd_test']))
                 $cd_test=filter_input($REQ, 'cd_test', FILTER_VALIDATE_INT);
 
-            $cd_mensaje=$md->nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg, $cd_test, $cd_badge);
+            $cd_mensaje=$md->nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg, $cd_test, $cd_badge, $cd_token);
             $ret=array('retorno'=>1, 
                         'cd_mensaje'=>$cd_mensaje,
                         'sql' => $conn->arrResultSet,

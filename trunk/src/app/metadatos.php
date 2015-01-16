@@ -573,7 +573,7 @@ class Metadatos{
 			return $this->conn->lookupFilas($sql, array($cd_grupo));
 			}
 		}
-	public function nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg, $cd_test, $cd_badge){
+	public function nuevoMsgGrupo($cd_usuario, $cd_grupo, $msg, $cd_test, $cd_badge, $cd_token){
 		//verificamos que el grupo sigue vivo
 		$sigueVivo=$this->conn->lookupSimple("select cd_grupo from grupos where cd_grupo=? and f_borrado is null", array($cd_grupo));
 		if ($cd_grupo!=$sigueVivo) return;
@@ -597,6 +597,7 @@ class Metadatos{
 			'test'=>   $test,
 			'badge'=>  null,
 			'f_msg'=>  $this->fechaHora(),
+			'cd_token'=> $cd_token,
 			);
 
 		$titAlt='Nuevo mensaje de '.$cd_usuario; $msgAlt=$msg;
