@@ -349,7 +349,6 @@ function Controlador(){
 			pushSenderID:GCM_SENDER_ID,
 			imgBase: 'https://s3-eu-west-1.amazonaws.com/octopus.recursos/',
 			}
-	this.init()
 
 	if ( isPhone() )
 		this.config.servidor='http://octopusapp.elasticbeanstalk.com/app/'
@@ -358,10 +357,12 @@ function Controlador(){
 		this.config.servidor='./'
 	this.config.url=this.config.servidor+'index_r.php'
 
+	}
+Controlador.prototype.init=function(){
 	//////////
-	var sr=document.location.search+''
+	var sr=document.location.hash+''
 
-	if (sr.indexOf('?token=')==0){//web
+	if (sr.indexOf('token=')>=0){//web
 		this.cache.token=sr.substring('?token='.length).split('&')[0]
 		var refresh_token=sr.substring( sr.indexOf('refresh_token=')+14 ).split('&')[0]
 		if (refresh_token.length>10)
@@ -376,7 +377,32 @@ function Controlador(){
 			}
 
 		}
-	else if (sr.indexOf('?nativo=')==0){//Teléfonos, login nativo
+	else if (sr.indexOf('loginpendiente')>=0){//Teléfonos, login pendiente -> nativo
+		var fnOK=function(obj){
+		    var ot={
+	    		picture:obj.imageUrl.split('?')[0],
+				email:obj.email,
+				given_name:obj.givenName,
+				family_name:obj.familyName,
+				}
+
+		    self.cache.token=null
+			self.cache.loginExpires=null
+			self.loginEnMiNubeSinToken(ot)
+			self.userDataReceived(ot)
+			}
+		var fnKO=function(){
+			localStorage.removeItem('tapp37_yanoshavisitado')
+			document.location.replace('login.html')
+			}
+
+		app.cargaVistaInicio()
+		setTimeout(
+			function(){
+				nativeApi.doSilentLogin(fnOK, fnKO)
+			}, 2000)
+		}
+	else if (sr.indexOf('nativo=')>=0){//Teléfonos, login nativo
 		this.cache.token=null
 		this.cache.loginExpires=null
 		
@@ -390,7 +416,7 @@ function Controlador(){
 		this.loginEnMiNubeSinToken(obj)
 		this.userDataReceived(obj)
 		}
-	else if (sr.indexOf('?noHayDatos')==0){
+	else if (sr.indexOf('noHayDatos')>=0){
 		var s=get('tapp37_userdata')
 		this.cache.usuario=JSON.parse(s) || {
 								cd_usuario: 'desconocido',
@@ -404,14 +430,13 @@ function Controlador(){
 			this.offline=false
 		this.cache.usuario.loginExpires=null
 		this.actualizaDomUsuario()
-		setTimeout(function(){app.cargaVistaInicio()}, 300)
+		app.cargaVistaInicio()
 		}
 	else {
 		localStorage.removeItem('tapp37_userdata')
-		document.location='login.html'
+		document.location.replace('login.html')
 		}
-	}
-Controlador.prototype.init=function(){
+
 	jQuery(document).on('click', '[data-toggle^="class"]', function(e){
 			e && e.preventDefault();
 			var $this = jQuery(e.target), $class , $target, $tmp, $classes, $targets;
@@ -433,8 +458,11 @@ Controlador.prototype.init=function(){
 		attachFastClick(document.body)
 
 		document.addEventListener('backbutton', function(){app.backButton()}, false)
+		
 		document.addEventListener('offline', function(){app.setOffline(true)}, false)
 		document.addEventListener('online', function(){app.setOffline(false)}, false)
+
+		document.addEventListener('pause', function(){app.pause()}, false)
 		}
 
 	window.addEventListener('resize', function(){app.resize()}, false)
@@ -577,6 +605,10 @@ Controlador.prototype.catsConRespuestasLocales=function(){
 	return this._getCatsDeTestsORespuestasLocales(this.cache.respuestasLocales)
 	}
 Controlador.prototype._getCatsDeTestsORespuestasLocales=function(col){
+	if (this.cache.categorias==null){
+		this.setCategorias(get('tapp37_categorias'))
+		}
+	
 	var lisIdCat=[-1]
 	for (var i=0; i<col.length; i++){
 		if (col[i].liscat==null) continue
@@ -707,33 +739,55 @@ Controlador.prototype.pushReceived=function(datos){
 	else if (pl.vista=='vistaTest')
 		this.vistaTest.pushReceived(pl.accion, pl.datos)
 	}
-Controlador.prototype.sendNotification=function(titulo, texto, icono, ongoing) {
+Controlador.prototype.pause=function(){
+	if (app.cache.usuario==null)
+		return
+	
+	if (app.vistaActiva instanceof VistaTest)
+		this.vistaTest.pause()
+	}
+Controlador.prototype.sendNotification=function(titulo, texto, icono, ongoing, json, onclick) {
     if ( device.platform.toLowerCase() == 'ios' )
     	icon=null
+
+    var autoCancel=false
+    if (ongoing)
+    	autoCancel=false
+    else if (onclick)
+    	autoCancel=false
+    else
+    	autoCancel=true
 
 	try {
 		var param={
 		    title:   titulo,
 		    message: texto,
-		    autoCancel:  !ongoing,
+		    autoCancel:  autoCancel,
 		    ongoing:ongoing,
 
 		    sound: (!ongoing? 'TYPE_NOTIFICATION': null),
 		    // icon:'notificacion', //NO es posible sacar la foto del usuario
-		    smallIcon:'notificacion'
+		    smallIcon:'notificacion',
+
+		    json:json,
 			}
 
 		window.plugin.notification.local.add(param)
+		if (onclick) window.plugin.notification.local.onclick=onclick
 		}
 	catch (e){
 		app.vibrate()
 		}
 	}
-Controlador.prototype.clearNotification=function(icono) {
-	setTimeout(function(){
-		try{ window.plugin.notification.local.cancelAll() }
-		catch(e){}
-		}, 1)
+Controlador.prototype.clearNotification=function(inmediate) {
+	if (inmediate)
+		window.plugin.notification.local.cancelAll()
+	else { 
+		setTimeout(function(){
+			try{ window.plugin.notification.local.cancelAll() }
+			catch(e){}
+			}, 1)
+		}
 	}
 Controlador.prototype.showToast=function(msg){
 	if (isPhone()) window.plugins.toast.showShortBottom(msg)
@@ -783,7 +837,26 @@ Controlador.prototype.lanzaTest=function(test, resp, vistaOrigen){
 	}
 Controlador.prototype.cargaVistaInicio=function(){
 	var self=this
-	if (app.cache.usuario==null){
+	var tl=app.getTestLocales()
+
+	var hash=(document.location.hash+'').substring(1)
+
+	//acceso sin credenciales sólo a test locales
+	if (hash=='loginpendiente' && tl.length>0){
+		this.cargaVistaMisTest(false)
+
+		if (this.vistaSocial==null){
+			this.vistaSocial=new VistaSocial(false)
+			this.vistaSocial.getData()
+			}
+		if (this.vistaTienda==null){
+			this.vistaTienda=new VistaTienda(false)
+			}
+
+		return
+		}
+
+	if (app.cache.usuario==null && !isPhone()){
 		this.esperandoCredenciales=this.esperandoCredenciales || 0
 		this.esperandoCredenciales++
 
@@ -796,9 +869,8 @@ Controlador.prototype.cargaVistaInicio=function(){
 		document.location='login.html'
 		return
 		}
-
-	var hash=(document.location.hash+'').substring(1)
-	if (hash=='vistaMigraTest')
+	
+	if (hash.indexOf('vistaMigraTest')>-1)
 		this.cargaVistaMigraTest(true)
 	
 	else if (hash.indexOf('vistaMisTest')>-1){
@@ -807,22 +879,20 @@ Controlador.prototype.cargaVistaInicio=function(){
 	else if (hash.indexOf('vistaTienda')>-1){
 		this.cargaVistaTienda(true, hash)
 		}
-	else if (hash=='vistaTest'){
+	else if (hash.indexOf('vistaTest')>-1){
 		this.cargaVistaTienda(true, true)
 		// this.continuarTest(true)
 		}
-
 	else if (hash.indexOf('vistaSocial')>-1 )
 		this.cargaVistaSocial(true, hash)
-	else if (hash=='vistaEstadisticas')
+	else if (hash.indexOf('vistaEstadisticas')>-1)
 	 	this.cargaVistaEstadisticas()
-	else if (hash=='vistaAjustes')
+	else if (hash.indexOf('vistaAjustes')>-1)
 		this.cargaVistaAjustes()
-
 	else {
-		if (app.getTestLocales().length>0)
-			this.cargaVistaMisTest(false)
-		else 
+		// if (tl.length>0)
+		// 	this.cargaVistaMisTest(false)
+		// else 
 			this.cargaVistaTienda(false)
 		}
 
@@ -1074,9 +1144,13 @@ Vista.prototype.show=function(desdeHistorial){
 
 	app.muestraNodoEnNavDrawer('li'+this.id.slice(0,1).toUpperCase()+this.id.slice(1))
 
-	var xd=jQuery('#content')
-	xd.find('.vista').hide()
-	this.domCont.show()
+	if (this.dom==null)
+		this.toDOM()
+	else {
+		var xd=jQuery('#content')
+		xd.find('.vista').hide()
+		this.domCont.show()
+		}
 
 	app.vistaActiva=this
 
@@ -1099,8 +1173,14 @@ Vista.prototype.disinflateMenu=function(){
 	}
 Vista.prototype.inflateMenu=function(){}
 Vista.prototype.backButton=function(){
-	if (app.vistaActiva!=this)
+	if (app.vistaActiva instanceof VistaRepasoTest)
 		this.show()
+	else if (app.vistaActiva instanceof VistaTest){
+		//pass
+		}
+	else if (app.vistaActiva!=this){
+		this.show()
+		}
 	}
 Vista.prototype.getUsuDeGrupo=function(cd_grupo, cd_usuario){
 	var gr=buscaFilas(this.grupos, {cd_grupo:cd_grupo})[0]
@@ -1583,11 +1663,13 @@ VistaTest.prototype.initMapa=function(){
 		var resp=this.respuestas[i]
 
 		var hijo
-		if (resp.estrella){
+		if (resp.estrella)
 			hijo=this.generaDomEstrella(i)
-		}
-		else 
+		else {
+			if (i==0)
+				throw ErrorSeVaAPoner0EnMapa
 			hijo=creaObjProp('span', {texto:i})
+			}
 
 		var self=this
 		tr.appendChild( creaObjProp('td', {
@@ -1679,6 +1761,12 @@ VistaTest.prototype.tiempoAcabado=function(){
 	}
 VistaTest.prototype.finExamen=function(){
 	this.frmdom.modal('hide')
+	
+	//quito del stack de navegación las fases del test
+	for (var i=app.nav.length-1; i>=0; i--){
+		if (app.nav[i].vista=='vistaTest')
+			app.nav.splice(i, 1)
+		}
 
 	app.cargaVistaInicio()
 	}
@@ -1773,7 +1861,7 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 
 		frmfooter.empty().append([
 			creaObjProp('button', {onclick:function(){self.guardaEstadoExamen(true);self.muestraFormPausa('fin')}, className:'btn btn-sm btn-dark transparent', texto:'Finalizar'}),
-			creaObjProp('button', {onclick:function(){self.frmdom.modal('hide'); app.cargaVistaInicio()}, className:'btn btn-sm btn-dark transparent', texto:'Pausar y salir'}),
+			creaObjProp('button', {onclick:function(){self.finExamen()}, className:'btn btn-sm btn-dark transparent', texto:'Pausar y salir'}),
 			creaObjProp('button', {onclick:function(){self.btnContinuarTest()}, className:'btn btn-sm btn-success', texto:'Continuar'}),
 			])
 		}
@@ -1875,6 +1963,10 @@ VistaTest.prototype.corrigeTest=function(){
 	return {aciertos:a, fallos:f, nc:nc, nota:nota}
 	}
 //////
+VistaTest.prototype.pause=function(){
+	if (this.crono)
+		this.pausaTiempo()
+	}
 VistaTest.prototype.refrescoCrono=1000
 VistaTest.prototype.iniciaTiempo=function(){
 	var self=this
@@ -2137,10 +2229,8 @@ function VistaTienda(desdeHistorial, cd_test){
 VistaTienda.prototype=new Vista
 VistaTienda.prototype.getHeader=function(){
 	var self=this
-	return creaObjProp('header', {className:'vista-header' , hijos:[
-			creaObjProp('div', {className:'btn-group', hijos:[
 
-				creaObjProp('div', {className:'btn-group', hijos:[
+	var hijos=[creaObjProp('div', {className:'btn-group', hijos:[
 					creaObjProp('button', {className:'btn dropdown-toggle', 'data-toggle':'dropdown', hijos:[
 						creaT(' Categorías '),
 						creaObjProp('b', {className:'caret'})
@@ -2150,10 +2240,15 @@ VistaTienda.prototype.getHeader=function(){
 
 						]}),
 					]}),
-				
-				//creaObjProp('button', {className:'pull-right btn inicio', texto:'Inicio', onclick:function(){self.inicio()} })
-			]}),
-			
+				]
+	if (!this.entornoLocal){
+		hijos.push( creaObjProp('span', {className:'sep', texto:espacioDuro}) )
+		hijos.push( creaObjProp('button', {className:'btn portada', texto:'Portada', onclick:function(){self.navegarAPortada()} }) )
+		hijos.push( creaObjProp('button', {className:'btn inicio', texto:'Favoritos', onclick:function(){self.navegarACatFavorita()} }) )
+		}
+
+	return creaObjProp('header', {className:'vista-header' , hijos:[
+		creaObjProp('div', {className:'btn-group', hijos:hijos}),
 		]})
 	}
 VistaTienda.prototype.getBody=function(){
@@ -2240,16 +2335,8 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			this.navegaCat(vTo.cd_categoria, true)
 		else { //
 			this.cat=null
-			this.restauraHeaderApp() 
 			
-			//dejamos una pequeña lista de test visibles por categoría, y mostramos el botón 'cargar más'
-			var bloques=this.domBody.find('.bloque.cat:not(.pack)').show()
-			bloques.find('.card').not('.main').remove()
-			bloques.find('.titulo .cargarMas').show()
-			bloques.find('.cargarMas.aunMas').remove()
-
-			//ocultamos los packs en su forma expandida
-			this.domBody.find('.bloque.cat.pack').hide()
+			this.navegarAPortada()
 
 			if (vFrom && vFrom.cd_categoria){
 				var cat=buscaFilas(app.cache.categorias, {cd_categoria:vFrom.cd_categoria})[0]
@@ -2260,6 +2347,28 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 			}
 		}
 	}
+VistaTienda.prototype.navegarAPortada=function(){
+	this.restauraHeaderApp() 
+
+	//dejamos una pequeña lista de test visibles por categoría, y mostramos el botón 'cargar más'
+	var bloques=this.domBody.find('.bloque.cat:not(.pack)').show()
+	bloques.find('.card').not('.main').remove()
+	bloques.find('.titulo .cargarMas').show()
+	bloques.find('.cargarMas.aunMas').remove()
+
+	//ocultamos los packs en su forma expandida
+	this.domBody.find('.bloque.cat.pack').hide()
+	}
+VistaTienda.prototype.navegarACatFavorita=function(){
+	if (this.catFavorita==null) return
+
+	this.navegaCat(this.catFavorita, false, null)
+
+	// var cat=buscaFilas(app.cache.categorias, {cd_categoria:this.catFavorita})[0]
+	// var xp=this.domBody.find('#cat-'+cat.cd_categoriapadre)
+	// if (xp.length)
+	// 	this.domBody.scrollTop( xp.offset().top-100 )
+}
 VistaTienda.prototype.show=function(fromHistory, willReposition){
 	this.entornoLocal=this instanceof VistaMisTest
 	Vista.prototype.show.call(this, fromHistory)
@@ -2326,7 +2435,7 @@ VistaTienda.prototype.buscarTest=function(){
 
 	if (isPhone()){
 		navigator.notification.prompt(
-		    ' ', //'Matrícula, nombre...',
+		    'Por ejemplo, "2014" o "Extremadura" o "Medicina"', //'Matrícula, nombre...',
 		    function( result ) { //result.buttonIndex y result.input1
 		        switch ( result.buttonIndex ) {
 		            case 1:
@@ -2348,6 +2457,26 @@ VistaTienda.prototype.buscarTest=function(){
 			self.doBuscarTest(self.strBuscar)
 		}
 	}
+VistaTienda.prototype.doBuscarTestPorRegEx=function(filas, s){
+	// /^(?=(.*google))(?=(.*microsoft))(?=(.*APPLE))/i.exec('Hola Microsoft Hola Apple Hola Google')
+
+	var temp=s.split(' '), rs=''
+	for (var j=0; j<temp.length; j++){
+		rs=rs+'(?=(.*'+temp[j]+'))'
+		}
+
+	var regex=new RegExp('^'+rs, 'i')
+	// regex.compile()
+	var ret=[]
+	
+	for (var i=0; i<filas.length; i++){
+		var f=filas[i]
+		var s=f.ds_test+' '+f.organismo+' '+f.anho
+		if (regex.test(s))
+			ret.push(f)
+		}
+	return ret
+	}
 VistaTienda.prototype.doBuscarTest=function(s, id, situar){
 	var self=this
 
@@ -2358,11 +2487,12 @@ VistaTienda.prototype.doBuscarTest=function(s, id, situar){
 		}
 
 	if (app.offline || this instanceof VistaMisTest){
-		var encontrados1=buscaFilas(app.cache.testLocales, {_contains_ds_test:s})
-		var encontrados2=buscaFilas(app.cache.testLocales, {_contains_organismo:s})
-		var encontrados3=buscaFilas(app.cache.testLocales, {_contains_ds_test:s})
+		var encontrados=this.doBuscarTestPorRegEx(app.cache.testLocales, s)
 
-		var encontrados=encontrados1.concat(encontrados2).concat(encontrados3)
+		// var encontrados1=buscaFilas(app.cache.testLocales, {_contains_ds_test:s})
+		// var encontrados2=buscaFilas(app.cache.testLocales, {_contains_organismo:s})
+		// var encontrados3=buscaFilas(app.cache.testLocales, {_contains_ds_test:s})
+		// var encontrados=encontrados1.concat(encontrados2).concat(encontrados3)
 
 		encontrados.map(function(el){el.liscat=el.liscat+',-100,'})
 		self.doBuscarTest_response(encontrados, situar)
@@ -2399,7 +2529,16 @@ VistaTienda.prototype.doBuscarTest_response=function(filas, situar){
 		for (var i=indicesBorrar.length-1; i>=0; i--){
 			app.cache.testTienda.splice(indicesBorrar[i], 1)
 			}
-		app.cache.testTienda=(app.cache.testTienda || []).concat(resultadosBusqueda)
+		
+		if (this.entornoLocal){
+			app.cache.testLocales=(app.cache.testLocales || []).concat(resultadosBusqueda)
+			
+			if (buscaFilas(app.cache.categoriasLocales, {cd_categoria:xcat.cd_categoria}).length==0)
+				app.cache.categoriasLocales.push(xcat)
+			}
+		else
+			app.cache.testTienda=(app.cache.testTienda || []).concat(resultadosBusqueda)
+
 		self.navegaCat(xcat.cd_categoria)
 		}
 	else {
@@ -2588,7 +2727,7 @@ VistaTienda.prototype.navegaCat=function(cd_categoria, fromHistory, cd_pack){
 						{cd_categoria: cd_categoria})[0]
 		}
 
-	this.cambiaHeaderApp(this.cat.ds_categoria)
+	this.cambiaHeaderApp(this.title)//(this.cat.ds_categoria)
 
 	this.domBody.find('.admonition').remove()
 	var blSel=this.domBody.find('.bloque.cat#cat-'+this.cat.cd_categoria)
@@ -2679,27 +2818,15 @@ VistaTienda.prototype.generaBtnCargarMas=function(cd_categoria, cssAdicional){
 VistaTienda.prototype.escogeTestsCatDinamica=function(cd_categoria, lista){
 	var tests
 	if (this.entornoLocal){//últimos hechos o descargados
-		tests=this.ordenaPorFecha(lista).slice(0,10)
-		}
-	else {
-
-		// if (cd_categoria==-1)
-		// 	tests=this.ordenaPorFecha(lista).slice(0,10)
-		// else if (cd_categoria==-2){
-		// 	tests=lista
-		// 	tests.sort(function(a,b){
-		// 		var na=Number(a.likes); var nb=Number(b.likes)
-		// 		if (na==nb)
-		// 			return 0
-		// 		else if (na>nb)
-		// 			return -1
-		// 		else
-		// 			return 1
-		// 		})
-		// 	}
-		// else
+		
+		if (cd_categoria==-100)//búsqueda
 			tests=buscaFilas(lista, {_contains_liscat:','+cd_categoria+','})
+		else
+			tests=this.ordenaPorFecha(lista).slice(0,10)
 		}
+	else 
+		tests=buscaFilas(lista, {_contains_liscat:','+cd_categoria+','})
+
 	return tests
 	}
 VistaTienda.prototype.pintaPortadaTienda=function(xcat, lista){
@@ -2878,7 +3005,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 			if (test.precio>0 && test.lotengo)
 				domPrecio=creaObjProp('span', {className:'col-xs-8  bl precio', texto:'COMPRADO'})	
 			else if (loTengo)
-				domPrecio=creaObjProp('span', {className:'col-xs-8 loTengo', i:'fa-check-circle'})
+				domPrecio=creaObjProp('span', {className:'col-xs-8 loTengo', texto:'INSTALADA'})
 			else 
 				domPrecio=creaObjProp('span', {className:'col-xs-8 bl precio', texto:'DESCARGAR'})
 			}
@@ -2934,31 +3061,38 @@ VistaTienda.prototype._generaDomPack=function(pack, j, cat){
 
 	return ret
 	}
+VistaTienda.prototype.tamPack=null
 VistaTienda.prototype.ajustaAlturaCard=function(ret){
 	var xret=jQuery(ret)
-	var h, w, esTest
+	var h, w, esTest= xret.hasClass('test'), esPack=xret.hasClass('pack')
+	var hFooter=61
 
-	if (xret.length>1){
-		var xxret=jQuery(xret[0])
-		h= xxret.outerHeight()
-		w= xxret.outerWidth()
-		esTest= xxret.hasClass('test')
-		}
-	else {
-		h=xret.outerHeight()
-		w=xret.outerWidth()
-		esTest=xret.hasClass('test')
-		}
+	var xxret=jQuery( xret.filter(':visible')[0] )
+	if (xxret.length==0)
+		xxret=jQuery(xret[0])
 
-	if (h==0 || w==0) return
-	var diff=h-w; var hFooter=61
-	
-	if (esTest){
-		xret.find('footer .fecha')
-			.css('margin-top', -(h-hFooter) )
-			.removeClass('hidden')
-		}
-	else {//packs
+	if (esPack){
+		if (this.tamPack==null){
+			if (xret.length>1){
+				h= xxret.outerHeight()
+				w= xxret.outerWidth()
+
+				if (xxret.length>0)
+					this.tamPack=[w, h]
+				}
+			else {
+				h=xret.outerHeight()
+				w=xret.outerWidth()
+				}
+			}
+		else {
+			w=this.tamPack[0]
+			h=this.tamPack[1]
+			}
+
+		if (h==0 || w==0) return
+
+		var diff=h-w; 
 		if (diff>0){
 			xret.css({'margin-top': diff/2, 'margin-bottom': diff/2, }).find('.body').css('height', w-hFooter)
 			}
@@ -2968,6 +3102,15 @@ VistaTienda.prototype.ajustaAlturaCard=function(ret){
 				xret.css({'margin-left':diff/2, 'margin-right':diff/2+5, 'width':h})
 			}
 		}
+	else if (esTest){
+		h=xxret.outerHeight()
+		if (h==0 || w==0) return
+
+		xret.find('footer .fecha')
+			.css('margin-top', -(h-hFooter) )
+			.removeClass('hidden')
+		return
+		}	
 	}
 //////
 VistaTienda.prototype.leeTestTienda=function(fnCallBack){
@@ -3749,11 +3892,31 @@ VistaSocial.prototype.resize=function(){
 	this.domChatGrupo.find('.chat').height(this.hVista-y)
 	}
 VistaSocial.prototype.pushReceived=function(accion, datos){
-	if (accion=='mensajeGrupo'){ 
+	var self=this
+	if (accion=='mensajeGrupo'){
+
+		if (datos.cd_token){//¿ha sido enviado por mi? en ese caso ya estará pintado y contabilizado
+			for (var i=0; i<this.grupos.length; i++){
+				var xmsg=this.grupos[i].msg
+				for (var j=0; j<xmsg.length; j++){
+					if (xmsg.cd_token==datos.cd_token)
+						return
+					}
+				}
+			}
+
+		var fnOnClickNotification=function(id, state, json){
+			var datos=JSON.parse(json)
+
+			self.show(false)
+			self.verGrupo(datos.cd_grupo, false)
+			}
+
 		if (this.grupo && this.grupo.cd_grupo!=datos.cd_grupo){
 			//estamos en otro grupo: notificación
 			var u=this.getUsuDeGrupo(datos.cd_grupo, datos.cd_usuario)
-			app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture)
+			app.clearNotification()
+			app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture, null, datos, fnOnClickNotification)
 			}
 		else if (this.domChatGrupo && this.domChatGrupo.is(':visible') ){
 			var bc=this.carga1MsgGrupo(datos)
@@ -3774,7 +3937,8 @@ VistaSocial.prototype.pushReceived=function(accion, datos){
 		else if (this.domEditarGrupo && this.domEditarGrupo.is(':visible') ){
 			//en el grupo, viendo los miembros: notificacion
 			var u=this.getUsuDeGrupo(datos.cd_grupo, datos.cd_usuario)
-			app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture)
+			app.clearNotification()
+			app.sendNotification('Mensaje de '+u.given_name, datos.msg, u.picture, null, datos, fnOnClickNotification)
 			}
 		else if (this.domBody && this.domBody.is(':visible')){
 			//en pantalla general de grupos
@@ -3791,7 +3955,8 @@ VistaSocial.prototype.pushReceived=function(accion, datos){
 			d.find('.badge').text(n)
 			}
 		else {
-			app.sendNotification('Mensaje de '+datos.cd_usuario, datos.msg)
+			app.clearNotification()
+			app.sendNotification('Mensaje de '+datos.cd_usuario, datos.msg, null, null, datos, fnOnClickNotification)
 			}
 
 		}
@@ -4176,24 +4341,29 @@ VistaSocial.prototype.enviaMsg=function(){
 
 	var t=this.txtEnviarMensaje.val()
 	if (t=='') return
-	var xmsg={cd_usuario:app.cache.usuario.cd_usuario, msg:t, f:new Date()}
+	var xmsg={
+		cd_usuario:app.cache.usuario.cd_usuario, 
+		msg:t, f:new Date(),
+		cd_token:new Date().getTime()
+		}
+
+	this.grupo.msg.push(xmsg)
+	
+	var xdom=self.carga1MsgGrupo(xmsg)
+	self.domChatGrupo.find('.chat').append( xdom )
+	self.scrollChat()
 
 	this.txtEnviarMensaje.val('')
 	this.txtEnviarMensaje.focus()
 	
 	jQuery.post(app.config.url,{accion:'nuevoMsgGrupo',
-								cd_grupo:this.grupo.cd_grupo, 
+								cd_grupo:this.grupo.cd_grupo,
+								cd_token:xmsg.cd_token,
 								msg:t,
 							}).success(
 			function(data){
 				var datos=xeval(data)
 
-				if (isPhone()){
-					xmsg.cd_mensaje=datos.cd_mensaje
-					var xdom=self.carga1MsgGrupo(xmsg)
-					self.domChatGrupo.find('.chat').append( xdom )
-					self.scrollChat()	
-					}
 				// var yaExiste=self.domChatGrupo.find('.bocadillo[data-id='+datos.cd_mensaje+']')
 				// xmsg.cd_mensaje=datos.cd_mensaje
 				// if (yaExiste.length==0){

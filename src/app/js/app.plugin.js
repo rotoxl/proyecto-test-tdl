@@ -90,7 +90,7 @@ var authWindow=null
 //             expires=new Date().getTime()+(data.expires_in*1000)
           
 //         var refresh_token=data.refresh_token?'&refresh_token='+data.refresh_token:''
-//         return './prod.html?token='+data.access_token+'&expires='+expires+refresh_token
+//         return './prod.html#token='+data.access_token+'&expires='+expires+refresh_token
 //         },
 //     prepareTokenRefresh:function(refresh_token){
 //       var $loginStatus = jQuery('.login p.status');
@@ -227,7 +227,7 @@ var googleWebApi={
         // else
             expires=new Date().getTime()+(data.expires_in*1000)
         var refresh_token=data.refresh_token?'&refresh_token='+data.refresh_token:''
-        return './prod.html?token='+data.access_token+'&expires='+expires+refresh_token
+        return './prod.html#token='+data.access_token+'&expires='+expires+refresh_token
         },
     signIn:function() {
         console.log("signing in...")
@@ -293,22 +293,21 @@ var googleWebApi={
 //    cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git
 //    NO FUNCIONA EL PLUGIN: https://github.com/EddyVerbruggen/cordova-plugin-googleplus/issues/5
 var nativeApi={
-    doSilentLogin:function (){
+    doSilentLogin:function (fnOK, fnKO){
+        fnOK=fnOK || function (obj){nativeApi.loginOK(obj)}
+        fnKO=fnKO || function (msg){nativeApi.prepareLogin()}
+        
     	window.plugins.googleplus.trySilentLogin({
           		//'iOSApiKey': options.installed.client_id
                 // there is no API key for Android; you app is wired to the Google+ API by listing your package name in the google dev console and signing your apk (which you have done in chapter 4)
         		},
-        	function (obj) {
-          		nativeApi.loginOK(obj)
-        		},
-        	function (msg) {
-                nativeApi.prepareLogin()
-        		}
+        	fnOK,
+        	fnKO
     		)
     	},
     loginOK:function(obj){
         jQuery('.login > section').fadeOut()
-        var url='./prod.html?nativo=1'+
+        var url='./prod.html#nativo=1'+
                             '&picture='+obj.imageUrl.split('?')[0]+
                             '&email='+obj.email+
                             '&given_name='+obj.givenName+

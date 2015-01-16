@@ -93,7 +93,7 @@
 
 			}
 		function loginSinConexion(){
-			document.location.replace('./prod.html?noHayDatos')
+			document.location.replace('./prod.html#noHayDatos')
 			}
 		function backButton(){
 			navigator.app.exitApp()
@@ -104,6 +104,13 @@
 			}
 		var eventosColocados=false
 		function init(){
+
+			if (get('tapp37_yanoshavisitado')=='1' && isPhone()){
+				//login directo, sin esperas
+				document.location.replace('./prod.html#loginpendiente')
+
+				return 
+				}
 
 			if (eventosColocados==false){
 				document.addEventListener('backbutton', function(){backButton()}, false)
