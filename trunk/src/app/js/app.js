@@ -608,7 +608,7 @@ Controlador.prototype._getCatsDeTestsORespuestasLocales=function(col){
 	if (this.cache.categorias==null){
 		this.setCategorias(get('tapp37_categorias'))
 		}
-	
+
 	var lisIdCat=[-1]
 	for (var i=0; i<col.length; i++){
 		if (col[i].liscat==null) continue
@@ -2358,6 +2358,10 @@ VistaTienda.prototype.navegarAPortada=function(){
 
 	//ocultamos los packs en su forma expandida
 	this.domBody.find('.bloque.cat.pack').hide()
+
+	//oculto la sección resultados de búsqueda
+	this.domBody.find('section.cat#cat--100').remove()
+
 	}
 VistaTienda.prototype.navegarACatFavorita=function(){
 	if (this.catFavorita==null) return
@@ -2368,7 +2372,7 @@ VistaTienda.prototype.navegarACatFavorita=function(){
 	// var xp=this.domBody.find('#cat-'+cat.cd_categoriapadre)
 	// if (xp.length)
 	// 	this.domBody.scrollTop( xp.offset().top-100 )
-}
+	}
 VistaTienda.prototype.show=function(fromHistory, willReposition){
 	this.entornoLocal=this instanceof VistaMisTest
 	Vista.prototype.show.call(this, fromHistory)
