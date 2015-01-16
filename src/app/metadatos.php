@@ -380,25 +380,43 @@ class Metadatos{
 		}
 	public function buscaTests($cd_usuario, $q){
 		global $limitePreview;
-		$sql="select 
-				v.cd_test, v.ds_test, anho, grupo, 
-				v.matricula, v.img, v.f_examen, v.organismo,
-				v.numpreguntas, v.fallosrestan, 
-				v.admiteReordenarPreguntas, v.admiteReordenarRespuestas, v.minutos, v.region, v.precio, v.cd_moneda, v.likes, v.fu_modificacion,
-				',-100,' as lisCat,
-				exists (select * from usuarios_tests ut where ut.cd_test=v.cd_test and ut.cd_usuario=?) as lotengo
-			from vs_testpreview v
-			where 
-				concat( ifnull(anho, ''),  ' ',
-						ifnull(grupo, ''), ' ', 
-						v.ds_test, ' ', 
-						ifnull(v.matricula, ''), ' ', 
-						ifnull(v.organismo, ''), ' ', 
-						ifnull(v.region, ''), ' ', 
-						case f_examen when  not null then date_format(f_examen, 'dd-mm-yyyy') else  '' end
-						) like concat('%', ?,'%') 
-			order by v.likes desc limit ?";
-		return $this->conn->lookupFilas($sql, array($cd_usuario, $q, $limitePreview))->filas;
+
+		$where=''; $param=array($cd_usuario);
+
+		$temp=explode(' ', $q);
+		for ($i=0; $i<count($temp); $i++){
+			$where=$where." and searchPoint like concat('%', ?, '%') ";
+			array_push($param, $temp[$i]);
+			}
+
+		if (strlen($where)>0 ){
+			$where=substr($where, 4);
+			array_push($param, $limitePreview);
+			}
+
+		$sql="select * from (
+				select 
+					v.cd_test, v.ds_test, anho, grupo, 
+					v.matricula, v.img, v.f_examen, v.organismo,
+					v.numpreguntas, v.fallosrestan, 
+					v.admiteReordenarPreguntas, v.admiteReordenarRespuestas, v.minutos, v.region, v.precio, v.cd_moneda, v.likes, v.fu_modificacion,
+					',-100,' as lisCat,
+					exists (select * from usuarios_tests ut where ut.cd_test=v.cd_test and ut.cd_usuario=?) as lotengo,
+					concat( ifnull(anho, ''),  ' ',
+							ifnull(grupo, ''), ' ', 
+							v.ds_test, ' ', 
+							ifnull(v.matricula, ''), ' ', 
+							ifnull(v.organismo, ''), ' ', 
+							ifnull(v.region, ''), ' ', 
+							case f_examen when  not null then date_format(f_examen, 'dd-mm-yyyy') else  '' end
+							) as searchPoint
+			from vs_testpreview v ) vis
+			where " . $where . "
+			order by vis.likes desc limit ?";
+
+		// echo $sql;
+		// var_dump($param);
+		return $this->conn->lookupFilas($sql, $param)->filas;
 		}
 	//////
 	public function toggleLike($accion, $cd_usuario, $cd_test){
