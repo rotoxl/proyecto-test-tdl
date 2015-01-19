@@ -1258,13 +1258,14 @@ article.card, article.pack {
       font-size: 17px;
       color: white; }
     #content .vista.vistaAjustes .row {
-      padding-bottom: 7px;
-      padding-top: 7px; }
-      #content .vista.vistaAjustes .row .sin-titulo {
+      padding-bottom: 0px;
+      padding-top: 12px; }
+      #content .vista.vistaAjustes .row.sin-titulo {
         margin-top: 10px; }
       #content .vista.vistaAjustes .row i {
-        margin-top: 6px;
-        font-size: 19px; }
+        margin-top: 3px;
+        font-size: 19px;
+        margin-right: 1px; }
   #content .vista.vistaTourAplicacion {
     position: absolute !important;
     top: 0 !important;

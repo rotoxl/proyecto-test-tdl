@@ -921,7 +921,7 @@ Controlador.prototype.cargaVistaMisTest=function(desdeHistorial, hash){
 	else
 		this.vistaMisTest.toDOM(desdeHistorial)
 
-	this.cierraNavDrawer()
+	if (!desdeHistorial) this.cierraNavDrawer()
 	}
 Controlador.prototype.cargaVistaTienda=function(desdeHistorial, hash){
 	var cd_test
@@ -940,7 +940,7 @@ Controlador.prototype.cargaVistaTienda=function(desdeHistorial, hash){
 	else
 		this.vistaTienda.toDOM(desdeHistorial)
 
-	this.cierraNavDrawer()
+	if (!desdeHistorial) this.cierraNavDrawer()
 	}
 Controlador.prototype.cargaVistaSocial=function(desdeHistorial, hash){
 	if (this.vistaSocial==null)
@@ -958,7 +958,7 @@ Controlador.prototype.cargaVistaSocial=function(desdeHistorial, hash){
 	else
 		this.vistaSocial.toDOM(desdeHistorial)
 
-	this.cierraNavDrawer()
+	if (!desdeHistorial) this.cierraNavDrawer()
 	}
 Controlador.prototype.cargaVistaEstadisticas=function(desdeHistorial){
 	if (this.vistaEstadisticas==null)
@@ -969,7 +969,7 @@ Controlador.prototype.cargaVistaEstadisticas=function(desdeHistorial){
 	else
 		this.vistaEstadisticas.toDOM()
 
-	this.cierraNavDrawer()
+	if (!desdeHistorial) this.cierraNavDrawer()
 	}
 Controlador.prototype.cargaVistaAjustes=function(desdeHistorial){
 	if (this.vistaAjustes==null)
@@ -980,7 +980,7 @@ Controlador.prototype.cargaVistaAjustes=function(desdeHistorial){
 	else
 		this.vistaAjustes.toDOM()
 
-	this.cierraNavDrawer()
+	if (!desdeHistorial) this.cierraNavDrawer()
 	}
 Controlador.prototype.pushState=function(id){
 	window.history.pushState({vista:id}, id, '#'+id)
@@ -1061,6 +1061,39 @@ Controlador.prototype.addToNav=function(el, sustituirCat){
 	}
 Controlador.prototype.toggleMenuGlobal=function(visible, inmediate){
 	if (this.vistaActiva) this.vistaActiva.toggleMenuGlobal(visible, inmediate)
+	}
+/////
+Controlador.prototype.generaTextoCompartir=function(conHTML){
+	var linkAndroid='https://play.google.com/store/apps/details?id=es.octopusapp.cli'
+	var tiendaAndroid='Google Play'
+
+	var linkIOS='http://faltaEnlace'//TODO
+	var tiendaIOS='iTunes'
+
+	var asunto='OctopusApp: test de oposiciones en tu móvil', texto
+	if (conHTML){
+		texto='Hola,<br><br>estoy probando <b>Octopus</b>, una nueva forma de realizar test para nuestras oposiciones desde el móvil.'+
+				'<br>¿Te interesa? Descárgalo gratis para Android desde <a href="'+linkAndroid+'">'+tiendaAndroid+'</a>'
+		}
+	else {
+		texto='¡Hola! estoy probando Octopus, una nueva forma de realizar test para nuestras oposiciones desde el móvil. '+
+				'¿Te interesa? Descárgalo gratis para Android desde '+linkAndroid
+		}
+
+	return [asunto, texto]
+	}
+Controlador.prototype.enviarInvitacionPorEmail = function(lista) {
+	var datos=this.generaTextoCompartir()
+	cordova.plugins.email.open({
+	    to:      lista.join(','),
+	    subject: datos[0],
+	    body:    datos[1],
+	    isHtml:  true
+		})
+	}
+Controlador.prototype.enviarInvitacion=function(){
+	var datos=this.generaTextoCompartir()
+	window.plugins.socialsharing.share(datos[1], datos[0])
 	}
 ////////////////////////////////////////////////
 
@@ -2439,7 +2472,7 @@ VistaTienda.prototype.buscarTest=function(){
 
 	if (isPhone()){
 		navigator.notification.prompt(
-		    'Por ejemplo, "2014" o "Extremadura" o "Medicina"', //'Matrícula, nombre...',
+		    'Por ejemplo, "2013 MIR" o "EIR" o "Informática 2014"', //'Matrícula, nombre...',
 		    function( result ) { //result.buttonIndex y result.input1
 		        switch ( result.buttonIndex ) {
 		            case 1:
@@ -4023,7 +4056,7 @@ VistaSocial.prototype.getData=function(){
 				for (var i=0; i<self.grupos.length; i++){
 					for (var j=0; j<self.grupos[i].miembros.length; j++){
 						var u=self.grupos[i].miembros[j]
-						self.grupos[i].miembros[j].given_name=u.given_name || u.family_name || u.cd_usuario
+						self.grupos[i].miembros[j].given_name=u.given_name || u.cd_usuario
 						}
 					}
 
@@ -4139,7 +4172,7 @@ VistaSocial.prototype.pintaGrupos=function(){
 				hijos.push(
 					creaObjProp('span', {className:'persona', hijos:[
 						creaObjProp('img', {className:'thumb-sm pic avatar pull-left', src:m.picture || './images/avatar_default.png',}),
-						creaObjProp('span', {className:'nombre', texto:m.given_name}),
+						creaObjProp('span', {className:'nombre', texto:m.given_name || m.cd_usuario}),
 						]})
 					)
 				}
@@ -4470,7 +4503,7 @@ VistaSocial.prototype.abrirEditaGrupo=function(){
 		var m=this.grupo.miembros[i]
 
 		var clsAdmin=''
-		var hijos=[creaT(m.given_name)]
+		var hijos=[creaT(m.given_name || m.cd_usuario)]
 		if (m.cd_usuario==this.grupo.admin){
 			clsAdmin=' admin'
 			hijos.push(creaObjProp('small', {className:'adminLit', texto:'Administrador'}))
@@ -4523,8 +4556,32 @@ VistaSocial.prototype.guardarCambiosGrupo=function(fnCallBack){
 
 					if (fnCallBack)
 						fnCallBack()
+
+					if (datos.usuariosQueNoExisten)
+						self.trataUsuariosQueNoExisten(datos.usuariosQueNoExisten)
 					}
 				})
+		}
+	}
+VistaSocial.prototype.trataUsuariosQueNoExisten=function(lista){
+	if (lista.length==0) return
+
+	if (isPhone()){
+
+		navigator.notification.confirm(
+		    (lista.length>1?'Algunos':'Alguno')+
+		    	' de los contactos que has seleccionado aún no tienen Octopus. '+
+		    	'¿Quieres enviarles una invitación? Si pulsas "Sí" te prepararemos un correo electrónico para que lo envíes.',
+		    function( buttonIndex ) { 
+		        switch ( buttonIndex ) {
+		            case 1:
+		            	app.enviarInvitacionPorEmail(lista)
+		                break;
+		        	}
+		    	},
+		    'Enviar invitación', 
+		    ['Sí, enviar', 'No']
+			)
 		}
 	}
 VistaSocial.prototype.btnCambiaNombreGrupo=function(){
@@ -4840,18 +4897,31 @@ VistaAjustes.prototype.getBody=function(){
 					'Información sobre promociones', 
 					null, 
 					'fa-external-link',
-					function(){self.btnMasInfoPromociones()})
+					function(){self.btnMasInfoPromociones()}),
+		this.nfila(null, 
+					'Invitar a un amigo',
+					null,
+					'fa-share-alt',
+					function(){self.btnInvitarAmigo()}
+					)
 		]
 	return creaObjProp('div', {className:'vista-body container config', hijos:paneles})
+	}
+VistaAjustes.prototype.btnInvitarAmigo=function(){
+	app.enviarInvitacion()
 	}
 VistaAjustes.prototype.nfila=function(literal, valor, id, i, onclick){
 	var title=literal? creaObjProp('small', {className:'bl texto-sep', texto:literal}): 
 						creaObjProp('span', {className:'espacio'})
 
+	var obji=creaT('')
+	if (i)
+		obji=creaObjProp('i', {className:'col-xs-1 pull-right fa '+i})
+
 	return creaObjProp('div', {className:'row '+(literal?'':'sin-titulo'), onclick:onclick, hijos:[
 				title,
 				creaObjProp('span', {className:(i!=null?'col-xs-10':'col-xs-12')+' valor ellipsis '+id, texto:valor}),
-				creaObjProp('i', {className:'col-xs-1 pull-right fa '+i})
+				obji
 	 		]})
 	}
 VistaAjustes.prototype.btnIntroducirCodigo=function(){
@@ -4921,7 +4991,7 @@ VistaAjustes.prototype.toggleMenuGlobal=function(visible, inmediate){
 ////////////////////////////////////////////////
 Controlador.prototype.cargaVistaMigraTest=function(desdeHistorial){
 	new VistaMigraTest(desdeHistorial).toDOM()
-	this.cierraNavDrawer()
+	if (!desdeHistorial) this.cierraNavDrawer()
 	}
 function VistaMigraTest(desdeHistorial){
 	this.id='vistaMigraTest'
