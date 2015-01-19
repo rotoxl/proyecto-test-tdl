@@ -1677,10 +1677,10 @@ article.card, article.pack{
 			color: white;
 		}
 		.row{
-			padding-bottom: 7px;
-			padding-top: 7px;
-			.sin-titulo{margin-top:10px;}
-			i{margin-top:6px; font-size:19px;}
+			padding-bottom: 0px;
+			padding-top: 12px;
+			&.sin-titulo{margin-top:10px;}
+			i{margin-top:3px; font-size:19px; margin-right:1px;}
 		}
 		
 	}
