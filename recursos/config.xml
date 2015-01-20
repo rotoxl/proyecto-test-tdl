@@ -24,9 +24,13 @@
 
     <preference name="webviewbounce" value="true" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="StatusBarOverlaysWebView" value="true" />
 
     <preference name="orientation" value="portrait" />
+
+    <!-- preferencias statusbar plugin iOS //-->
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#25313e" />
+    <preference name="StatusBarStyle" value="lightcontent" />
 </widget>
 
 <!--
