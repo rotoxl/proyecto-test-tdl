@@ -463,6 +463,7 @@ Controlador.prototype.init=function(){
 		document.addEventListener('online', function(){app.setOffline(false)}, false)
 
 		document.addEventListener('pause', function(){app.pause()}, false)
+		document.addEventListener('menubutton', function(){app.toggleNavDrawer()}, false)
 		}
 
 	window.addEventListener('resize', function(){app.resize()}, false)
@@ -801,6 +802,12 @@ Controlador.prototype.muestraNodoEnNavDrawer=function(idLi){
 	
 	var nodoContinuarTest=arbol.find('.continuarTest')
 	nodoContinuarTest.toggleClass('hidden', idLi!='continuarTest')
+	}
+Controlador.prototype.toggleNavDrawer=function(){
+	if (jQuery('#main_container aside.nav-off-screen').hasClass('nav-off-screen'))
+		this.cierraNavDrawer()
+	else
+		this.abreNavDrawer()
 	}
 Controlador.prototype.abreNavDrawer=function(){
 	jQuery('aside.aside-md').addClass('nav-off-screen')
@@ -4892,7 +4899,8 @@ VistaAjustes.prototype.getBody=function(){
 					'Toca aquí para introducir un nuevo código', 
 					'txtCodPromo',
 					null,
-					function(){self.btnIntroducirCodigo()}),
+					function(){self.btnIntroducirCodigo()}, 
+					true),
 		this.nfila(null, 
 					'Información sobre promociones', 
 					null, 
@@ -4902,7 +4910,8 @@ VistaAjustes.prototype.getBody=function(){
 					'Invitar a un amigo',
 					null,
 					'fa-share-alt',
-					function(){self.btnInvitarAmigo()}
+					function(){self.btnInvitarAmigo()}, 
+					true
 					)
 		]
 	return creaObjProp('div', {className:'vista-body container config', hijos:paneles})
@@ -4910,7 +4919,7 @@ VistaAjustes.prototype.getBody=function(){
 VistaAjustes.prototype.btnInvitarAmigo=function(){
 	app.enviarInvitacion()
 	}
-VistaAjustes.prototype.nfila=function(literal, valor, id, i, onclick){
+VistaAjustes.prototype.nfila=function(literal, valor, id, i, onclick, borde){
 	var title=literal? creaObjProp('small', {className:'bl texto-sep', texto:literal}): 
 						creaObjProp('span', {className:'espacio'})
 
@@ -4918,7 +4927,7 @@ VistaAjustes.prototype.nfila=function(literal, valor, id, i, onclick){
 	if (i)
 		obji=creaObjProp('i', {className:'col-xs-1 pull-right fa '+i})
 
-	return creaObjProp('div', {className:'row '+(literal?'':'sin-titulo'), onclick:onclick, hijos:[
+	return creaObjProp('div', {className:'row '+(literal?'':'sin-titulo')+(borde?' borde':''), onclick:onclick, hijos:[
 				title,
 				creaObjProp('span', {className:(i!=null?'col-xs-10':'col-xs-12')+' valor ellipsis '+id, texto:valor}),
 				obji

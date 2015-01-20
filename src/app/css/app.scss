@@ -720,7 +720,6 @@ article.card, article.pack{
 			small.bl{
 				padding-bottom: 0px;
 				text-transform: uppercase;
-				border-top: 1px solid rgba(173, 190, 206, .3);
 			}
 		}
 
@@ -1679,7 +1678,10 @@ article.card, article.pack{
 		.row{
 			padding-bottom: 0px;
 			padding-top: 12px;
+			
 			&.sin-titulo{margin-top:10px;}
+			&.borde{border-top:1px solid rgba(173, 190, 206, 0.3);}
+			
 			i{margin-top:3px; font-size:19px; margin-right:1px;}
 		}
 		

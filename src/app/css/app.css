@@ -577,8 +577,7 @@ article.card, article.pack {
       color: inherit; }
     #content .vista .config small.bl {
       padding-bottom: 0px;
-      text-transform: uppercase;
-      border-top: 1px solid rgba(173, 190, 206, 0.3); }
+      text-transform: uppercase; }
     #content .vista .card {
       min-height: 120px;
       color: #979797; }
@@ -1262,6 +1261,8 @@ article.card, article.pack {
       padding-top: 12px; }
       #content .vista.vistaAjustes .row.sin-titulo {
         margin-top: 10px; }
+      #content .vista.vistaAjustes .row.borde {
+        border-top: 1px solid rgba(173, 190, 206, 0.3); }
       #content .vista.vistaAjustes .row i {
         margin-top: 3px;
         font-size: 19px;
