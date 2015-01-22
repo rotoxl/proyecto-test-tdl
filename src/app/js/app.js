@@ -360,22 +360,26 @@ function Controlador(){
 	}
 Controlador.prototype.init=function(){
 	//////////
+	var ss=document.location.search
 	var sr=document.location.hash+''
 
-	if (sr.indexOf('token=')>=0){//web
-		this.cache.token=sr.substring('?token='.length).split('&')[0]
-		var refresh_token=sr.substring( sr.indexOf('refresh_token=')+14 ).split('&')[0]
-		if (refresh_token.length>10)
-			save('tapp37_refresh_token', refresh_token)
+	if (ss.indexOf('token=')>=0){//web
+		this.cache.token=ss.substring('?token='.length).split('&')[0]
+
+		var refresh_token
+		if (ss.indexOf('refresh_token=')>-1){
+			refresh_token=ss.substring( ss.indexOf('refresh_token=')+14 ).split('&')[0]
+			if (refresh_token.length>10)
+				save('tapp37_refresh_token', refresh_token)
+			}
 
 		this.loginEnMiNube()
 
 		this.cache.loginExpires=null
-		if (sr.indexOf('expires=')>-1){
-			var expires=sr.substring( sr.indexOf('expires=')+8).split('&')[0]
+		if (ss.indexOf('expires=')>-1){
+			var expires=ss.substring( ss.indexOf('expires=')+8).split('&')[0]
 			this.cache.loginExpires=new Date(expires-2*60*1000)//2 minutos de margen
 			}
-
 		}
 	else if (sr.indexOf('loginpendiente')>=0){//Teléfonos, login pendiente -> nativo
 		var fnOK=function(obj){
@@ -464,6 +468,8 @@ Controlador.prototype.init=function(){
 
 		document.addEventListener('pause', function(){app.pause()}, false)
 		document.addEventListener('menubutton', function(){app.toggleNavDrawer()}, false)
+
+		jQuery('body').addClass(device.platform.toLowerCase() )
 		}
 
 	window.addEventListener('resize', function(){app.resize()}, false)
@@ -933,8 +939,7 @@ Controlador.prototype.cargaVistaMisTest=function(desdeHistorial, hash){
 Controlador.prototype.cargaVistaTienda=function(desdeHistorial, hash){
 	var cd_test
 	if (hash!=null && typeof(hash)=='string'){
-		var temp=hash
-		cd_test=temp.split(':')[2]
+		cd_test=hash.split(':')[1]
 		}
 
 	if (this.vistaTienda==null)
@@ -1020,26 +1025,31 @@ Controlador.prototype.backButton=function(){
 		return
 		}
 
-	var vFrom=app.nav.pop()
-	var vTo=app.nav[app.nav.length-1]
+	if (app.vistaActiva && app.vistaActiva.id=='vistaTest'){
+		this.vistaTest.backButton()
+		}
+	else{
+		var vFrom=app.nav.pop()
+		var vTo=app.nav[app.nav.length-1]
 
-	if (vFrom==null && vTo==null && isPhone()){
-		navigator.app.exitApp()
-		return
+		if (vFrom==null && vTo==null && isPhone()){
+			navigator.app.exitApp()
+			return
+			}
+		else if (vTo==null) {
+			//lo mandamos al inicio, que no se quede bloqueado
+			if (app.vistaActiva) app.vistaActiva.inicio(true, vFrom)
+			return
+			}
+		if (vTo.vista=='vistaSocial')
+			this.vistaSocial.backButton(vTo, vFrom)
+		else if (vTo.vista=='vistaTienda')
+			this.vistaTienda.backButton(vTo, vFrom)
+		else if (vTo.vista=='vistaMisTest')
+			this.vistaMisTest.backButton(vTo, vFrom)
+		else if (vTo.vista=='vistaTest')
+			this.vistaTest.backButton(vTo, vFrom)
 		}
-	else if (vTo==null) {
-		//lo mandamos al inicio, que no se quede bloqueado
-		if (app.vistaActiva) app.vistaActiva.inicio(true, vFrom)
-		return
-		}
-	if (vTo.vista=='vistaSocial')
-		this.vistaSocial.backButton(vTo, vFrom)
-	else if (vTo.vista=='vistaTienda')
-		this.vistaTienda.backButton(vTo, vFrom)
-	else if (vTo.vista=='vistaMisTest')
-		this.vistaMisTest.backButton(vTo, vFrom)
-	else if (vTo.vista=='vistaTest')
-		this.vistaTest.backButton(vTo, vFrom)
 	}
 Controlador.prototype.addToNav=function(el, sustituirCat){
 	//no metemos duplicados
@@ -1739,9 +1749,11 @@ VistaTest.prototype.actualizaMapa=function(preg, resp){
 	if (resp.estrella)
 		td.append(this.generaDomEstrella(resp.i+1))
 	else 
-		td.append(creaObjProp('span', {texto:resp.i}))
+		td.append(creaObjProp('span', {texto:resp.i+1}))
 	}
 VistaTest.prototype.indicaPreguntaActivaEnMarcador=function(i){
+	console.log('pág >>'+i)
+
 	this.preg=this.preguntas[i]
 	this.resp=this.respuestas[i] //aquí no se usan, pero se establecen globalmente
 
@@ -1765,6 +1777,8 @@ VistaTest.prototype.generaDomEstrella=function(i){
 				]})
 	}
 VistaTest.prototype.toggleEstrella=function(celda){
+	console.log('estrella >>'+this.preg.i)
+
 	if (this.resp.estrella==null)
 		this.resp.estrella=false
 	this.resp.estrella=!this.resp.estrella
@@ -1808,7 +1822,8 @@ VistaTest.prototype.finExamen=function(){
 			app.nav.splice(i, 1)
 		}
 
-	app.cargaVistaInicio()
+	app.vistaActiva=null
+	app.backButton()
 	}
 VistaTest.prototype.guardaEstadoExamen=function(finalizado){
 	if (finalizado==undefined)
@@ -2083,9 +2098,8 @@ VistaTest.prototype.backButton=function(vTo, vFrom){
 		return
 		}
 
-	var sRestantes=(this.examen.horaFinal-new Date())/1000
-	var segundosConsumidos=(this.examen.minutos*60-sRestantes)
-
+	// var sRestantes=(this.examen.horaFinal-new Date())/1000
+	// var segundosConsumidos=(this.examen.minutos*60-sRestantes)
 	// if (segundosConsumidos<10) {
 	// 	//salimos sin más, ha debido entrar por error
 	// 	if (this.returnTo){
@@ -2809,6 +2823,12 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 	var lista=(this.entornoLocal?app.cache.testLocales:app.cache.testTienda)
 
 	packs=buscaFilas(app.cache.categorias, {cd_categoriapadre:cd_categoria})
+	packs.sort(function(a, b){
+		if (a>b)
+			return -1
+		else
+			return 1
+		})
 	for (var j=0; j<packs.length; j++){
 		var pack=packs[j]
 
@@ -2832,8 +2852,23 @@ VistaTienda.prototype.cargarMas=function(cd_categoria, cd_pack){
 			blCat.append(this.admonition('No hay test en esta categoría', null, (xcat.i || 'fa-ban')+' fa-4x' ) )
 		}
 	else{
-		var aPintar=sl.slice(0)
-		aPintar=aPintar.slice(num,num+tanda)
+		// var aPintar=sl.slice(0)
+		var aPintar=sl.slice(0,num+tanda)
+		aPintar.sort(function(a, b){
+			var al=Number(a.likes)
+			var bl=Number(b.likes)
+
+			if ( al==bl){
+				if (a.anho && b.anho)
+					return a.anho>b.anho
+				return a.ds_test<b.ds_test
+				}
+			else if (al>bl)
+				return -1
+			else
+				return 1
+			})
+
 		for (var j=0;  j<aPintar.length; j++){
 			if (packs.length && this.testEstaEnPack(aPintar[j], packs))
 				continue
@@ -3364,13 +3399,13 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 		if (!estadisticas.finalizado){
 			self.domDetalleTest.append(
 				creaObjProp('section', {className:'cabecera row', hijos:[
-					creaObjProp('div', {className:'col-xs-2 visual', hijos:[
+					creaObjProp('div', {className:'col-xs-3 visual mini', hijos:[
 						creaObjProp('span', {className:'fa-stack pull-left fa-2x', hijos:[
 							creaObjProp('i', {className:'fa fa-circle text-info fa-stack-2x'}),
 							creaObjProp('i', {className:'fa fa-pause text-white fa-stack-1x'}),
 							]})
 						]}),
-					creaObjProp('div', {className:'col-xs-10 data', hijos:[
+					creaObjProp('div', {className:'col-xs-9 data', hijos:[
 						creaObjProp('h2', {className:'tit', texto:'Tienes este test a medias'}),
 						creaObjProp('div', {hijos:[
 							creaObjProp('span', {className:'progress-text', texto:'Preguntas respondidas: '+estadisticas.minutosPorcentaje+'%'}),
@@ -3398,13 +3433,13 @@ VistaTienda.prototype._testPreview=function(test, estadisticas, loTengo){
 
 			self.domDetalleTest.append(
 				creaObjProp('section', {className:'row resultadoUltimoExamen', hijos:[
-					creaObjProp('div', {className:'col-xs-2 visual', hijos:[
+					creaObjProp('div', {className:'col-xs-3 visual mini', hijos:[
 						creaObjProp('span', {className:'fa-stack pull-left fa-2x', hijos:[
 							creaObjProp('i', {className:'fa fa-circle fa-stack-2x '+cls}),
 							creaObjProp('i', {className:'fa text-white fa-stack-1x '+ico}),
 							]})
 						]}),
-					creaObjProp('div', {className:'col-xs-10 data', hijos:[
+					creaObjProp('div', {className:'col-xs-9 data', hijos:[
 						creaObjProp('h2', {texto:texto}),
 						creaObjProp('small', {texto: formato.fechaUHora(estadisticas.fecha) }),
 
