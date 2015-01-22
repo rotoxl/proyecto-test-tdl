@@ -42,7 +42,7 @@ var googleWebApi={
         // else
             expires=new Date().getTime()+(data.expires_in*1000)
         var refresh_token=data.refresh_token?'&refresh_token='+data.refresh_token:''
-        return './prod.html#token='+data.access_token+'&expires='+expires+refresh_token
+        return './prod.html?token='+data.access_token+'&expires='+expires+refresh_token
         },
     signIn:function() {
         console.log("signing in...")

@@ -826,6 +826,9 @@ article.card, article.pack {
         background-repeat: no-repeat;
         background-position: center center;
         text-align: center; }
+        #content .vista.vistaTienda .detalle-test section.row .visual.mini, #content .vista.vistaMisTest .detalle-test section.row .visual.mini {
+          padding-left: 10px;
+          float: right; }
       #content .vista.vistaTienda .detalle-test section.row:last-child, #content .vista.vistaMisTest .detalle-test section.row:last-child {
         border-bottom-width: 1px; }
       #content .vista.vistaTienda .detalle-test section.row.botonera, #content .vista.vistaMisTest .detalle-test section.row.botonera {
@@ -1650,7 +1653,7 @@ article.card, article.pack {
 
   #content .vista .vista-body.cargando {
     background-position: 50% center; } }
-@media (max-width: 384px) {
+@media (max-width: 485px) {
   #content .vista.vistaTienda .detalle-test section.row .data {
     padding-left: 1rem; }
 
@@ -1659,7 +1662,10 @@ article.card, article.pack {
     max-height: 300px; }
 
   #content .vista.vistaTest .vista-header .btn .fa-pause {
-    right: 10px; } }
+    right: 10px; }
+
+  #content .vista.vistaTest .vista-header ul#mapatest {
+    max-width: 100%; } }
 #swipeview-slider > div {
   min-height: 400px;
   position: relative;
@@ -1704,5 +1710,8 @@ article.card, article.pack {
       background-image: url("../images/m-swipe-left.png"); }
     #swipeview-slider > div.portada.fin div.visual {
       background-image: url("../images/m-swipe-right.png"); }
+
+body.ios #main_container {
+  height: 100%; }
 
 /*# sourceMappingURL=app.css.map */
