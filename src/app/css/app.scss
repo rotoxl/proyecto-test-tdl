@@ -20,6 +20,10 @@ body.cordova {
 	//-webkit-transform: translateZ(0);
 	}
 
+.fade{opacity:1;}
+
+$limiteCambioPantalla:767px;
+
 body.cordova article.card {
 	-webkit-overflow-scrolling: touch; 
 	//-webkit-transform: translate3d(0, 0, 0); 
@@ -1117,7 +1121,7 @@ article.card, article.pack{
 				
 				.data{
 					padding-right:1rem;
-					padding-left:0px;
+					padding-left:1rem;
 
 					span.bl, .btn-group{
 						display: block;
@@ -1692,75 +1696,7 @@ article.card, article.pack{
 		
 	}
 
-	.vista.vistaTourAplicacion{
-		position: absolute!important;
-		top:0!important; 
-		height:100%!important;
-		
-		left:0!important; 
-		width:100%!important;
 
-		background-color:white;
-		//box-shadow:inset 0 0 100px rgba(0,0,0,.5);
-
-		#swypeWrapper{
-			position:absolute!important;
-			width: 100%; left:0;
-			top:0%; bottom:0;//bottom:15%;
-			background-color: #86e2d5;
-
-			.slide-img{
-				max-width: 80%;
-				margin-left: 10%;
-			}
-			.slide-t{
-				padding: 40px 10px 20px 10px;
-				width: 100%;
-				text-align: center;
-				font-size: 120%;
-			}
-			#swipeview-slider > div{
-				//box-shadow:inset 0 0 100px rgba(0,0,0,.5);
-			}
-		}
-		footer{
-			z-index: 1;
-			background: rgba(0,0,0,0.4);
-			bottom: 0;height: 55px;
-			width: 100%;
-			position: absolute;
-
-			.btn-group{
-				width:100%;
-				font-size:20px;
-				button{
-					background: transparent;
-					color: white;
-					border: 0;
-					height: 100%;
-					padding: 10px;
-				}
-			}
-
-			ul {
-				text-align:center;
-				padding-left:0; padding-right:0;
-				li {
-					background-color: rgba(255, 255, 255, 0.3);
-					display: inline-block;
-					width: 12px;
-					height: 12px;
-					border-radius: 50%;
-					margin-top: 15px;
-					margin-left: 5px;
-					margin-right: 5px;
-					&.active{
-						background-color:rgba(255,255,255,0.8);
-					}
-				}
-			}
-		}
-	}
 	&.cargando{
 		min-height: 100%;
 		position: absolute;
@@ -1883,7 +1819,7 @@ article.card, article.pack{
 }
 
 //media queries
-@media (max-width: 767px){
+@media (max-width: $limiteCambioPantalla){
 	body > .vbox{
 		overflow: hidden;
 		position: fixed;
@@ -2093,7 +2029,14 @@ article.card, article.pack{
 	}
 
 }
-@media (min-width: 768px){
+
+#content .vista.vistaTienda .detalle-test section.row, 
+	#content .vista.vistaMisTest .detalle-test section.row{
+		margin-left:auto; margin-right:auto;
+		max-width: 410px;
+	}
+
+@media (min-width: $limiteCambioPantalla+1){
 	body > .login div.screens{
 		margin-top:20rem;
 		}
@@ -2165,12 +2108,6 @@ article.card, article.pack{
 		margin-right: -15px;
 	}
 
-	#content .vista.vistaTienda .detalle-test section.row, 
-	#content .vista.vistaMisTest .detalle-test section.row{
-		margin-left:auto; margin-right:auto;
-		max-width: 410px;
-	}
-
 	.barra.global{display:block !important;}
 	.barra.vista .aside-md{width:45%;}
 
@@ -2189,9 +2126,7 @@ article.card, article.pack{
 	// #content .vista.vistaTienda .vista-body .bloque{
 	// 	margin-right: 10px !important;
 	// }
-	#content .vista.vistaTienda .detalle-test section.row .data{
-		padding-left:1rem;
-	}
+	
 	// #content .vista.vistaTienda .vista-body .bloque article.card.test:nth-child(2n+1){
 	// 	float:right
 	// }
@@ -2254,3 +2189,84 @@ article.card, article.pack{
 
 
 body.ios #main_container{height:100%;}
+
+
+.vista.vistaTourAplicacion{
+	position: absolute!important;
+	top:0!important; 
+	height:100%!important;
+	
+	left:0!important; 
+	width:100%!important;
+
+	background-color:white;
+	//box-shadow:inset 0 0 100px rgba(0,0,0,.5);
+
+	#swypeWrapper{
+		position:absolute!important;
+		width: 100%; left:0;
+		top:0%; bottom:0;//bottom:15%;
+		background-color: #86e2d5;
+
+		.slide-img{
+			max-width: 80%;
+			margin-left: 10%;
+		}
+		.slide-t{
+			padding: 40px 10px 20px 10px;
+			width: 100%;
+			text-align: center;
+			font-size: 120%;
+		}
+		#swipeview-slider > div{
+			//box-shadow:inset 0 0 100px rgba(0,0,0,.5);
+		}
+	}
+	footer{
+		z-index: 1;
+		background: rgba(0,0,0,0.4);
+		bottom: 0;height: 55px;
+		width: 100%;
+		position: absolute;
+
+		.btn-group{
+			width:100%;
+			font-size:20px;
+			button{
+				background: transparent;
+				color: white;
+				border: 0;
+				height: 100%;
+				padding: 10px;
+			}
+		}
+
+		ul {
+			text-align:center;
+			padding-left:0; padding-right:0;
+			li {
+				background-color: rgba(255, 255, 255, 0.3);
+				display: inline-block;
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				margin-top: 15px;
+				margin-left: 5px;
+				margin-right: 5px;
+				&.active{
+					background-color:rgba(255,255,255,0.8);
+				}
+			}
+		}
+	}
+}
+
+#modalBackdrop.in{display:block;}
+#frmVistaFlotante{
+	z-index:1050;
+	position:fixed; 
+	height:500px;
+	width:500px;
+	margin:0 auto;
+
+	}

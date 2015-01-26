@@ -363,6 +363,7 @@ Controlador.prototype.init=function(){
 	var ss=document.location.search
 	var sr=document.location.hash+''
 
+	this.esTablet=jQuery('body').innerWidth()>=767
 	if (ss.indexOf('token=')>=0){//web
 		this.cache.token=ss.substring('?token='.length).split('&')[0]
 
@@ -1143,11 +1144,19 @@ Vista.prototype.tipos={
 	vistaEstadisticas:'vistaEstadisticas', 
 	vistaMigraTest:'vistaMigraTest'
 	}
-Vista.prototype.toDOM=function(desdeHistorial){
+Vista.prototype.preDOM=function(desdeHistorial){
 	this.cambiaTextoHeaderGlobal(this.title)
-
 	app.muestraNodoEnNavDrawer('li'+this.id.slice(0,1).toUpperCase()+this.id.slice(1))
-
+	}
+Vista.prototype.postDOM=function(desdeHistorial){
+	if (!desdeHistorial){
+		app.addToNav({vista:this.id})
+		app.pushState(this.id)
+		}
+	}
+Vista.prototype.toDOM=function(desdeHistorial){
+	this.preDOM(desdeHistorial)
+	
 	var xd=jQuery('#content')
 	if (app) app.vistaActiva=this
 
@@ -1177,13 +1186,10 @@ Vista.prototype.toDOM=function(desdeHistorial){
 	xd.removeClass('cargando')
 
 	this.dom=xd
+
+	this.postDOM(desdeHistorial)
 	this.resize()
 	this.tareasPostCarga(desdeHistorial)
-	
-	if (!desdeHistorial){
-		app.addToNav({vista:this.id})
-		app.pushState(this.id)
-		}
 	}
 Vista.prototype.show=function(desdeHistorial){
 	this.cambiaTextoHeaderGlobal(this.title)
@@ -1341,11 +1347,75 @@ Vista.prototype.toggleMenuGlobal=function(visible, inmediate){
 	}
 ////////////////////////////////////////////////
 
+function VistaFlotante(){
+	try{Vista.call(this)}
+	catch(e){return}
+	}
+VistaFlotante.prototype=new Vista
+VistaFlotante.prototype.toDOM=function(desdeHistorial){
+	if (!app.esTablet){
+		Vista.prototype.toDOM.call(this, desdeHistorial)
+		return
+		}	
+
+	var xd=jQuery('#frmVistaFlotante').empty()
+	if (app) app.vistaActiva=this
+
+	this.domHeader=jQuery(this.getHeader())
+	
+	var tb=this.getBody()
+	if (tb instanceof Array)
+		this.domBody=jQuery(tb[0])
+	else
+		this.domBody=jQuery(tb)
+	
+	// xd.find('.vista').hide()
+
+	jQuery('#main_container .aside-md')
+		.removeClass( Object.keys(this.tipos).join(' '))
+		//.addClass('vista '+this.id)
+
+	this.domCont=jQuery(creaObjProp('section', {'style.height':'100%'}))
+	xd.append(this.domCont)
+	
+	this.domCont
+		.append(this.domHeader)
+		.append(tb)
+		.removeClass( Object.keys(this.tipos).join(' '))
+		.addClass('vista '+this.id)
+		
+	xd.removeClass('cargando')
+
+	this.dom=xd
+
+	var h=500, w=500
+	this.dom.css({width:w, 
+				height:h, 
+				left:(jQuery('body').innerWidth()-w)/2,
+				top:(jQuery('body').innerHeight()-h)/2}
+				)
+
+	this.show()
+
+	this.postDOM(desdeHistorial)
+	this.tareasPostCarga(desdeHistorial)
+
+	this.resize()
+	}
+VistaFlotante.prototype.cerrarFlotante=function(){
+	jQuery('#modalBackdrop').removeClass('in')
+	this.dom.addClass('hidden')
+	}
+VistaFlotante.prototype.show=function(){
+	jQuery('#modalBackdrop').addClass('in')
+	this.dom.removeClass('hidden')
+	}
+////////////////////////////////////////////////
 function VistaTourAplicacion(){
 	Vista.call(this)
 	this.id='vistaTourAplicacion'
 	}
-VistaTourAplicacion.prototype=new Vista
+VistaTourAplicacion.prototype=new VistaFlotante
 VistaTourAplicacion.prototype.getBody=function(){
 	var self=this
 
@@ -1358,6 +1428,8 @@ VistaTourAplicacion.prototype.getBody=function(){
 		{html:'Realiza tu test, ¡cuidado con el <b>tiempo</b>!', img:'./images/tour-3'+raiz+'.png', bgcolor:'#66cc99', fgcolor:'white'},
 		{html:'Comprueba tus <b>progresos</b>', img:'./images/tour-4'+raiz+'.png', bgcolor:'#36d7b7', fgcolor:'white'},
 		]
+	if (app.esTablet)
+		this.slides.splice(1,1)
 
 	var puntos=[]
 	for (var i=0; i<this.slides.length; i++){
@@ -1425,6 +1497,7 @@ VistaTourAplicacion.prototype.inicio=function(){
 	this.gallery.goToPage(0)
 	}
 VistaTourAplicacion.prototype.clickBtnOmitir=function(){
+	if (app.esTablet)this.cerrarFlotante()
 	app.cargaVistaInicio()
 	save('tapp37_tourRealizado', 1)
 	}
@@ -2404,6 +2477,10 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 VistaTienda.prototype.navegarAPortada=function(){
 	this.restauraHeaderApp() 
 
+	if (this.domDetalleTest && this.domDetalleTest.is(':visible')){
+		this.domBody.show()
+		this.domDetalleTest.hide()
+		}
 	//dejamos una pequeña lista de test visibles por categoría, y mostramos el botón 'cargar más'
 	var bloques=this.domBody.find('.bloque.cat:not(.pack)').show()
 	bloques.find('.card').not('.main').remove()

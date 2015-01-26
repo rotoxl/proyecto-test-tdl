@@ -58,10 +58,10 @@
 						<ul class="dropdown-menu animated fadeInRight" role="menu">
 						<span class="arrow top"></span>
 						<li>
-							<a href="javascript:app.cargaAjustes()">Ajustes</a>
+							<a href="javascript:app.cargaVistaAjustes()">Ajustes</a>
 						</li>
 						<li>
-							<a href="javascript:app.cargaPerfil()">Ver perfil</a>
+							<a href="javascript:app.lanzaTourAplicacion()">Guía del producto</a>
 						</li>
 						<li class="divider"></li>
 						<li>
@@ -209,11 +209,15 @@
 	  	</section>
 	</section>
 
+	<div class="modal backdrop" id="modalBackdrop"></div>
 
-	<div class="modal fade" id="frmPausa">  
+	<div class="hidden fade vista" id="frmVistaFlotante">
+	</div>
+
+	<div class="modal fade" id="frmPausa">
 	    <div class="modal-dialog">
 	      <div class="modal-content">
-	        <div class="modal-body">
+	      	<div class="modal-body">
 	          <div class="row">
 	            <div class="col-sm-6 main">
 	            	<h3 class="titulo m-b">
@@ -243,8 +247,7 @@
 		</div> 
 	</div> 
 
-	<div class="modal fade" id="frmPresentacion">
-	</div>
+
 
 	<div class="modal fade" id="frmImgAmpliada" onclick="app.vistaActiva.cerrarAmpliarImg()">
 		<div class="cerrar">Pulsa para cerrar</div>
