@@ -105,12 +105,12 @@
 		var eventosColocados=false
 		function init(){
 
-			if (get('tapp37_yanoshavisitado')=='1' && isPhone()){
-				//login directo, sin esperas
-				document.location.replace('./prod.html#loginpendiente')
+			// if (get('tapp37_yanoshavisitado')=='1' && isPhone()){
+			// 	//login directo, sin esperas
+			// 	document.location.replace('./prod.html#loginpendiente')
 
-				return 
-				}
+			// 	return 
+			// 	}
 
 			if (eventosColocados==false){
 				document.addEventListener('backbutton', function(){backButton()}, false)
@@ -137,19 +137,6 @@
 					}
 				}
 			else {
-				// refresh_token no funciona
-				// var rt=get('tapp37_refresh_token')
-				// if (rt!=null){
-				// 	setTimeout(function(){googleMobileApi.prepareTokenRefresh(rt)}, 100)
-				// 	}
-				// else 
-
-				// if (get('tapp37_yanoshavisitado')=='1')
-				// 	setTimeout(function(){googleMobileApi.silentLogin()}, 100)
-				// else {
-				// 	googleMobileApi.prepareLogin()
-				// 	}
-
 				if (get('tapp37_yanoshavisitado')=='1')
 					setTimeout(function(){nativeApi.doSilentLogin()}, 100)
 				else {

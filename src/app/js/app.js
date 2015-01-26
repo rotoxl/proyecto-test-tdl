@@ -903,10 +903,10 @@ Controlador.prototype.cargaVistaInicio=function(){
 	 	this.cargaVistaEstadisticas()
 	else if (hash.indexOf('vistaAjustes')>-1)
 		this.cargaVistaAjustes()
-	else {
-		// if (tl.length>0)
-		// 	this.cargaVistaMisTest(false)
-		// else 
+	else { //cuando se hace el login nativo, automático, desde la pant. de login
+		if (tl.length>0)
+			this.cargaVistaMisTest(false)
+		else 
 			this.cargaVistaTienda(false)
 		}
 
