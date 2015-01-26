@@ -54,7 +54,7 @@ body.login{
 	background:$navigation_bar_bgcolor;
 
 	.throbber{
-		background: url("../images/throbber-white.gif") no-repeat center right;
+		background: url("../images/throbber-white.svg") no-repeat center right;
 		display: block;
 		height: 40px;
 		background-size: 30px;
@@ -625,7 +625,7 @@ article.card, article.pack{
 			
 
 			&.cargando{
-				background:url("../images/throbber.gif") no-repeat center center;
+				background:url("../images/throbber.svg") no-repeat center center;
 				background-size:50px;
 			}
 
@@ -997,7 +997,7 @@ article.card, article.pack{
 
 				.btn.btnDescargar{
 					&.cargando{
-						background-image: url(../images/throbber.gif);
+						background-image: url(../images/throbber.svg);
 						background-position: 5px center;
 						background-repeat: no-repeat;
 						background-size: 16px;
@@ -1164,7 +1164,7 @@ article.card, article.pack{
 		}
 		
 		.grupos.cargando{
-			background:url("../images/throbber-white.gif") no-repeat center center;
+			background:url("../images/throbber-white.svg") no-repeat center center;
 			background-size:25px;
 			min-height: 100px;
 		}
@@ -1205,7 +1205,7 @@ article.card, article.pack{
 			padding-bottom:10px;
 
 			&.cargando{
-				background:url("../images/throbber-white.gif") no-repeat center center;
+				background:url("../images/throbber-white.svg") no-repeat center center;
 				background-size:50px;
 			}
 			> .avatar{
@@ -1391,7 +1391,7 @@ article.card, article.pack{
 						background-color:white;
 
 						&.cargando{
-							background:url("../images/throbber.gif") no-repeat center center;
+							background:url("../images/throbber.svg") no-repeat center center;
 							background-size:50px;
 						}
 					}
@@ -1521,7 +1521,7 @@ article.card, article.pack{
 	&.cargando{
 		min-height: 100%;
 		position: absolute;
-		background:$navigation_bar_bgcolor url("../images/throbber-white.gif") no-repeat center center;
+		background:$navigation_bar_bgcolor url("../images/throbber-white.svg") no-repeat center center;
 		background-size:50px;
 	}
 	
