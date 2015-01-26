@@ -11,10 +11,6 @@ li, a, span, button, div, .btn {
   user-select: none !important;
   user-focus: ignore !important; }
 
-body.cordova {
-  -webkit-font-smoothing: antialiased;
-  -webkit-overflow-scrolling: touch; }
-
 .fade {
   opacity: 1; }
 
@@ -111,7 +107,8 @@ header#navigation_bar {
     header#navigation_bar .barra .btn-menu ul {
       margin-top: 40px; }
   header#navigation_bar .barra .navbar-header {
-    height: 50px; }
+    height: 50px;
+    width: 100%; }
     header#navigation_bar .barra .navbar-header > ul > li > a {
       color: inherit; }
       header#navigation_bar .barra .navbar-header > ul > li > a :hover {
@@ -145,7 +142,7 @@ header#navigation_bar {
       top: 0;
       left: auto; }
   header#navigation_bar .barra.vista a.navbar-brand {
-    max-width: 80%;
+    max-width: 70%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; }
@@ -621,121 +618,6 @@ article.card, article.pack {
         font-weight: 500;
         font-size: 12px;
         line-height: 19px; }
-  #content .vista.vistaTest.vistaRepasoTest ul#mapatest {
-    width: 100%;
-    max-width: 100% !important; }
-  #content .vista.vistaTest.vistaRepasoTest .pregunta {
-    background: #ececec;
-    color: #717171; }
-  #content .vista.vistaTest.vistaRepasoTest footer.respuestas table tr td.bg-danger {
-    color: white !important; }
-  #content .vista.vistaTest.vistaRepasoTest footer.respuestas table tr td.bg-success {
-    color: white !important; }
-  #content .vista.vistaTest.vistaRepasoTest .recurso.pre .aviso {
-    color: #717171; }
-  #content .vista.vistaTest .vista-header .btn .fa-pause {
-    float: right;
-    margin-top: 2px;
-    right: 15px;
-    position: absolute; }
-  #content .vista.vistaTest .vista-header ul#mapatest {
-    max-width: 400px;
-    max-height: 360px;
-    overflow-y: auto; }
-    #content .vista.vistaTest .vista-header ul#mapatest span.arrow:after {
-      border-bottom-color: #65bd77; }
-    #content .vista.vistaTest .vista-header ul#mapatest table {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      color: #ebf4e4;
-      text-align: center; }
-      #content .vista.vistaTest .vista-header ul#mapatest table td {
-        height: 40px;
-        cursor: pointer; }
-        #content .vista.vistaTest .vista-header ul#mapatest table td.contestada {
-          color: rgba(137, 204, 151, 0.2); }
-        #content .vista.vistaTest .vista-header ul#mapatest table td.active span {
-          background-color: #ebf4e4;
-          color: #65bd77;
-          display: inline-block;
-          border-radius: 30px;
-          width: 30px;
-          height: 30px;
-          line-height: 32px;
-          margin-top: -2px; }
-        #content .vista.vistaTest .vista-header ul#mapatest table td .fa-stack-2x {
-          color: rgba(137, 204, 151, 0.2); }
-        #content .vista.vistaTest .vista-header ul#mapatest table td .stack-text {
-          margin-top: -.1rem;
-          color: #65bd77; }
-  #content .vista.vistaTest table {
-    table-layout: fixed;
-    width: 100%; }
-    #content .vista.vistaTest table td.clave {
-      width: 50px;
-      height: 50px;
-      text-align: center;
-      font-size: 26px;
-      font-weight: 400; }
-    #content .vista.vistaTest table td.valor {
-      padding-left: 4px;
-      color: inherit !important;
-      font-weight: inherit;
-      font-size: 16px;
-      line-height: 21px; }
-  #content .vista.vistaTest .recurso.resp {
-    width: 125px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    margin-top: 20px; }
-  #content .vista.vistaTest .recurso.pre {
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center; }
-    #content .vista.vistaTest .recurso.pre .aviso {
-      text-align: left;
-      color: whitesmoke;
-      opacity: .5;
-      font-size: 12px; }
-    #content .vista.vistaTest .recurso.pre img {
-      max-width: 100%;
-      box-shadow: 1px 2px 13px darkslategrey; }
-  #content .vista.vistaTest .pregunta {
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    overflow: auto;
-    font-size: 20px;
-    line-height: 21px;
-    background: #89cc97;
-    color: white; }
-    #content .vista.vistaTest .pregunta table {
-      margin-top: 15px; }
-      #content .vista.vistaTest .pregunta table td.clave {
-        vertical-align: top; }
-      #content .vista.vistaTest .pregunta table td.valor {
-        vertical-align: top;
-        padding-right: 5px;
-        font-weight: 400; }
-  #content .vista.vistaTest footer.respuestas {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    height: 50%;
-    overflow: auto;
-    border-top: 1px solid 1px solid #25313e;
-    background-color: #ececec; }
-    #content .vista.vistaTest footer.respuestas table {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
-      #content .vista.vistaTest footer.respuestas table tr {
-        cursor: pointer; }
-        #content .vista.vistaTest footer.respuestas table tr.active {
-          background-color: rgba(0, 0, 0, 0.05); }
-        #content .vista.vistaTest footer.respuestas table tr.atenuada {
-          opacity: .6; }
-        #content .vista.vistaTest footer.respuestas table tr td {
-          border-top: 1px solid rgba(0, 0, 0, 0.05); }
   #content .vista.vistaTienda .vista-header,
   #content .vista.vistaTienda .vista-body .bloque .cargarMas span {
     background-color: #f0ad4e; }
@@ -1360,171 +1242,179 @@ article.card, article.pack {
     padding: 5px;
     color: white; }
 
-@media (max-width: 767px) {
-  body > .vbox {
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%; }
+.hidden-xs {
+  display: none !important; }
 
-  header#navigation_bar a.navbar-brand {
-    width: 80%;
-    text-align: left;
-    font-size: 19px; }
-    header#navigation_bar a.navbar-brand img {
-      display: none; }
+.visible-xs {
+  display: block !important; }
 
-  body > .login div.screens {
-    margin-top: 30%; }
+body > .vbox {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%; }
 
-  .cargarMas {
-    margin-right: 2%; }
+header#navigation_bar a.navbar-brand {
+  width: 70%;
+  text-align: left;
+  font-size: 19px;
+  float: left;
+  margin-left: 30px; }
+  header#navigation_bar a.navbar-brand img {
+    display: none; }
 
-  section.bloque {
-    margin-left: 2% !important;
-    margin-right: 0 !important; }
+body > .login div.screens {
+  margin-top: 30%; }
 
-  article.card {
-    width: 48%;
-    margin-top: 5px;
-    margin-right: 5px; }
+.cargarMas {
+  margin-right: 2%; }
 
-  aside .vbox > footer {
-    position: absolute;
-    bottom: 0px;
-    left: 0;
+section.bloque {
+  margin-left: 2% !important;
+  margin-right: 0 !important; }
+
+article.card {
+  width: 48%;
+  margin-top: 5px;
+  margin-right: 5px; }
+
+aside .vbox > footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  min-height: 145px;
+  color: #adbece;
+  padding: 5px 0px 0 0px !important; }
+  aside .vbox > footer .btn-group {
     width: 100%;
-    min-height: 145px;
-    color: #adbece;
-    padding: 5px 0px 0 0px !important; }
-    aside .vbox > footer .btn-group {
-      width: 100%;
-      padding: 5px 0 5px 1px; }
-    aside .vbox > footer li {
-      height: 40px; }
-    aside .vbox > footer .ajustes, aside .vbox > footer .tour {
-      line-height: 26px;
-      color: #adbece !important;
-      background: inherit !important; }
-      aside .vbox > footer .ajustes i, aside .vbox > footer .tour i {
-        margin-right: 23px; }
-    aside .vbox > footer .logout {
-      font-size: 22px;
-      line-height: 30px;
-      width: 50px !important;
-      color: #adbece !important; }
-    aside .vbox > footer .avatar {
-      padding-left: 6px;
-      width: 70%; }
-      aside .vbox > footer .avatar .pic {
-        width: 30px;
-        margin-right: 12px; }
-      aside .vbox > footer .avatar .nombre {
-        float: left;
-        font-size: 13px;
-        line-height: 28px;
-        margin-left: 4px; }
+    padding: 5px 0 5px 1px; }
+  aside .vbox > footer li {
+    height: 40px; }
+  aside .vbox > footer .ajustes, aside .vbox > footer .tour {
+    line-height: 26px;
+    color: #adbece !important;
+    background: inherit !important; }
+    aside .vbox > footer .ajustes i, aside .vbox > footer .tour i {
+      margin-right: 23px; }
+  aside .vbox > footer .logout {
+    font-size: 22px;
+    line-height: 30px;
+    width: 50px !important;
+    color: #adbece !important; }
+  aside .vbox > footer .avatar {
+    padding-left: 6px;
+    width: 70%; }
+    aside .vbox > footer .avatar .pic {
+      width: 30px;
+      margin-right: 12px; }
+    aside .vbox > footer .avatar .nombre {
+      float: left;
+      font-size: 13px;
+      line-height: 28px;
+      margin-left: 4px; }
 
-  body {
-    overflow: hidden; }
+body {
+  overflow: hidden; }
 
-  .modal#frmPausa {
-    padding-left: 0;
-    padding-top: 0; }
-    .modal#frmPausa .info {
-      margin-top: 15px;
-      margin-bottom: 5px; }
-      .modal#frmPausa .info .visual {
-        right: 11px;
-        top: -20px;
-        max-height: 70px;
-        background: transparent; }
-    .modal#frmPausa .main > .titulo {
-      margin-bottom: 5px; }
-    .modal#frmPausa .info > .titulo {
-      margin-bottom: 5px; }
-    .modal#frmPausa .modal-dialog {
-      margin-left: 0;
-      margin-right: 0;
-      margin-top: 40px; }
-      .modal#frmPausa .modal-dialog .modal-content {
-        border-radius: 0; }
-        .modal#frmPausa .modal-dialog .modal-content .modal-body {
-          padding-bottom: 0; }
-    .modal#frmPausa .visual {
-      display: none; }
+.modal#frmPausa {
+  padding-left: 0;
+  padding-top: 0; }
+  .modal#frmPausa .info {
+    margin-top: 15px;
+    margin-bottom: 5px; }
+    .modal#frmPausa .info .visual {
+      right: 11px;
+      top: -20px;
+      max-height: 70px;
+      background: transparent; }
+  .modal#frmPausa .main > .titulo {
+    margin-bottom: 5px; }
+  .modal#frmPausa .info > .titulo {
+    margin-bottom: 5px; }
+  .modal#frmPausa .modal-dialog {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%; }
+    .modal#frmPausa .modal-dialog .modal-content {
+      border-radius: 0; }
+      .modal#frmPausa .modal-dialog .modal-content .modal-body {
+        padding-bottom: 0; }
+  .modal#frmPausa .visual {
+    display: none; }
 
-  ul.btn2_1 span.arrow {
-    margin-left: -25%; }
+ul.btn2_1 span.arrow {
+  margin-left: -25%; }
 
-  ul.btn2_2 span.arrow {
-    margin-left: +25%; }
+ul.btn2_2 span.arrow {
+  margin-left: +25%; }
 
-  ul.btn3_1 span.arrow {
-    margin-left: -37%; }
+ul.btn3_1 span.arrow {
+  margin-left: -37%; }
 
-  ul.btn3_2 span.arrow {
-    margin-left: 0%; }
+ul.btn3_2 span.arrow {
+  margin-left: 0%; }
 
-  .navbar + section .nav-off-screen {
-    top: 50px; }
+.navbar + section .nav-off-screen {
+  top: 50px; }
 
-  .navbar + section .nav-off-screen + * {
-    top: 50px; }
+.navbar + section .nav-off-screen + * {
+  top: 50px; }
 
-  .nav-off-screen + * {
-    background-color: #f7f7f7;
-    -webkit-transition: -webkit-transform 0.2s ease-in-out;
-    -moz-transition: -moz-transform 0.2s ease-in-out;
-    -o-transition: -o-transform 0.2s ease-in-out;
-    transition: transform 0.2s ease-in-out;
-    -webkit-transition-delay: 0s;
-    transition-delay: 0s;
-    -webkit-transform: translate3d(0px, 0px, 0px);
-    transform: translate3d(0px, 0px, 0px);
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: translate3d(75%, 0px, 0px);
-    transform: translate3d(75%, 0px, 0px);
-    overflow: hidden;
-    position: absolute;
-    width: 100%;
-    top: 0px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2; }
+.nav-off-screen + * {
+  background-color: #f7f7f7;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  -moz-transition: -moz-transform 0.2s ease-in-out;
+  -o-transition: -o-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(300px, 0px, 0px);
+  transform: translate3d(300px, 0px, 0px);
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2; }
 
-  .nav-off-screen + * .nav-off-screen-block {
-    display: block !important;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 1950;
-    background: #25313e;
-    opacity: .4; }
+.nav-off-screen + * .nav-off-screen-block {
+  display: block !important;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1950;
+  background: #25313e;
+  opacity: .4; }
 
-  .navbar-header {
-    text-align: center; }
+.navbar-header {
+  text-align: center; }
 
-  .nav-off-screen {
-    display: block !important;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 75%;
-    visibility: visible;
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch; }
-    .nav-off-screen .nav-primary {
-      display: block !important; } }
+.nav-off-screen {
+  display: block !important;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  visibility: visible;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; }
+  .nav-off-screen .nav-primary {
+    display: block !important; }
+
 #content .vista.vistaTienda .detalle-test section.row,
 #content .vista.vistaMisTest .detalle-test section.row {
   margin-left: auto;
@@ -1544,62 +1434,8 @@ article.card, article.pack {
     margin-top: 5px;
     margin-right: 5px; }
 
-  .hbox {
-    display: table;
-    table-layout: fixed;
-    border-spacing: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; }
-
-  .vbox {
-    display: table;
-    border-spacing: 0;
-    position: relative;
-    height: 100%;
-    width: 100%; }
-    .vbox .scrollable {
-      top: 50px; }
-
-  body .vbox {
-    display: table;
-    border-spacing: 0;
-    position: relative;
-    height: 100%;
-    width: 100%; }
-    body .vbox > section {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      top: 0; }
-    body .vbox > footer {
-      position: absolute; }
-
-  .aside-md {
-    width: 220px; }
-
-  .hbox > aside, .hbox > section,
-  .vbox > aside, .vbox > section {
-    display: table-cell;
-    vertical-align: top;
-    height: 100%;
-    padding: 0;
-    float: none; }
-
-  .navbar-nav.navbar-right {
-    float: right !important; }
-
-  .navbar-nav.navbar-right:last-child {
-    margin-right: -15px; }
-
-  .barra.global {
-    display: block !important; }
-
-  .barra.vista .aside-md {
-    width: 45%; }
-
   #content.cargando {
-    background-position: 40% center; }
+    background-position: center center; }
 
   #content .vista .vista-body.cargando {
     background-position: 50% center; } }
@@ -1661,13 +1497,139 @@ article.card, article.pack {
 body.ios #main_container {
   height: 100%; }
 
+.vista.vistaTest.vistaRepasoTest ul#mapatest {
+  width: 100%;
+  max-width: 100% !important; }
+.vista.vistaTest.vistaRepasoTest .pregunta {
+  background: #ececec;
+  color: #717171; }
+.vista.vistaTest.vistaRepasoTest footer.respuestas table tr td.bg-danger {
+  color: white !important; }
+.vista.vistaTest.vistaRepasoTest footer.respuestas table tr td.bg-success {
+  color: white !important; }
+.vista.vistaTest.vistaRepasoTest .recurso.pre .aviso {
+  color: #717171; }
+.vista.vistaTest .vista-header .btn-group {
+  width: 100%; }
+.vista.vistaTest .vista-header .btn {
+  min-height: 50px; }
+  .vista.vistaTest .vista-header .btn .fa-pause {
+    float: right;
+    margin-top: 2px;
+    right: 15px;
+    position: absolute; }
+.vista.vistaTest .vista-header ul#mapatest {
+  max-width: 400px;
+  max-height: 360px;
+  overflow-y: auto; }
+  .vista.vistaTest .vista-header ul#mapatest span.arrow:after {
+    border-bottom-color: #65bd77; }
+  .vista.vistaTest .vista-header ul#mapatest table {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #ebf4e4;
+    text-align: center; }
+    .vista.vistaTest .vista-header ul#mapatest table td {
+      height: 40px;
+      cursor: pointer; }
+      .vista.vistaTest .vista-header ul#mapatest table td.contestada {
+        color: rgba(137, 204, 151, 0.2); }
+      .vista.vistaTest .vista-header ul#mapatest table td.active span {
+        background-color: #ebf4e4;
+        color: #65bd77;
+        display: inline-block;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+        line-height: 32px;
+        margin-top: -2px; }
+      .vista.vistaTest .vista-header ul#mapatest table td .fa-stack-2x {
+        color: rgba(137, 204, 151, 0.2); }
+      .vista.vistaTest .vista-header ul#mapatest table td .stack-text {
+        margin-top: -.1rem;
+        color: #65bd77; }
+.vista.vistaTest .vista-body {
+  border-top: 1px solid #d5d5d5; }
+.vista.vistaTest table {
+  table-layout: fixed;
+  width: 100%; }
+  .vista.vistaTest table td.clave {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 400; }
+  .vista.vistaTest table td.valor {
+    padding-left: 4px;
+    color: inherit !important;
+    font-weight: inherit;
+    font-size: 16px;
+    line-height: 21px; }
+.vista.vistaTest .recurso.resp {
+  width: 125px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-top: 20px; }
+.vista.vistaTest .recurso.pre {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center; }
+  .vista.vistaTest .recurso.pre .aviso {
+    text-align: left;
+    color: whitesmoke;
+    opacity: .5;
+    font-size: 12px; }
+  .vista.vistaTest .recurso.pre img {
+    max-width: 100%;
+    box-shadow: 1px 2px 13px darkslategrey; }
+.vista.vistaTest .pregunta {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  overflow: auto;
+  font-size: 20px;
+  line-height: 21px;
+  background: #41586e;
+  color: white; }
+  .vista.vistaTest .pregunta table {
+    margin-top: 15px; }
+    .vista.vistaTest .pregunta table td.clave {
+      vertical-align: top; }
+    .vista.vistaTest .pregunta table td.valor {
+      vertical-align: top;
+      padding-right: 5px;
+      font-weight: 400; }
+.vista.vistaTest footer.respuestas {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 50%;
+  overflow: auto;
+  border-top: 1px solid 1px solid #25313e; }
+  .vista.vistaTest footer.respuestas table {
+    background-color: #ececec;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+    .vista.vistaTest footer.respuestas table tr {
+      cursor: pointer; }
+      .vista.vistaTest footer.respuestas table tr.active {
+        background-color: rgba(0, 0, 0, 0.05); }
+      .vista.vistaTest footer.respuestas table tr.atenuada {
+        opacity: .6; }
+      .vista.vistaTest footer.respuestas table tr td {
+        border-top: 1px solid rgba(0, 0, 0, 0.05); }
+
+.vbox.vista .vistaTest .vista-body footer.respuestas {
+  background-color: #ececec; }
+
 .vista.vistaTourAplicacion {
-  position: absolute !important;
-  top: 0 !important;
-  height: 100% !important;
-  left: 0 !important;
-  width: 100% !important;
   background-color: white; }
+  .vbox .vista.vistaTourAplicacion {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100% !important;
+    width: 100% !important; }
   .vista.vistaTourAplicacion #swypeWrapper {
     position: absolute !important;
     width: 100%;
@@ -1715,14 +1677,22 @@ body.ios #main_container {
         .vista.vistaTourAplicacion footer ul li.active {
           background-color: rgba(255, 255, 255, 0.8); }
 
+#modalBackdrop {
+  display: none; }
+
 #modalBackdrop.in {
-  display: block; }
+  display: block;
+  z-index: 540; }
 
 #frmVistaFlotante {
-  z-index: 1050;
+  z-index: 550;
   position: fixed;
-  height: 500px;
-  width: 500px;
-  margin: 0 auto; }
+  height: 500px !important;
+  width: 500px !important;
+  margin: 0 auto !important; }
+  #frmVistaFlotante.vistaTest {
+    top: 50px !important; }
+    #frmVistaFlotante.vistaTest #swypeWrapper {
+      max-height: 600px; }
 
 /*# sourceMappingURL=app.css.map */
