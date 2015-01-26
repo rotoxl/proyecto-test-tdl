@@ -1142,7 +1142,9 @@ Vista.prototype.tipos={
 	vistaAjustes:'vistaAjustes', 
 
 	vistaEstadisticas:'vistaEstadisticas', 
-	vistaMigraTest:'vistaMigraTest'
+	vistaMigraTest:'vistaMigraTest',
+
+	vistaTourAplicacion:'vistaTourAplicacion',
 	}
 Vista.prototype.preDOM=function(desdeHistorial){
 	this.cambiaTextoHeaderGlobal(this.title)
@@ -1345,6 +1347,7 @@ Vista.prototype.toggleMenuGlobal=function(visible, inmediate){
 	else 
 		menu.fadeOut()
 	}
+Vista.prototype.cerrar=function(){}
 ////////////////////////////////////////////////
 
 function VistaFlotante(){
@@ -1358,7 +1361,8 @@ VistaFlotante.prototype.toDOM=function(desdeHistorial){
 		return
 		}	
 
-	var xd=jQuery('#frmVistaFlotante').empty()
+	var xd=jQuery('#frmVistaFlotante')//.empty()
+	xd.find('.vista').addClass('hidden')
 	if (app) app.vistaActiva=this
 
 	this.domHeader=jQuery(this.getHeader())
@@ -1371,9 +1375,9 @@ VistaFlotante.prototype.toDOM=function(desdeHistorial){
 	
 	// xd.find('.vista').hide()
 
-	jQuery('#main_container .aside-md')
+	xd
 		.removeClass( Object.keys(this.tipos).join(' '))
-		//.addClass('vista '+this.id)
+		.addClass(this.id)
 
 	this.domCont=jQuery(creaObjProp('section', {'style.height':'100%'}))
 	xd.append(this.domCont)
@@ -1395,20 +1399,37 @@ VistaFlotante.prototype.toDOM=function(desdeHistorial){
 				top:(jQuery('body').innerHeight()-h)/2}
 				)
 
-	this.show()
+	this.mostrarDom()
 
 	this.postDOM(desdeHistorial)
 	this.tareasPostCarga(desdeHistorial)
 
 	this.resize()
 	}
-VistaFlotante.prototype.cerrarFlotante=function(){
-	jQuery('#modalBackdrop').removeClass('in')
-	this.dom.addClass('hidden')
+VistaFlotante.prototype.cerrar=function(){
+	if (app.esTablet){
+		jQuery('#modalBackdrop').removeClass('in')
+		this.dom.addClass('hidden')
+		}
 	}
-VistaFlotante.prototype.show=function(){
+VistaFlotante.prototype.mostrarDom=function(){
 	jQuery('#modalBackdrop').addClass('in')
 	this.dom.removeClass('hidden')
+	}
+VistaFlotante.prototype.show=function(desdeHistorial){
+	if (app.esTablet){
+		this.dom.find('.vista').addClass('hidden')
+		this.dom.find('.'+this.id).removeClass('hidden')
+
+		this.dom
+			.removeClass( Object.keys(this.tipos).join(' '))
+			.addClass(this.id)
+
+		this.mostrarDom()
+		}
+	else{
+		Vista.prototype.show.call(this, desdeHistorial)
+		}
 	}
 ////////////////////////////////////////////////
 function VistaTourAplicacion(){
@@ -1452,7 +1473,7 @@ VistaTourAplicacion.prototype.getBody=function(){
 		]
 	}
 VistaTourAplicacion.prototype.tareasPostCarga=function(){
-	this.initSwype('#swypeWrapper', this.slides.length)
+	this.initSwype('.vista.'+this.id+' #swypeWrapper', this.slides.length)
 	}
 VistaTourAplicacion.prototype.cambiaDiapo=function(i, cont){
 	if (i>this.slides.length) return
@@ -1497,7 +1518,7 @@ VistaTourAplicacion.prototype.inicio=function(){
 	this.gallery.goToPage(0)
 	}
 VistaTourAplicacion.prototype.clickBtnOmitir=function(){
-	if (app.esTablet)this.cerrarFlotante()
+	this.cerrar()
 	app.cargaVistaInicio()
 	save('tapp37_tourRealizado', 1)
 	}
@@ -1547,7 +1568,7 @@ function VistaTest(test, respuestas, desdeHistorial){
 	if (!desdeHistorial) 
 		app.pushState(this.id)
 	}
-VistaTest.prototype=new Vista
+VistaTest.prototype=new VistaFlotante
 VistaTest.prototype.generaObjRespuestas=function(){
 	var contestadas=[]
 	for (var i=0; i<this.preguntas.length; i++){
@@ -1592,7 +1613,7 @@ VistaTest.prototype.tareasPostCarga=function(){
 	this.initMapa()
 	this.iniciaTiempo()
 
-	this.initSwype('#swypeWrapper', this.preguntas.length, true)
+	this.initSwype('.vista.'+this.id+' #swypeWrapper', this.preguntas.length, true)
 	jQuery(this.dom).addClass('noselect')
 
 	//ojo, la 0 es la portada y la última la contraportada
@@ -1888,6 +1909,7 @@ VistaTest.prototype.tiempoAcabado=function(){
 	}
 VistaTest.prototype.finExamen=function(){
 	this.frmdom.modal('hide')
+	this.cerrar()
 	
 	//quito del stack de navegación las fases del test
 	for (var i=app.nav.length-1; i>=0; i--){
@@ -2446,7 +2468,7 @@ VistaTienda.prototype.navegaEl=function(vTo, vFrom){
 								{cd_categoria: vTo.cd_categoria})[0]
 				}
 
-			this.cambiaHeaderApp(xcat.ds_categoria)
+			this.cambiaHeaderApp(this.title)
 			this.ajustaAlturaCard(jQuery('.card.pack'))
 			//la vista de domBody se puede mantener tal cual está
 
