@@ -15,6 +15,9 @@ body.cordova {
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch; }
 
+.fade {
+  opacity: 1; }
+
 body.cordova article.card {
   -webkit-overflow-scrolling: touch; }
 
@@ -840,7 +843,7 @@ article.card, article.pack {
         min-height: 50px; }
       #content .vista.vistaTienda .detalle-test section.row .data, #content .vista.vistaMisTest .detalle-test section.row .data {
         padding-right: 1rem;
-        padding-left: 0px; }
+        padding-left: 1rem; }
         #content .vista.vistaTienda .detalle-test section.row .data span.bl, #content .vista.vistaTienda .detalle-test section.row .data .btn-group, #content .vista.vistaMisTest .detalle-test section.row .data span.bl, #content .vista.vistaMisTest .detalle-test section.row .data .btn-group {
           display: block; }
         #content .vista.vistaTienda .detalle-test section.row .data h1, #content .vista.vistaTienda .detalle-test section.row .data h2, #content .vista.vistaMisTest .detalle-test section.row .data h1, #content .vista.vistaMisTest .detalle-test section.row .data h2 {
@@ -1270,59 +1273,6 @@ article.card, article.pack {
         margin-top: 3px;
         font-size: 19px;
         margin-right: 1px; }
-  #content .vista.vistaTourAplicacion {
-    position: absolute !important;
-    top: 0 !important;
-    height: 100% !important;
-    left: 0 !important;
-    width: 100% !important;
-    background-color: white; }
-    #content .vista.vistaTourAplicacion #swypeWrapper {
-      position: absolute !important;
-      width: 100%;
-      left: 0;
-      top: 0%;
-      bottom: 0;
-      background-color: #86e2d5; }
-      #content .vista.vistaTourAplicacion #swypeWrapper .slide-img {
-        max-width: 80%;
-        margin-left: 10%; }
-      #content .vista.vistaTourAplicacion #swypeWrapper .slide-t {
-        padding: 40px 10px 20px 10px;
-        width: 100%;
-        text-align: center;
-        font-size: 120%; }
-    #content .vista.vistaTourAplicacion footer {
-      z-index: 1;
-      background: rgba(0, 0, 0, 0.4);
-      bottom: 0;
-      height: 55px;
-      width: 100%;
-      position: absolute; }
-      #content .vista.vistaTourAplicacion footer .btn-group {
-        width: 100%;
-        font-size: 20px; }
-        #content .vista.vistaTourAplicacion footer .btn-group button {
-          background: transparent;
-          color: white;
-          border: 0;
-          height: 100%;
-          padding: 10px; }
-      #content .vista.vistaTourAplicacion footer ul {
-        text-align: center;
-        padding-left: 0;
-        padding-right: 0; }
-        #content .vista.vistaTourAplicacion footer ul li {
-          background-color: rgba(255, 255, 255, 0.3);
-          display: inline-block;
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          margin-top: 15px;
-          margin-left: 5px;
-          margin-right: 5px; }
-          #content .vista.vistaTourAplicacion footer ul li.active {
-            background-color: rgba(255, 255, 255, 0.8); }
   #content.cargando {
     min-height: 100%;
     position: absolute;
@@ -1575,6 +1525,12 @@ article.card, article.pack {
     -webkit-overflow-scrolling: touch; }
     .nav-off-screen .nav-primary {
       display: block !important; } }
+#content .vista.vistaTienda .detalle-test section.row,
+#content .vista.vistaMisTest .detalle-test section.row {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 410px; }
+
 @media (min-width: 768px) {
   body > .login div.screens {
     margin-top: 20rem; }
@@ -1636,12 +1592,6 @@ article.card, article.pack {
   .navbar-nav.navbar-right:last-child {
     margin-right: -15px; }
 
-  #content .vista.vistaTienda .detalle-test section.row,
-  #content .vista.vistaMisTest .detalle-test section.row {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 410px; }
-
   .barra.global {
     display: block !important; }
 
@@ -1654,9 +1604,6 @@ article.card, article.pack {
   #content .vista .vista-body.cargando {
     background-position: 50% center; } }
 @media (max-width: 485px) {
-  #content .vista.vistaTienda .detalle-test section.row .data {
-    padding-left: 1rem; }
-
   .dropdown-menu {
     min-width: 300px;
     max-height: 300px; }
@@ -1713,5 +1660,69 @@ article.card, article.pack {
 
 body.ios #main_container {
   height: 100%; }
+
+.vista.vistaTourAplicacion {
+  position: absolute !important;
+  top: 0 !important;
+  height: 100% !important;
+  left: 0 !important;
+  width: 100% !important;
+  background-color: white; }
+  .vista.vistaTourAplicacion #swypeWrapper {
+    position: absolute !important;
+    width: 100%;
+    left: 0;
+    top: 0%;
+    bottom: 0;
+    background-color: #86e2d5; }
+    .vista.vistaTourAplicacion #swypeWrapper .slide-img {
+      max-width: 80%;
+      margin-left: 10%; }
+    .vista.vistaTourAplicacion #swypeWrapper .slide-t {
+      padding: 40px 10px 20px 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 120%; }
+  .vista.vistaTourAplicacion footer {
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    height: 55px;
+    width: 100%;
+    position: absolute; }
+    .vista.vistaTourAplicacion footer .btn-group {
+      width: 100%;
+      font-size: 20px; }
+      .vista.vistaTourAplicacion footer .btn-group button {
+        background: transparent;
+        color: white;
+        border: 0;
+        height: 100%;
+        padding: 10px; }
+    .vista.vistaTourAplicacion footer ul {
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0; }
+      .vista.vistaTourAplicacion footer ul li {
+        background-color: rgba(255, 255, 255, 0.3);
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-top: 15px;
+        margin-left: 5px;
+        margin-right: 5px; }
+        .vista.vistaTourAplicacion footer ul li.active {
+          background-color: rgba(255, 255, 255, 0.8); }
+
+#modalBackdrop.in {
+  display: block; }
+
+#frmVistaFlotante {
+  z-index: 1050;
+  position: fixed;
+  height: 500px;
+  width: 500px;
+  margin: 0 auto; }
 
 /*# sourceMappingURL=app.css.map */
