@@ -124,7 +124,7 @@ class Metadatos{
 			}
 		}
 	private function correoe($destino, $asunto, $mensaje){
-		mail($destino, $asunto, $mensaje, 'From: <8ctopusapp@gmail.com>');
+		mail($destino, $asunto, $mensaje, 'From: <8ctopusapp>');
 		}
 	//////
 	function compruebaCert($json_order){
@@ -146,13 +146,66 @@ class Metadatos{
  		return $ret;
 		}
 	//////
-	private function sendPush($arrDispositivos, $messageData){
+    private function sendPush_IOS($registrationIdsArray, $messageData){
+        $resp=array('failure'=>0, 'success'=>0, 'results'=>array());
+        for ($i=0; $i<count($registrationIdsArray); $i++){
+            $deviceToken = $registrationIdsArray[$i];
+
+            global $APPLE_PUSH_SERVER_KEY, 
+           		 	$APPLE_PUSH_SERVER_CERT,
+           		 	$APPLE_PUSH_SERVER;
+
+            // Put your private key's passphrase here:
+            $passphrase=$APPLE_PUSH_SERVER_KEY;
+            $certPath= 	$APPLE_PUSH_SERVER_CERT;
+            $serverPath=$APPLE_PUSH_SERVER; 
+
+            ////////////////////////////////////////////////
+            $ctx = stream_context_create();
+            stream_context_set_option($ctx, 'ssl', 'local_cert', $certPath);
+            stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+
+            // Open a connection to the APNS server
+            $fp = stream_socket_client($serverPath, $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+
+            if (!$fp)
+                exit("Failed to connect: $err $errstr" . PHP_EOL);
+
+            // Create the payload body
+            $body['aps'] = $messageData;
+
+            // Encode the payload as JSON
+            $payload = json_encode($body);
+
+            // Build the binary notification
+            $msg = chr(0) . pack('n', 32) . pack('H*', $deviceToken) . pack('n', strlen($payload)) . $payload;
+
+            $this->conn->logInfo(json_encode($messageData), 'Push-iOS-envio: ');
+            // Send it to the server
+            $result = fwrite($fp, $msg, strlen($msg));
+       	   	
+            if (!$result){
+                array_push($resp['results'], 'Message not delivered' . PHP_EOL);
+                $resp['failure']=$resp['failure']+1;
+                }
+            else {
+                array_push($resp['results'], 'Message successfully delivered' . PHP_EOL);
+                $resp['success']=$resp['success']+1;
+                }
+
+            // Close the connection to the server
+            fclose($fp);
+            }
+        $this->conn->logInfo(json_encode($resp), 'Push-iOS-retorno: ');
+        return json_encode($resp);//las de android se devuelven como texto
+        }
+	private function sendPush_Android($arrDispositivos, $messageData){
 		if (count($arrDispositivos)==0) return;
 
 		global $GCM_SERVER_KEY;
 		$apiKey = $GCM_SERVER_KEY; //server or browser key
 
-		$this->conn->logInfo(json_encode($messageData), 'PUSH-envio: ');
+		$this->conn->logInfo(json_encode($messageData), 'Push-Android-envio: ');
 
 		if ($messageData==null)
 		   	$messageData=array();
@@ -177,9 +230,35 @@ class Metadatos{
 		$response = curl_exec($ch);
 		curl_close($ch);
 
-		$this->conn->logInfo(json_encode($response), 'PUSH-ret: ');
+		$this->conn->logInfo(json_encode($response), 'Push-Android-retorno: ');
   		return $response;
 		}
+    public  function sendPush($registrationIdsArray, $messageData){
+		$tamID_IOS=64;
+
+		$registrationIdsArray_IOS=array();
+		for ($i=0; $i<count($registrationIdsArray); $i++){
+			$id=$registrationIdsArray[$i];
+
+			if ( strlen($id)==$tamID_IOS ){
+			    array_push($registrationIdsArray_IOS, $id );
+			    unset( $registrationIdsArray[$i] );
+				}
+			}
+
+		//////////////////
+		$ret=array();
+		if (count($registrationIdsArray_IOS)){
+			$resp=$this->sendPush_IOS($registrationIdsArray_IOS, $messageData);
+			array_push($ret, $resp);
+			}
+		if (count($registrationIdsArray)){
+			$resp=$this->sendPush_Android($registrationIdsArray, $messageData);
+			array_push($ret, $resp);
+			}
+		return $ret;
+		}
+	//////
 	public function sendPushGrupo($cd_grupo, $excluir, $datos){
 		$gr=$this->conn->lookupFilas('select distinct cd_dispositivo, ug.cd_usuario from usuarios u, usuarios_grupos ug 
 										where ug.cd_usuario=u.cd_usuario and cd_grupo=?', 
@@ -205,7 +284,7 @@ class Metadatos{
 		$sql="update usuarios set cd_dispositivo=? where cd_usuario=?";
 		$this->conn->ejecuta($sql, array($cd_gcm, $cd_usuario));
 		}
-	private function genDatosPush($modulo, $accion, $datos, $titAlt='Hay alguna actualización en Octopus', $msgAlt='Por favor, entra en la app'){
+	private function genDatosPush($modulo, $accion, $datos, $msgAltIOS, $titAlt='Hay alguna actualización en Octopus', $msgAlt='Por favor, entra en la app'){
 		return array(
 			'f_push'=>$this->fechaHora(),
 			'vista'=>$modulo,
@@ -213,7 +292,10 @@ class Metadatos{
 			'datos'=>$datos,
 
 			'title'=> $titAlt,  //
-			'message'=> $msgAlt //texto que se mostrará en notif emergente cuando la app esté en segundo plano
+			'message'=> $msgAlt, //texto que se mostrará en notif emergente cuando la app esté en segundo plano
+
+			'alert'=> $msgAltIOS,  //push ios
+			'sound' => 'default'//push ios
 			);
 		}
 	//////
@@ -619,7 +701,8 @@ class Metadatos{
 			);
 
 		$titAlt='Nuevo mensaje de '.$cd_usuario; $msgAlt=$msg;
-		$this->sendPushGrupo($cd_grupo, $cd_usuario, $this->genDatosPush('vistaSocial', 'mensajeGrupo', $datos, $titAlt, $msgAlt) );
+		$msgIOS='Nuevo mensaje de '.$cd_usuario.': '.$msg;
+		$this->sendPushGrupo($cd_grupo, $cd_usuario, $this->genDatosPush('vistaSocial', 'mensajeGrupo', $datos, $msgIOS ,$titAlt, $msgAlt) );
 		return $idx;
 		}
 	public function guardarGrupo($datos, $cd_usuario){
