@@ -23,6 +23,7 @@ class Conn{
 		global $password;
 		$this->con = new PDO($dsn, $username, $password);
 		$this->con->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
+		$this->set_timezone();
 		}
 	//////
 	function setUsu($nusu){
@@ -130,12 +131,10 @@ class Conn{
 		return $result;
 		}
 	function ejecuta($sql, $param=null){
-		$this->set_timezone();
 		$ret=$this->lookup($sql, $param, 0);
 		return $ret;
 		}
 	function ejecuta_RetID($sql, $param=null){
-		$this->set_timezone();
 		$ret=$this->lookup($sql, $param, 1);
 		$retid = array('id' =>  -1);
 		$retid['id'] =  $this->con->lastInsertId();
@@ -145,7 +144,6 @@ class Conn{
 		$sql0; $param0;
 		if (count($arrSql)>0) {
 			try {
-				$this->set_timezone();
 				$this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				$this->con->beginTransaction();
 
@@ -172,13 +170,11 @@ class Conn{
 			}
 		}
 	function lookupFilas($sql, $param=null) {
-		$this->set_timezone();
 		$result=$this->lookup($sql, $param);
 		return new Filas($result);
 		}
 	function lookupFilasCt($sql, $param=null, $arrDescripciones=null) {
 		// en arrDescripciones viene un array con descripciones bonitas
-		$this->set_timezone();
 		$result=$this->lookup($sql, $param);
 
 		$ret= new FilasCt($result);
@@ -193,12 +189,10 @@ class Conn{
 		return $ret;
 		}
 	function lookupSimple($sql, $param=null) {
-		$this->set_timezone();
 		$result=$this->lookup($sql, $param);
 		return $result->fetchColumn();
 		}
 	function lookupDict($sql, $param=null) {
-		$this->set_timezone();
 		$result=$this->lookup($sql, $param);
 
 		$ret = $result->fetchAll(PDO::FETCH_ASSOC);
