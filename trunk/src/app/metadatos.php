@@ -2,19 +2,6 @@
 require_once(__DIR__.'/creaConn.php'); 
 $conn=new Conn();
 
-// if (!isset($_SESSION)) {
-//     ini_set("session.gc_maxlifetime", "3600"); 
-	// try {
-		// if(@session_start() == false){
-		// 	session_destroy();
-		// 	session_start();
-		// 	}
-	// 	}
-	// catch(Exception $ee){
-	// 	throw new Exception('Sesión perdida');		
-	// 	}
-	// }
-
 class FasesTramitacion{ // tests_t
     const Alta='Alta';
     // const Borrador='Borrador';

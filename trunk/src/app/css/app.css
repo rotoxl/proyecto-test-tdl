@@ -89,7 +89,7 @@ header#navigation_bar, section#main_container {
   min-width: 320px; }
 
 section#main_container {
-  overflow-x: hidden !important; }
+  overflow: hidden !important; }
 
 .ellipsis {
   white-space: nowrap;
@@ -472,11 +472,11 @@ article.card, article.pack {
   background: white;
   cursor: pointer; }
   article.card div.body, article.pack div.body {
-    height: 60px; }
+    height: 70px; }
   article.card footer, article.pack footer {
     padding-left: 2px;
     padding-right: 2px;
-    height: 61px;
+    height: 70px;
     border-top: 1px solid #f0f0f0;
     background-color: rgba(50, 50, 50, 0.1); }
 
@@ -582,7 +582,7 @@ article.card, article.pack {
       min-height: 120px;
       color: #979797; }
       #content .vista .card .body {
-        min-height: 80px;
+        min-height: 70px;
         text-align: center; }
         #content .vista .card .body i {
           opacity: .1;
@@ -601,7 +601,7 @@ article.card, article.pack {
         display: block; }
         #content .vista .card footer .frow span.nombre {
           white-space: normal;
-          height: 40px; }
+          height: 48px; }
         #content .vista .card footer .frow > * {
           padding-left: 0px;
           padding-right: 0px; }
@@ -617,7 +617,8 @@ article.card, article.pack {
         text-indent: inherit;
         font-weight: 500;
         font-size: 12px;
-        line-height: 19px; }
+        line-height: 19px;
+        white-space: nowrap; }
   #content .vista.vistaTienda .vista-header,
   #content .vista.vistaTienda .vista-body .bloque .cargarMas span {
     background-color: #f0ad4e; }
@@ -657,37 +658,36 @@ article.card, article.pack {
         opacity: 1; }
       #content .vista.vistaTienda .vista-header ul#categorias button.btnFav.on, #content .vista.vistaMisTest .vista-header ul#categorias button.btnFav.on {
         color: rgba(46, 62, 78, 0.8); }
-  #content .vista.vistaTienda .vista-body .bloque, #content .vista.vistaMisTest .vista-body .bloque {
-    margin-left: 15px !important;
-    margin-right: 0px !important; }
-    #content .vista.vistaTienda .vista-body .bloque .titulo, #content .vista.vistaMisTest .vista-body .bloque .titulo {
-      cursor: pointer; }
-    #content .vista.vistaTienda .vista-body .bloque .cargarMas, #content .vista.vistaMisTest .vista-body .bloque .cargarMas {
-      display: block;
-      width: 100%;
-      background-color: transparent;
-      border: none; }
-      #content .vista.vistaTienda .vista-body .bloque .cargarMas.aunMas, #content .vista.vistaMisTest .vista-body .bloque .cargarMas.aunMas {
-        padding-top: 10px;
-        padding-bottom: 10px; }
-      #content .vista.vistaTienda .vista-body .bloque .cargarMas span, #content .vista.vistaMisTest .vista-body .bloque .cargarMas span {
-        float: right;
-        padding: 3px 9px;
-        font-size: 16px;
-        text-transform: uppercase;
-        border-radius: 0;
-        box-shadow: 0 0 0;
-        color: white; }
-    #content .vista.vistaTienda .vista-body .bloque .titulo .cargarMas, #content .vista.vistaMisTest .vista-body .bloque .titulo .cargarMas {
-      margin-right: 5px;
+  #content .vista.vistaTienda .vista-body .bloque .titulo, #content .vista.vistaMisTest .vista-body .bloque .titulo {
+    cursor: pointer;
+    padding-left: 2.5px; }
+  #content .vista.vistaTienda .vista-body .bloque .cargarMas, #content .vista.vistaMisTest .vista-body .bloque .cargarMas {
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    border: none; }
+    #content .vista.vistaTienda .vista-body .bloque .cargarMas.aunMas, #content .vista.vistaMisTest .vista-body .bloque .cargarMas.aunMas {
+      padding-top: 10px;
+      padding-bottom: 10px; }
+    #content .vista.vistaTienda .vista-body .bloque .cargarMas span, #content .vista.vistaMisTest .vista-body .bloque .cargarMas span {
       float: right;
-      margin-top: -8px;
-      width: 60px; }
-    #content .vista.vistaTienda .vista-body .bloque:last-child, #content .vista.vistaMisTest .vista-body .bloque:last-child {
-      padding-bottom: 20px; }
-    #content .vista.vistaTienda .vista-body .bloque article.card.test span.nombre, #content .vista.vistaMisTest .vista-body .bloque article.card.test span.nombre {
-      font-size: 82%;
-      text-transform: uppercase; }
+      padding: 3px 9px;
+      font-size: 16px;
+      text-transform: uppercase;
+      border-radius: 0;
+      box-shadow: 0 0 0;
+      color: white; }
+  #content .vista.vistaTienda .vista-body .bloque .titulo .cargarMas, #content .vista.vistaMisTest .vista-body .bloque .titulo .cargarMas {
+    margin-right: 2.5px;
+    padding-right: 0px;
+    float: right;
+    margin-top: -8px;
+    width: 60px; }
+  #content .vista.vistaTienda .vista-body .bloque:last-child, #content .vista.vistaMisTest .vista-body .bloque:last-child {
+    padding-bottom: 20px; }
+  #content .vista.vistaTienda .vista-body .bloque article.card.test span.nombre, #content .vista.vistaMisTest .vista-body .bloque article.card.test span.nombre {
+    font-size: 82%;
+    text-transform: uppercase; }
   #content .vista.vistaTienda .detalle-test, #content .vista.vistaMisTest .detalle-test {
     padding: 20px 10px;
     color: #979797; }
@@ -1278,7 +1278,8 @@ section.bloque {
 article.card {
   width: 48%;
   margin-top: 5px;
-  margin-right: 5px; }
+  margin-left: 2.5px;
+  margin-right: 2.5px; }
 
 aside .vbox > footer {
   position: absolute;
@@ -1434,6 +1435,17 @@ ul.btn3_2 span.arrow {
     margin-top: 5px;
     margin-right: 5px; }
 
+  #content .vista.vistaTienda .detalle-test section.row .visual,
+  #content .vista.vistaMisTest .detalle-test section.row .visual {
+    padding-right: 0; }
+    #content .vista.vistaTienda .detalle-test section.row .visual span.fa-stack,
+    #content .vista.vistaMisTest .detalle-test section.row .visual span.fa-stack {
+      float: none !important; }
+
+  #content .vista.vistaTienda .detalle-test section.row .visual.mini span.fa-stack,
+  #content .vista.vistaMisTest .detalle-test section.row .visual.mini span.fa-stack {
+    float: none !important; }
+
   #content.cargando {
     background-position: center center; }
 
@@ -1512,7 +1524,10 @@ body.ios #main_container {
 .vista.vistaTest .vista-header .btn-group {
   width: 100%; }
 .vista.vistaTest .vista-header .btn {
-  min-height: 50px; }
+  min-height: 50px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0; }
   .vista.vistaTest .vista-header .btn .fa-pause {
     float: right;
     margin-top: 2px;
@@ -1549,7 +1564,7 @@ body.ios #main_container {
         margin-top: -.1rem;
         color: #65bd77; }
 .vista.vistaTest .vista-body {
-  border-top: 1px solid #d5d5d5; }
+  border-top: 1px solid rgba(72, 92, 113, 0.95); }
 .vista.vistaTest table {
   table-layout: fixed;
   width: 100%; }
@@ -1691,8 +1706,9 @@ body.ios #main_container {
   width: 500px !important;
   margin: 0 auto !important; }
   #frmVistaFlotante.vistaTest {
-    top: 50px !important; }
+    top: 61px !important; }
     #frmVistaFlotante.vistaTest #swypeWrapper {
-      max-height: 600px; }
+      max-height: 600px;
+      height: 500px; }
 
 /*# sourceMappingURL=app.css.map */

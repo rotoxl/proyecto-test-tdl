@@ -364,6 +364,8 @@ Controlador.prototype.init=function(){
 	var sr=document.location.hash+''
 
 	this.esTablet=jQuery('body').innerWidth()>=767
+	if (this.esTablet)
+		jQuery('body').addClass('tablet')
 	if (ss.indexOf('token=')>=0){//web
 		this.cache.token=ss.substring('?token='.length).split('&')[0]
 
@@ -470,7 +472,11 @@ Controlador.prototype.init=function(){
 		document.addEventListener('pause', function(){app.pause()}, false)
 		document.addEventListener('menubutton', function(){app.toggleNavDrawer()}, false)
 
-		jQuery('body').addClass(device.platform.toLowerCase() )
+		window.addEventListener('native.keyboardshow', function(e){app.resize(e)})
+		window.addEventListener('native.keyboardhide', function(e){app.resize()})
+		
+		try{StatusBar.overlaysWebView(false)}
+		catch(e){}
 		}
 
 	window.addEventListener('resize', function(){app.resize()}, false)
@@ -482,6 +488,7 @@ Controlador.prototype.init=function(){
 
 	if (!isPhone())
 		this.includeJS('js/jwerty.js')
+		
 	}
 Controlador.prototype.includeJS=function(src, fnCallBack){
     jQuery.getScript(src, function() {
@@ -917,6 +924,8 @@ Controlador.prototype.cargaVistaInicio=function(){
 	if (this.vistaTienda==null){
 		this.vistaTienda=new VistaTienda(false)
 		}
+
+	if (isPhone()) jQuery('body').addClass(device.platform.toLowerCase() )
 	}
 Controlador.prototype.cargaVistaMisTest=function(desdeHistorial, hash){
 	var cd_test
@@ -1125,12 +1134,16 @@ function Vista(){
 	}
 Vista.prototype.setOffline=function(v){}
 Vista.prototype.calculaAnchoTarjetas=function(){
-	var w=jQuery('#content').width() 
-	var anchoMinCards=140
-	var numtarjetas=Math.floor( (w-20)/anchoMinCards)
+	var sumaPaddingSecciones=30
+	var w=jQuery('#content').innerWidth() -sumaPaddingSecciones
+
+	var anchoMinCards=app.esTablet?170:140
+	var numtarjetas=Math.floor( (w)/anchoMinCards )
 	
+	var sumaMargenes=app.esTablet?7.5:5
 	this.numTarjetasPorAncho=numtarjetas
-	this.anchoTarjetas=(w/numtarjetas)-20
+	this.anchoTarjetas=(w-numtarjetas*sumaMargenes)/numtarjetas
+
 	}
 Vista.prototype.tipos={
 	vistaTest:'vistaTest', 
@@ -1392,13 +1405,7 @@ VistaFlotante.prototype.toDOM=function(desdeHistorial){
 
 	this.dom=xd
 
-	var h=500, w=500
-	this.dom.css({width:w, 
-				height:h, 
-				left:(jQuery('body').innerWidth()-w)/2,
-				top:(jQuery('body').innerHeight()-h)/2}
-				)
-
+	this.resize()
 	this.mostrarDom()
 
 	this.postDOM(desdeHistorial)
@@ -1417,19 +1424,37 @@ VistaFlotante.prototype.mostrarDom=function(){
 	this.dom.removeClass('hidden')
 	}
 VistaFlotante.prototype.show=function(desdeHistorial){
-	if (app.esTablet){
-		this.dom.find('.vista').addClass('hidden')
-		this.dom.find('.'+this.id).removeClass('hidden')
-
-		this.dom
-			.removeClass( Object.keys(this.tipos).join(' '))
-			.addClass(this.id)
-
-		this.mostrarDom()
-		}
-	else{
+	if (!app.esTablet){
 		Vista.prototype.show.call(this, desdeHistorial)
+		return	
 		}
+	
+	this.dom.find('.vista').addClass('hidden')
+	this.dom.find('.'+this.id).removeClass('hidden')
+
+	this.dom
+		.removeClass( Object.keys(this.tipos).join(' '))
+		.addClass(this.id)
+
+	this.mostrarDom()
+	}
+VistaFlotante.prototype.resize=function(){
+	if (!app.esTablet){
+		Vista.prototype.resize.call(this)
+		return
+		}
+
+	var h=500, w=500, jb=jQuery('body')
+
+	var l=(jb.innerWidth()-w)/2
+	var t=(jb.innerHeight()-h)/2
+
+	if (t<0) t='10%'
+	this.dom.css({width:w, 
+				height:h, 
+				left:l,
+				top: t}
+				)
 	}
 ////////////////////////////////////////////////
 function VistaTourAplicacion(){
@@ -1440,17 +1465,18 @@ VistaTourAplicacion.prototype=new VistaFlotante
 VistaTourAplicacion.prototype.getBody=function(){
 	var self=this
 
-	var raiz='-android'
+	var raiz=(device.platform.toLowerCase()=='android'?'-android':'-ios')
 	// 
 	this.slides=[
 		{html:'<b>Bienvenido a Octopus</b>. <br> Si lo deseas, ahora puedes realizar una visita guiada. <br> <small>Desliza el dedo para continuar.</small>', img:'./images/m-swipe-left.png', bgcolor:'#65C6BB', fgcolor:'white'},
-		{html:'Toca en el icono de la <b>hamburguesa</b> (arriba, izquierda) para desplegar el menú', img:'./images/tour-1'+raiz+'.png', bgcolor:'#1BBC9B', fgcolor:'white'},
-		{html:'Descarga algún test de la <b>tienda</b>', img:'./images/tour-2'+raiz+'.png', bgcolor:'#1BA39C', fgcolor:'white'},
-		{html:'Realiza tu test, ¡cuidado con el <b>tiempo</b>!', img:'./images/tour-3'+raiz+'.png', bgcolor:'#66cc99', fgcolor:'white'},
-		{html:'Comprueba tus <b>progresos</b>', img:'./images/tour-4'+raiz+'.png', bgcolor:'#36d7b7', fgcolor:'white'},
+		{html:'Toca en el icono de la <b>hamburguesa</b> (arriba, izquierda) para desplegar el menú', img:'./images/tour-1'+raiz+'.png', bgcolor:'#36d7b7', fgcolor:'white'},
+		{html:'Descarga algún test de la <b>tienda</b>', img:'./images/tour-2'+raiz+'.png', bgcolor:'#65C6BB', fgcolor:'white'},
+		{html:'Realiza tu test, ¡cuidado con el <b>tiempo</b>!', img:'./images/tour-3'+raiz+'.png', bgcolor:'#36d7b7', fgcolor:'white'},
+		{html:'<b>Comparte</b> tus conocimientos', img:'./images/tour-4'+raiz+'.png', bgcolor:'#65C6BB', fgcolor:'white'},
+		{html:'Comprueba tus <b>progresos</b>', img:'./images/tour-5'+raiz+'.png', bgcolor:'#36d7b7', fgcolor:'white'},
 		]
-	if (app.esTablet)
-		this.slides.splice(1,1)
+	// if (app.esTablet)
+	// 	this.slides.splice(1,1)
 
 	var puntos=[]
 	for (var i=0; i<this.slides.length; i++){
@@ -1527,9 +1553,6 @@ VistaTourAplicacion.prototype.clickBtnSiguiente=function(){
 		this.clickBtnOmitir()
 	else
 		this.gallery.next()
-	}
-VistaTourAplicacion.prototype.resize=function(){
-	//css	
 	}
 VistaTourAplicacion.prototype.toggleMenuGlobal=function(visible, inmediate){
 	var menu=jQuery('.barra.global .btn-menu')	
@@ -1613,7 +1636,8 @@ VistaTest.prototype.tareasPostCarga=function(){
 	this.initMapa()
 	this.iniciaTiempo()
 
-	this.initSwype('.vista.'+this.id+' #swypeWrapper', this.preguntas.length, true)
+	var id='.vista.'+this.id.split(' ').join('.')+' #swypeWrapper'
+	this.initSwype(id, this.preguntas.length, true)
 	jQuery(this.dom).addClass('noselect')
 
 	//ojo, la 0 es la portada y la última la contraportada
@@ -1908,7 +1932,7 @@ VistaTest.prototype.tiempoAcabado=function(){
 	this.muestraFormPausa('fintiempo')
 	}
 VistaTest.prototype.finExamen=function(){
-	this.frmdom.modal('hide')
+	if (this.frmdom) this.frmdom.modal('hide')
 	this.cerrar()
 	
 	//quito del stack de navegación las fases del test
@@ -2332,7 +2356,7 @@ VistaRepasoTest.prototype.getHeader=function(){
 	var self=this
 	return creaObjProp('header', {className:'vista-header marcadores' , hijos:[
 				creaObjProp('div', {className:'btn-group btn-dark', hijos:[
-						creaObjProp('button', {className:'btn btn-dark2 col-md-12 col-sm-12 col-xs-12 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', hijos:[
+						creaObjProp('button', {className:'btn btn-dark2 col-md-6 col-sm-6 col-xs-6 dropdown-toggle', 'data-toggle':'dropdown', i:'fa-th', hijos:[
 							creaT(' Pregunta '),
 							creaObjProp('span', {id:'numPag', texto:1}),
 							creaT(' de '+this.examen.numpreguntas+' '), 
@@ -2340,9 +2364,9 @@ VistaRepasoTest.prototype.getHeader=function(){
 							]}),
 						creaObjProp('ul', {id:'mapatest', className:'btn2_1 dropdown-menu btn-dark2', role:'menu', hijos:[
 							creaObjProp('span', {className:'arrow top'}),
-
 							]}),
-						
+						creaObjProp('button', {onclick:function(){self.finExamen()}, className:'btn btn-dark2 col-md-6 col-sm-6 col-xs-6', i:'fa-times', texto:'Salir'}),
+							
 					]})
 				]})
 	}
@@ -3139,7 +3163,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 
 	if (this.entornoLocal){
 		loTengo=true
-		domPrecio=creaObjProp('span', {className:'col-xs-2 loTengo', i:'fa-check-circle'})
+		domPrecio=creaObjProp('span', {className:'col-xs-1 loTengo', i:'fa-check-circle'})
 
 		var notaTest=''
 		var respTodas=buscaFilas(app.cache.respuestasLocales, {cd_test:test.cd_test})
@@ -3155,7 +3179,7 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 			}
 
 		infoTienda=[
-			creaObjProp('span', {className:'col-xs-10 bl notaTest', texto:notaTest}),
+			creaObjProp('span', {className:'col-xs-11 bl notaTest', texto:notaTest}),
 			domPrecio,
 			]
 
@@ -3243,7 +3267,7 @@ VistaTienda.prototype.tamPack=null
 VistaTienda.prototype.ajustaAlturaCard=function(ret){
 	var xret=jQuery(ret)
 	var h, w, esTest= xret.hasClass('test'), esPack=xret.hasClass('pack')
-	var hFooter=61
+	var hFooter=70
 
 	var xxret=jQuery( xret.filter(':visible')[0] )
 	if (xxret.length==0)
@@ -4058,8 +4082,27 @@ VistaSocial.prototype.getBody=function(){
 		this.domEditarGrupo[0],
 		]
 	}
-VistaSocial.prototype.resize=function(){
-	jQuery('#content').height( window.innerHeight - jQuery('#navigation_bar').innerHeight() )
+VistaSocial.prototype.resize=function(e){
+	var diff=0
+	if (isPhone() && device.platform.toLowerCase() == 'ios'){
+		jQuery('body').scrollTop(0)
+		
+		try {
+			cordova.plugins.Keyboard.disableScroll(true)
+			this.scrollChat()
+			
+			setTimeout(function(){
+				cordova.plugins.Keyboard.disableScroll(false)
+				},200)
+			}
+		catch(e){
+			}
+		
+		jQuery('body').scrollTop(0)
+		}
+
+	var h=window.innerHeight - jQuery('#navigation_bar').innerHeight() - diff
+	jQuery('#content').height(h)
 
 	var x=50
 	this.hVista=jQuery('#content').height()
@@ -4429,6 +4472,10 @@ VistaSocial.prototype.scrollChat=function(t){
 	if (t==null) t=600
 	var bocadillo=this.domChatGrupo.find('.chat')
 	this.domChatGrupo.find('.chat').animate({ scrollTop:bocadillo[0].scrollHeight }, t)
+
+	if (isPhone() && device.platform.toLowerCase() == 'ios'){
+		jQuery('body').scrollTop(0)
+		}
 	}
 VistaSocial.prototype.carga1MsgGrupo=function(xmsg){
 	if (xmsg.cd_mensaje){
