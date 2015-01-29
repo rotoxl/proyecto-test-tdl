@@ -122,7 +122,7 @@ header#navigation_bar, section#main_container{
 	min-width:320px; //iphone5
 	}
 section#main_container{
-	overflow-x:hidden!important;
+	overflow:hidden!important;
 	}
 
 .ellipsis{
@@ -578,12 +578,12 @@ article.card, article.pack{
 	background: white;
 	cursor: pointer;
 	div.body{
-		height:60px;
+		height:70px;
 	}
 	footer{
 		padding-left:2px; 
 		padding-right:2px;
-		height:61px; 
+		height:70px; 
 
 		border-top: 1px solid #f0f0f0;
 		background-color:rgba(50, 50, 50, 0.1);
@@ -728,7 +728,7 @@ article.card, article.pack{
 			min-height: 120px;
 			color:#979797;
 			.body{
-				min-height:80px;
+				min-height:70px;
 
 				text-align: center;
 
@@ -758,7 +758,7 @@ article.card, article.pack{
 
 					span.nombre{
 						white-space: normal;
-						height:40px;
+						height:48px;
 					}
 					> *{
 						padding-left:0px; padding-right:0px;
@@ -782,6 +782,7 @@ article.card, article.pack{
 					font-weight: 500;
 					font-size: 12px;
 					line-height: 19px;
+					white-space: nowrap;
 				}
 			}			
 		}
@@ -848,10 +849,11 @@ article.card, article.pack{
 		.vista-body{
 			
 			.bloque{
-				margin-left:15px!important; margin-right:0px!important;
+				
 				
 				.titulo{	
-					cursor: pointer;		
+					cursor: pointer;
+					padding-left:2.5px;
 				}
 				.cargarMas{
 					display: block;
@@ -878,7 +880,8 @@ article.card, article.pack{
 				}
 
 				.titulo .cargarMas{
-					margin-right: 5px;
+					margin-right: 2.5px;
+					padding-right:0px;
 					float: right;
 					margin-top: -8px;
 					width:60px;
@@ -1676,7 +1679,8 @@ article.card, article.pack{
 	article.card{
 		width:48%;
 		margin-top:5px; 
-		margin-right:5px;
+		margin-left:2.5px;
+		margin-right:2.5px;
 		}
 
 	aside .vbox > footer {
@@ -1878,6 +1882,20 @@ article.card, article.pack{
 		margin-right:5px;
 		}
 
+	#content .vista.vistaTienda .detalle-test section.row .visual,
+	#content .vista.vistaMisTest .detalle-test section.row .visual{
+		padding-right:0;
+
+		span.fa-stack{
+			float:none!important;
+		}
+	}
+	
+	#content .vista.vistaTienda .detalle-test section.row .visual.mini span.fa-stack, 
+	#content .vista.vistaMisTest .detalle-test section.row .visual.mini span.fa-stack{
+		float:none!important;
+	}
+
 	// .hbox {
 	// 	display: table;
 	// 	table-layout: fixed;
@@ -2048,6 +2066,7 @@ body.ios #main_container{height:100%;}
 		}
 		.btn{
 			min-height: 50px;
+			text-align: center; padding-left:0; padding-right:0;
 			.fa-pause{
 				float: right;
 				margin-top: 2px;
@@ -2105,7 +2124,7 @@ body.ios #main_container{height:100%;}
 		}
 	}
 	.vista-body{
-		border-top:1px solid rgba(213, 213, 213, 1);
+		border-top:1px solid rgba(72, 92, 113, 0.95);
 	}
 	table{
 		table-layout: fixed;
@@ -2291,8 +2310,8 @@ body.ios #main_container{height:100%;}
 	margin:0 auto!important;
 
 	&.vistaTest{
-		top:50px!important;
+		top:61px!important;
 
-		#swypeWrapper{max-height:600px;}
+		#swypeWrapper{max-height:600px; height:500px;}
 	}
 }
