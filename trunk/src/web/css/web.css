@@ -104,9 +104,6 @@ body.no-header .respuesta {
 
 footer {
   color: white; }
-  footer .container {
-    padding: 40px 15%;
-    width: 100%; }
   footer span.sep {
     color: rgba(255, 255, 255, 0.2); }
   footer .social {
@@ -115,18 +112,18 @@ footer {
       display: inline-block; }
   footer .pags {
     text-align: right; }
-  footer a.mailto, footer a:hover.mailto, footer a:active.mailto {
+  .hidden-xs footer a.mailto, .hidden-xs footer a:hover.mailto, .hidden-xs footer a:active.mailto {
     color: white; }
-  footer a.soc, footer a:hover.soc, footer a:active.soc {
+  .hidden-xs footer a.soc, .hidden-xs footer a:hover.soc, .hidden-xs footer a:active.soc {
     padding: 2px 5px 3px;
     border-radius: 3px; }
-    footer a.soc.fb, footer a:hover.soc.fb, footer a:active.soc.fb {
+    .hidden-xs footer a.soc.fb, .hidden-xs footer a:hover.soc.fb, .hidden-xs footer a:active.soc.fb {
       background-color: #335397;
       color: white; }
-    footer a.soc.googleplus, footer a:hover.soc.googleplus, footer a:active.soc.googleplus {
+    .hidden-xs footer a.soc.googleplus, .hidden-xs footer a:hover.soc.googleplus, .hidden-xs footer a:active.soc.googleplus {
       background-color: #da2713;
       color: white; }
-    footer a.soc i, footer a:hover.soc i, footer a:active.soc i {
+    .hidden-xs footer a.soc i, .hidden-xs footer a:hover.soc i, .hidden-xs footer a:active.soc i {
       margin-right: 4px;
       border-right: 1px solid rgba(255, 255, 255, 0.3);
       padding-right: 8px;
@@ -185,31 +182,30 @@ footer {
     footer .container .social {
       float: left;
       margin-top: 10px; }
-    footer .container a.mailto, footer .container a.soc {
-      border-radius: 500px;
-      padding-right: 2px;
-      padding-left: 8px;
-      padding-bottom: 5px;
-      font-size: 18px;
-      height: 32px;
-      width: 32px;
-      padding-top: 5px; }
-      footer .container a.mailto i, footer .container a.soc i {
-        border-right: 0; }
-      footer .container a.mailto span, footer .container a.soc span {
-        display: none; }
-    footer .container a.soc {
-      padding-left: 6px !important; }
-    footer .container a.mailto {
-      width: 19px;
-      height: 19px;
-      padding-left: 5px;
-      padding-right: 0px;
-      margin-right: 4px;
-      background-color: white;
-      color: #25313e; }
+    footer .container .visible-xs a.mailto {
+      background-color: transparent; }
+      footer .container .visible-xs a.mailto .fa-stack-2x {
+        color: white; }
+      footer .container .visible-xs a.mailto .fa-stack-1x {
+        color: black; }
+    footer .container .visible-xs a.fb {
+      background-color: transparent; }
+      footer .container .visible-xs a.fb .fa-stack-2x {
+        color: #335397; }
+      footer .container .visible-xs a.fb .fa-stack-1x {
+        color: white; }
+    footer .container .visible-xs a.googleplus {
+      background-color: transparent; }
+      footer .container .visible-xs a.googleplus .fa-stack-2x {
+        color: #da2713; }
+      footer .container .visible-xs a.googleplus .fa-stack-1x {
+        color: white; }
     footer .container a.pag {
       padding: 11px 5px 11px 7px; }
+    footer .container .visible-xs span.sep {
+      font-weight: 100;
+      margin-left: 2px;
+      margin-right: -3px; }
 
   body.no-header .container.header {
     padding: 0px 15px 10px !important; }
@@ -228,8 +224,47 @@ footer {
     font-size: 14px; }
     body.no-header .respuesta img {
       max-width: 100%; } }
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
-  .container.body {
-    padding: 30px 15px !important; } }
+@media screen and (min-width: 768px) {
+  .visible-xs {
+    display: none; }
+
+  .container {
+    padding: 40px 0; }
+
+  .index .container {
+    padding: 40px 15%; }
+
+  .index footer .container {
+    padding: 40px 0%; }
+
+  footer .container a.mailto, footer .container a.soc {
+    text-decoration: none;
+    border-radius: 500px;
+    padding-right: 10px;
+    padding-left: 8px;
+    padding-bottom: 5px;
+    font-size: 18px;
+    padding-top: 5px; }
+  footer .container a.soc {
+    padding-left: 6px !important; }
+    footer .container a.soc.fb {
+      background-color: #335397;
+      color: white; }
+    footer .container a.soc.googleplus {
+      background-color: #da2713;
+      color: white; }
+  footer .container a.mailto {
+    width: 19px;
+    height: 19px;
+    padding-left: 5px;
+    padding-right: 0px;
+    margin-right: 4px;
+    background-color: white;
+    color: #25313e; }
+
+  footer .pags {
+    text-align: right;
+    font-size: 18px;
+    margin-top: 5px; } }
 
 /*# sourceMappingURL=web.css.map */

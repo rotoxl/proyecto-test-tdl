@@ -1,6 +1,9 @@
 $navigation_bar_bgcolor:#25313e; 
 $azulEnlace:rgb(157, 177, 197);
 
+$bggoo:#da2713;
+$bgfb:#335397;
+
 * > i{margin-right:2px;}
 
 
@@ -153,10 +156,6 @@ body.no-header{
 }
 
 footer{
-	.container{
-		padding:40px 15%;
-		width:100%;
-	}
 
 	color: white;
 
@@ -168,11 +167,11 @@ footer{
 	.pags{text-align:right;}
 	a, a:hover, a:active {
 
-		&.mailto{
+		.hidden-xs &.mailto{
 				color:white
 
 			}
-		&.soc{
+		.hidden-xs &.soc{
 			padding: 2px 5px 3px;
 			border-radius:3px;
 			
@@ -257,28 +256,31 @@ footer{
 		.pags{padding-left:0; padding-top:15px;}
 		.social{float:left; margin-top:10px;}
 
-		a.mailto, a.soc{
-			border-radius:500px;
 
-			padding-right: 2px;
-			padding-left: 8px;
-			padding-bottom: 5px;
-			font-size: 18px;
-
-			height: 32px;
-			width: 32px;
-			padding-top: 5px;
-
-			i{border-right:0;}
-			span{display:none;}
+		
+		.visible-xs a.mailto {
+			background-color:transparent;
+			.fa-stack-2x{color:white;}
+			.fa-stack-1x{color:black;}
 		}
-		a.soc{padding-left:6px!important;}
-		a.mailto{
-			width: 19px; height:19px; padding-left: 5px; padding-right: 0px; margin-right:4px;
-			background-color:white; 
-			color:$navigation_bar_bgcolor;
+		.visible-xs a.fb {
+			background-color:transparent;
+			.fa-stack-2x{color:$bgfb;}
+			.fa-stack-1x{color:white;}
 		}
+		.visible-xs a.googleplus {
+			background-color:transparent;
+			.fa-stack-2x{color:$bggoo;}
+			.fa-stack-1x{color:white;}
+		}
+
 		a.pag{padding:11px 5px 11px 7px;}
+
+		.visible-xs span.sep{
+			font-weight: 100;
+			margin-left: 2px;
+			margin-right: -3px;
+		}
 
 		//.sep{display:none;}
 	}
@@ -308,10 +310,45 @@ footer{
 
 	}
 }
-@media only screen  and (min-device-width : 768px) 
-					and (max-device-width : 1024px)
-					and (-webkit-min-device-pixel-ratio: 1)  {//tabletas
-	.container.body{
-		padding:30px 15px !important;
+@media screen and (min-width:768px) {
+	.visible-xs{display:none;}
+ 	
+ 	.container{padding:40px 0;}
+	.index .container{padding:40px 15%;}
+
+	.index footer .container{padding:40px 0%;}
+
+	footer .container{
+
+		a.mailto, a.soc{
+			text-decoration: none;
+			border-radius:500px;
+
+			padding-right: 10px;
+			padding-left: 8px;
+			padding-bottom: 5px;
+			font-size: 18px;
+
+			
+			padding-top: 5px;
+			}
+		a.soc{
+			padding-left:6px!important;
+			&.fb{background-color:$bgfb; color:white;}
+			&.googleplus{background-color:$bggoo; color:white;}
+		}
+			
+		a.mailto{
+			width: 19px; height:19px; padding-left: 5px; padding-right: 0px; margin-right:4px;
+			background-color:white; 
+			color:$navigation_bar_bgcolor;
+			}
+		}
+	footer .pags{
+		text-align: right;
+		font-size: 18px;
+		margin-top: 5px;
 	}
 }
+
+	
