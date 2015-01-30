@@ -1572,7 +1572,8 @@ VistaTourAplicacion.prototype.inicio=function(){
 	}
 VistaTourAplicacion.prototype.clickBtnOmitir=function(){
 	this.cerrar()
-	app.cargaVistaInicio()
+	
+	if (app.vistaActiva==null) app.cargaVistaInicio()
 	save('tapp37_tourRealizado', 1)
 	}
 VistaTourAplicacion.prototype.clickBtnSiguiente=function(){
@@ -3865,7 +3866,9 @@ VistaTienda.prototype.compraTest=function(test){
 	    	})
 	    }
 
-	if ((store.get(prod).state==store.VALID || store.get(prod).state==store.REGISTERED) && this.procesandoOrden==null){
+	if ((store.get(prod).state==store.VALID || 
+			store.get(prod).state==store.REGISTERED) && 
+			this.procesandoOrden==null){
 		store.order(prod)
 		this.procesandoOrden=prod
 	}
@@ -4678,7 +4681,7 @@ VistaSocial.prototype.navega=function(dom){
 	var cd_test=jQuery(dom).data('id')
 	// app.vistaTienda.show()
 	app.vistaTienda.testPreview_montaDiv()
-	app.cargaVistaTienda(true, 'vista:tienda:'+cd_test)
+	app.cargaVistaTienda(true, 'vistaTienda:'+cd_test)
 	}
 ////
 VistaSocial.prototype.crearGrupo=function(){
