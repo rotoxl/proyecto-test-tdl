@@ -1186,7 +1186,7 @@ article.card, article.pack{
 
 			> .avatar{
 				padding: 15px 5px 5px 5px;
-				margin-left:30px;
+				margin-left:20px;
 			}
 		}
 		
@@ -2250,6 +2250,12 @@ body.ios #main_container{height:100%;}
 
 		height:100%!important;
 		width:100%!important;
+
+		#swypeWrapper{
+			width: 100%; left:0;
+			top:0%; bottom:0;//bottom:15%;
+
+		}
 	}
 
 	background-color:white;
@@ -2259,7 +2265,13 @@ body.ios #main_container{height:100%;}
 		position:absolute!important;
 		width: 100%; left:0;
 		top:0%; bottom:0;//bottom:15%;
+		height:auto!important;
+		
 		background-color: #86e2d5;
+
+		.swipeview-active{
+			visibility: visible;
+		}
 
 		.slide-img{
 			max-width: 80%;
@@ -2320,15 +2332,21 @@ body.ios #main_container{height:100%;}
 	z-index:540;
 	}
 #frmVistaFlotante{
-	z-index:550;
-	position:fixed; 
-	height: 500px!important;
-	width: 500px!important;
-	margin:0 auto!important;
+	z-index: 550;
+	position: fixed;
+	
+	height: 500px !important;
+	
+	margin: 0 auto !important;
+	left: 20% !important;width: 60% !important;
+	top: 10%;
 
 	&.vistaTest{
 		top:61px!important;
 
-		#swypeWrapper{max-height:600px; height:500px;}
+		#swypeWrapper{
+			max-height:600px; 
+			height:100%!important;
+		}
 	}
 }
