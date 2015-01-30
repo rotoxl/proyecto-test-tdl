@@ -20,6 +20,9 @@ cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 cordova plugin add de.appplant.cordova.plugin.local-notification
 
+cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git
+cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
+
 cordova platform add android
 
 # rm -rf /Users/rotoxl/dev/proyectotest/$BASE_DIR/platforms/android/res/drawable
