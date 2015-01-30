@@ -214,6 +214,9 @@ section#main_container{
 			min-height: 50px;
 			padding: 0 15px;
 		}
+		.vbox{
+			min-height: 400px;
+		}
 
 		.header{
 			background-color: #89cc97;
@@ -847,7 +850,7 @@ article.card, article.pack{
 
 		}
 		.vista-body{
-			
+			padding-bottom:10px;
 			.bloque{
 				
 				
@@ -1175,8 +1178,20 @@ article.card, article.pack{
 		.vista-header{
 
 		}
+		.bl.grupo{
+			max-width: 500px;
+			
+			margin-left:auto; 
+			margin-right:auto;
+
+			> .avatar{
+				padding: 15px 5px 5px 5px;
+				margin-left:30px;
+			}
+		}
+		
 		.bl.grupo, .bl.head{
-			padding-top: 10px; margin-left:0px; margin-right:0;
+			padding-top: 10px; 
 
 			color:#adbece;
 			padding-bottom:20px;
@@ -1249,7 +1264,8 @@ article.card, article.pack{
 				font-size: 26px;
 				padding-right: 0px;
 				margin-right: 0;
-				padding-left: 40px;
+				text-align: center;
+				padding-left: 0px;
 				}
 			&:last-child{
 				border-bottom:1px solid rgba(173, 190, 206, .1);
@@ -1684,7 +1700,7 @@ article.card, article.pack{
 		}
 
 	aside .vbox > footer {
-		position: absolute;
+		position: fixed;
 		bottom: 0px;
 		
 		left: 0;
@@ -1692,6 +1708,7 @@ article.card, article.pack{
 		min-height:145px; 
 
 		color:#adbece;
+		background-color:#4A6075;
 		padding: 5px 0px 0 0px!important;
 
 		.btn-group{
