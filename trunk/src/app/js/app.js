@@ -1010,6 +1010,26 @@ Controlador.prototype.pushState=function(id){
 Controlador.prototype.resize=function(){
 	if (this.vistaActiva)
 		this.vistaActiva.resize()
+	
+	var vistas=[
+		this.vistaTienda, 
+		this.vistaMisTest,
+		this.vistaSocial, 
+		this.vistaEstadisticas, 
+		this.vistaActiva,
+		this.vistaAjustes
+		]
+
+	for (var v in vistas){
+		var xv=vistas[v]
+
+		if (xv==null){
+			}
+		else if (xv.id != this.vistaActiva.id){
+			xv.resize()
+			console.log('resize>>'+xv.id)
+			}
+		}
 	}
 /////
 Controlador.prototype.inicio=function(){
@@ -1235,7 +1255,8 @@ Vista.prototype.getBody=function(){}
 Vista.prototype.resize=function(){
 	this.hVista=window.innerHeight- jQuery('#navigation_bar').innerHeight()
 	jQuery('#content').height( this.hVista )
-	this.domBody.height( this.hVista- (this.domHeader?this.domHeader.outerHeight():0) )
+	if (this.domBody) 
+		this.domBody.height( this.hVista- (this.domHeader?this.domHeader.outerHeight():0) )
 	}
 Vista.prototype.tareasPostCarga=function(){}
 Vista.prototype.disinflateMenu=function(){
@@ -1462,10 +1483,16 @@ function VistaTourAplicacion(){
 	this.id='vistaTourAplicacion'
 	}
 VistaTourAplicacion.prototype=new VistaFlotante
+VistaTourAplicacion.prototype.resize=function(){
+	this.hVista=window.innerHeight
+	jQuery('#content').height( this.hVista )
+	if (this.domBody) 
+		this.domBody.height( this.hVista )
+	}
 VistaTourAplicacion.prototype.getBody=function(){
 	var self=this
 
-	var raiz=(device.platform.toLowerCase()=='android'?'-android':'-ios')
+	var raiz=( (isPhone() && device.platform.toLowerCase()=='ios')?'-ios':'-android')
 	// 
 	this.slides=[
 		{html:'<b>Bienvenido a Octopus</b>. <br> Si lo deseas, ahora puedes realizar una visita guiada. <br> <small>Desliza el dedo para continuar.</small>', img:'./images/m-swipe-left.png', bgcolor:'#65C6BB', fgcolor:'white'},
