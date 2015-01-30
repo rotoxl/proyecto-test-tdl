@@ -571,8 +571,11 @@ function onPushGCM(e){
 	    break;
 	  	}
 	}
-var onPushAPN=function(event){
-	var d={payload:event.aps}
+function onPushAPN(data){
+	var a=(typeof(a)=='string'?JSON.parse(data):data)
+	
+	a.datos=a
+	var d={payload:a}
 	app.pushReceived(d)
     }
 Controlador.prototype.sendPushDeviceID=function(regid){
