@@ -1295,7 +1295,7 @@ aside .vbox > footer {
   position: fixed;
   bottom: 0px;
   left: 0;
-  width: 100%;
+  width: 300px;
   min-height: 145px;
   color: #adbece;
   background-color: #4A6075;
@@ -1472,6 +1472,13 @@ ul.btn3_2 span.arrow {
 
   #content .vista.vistaTest .vista-header ul#mapatest {
     max-width: 100%; } }
+@media (max-height: 460px) {
+  aside .vbox > footer {
+    position: relative !important; } }
+@media (min-height: 700px) {
+  .modal#frmPausa .modal-dialog {
+    margin-top: 15%;
+    max-width: 400px; } }
 #swipeview-slider > div {
   min-height: 400px;
   position: relative;
@@ -1602,7 +1609,8 @@ body.ios #main_container {
   margin-bottom: 20px;
   text-align: center; }
   .vista.vistaTest .recurso.pre .aviso {
-    text-align: left;
+    display: block;
+    text-align: center;
     color: whitesmoke;
     opacity: .5;
     font-size: 12px; }
@@ -1725,6 +1733,7 @@ body.ios #main_container {
   margin: 0 auto !important;
   left: 20% !important;
   width: 60% !important;
+  max-width: 610px;
   top: 10%; }
   #frmVistaFlotante.vistaTest {
     top: 61px !important; }

@@ -574,8 +574,7 @@ function onPushGCM(e){
 function onPushAPN(data){
 	var a=(typeof(a)=='string'?JSON.parse(data):data)
 	
-	a.datos=a
-	var d={payload:a}
+	var d={payload:{datos:a, accion:a.accion, vista:a.vista} }
 	app.pushReceived(d)
     }
 Controlador.prototype.sendPushDeviceID=function(regid){
@@ -765,8 +764,12 @@ Controlador.prototype.pause=function(){
 		this.vistaTest.pause()
 	}
 Controlador.prototype.sendNotification=function(titulo, texto, icono, ongoing, json, onclick) {
-    if ( device.platform.toLowerCase() == 'ios' )
-    	icon=null
+    if (!isPhone() ){
+    	console.warn('sendNotification: '+titulo)
+    	return
+    	}
+    else if (device.platform.toLowerCase() == 'ios')
+    	icono=null
 
     var autoCancel=false
     if (ongoing)
@@ -786,7 +789,6 @@ Controlador.prototype.sendNotification=function(titulo, texto, icono, ongoing, j
 		    sound: (!ongoing? 'TYPE_NOTIFICATION': null),
 		    // icon:'notificacion', //NO es posible sacar la foto del usuario
 		    smallIcon:'notificacion',
-
 		    json:json,
 			}
 
@@ -794,7 +796,7 @@ Controlador.prototype.sendNotification=function(titulo, texto, icono, ongoing, j
 		if (onclick) window.plugin.notification.local.onclick=onclick
 		}
 	catch (e){
-		app.vibrate()
+		navigator.notification.beep()
 		}
 	}
 Controlador.prototype.clearNotification=function(inmediate) {
@@ -1282,7 +1284,12 @@ Vista.prototype.getUsuDeGrupo=function(cd_grupo, cd_usuario){
 	var u=buscaFilas(gr.miembros, {cd_usuario:cd_usuario})[0]
 	return u
 	}
-Vista.prototype.pushReceived=function(accion, datos){}
+Vista.prototype.pushReceived=function(accion, datos){
+	if (accion=='mensajeGrupo'){
+		app.clearNotification()
+		app.sendNotification('Mensaje de '+datos.cd_usuario, datos.msg, null, null, datos, fnOnClickNotification)
+		}
+	}
 Vista.prototype.cerrar=function(){}
 Vista.prototype.cambiaTextoHeaderGlobal=function(t){
 	jQuery('#navigation_bar')
@@ -2107,17 +2114,16 @@ VistaTest.prototype.muestraFormPausa=function(tipo){
 		}
 
 	//metadatos del test
-	var md=this.test
-	this.frmdom.find('.info .details').empty().append([
-		// creaObjProp('p', {className:'header', texto:'Metadatos disponibles'}),
-		creaObjProp('p', {className:'titulo', texto:md.ds_test, i:'fa-bookmark fa-fw', omiteNulo:true}),
-		creaObjProp('p', {className:'categoria', texto:this.concatCategoriasTest(md), i:'fa-tags fa-fw', omiteNulo:true}),
-		creaObjProp('p', {className:'fecha', texto:formato.fechaDDMMYYYY(md.f_examen) , i:'fa-calendar fa-fw', omiteNulo:true}),
-		creaObjProp('p', {className:'organismo', texto:md.organismo, i:'fa-institution fa-fw', omiteNulo:true}),
-		creaObjProp('p', {className:'region', texto:md.region, i:'fa-globe fa-fw', omiteNulo:true}),
-		])
-	if (md.img)
-		this.frmdom.find('.info .visual')[0].src=md.img
+	// var md=this.test
+	// this.frmdom.find('.info .details').empty().append([
+	// 	creaObjProp('p', {className:'titulo', texto:md.ds_test, i:'fa-bookmark fa-fw', omiteNulo:true}),
+	// 	creaObjProp('p', {className:'categoria', texto:this.concatCategoriasTest(md), i:'fa-tags fa-fw', omiteNulo:true}),
+	// 	creaObjProp('p', {className:'fecha', texto:formato.fechaDDMMYYYY(md.f_examen) , i:'fa-calendar fa-fw', omiteNulo:true}),
+	// 	creaObjProp('p', {className:'organismo', texto:md.organismo, i:'fa-institution fa-fw', omiteNulo:true}),
+	// 	creaObjProp('p', {className:'region', texto:md.region, i:'fa-globe fa-fw', omiteNulo:true}),
+	// 	])
+	// if (md.img)
+	// 	this.frmdom.find('.info .visual')[0].src=md.img
 
 	app.addToNav({vista:this.id, accion:'frmPausa'})
 
@@ -4139,11 +4145,13 @@ VistaSocial.prototype.resize=function(e){
 
 	var x=50
 	this.hVista=jQuery('#content').height()
-	this.domBody.height( this.hVista ) //-this.domHeader.outerHeight())
+	if (this.domBody) this.domBody.height( this.hVista ) //-this.domHeader.outerHeight())
 	
-	this.domChatGrupo.height(this.hVista )
-	var y=40
-	this.domChatGrupo.find('.chat').height(this.hVista-y)
+	if (this.domChatGrupo) {
+		this.domChatGrupo.height(this.hVista )
+		var y=40
+		this.domChatGrupo.find('.chat').height(this.hVista-y)
+		}
 	}
 VistaSocial.prototype.pushReceived=function(accion, datos){
 	var self=this
