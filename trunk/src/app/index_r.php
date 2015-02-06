@@ -95,8 +95,9 @@ try {
             break;
         case 'getTestComprado':
             $json_order=json_decode( filter_input($REQ, 'pruebaCompra', FILTER_UNSAFE_RAW) );
+
             $valido=$md->compruebaCert($json_order);
-            if ($valido==0){
+            if ($valido==false){
                 $ret=array('retorno'=> 0, 
                             'error'=> 1,
                             'msgError'=> 'La firma de la orden de compra no coincide con la firma del desarrollador'
@@ -335,7 +336,6 @@ try {
         default:
             trigger_error('¡Accion '. $accion . ' no implementada!');
         }
-    
     }
 catch (Exception $ee){
     $ret=array('retorno'=>0, 

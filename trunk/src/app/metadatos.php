@@ -29,11 +29,11 @@ class Metadatos{
 	public $conn=null;
 
 	function __construct($conn, $usu=null){
-          $this->conn=$conn;
-          if ($usu!=null){
-               $conn->setUsu($usu);
-               }
-          }
+        $this->conn=$conn;
+        if ($usu!=null){
+            $conn->setUsu($usu);
+    	    }
+        }
 	function __logSQL($mostrar){
 		if ($mostrar)
 			return $this->conn->arrResultSet;
@@ -111,26 +111,48 @@ class Metadatos{
 			}
 		}
 	private function correoe($destino, $asunto, $mensaje){
-		mail($destino, $asunto, $mensaje, 'From: <8ctopusapp>');
+		mail($destino, $asunto, $mensaje, 'From: <info@octopusapp.es>');
 		}
 	//////
 	function compruebaCert($json_order){
-		//comprobamos que realmente es una compra: 
-		//	http://stackoverflow.com/questions/16535025/android-in-app-billing-v3-with-php
- 		global $GPLAY_BILLINGKEY;
+		$esIOS=false; $esAndroid=false;
+		
+		if (isset($json_order->type)) {
+			$esIOS=$json_order->type=='ios-appstore'?true:false;
+			}
+		if (isset($json_order->receipt)) {
+			$esAndroid=$json_order->receipt!=null?true:false;
+			}
+		
+		if ($esAndroid){
+			$this->conn->logInfo('Este test es de pago, vamos a verificar el json de Google Play');
 
- 		$key = "-----BEGIN PUBLIC KEY-----\n" . chunk_split($GPLAY_BILLINGKEY, 64, "\n") . "-----END PUBLIC KEY-----";
- 		$ret= openssl_verify($json_order->receipt, base64_decode($json_order->signature), $key);
+			//comprobamos que realmente es una compra: 
+			//	http://stackoverflow.com/questions/16535025/android-in-app-billing-v3-with-php
+	 		global $GPLAY_BILLINGKEY;
 
+	 		$key = "-----BEGIN PUBLIC KEY-----\n" . chunk_split($GPLAY_BILLINGKEY, 64, "\n") . "-----END PUBLIC KEY-----";
+	 		$ret= openssl_verify($json_order->receipt, base64_decode($json_order->signature), $key);
 
- 		$this->conn->logInfo('Resultado comprobación certificado de recibo de compra: '.$ret==1?'OK':'ERROR', 'SSL');
- 		// var_dump( array(
- 		// 	$ret,
- 		// 	$json_order->receipt, 
- 		// 	$json_order->signature,
- 		// 	$GPLAY_BILLINGKEY,
- 		// 	));
- 		return $ret;
+	 		$this->conn->logInfo('Resultado comprobación certificado de recibo de compra: '.$ret==1?'OK':'ERROR', 'SSL');
+	 		// var_dump( array(
+	 		// 	$ret,
+	 		// 	$json_order->receipt, 
+	 		// 	$json_order->signature,
+	 		// 	$GPLAY_BILLINGKEY,
+	 		// 	));
+	 		return $ret!=0;
+	 		}
+	 	else if ($esIOS){
+	 		$this->conn->logInfo('Este test es de pago, vamos a verificar el json de iTunes');
+			// http://en.mfyz.com/integration-and-verification-of-ios-in-app-purchases
+			// https://github.com/chrismaddern/iOS-Receipt-Validator-PHP/blob/master/itunesReceiptValidator.php
+
+	 		return true;
+	 		}
+	 	else{
+	 		return false;
+	 		}
 		}
 	//////
     private function sendPush_IOS($registrationIdsArray, $messageData){
@@ -416,7 +438,6 @@ class Metadatos{
 			$this->conn->logInfo('Este test es de pago, pero el usuario ya lo compró');
 			}
 		else if ($md['precio']>0 && isset($json_order) ){
-			$this->conn->logInfo('Este test es de pago, vamos a verificar el json de google play');
 			}
 		else{
 			throw new Exception('No se permite descargar este test, no es gratuito');

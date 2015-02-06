@@ -1,6 +1,7 @@
 "use strict"
 jQuery.noConflict()
 
+var device
 var app, espacioDuro='\xA0', espacioDuro2='\xA0\xA0', vbCrLf='\n'
 var _isPhone=null
 function isPhone(){
@@ -357,6 +358,11 @@ function Controlador(){
 		this.config.servidor='./'
 	this.config.url=this.config.servidor+'index_r.php'
 
+	// if (isPhone() && device==null){
+	// 	// var dlp=document.location.pathname.slice(0,15)
+	// 	// device={platform: dlp=='/android_asset/'?'android':'ios'}
+	// 	device={platform:cordova.platformId}
+	// 	}
 	}
 Controlador.prototype.init=function(){
 	//////////
@@ -418,6 +424,9 @@ Controlador.prototype.init=function(){
 			var temp=l[j].split('=')
 			if (temp[0]=='?nativo')
 				continue
+			
+			if (temp[1]==undefined)
+				temp[1]=null
 			obj[temp[0]]=temp[1]
 			}
 		this.loginEnMiNubeSinToken(obj)
@@ -764,34 +773,45 @@ Controlador.prototype.pause=function(){
 		this.vistaTest.pause()
 	}
 Controlador.prototype.sendNotification=function(titulo, texto, icono, ongoing, json, onclick) {
+	var sound=null, param
     if (!isPhone() ){
     	console.warn('sendNotification: '+titulo)
     	return
     	}
-    else if (device.platform.toLowerCase() == 'ios')
-    	icono=null
+    else if (device.platform.toLowerCase() == 'ios'){
+    	param={
+		    title:   titulo,
+		    message: texto,
+		    json:JSON.stringify(json),
+		    sound:''
+			}
+    	}
+   	else {//android
+   		icono='notificacion'
+   		if (!ongoing) sound='TYPE_NOTIFICATION'
 
-    var autoCancel=false
-    if (ongoing)
-    	autoCancel=false
-    else if (onclick)
-    	autoCancel=false
-    else
-    	autoCancel=true
-
-	try {
-		var param={
+   		var autoCancel=false
+	    if (ongoing)
+	    	autoCancel=false
+	    else if (onclick)
+	    	autoCancel=false
+	    else
+	    	autoCancel=true
+		
+		param={
 		    title:   titulo,
 		    message: texto,
 		    autoCancel:  autoCancel,
 		    ongoing:ongoing,
 
-		    sound: (!ongoing? 'TYPE_NOTIFICATION': null),
+		    sound: sound,
 		    // icon:'notificacion', //NO es posible sacar la foto del usuario
-		    smallIcon:'notificacion',
+		    smallIcon:icono,
 		    json:json,
 			}
+   		}
 
+	try {
 		window.plugin.notification.local.add(param)
 		if (onclick) window.plugin.notification.local.onclick=onclick
 		}
@@ -799,14 +819,16 @@ Controlador.prototype.sendNotification=function(titulo, texto, icono, ongoing, j
 		navigator.notification.beep()
 		}
 	}
-Controlador.prototype.clearNotification=function(inmediate) {
-	if (inmediate)
+Controlador.prototype.clearNotification=function(postpone) {
+	if (device.platform.toLowerCase() == 'ios'){
+		}
+	else if (postpone==null)
 		window.plugin.notification.local.cancelAll()
 	else { 
 		setTimeout(function(){
 			try{ window.plugin.notification.local.cancelAll() }
 			catch(e){}
-			}, 1)
+			}, postpone)
 		}
 	}
 Controlador.prototype.showToast=function(msg){
@@ -931,6 +953,7 @@ Controlador.prototype.cargaVistaInicio=function(){
 		}
 
 	if (isPhone()) jQuery('body').addClass(device.platform.toLowerCase() )
+	setTimeout(function(){app.vistaActiva.resize()}, 1000)
 	}
 Controlador.prototype.cargaVistaMisTest=function(desdeHistorial, hash){
 	var cd_test
@@ -1116,7 +1139,7 @@ Controlador.prototype.toggleMenuGlobal=function(visible, inmediate){
 	}
 /////
 Controlador.prototype.generaTextoCompartir=function(conHTML){
-	var linkAndroid='https://play.google.com/store/apps/details?id=es.octopusapp.cli'
+	var linkAndroid='https://play.google.com/store/apps/details?id=es.octopusapp.cla'
 	var tiendaAndroid='Google Play'
 
 	var linkIOS='http://faltaEnlace'//TODO
@@ -1583,7 +1606,9 @@ VistaTourAplicacion.prototype.inicio=function(){
 VistaTourAplicacion.prototype.clickBtnOmitir=function(){
 	this.cerrar()
 	
-	if (app.vistaActiva==null) app.cargaVistaInicio()
+	if (app.vistaActiva==null || app.vistaActiva.id==this.id) 
+		app.cargaVistaInicio()
+
 	save('tapp37_tourRealizado', 1)
 	}
 VistaTourAplicacion.prototype.clickBtnSiguiente=function(){
@@ -3190,8 +3215,17 @@ VistaTienda.prototype._formatoPrecio=function(domPrecio, precio, moneda){
 		domPrecio.appendChild( creaT( formato.moneda(this.precioMinimo(precio), moneda) ) )
 	}
 VistaTienda.prototype.precioMinimo=function(p){
-	if (p>0 && p<0.50)//precio mínimo Android
-	 	p=0.50
+	if (!isPhone()){
+		return p
+		}
+	else if (device.platform.toLowerCase() == 'android'){
+		if (p>0 && p<0.50)//precio mínimo Android
+	 		p=0.50
+		}
+	else if (device.platform.toLowerCase() == 'ios') {
+	 	p=0.99
+		}
+	
 	return p
 	}
 VistaTienda.prototype._generaDomTest=function(test, j, cat){
@@ -3815,8 +3849,7 @@ VistaTienda.prototype.descargaTest=function(cd_test, pruebaCompra){
 				self.anhadeATestLocales(datos.test)
 				app.cache.catsConTestLocales=app.catsConTestLocales()
 
-				var idcat=datos.test.liscat.split(',')[0]
-				var cat=buscaFilas(app.cache.categorias, {cd_categoria:idcat})
+				var cat={cd_categoria:-10, ds_categoria:'descargas', i:'fa-cloud-download'}//buscaFilas(app.cache.categorias, {cd_categoria:idcat})
 				jQuery('article.card[id=test-'+datos.test.cd_test+']').replaceWith(
 					self._generaDomTest(datos.test, null, cat)
 					)
@@ -3835,8 +3868,9 @@ VistaTienda.prototype.descargaTest=function(cd_test, pruebaCompra){
 				console.info('test '+cd_test+' descargado!, '+datos.test.numpreguntas+' preguntas')
 				}
 			else {
+				navigator.notification.alert('Ha habido un problema al descargar el test', null, 'Descarga no disponible')
 				console.error(data)
-				xbtn.removeClass('cargando').addClass('btn-danger').text('Error al descargar')
+				xbtn.removeClass('cargando').text('Error al descargar')
 				}
 			})
 	}
@@ -3877,7 +3911,7 @@ VistaTienda.prototype.compraTest=function(test){
 
 	if ((store.get(prod).state==store.VALID || 
 			store.get(prod).state==store.REGISTERED) && 
-			this.procesandoOrden==null){
+			this.procsandoOrden==null){
 		store.order(prod)
 		this.procesandoOrden=prod
 	}
@@ -3923,6 +3957,11 @@ VistaTienda.prototype.compraTest=function(test){
     	console.log('Store ready')
         store.refresh()
     	})
+
+  //   store.validator = function(product, callback) {
+    	
+		// })
+
 
     // Log all errors
     store.error(function(error) {
@@ -4074,8 +4113,14 @@ VistaSocial.prototype.getBody=function(){
 	this.domEditarGrupo=jQuery( creaObjProp('div', {className:'vista-editar-grupo config flowable container', 'style.display':'none', hijos:[
 		creaObjProp('div', {className:'row nombre', onclick:function(){self.btnCambiaNombreGrupo()}, hijos:[
 			creaObjProp('small', {className:'bl', texto:'Nombre del grupo'}),
-			creaObjProp('span',  {className:'col-xs-11 txtNombreGrupo', texto:'Nombre del grupo'}),
-			creaObjProp('i', {className:'col-xs-1 pull-right btnNombreGrupo fa fa-pencil'}),
+			
+			creaObjProp('button', {className:'bl member fila', hijos:[
+				creaObjProp('span',  {className:'col-xs-11 txtNombreGrupo', texto:'Nombre del grupo'}),
+				creaObjProp('i', {className:'fa btnNombreGrupo fa fa-pencil pull-right'})
+				]})
+
+			// creaObjProp('span',  {className:'col-xs-11 txtNombreGrupo', texto:'Nombre del grupo'}),
+			// creaObjProp('i', {className:'col-xs-1 pull-right btnNombreGrupo fa fa-pencil'}),
 			]}),
 		creaObjProp('div', {className:'row', hijos:[
 			creaObjProp('small', {className:'bl', texto:'Miembros'}),
@@ -4125,18 +4170,13 @@ VistaSocial.prototype.resize=function(e){
 	var diff=0
 	if (isPhone() && device.platform.toLowerCase() == 'ios'){
 		jQuery('body').scrollTop(0)
-		
-		try {
-			cordova.plugins.Keyboard.disableScroll(true)
-			this.scrollChat()
 			
-			setTimeout(function(){
-				cordova.plugins.Keyboard.disableScroll(false)
-				},200)
-			}
-		catch(e){
-			}
-		
+		if (cordova.plugins.Keyboard.isVisible)
+			cordova.plugins.Keyboard.disableScroll(true)
+		else
+			cordova.plugins.Keyboard.disableScroll(false)
+		this.scrollChat()
+	
 		jQuery('body').scrollTop(0)
 		}
 
@@ -4949,7 +4989,11 @@ VistaEstadisticas.prototype.getBody=function(){
 
 		for (var i=0; i<this.cats.length; i++){
 			var cat=this.cats[i]
-			if (cat.cd_categoria<0) continue
+			
+			if (cat==null) 
+				continue
+			else if (cat.cd_categoria<0) 
+				continue
 
 			var respsCat=buscaFilas(this.resps, {_contains_liscat:','+cat.cd_categoria+','})
 			this.cats[i].resps=respsCat
