@@ -24,8 +24,11 @@ cordova plugin add de.appplant.cordova.plugin.local-notification
 cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git
 cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
 
+cordova plugin add cc.fovea.cordova.purchase
+
 cordova platform add ios
 
 rsync -a -c ../recursos/ios/splash/* platforms/ios/Octopus/Resources/splash
 rsync -a -c ../recursos/ios/icon/* platforms/ios/Octopus/Resources/icons
 
+# sudo chown -R rotoxl:staff .
