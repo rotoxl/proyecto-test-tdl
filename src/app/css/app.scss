@@ -603,7 +603,7 @@ article.card, article.pack{
 
 		.btn{
 		}
-		.bl{display:block;}
+		.bl{display:block; margin-left:0; margin-right:0;}
 
 		.vista-header{
 			height:50px;
@@ -1314,6 +1314,7 @@ article.card, article.pack{
 		}
 
 		.config{
+			max-width: 500px;
 			.bl{
 				padding-top: 10px; margin-left:0px; margin-right:0;
 
@@ -1322,6 +1323,7 @@ article.card, article.pack{
 			}
 			.txtNombreGrupo{
 				font-size: 21px;
+				padding-left:0;
 				color: white;
 			}
 			i{
@@ -1330,7 +1332,7 @@ article.card, article.pack{
 				color:white; 
 				
 				&.btnNombreGrupo{
-					margin-top:-40px;
+					margin-top:-27px;
 					font-size:25px;
 				}
 			}
@@ -1781,7 +1783,7 @@ article.card, article.pack{
 
 		.modal-dialog{
 			margin-left: auto; margin-right: auto;
-			margin-top:10%; 
+			margin-top:25%; 
 
 			.modal-content{
 				border-radius:0;
@@ -2005,7 +2007,11 @@ article.card, article.pack{
 	}
 
 }
-
+@media (max-width: 320px){//desde iphone
+	#content .vista.vistaSocial .bl.grupo > .avatar{
+		margin-left:10px !important;
+	}
+}
 @media (max-height: 460px){
 	aside .vbox > footer{
 		position:relative!important;

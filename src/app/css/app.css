@@ -488,7 +488,9 @@ article.card, article.pack {
   #content .vista {
     background-color: rgba(50, 50, 50, 0.1); }
     #content .vista .bl {
-      display: block; }
+      display: block;
+      margin-left: 0;
+      margin-right: 0; }
     #content .vista .vista-header {
       height: 50px;
       background-color: rgba(50, 50, 50, 0.1); }
@@ -997,44 +999,47 @@ article.card, article.pack {
           border-top: 1px solid;
           font-size: 16px;
           height: 40px; }
-    #content .vista.vistaSocial .config .bl {
-      padding-top: 10px;
-      margin-left: 0px;
-      margin-right: 0;
-      color: #adbece; }
-    #content .vista.vistaSocial .config .txtNombreGrupo {
-      font-size: 21px;
-      color: white; }
-    #content .vista.vistaSocial .config i {
-      background-color: transparent;
-      border: 0;
-      color: white; }
-      #content .vista.vistaSocial .config i.btnNombreGrupo {
-        margin-top: -40px;
-        font-size: 25px; }
-    #content .vista.vistaSocial .config.btnMemberAdd {
-      color: white; }
-    #content .vista.vistaSocial .config.member.admin:after {
-      content: "(Admin)";
-      float: right;
-      color: rgba(173, 190, 206, 0.6); }
-    #content .vista.vistaSocial .config .btnDeleteGroup {
-      width: 90%;
-      margin-top: 3rem;
-      background: transparent;
-      border-color: white;
-      color: white;
-      margin-left: 5%; }
-    #content .vista.vistaSocial .config i.btnNombreGrupo, #content .vista.vistaSocial .config button.member i, #content .vista.vistaSocial .config .btnMemberAdd, #content .vista.vistaSocial .config .btnDeleteGroup {
-      display: none; }
-    #content .vista.vistaSocial .config.admin i.btnNombreGrupo, #content .vista.vistaSocial .config.admin button.member i, #content .vista.vistaSocial .config.admin .btnMemberAdd, #content .vista.vistaSocial .config.admin .btnDeleteGroup {
-      display: block; }
-    #content .vista.vistaSocial .config small.adminLit {
-      float: right;
-      color: #f0ad4e;
-      opacity: 0.3;
-      border: 1px solid;
-      padding: 0px 2px; }
+    #content .vista.vistaSocial .config {
+      max-width: 500px; }
+      #content .vista.vistaSocial .config .bl {
+        padding-top: 10px;
+        margin-left: 0px;
+        margin-right: 0;
+        color: #adbece; }
+      #content .vista.vistaSocial .config .txtNombreGrupo {
+        font-size: 21px;
+        padding-left: 0;
+        color: white; }
+      #content .vista.vistaSocial .config i {
+        background-color: transparent;
+        border: 0;
+        color: white; }
+        #content .vista.vistaSocial .config i.btnNombreGrupo {
+          margin-top: -27px;
+          font-size: 25px; }
+      #content .vista.vistaSocial .config.btnMemberAdd {
+        color: white; }
+      #content .vista.vistaSocial .config.member.admin:after {
+        content: "(Admin)";
+        float: right;
+        color: rgba(173, 190, 206, 0.6); }
+      #content .vista.vistaSocial .config .btnDeleteGroup {
+        width: 90%;
+        margin-top: 3rem;
+        background: transparent;
+        border-color: white;
+        color: white;
+        margin-left: 5%; }
+      #content .vista.vistaSocial .config i.btnNombreGrupo, #content .vista.vistaSocial .config button.member i, #content .vista.vistaSocial .config .btnMemberAdd, #content .vista.vistaSocial .config .btnDeleteGroup {
+        display: none; }
+      #content .vista.vistaSocial .config.admin i.btnNombreGrupo, #content .vista.vistaSocial .config.admin button.member i, #content .vista.vistaSocial .config.admin .btnMemberAdd, #content .vista.vistaSocial .config.admin .btnDeleteGroup {
+        display: block; }
+      #content .vista.vistaSocial .config small.adminLit {
+        float: right;
+        color: #f0ad4e;
+        opacity: 0.3;
+        border: 1px solid;
+        padding: 0px 2px; }
     #content .vista.vistaSocial .chat {
       overflow: auto;
       position: relative;
@@ -1349,7 +1354,7 @@ body {
   .modal#frmPausa .modal-dialog {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10%; }
+    margin-top: 25%; }
     .modal#frmPausa .modal-dialog .modal-content {
       border-radius: 0; }
       .modal#frmPausa .modal-dialog .modal-content .modal-body {
@@ -1472,6 +1477,9 @@ ul.btn3_2 span.arrow {
 
   #content .vista.vistaTest .vista-header ul#mapatest {
     max-width: 100%; } }
+@media (max-width: 320px) {
+  #content .vista.vistaSocial .bl.grupo > .avatar {
+    margin-left: 10px !important; } }
 @media (max-height: 460px) {
   aside .vbox > footer {
     position: relative !important; } }

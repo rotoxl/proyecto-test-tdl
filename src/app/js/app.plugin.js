@@ -120,7 +120,7 @@ var nativeApi={
     loginOK:function(obj){
         jQuery('.login > section').fadeOut()
         var url='./prod.html#nativo=1'+
-                            '&picture='+obj.imageUrl.split('?')[0]+
+                            '&picture='+(obj.imageUrl?obj.imageUrl:'').split('?')[0]+
                             '&email='+obj.email+
                             '&given_name='+obj.givenName+
                             '&family_name='+obj.familyName
