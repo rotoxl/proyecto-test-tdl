@@ -1,0 +1,394 @@
+#titulo=Examen Administrativo del Estado año 2011 (Promoción interna)
+#url=http://www.hacertest.com/oposiciones-administrativo-estado/2010/
+#t=90 min, 50 preguntas (1 anulada)
+#
+#El ejercicio estuvo formado por:
+#50 preguntas pertenecientes a la primera parte del temario (1 anulada)
+#3 supuestos prácticos:
+#Supuesto I sobre Derecho Administrativo General.
+#Supuesto II de Gestión de Personal.
+#Supuesto III sobre Gestión Financiera.
+
+
+1. ¿En cual de las siguientes normas del ordenamiento jurídico se establece explícitamente la jerarquía entre reglamentos?:
+
+La Ley 30/92, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común (artículo 51).
+La Ley 50/97, de 27 de noviembre, del Gobierno (artículo 23).
+La Constitución Española de 1978 (artículo 103.2).
+La Ley 6/97, de 14 de abril, de Organización y Funcionamiento de la Administración General del Estado (artículo 6).
+
+
+2. La declaración de lesividad de actos anulables, según la Ley 30/92, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común (en adelante Ley 30/92):
+
+Podrá adoptarse en cualquier momento.
+La administración no puede adoptar declaraciones de lesividad de actos anulables.
+No podrá adoptarse una vez transcurridos cuatro años desde que se dictó el acto.
+No podrá adoptarse una vez transcurridos cuatro años desde la notificación del acto.
+
+
+3. Para que las Administraciones Públicas puedan declarar de oficio la nulidad de un acto administrativo, según la Ley 30/92 se requiere:
+
+Que el procedimiento de revisión se inicie siempre de oficio por el órgano competente de la Administración Pública que dictó el acto.
+Dictamen del Consejo de Estado, en todo caso.
+Dictamen favorable del Consejo de Estado u órgano consultivo equivalente de la Comunidad Autónoma, si lo hubiere.
+Que la revisión de oficio se fundamente en alguno de los supuestos de nulidad de pleno derecho o de anulabilidad.
+
+
+4. Señale una de las causas de nulidad de pleno Derecho de los actos administrativos recogida en el artículo 62 de la Ley 30/92:
+
+Cualquier otro supuesto que se establezca expresamente en una disposición de rango reglamentario.
+Los dictados prescindiendo total y absolutamente del procedimiento legalmente establecido o de las normas que contienen las reglas esenciales para la formación de la voluntad de los órganos colegiados.
+Los actos expresos pero no los presuntos contrarios al ordenamiento jurídico por los que se adquieren facultades y derechos cuando se carezca de los requisitos esenciales para su adquisición.
+Los que sean constitutivos de infracción penal o administrativa o se dicten como consecuencia de ellas.
+
+
+5. Conforme a lo dispuesto en la Ley 30/92, ¿cuál de los siguientes NO es un medio de ejecución forzosa de los actos administrativos?:
+
+Compulsión sobre las personas.
+Responsabilidad patrimonial.
+Ejecución subsidiaria.
+Multa coercitiva.
+
+
+6. ¿Cuál de las siguientes afirmaciones NO es correcta con respecto al uso de la lengua en los procedimientos administrativos, de acuerdo con la Ley 30/92?:
+
+En los procedimientos tramitados por las Administraciones de las Entidades Locales, el uso de la lengua se ajustará a lo previsto en la legislación autonómica correspondiente.
+Los interesados que se dirijan a los órganos de la Administración General del Estado con sede en el territorio de una Comunidad Autónoma, podrán utilizar, además del castellano, la lengua que sea cooficial en ella.
+La Administración pública instructora podrá traducir al castellano los documentos, expedientes o partes de los mismos que deban surtir efecto fuera del territorio de la Comunidad Autónoma.
+Como norma general, la lengua de los procedimientos tramitados por la Administración General del Estado será el castellano.
+
+
+7. Conforme a la Ley 30/92, cuando el interesado rechace la notificación de una actuación administrativa:
+
+Se hará constar esta circunstancia en el expediente y se repetirá el intento de notificación por una sola vez en hora distinta dentro de los tres días siguientes.
+Se hará constar en el expediente y se tendrá por efectuado el trámite siguiéndose con el procedimiento.
+La notificación se hará por medio de anuncios en el tablón de edictos del Ayuntamiento en su domicilio conocido.
+La notificación se hará por medio de anuncios en el Boletín Oficial del Estado, de la Comunidad Autónoma o de la Provincia, según cual sea la Administración de la que proceda el acto a notificar.
+
+
+8. En el procedimiento administrativo común, ¿podrán rechazarse las pruebas propuestas por los interesados?:
+
+El instructor del procedimiento podrá rechazar las pruebas propuestas por el interesado solamente cuando sean manifiestamente improcedentes o innecesarias, mediante resolución motivada.
+Las pruebas propuestas por los interesados solamente podrán ser rechazadas cuando la práctica de las mismas pudieran causar perjuicio de difícil o imposible reparación.
+El órgano competente para resolver podrá rechazar las pruebas propuestas por el interesado en cualquier caso, motivando su resolución.
+Las pruebas propuestas por los interesados nunca podrán ser rechazadas por los órganos competentes para instruir y resolver el procedimiento administrativo.
+
+
+9. Señale la respuesta FALSA en relación con la caducidad de los procedimientos administrativos, de conformidad con lo dispuesto en la Ley 30/92:
+
+No podrá acordarse la caducidad por la simple inactividad del interesado en la cumplimentación de trámites, siempre que sean indispensables para dictar resolución.
+Los procedimientos caducados no interrumpirán el plazo de prescripción de las acciones del particular o de la Administración.
+Contra la resolución que declare la caducidad procederán los recursos pertinentes.
+La caducidad no producirá por sí sola la prescripción de las acciones del particular o de la Administración.
+
+
+10. En el orden jurisdiccional contencioso-administrativo, conocerán en única o primera instancia de los recursos que se deduzcan frente a disposiciones y actos de la Administración Periférica del Estado cuya cuantía sea igual a 60.000 euros:
+
+Las Salas de lo contencioso-administrativo de los Tribunales Superiores de Justicia.
+Los Juzgados Centrales de lo contencioso-administrativo.
+Los Juzgados de lo contencioso-administrativo.
+La Sala de lo contencioso-administrativo del Tribunal Supremo.
+
+
+11. No corresponden al orden jurisdiccional contencioso-administrativo:
+
+Los actos y disposiciones de las Corporaciones de Derecho público, adoptados en el ejercicio de funciones públicas.
+Los conflictos de atribuciones entre órganos de una misma Administración.
+Los contratos administrativos y los actos de preparación y adjudicación de los demás contratos sujetos a la legislación de contratación de las Administraciones Públicas.
+La responsabilidad patrimonial de las Administraciones públicas, cualquiera que sea la naturaleza de la actividad o el tipo de relación de que derive.
+
+
+12. ¿Cuál de las siguientes afirmaciones es correcta en relación con los recursos administrativos?:
+
+El plazo para interponer recurso extraordinario de revisión contra un acto dictado incurriendo en error de hecho, que resulte de los propios documentos incorporados al expediente, será de tres meses desde la notificación del acto impugnado.
+El órgano que resuelva el recurso podrá decidir todas las cuestiones de fondo y forma que plantee el procedimiento, aunque no hayan sido alegadas por el interesado, sin más trámite.
+En ningún caso podrá interponerse recurso potestativo de reposición contra la resolución de un recurso de alzada.
+Podrá interponerse recurso de alzada contra un acto de trámite que ponga fin a la vía administrativa y que decida indirectamente el fondo del asunto.
+
+13. Conforme a la Ley 29/98, de 13 de julio, reguladora de la Jurisdicción contencioso-administrativa (en adelante Ley de la Jurisdicción contencioso-administrativa), ¿cuál de las siguientes afirmaciones es verdadera en relación con el recurso de casación en interés de la Ley?:
+
+La sentencia que se dicte respetará, en todo caso, la situación jurídica particular derivada de la sentencia recurrida.
+Dicho recurso se puede interponer contra una sentencia dictada en única instancia por la Sala de lo Contencioso-administrativo del Tribunal Supremo.
+El recurso se interpondrá en el plazo de seis meses, directamente ante la Sala de lo Contencioso-administrativo del Tribunal Supremo.
+A través de este recurso podrán enjuiciarse, entre otras, la correcta interpretación y aplicación de normas emanadas del Estado que hayan sido determinantes del fallo recurrido.
+
+
+14. Según la Ley 30/2007, de 30 de octubre, de Contratos del Sector Público (en adelante Ley de Contratos), los contratos que celebren las Administraciones Públicas podrán adjudicarse mediante procedimiento negociado:
+
+Cuando, por razones técnicas o artísticas o por motivos relacionados con la protección de derechos de exclusiva el contrato pueda encomendarse a varios empresarios.
+Cuando, tras haberse seguido un procedimiento abierto o restringido, no se haya presentado ninguna oferta o candidatura, o las ofertas no sean adecuadas, siempre que las condiciones iniciales del contrato no se modifiquen sustancialmente.
+En casos excepcionales, cuando se trate de contratos en los que, por razón de sus características o de los riesgos que entrañen, pueda determinarse previamente el precio global.
+Cuando su valor estimado sea inferior a 150.000 euros.
+
+
+15. Respecto a la garantía provisional en los contratos, según lo dispuesto en la Ley de Contratos:
+
+No podrá ser superior a un 5 por ciento del presupuesto del contrato.
+Podrá exigirse en atención a las circunstancias concurrentes en cada contrato.
+No podrá ser superior a un 4 por ciento del presupuesto del contrato.
+La exigencia de garantía provisional ha sido expresamente derogada por la Ley 30/2007, de 30 de octubre, de Contratos del Sector Público.
+
+
+16. ¿Qué tres derechos específicos incorpora la Ley Orgánica 1/2004, de 28 de diciembre, de medidas de protección integral contra la violencia de género, para las funcionarias victimas de violencia de género?:
+
+La reducción o reordenación de su tiempo de trabajo, la movilidad geográfica del centro de trabajo y la excedencia por este motivo.
+La reserva de plazas en los procesos de promoción interna de grupo administrativo, la reducción o reordenación de su tiempo de trabajo y la excedencia por este motivo.
+La movilidad geográfica del centro de trabajo, la excedencia por este motivo y la reserva de plazas en los procesos de promoción interna de grupo administrativo.
+La excedencia por este motivo, la movilidad geográfica del centro de trabajo y la reserva de plazas en los procesos de promoción interna.
+
+17. El principio de igualdad de trato entre mujeres y hombres, recogido en la Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva entre mujeres y hombres, supone:
+
+Tratar como iguales a hombres y mujeres.
+La ausencia de toda discriminación directa por razón de sexo.
+Tratar con igualdad sin partir de las diferencias de partida entre mujeres y hombres
+La ausencia de toda discriminación directa o indirecta, por razón de sexo, y especialmente, las derivadas de la maternidad, la asunción de obligaciones familiares y el estado civil.
+
+
+18. Conforme a la Ley 7/2007, de 12 de abril, del Estatuto Básico del Empleado Público (en adelante EBEP), la prevalencia de la condición de empleado público para obtener un beneficio indebido para sí o para otro constituye una falta tipificada como:
+
+Grave o muy grave.
+Grave o leve.
+Muy grave.
+Grave.
+
+
+19. De conformidad con lo establecido en el EBEP sobre materias objeto de negociación, señale cuál es la respuesta correcta:
+
+La determinación de las condiciones de trabajo del personal directivo será objeto de negociación.
+La determinación y aplicación de las retribuciones básicas de los funcionarios públicos serán objeto de negociación.
+La determinación y regulación, concreta y en cada caso, de los sistemas, criterios y procedimientos de acceso al empleo público serán objeto de negociación.
+Los Planes de Previsión Social Complementaria serán objeto de negociación.
+
+
+20. Conforme al EBEP, la jubilación forzosa de los funcionarios públicos se declara:
+
+Al cumplir la edad legalmente establecida.
+No hay jubilación forzosa, sino voluntaria a los 65 años con posibilidad de prórroga hasta los 70 años.
+A los 60 años de edad.
+A los 70 años de edad.
+
+21. Según el Real Decreto 364/1995, de 10 de marzo, por el que se aprueba el Reglamento General de ingreso del personal al servicio de la Administración General del Estado y de provisión de puestos de trabajo y promoción profesional de los funcionarios civiles de la Administración General del Estado (en adelante Reglamento General de ingreso), las diligencias de cese y toma de posesión de los funcionarios que accedan a un puesto de trabajo deberán ser comunicadas al Registro Central de Personal:
+
+Dentro de los 3 días hábiles siguientes a su formalización.
+Dentro de los 5 días naturales siguientes a su formalización.
+Dentro de los 4 días hábiles siguientes a su formalización.
+Dentro de los 5 días hábiles siguientes a su formalización.
+
+
+22. Según el Real Decreto 365/1995, de 10 de marzo, por el que se aprueba el Reglamento de situaciones administrativas de los funcionarios civiles de la Administración General del Estado, si antes de la finalización del período de excedencia por cuidado de hijos el funcionario no solicita el reingreso al servicio activo:
+
+Pasa a la situación de servicios especiales.
+Se prorroga el período de excedencia por cuidado de hijos.
+Será declarado de oficio en la situación de excedencia voluntaria por interés particular.
+Se procederá de oficio a efectuar su reingreso en el puesto de trabajo que tenía reservado.
+
+
+23. El funcionario que haya perdido su puesto de trabajo como consecuencia de condena o sanción deberá solicitar el reingreso al servicio activo:
+
+Con dos meses de antelación a la finalización del período de duración de la suspensión.
+Con un mes de antelación a la finalización del período de duración de la suspensión.
+Con quince días de antelación a la finalización del período de duración de la suspensión.
+No es necesario pedir el reingreso basta con presentarse en el puesto de trabajo al día siguiente de finalizar la suspensión.
+
+
+24. Según el EBEP, para que un funcionario de carrera pueda solicitar la declaración de excedencia voluntaria por interés particular:
+
+No será necesario haber prestado servicios efectivos en cualquiera de las Administraciones Públicas con anterioridad a la solicitud.
+Será preciso haber prestado servicios efectivos en cualquiera de las Administraciones Públicas durante los 2 años inmediatamente anteriores a la solicitud.
+Será preciso haber prestado servicios efectivos en la Administración General del Estado durante los 2 años inmediatamente anteriores a la solicitud.
+Será preciso haber prestado servicios efectivos en cualquiera de las Administraciones Públicas durante los 5 años inmediatamente anteriores a la solicitud.
+
+25. De acuerdo con el EBEP, señale cual o cuales de entre las siguientes materias quedan excluidas de la obligatoriedad de la negociación colectiva:
+
+La determinación y aplicación de las retribuciones complementarias de los funcionarios.
+La determinación de las condiciones de trabajo del personal directivo.
+Los planes de Previsión Social Complementaria.
+Las normas que fijen los mecanismos generales de evaluación del desempeño.
+
+
+26. Según el Reglamento General de Ingreso, ¿en cuál de estos supuestos puede proveerse un puesto de trabajo por medio de adscripción provisional?:
+
+Debido a razones de urgente e inaplazable necesidad, por un funcionario que reúna los requisitos establecidos para su desempeño.
+Reingreso al servicio activo de los funcionarios con reserva de puesto de trabajo.
+Remoción o cese en un puesto de trabajo obtenido por libre designación.
+Cuando hayan transcurrido dos años desde el desempeño de un puesto en comisión de servicios y no se hubiese cubierto con carácter definitivo.
+
+
+27. Según el EBEP, ¿el padre podrá disfrutar el permiso de maternidad?:
+
+Sí, pero sin perjuicio de las seis semanas inmediatas posteriores al parto de descanso obligatorio para la madre, y sólo en el caso de uno de ellos no trabaje.
+Sí, pero sin perjuicio de las dieciséis semanas inmediatas posteriores al parto de descanso obligatorio para la madre, y sólo en el caso de uno de ellos no trabaje.
+Sí, pero sin perjuicio de las siete semanas inmediatas posteriores al parto de descanso obligatorio para la madre, y en el caso de que ambos progenitores trabajen.
+Sí, pero sin perjuicio de las seis semanas inmediatas posteriores al parto de descanso obligatorio para la madre, y en el caso de que ambos progenitores trabajen.
+
+
+28. ¿Qué nuevo permiso ha sido introducido en el EBEP por la Ley 39/2010, de 22 de diciembre, de Presupuestos Generales del Estado para el año 2011?:
+
+Permiso por cuidado de hijo menor afectado por cáncer u otra enfermedad grave.
+Permiso por razón de violencia de género sobre la mujer funcionaria.
+Permiso de paternidad por el acogimiento o adopción de un hijo
+Para la realización de exámenes prenatales y técnicas de preparación al parto por las funcionarias embarazadas
+
+29. De conformidad con la Ley 53/1984, de 26 de diciembre, de Incompatibilidades del personal al servicio de las Administraciones Públicas (en adelante Ley de Incompatibilidades), los servicios prestados en el segundo puesto o actividad:
+
+La Ley de Incompatibilidades no contiene previsión alguna en referencia a los trienios y derechos pasivos.
+Se computarán exclusivamente a efectos de derechos pasivos.
+No se computarán a efectos de trienios ni de derechos pasivos, pudiendo suspenderse la cotización a este último efecto.
+Se computarán a efectos de trienios y de derechos pasivos.
+
+
+30. Según la Ley de Incompatibilidades, quedará automáticamente revocada la autorización o reconocimiento de compatibilidad si la falta cometida por incumplimiento de la Ley de Incompatibilidades es calificada como:
+
+La revocación no se encuentra vinculada al régimen disciplinario aplicable.
+Únicamente si la falta es calificada como muy grave.
+Leve, grave o muy grave.
+Grave o muy grave.
+
+
+31. ¿Podrá ser reconocida por la Administración la suspensión del contrato de trabajo por mutuo acuerdo que señala el Estatuto de los Trabajadores?:
+
+No, al estar excluido expresamente en el III Convenio Único para el personal laboral al servicio de la Administración General del Estado.
+Si, ya que el III Convenio Único del personal laboral al servicio de la Administración General del Estado lo señala como causa de suspensión del contrato y el trabajador tendrá derecho a reserva del puesto.
+Si, ya que lo recoge el III Convenio Único para el personal laboral al servicio de la Administración General del Estado en los mismos términos que en el Estatuto de los Trabajadores.
+No, ya que el Estatuto Básico del Empleado Público lo excluye del ámbito de aplicación de la Administración.
+
+
+32. El III Convenio Colectivo Único del personal laboral de la Administración General del Estado (en adelante III Convenio Colectivo Único) señala que el personal de nuevo ingreso estará sometido a un período de prueba, cuya duración será el siguiente:
+
+Tres meses para los grupos profesionales 1 y 2, y de un mes para los demás trabajadores, excepto para el personal no cualificado que será de quince días laborales.
+Seis meses para los grupos 1 y 2, y tres meses para los demás trabajadores.
+Tres meses para los grupos profesionales 1 y 2 y de un mes para los grupo 3, 4 y 5.
+Un mes para los grupos profesionales 1 y 2, y 15 días para los demás trabajadores.
+
+
+33. Indique, en función de lo dispuesto en el III Convenio Colectivo Único, qué situación NO constituye suspensión del contrato de trabajo con reserva del puesto de trabajo:
+
+Privación de libertad del trabajador, mientras no exista sentencia condenatoria firme.
+Maternidad de la mujer trabajadora.
+Nombramiento de alto cargo de la Administración Local.
+Excedencia por la normativa de incompatibilidades.
+
+
+34. Serán órganos de representación unitaria de los trabajadores incluidos en el ámbito del III Convenio Colectivo Único:
+
+Los Delegados de personal que ostentarán la representación colectiva de los trabajadores en los centros de trabajo que tengan menos de cien trabajadores.
+Las Secciones Sindicales ostentarán la representación colectiva de los trabajadores en los centros de trabajo que tengan menos de cien trabajadores.
+Las Juntas de Personal que ostentarán la representación colectiva de los trabajadores en los centros de trabajo que tengan cincuenta o más trabajadores.
+Los Comités de Empresa que ostentarán la representación colectiva de los trabajadores en los centros de trabajo que tengan cincuenta o más trabajadores.
+
+
+35. Si un trabajador del ámbito del III Convenio Colectivo Único es nombrado funcionario en prácticas, ¿en que situación permanece respecto de su puesto de trabajo?:
+
+En suspensión de contrato con reserva de puesto de trabajo.
+En excedencia forzosa.
+En excedencia por prestación de servicios en el sector público.
+En excedencia por interés particular.
+
+
+36. Conforme a la Ley 47/2003, de 27 de noviembre, General Presupuestaria (en adelante Ley General Presupuestaria), los estados de gastos de los presupuestos de los órganos con dotación diferenciada y de los sujetos que integran el sector público administrativo, se estructuran de acuerdo con las siguientes clasificaciones:
+
+Clasificación administrativa, empresarial y fundacional.
+Clasificación de contabilidad presupuestaria y de contabilidad nacional.
+Clasificación orgánica, económica y por programas.
+Clasificación macroeconómica y macroeconómica.
+
+37. Según establece la Ley General Presupuestaria, corresponde al Gobierno:
+
+Autorizar las transferencias no reservadas a la competencia del Consejo de Ministros que no puedan acordarse directamente por los titulares de los departamentos afectados.
+Autorizar las incorporaciones de remanentes.
+Autorizar las ampliaciones de créditos destinados al pago de pensiones de Clases Pasivas del Estado.
+Autorizar las transferencias entre distintas secciones presupuestarias como consecuencia de reorganizaciones administrativas.
+
+
+38. Conforme a la Ley General Presupuestaria, las obligaciones de ejercicios anteriores que tengan su origen en resoluciones judiciales:
+
+Se imputan a los créditos del Presupuesto del ejercicio corriente, previa autorización del titular del Departamento de Economía y Hacienda.
+Se imputan a los créditos del Presupuesto del ejercicio corriente, previa autorización del titular del Departamento correspondiente.
+Se imputan a los créditos del Presupuesto del ejercicio corriente, sin necesidad de ninguna autorización previa.
+Se imputan a los créditos del Presupuesto del ejercicio corriente, previa autorización del titular del Departamento, siempre que hubiera existido crédito en el ejercicio en el que se devengaron.
+
+
+39. Las ampliaciones en un crédito del Capítulo VI (Inversiones Reales) del Presupuesto del Estado se pueden financiar con:
+
+Fondo de Contingencia exclusivamente.
+Exclusivamente mediante baja en otros créditos del mismo capítulo.
+Fondo de Contingencia o baja en otros créditos no financieros indistintamente.
+Emisión de Deuda.
+
+
+40. La Ley General Presupuestaria establece respecto a la estructura de los presupuestos de los sujetos que integran el sector público administrativo que:
+
+Los estados de gastos se estructuran de acuerdo a la clasificación orgánica y económica.
+En los estados de gastos, la clasificación económica agrupa los créditos por capítulos separando las operaciones corrientes, las de capital, las financieras y el Fondo de Contingencia de ejecución presupuestaria.
+Los capítulos de gastos se desglosan en artículos y éstos, a su vez, en conceptos que necesariamente se desglosan en subconceptos.
+Los estados de ingresos se estructuran de acuerdo a la clasificación orgánica, por programas y económica.
+
+41. Con carácter general, en el presupuesto de los organismos autónomos los créditos se especificarán a nivel de concepto, salvo:
+
+Los capítulos I, II y VI que se especificarán a nivel de artículo.
+Los capítulos I y II que se especificarán a nivel de artículo y el capítulo VI a nivel de capítulo.
+Los capítulos I, II y VI que se especificarán a nivel de capítulo.
+Los capítulos I y II que se especificarán a nivel de capítulo y el capítulo VI a nivel de artículo.
+
+
+42. Según la Ley General Presupuestaria, un suplemento de crédito en el Presupuesto del Estado cuya finalidad es atender una obligación de un ejercicio anterior se autorizará:
+
+Mediante norma de rango legal cualquiera que sea la forma de financiación.
+Mediante Acuerdo del Consejo de Ministros cualquiera que sea la forma de financiación.
+Mediante norma de rango legal si su financiación se realiza con baja en otros créditos.
+Mediante norma de rango legal si su financiación se realiza con cargo al Fondo de Contingencia.
+
+
+43. Conforme a la Ley General Presupuestaria, la clasificación económica agrupará los créditos por capítulos separando las operaciones corrientes, las de capital, las financieras y el Fondo de Contingencia de ejecución presupuestariaEn los créditos para operaciones de capital se incluirán:
+
+Las inversiones reales y financieras.
+Las transferencias de capital y las inversiones reales.
+Las inversiones financieras y las transferencias de capital.
+Las transferencias de capital y las transferencias corrientes.
+
+
+44. A tenor de lo dispuesto en la Ley General Presupuestaria, el vencimiento de la obligación del pago del precio de compra de bienes inmuebles cuyo importe exceda de seis millones de euros:
+
+Puede distribuirse en los cuatro ejercicios siguientes, sin otra limitación que la de que el desembolso inicial no podrá ser inferior al 25 por 100 del precio.
+Se produce necesariamente en el año de la adquisición.
+Puede diferirse en su totalidad a cualquiera de los cuatro ejercicios siguientes.
+Puede distribuirse en los cuatro ejercicios siguientes, pero el desembolso inicial no podrá ser inferior al 25 por 100 y en cada uno de los ejercicios siguientes deberán respetarse las limitaciones porcentuales de los compromisos de gasto de ejercicios futuros.
+
+45. Conforme a la Ley General Presupuestaria, la aprobación de las normas reguladoras de los anticipos de caja fija mediante las que se indiquen los gastos que pueden ser satisfechos por dicho sistema y los créditos compete:
+
+Al Ministro de Economía y Hacienda.
+A los Ministros en relación con sus respectivos Departamentos, incluyendo los Organismos autónomos que tengan adscritos.
+Al Gobierno.
+A los Ministros y Presidentes o Directores de los Organismos autónomos en relación con sus respectivos ámbitos.
+
+
+46. Para la práctica del embargo de los derechos de cobro de los acreedores de la Seguridad Social, y según la Ley General Presupuestaria:
+
+Hay que dirigirse a la Tesorería General de la Seguridad Social.
+Hay que dirigirse a las entidades gestoras a las que se le haya prestado el servicio.
+Hay que dirigirse a la Dirección General del Tesoro y Política Financiera.
+Hay que dirigirse al Ministerio de Trabajo e Inmigración.
+
+
+47. ¿Cuál de las siguientes retribuciones no se fijan directamente en los Presupuestos Generales del Estado?:
+
+Sueldo.
+Complemento de Destino.
+Productividad.
+Trienios.
+
+
+48. ¿Cuál es el plazo máximo para resolver y notificar la resolución de un procedimiento de reintegro de una subvención?:
+
+Dos meses.
+Doce meses, transcurridos los cuales se entenderá que hay silencio negativo.
+Tres meses.
+Doce meses, transcurridos los cuales se producirá la caducidad del procedimiento.
+
+49. En la ejecución del contrato de suministro, cuando razones técnicas o económicas debidamente justificadas en el expediente lo aconsejen, podrá establecerse en el pliego de cláusulas administrativas particulares que:
+
+El pago del precio total consista parte en dinero y parte en la entrega de otros bienes de la misma clase, sin que, en ningún caso, el importe de éstos pueda superar el 70% del precio total.
+El pago del precio total debe realizarse en todo caso en dinero.
+El pago del precio total consista parte en dinero y parte en la entrega de otros bienes de la misma clase, sin que, en ningún caso, el importe de éstos pueda superar el 60% del precio total.
+El pago del precio total consista parte en dinero y parte en la entrega de otros bienes de la misma clase, sin que, en ningún caso, el importe de éstos pueda superar el 50% del precio total.
+

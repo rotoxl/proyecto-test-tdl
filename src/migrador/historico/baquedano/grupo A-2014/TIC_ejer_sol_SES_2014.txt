@@ -1,0 +1,1228 @@
+1. En la tecnología ADSL, NO es cierto que: 
+A) El módem de usuario y el módem de la centralita son distintos.
+B) Los caudales de información red a usuario y usuario a red son distintos.
+C) Sus módems operan en un margen de frecuencias mucho más alto y amplio que los módems de
+banda vocal.
+D) Su técnica de modulación consiste en el empleo de una única portadora y no de varias como se
+hacen en los módems de banda vocal.
+
+2. El Cuadro de Mando Integral, según lo consideraron Kaplan y Norton, adopta cuatro
+perspectivas fundamentales. ¿Cuál de las mencionadas a continuación NO se incluye entre
+ellas?:
+A) Perspectiva de las finanzas (Financial).
+B) Perspectiva de la gestión (Management).
+C) Perspectiva de los procesos internos (Internal Business).
+D) Perspectiva del aprendizaje y del crecimiento (Learning and Growth).
+
+3. La arquitectura de un sistema de computación Grid está formada por las siguientes capas o
+niveles:
+A) Persistence Layer, Data Layer, Logic Layer (Business Layer), Service Layer y Presentation Layer.
+B) Fabric Layer, Connectivity Layer, Resource Layer, Collective Layer y Applications Layer.
+C) Provider Layer, Communicator Layer, Mediator Layer, Coordinator Layer y Presenter Layer.
+D) Transport Layer, Security Layer, Transaction Layer, Session Layer y Application Layer.
+
+4. La fase de Transición del Servicio del Ciclo de Vida del Servicio de ITIL versión 3 se describe
+como:
+A) La fase de diseño para el desarrollo de servicios de TI apropiados, incluyendo arquitectura,
+procesos, política y documentos.
+B) La fase en la que se garantiza la efectividad y eficacia en la provisión y el soporte de servicios
+con el fin de generar valor para el cliente y el proveedor del servicio.
+C) La fase de desarrollo y mejora de capacidades para el paso a producción de servicios nuevos y
+modificados.
+D) La fase en la que se genera y mantiene el valor para el cliente mediante la mejora del diseño y la
+introducción y Operación del servicio.
+
+5. Derechos del paciente respecto a la prescripción en Receta médica electrónica. Es FALSO:
+A) El paciente tiene derecho a que se garantice para los datos relativos a su tratamiento el
+cumplimiento de la normativa de protección de datos.
+B) El paciente tiene derecho a solicitar al médico, en el momento de la prescripción,
+confidencialidad en la dispensación de algún tratamiento concreto, pudiéndose realizar a través
+de receta en soporte papel.
+C) El paciente tiene derecho a que le sea entregado un documento de información del tratamiento
+prescrito.
+D) El paciente tiene derecho a que se garantice la protección de la confidencialidad de los datos
+relativos a su tratamiento con medidas correspondientes a un nivel de seguridad medio.
+
+6. Existen dos formas de establecer permisos para un archivo a través de la orden “chmod” en
+UNIX: de forma relativa o absoluta. Indíquenos qué permisos estamos asignando con la orden
+“chmod 641 prueba.sh”.
+A) Permisos de lectura y ejecución al propietario, permiso de escritura al grupo y permiso de
+ejecución al resto de usuarios.
+B) Permisos de lectura, escritura y ejecución al propietario, permisos de lectura y ejecución al
+grupo y permiso de escritura al resto de usuarios.
+C) Permisos de lectura y escritura al propietario, lectura y ejecución al grupo y permiso de lectura
+al resto de usuarios.
+D) Permisos de lectura y escritura al propietario, lectura al grupo y permiso de ejecución al resto de
+usuarios.
+
+7. La Historia Clínica Electrónica es:
+A) Un repositorio que almacena exclusivamente la información generada durante el proceso de
+atención sanitaria correspondiente al ingreso hospitalario del paciente.
+B) Un conjunto de documentos que contiene datos, valoraciones e informaciones sobre la
+situación y evolución de un paciente a lo largo del proceso asistencial, sin valor jurídico-legal.
+C) Una herramienta esencial para el trabajo de cualquier profesional de la salud sólo con función
+asistencial.
+D) Un sistema que permite la continuidad de la información en todos los puntos de cuidado
+asistencial y sirve como soporte para la toma de decisiones.
+8. El artículo 3 de la Ley 8/2011, de 23 de marzo, de Igualdad entre Mujeres y Hombres y contra la
+Violencia de Género en Extremadura enumera los principios generales de actuación de los
+poderes públicos para cumplir los objetivos de citada ley. Señale cuál de las siguientes
+respuestas NO recoge uno de los principios generales contemplados en dicho artículo:
+A) La ruptura de la brecha de género en la Sociedad de la Información, el Conocimiento y la
+Imaginación.
+B) La interseccionalidad.
+C) La atribución, con carácter igualitario, de las responsabilidades de mantenimiento, repostaje y
+reparación de los medios de transporte familiares.
+D) La representación equilibrada.
+9. ¿Cuándo comienza el cómputo del plazo de prescripción de las infracciones, con base en el
+artículo 47 de la Ley Orgánica de Protección de Datos?
+A) El día siguiente a la comisión de la infracción.
+B) El mismo día en que la infracción se hubiese cometido.
+C) El día de inicio del procedimiento sancionador.
+D) Las infracciones en materia de protección de datos no prescriben, dado que se trata de
+vulneraciones a la intimidad de las personas.
+
+10. En la metodología de desarrollo estructurada, dependiendo del enfoque, se puede establecer
+la siguiente clasificación: Orientación al proceso y orientación a los datos. De entre las
+siguientes metodologías de desarrollo estructuradas seleccione aquella que es clasificada como
+una metodología orientada a datos:
+A) Método de DeMarco.
+B) Método de Gane y Sarson.
+C) Metodología de Yourdon/Constantine.
+D) Metodología de Warnier-Orr.
+11. En SNMPv2, indique qué PDU es la única que NO. recibe una PDU Response de la entidad que
+la recibe.
+A) GetRequest
+B) SetRequest
+C) GetBulkRequest
+D) Trap-SNMPv2
+12. En un entorno de computación Grid, ¿qué nombre reciben las agrupaciones dinámicas de
+diferentes organizaciones físicas o individuos que comparten recursos y colaboran con el fin de
+lograr un objetivo común?
+A) Virtual organizations (VO)
+B) Grid Domain Resources (GDR)
+C) Domain Group Policy (DGP)
+D) Organization Resource Group (ORG)
+13. Según la Ley General de Sanidad, ¿cuáles centros y establecimientos sanitarios precisarán
+autorización administrativa previa para su instalación y funcionamiento?:
+A) Únicamente los centros y establecimientos sanitarios públicos.
+B) Únicamente los centros y establecimientos sanitarios concertados.
+C) Todos los centros y establecimientos sanitarios, cualesquiera que sea su nivel y categoría o
+titular.
+D) Únicamente los centros y establecimientos sanitarios privados.
+14. El artículo 15.2 del Estatuto de Autonomía enumera una serie de instituciones estatutarias
+dotadas de autonomía orgánica, funcional y presupuestaria. ¿Cuál de las enunciadas a
+continuación NO se halla entre las contenidas en el artículo 15.2?:
+A) El Instituto de la Mujer.
+B) El Consejo de Cuentas.
+C) El Personero del Común.
+D) El Consejo Económico y Social.
+
+15. El fichero /etc/fstab contiene la siguiente línea:
+	/dev/sda2 / ext2 defaults 0 1
+Sobre dicha línea, indique cuál de las siguientes afirmaciones es VERDADERA.
+A) El sistema de ficheros / no será chequeado en el arranque del sistema.
+B) Se permite el uso de la instrucción dump.
+C) El sistema de archivos será chequeado en el arranque en primer lugar.
+D) A) y B) son correctas.
+16. Nuestro router WiFi 802.11g emite en el canal 5 del rango de frecuencias de 2,4 GHz pero
+notamos que nuestra conexión inalámbrica no funciona todo lo rápido que esperamos.
+Utilizando un programa escaneador de redes WiFi, hemos detectado que existe una red WLAN
+cercana que está emitiendo en el canal 7 y está produciéndonos interferencia en nuestra señal.
+Indique qué separación mínima de canales se debe respetar para que no se solapen las dos
+señales.
+A) 1 canal.
+B) 3 canales.
+C) 5 canales.
+D) 7 canales.
+17. ASP.NET proporciona varios modos de persistencia para las variables de sesión. Indique cuál de
+las respuestas NO es un modo válido:
+A) InProc
+B) StateServer
+C) ClusterServer
+D) SqlServer
+18. Seleccione la opción CORRECTA de entre las siguientes afirmaciones que hacen referencia al
+esquema de estrella:
+A) Un esquema de estrella es un modelo de datos que tiene una tabla de dimensiones que
+contiene los datos para el análisis y está rodeada de las tablas de hechos.
+B) En un esquema de estrella la tabla de hechos tendrá siempre una clave primaria simple.
+C) Cuando a un esquema en estrella se aplican principios de normalización a una tabla de
+dimensión, el resultado se conoce como esquema de copo de nieve.
+D) El esquema de estrella es un modelo dimensional implementado en una base de datos
+multidimensional.
+19. Corresponde la propuesta de nombramiento y cese del Gerente de Área de Salud...
+A) Al Consejo de Dirección del Área de Salud.
+B) Al Director Gerente del Servicio Extremeño de Salud.
+C) Al titular de la Consejería competente en materia de Sanidad.
+D) Al Secretario General del Servicio Extremeño de Salud.
+
+20. ¿Cuál de las siguientes afirmaciones es FALSA respecto de la teoría de la normalización en el
+modelo relacional?
+A) Una relación, por el mero hecho de serlo, está siempre en primera forma normal (1FN).
+B) Una relación cuya clave principal es un único atributo está, siempre, en segunda forma normal
+(2FN).
+C) Una relación cuya clave es un único atributo y está en tercera forma normal (3FN) también lo
+está, siempre, en forma normal de Boyce-Codd (FNBC).
+D) Una relación que está en cuarta forma normal (4FN) no tiene por qué estar en forma normal de
+Boyce-Codd (FNBC).
+21. Respecto al Diagrama de Flujo de Datos (DFD), indique la sentencia FALSA:
+A) Se puede usar el DFD para representar un sistema o un software a cualquier nivel de
+abstracción.
+B) Un DFD es una técnica muy apropiada para reflejar de una forma clara y precisa los procesos
+que conforman el sistema de información.
+C) El DFD muestra el flujo o movimiento de los datos a través del sistema y sus transformaciones
+como resultado de la ejecución de los procesos.
+D) El DFD es una técnica procedimental, permite representar con su notación gráfica tratamientos
+condicionales y bucles.
+22. ¿Cuál de las siguientes afirmaciones es CIERTA respecto de la teoría de la normalización en el
+modelo relacional?
+A) No siempre se puede descomponer un esquema relacional en otro equivalente en segunda
+forma normal (2FN) sin perder dependencias funcionales.
+B) No siempre se puede descomponer un esquema relacional en otro equivalente en tercera forma
+normal (3FN) sin perder dependencias funcionales.
+C) No siempre se puede descomponer un esquema relacional en otro equivalente en forma normal
+de Boyce-Codd (FNBC) sin perder dependencias funcionales.
+D) Ninguna de las afirmaciones anteriores es cierta.
+23. Respecto a la Calidad de Servicio en redes, indique qué tipo de servicio se caracteriza por
+proporcionar un ancho de banda y un retardo máximo extremo a extremo en la entrega de los
+paquetes.
+A) Servicio de control de admisión.
+B) Servicio garantizado.
+C) Servicio de carga controlada.
+D) Servicio del mejor esfuerzo.
+24. Indique cuál de las siguientes direcciones IPv4 puede utilizarse como una IP pública de equipo
+en Internet.
+A) 10.127.234.3
+B) 129.12.4.4
+C) 172.18.245.5
+D) 192.168.34.6
+
+25. Existen cuatro plataformas del lenguaje de programación Java. Una de estas plataformas es la
+Java Platform Enterprise Edition (Java EE, anteriormente conocida como J2EE). Selecciona la
+respuesta CORRECTA respecto a la plataforma Java EE:
+A) La API de Java EE proporciona la funcionalidad básica del lenguaje de programación Java. Define
+todo, desde los tipos básicos y los objetos del lenguaje de programación Java hasta las clases de
+alto nivel que se utilizan para la programación en redes, seguridad, acceso a bases de datos,
+desarrollo de interfaces gráficas de usuario (GUI) y parseo del XML.
+B) La plataforma Java EE está construida sobre la plataforma Java SE. La plataforma Java EE
+proporciona una API y un entorno de ejecución para desarrollar y ejecutar aplicaciones de gran
+escala, multicapa, escalables, confiables y de red seguras.
+C) La plataforma Java EE proporciona una API y una máquina virtual que ocupa poco espacio para
+ejecutar aplicaciones Java en pequeños dispositivos, como por ejemplo móviles.
+D) La plataforma Java EE es una plataforma para crear aplicaciones ricas en Internet utilizando una
+API de interfaz de usuario ligera.
+26. Las variables de sistema almacenan determinados valores que pueden sernos de utilidad para
+el trabajo diario en un sistema Unix/Linux. Indique, de las siguientes sentencias del shell
+Bourne Again (bash), cuál es CORRECTA.
+A) HOME = /home/pperez
+B) HOME=/usuarios/home/pperez
+C) set HOME=/home/pperez
+D) No se puede asignar valor a la variable HOME pues es una variable del sistema reservada.
+27. ¿A quién le corresponde la facultad de categorizar un sistema de información en materia de
+seguridad, según el artículo 44 del R.D. 3/2010?:
+A) Al responsable del mismo.
+B) Al INTECO.
+C) Al Comité de Seguridad de la Información de las Administraciones Públicas.
+D) Al Centro Criptológico Nacional.
+28. Todos los Sistemas de Archivo y Comunicación de Imágenes (PACS) constan de diversos
+componentes o subsistemas. De los mencionados a continuación, ¿cuál NO forma parte del
+PACS?:
+A) Sistema de Adquisición de imágenes.
+B) Red de Comunicaciones.
+C) Sistema de Generación de informes clínicos.
+D) Sistema de Visualización y proceso de imágenes.
+29. ¿En qué proceso de MÉTRICA Versión 3 se realiza la actividad Establecimiento de Requisitos de
+Implantación?
+A) En el proceso de Análisis del Sistema de Información.
+B) En el proceso de Diseño del Sistema de Información.
+C) En el proceso de Construcción del Sistema de Información.
+D) La actividad Establecimiento de Requisitos de Implantación no se contempla en MÉTRICA
+Versión 3.
+
+30. Dada la siguiente sentencia de actualización SQL se puede determinar que lo que se pretende
+conseguir es:
+ UPDATE trabajador T1
+ SET tarifa_hora = tarifa_hora * 1.05
+ WHERE id_supervisor = 1520
+ AND 30 < (SELECT SUM(num_dias)
+ FROM asignacion
+ WHERE id_trabajador = T1.id_trabajador
+ AND id_edificio IN (SELECT id_edificio
+ FROM edificio
+ WHERE id_zona = 5)
+ )
+A) Incrementar en un 1,5 por ciento la tarifa por hora de todos los trabajadores cuyo supervisor sea
+el 1520 y que no han trabajado más de 30 días en edificios de la zona 5.
+B) Incrementar en un 5 por ciento la tarifa por hora de todos los trabajadores cuyo supervisor sea
+el 1520 y que han trabajado más de 30 días en edificios de la zona 5.
+C) Incrementar en un 5 por ciento la tarifa por hora de todos los trabajadores cuyo supervisor sea
+el 1520 y que han trabajado menos de 30 días en edificios de la zona 5.
+D) Ninguna de las anteriores es correcta ya que la sentencia SQL es errónea.
+31. En cuanto a las prestaciones del Sistema Sanitario Público de Extremadura establecidas en el
+artículo 5 de la Ley de Salud de Extremadura:
+A) Superarán a las establecidas por el Sistema Nacional de Salud.
+B) Podrán ser superiores a las establecidas por el Sistema Nacional de Salud aunque para ello no
+haya financiación específica.
+C) Serán como mínimo las establecidas en cada momento para el Sistema Nacional de Salud.
+D) No es necesario que sean las establecidas por el Sistema Nacional de Salud estando cubierta la
+Atención Primaria.
+32. Microsoft comercializa diversas ediciones de su sistema operativo Windows 7 para cubrir las
+distintas necesidades de sus clientes. Indique, de las ediciones que se enumeran, cuál
+proporciona un mayor número de características y funciones.
+A) Home Basic
+B) Home Premium
+C) Ultimate
+D) Professional
+33. ¿Qué aspectos de la interoperabilidad NO forman parte de las tareas que configuran el
+proyecto epSOS?:
+A) Aspectos técnicos.
+B) Aspectos semánticos.
+C) Aspectos de reembolso transfronterizo.
+D) Aspectos jurídicos.
+
+34. Según el artículo 34 del Real Decreto 3/2010, que regula el Esquema Nacional de Seguridad en
+el ámbito de la Administración Electrónica, los sistemas de información regulados en el Real
+Decreto serán objeto de una auditoría regular ordinaria. ¿Con qué periodicidad?
+A) Al menos cada dos años.
+B) Cada cinco años.
+C) Al menos cada cuatro años.
+D) Anualmente.
+35. En el proceso de transformación de un esquema conceptual (modelo E/R) al modelo lógico
+(modelo relacional) caben varias soluciones de transformación ante un tipo de entidad
+supertipo y sus subtipos. ¿Cuál de las siguientes soluciones NO es válida?
+A) Englobar todos los atributos del supertipo y los de los subtipos en una sola relación, añadiendo
+también el atributo discriminante.
+B) Crear una relación para el supertipo y tantas relaciones como subtipos haya, con sus atributos
+correspondientes.
+C) Considerar relaciones distintas para cada subtipo, que contengan, además de los atributos
+propios, los atributos comunes.
+D) Crear una relación para el supertipo, tantas relaciones como subtipos haya, y una nueva relación
+que tendrá como clave primaria la concatenación de los identificadores principales del supertipo
+y los subtipos.
+36. Indique cuál NO es una dirección IPv6 válida.
+A) D789:1:8:A75B:3C9G:B74F:F8:B0
+B) A123:A1:85:F86B:643B:C74F:D8:4B
+C) D789:1:8:A75B:3C9B:F:172.17.234.7
+D) A345:FF98::78
+37. Con base en el artículo 8 de la Ley de Salud de Extremadura, ¿cuál de las siguientes
+atribuciones NO corresponde a la Consejería competente en materia de sanidad, en el marco
+de la política sanitaria definida por la Junta de Extremadura?:
+A) La aprobación del mapa sanitario de la Comunidad.
+B) Ordenación y regulación de las funciones de policía sanitaria mortuoria.
+C) Establecer la estructura básica y las características que ha de reunir el sistema de información
+sanitaria.
+D) Vigilar, inspeccionar y evaluar las actividades del Sistema Sanitario Público de Extremadura, y su
+adecuación al Plan de Salud.
+38. Seleccione la fase del Ciclo de Vida del Servicio de ITIL donde se realiza el proceso de Gestión
+del Catálogo de Servicios (SCM).
+A) Diseño del Servicio.
+B) Mejora Continua del Servicio.
+C) Estrategia del Servicio.
+D) Transición del Servicio.
+
+39. ¿En cuál de los siguientes tipos de asistencia posibles en el Servicio Extremeño de Salud NO
+está todavía implantado el sistema de Receta médica electrónica?:
+A) Atención prestada por el médico de familia en la consulta del Centro de Salud.
+B) Atención prestada en el domicilio del paciente.
+C) Atención prestada por el médico especialista en la consulta del Hospital.
+D) Atención prestada en los servicios de urgencias.
+40. Respecto a la seguridad en redes, indique qué es un exploit.
+A) Es un malware diseñado para aprovechar la vulnerabilidad de un software.
+B) Persona que accede a datos no autorizados.
+C) Adware que modifica la página de inicio de los navegadores de Internet sin el consentimiento
+del usuario.
+D) Software utilizado para la suplantación de la identidad de un usuario de la red.
+41. En la Java Platform Enterprise Edition (Java EE, anteriormente conocida como J2EE), ¿cuáles
+son los cuatro tipos de módulos Java EE que existen y que puede contener un archivo EAR
+(Enterprise Archive)?
+A) Módulo JMS, Módulo EJB, Módulo Web y Módulo de la aplicación cliente.
+B) Módulo Web Services, Módulo EJB, Módulo Web y Módulo adaptadores de recursos.
+C) Módulo EJB, Módulo Web, Módulo de la aplicación cliente y Módulo adaptadores de recursos.
+D) Módulo Web Services, Módulo EJB, Módulo Web, Módulo de la aplicación cliente.
+42. Indique cuál NO es un comando del protocolo de correo electrónico POP3.
+A) OPEN
+B) DELE
+C) RSET
+D) QUIT
+43. Si el usuario A desea enviar un documento firmado digitalmente por él al usuario B:
+A) El usuario A debe enviar el documento acompañado del documento cifrado con la clave pública
+de B.
+B) El usuario A debe enviar el documento acompañado del resultado de aplicar la función hash al
+documento y éste cifrado con la clave pública de B.
+C) El usuario A debe enviar el documento acompañado del resultado de aplicar la función hash al
+documento y éste cifrado con la clave privada de A.
+D) El usuario A debe enviar el documento cifrado con la clave pública de B acompañado del
+resultado de aplicar la función hash al documento y todo cifrado con la clave privada de A.
+44. ¿Qué versión de Windows de las que se enumeran utiliza el Windows Boot Manager
+(BOOTMGR) como gestor de arranque?
+A) Windows 95
+B) Windows NT
+C) Windows XP
+D) Windows 8
+
+45. Acerca de las tecnologías xDSL, indica cuál de las siguientes afirmaciones es FALSA.
+A) IDSL, HDSL y SDSL son simétricas.
+B) VDSL es la técnica xDSL más limitada por la distancia y la que más velocidad proporciona.
+C) HDSL es la técnica que no necesita splitter.
+D) Para evitar interferencias en la señal producidas por aparatos telefónicos no lineales se intercala
+un filtro paso bajo entre el teléfono y la roseta telefónica.
+46. En un Diagrama de Flujo de Datos (DFD), ¿cuál de las siguientes conexiones NO está permitida?
+A) Proceso → Almacén (origen un proceso y destino un almacén).
+B) Almacén → Proceso (origen un almacén y destino un proceso).
+C) Entidad externa → Almacén (origen una entidad externa y destino un almacén).
+D) Entidad externa → Proceso (origen una entidad externa y destino un proceso).
+47. La Figura 1 representa un ejemplo de una jerarquía de generalización/especialización en el
+Modelo E/R extendido. ¿De qué tipo de jerarquía se trata?
+A) Jerarquía total con solapamiento.
+B) Jerarquía total sin solapamiento.
+C) Jerarquía parcial con solapamiento.
+D) Jerarquía parcial sin solapamiento.
+48. Indique cuál NO es una tecnología o protocolo utilizado en las redes privadas virtuales.
+A) L2Sec
+B) TTLP
+C) L2TP
+D) PPTP
+49. Cuando un cliente SMTP desea enviar un e-mail a un servidor SMTP, lo primero que debe
+realizar es establecer una conexión con dicho servidor. ¿Con qué código numérico comenzará
+la respuesta del servidor si la conexión se ha establecido correctamente?
+A) 220
+B) 250
+C) 354
+D) 421
+
+50. Respecto a la calidad del servicio en VoIP, indique qué es el Jitter.
+A) Parámetro que determina el número máximo de paquetes que la red pierde por unidad de
+tiempo.
+B) La latencia en la entrega de los paquetes.
+C) Eco producido por el retorno de la señal que se escucha por los altavoces y se introduce de
+nuevo por el micrófono.
+D) La variación en el tiempo de llegada de los paquetes.
+51. ¿Cuál de las siguientes afirmaciones NO es correcta respecto a IHE (Integrating the Healthcare
+Enterprise)?
+A) En un Perfil de Integración IHE la transmisión de la información se describe en términos de
+“transacciones” entre “actores”.
+B) Un Perfil de Integración IHE describe la solución para un problema de integración específico.
+C) Los Perfiles de Integración IHE se basan en estándares existentes que ya se utilizan en el entorno
+de la asistencia sanitaria, como DICOM y HL7.
+D) Un mismo Perfil de Integración IHE puede aplicarse a distintos dominios clínicos como
+cardiología, laboratorio y radiología.
+52. El modelo de madurez CMM (Capability Maturity Model) del SEI (Software Engineering
+Institute) define uno de sus niveles de madurez del proceso de la siguiente forma: "El proceso
+del software de las actividades de gestión y de ingeniería se documenta, se estandariza y se
+integra dentro de un proceso de software de toda una organización. Todos los proyectos
+utilizan una versión documentada y aprobada del proceso de la organización para el desarrollo
+y mantenimiento del software". ¿A qué nivel de madurez del proceso se refiere?
+A) Repetible (nivel 2).
+B) Definido (nivel 3).
+C) Gestionado (nivel 4).
+D) Ninguno de los anteriores.
+53. La cantidad de texto cifrado que necesitamos para poder descubrir la clave de un criptosistema
+se denomina:
+A) Entropía.
+B) Entropía condicionada.
+C) Índice de redundancia.
+D) Distancia de unicidad.
+54. Seleccione el fichero de Linux que contiene las direcciones de los servidores DNS necesarios
+para la navegación por Internet.
+A) crontab
+B) interfaces
+C) resolv.conf
+D) dns.conf
+
+55. Según el artículo 25 de la Ley 8/2011, de Igualdad entre Mujeres y Hombres y contra la
+Violencia de Género en Extremadura, la Junta de Extremadura aprobará cada cuatro años el
+Plan Estratégico para la Igualdad entre Mujeres y Hombres...
+A) Cuando así lo soliciten los colectivos feministas de la Comunidad Autónoma.
+B) A propuesta de la Consejería competente en materia de igualdad y con el Dictamen del Consejo
+Extremeño de Participación de las Mujeres.
+C) A propuesta de la Consejería competente en materia de igualdad y con el Dictamen favorable
+del Consejo Consultivo.
+D) A propuesta de la Consejería competente en materia de igualdad, previo informe de las
+Agrupaciones de Consumidores y Usuarios de la Comunidad.
+56. ¿Cuál de las siguientes afirmaciones NO es correcta respecto al protocolo ARP?
+A) Son las siglas de Address Resolution Protocol.
+B) Convierte una dirección IP en su dirección de red física.
+C) Convierte la dirección MAC en dirección IP.
+D) Si un ordenador no encuentra la dirección en su tabla ARP, difunde dicha dirección por toda la
+red para que si algún otro ordenador la reconoce, le envíe la dirección de red física.
+57. Según la notación gráfica estandarizada BPMN 2.0 (Business Process Modeling Notation),
+indique que tres elementos, denominados X, Y y Z, están representados gráficamente en la
+Figura 2:
+A) X=Evento Inicial, Y=Tarea, Z=Evento Final
+B) X=Evento Inicial, Y=Subproceso, Z=Evento Intermedio
+C) X=Evento Intermedio, Y=Tarea, Z=Evento Final
+D) X=Evento Inicial, Y=Transacción, Z=Evento Intermedio
+58. En cuanto a los siguientes equipos de interconexión de redes, indique qué afirmación es FALSA:
+A) Un hub es un repetidor multipuerto.
+B) Un switch no puede tener una dirección de red (por ejemplo, una dirección IP).
+C) Un router siempre tendrá al menos dos direcciones de red.
+D) Un bridge no examina la cabecera del paquete de nivel Internet del modelo TCP/IP (capa de red
+modelo OSI).
+
+59. En cuanto a los protocolos de rooting, ¿cuál de las siguientes afirmaciones NO es correcta?
+A) Las rutas dinámicas permiten ocultar información de la red.
+B) Un router puede mantener tablas de enrutamiento asociados a distintos protocolos.
+C) RIP es un protocolo de enrutamiento por vector de distancia.
+D) OSPF requiere más costes de procesamiento y memoria.
+60. ¿Cuál de las siguientes afirmaciones es FALSA con respecto al modelo de ciclo de vida conocido
+como Modelo en Espiral?
+A) Puede verse como un modelo evolutivo que conjuga la naturaleza iterativa del Modelo de
+Prototipos con los aspectos controlados y sistemáticos del Modelo en Cascada.
+B) Incorpora objetivos de calidad y gestión de riesgos.
+C) El software se desarrolla en una serie de versiones incrementales.
+D) Modelo de bajo coste que no requiere usuarios experimentados.
+61. Indique cuál de las siguientes opciones NO es un estándar de HL7:
+A) HL7 Arden Syntax
+B) HL7 Clinical Document Architecture (CDA)
+C) HL7 Clinical Context Management Specification (CCOW)
+D) HL7 Patient Identifier Linkage (PIL)
+62. ¿A qué organismo le corresponde la supervisión del funcionamiento del sistema y de los
+organismos de certificación de dispositivos seguros de creación de firma electrónica, según el
+artículo 29 de la Ley 59/2003?
+A) A los ayuntamientos.
+B) A la Consejería de Innovación.
+C) Al Coordinador de Zona respectivo.
+D) Al Ministerio de Ciencia y Tecnología.
+63. Las distribuciones Debian o Ubuntu, entre otras, permiten instalar habitualmente nuevas
+utilidades a partir de ficheros .deb. Indique cuál de las siguientes sentencias Linux es
+incorrecta:
+A) apt-update
+B) dpkg-reconfigure
+C) apt-cache search xorg
+D) dpkg
+64. ¿Cuál de las siguientes características NO define una buena ERS (Especificación de Requisitos
+de Software) según el estándar IEEE 830-1998?
+A) Priorizable
+B) Verificable
+C) Trazable
+D) Inalterable
+
+65. La igualdad reconocida en el artículo 14 de la Constitución Española de 1978 se establece sin
+que pueda prevalecer discriminación por razón de:
+A) "Nacimiento, raza, religión, opinión, ideología o cualquier otra condición o circunstancia
+personal o social."
+B) "Nacionalidad, religión, condición física o cualquier otra condición."
+C) "Nacimiento, raza, sexo, religión, opinión o cualquier otra condición o circunstancia personal o
+social."
+D) La igualdad ante la ley no está reconocida en el artículo 14.
+66. Tenemos dos planes semanales de backup para nuestro sistema (tabla 1): Indique qué afirmación de las siguientes es CORRECTA:
+A) Ante un fallo producido el jueves, para la recuperación de la información se requiere la
+utilización de un menor número de copias en el Plan X que en el Y.
+B) Ante un fallo producido el jueves, para la recuperación de la información se requiere la
+utilización de un menor número de copias en el Plan Y que en el X.
+C) La copia de seguridad del lunes en el Plan X ocupa más espacio que la del lunes del Plan Y.
+D) La copia de seguridad del lunes en el Plan Y ocupa más espacio que la del lunes del Plan X.
+67. Indique la longitud en bits de la dirección MAC de una tarjeta Ethernet:
+A) 48 bits.
+B) 64 bits.
+C) 92 bits
+D) 128 bits.
+68. Las banderas de España y de Extremadura se componen de 3 franjas horizontales. Las de la
+bandera de España son roja, amarilla y roja, en tanto las de la bandera de Extremadura son
+verde, blanca y negra. Elija la respuesta CORRECTA referida a la anchura de sus franjas:
+A) En ambos casos las tres franjas horizontales son iguales.
+B) En la bandera de España las tres franjas horizontales son iguales, y en la bandera de
+Extremadura la franja blanca es de doble anchura respecto a la verde y la negra.
+C) En la bandera de España la franja amarilla es de doble anchura que cada una de las rojas, y en la
+bandera de Extremadura las tres franjas horizontales son iguales.
+D) En la bandera de España la franja amarilla es de doble anchura que cada una de las rojas, y en la
+bandera de Extremadura la franja blanca es de doble anchura respecto a la verde y la negra.
+69. Indique cuál NO es un protocolo o tecnología relacionada con VoIP.
+A) H.323
+B) EVTP (Encoded Voice Transmission Protocol)
+C) SIP (Session Initiation Protocol)
+D) MGCP (Media Gateway Control Protocol)
+
+70. Seleccione los valores adecuados de las variables X e Y para completar el diagrama de
+transición de estados de una transacción que se muestra en la Figura 3.
+A) X=En ejecución, Y=En espera
+B) X=Procesada, Y=Parcialmente abortada
+C) X=Ejecutada, Y=Bloqueada
+D) X=Parcialmente comprometida, Y=Fallida
+71. ¿Cuál de las siguientes opciones NO es un operador específico de un sistema o herramienta
+OLAP?
+A) DRILL
+B) POLL
+C) PIVOT
+D) SLICE & DICE
+72. Sobre la Fibra Óptica, indique cuál de las siguientes afirmaciones es CORRECTA:
+A) La fibra unimodal de índice escalonado tiene un núcleo central mayor que la fibra multimodal de
+índice graduado.
+B) La fibra multimodal de índice escalonado es la que mayor ancho de banda proporciona respecto
+a los otros tipos de fibra.
+C) En la fibra unimodal de índice escalonado con revestimiento de aire, el índice de refracción del
+núcleo es menor que el del revestimiento.
+D) En la fibra multimodal de índice graduado, el índice de refracción del núcleo es mayor en el
+centro de la fibra.
+73. Seleccione la respuesta correcta que enumera los cuatro elementos que integran el esquema
+lógico REDER (en inglés RADAR) que forma parte del Modelo EFQM de Excelencia.
+A) Requisitos, Enfoque, Desarrollo, Evaluación y Riesgos.
+B) Resultados, Enfoque, Despliegue, Evaluación y Revisión.
+C) Requisitos, Entorno, Desarrollo, Estimación y Revisión.
+D) Resultados, Entorno, Despliegue, Estimación y Riesgos.
+
+74. Supongamos un formulario HTML sencillo como el que se muestra a continuación:
+<form action="accion.php" method="post">
+<p>Su nombre: <input type="text" name="nombre" /></p>
+<p>Su edad: <input type="text" name="edad" /></p>
+<p><input type="submit" /></p>
+</form>
+¿Qué sentencias deberíamos escribir en la página accion.php si quisiéramos mostrar
+información del formulario enviado?
+A) Hola <?php echo htmlspecialchars($_POST['nombre']); ?>.
+Usted tiene <?php echo (int)$_POST['edad']; ?> años.
+B) Hola <?php echo htmlspecialchars(request.getParameter('nombre'); ?>.
+Usted tiene <?php echo (int)request.getParameter('edad'); ?> años.
+C) Hola <?php echo htmlspecialchars(request.querystring('nombre'); ?>.
+Usted tiene <?php echo (int)request.querystring('edad'); ?> años.
+D) Hola <?php echo htmlspecialchars($_GET['nombre']); ?>.
+Usted tiene <?php echo (int)$_GET['edad']; ?> años.
+75. ¿Cuál de las siguientes opciones NO refleja una categoría válida de clasificación de clusters en
+relación al uso que se les da y los servicios que ofrecen?
+A) High Performance Clusters.
+B) High Availability Clusters.
+C) High Storage Clusters.
+D) High Throughput Clusters.
+76. Seleccione la respuesta INCORRECTA respecto al protocolo SOAP.
+A) SOAP asume que cada mensaje tiene un remitente (sender) y un receptor (receiver), y un
+número arbitrario de intermediarios, llamados nodos, que procesan el mensaje y redirigen este
+al receptor.
+B) Un mensaje SOAP puede contener opcionalmente una cabecera (Header), compuesta por uno o
+más bloques de cabecera, que contiene información útil para el envío y procesado de mensajes.
+C) Un mensaje SOAP debe contener un cuerpo (Body), que transmite información específica de la
+aplicación desde el primer nodo remitente al nodo receptor final.
+D) SOAP establece que el protocolo HTTP es el único protocolo de comunicación subyacente para
+el envío de mensajes.
+77. Dentro de los criterios e indicadores de medida que considera el sistema de información sobre
+Listas de Espera Quirúrgicas del SNS se incluye la “Demora media prospectiva”, que es:
+A) El tiempo, expresado en días naturales, que tardaría en absorberse el total de pacientes
+pendientes de intervención quirúrgica al ritmo de trabajo de un periodo anterior definido.
+B) El tiempo promedio, expresado en días, que llevan esperando los pacientes pendientes de
+intervención desde la fecha de entrada en el registro hasta la fecha final del periodo de estudio.
+C) El tiempo de espera, expresado en días, de los nuevos casos incluidos en el registro durante el
+periodo de estudio.
+D) El tiempo promedio, expresado en días, que han esperado los pacientes ya intervenidos desde la
+fecha de entrada en el registro hasta la fecha de la intervención quirúrgica.
+
+78. Seleccione la respuesta que NO identifica a una técnica utilizada en la disciplina de minería de
+datos (Data Mining).
+A) Reglas de asociación.
+B) Árboles de decisión.
+C) Redes neuronales.
+D) Matrices espaciales.
+79. La información contenida en el chip del DNI electrónico está contenida en tres zonas con
+diferentes niveles de acceso. Indique qué información está contenida en la Zona de seguridad:
+A) Certificado de autenticación.
+B) Datos de filiación del ciudadano.
+C) Claves Diffie-Hellman.
+D) Certificado X509 de componente.
+80. Respecto al protocolo DHCP contenido en la RFC 2131, indique cuál NO es un mensaje DHCP.
+A) DHCPDISCOVER
+B) DHCPREQUEST
+C) DHCPCONFIRM
+D) DHCPINFORM
+81. Una técnica utilizada para realizar el análisis de los requisitos y diseñar la interfaz de usuario
+es:
+A) JAD
+B) ETR
+C) PERT
+D) Todas las anteriores.
+82. Dada la siguiente clase Java Point, indique la sentencia que genera en su ejecución el resultado
+ilustrado en la Figura 4:
+	public class Point {
+		public int x = 0;
+		public int y = 0;
+		public Point(int a, int b) {
+			x = a;
+			y = b;
+		}
+	}
+A) Object originOne = new Object(23, 94);
+B) Point originOne = new Point(23, 94);
+C) OriginOne originOne = new OriginOne(23, 94);
+D) Point originOne = new Object(23, 94);
+83. ¿Qué tipos de pruebas se ejecutan durante el proceso de Construcción del Sistema de
+Información en la metodología de MÉTRICA Versión 3?
+A) Se realizan pruebas unitarias, pruebas de integración y pruebas del sistema.
+B) Únicamente se realizan pruebas unitarias y pruebas de integración.
+C) Se realizan pruebas unitarias, pruebas de integración y pruebas de implantación.
+D) Se realizan pruebas unitarias, pruebas de integración y pruebas de regresión.
+84. Indique cuál de las siguientes afirmaciones es CORRECTA.
+A) En una tabla definida en SQL sólo se puede establecer una clave ajena (foránea) que referencie a
+la clave principal de otra tabla.
+B) En una tabla definida en SQL sólo se puede establecer una clave ajena (foránea) que referencie a
+la clave principal o a un atributo que tenga la restricción de unicidad (UNIQUE) de otra tabla.
+C) En una tabla definida en SQL sólo se puede establecer una clave ajena (foránea) que referencie a
+un atributo que tenga la restricción de unicidad (UNIQUE) de otra tabla.
+D) Ninguna de las anteriores es correcta.
+85. Los dos componentes principales de ADO.NET para el acceso a los datos y su manipulación son:
+A) .NET Framework Data Connectivity y ADO.NET DataSet
+B) .NET Framework Data Providers y ADO.NET ResultSet
+C) .NET Framework Data Connectivity y ADO.NET ResultSet
+D) .NET Framework Data Providers y ADO.NET DataSet
+86. SNOMED CT es un estándar internacional. De los siguientes elementos, indicar cuál NO es un
+componente básico de SNOMED CT:
+A) Descripciones.
+B) Arquetipos.
+C) Conceptos.
+D) Relaciones.
+87. El artículo 4 del Real Decreto por el que se regula el Esquema Nacional de Seguridad en el
+ámbito de la Administración Electrónica enumera los principios básicos del Esquema Nacional
+de Seguridad. ¿Cuál de los siguientes principios NO aparece contemplado en dicho artículo?
+A) Gestión de riesgos.
+B) Reevaluación periódica.
+C) Líneas de defensa.
+D) Seguridad interior.
+88. El Proceso Unificado de Software consta de las cuatro fases siguientes:
+A) Iniciación, Elaboración, Modelado y Transición.
+B) Planificación, Elaboración, Construcción y Evolución.
+C) Planificación, Modelado, Construcción y Evolución.
+D) Iniciación, Elaboración, Construcción y Transición.
+
+89. El Estatuto de Autonomía, en su artículo 29, regula la moción de censura para exigir
+responsabilidad política al Presidente de la Comunidad. En relación con este tema, desde el
+momento que se presenta una moción de censura, ¿qué plazo se halla establecido para
+presentar mociones alternativas?
+A) 1 día.
+B) 2 días.
+C) 3 días.
+D) 4 días.
+90. ¿Qué nivel de RAID usa división de datos (striping) a nivel de bloques y distribuye la
+información de paridad entre todos los discos que conforman el array?
+A) RAID 1
+B) RAID 3
+C) RAID 4
+D) RAID 5
+91. ¿A qué órgano le corresponde la aprobación del anteproyecto del presupuesto anual del
+Organismo Autónomo Servicio Extremeño de Salud?:
+A) Al Parlamento de Extremadura.
+B) Al Consejo de Gobierno de la Junta de Extremadura.
+C) Al Director Gerente.
+D) Al titular de la Consejería competente en materia de Sanidad.
+92. Seleccione la respuesta que enumera tres elementos de nivel superior que puede contener un
+documento WSDL, es decir, tres elementos que cuelgan directamente del nodo raíz del
+documento WSDL:
+A) service, binding y transaction.
+B) webservice, binding y parameters.
+C) service, binding y types.
+D) binding, transaction y parameters.
+93. El artículo 8 de la Ley 59/2003 se refiere al período de validez de los certificados electrónicos.
+En este sentido, el período de validez de los certificados reconocidos...
+A) No podrá ser superior a tres años.
+B) No podrá ser superior a dos años.
+C) No podrá ser superior a cuatro años.
+D) No podrá ser superior a cinco años.
+94. Nuestra LAN está definida por la dirección de red y máscara 192.168.5.64/27. Indique cuál de
+las siguientes direcciones corresponde con la dirección de broadcast de esta red.
+A) 192.168.5.95
+B) 192.168.5.127
+C) 192.168.5.255
+D) 192.168.5.79
+
+95. Seleccione la afirmación CORRECTA respecto a la tecnología Java Servlet.
+A) Los paquetes sun.oracle.servlet y sun.oracle.http proporcionan interfaces y clases para escribir
+servlets Java.
+B) Todos los servlets Java deben implementar la interfaz Servlet, la cual define los métodos del
+ciclo de vida del servlet.
+C) La clase GenericServlet proporciona métodos, tales como doGet y doPost, para el manejo de los
+servicios específicos HTTP.
+D) Cuando llega una petición a una instancia de un servlet y ésta aún no existe, el contenedor web
+carga la clase del servlet, crea una instancia de esa clase e inicializa la instancia llamando al
+método initialize().
+96. ¿Qué tipos de mantenimiento quedan fuera del ámbito de MÉTRICA Versión 3?
+A) Mantenimiento Correctivo y Perfectivo.
+B) Mantenimiento Adaptativo y Evolutivo.
+C) Mantenimiento Evolutivo y Perfectivo.
+D) Mantenimiento Adaptativo y Perfectivo.
+97. Indique cuál de las siguientes sentencias Linux asignará la dirección 192.168.10.3/26 a la
+interfaz de red eth3:
+A) ifconfig eth3 192.168.10.3 netmask 255.255.255.192 up
+B) ifconfig eth3 192.168.10.3 netmask 26 up
+C) ifconfig eth3 192.168.10.3 netmask 255.255.255.128 up
+D) ifconfig eth3 192.168.10.3 netmask 255.255.255.0 up
+98. Las órdenes y utilidades que proporciona UNIX/Linux:
+A) Pueden encadenarse utilizando la salida de una orden como entrada de otra orden.
+B) Son grandes programas que realizan multitud de tareas.
+C) No pueden combinarse unas con otras para lograr un determinado objetivo.
+D) Tratan de manera diferente los directorios, los archivos ordinarios y los dispositivos, como
+Windows.
+99. ¿Cuántos diputados tiene la Asamblea de Extremadura según el artículo 17.1 del Estatuto de
+Autonomía de la C.A. de Extremadura?:
+A) No se establece ese número en ese artículo.
+B) No se establece ese número en el Estatuto de Autonomía de la C.A. de Extremadura.
+C) 65.
+D) Como máximo 65.
+100. ¿Qué nivel de la arquitectura ANSI/X3/SPARC contiene la visión global de todos los datos y las
+interrelaciones entre ellos?
+A) Nivel Interno.
+B) Nivel Conceptual.
+C) Nivel Externo.
+D) Ningún nivel de los anteriores contiene esa información.
+
+101. Señalar el lenguaje basado en XML creado por la WfMC (Workflow Management Coalition)
+para la definición de flujos de trabajo y que puede ser usado para intercambiar modelos de
+procesos de negocio entre distintas herramientas.
+A) Wf-XML
+B) BPXL
+C) XPDL
+D) WAPI
+102. La IHE (Integrating the Healthcare Enterprise) es una iniciativa internacional que promueve la
+utilización de estándares para la interoperabilidad de los sistemas de información de salud.
+Para el dominio de Laboratorio ha definido 6 perfiles de integración basados en el estándar
+HL7. De los siguientes perfiles IHE de Laboratorio seleccione el que es FALSO y por lo tanto NO
+existe:
+A) Laboratory Testing Workflow (LTW).
+B) Laboratory Validation Portal (LVP).
+C) Laboratory Point of Care Testing (LPOCT).
+D) Laboratory Code Sets Distribution (LCSD).
+103. En el paradigma Orientado a Objetos entendemos por polimorfismo:
+A) La capacidad para empaquetar los datos y las operaciones que manipulan esos datos en una
+misma entidad, clase u objeto.
+B) El mecanismo por el cual los atributos y operaciones de una clase puedan ser heredados por
+todas las clases y objetos que se instancian de ella.
+C) La posibilidad de que dos métodos implementen distintas acciones, aun teniendo el mismo
+nombre, dependiendo del objeto que lo ejecuta o de los parámetros que recibe.
+D) La capacidad de que los detalles de implementación interna de datos y procedimientos estén
+ocultos al mundo exterior.
+
+104.Un almacén de datos (Data Warehouse) NO se caracteriza por ser:
+A) Integrado, los datos en el almacén de datos deben integrarse en una estructura consistente.
+B) Orientado por temas, el almacén de datos está organizado de acuerdo con los temas más
+importantes para la organización.
+C) Variable en el tiempo, los datos en el almacén de datos siempre se cargan con una referencia
+temporal bajo la que son válidos.
+D) Volátil, los datos en el almacén de datos son leídos, actualizados y eliminados.
+
+105. Respecto a la telefonía IP, indique cuál de las siguientes afirmaciones es FALSA.
+A) En caso de pérdida de tramas de voz, se solicita la retransmisión de dichas tramas a la capa de
+transporte.
+B) La telefonía IP utiliza, entre otros, el protocolo SIP.
+C) Uno de los inconvenientes de la telefonía IP es la calidad de la comunicación (interferencias,
+distorsiones, etc).
+D) La telefonía IP tiene la ventaja de que es independiente del tipo de red física que la soporta.
+
+106. Indique qué tipo de registro de recurso DNS (Domain Name System) es el que almacena la
+dirección IP del host al que deseamos acceder.
+A) MX
+B) A
+C) SOA
+D) RESOLV
+107. ¿Cuál de las siguientes informaciones sobre el enrutamiento por estado de enlace es FALSA?
+A) Mantiene una base de datos de información sobre la topología de la red.
+B) Cada router carece de información de los routers distantes, sólo la posee de los vecinos.
+C) Utiliza publicaciones del estado de enlace (LSA).
+D) Cada router realiza una lista con las mejores rutas y con los puertos hacia las redes de destino.
+108. El diagrama de UML de la Figura 5 representa lo siguiente:
+A) El componente ledger.dll realiza las tres interfaces ILedger, IReports e IUnknown, y a su vez
+importa las dos interfaces IStreaming e ITransaction.
+B) El componente ledger.dll realiza las dos interfaces IStreaming e ITransaction, y a su vez importa
+las tres interfaces ILedger, IReports e IUnknown.
+C) El componente ledger.dll hereda de la clase IUnknown, realiza las dos interfaces ILedger e
+IReports, y contiene a una clase ITransaction y a una interfaz IStreaming.
+D) El componente ledger.dll realiza tres interfaces ILedger, IReports e IStreaming, y a su vez
+importa las dos interfaces IUnknown e ITransaction.
+109. En la plataforma .NET, ¿cuál es el estándar que define como se declaran, usan y administran
+los tipos de datos en el Common Language Runtime (CLR) y que es una parte importante para
+que múltiples lenguajes sean soportados?
+A) System Data Type (SDT)
+B) Common Type System (CTS)
+C) Common Data Integration (CDI)
+D) Data Type Core (DTC)
+
+110. En aplicaciones distribuidas multicapa Java Platform Enterprise Edition (Java EE,
+anteriormente conocida como J2EE) la capa web consta de componentes que se encargan de
+la interacción entre los clientes y la capa de negocio. Señale la opción en la que todas las
+tecnologías Java EE enumeradas son usadas en dicha capa web:
+A) Servlets, Enterprise JavaBeans y JavaServer Faces.
+B) JavaServer Pages (JSP), Java Transaction API (JTA) y JavaServer Pages Standard Tag Library.
+C) Servlets, JavaServer Pages (JSP) y Java Persistence API.
+D) Servlets, JavaServer Faces y JavaServer Pages Standard Tag Library.
+111. La arquitectura de tres niveles ANSI/X3/SPARC nos proporciona entre otras la independencia
+lógica de los datos, que nos permite:
+A) Cambiar el esquema interno sin necesidad de cambiar el esquema conceptual o los esquemas
+externos.
+B) Cambiar el esquema conceptual sin necesidad de cambiar el esquema interno.
+C) Cambiar el esquema conceptual sin necesidad de cambiar los esquemas externos ni los
+programas de aplicación.
+D) Cambiar el esquema externo sin necesidad de cambiar el esquema conceptual.
+112. La validez de los certificados contenidos en el chip del DNI electrónico tendrán un período de
+validez de:
+A) 24 meses.
+B) 30 meses.
+C) 36 meses.
+D) 48 meses.
+113. ¿Qué se considera “Diagnóstico Principal” a efectos de codificación en la CIE9MC?:
+A) El proceso patológico que se establece como causa del ingreso en el hospital.
+B) La patología más severa recogida en la historia clínica del paciente.
+C) La complicación más grave durante la estancia del paciente en el hospital.
+D) La patología que más recursos consume durante el episodio.
+114. Respecto a la arquitectura de almacenamiento SAN (Storage Area Network), seleccione la
+afirmación INCORRECTA:
+A) En una SAN, los dispositivos de almacenamiento no pertenecen en exclusiva a ningún ordenador
+o servidor.
+B) Las SAN pueden conectar servidores y ordenadores a recursos de almacenamiento, y también
+recursos de almacenamiento entre sí para equilibrar cargas o conseguir mayores niveles de
+seguridad.
+C) Una SAN proporciona acceso a bloques de datos a través de protocolos como Fibre Channel,
+SCSI, y actualmente, a través de iSCSI.
+D) En las arquitecturas SAN, el sistema de archivos se encuentra ubicado en el dispositivo de
+almacenamiento.
+
+115.Un protocolo híbrido es aquel que combina aspectos de protocolos de vector de distancia
+como de estado de enlace. Indique, de los siguientes protocolos de routing, cuál es un ejemplo
+de protocolo híbrido.
+A) EIGRP
+B) OSPF
+C) RIP
+D) IGRP
+116. Power Line Communications o PLC son tecnologías que aprovechan la red eléctrica para
+convertirla en un medio para la transmisión de datos a alta velocidad. Indique cuál es el
+estándar que regula este tipo de tecnologías:
+A) IEEE 1804
+B) IEEE 1901
+C) IEEE 2001
+D) IEEE 2104
+
+117.Un Sistema de Información de Radiología (RIS) se distribuye funcionalmente en diversas áreas.
+De las mencionadas a continuación, ¿cuál NO forma parte del RIS?:
+A) Área de Citación de pacientes.
+B) Área de Almacenamiento de imágenes.
+C) Área de Registro de actividad.
+D) Área de Transcripción y emisión de informes.
+
+118. ¿A qué tipo de ataque pertenece el denominado “ping de la muerte”?
+A) Spoofing.
+B) Man in the middle.
+C) Denial of Service.
+D) Flooding.
+
+119.Un dispositivo NAS (Network Attach Storage), ¿cómo proporciona acceso remoto a los
+ficheros que almacena?
+A) A través de protocolos de acceso a ficheros en red, como CIFS, NFS, FTP o TFTP.
+B) Directamente, a través de una interfaz ATA o SCSI.
+C) A través de protocolos propios de comunicación (Fibrechannel, i-SCASI, SCASI sobre IP, ...)
+D) Mediante protocolos de bajo nivel que transmiten a nivel de bloque de datos.
+120. Indique de los siguientes métodos de acceso que se enumeran, ¿cuál es un método de acceso
+al medio controlado distribuido?
+A) Polling bus.
+B) Token ring.
+C) CSMA/CD.
+D) Conmutación de circuitos.
+
+121. Señale la respuesta FALSA respecto al estándar DICOM (Digital Imaging and Communications
+in Medicine):
+A) El estándar DICOM especifica un protocolo de red, el Upper Layer Protocol (ULP), que se usa
+sobre TCP/IP y proporciona independencia de la red física.
+B) El estándar DICOM define un documento estructurado con múltiples partes que hacen más fácil
+su evolución y actualización.
+C) El estándar DICOM define objetos de información (Information Objects) no solamente para
+imágenes sino también para pacientes, estudios, informes y otras agrupaciones de datos.
+D) El estándar DICOM especifica procedimientos de prueba y validación para evaluar la
+conformidad de una implementación al estándar.
+122. Con base en el artículo 48 de la Ley Orgánica de Protección de Datos, los procedimientos
+sancionadores tramitados por la Agencia de Protección de Datos, salvo los referidos a
+infracciones de la Ley General de Telecomunicaciones tendrán una duración máxima de...
+A) 3 meses.
+B) 12 meses.
+C) 6 meses.
+D) 9 meses.
+123. ¿Qué documento NO forma parte de la Historia Clínica Digital del Sistema Nacional de Salud
+(HCDSNS)?
+A) Informe Clínico de Atención Primaria.
+B) Informe Clínico de Urgencias.
+C) Informe de Cuidados de Enfermería.
+D) Informe de Intervención Quirúrgica.
+124. Señale la afirmación FALSA respecto a la arquitectura cliente-servidor:
+A) En una arquitectura cliente-servidor, un cliente ligero (thin client) no implementa ningún
+aspecto de la lógica de aplicación, simplemente actúa como intermediario entre usuario y
+servidor.
+B) En el modelo cliente-servidor, el Middleware es el software distribuido necesario para el soporte
+de interacciones entre clientes y servidores a través de una plataforma heterogénea.
+C) En el modelo cliente-servidor, la escalabilidad horizontal permite la migración a una máquina
+servidora más grande y rápida o la incorporación de nuevas máquinas servidoras.
+D) El modelo 3-tier (cliente-servidor de 3 capas) es una extensión del modelo tradicional que
+pretende aumentar el desacoplamiento entre servidor y clientes.
+125. En el modelo relacional, la regla de Integridad de Entidad dice:
+A) Ningún atributo que forme parte de la clave primaria de una relación puede tomar valores
+nulos.
+B) En una relación no se permite la existencia de tuplas duplicadas.
+C) Es obligatorio que exista un conjunto mínimo de atributos que identifiquen de forma unívoca las
+tuplas de una relación.
+D) El orden tanto de las tuplas como de los atributos en una relación no es significativo.
+
+126. Para optimizar el acceso a los datos en nuestro disco duro, podemos realizar una
+desfragmentación de éste. Sobre la herramienta “Desfragmentador de disco” de Windows,
+indique qué afirmación es VERDADERA:
+A) Elimina tanto la fragmentación externa como la interna.
+B) Elimina la fragmentación externa pero no la interna.
+C) Elimina la fragmentación interna pero no la externa.
+D) Compacta los datos reduciendo el espacio no utilizado.
+
+127.Dada la Figura 6, que representa la estructura del Modelo EFQM de Excelencia, selecciona las
+variables X,Y y Z correctas que completan el modelo:
+A) X=Gestión de la demanda, Y=Proyectos, Z=Resultados de incidencias
+B) X=Planificación, Y=Proveedores, Z=Resultados financieros
+C) X=Liderazgo, Y=Alianzas y Recursos, Z=Resultados en la sociedad
+D) X=Gobierno, Y=Proyectos, Z=Resultados económicos
+128. ¿Cuál de los enunciados a continuación NO se encuentra entre los derechos individuales
+reconocidos al personal estatutario por el artículo 17 del Estatuto Marco del personal
+estatutario de los Servicios de Salud?:
+A) A recibir asistencia y protección de las Administraciones públicas y servicios de salud en el
+ejercicio de su profesión o en el desempeño de sus funciones.
+B) A la huelga, garantizándose en todo caso el mantenimiento de los servicios que resulten
+esenciales para la atención sanitaria a la población.
+C) A la movilidad voluntaria, promoción interna y desarrollo profesional, en la forma en que
+prevean las disposiciones en cada caso aplicables.
+D) A la formación continuada adecuada a la función desempeñada y al reconocimiento de su
+cualificación profesional en relación a dichas funciones.
+
+129. En Frame Relay, existen varios parámetros que determinan el ancho de banda contratado. Dos
+de ellos son el Bc (ráfaga comprometida) y Be (ráfaga en exceso). ¿Podría indicar qué ocurre
+con el tráfico entrante en la red por encima de Bc+Be (suma de la ráfaga comprometida y la
+ráfaga en exceso)?
+A) Se descarta directamente en el nodo de entrada.
+B) Se descarta si hay congestión en la red.
+C) Se marca con el bit DE (elegibilidad para descarte) activo.
+D) Ninguna es correcta.
+130. ¿Qué principio NO debe cumplirse para garantizar la seguridad de la Historia Clínica
+Electrónica?:
+A) Confidencialidad.
+B) Integridad.
+C) Repudio.
+D) Auditoría.
+131. Los sistemas transaccionales deben cumplir las cuatro propiedades conocidas como
+propiedades ACID, que son:
+A) Atomicidad, Coherencia, Aislamiento y Disponibilidad.
+B) Atomicidad, Coherencia, Integridad y Durabilidad.
+C) Atomicidad, Consistencia, Aislamiento y Durabilidad.
+D) Atomicidad, Consistencia, Integridad y Disponibilidad.
+132. En la fase de Mejora Continua del Servicio (CSI) de ITIL v3, el proceso que describe la forma de
+medir y analizar datos significativos para identificar tendencias y problemas, generar informes
+para la Dirección e implementar mejoras, se denomina:
+A) Proceso de mejora en 7 pasos.
+B) Proceso de monitorización, medición y evaluación.
+C) Proceso de evaluación y métrica del Servicio.
+D) Proceso de auditoría y verificación del Servicio.
+133. ¿Cuál de las siguientes afirmaciones es FALSA respecto al lenguaje de programación C# de la
+plataforma .NET?
+A) En C# una clase puede heredar directamente de una sola clase primaria pero puede
+implementar cualquier número de interfaces.
+B) C# no admite la aritmética con punteros de manera predeterminada, sin embargo, si utiliza la
+palabra clave unsafe, puede definir un contexto no seguro en el que se pueden utilizar punteros.
+C) Los programas en C# pueden constar de uno o varios archivos, y cada archivo puede contener
+cero o varios espacios de nombres (namespaces).
+D) Un espacio de nombres (namespace) puede contener tipos tales como clases (classes),
+estructuras (structs), interfaces (interfaces), enumeraciones (enumerations) y delegados
+(delegates), pero no puede contener otros espacios de nombres (namespaces). 
+
+134. El modelo CMMI (Capability Maturity Model Integration), que es un modelo de evaluación y
+mejora de los procesos de una organización, define 6 niveles para medir la capacidad de los
+procesos, que son:
+A) Incompleto, Ejecutado, Gestionado, Definido, Cuantitativamente gestionado y Optimizado.
+B) Inmaduro, Ejecutado, Gestionado, Definido, Evaluado y Optimizado.
+C) Incompleto, Predecible, Gestionado, Definido, Evaluado y Optimizado.
+D) Inmaduro, Predecible, Gestionado, Definido, Cuantitativamente gestionado y Optimizado.
+135. Los Sistemas de Información de Laboratorio necesitan estándares de nomenclatura y
+comunicación de datos. De los siguientes, ¿cuál NO es un estándar o un catálogo que incluya
+pruebas de laboratorio, elaborado por sociedades científicas, organismos nacionales o
+internacionales?:
+A) LOINC (Logical Observation Identifiers Names and Codes)
+B) IUPAC (International Union of Pure and Applied Chemistry)
+C) ESMT (European Standards for Materials and Technology)
+D) EUCLIDES (European Clinical Laboratory Information Data Exchange Standard)
+136. Indique en qué topología de red se basa la Interfaz de Datos Distribuida por Fibra (FDDI).
+A) Estrella.
+B) Bus.
+C) Anillo.
+D) Árbol.
+137. El Índice de casuística (Case Mix) obtenido a partir de los Grupos Relacionados por el
+Diagnóstico (GRD), es un indicador que mide:
+A) La complejidad media de los pacientes atendidos en los hospitales.
+B) El número total de estancias anual.
+C) El número de intervenciones quirúrgicas realizadas en el hospital.
+D) La relación entre cirugía ambulante y cirugía con hospitalización.
+
+138.Dada la siguiente consulta SQL se puede determinar que lo que se pretende obtener es:
+		 SELECT destino, MIN(precio)
+		 FROM vuelos
+		 WHERE tipo_avion IN
+		 (SELECT tipo FROM aviones A
+		 WHERE num_asientos > (SELECT AVG(num_asientos) FROM aviones B
+		 WHERE A.tipo <> B.tipo)
+		 )
+		 GROUP BY destino
+A) El precio medio a cada uno de los destinos de los vuelos realizados por aviones con un número de asientos superior al mínimo número de asientos del resto de aviones.
+B) El precio más bajo a cada uno de los destinos de los vuelos realizados por aviones con un número de asientos diferente a la media del número de asientos de todos los aviones.
+C) El precio más bajo a cada uno de los destinos de los vuelos realizados por aviones con un número de asientos superior a la media del número de asientos del resto de aviones.
+D) Ninguna de las anteriores es correcta ya que la sentencia SQL es errónea.
+
+139.Dado el diagrama de colaboración de UML de la Figura 7, selecciona la respuesta INCORRECTA.
+A) Se ven seis objetos en el diagrama: un objeto RegistrarAgent, un objeto School, dos objetos
+Student y dos objetos Course.
+B) La acción comienza cuando el objeto RegistrarAgent crea un objeto Student.
+C) El objeto Student invoca a getSchedule sobre sí mismo, de donde presumiblemente obtiene los
+objetos Course.
+D) El objeto Student y los objetos Course están enlazados a School a través de una asociación.
+140. Seleccione la afirmación CORRECTA respecto ITIL y la Norma ISO/IEC 20000:
+A) Tanto ITIL como la Norma ISO/IEC 20000 ofrecen la posibilidad de certificación a las
+organizaciones o empresas.
+B) Tanto ITIL como la Norma ISO/IEC 20000 solo ofrecen la posibilidad de certificación a personas.
+C) La ISO/IEC 20000 ofrece la posibilidad de certificación a las organizaciones o empresas mientras
+que la norma ITIL solo ofrece la posibilidad de certificación a personas.
+D) ITIL ofrece la posibilidad de certificación a las organizaciones o empresas mientras que la ISO/IEC
+20000 solo ofrece la posibilidad de certificación a personas.
+141. Según el artículo 8 del Decreto 2/2006 de 10 de enero, ¿cuándo puede realizarse la
+presentación de solicitudes, escritos y comunicaciones en el Registro Telemático?:
+A) Durante las 24 horas del día, todos los días del año.
+B) Durante las 24 horas del día todos los días del año, salvo los festivos locales y nacionales.
+C) Durante las 24 horas del día todos los días del año, salvo los días festivos y el mes de agosto.
+D) De lunes a sábados, de 8 a 14 horas.
+
+142. En el estándar de mensajería HL7 v2.X, ¿cuál es el primer segmento del mensaje que identifica
+entre otras cosas el tipo de mensaje y el evento disparador del mensaje?
+A) EVN
+B) MSH
+C) OBR
+D) PV1
+143. El artículo 5 del Estatuto Marco del personal estatutario de los Servicios de Salud establece 3
+criterios para clasificar a dicho personal. Determine cuál es la respuesta correcta.
+A) Función desarrollada, nivel del título exigido para el ingreso y experiencia profesional.
+B) Función desarrollada, experiencia profesional y tipo de nombramiento.
+C) Experiencia profesional, nivel del título exigido para el ingreso y tipo de nombramiento.
+D) Función desarrollada, nivel del título exigido para el ingreso y tipo de nombramiento.
+144. Respecto al protocolo SNMP, indique qué afirmación es FALSA.
+A) Es un protocolo no orientado a conexión.
+B) Los agentes contienen una MIB (Base de datos de Información de Gestión).
+C) En SNMPv2, solamente las estaciones de gestión de red son las que contienen las aplicaciones
+de gestión de red, no los agentes.
+D) Existen ocho tipos distintos de PDU's en SNMPv2.
+145. Las tarjetas inteligentes Contactless (sin contacto) permiten, por ejemplo, el pago de una
+compra sin necesidad de introducirlas en ningún lector. ¿Podría indicarnos cuál corresponde a
+una tecnología de tarjetas de este tipo?
+A) MagiCard.
+B) Proton.
+C) CLCT.
+D) MiFare.
+146. Cuando un paquete IPv6 contiene más de una cabecera suplementaria, éstas deben aparecer
+en un orden determinado tras la cabecera principal IPv6. Por favor, indique cuál de las
+siguientes secuencias de cabeceras respeta el orden establecido por el estándar IPv6.
+A) Cabecera IPv6, Cabecera Hop-by-Hop, Cabecera de confidencialidad, Cabecera de extremo a
+extremo.
+B) Cabecera IPv6, Cabecera Hop-by-Hop, Cabecera de autenticación, Cabecera de encaminamiento.
+C) Cabecera IPv6, Cabecera de autenticación, Cabecera Hop-by-Hop, Cabecera extremo a extremo.
+D) Cabecera IPv6, Cabecera de autenticación, Cabecera de confidencialidad, Cabecera de
+fragmentación.
+
+147. Establece la Ley General de Sanidad que se tipifica como infracción sanitaria muy grave la
+reincidencia en la comisión de faltas graves...
+A) En los últimos 2 años.
+B) En los últimos 5 años.
+C) En los últimos 3 años.
+D) En los últimos 10 años.
+148. ¿Con cuánto tiempo mínimo de antelación a la fecha en que se desee hacer efectiva deberá
+ser solicitada la renuncia a la condición de personal estatutario cuando el interesado pretenda
+hacer uso de ella?
+A) 10 días.
+B) 5 días.
+C) 20 días.
+D) 15 días.
+149. Respecto a las dependencias en existencia y en identificación del Modelo E/R, seleccione la
+respuesta CORRECTA:
+A) Se dice que hay dependencia en existencia cuando los ejemplares de un tipo de entidad (entidad
+regular) no pueden existir si desaparece el ejemplar del tipo de entidad débil del cual dependen.
+B) Una dependencia en identificación no es siempre una dependencia en existencia.
+C) En una interrelación con cardinalidad N:M nunca habrá entidades débiles.
+D) Una dependencia en existencia es siempre una dependencia en identificación.
+150. Con base en el artículo 31.2 de la Constitución, la programación y ejecución del gasto público
+responderán a los criterios de …
+A) Eficacia y contención.
+B) Igualdad y progresividad.
+C) Planificación y control.
+D) Eficiencia y economía.
+
+151. Establezca los límites de la multa por sanciones graves establecida en la Ley 15/1999 de
+Protección de Datos de Carácter Personal en su artículo 45:
+A) De 300.001 a 600.000 euros.
+B) De 150.000 a 6.000.000 de pesetas.
+C) De 40.000 a 300.001 euros.
+D) De 40.001 a 300.000 euros.
+152. ¿Cuáles de los siguientes elementos son estructuras de datos principales de UDDI (Universal
+Description Discovey and Integration)?
+A) businessEntity, businessService, bindingTemplate y tModels.
+B) locaEntity, businessDirectory y businessItem.
+C) localBusiness, managedItem, managedService y tModels.
+D) universalDirectory, discoveryService, integrationBusiness y descriptionService.
+153. ¿Quién ostenta la condición de órgano de contratación en el Servicio Extremeño de Salud
+según el artículo 72 de la Ley de Salud de Extremadura?
+A) Cualquier subdirector/a.
+B) La Intervención Delegada del Servicio Extremeño de Salud.
+C) El Secretario General del Servicio Extremeño de Salud.
+D) Ninguna respuesta de las anteriores es correcta.
+154. En el apartado asistencial, los Sistemas de Información de Laboratorio ayudan en la fase
+preanalítica, analítica y postanalítica. Dentro de la fase preanalítica, ¿qué aspecto de los
+siguientes NO se contempla?:
+A) Cita.
+B) Recepción de muestras.
+C) Solicitud.
+D) Validación técnica.
+155. El proyecto REBECA (Repertorio Básico de Estadísticas y Sistemas de Información Sanitaria de
+las CCAA) se inicia en el año 2001 en el seno de la Subcomisión de Sistemas de Información del
+Consejo Interterritorial del SNS con el propósito de compartir información sobre las
+características de las estadísticas y sistemas de información sanitarios desarrollados por las
+CCAA. Indicar cuál de los siguientes registros NO es aportado por Extremadura a este
+proyecto:
+A) Estadística de Centros de Atención Primaria.
+B) Registro de interrupciones voluntarias de embarazo.
+C) Sistema de información de Enfermedades Raras.
+D) Registro de expresión anticipada de voluntades de la Comunidad Autónoma de Extremadura
+
+156. Seleccione la respuesta que NO identifica a un algoritmo utilizado en la disciplina de minería
+de datos (Data Mining).
+A) K-Means
+B) K-NN
+C) C4.5
+D) PCK-F
+157. Respecto a la seguridad en redes inalámbricas, indique qué afirmación de las siguientes es
+FALSA.
+A) WPA2 se basa en el algoritmo de cifrado RC4.
+B) En WPA-PSK, la clave maestra o passphrase es conocida por todos los dispositivos conectados a
+la red.
+C) El cifrado AES utilizado en el IEEE 802.11i requiere un hardware más potente que el cifrado
+empleado en WEP y WPA.
+D) En el esquema de seguridad 802.1x EAP, el método o tipo EAP-TLS es más seguro que el EAPMD5.
+158. En la tecnología MPLS (MultiProtocol Label Switching), ¿cómo se denominan los routers que
+se encuentra en los extremos de la red MPLS?
+A) LVR
+B) LER
+C) LSR
+D) LDR
+
+159.De las siguientes listas de sistemas de ficheros, ¿en cuál de ellas todos los sistemas de archivos son transaccionales?
+A) ext2, NTFS, JFS
+B) ext4, FAT32, XFS
+C) ReiserFS, NTFS, ext2
+D) ext3, ext4, ReiserFS
+
+160. ¿Cuáles son los cinco factores principales de calidad del software del modelo FURPS?
+A) Funcionalidad, Facilidad de uso, Fiabilidad, Rendimiento y Capacidad de soporte.
+B) Correctitud, Confiabilidad, Eficiencia, Integridad y Usabilidad.
+C) Interoperabilidad, Facilidad de mantenimiento, Flexibilidad, Portabilidad y Reusabilidad.
+D) Funcionalidad, Correctitud, Integridad, Interoperabilidad y Portabilidad.
+
+161. El Desarrollo Rápido de Aplicaciones (DRA o Rapid Application Development, RAD) es un
+modelo de proceso del desarrollo del software lineal secuencial que enfatiza un ciclo de
+desarrollo extremadamente corto. El enfoque DRA comprende las siguientes fases:
+A) Modelado de gestión, Modelado de datos, Modelado del proceso, Generación de aplicaciones y
+Pruebas y Entrega.
+B) Análisis, Diseño, Desarrollo, Generación del código, Pruebas y Mantenimiento.
+C) Modelado de requisitos, Modelado de análisis, Modelado del diseño y de la arquitectura,
+Implementación y Pruebas.
+D) Modelado de Análisis, Modelado del diseño, Modelado de datos, Generación de aplicaciones y
+Pruebas y Entrega.
+162. En el modelo relacional, ¿cuándo debe admitir nulos una clave ajena o foránea?
+A) Siempre.
+B) Siempre que la cardinalidad mínima de la entidad que propaga su clave sea cero.
+C) Siempre que la cardinalidad mínima de la entidad que propaga su clave sea cero, y no forme
+parte de la clave principal de la relación en la que se transforma.
+D) Nunca.
+

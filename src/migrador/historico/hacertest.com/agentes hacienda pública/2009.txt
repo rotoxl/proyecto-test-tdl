@@ -1,0 +1,782 @@
+#titulo= Agentes de la Hacienda Pública año 2009
+#url=http://www.hacertest.com/oposiciones-agentes-hacienda/2009/
+#t=60 min, 100 preguntas #supuesto
+
+
+1. Indique cuál de las siguientes afirmaciones es la correcta, en relación con el contenido del certificado de deudas del causante que debe expedir la Administración, una vez acreditada de forma fehaciente la condición de heredero del solicitante.
+
+El nombre y apellidos o razón social o denominación completa, número de identificación fiscal, último domicilio del causante y del heredero y el detalle de las deudas y demás responsabilidades del causante pendientes a la fecha de aceptación de la herencia por parte del heredero.
+El nombre y apellidos o razón social o denominación completa, número de identificación fiscal, último domicilio del causante y del heredero y el detalle de las deudas y demás responsabilidades del causante pendientes a la fecha de solicitud del certificado por el heredero.
+El nombre y apellidos o razón social o denominación completa, número de identificación fiscal, último domicilio del causante y del heredero y el detalle de las deudas y demás responsabilidades del causante pendientes a la fecha del fallecimiento del causante.
+El nombre y apellidos o razón social o denominación completa, número de identificación fiscal, último domicilio del causante y del heredero y el detalle de las deudas y demás responsabilidades del causante pendientes a la fecha de expedición del certificado.
+
+
+2. Indique cuál de las siguientes afirmaciones es incorrecta en relación con el recurso administrativo de alzada:
+
+El recurso podrá interponerse ante el órgano que dictó el acto que se impugna o ante el competente para resolverlo.
+Podrá interponerse contra los actos de trámite si deciden indirectamente en el fondo del asunto.
+En el caso de disposiciones administrativas de carácter general, será competente para resolver el recurso el órgano superior jerárquico que las dictó.
+Podrá interponerse contra los actos de trámite si determinan la imposibilidad de continuar el procedimiento.
+
+
+3. ¿Es posible la celebración de contratos en el Sector Público con precios provisionales?:
+
+No es posible, está expresamente prohibido por la Ley de Contratos del Sector Público.
+Sólo es posible en el supuesto de contratos en los que se haya previsto que todo o parte del precio se pague en moneda distinta del euro.
+Es posible, excepcionalmente, en los supuestos y con los límites establecidos en la Ley de Contratos del Sector Público.
+Es posible, excepcionalmente, siempre que el objeto del contrato admita su fraccionamiento y división en lotes.
+
+
+4. La Ley General Tributaria permite, en determinados supuestos, el inicio del procedimiento de enajenación forzosa de los bienes embargados en tanto no adquiera firmeza la liquidación tributaria causante de la deuda. De los supuestos indicados a continuación señale el que es incorrecto.
+
+Que exista un riesgo de pérdida inminente de valor de los bienes embargados.
+Que lo soliciten de forma expresa y fehaciente los acreedores del obligado tributario personados en el procedimiento de apremio.
+Que se traten de bienes perecederos.
+Que se trate de un supuesto de fuerza mayor.
+
+5. El inicio de las actuaciones inspectoras, se documenta:
+
+Por medio de comunicación o diligencia.
+Exclusivamente por medio de comunicación al obligado tributario.
+No es necesario ningún requisito de carácter formal, basta con que el obligado tributario manifieste en cualquier momento del procedimiento su conocimiento.
+Por medios telemáticos, una vez realizada la notificación.
+
+
+6. En un procedimiento iniciado a instancia del obligado tributario, éste señala como medio preferente a efectos de notificaciones un apartado postal. ¿Cuándo se entiende realizada la notificación practicada por la Administración tributaria de una liquidación derivada de ese procedimiento y depositada en dicho apartado postal?
+
+Por el transcurso de 10 días hábiles desde el depósito del envío en el apartado postal.
+No resulta posible la notificación mediante el depósito en el apartado postal.
+Por el transcurso de 10 días naturales desde el depósito del envío en el apartado postal.
+Por el transcurso de 15 días naturales desde el depósito del envío en el apartado postal.
+
+
+7. Indique cuál de las siguientes afirmaciones es incorrecta. Tiene la consideración de sujeto pasivo:
+
+La persona que, por imposición de la ley y en lugar del contribuyente, está obligado a cumplir la obligación tributaria principal, así como las obligaciones formales inherentes a la misma.
+La persona que, por imposición de la ley, está obligada a retener y a practicar ingresos a cuenta.
+En el ámbito aduanero, el obligado al pago de la deuda aduanera, conforme a lo que en cada caso establezca la normativa aduanera.
+La persona que realiza el hecho imponible.
+
+
+8. Indique cuál de las siguientes afirmaciones es incorrecta. El Estatuto Básico del Empleado Público se aplica al personal funcionario de, entre otras, las siguientes Administraciones Públicas:
+
+Supletoriamente, a las Administraciones de las Comunidades Autónomas.
+Las Administraciones de las Entidades Locales.
+Los Organismos Públicos en el caso de que estén vinculados o sean dependientes de cualquiera de las Administraciones Públicas.
+Las Universidades Públicas.
+
+9. Indique cuál de las siguientes afirmaciones es correcta en relación con la abstención en un procedimiento administrativo:
+
+Todas las afirmaciones son correctas.
+Los órganos superiores podrán ordenar a las personas en quienes se dé alguno de los motivos de abstención previstos en la normativa que se abstenga de toda intervención prevista en el expediente.
+Es motivo de abstención haber prestado servicios profesionales en los últimos cinco años a la persona natural o jurídica interesada en directamente el asunto.
+Es motivo de abstención tener parentesco de consanguinidad o afinidad hasta el cuarto grado con cualquiera de los interesados.
+
+
+10. La notificación a los interesados de las resoluciones y actos administrativos que afecten a sus derechos e intereses:
+
+A los solos efectos de entender cumplida la obligación de notificar dentro del plazo máximo de duración de los procedimientos, será suficiente la notificación que contenga cuando menos un resumen comprensivo de la resolución.
+Si contienen el texto íntegro del acto, aunque omitiesen alguno de los demás requisitos previstos en la normativa, surtirán efecto a partir de la fecha en que el interesado realice actuaciones que supongan el conocimiento del contenido y alcance de la resolución objeto de la notificación.
+Todas las afirmaciones son correctas.
+Deberán contener, al menos, un resumen compresivo de la resolución.
+
+
+11. El número de miembros del Parlamento Europeo que corresponden a España, según periodos es:
+
+Hasta 2009, 54 y de 2009 a 2014, 52.
+Hasta 2009, 50 y de 2009 a 2014, 54.
+Hasta 2009, 54 y de 2009 a 2014, 50.
+Hasta 2009, 52 y de 2009 a 2014, 50.
+
+
+12. Indique cuál de las siguientes afirmaciones es incorrecta en relación con un proyecto de ley ordinaria aprobado por el Congreso:
+
+En caso de veto del Senado el proyecto podrá ser sometido al Rey para sanción si el Congreso ratifica por mayoría absoluta el texto inicial.
+En caso de veto del Senado el proyecto podrá ser sometido al Rey para sanción si el Congreso ratifica por mayoría simple el texto inicial una vez transcurridos dos meses desde la interposición del mismo.
+En caso de que se hayan introducido enmiendas en el Senado el proyecto podrá ser sometido al Rey para sanción si el Congreso se ha pronunciado sobre dichas enmiendas, aceptándolas o no por mayoría absoluta.
+El Senado podrá oponer por mayoría absoluta su veto.
+
+13. La tercería de dominio, en un procedimiento de apremio, no se admitirá a trámite si su interposición:
+
+Ha tenido lugar antes de que se haya producido el levantamiento del embargo por el órgano de recaudación competente sobre el bien controvertido.
+Ha tenido lugar después de la anotación preventiva de embargo a favor de la Hacienda Pública en el Registro correspondiente.
+Ha tenido lugar después del anuncio de la subasta del bien controvertido en el periódico oficial correspondiente.
+Ha tenido lugar con posterioridad al momento en que, de acuerdo con la legislación civil, se produzca la transmisión del bien a un tercero que lo adquiera por subasta, concurso o adjudicación directa.
+
+
+14. Un contribuyente solicita la compensación de una deuda tributaria de 6.000 euros con un crédito que tiene reconocido por 3.000 euros. ¿Podría solicitar el aplazamiento de los otros 3.000 euros a la vez que la solicitud de compensación a instancia?
+
+Sí.
+Nunca se pueden simultanear dos solicitudes.
+No.
+Sí, una vez resuelta y notificada la compensación solicitada.
+
+
+15. Indique cuál de las siguientes afirmaciones es correcta:
+
+Los Tribunales de excepción sólo podrán estar constituidos en los supuestos de estado de sitio, de acuerdo con los principios de la Constitución.
+La Constitución garantiza que la justicia será gratuita para todos los españoles.
+Los Jueces y Magistrados no podrán ser trasladados ni jubilados sino por alguna de las causas y con las garantías previstas en la ley.
+El ejercicio de la potestad jurisdiccional en todo tipo de procesos, juzgando y haciendo ejecutar lo juzgado corresponde al Consejo General del poder judicial.
+
+
+16. Serán motivados, entre otros, con sucinta referencia de hechos y fundamentos de derecho:
+
+Los actos administrativos que se dicten en el ejercicio de potestades discrecionales.
+Los actos administrativos que sigan el criterio adoptado en actuaciones precedentes o el dictamen de órganos consultivos.
+Los acuerdos de suspensión de actos, siempre que el motivo de dicha suspensión sea uno de los previstos en el artículo 54 de la ley 30/1992, de Régimen Jurídico y Procedimiento Administrativo Común.
+Los actos administrativos que amplíen derechos subjetivos o intereses legítimos.
+
+17. Indique cuál de las siguientes afirmaciones es correcta en relación con la ejecución forzosa:
+
+La Ejecución forzosa de los actos administrativos es un procedimiento que se efectuará por las Administraciones Públicas cuando así lo exijan los Tribunales.
+La multa coercitiva es independiente de las sanciones que puedan imponerse con tal carácter y compatible con ellas.
+La ejecución forzosa por las Administraciones Públicas se efectuará por cualquiera de los medios admisibles respetando siempre el principio de libertad individual.
+Las Administraciones Públicas, a través de sus órganos competentes en cada caso, podrán proceder, sin más trámite, a la ejecución forzosa de los actos administrativos.
+
+
+18. Indique cuál de las siguientes actuaciones no se considera anomalía sustancial en la contabilidad a los efectos de la calificación de las infracciones tributarias
+
+El empleo de facturas o justificantes falsos o falseados siempre que su incidencia represente un porcentaje superior al 10 por ciento del importe de la base de sanción.
+Incumplimiento absoluto de la obligación de llevanza de la contabilidad.
+Todas las respuestas son ciertas.
+La llevanza incorrecta de la contabilidad mediante la falsedad de asientos, omisión de operaciones o contabilización en cuentas incorrectas de forma que altere su consideración fiscal, cuando la incidencia represente un porcentaje superior al 30 por ciento del importe de la base de sanción.
+
+
+19. En el supuesto de reanudación de las actuaciones inspectoras tras la interrupción injustificada del procedimiento inspector por no realizar actuaciones durante más de seis meses por causas no imputables al obligado tributario
+
+No pueden reanudarse las actuaciones, siendo necesario iniciar un procedimiento nuevo que tenga como objeto las obligaciones tributarias no prescritas, teniendo en cuenta que la interrupción injustificada de más de seis meses da lugar a que no se considere interrumpida la prescripción como consecuencia de las actuaciones inspectoras.
+No pueden reanudarse las actuaciones ya que el procedimiento inspector ha caducado.
+Los ingresos realizados desde el inicio del procedimiento hasta la reanudación de las actuaciones que hayan sido imputados por el obligado tributario al tributo y periodo objeto de las actuaciones inspectoras tendrán el carácter de a cuenta de la liquidación que pudiera resultar.
+Los ingresos realizados desde el inicio del procedimiento hasta la reanudación de las actuaciones que hayan sido imputados por el obligado tributario al tributo y periodo objeto de las actuaciones inspectoras tendrán el carácter de espontáneos a los efectos de la aplicación de los recargos correspondientes.
+
+
+20. Señale cuál de las siguientes afirmaciones es correcta. El Reglamento del Impuesto sobre la Renta de las Personas Físicas establece que:
+
+Los contribuyentes que ejerzan actividades profesionales cuyo rendimiento se determine en método de estimación directa, en cualquiera de sus modalidades, estarán obligados a llevar los libros registros de ventas e ingresos, de compras y gastos y de bienes de inversión.
+Los contribuyentes que desarrollen actividades empresariales cuyo rendimiento se determine en la modalidad simplificada del método de estimación directa , estarán obligados a la llevanza de los libros registro de ingresos, de gastos, de bienes de inversión y de provisiones de fondos y suplidos.
+Los contribuyentes que desarrollen actividades empresariales cuyo rendimiento se determine en régimen de estimación directa, no estarán obligados a llevar contabilidad ajustada a lo dispuesto en el Código de Comercio.
+Cuando la actividad empresarial realizada no tenga carácter mercantil, de acuerdo con el Código de Comercio, las obligaciones contables de limitarán a la llevanza de los libros registros de ventas e ingresos, de compras y gastos y de bienes de inversión.
+
+21. Indique el plazo de devengo de interés de demora de una declaración del Impuesto sobre la Renta de las Personas Físicas con derecho a devolución presentada el 1 de junio del año 2008, cuyo plazo de presentación reglamentario finaliza el 30 de junio de 2008, si el pago de la devolución se ordena el 30 de enero de 2009.
+
+Del 1 de diciembre de 2008 al 30 de enero de 2009.
+Todas las respuestas son incorrectas.
+Del 1 de junio de 2008 al 30 de enero de 2009.
+Del 30 de junio de 2008 al 30 de enero de 2009.
+
+
+22. Indique cuál de las siguientes afirmaciones relativas al domicilio fiscal es cierta. El domicilio fiscal será:
+
+Para las personas o entidades no residentes en España que operan a través de establecimiento permanente, el de su representante.
+Para las personas jurídicas, siempre su domicilio social.
+Para las personas físicas que desarrollen principalmente actividades económicas, la Administración tributaria podrá considerar como domicilio fiscal el lugar donde está efectivamente centralizada la gestión administrativa y dirección de las actividades realizadas.
+Todas las afirmaciones son ciertas.
+
+
+23. Indique cuál de los siguientes principios resulta aplicable a la ordenación del sistema tributario:
+
+Equitativa distribución de la carga tributaria.
+Limitación de costes indirectos derivados del cumplimiento de obligaciones formales.
+Proporcionalidad.
+Todas las afirmaciones son ciertas.
+
+
+24. Según dispone la Constitución, las Comunidades Autónomas
+
+Tienen entre sus recursos el producto de las operaciones de crédito.
+Para poder financiar adecuadamente sus servicios, serán destinatarias del Fondo de Compensación constituido con el fin de corregir desequilibrios económicos interterritoriales y hacer efectivo el principio de solidaridad.
+Gozarán de autonomía financiera para el desarrollo y ejecución de sus competencias con arreglo a los principios de subordinación a la Hacienda estatal y solidaridad entre todos los españoles.
+Sólo podrán adoptar medidas tributarias sobre bienes situados fuera de su territorio cuando no supongan un obstáculo para la libre circulación de mercancías o servicios.
+
+25. Indique cuál de las siguientes situaciones NO da lugar a la declaración de la situación administrativa de Servicios Especiales:
+
+Cuando sean designados asesores de los Grupos Parlamentarios de las Cortes Generales o de las Asambleas Legislativas de las Comunidades Autónomas.
+Cuando sean autorizados para realizar una misión por periodo determinado superior a seis meses en Organismos internacionales.
+Cuando sean nombrados Subdirectores Generales o puesto de naturaleza equivalente de la Administraciones Públicas.
+Cuando sean activados como reservistas voluntarios para prestar servicios en las Fuerzas Armadas.
+
+
+26. Indique cuál de las siguientes afirmaciones es incorrecta en relación con la declaración de lesividad de actos anulables:
+
+No podrá adoptarse una vez transcurridos cuatro años desde que se dictó el acto administrativo.
+Si el acto proviniera de las entidades que integran la Administración Local, la declaración de lesividad se adoptará por el Pleno de la Corporación.
+El órgano competente podrá recabar audiencia de cuantos aparezcan como interesados.
+Transcurrido el plazo de seis meses desde la iniciación del procedimiento sin que se hubiera declarado la lesividad se producirá la caducidad del mismo.
+
+
+27. Tiene legitimación activa en el recurso de anulación ante el Tribunal de Justicia de las Comunidades Europeas:
+
+Los particulares, siempre que el acto les afecte directa o individualmente.
+La Comisión Europea.
+Todas las respuestas son ciertas.
+El Tribunal de Cuentas, cuando se trate de salvaguardar sus prerrogativas.
+
+
+28. Se considera discriminación indirecta por razón de sexo:
+
+Cuando una disposición, criterio o práctica aparentemente neutros pone a personas de un sexo en desventaja con respecto al otro.
+Todas las respuestas son ciertas.
+Las diversas situaciones en que una regulación, norma o actuación pone en evidencia la diferencia de sexos.
+Las actuaciones que no causan un perjuicio directo por razón de género.
+
+29. De acuerdo con lo dispuesto en el artículo 53.2 de la Constitución Española
+
+Cualquier ciudadano podrá recabar la tutela de los derechos y deberes fundamentales reconocidos en el capítulo primero del título I por un procedimiento basado en los principios de preferencia y sumariedad y, en su caso, a través del recurso de amparo ante el Tribunal Constitucional.
+El recurso de amparo será aplicable para garantizar el derecho a la propiedad privada y a la herencia previsto en el artículo 33 de la Constitución.
+Cualquier ciudadano podrá recabar la tutela ante los tribunales ordinarios de los derechos y deberes fundamentales reconocidos en el título I por un procedimiento basado en los principios de preferencia y sumariedad y, en su caso, a través del recurso de amparo ante el Tribunal Constitucional.
+El recurso de amparo ante el Tribunal Constitucional será aplicable a la objeción de conciencia reconocida en el artículo 30 de la Constitución.
+
+
+30. Indique cuál de las siguientes afirmaciones es incorrecta.
+
+La reclamación en vía administrativa será requisito previo para el ejercicio de la acción de tercería de mejor derecho ante los juzgados y tribunales civiles.
+La tercería de dominio se puede presentar en cualquier momento del procedimiento.
+No podrá ser calificada como reclamación de tercería la formulada por el obligado al pago.
+La tercería sólo podrá fundarse en el dominio de los bienes embargados al obligado al pago o en el derecho del tercerista a ser reintegrado de su crédito con preferencia al que es objeto del expediente de apremio.
+
+
+31. Salvo precepto legal expreso en contrario, señale cómo será siempre la responsabilidad para el pago de las deudas tributarias:
+
+Siempre solidaria. Si no existen responsables solidarios, la responsabilidad a declarar será subsidiaria.
+Solidaria.
+Dependerá de la clase de deudor principal.
+Subsidiaria.
+
+
+32. Si un obligado al pago percibe unas retribuciones mensuales de 2 veces el salario mínimo interprofesional, ¿cuál sería el importe máximo mensual de una diligencia de embargo de sueldos, salarios y pensiones que el órgano de recaudación podría emitir contra este obligado al pago?.
+
+50% de las retribuciones mensuales percibidas.
+30% de las retribuciones mensuales percibidas.
+30% del salario mínimo interprofesional.
+50% del salario mínimo interprofesional.
+
+33. En los casos de denegación de una solicitud de aplazamiento, ¿procede la liquidación de intereses de demora?.
+
+No.
+Sí liquidándose de conformidad con el artículo 72 del RGR si el aplazamiento fue solicitado en periodo ejecutivo.
+Sí, liquidándose de conformidad con el artículo 51.4 del RGR si el aplazamiento fue solicitado en periodo voluntario.
+Sí, liquidándose de conformidad con el artículo 52.4 del RGR.
+
+
+34. El procedimiento de apremio no termina:
+
+Con el pago total de la deuda a la que se refiere el artículo 58 de la LGT.
+Todas las respuestas finalizan el procedimiento de apremio.
+Con el acuerdo de haber quedado extinguida la deuda por cualquier otra causa.
+Con el acuerdo que declare el crédito total o parcialmente incobrable, una vez declarados fallidos todos los obligados al pago.
+
+
+35. Señale en qué consiste la acción subrogatoria de acuerdo con el Código Civil.
+
+Obtener la nulidad de un negocio que el deudor aparenta realizar pero que, o no existe, o encubre otro negocio distinto, todo ello con el fin de evitar el cobro de los créditos por el acreedor.
+Los acreedores, después de haber perseguido los bienes de que esté en posesión el deudor para realizar cuanto se les debe, pueden ejercitar todos los derechos y acciones de éste con el mismo fin, exceptuando los que sean inherentes a su persona.
+Declaración de lesividad por parte de la Administración Tributaria de los actos y resoluciones que incurran en cualquier infracción del ordenamiento jurídico.
+Obtener la invalidez de negocios jurídicos realizados por el obligado tributario, que fueron perfectamente válidos en su momento, pero tuvieron por objeto impedir el cobro de las deudas que el mismo tuviera.
+
+
+36. Señale los plazos que tiene un contribuyente para el pago, en periodo voluntario, de una deuda tributaria resultante de una autoliquidación:
+
+Si la presentación de la autoliquidación se realiza entre los días uno y 15 de cada mes, desde la fecha de presentación hasta el día 20 del mismo mes o, si éste no fuera hábil, hasta el inmediato hábil siguiente. Si se realiza entre los días 16 y último de cada mes,desde la fecha de presentación hasta el día 5 del mes posterior o, si éste no fuera hábil, hasta el inmediato hábil siguiente.
+Si la presentación de la autoliquidación se realiza entre los días uno y 15 de cada mes, desde la fecha de presentación hasta el día 5 del mes posterior o, si éste no fuera hábil, hasta el inmediato hábil siguiente. Si se realiza entre los días 16 y último de cada mes, desde la fecha de presentación hasta el día 20 del mes posterior o, si éste no fuera hábil, hasta el inmediato hábil siguiente.
+Las deudas tributarias resultantes de una autoliquidación deberán pagarse en los plazos que establezca la normativa de cada tributo.
+Si la presentación de la autoliquidación se realiza entre los días uno y 15 de cada mes, desde la fecha de presentación hasta el día 20 del mes posterior o, si éste no fuera hábil, hasta el inmediato hábil siguiente. Si se realiza entre los días 16 y último de cada mes, desde la fecha de presentación hasta el día cinco del segundo mes posterior o, si éste no fuera hábil, hasta el inmediato hábil siguiente.
+
+
+37. Indique cuál de las siguientes afirmaciones es incorrecta. De acuerdo con el artículo 181 de la Ley General Tributaria, son sujetos infractores, entre otros:
+
+Todas las respuestas son correctas.
+La sociedad dominante en el régimen de consolidación fiscal.
+Las entidades que estén obligadas a imputar o atribuir rentas a sus socios.
+El representante legal de los obligados que carezcan de capacidad de obrar en el orden tributario.
+
+
+38. Un obligado tributario que realiza una actividad empresarial que supone el mayor porcentaje de su renta total y que figura acogido al régimen de estimación objetiva de I.R.P.F., recibe una notificación de inicio de actuaciones inspectoras para comprobar los rendimientos declarados en el ejercicio de su actividad empresarial en el I.R.P.F. La actuación inspectora tiene el carácter de:
+
+General, porque afecta a la mayor parte de su base imponible.
+Parcial, porque sólo se refiere al I.R.P.F.
+General, porque se refiere a la totalidad de rendimientos de su actividad empresarial.
+Parcial, porque no afecta a la totalidad de los elementos de la obligación tributaria.
+
+
+39. Señale cuál de las siguientes afirmaciones es incorrecta. Deberá expedirse factura y copia de ésta en todo caso, en las siguientes operaciones:
+
+Las realizadas por empresarios o profesionales en el desarrollo de actividades a las que sea de aplicación el régimen especial del recargo de equivalencia, salvo las entregas de inmuebles cuando el sujeto pasivo haya renunciado a la exención.
+Aquellas en las que el destinatario sea un empresario o profesional que actúe como tal, así como cualesquiera otras en las que el destinatario así lo exija para el ejercicio de cualquier derecho de naturaleza tributaria.
+Las entregas de bienes destinados a otro Estado miembro, exentas del IVA.
+Las entregas de bienes que han de ser objeto de instalación o montaje antes de su puesta a disposición.
+
+
+40. Indique qué modelos presentará en el primer trimestre del ejercicio un empresario que desarrolla una actividad de transporte de mercancías y que tributa en el régimen de estimación objetiva del Impuesto sobre la Renta de las Personas Físicas y en el régimen simplificado del Impuesto sobre el Valor Añadido.
+
+Modelos 130 y 303.
+Modelos 130 y 310.
+Modelos 131 y 303.
+Modelos 131 y 310.
+
+41. La comprobación de valores podrá realizarse como una actuación concreta:
+
+Todas las afirmaciones son correctas.
+En el procedimiento de devolución iniciado mediante autoliquidación.
+En el procedimiento de verificación de datos.
+En el procedimiento iniciado mediante declaración.
+
+
+42. Indique cuál de las siguientes materias NO está sometida al principio de reserva de ley:
+
+Las obligaciones entre los particulares resultantes de los tributos.
+La determinación de las condiciones de ejercicio de las actuaciones de comprobación tributaria.
+El establecimiento y modificación de los recargos.
+Los supuestos en que proceda el establecimiento de las intervenciones tributarias de carácter permanente.
+
+
+43. La Base liquidable es la magnitud resultante de practicar, en su caso, en la base imponible
+
+Las reducciones establecidas en la ley.
+Las reducciones y deducciones establecidas en la ley.
+Las deducciones establecidas en la ley.
+Las exenciones establecidas en la ley.
+
+
+44. El contratista podrá subcontratar con terceros la realización de prestaciones parciales de un contrato siempre que éstas, entre otros requisitos, no excedan del porcentaje que se fije en el pliego de cláusulas administrativas particulares, con el límite del:
+
+40 por 100 del importe de adjudicación.
+50 por 100 del importe de adjudicación.
+60 por 100 del importe de adjudicación.
+25 por 100 del importe de adjudicación.
+
+45. Respecto a la suspensión de la ejecución de un acto impugnado, indique cual de las siguientes afirmaciones NO es correcta:
+
+Cuando de la suspensión puedan derivarse perjuicios de cualquier naturaleza, aquélla sólo producirá efectos previa prestación de caución o garantía suficiente.
+La suspensión podrá prolongarse después de agotada la vía administrativa cuando exista medida cautelar y los efectos de ésta se extiendan a la vía contencioso-administrativa.
+Al dictar acuerdo de suspensión podrán adoptarse las medidas cautelares que sean necesarias para asegurar la protección del interés público o de terceros.
+La ejecución del acto se entenderá suspendida si han transcurrido quince días desde que la solicitud de suspensión haya tenido entrada en el registro del órgano competente sin que éste haya dictado resolución expresa.
+
+
+46. Indique cuál de las siguientes afirmaciones es correcta.
+
+Los actos nulos o anulables que, sin embargo, contengan elementos de otro distinto producirán los efectos de éste.
+La nulidad o anulabilidad de un acto implica necesariamente la de los sucesivos en el procedimiento.
+El órgano que declare la nulidad o anule las actuaciones podrá disponer la conservación de aquellos actos y trámites cuyo contenido se hubiera mantenido igual de no haberse cometido la infracción.
+No podrán convalidarse los actos anulables cuando el vicio consista en incompetencia no determinante de nulidad.
+
+
+47. Indique cuál de las siguientes afirmaciones es correcta:
+
+La delegación legislativa podrá concederse mediante la fijación de un plazo concreto para su ejercicio o por tiempo indeterminado.
+Las Cortes Generales podrán delegar en el Gobierno la potestad de dictar normas con rango de ley sobre cualquier materia.
+No podrá tramitarse una proposición de ley o una enmienda si fuere contraria a una delegación legislativa en vigor.
+Cuando una proposición de ley fuere contraria a una delegación legislativa en vigor, el gobierno está facultado para oponerse a su tramitación.
+
+
+48. El Estado podrá transferir o delegar en las Comunidades Autónomas facultades correspondientes a materia de titularizad estatal que por su propia naturaleza sean susceptibles de transferencia o delegación
+
+Mediante ley ordinaria y dictamen favorable del Consejo de Estado.
+Siempre que se den razones de interés público y así se ratifique por mayoría de las Cortes Generales.
+En ningún caso.
+Mediante ley orgánica.
+
+49. Indique cuál de las siguientes afirmaciones es incorrecta:
+
+Todas las afirmaciones son correctas.
+La prerrogativa real de gracia no será aplicable a un supuesto de responsabilidad criminal del Presidente del Gobierno por traición.
+La responsabilidad criminal del Presidente del Gobierno será exigible ante la sala de lo penal del Tribunal Supremo.
+La responsabilidad criminal del Presidente del Gobierno ante una acusación de traición sólo podrá ser planteada por iniciativa de la cuarta parte de los miembros del Congreso y con la aprobación de la mayoría absoluta del mismo.
+
+
+50. Indique cuál de las siguientes afirmaciones es incorrecta:
+
+La declaración de inconstitucionalidad de una norma jurídica con rango de ley, interpretada por la jurisprudencia, afectará a ésta, si bien la sentencia o sentencias recaídas no perderán el valor de cosa juzgada.
+Cuando un órgano judicial considere, en algún proceso, que una norma con rango de ley, aplicable al caso, de cuya validez dependa el fallo, pueda ser contraria a la Constitución, planteará la cuestión ante el Tribunal Constitucional en los supuestos, en la forma y con los efectos que establezca la ley, que en ningún caso serán suspensivos.
+El Tribunal Constitucional es competente para conocer de los conflictos de competencias entre las Comunidades Autónomas.
+Si el Gobierno impugna ante el Tribunal Constitucional una disposición de una Comunidad Autónoma se producirá la suspensión de la misma hasta que recaiga sentencia.
+
+
+51. Señale la afirmación incorrecta.
+
+La Administración Tributaria dispone de un plazo máximo de 6 meses para notificar la resolución del procedimiento de rectificación de errores contados desde la presentación de la solicitud por el interesado.
+La Administración Tributaria dispone de un plazo máximo de un mes para notificar la resolución de una solicitud de devolución de ingresos indebidos.
+La Administración Tributaria dispone de un plazo máximo de 1 año para notificar la resolución del procedimiento de declaración de nulidad, contado desde la presentación de la solicitud por el interesado.
+La Administración Tribubaria dispone de un plazo máximo de un mes para notificar la resolución del recurso de reposición contado desde el día siguiente a la interposición del recurso.
+
+
+52. El Sr. Pérez ha planteado el día de uno de julio de 2009 un Recurso de Reposición, una Solicitud de Rectificación de Devolución de Ingresos Indebidos, un procedimiento de Rectificación de errores y ha instado un procedimiento de Declaración de Nulidad, todos ellos ante la Administración Tributaria Central. Considera que el vencimiento de los plazos que tiene la Administración Tributaria para resolver de forma expresa son los siguientes, pero uno de ellos no es correcto:
+
+La administración tributaria dispone de un mes para notificar la resolución de la solicitud de devolución de ingresos indebidos: uno de agosto de 2009.
+La administración tributaria dispone de seis meses para notificar la resolución del procedimiento de rectificación de errores contados desde la presentación de la solicitud por el interesado: uno de enero de 2010.
+La administración tributaria dispone de un mes para notificar la resolución del recurso de reposición contado desde el día siguiente a la interposición del recurso: uno de agosto de 2009.
+La administración tributaria dispone de un año para notificar la resolución del procedimiento de declaración de nulidad, desde la presentación de la solicitud por el interesado: uno de julio de 2010.
+
+53. Señale cuál de las siguientes circunstancias no es necesaria que se encuentre recogida en una diligencia de embargo de bienes inmuebles.
+
+Nombre y apellidos o razón social o denominación completa del titular y, en su caso, del poseedor de la finca embargada.
+Derechos del obligado al pago sobre los inmuebles embargados.
+Si se trata de fincas urbanas: localidad, calle y número, locales y pisos de que se componen, superficie, e identificación registral y catastral, si constan.
+Certificación expedida por el Registrador de la Propiedad de haberse realizado la anotación preventiva del embargo.
+
+
+54. Señale cuál de las siguientes afirmaciones es incorrecta.
+
+El procedimiento de apremio se inicia con el periodo ejecutivo.
+El procedimiento de apremio se iniciará a partir de la notificación de la providencia de apremio.
+Iniciado el periodo ejecutivo la recaudación de la deuda pendiente se realiza por el procedimiento de apremio..
+Finalizado el periodo voluntario sin pagar la deuda pendiente, se inicia el periodo ejecutivo.
+
+
+55. De las alternativas que se proponen a continuación, señale aquella que no es procedente para conseguir la anulación de una liquidación tributaria girada por el Administrador competente de una Administración de la AEAT siguiendo el procedimiento legalmente establecido.
+
+Procedimiento de revisión de actos nulos de pleno derecho planteado en tiempo y forma.
+Interposición en tiempo y forma de un recurso de reposición.
+Interposición de recurso contencioso administrativo en tiempo y forma.
+Interposición en tiempo y forma de una reclamación económico-administrativa.
+
+
+56. Los 5.000 mutualistas del Banco Español liquidaron su mutualidad declarando los rendimientos obtenidos en su declaración de IRPF como procedentes del capital mobiliario. La AEAT les efectuó liquidación de IRPF con resultado a pagar a todos ellos, al considerar que los rendimientos eran procedentes del trabajo personal. La mitad de los mutualistas recurrieron en vía administrativa y judicial, dándoles la razón el Tribunal Supremo. Señale las acciones que puede emprender la otra mitad en defensa de sus intereses.
+
+Pueden instar a que la Administración Tributaria inicie el procedimiento para la revocación de tales actos.
+Pueden plantear el procedimiento de revisión de actos nulos de pleno derecho.
+No pueden emprender ninguna acción puesto que al no recurrir en tiempo y forma, las liquidaciones tributarias adquirieron firmeza.
+Pueden plantear el procedimiento para el reconocimiento del derecho a la devolución de los ingresos indebidos derivado de las liquidaciones.
+
+57. En la Dependencia Regional de Recaudación de la AEAT de Castilla la Mancha se va a proceder a la subasta de un inmueble. De las personas que se indican a continuación, señale aquella que no puede participar como licitador:
+
+El hermano de la jefa de la Dependencia Regional de Recaudación de la AEAT de Extremadura.
+Un arquitecto, residente en Barcelona, que ha tasado el inmueble que se va a subastar.
+Un funcionario perteneciente al Cuerpo Técnico de Hacienda, destinado en la Dependencia Regional de Recaudación de la AEAT de Madrid.
+Un Agente Tributario destinado en la Dependencia Regional de Inspección de Castilla la Mancha, que participó en el procedimiento inspector que dio lugar a la deuda tributaria que ha motivado la subasta del bien embargado.
+
+
+58. Indique cuál de las siguientes respuestas es incorrecta. El Capitulo V (Obligaciones de información) del Real Decreto 1065/2007, de 27 de julio, regula:
+
+Obligación de informar acerca de adquisiciones de efectos timbrados o estancados.
+Obligación de informar acerca de valores, seguros y rentas.
+Obligación de informar sobre operaciones incluidas en los libros registro.
+Obligación de informar sobre cuentas, operaciones y activos financieros.
+
+
+59. Si el obligado tributario se niega a recibir una diligencia de constancia de hechos:
+
+Se hará constar esta circunstancia, y se tendrá por efectuada.
+Se le enviará a su domicilio fiscal por correo certificado.
+Se publicará su contenido en el B.O.E.
+Se hará constar esta circunstancia y se notificará la diligencia por los medios legalmente establecidos.
+
+
+60. La obligación de justificar la procedencia de los datos que tengan su origen en operaciones realizadas en periodos impositivos prescritos
+
+Se mantendrá durante el plazo de prescripción del derecho para determinar las deudas tributarias afectadas por la operación correspondiente.
+Se mantendrá en la medida que se considere interrumpido el plazo de prescripción para los periodos impositivos de los que procede.
+Se mantendrá, siempre que sea imprescindible para llevar a cabo una comprobación y así se determine de forma expresa y motivada por la Administración tributaria.
+Se considera prescrita en los mismos términos que el periodo impositivo del que procede.
+
+61. Indique el modelo de declaración informativa para declarar los rendimientos satisfechos por operaciones con Letras del Tesoro.
+
+Modelo 196.
+Modelo 190.
+Modelo 192.
+Modelo 193.
+
+
+62. Indique cuál de las siguientes afirmaciones es incorrecta. A efectos de sus relaciones con la Administración tributaria, los obligados tributarios que no residan en España deberán designar un representante con domicilio en territorio español ...
+
+Cuando lo establezca la normativa tributaria expresamente.
+Cuando, por las características de las operaciones o actividad realizada, así lo requiera la Administración tributaria.
+Cuando, por la cuantía de la renta obtenida, así lo requiera la Administración tributaria.
+Cuando operen en dicho territorio sin establecimiento permanente.
+
+
+63. Indique cuál de los siguientes órganos no tiene rango de Dirección Adjunta en la Agencia Estatal de Administración Tributaria:
+
+El Servicio de Estudios Tributarios y Estadísticos.
+La Oficina Nacional de Investigación del Fraude.
+La Secretaría Técnica Permanente de la Comisión Mixta de Coordinación de la Gestión Tributaria.
+El Servicio de Gestión Económica.
+
+
+64. Indique cuál de las siguientes afirmaciones relativas a los Presupuestos Generales del Estado (PGE) es incorrecta.
+
+Toda proposición o enmienda que suponga aumento de los créditos o disminución de los ingresos presupuestarios requerirá la conformidad del Gobierno para su tramitación.
+La presentación de los PGE ante el Congreso de los Diputados se hace por el Gobierno al menos tres meses antes de la expiración de los del año anterior.
+La ley de PGE puede modificar los tributos si una ley sustantiva así lo prevé.
+Aprobados los PGE, no podrán tramitarse proyectos de ley que impliquen aumento del gasto público o disminución de los ingresos correspondientes al mismo ejercicio presupuestario.
+
+65. Indique cuál de las siguientes afirmaciones es incorrecta. Deberá acreditarse la representación en un procedimiento administrativo por cualquier medio válido en Derecho que deje constancia fidedigna, o mediante comparecencia personal del interesado:
+
+Todas las respuestas son correctas.
+Para formular solicitudes.
+Para entablar recursos.
+Para desistir de acciones.
+
+
+66. Indique cuál de las siguientes afirmaciones es incorrecta. El transcurso del plazo máximo legal para resolver un procedimiento administrativo y notificar la resolución se podrá suspender, entre otros motivos:
+
+Cuando se considere conveniente obtener un pronunciamiento previo de un órgano de las Comunidades Europeas.
+Cuando deban solicitarse informes preceptivos y determinantes del contenido de la resolución a un órgano de una Administración distinta.
+Cuando deban realizarse análisis contradictorios propuestos por los interesados.
+Cuando deba requerirse a cualquier interesado para la subsanación de deficiencias y la aportación de documentos necesarios.
+
+
+67. Si una Comunidad Autónoma no cumpliere las obligaciones que la Constitución u otras leyes le impongan
+
+El Gobierno dará traslado del asunto al Tribunal Constitucional que dictará resolución de obligado cumplimiento para la Comunidad Autónoma.
+El Gobierno, previo requerimiento al Presidente de la Comunidad Autónoma y, en el caso de no ser atendido, con la aprobación por mayoría absoluta del Senado, podrá adoptar las medidas necesarias para obligar a aquella al cumplimiento forzoso de las obligaciones.
+El Gobierno, previo requerimiento al Presidente de la Comunidad Autónoma y, en el caso de no ser atendido, con la aprobación por mayoría absoluta de las Cortes Generales, podrá adoptar las medidas necesarias para obligar a aquella al cumplimiento forzoso de las obligaciones.
+Las Cortes Generales someterán a consideración del Tribunal Constitucional que resolverá en atención al interés general, siendo su resolución de obligado cumplimiento para todas las instituciones.
+
+
+68. Indique cuál de las siguientes afirmaciones es incorrecta:
+
+Todas las afirmaciones son correctas.
+Las diferencias entre los Estatutos de las distintas Comunidades Autónomas no podrán implicar, en ningún caso, privilegios económicos o sociales.
+Sólo mediante una norma con rango de ley se podrán adoptar medidas que pudieran afectar a la libertad de circulación y establecimiento de las personas en el territorio español.
+Todos los españoles tienen los mismos derechos y obligaciones en cualquier parte del territorio del Estado.
+
+69. Indique cuál de las siguientes afirmaciones es incorrecta:
+
+El resultado de las Comisiones de investigación del Congreso puede ser comunicado al Ministerio Fiscal para el ejercicio, cuando proceda, de las acciones oportunas.
+El Congreso de los Diputados podrá nombrar Comisiones de investigación sobre cualquier asunto de interés público.
+Las conclusiones de las Comisiones de investigación del Congreso serán vinculantes para los Tribunales, aunque no afectarán a resoluciones judiciales ya dictadas.
+Será obligatorio comparecer a las Comisiones de investigación del Congreso.
+
+
+70. Si el Rey se inhabilitare para el ejercicio de su autoridad y la imposibilidad fuere reconocida por las Cortes Generales
+
+Se ejercerá la Regencia por la persona designada por las Cortes Generales.
+Se ejercerá la Regencia por el padre o madre del Rey y, en su defecto, por el pariente de mayor edad más próximo a suceder en la Corona.
+Se ejercerá la Regencia por el padre o madre del Rey y, en su defecto, por el príncipe heredero si fuere mayor de edad.
+Se nombrará la Regencia por las Cortes Generales, si no hubiere ninguna de persona a quien la Constitución atribuye esta Institución, y se compondrá de una, tres o cinco personas.
+
+
+71. De los que se exponen a continuación, señale a quién no es obligatorio notificar en todo caso una diligencia de embargo de intereses, rentas y frutos de toda especie.
+
+c) Al cónyuge del obligado al pago.
+En el apartado a) y en el c) no es obligatorio notificar siempre la diligencia de embargo.
+b) A la entidad aseguradora, cuando los frutos están asegurados.
+a) A la persona o entidad pagadora, cuando los intereses, frutos y rentas se materialicen en pagos en dinero.
+
+
+72. ¿En qué caso la consignación del importe de una deuda tributaria no tiene efectos liberatorios del pago?.
+
+Cuando la caja del órgano competente, entidades colaboradoras, entidades que presten el servicio de caja o demás personas o entidades autorizadas para recibir el pago no puedan admitirlo por causa de fuerza mayor comunicándose la consignación al órgano de recaudación.
+Todos los casos tienen efectos liberatorios del pago.
+Cuando la caja del órgano competente se niegue a admitir el pago, debiendo hacerlo. La consignación se comunica al órgano de recaudación competente.
+Cuando la caja del órgano competente, entidades colaboradoras, entidades que presten el servicio de caja o demás personas o entidades autorizadas para recibir el pago no lo hayan admitido, debiendo hacerlo.
+
+
+73. En relación con las garantías para el aplazamiento y fraccionamiento del pago de una deuda tributaria, señale la afirmación incorrecta :
+
+Cuando se justifique que no es posible obtener dicho aval o certificado o que su aportación compromete gravemente la viabilidad de la actividad económica, la Administración podrá admitir garantías que consistan en hipoteca, prenda, fianza personal y solidaria u otra que se estime suficiente, en la forma que se determine reglamentariamente.
+El obligado tributario podrá solicitar de la Administración que adopte medidas cautelares en sustitución de las garantías previstas.
+Podrá dispensarse total o parcialmente al obligado tributario de la constitución de las garantías cuando las deudas tributarias sean de cuantía inferior a la que se fije en la normativa tributaria.
+Para garantizar los aplazamientos o fraccionamientos de la deuda tributaria, la Administración tributaria exigirá que se constituya a su favor aval solidario de entidad de crédito o sociedad de garantía recíproca o certificado de seguro de caución.
+
+
+74. Los partidos políticos, sindicatos y asociaciones empresariales
+
+Tienen obligación de presentar declaración anual de operaciones con terceras personas en los mismos términos que las personas jurídicas que desarrollen actividades empresariales.
+No tienen obligación de presentar declaración anual de operaciones con terceras personas pero sí de adquisiciones de bienes y servicios.
+Tienen obligación de presentar declaración anual de operaciones con terceras personas en la que incluirán también las adquisiciones en general de bienes y servicios que efectúen al margen de las actividades empresariales o profesionales.
+No tienen obligación de presentar declaración anual de operaciones con terceras personas.
+
+
+75. Un obligado al pago se presenta ante la Administración Tributaria para el pago de una de las tres deudas tributarias que tiene pendientes de pago en periodo ejecutivo. Señale la afirmación correcta:
+
+La Administración Tributaria aplicará el pago a la deuda más antigua salvo que el contribuyente manifieste otra cosa.
+La Administración Tributaria aplicará el pago a la deuda más antigua.
+La Administración Tributaria aplicará el pago comenzando por las deudas de mayor importe salvo que el contribuyente manifieste otra cosa.
+La Administración Tributaria aplicará el pago comenzando por las deudas de mayor importe.
+
+
+76. Cuando el obligado tributario se opusiera a la entrada en el local de negocio de un funcionario de la Agencia Estatal de la Administración Tributaria que desarrolle actuaciones inspectoras
+
+Se podrá solicitar auxilio de los agentes de autoridad para entrar en las instalaciones.
+Se precisará autorización escrita del Director del Departamento si el órgano actuante depende de él.
+Se apercibirá al obligado tributario y se solicitará auxilio de los agentes de la autoridad para entrar en las instalaciones.
+No se podrá entrar si no se cuenta con la preceptiva autorización judicial.
+
+77. En la tasación pericial contradictoria, los honorarios del perito tercero serán abonados por el obligado tributario cuando:
+
+La diferencia entre la tasación practicada por el perito tercero y el valor del perito designado por la Administración sea superior a 120.000 euros y al 10% de dicha tasación.
+La diferencia entre la tasación practicada por el perito tercero y el valor declarado, considerado en valores absolutos, supere el 10% del valor declarado por el obligado tributario.
+La diferencia entre la tasación practicada por el perito tercero y el valor declarado, considerado en valores absolutos, supere el 20% del valor declarado por el obligado tributario.
+La diferencia entre la tasación practicada por el perito tercero y el valor del perito designado por la Administración sea igual o inferior a 120.000 euros y al 10% de dicha tasación.
+
+
+78. El Servicio Jurídico de la Agencia Estatal de Administración Tributaria
+
+Tiene rango de Dirección de Departamento.
+Tiene unos Servicios territoriales dependientes orgánicamente de los Delegados Especiales de la Agencia Tributaria.
+Se estructura a nivel central en dos Subdirecciones Generales.
+Está integrado por Abogados del Estado que actúan con total independencia del Servicio Jurídico del Estado.
+
+
+79. Un contribuyente tiene aplazadas 2 deudas tributarias de 3.000 y 2.500 euros respectivamente. No ha aportado ninguna garantía. Se presenta en una Administración Tributaria para solicitar el aplazamiento en periodo voluntario de una tercera deuda tributaria cuyo importe asciende a 5.000 euros. Señale la afirmación correcta:
+
+La solicitud no supera el importe de 6.000 euros. Por lo tanto la Administración Tributaria no exigirá garantía.
+El importe conjunto de las 3 deudas no supera los 18.000 euros exigido por la normativa en vigor para requerir garantías de pago en las solicitudes de aplazamiento presentadas a partir de Mayo del 2009.
+Con la solicitud presentada, el importe de las deudas aplazadas superaría el importe de 6.000 euros. En este caso la Administración Tributaria deberá exigir garantía.
+La Administración Tributaria concederá el aplazamiento siempre que no haya incumplido el pago de los vencimientos correspondientes a los aplazamientos ya concedidos.
+
+
+80. Cuál de las siguientes funciones no tiene atribuida la Dirección General del Tesoro y Política Financiera:
+
+La gestión y administración de la Caja General de Depósitos.
+La dirección, desarrollo y ordenación de la Política Financiera.
+La representación permanente de España y la coordinación en materia de política económica y financiera ante el Fondo Monetario Internacional.
+El apoyo y asesoramiento a las actividades del Comité Interministerial de Financiación Exterior.
+
+81. En el supuesto de una obligación mancomunada en la que se reclama a uno de los obligados tributarios la parte que le corresponde ¿qué efectos tendrá para los demás deudores la interrupción de la prescripción sobre el obligado tributario al que se reclama?
+
+El plazo se interrumpe para los demás deudores en el supuesto de que dicte acto administrativo de extensión de efectos.
+El plazo se interrumpe para los demás deudores siempre.
+El plazo no se interrumpe para los demás deudores.
+La interrupción de la prescripción afectará a las deudas y deudores expresamente significados en el acto administrativo de interrupción.
+
+
+82. Indique cuál de las siguientes afirmaciones relativas a la figura del retenedor es incorrecta:
+
+Su obligación puede consistir en ingresar cantidades a cuenta de la obligación tributaria principal antes que ésta se produzca.
+Tiene la consideración de obligado tributario.
+Su obligación consiste en detraer e ingresar una parte del importe a cuenta del tributo que corresponde a otros con ocasión de los pagos que deba realizar a aquellos.
+Su obligación está establecida por ley.
+
+
+83. Indique cuál es el plazo para la interposición del recurso contencioso-administrativo contra actos expresos que pongan fin a la vía administrativa:
+
+Quince días.
+Un mes.
+Seis meses.
+Dos meses.
+
+
+84. El control de la actividad de los órganos de las Comunidades Autónomas se ejercerá:
+
+Por la jurisdicción contencioso-administrativa, el económico y presupuestario.
+Por el Tribunal Supremo, el relativo a la constitucionalidad de sus disposiciones con rango de ley.
+Todas las respuestas son correctas.
+Por el Gobierno, previo dictamen del Consejo de Estado, el del ejercicio de funciones delegadas correspondientes a materias de titularidad estatal que por su naturaleza sean susceptibles de transferencia o delegación.
+
+85. Señale la afirmación incorrecta:
+
+Prescribirá a los 4 años el derecho a solicitar las devoluciones derivadas de la normativa de cada tributo, las devoluciones de ingresos indebidos y el reembolso del coste de las garantías.
+Prescribirá a los 4 años el derecho de la Administración para determinar la deuda tributaria mediante la oportuna liquidación. El plazo de prescripción comenzará a contarse desde el día siguiente a aquel en que finalice el plazo reglamentario para presentar la correspondiente declaración o autoliquidación.
+Prescribirá a los 4 años el derecho de la Administración para exigir a un responsable solidario el pago de las deudas tributarias liquidadas y autoliquidadas. El plazo de prescripción comenzará a contarse desde el día siguiente a aquel en que finalice el plazo de pago en período voluntario del responsable.
+Prescribirá a los 4 años el derecho a obtener las devoluciones derivadas de la normativa de cada tributo, las devoluciones de ingresos indebidos y el reembolso del coste de las garantías.
+
+
+86. Indique cuál de las siguientes afirmaciones es incorrecta:
+
+Las elecciones al Congreso tendrán lugar dentro de los treinta días siguientes a la terminación del mandato.
+El Congreso es elegido por cuatro años.
+El Congreso debe estar convocado dentro de los veinticinco días siguientes a la celebración de las elecciones.
+El mandato de los Diputados termina cuatro años después de su elección o el día de la disolución de la Cámara.
+
+
+87. Indique cuál de las siguientes afirmaciones es incorrecta:
+
+El Parlamento Europeo rubrica con su firma la aprobación definitiva del presupuesto de la UE.
+El Parlamento Europeo elabora el anteproyecto de presupuesto de la UE.
+El proyecto de presupuesto de la UE lo elabora el Consejo.
+El Parlamento Europeo puede introducir propuestas de modificación al proyecto de presupuesto de la UE sobre los gastos obligatorios.
+
+
+88. Indique cuál de los siguientes principios NO deberá regir en el ejercicio de la potestad disciplinaria por las Administraciones Públicas:
+
+Principio de tipicidad.
+Principio de no culpabilidad.
+Principio de proporcionalidad.
+Principio de retroactividad de las sanciones favorables al presunto infractor.
+
+89. Cuál de los siguientes suspende de forma automática el procedimiento sin necesidad de prestar garantía:
+
+Ninguna respuesta es correcta.
+La interposición en tiempo y forma de un recurso o reclamación administrativa contra una liquidación tributaria.
+La interposición en tiempo y forma de un recurso o reclamación administrativa contra una sanción tributaria.
+La presentación de una solicitud de aplazamiento.
+
+
+90. Indique el plazo que se concede para subsanar los defectos existentes en una solicitud de fraccionamiento.
+
+15 días contados a partir del siguiente a la fecha de notificación del requerimiento.
+10 días contados a partir del siguiente a la fecha de notificación del requerimiento.
+15 días contados a partir del siguiente a la fecha del requerimiento.
+15 días contados a partir del siguiente a la presentación de la solicitud.
+
+
+91. Indique el importe máximo por el cual el órgano de recaudación puede emitir una diligencia de embargo de una cuenta a la vista abierta en una entidad de crédito para realizar el embargo de forma telemática sin necesidad de personarse un agente de recaudación en la entidad.
+
+12.000 euros.
+6.000 euros.
+20.000 euros.
+15.000 euros.
+
+
+92. Indique cuál de las siguientes afirmaciones es incorrecta:
+
+No podrá procederse a la disolución del Congreso, del Senado o de las Cortes Generales mientras estén declarados alguno de los estados de alarma, excepción o sitio.
+El Presidente del Gobierno podrá proponer la disolución del Congreso, del Senado o de las Cortes Generales, que será decretada por el Rey.
+Decretada la disolución de las Cortes Generales, no procederá nueva disolución antes de que transcurra un año de la anterior, salvo que transcurrido el plazo de dos meses ningún candidato a Presidente del Gobierno hubiera obtenido la confianza del Congreso.
+La propuesta de disolución de las Cortes Generales no podrá presentarse cuando esté en trámite una moción de censura.
+
+93. Indique cuál de las siguientes afirmaciones es incorrecta.
+
+Las deudas tributarias son autónomas.
+Todas las afirmaciones son correctas.
+El obligado al pago de varias deudas imputará cada pago a la deuda más antigua.
+En los casos de ejecución forzosa en que se hubieran acumulado varias deudas tributarias del mismo obligado tributario y no pudieran extinguirse totalmente, la administración tributaria aplicará el pago a la deuda más antigua.
+
+
+94. Cuál de los siguientes no es necesario incluir en el acto de declaración de derivación de responsabilidad tributaria.
+
+Medios de impugnación que pueden ser ejercitados contra dicho acto, órgano ante el que hubieran de presentarse y plazo para interponerlos.
+Presupuesto de hecho habilitante y las liquidaciones a las que alcanza dicho presupuesto.
+Todas las respuestas deben estar incluidas en el acto.
+Texto íntegro del acuerdo de declaración de responsabilidad.
+
+
+95. Una Sociedad Anónima requiere los servicios de un profesional de la Abogacía que lleva en el ejercicio de su actividad cinco años. Indique el tipo de retención que aplicará la Sociedad por las rentas que satisfaga al profesional.
+
+7%
+18%
+20%
+15%
+
+
+96. Indique cuál de las siguientes para cuál de las siguientes actuaciones no está facultado el personal inspector:
+
+Exigir la exhibición de objetos determinantes de la exacción de un tributo.
+Recabar información de los trabajadores o empleados sobre cuestiones relativas a las actividades que participen.
+Todas las respuestas son facultades del personal inspector.
+Verificar y analizar los sistemas y equipos informáticos mediante los que se lleve a cabo la gestión de la actividad.
+
+97. Entre el contenido obligatorio de las actas, se incluye el computo de las interrupciones justificadas y de las dilaciones no imputables a la Administración:
+
+En ningún caso, ya que estas circunstancias se tienen que reflejar en diligencias.
+Sólo en aquellas actas extendidas cuando el procedimiento ha excedido del plazo máximo legalmente establecido.
+Sólo en el caso de las actas suscritas en disconformidad.
+En todo caso.
+
+
+98. En qué caso no procede la liquidación de intereses de demora.
+
+En todos los casos procede la liquidación de intereses de demora.
+Denegación de una solicitud de aplazamiento de una deuda tributaria.
+Ingreso de una deuda tributaria en periodo ejecutivo que incorpora un recargo de apremio del 10%.
+Ingreso de una deuda tributaria en periodo ejecutivo una vez transcurridos los plazos del artículo 62.5 de la LGT.
+
+
+99. En relación con la enajenación de los bienes embargados, indique quién y como valorará dichos bienes.
+
+Con carácter general, la valoración se efectuará a precios de mercado por el órgano de recaudación competente.
+La valoración la efectuará el órgano de recaudación competente previo informe de los servicios técnicos especializados designados por dicho órgano.
+La valoración se efectuará a precios de mercado por servicios técnicos especializados.
+La valoración se efectuará a precios de mercado por servicios técnicos especializados a propuesta del órgano de recaudación competente.
+
+
+100. Indique cual de las siguientes afirmaciones es correcta relativas a las actas de disconformidad:
+
+Es potestativo emitir informe por el actuario.
+Deberá acompañar un informe del actuario en los supuestos en que reglamentariamente se establezca atendiendo a la especial complejidad de las actuaciones.
+Deberá acompañar un informe del actuario sólo si la cuota del acta es a ingresar.
+Deberá acompañar un informe del actuario en todos los casos.
+

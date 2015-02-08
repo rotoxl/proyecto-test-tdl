@@ -1,0 +1,1042 @@
+1. La Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico, en el
+artículo 45 detalla la prescripción para las sanciones e infracciones. Señale la respuesta correcta:
+a) Infracciones muy graves prescribirán a los 3 años, las graves al año y las leves a los 6 meses.
+b) Las sanciones impuestas por faltas muy graves prescribirán a los 3 años, las impuestas por faltas graves a los 2 años y las
+impuestas por faltas leves a los seis meses.
+c) Las infracciones muy graves prescribirán a los S años, las graves a los 3 años y las leves al año.
+d) Sanciones impuestas por faltas muy graves prescribirán a los 3 años, las impuestas por faltas graves a los 2 años y las
+impuestas por faltas leves al año.
+2. Según la Ley 59/2003 de Firma electrónica, los prestadores de servicios de certificación que expidan certificados
+reconocidos deberán conservar registrada por cualquier medio seguro toda la información y documentación
+relativa a un certificado reconocido al menos durante:
+a) S años.
+b) 10 años.
+c) Permanentemente.
+d) 1S años.
+3. En la Ley 59/2003, de firma electrónica, se indica que la prestación de servicios de certificación:
+a) Está sujeta a autorización previa por parte del Ministro de Hacienda.
+b) Está sujeta a autorización previa por parte del Consejo de Ministros.
+c) No está sujeta a autorización previa.
+d) Es una competencia autonómica.
+4. lQué certificados electrónicos incluye el chip de la tarjeta del DNI electrónico?
+a) De autenticación y de firma.
+b) De componente, de autenticación y de firma.
+c) De cifrado y de firma.
+d) De cifrado, de autenticación y de firma.
+5. Conforme a la Ley 59/2003, de Firma electrónica, el prestador de servicios de certificación que vaya a cesar en
+su actividad deberá comunicarlo a los firmantes que utilicen los certificados electrónicos que haya expedido así
+como a los solicitantes de certificados expedidos a favor de personas jurídicas, con una antelación al cese
+efectivo de la actividad, como mínimo de:
+a) Al menos seis meses.
+b) Un año natural.
+c) Al menos dos meses.
+d) Al menos dos semanas.
+6. De acuerdo con el Real Decreto 1720/2007, de 21 de diciembre, len qué casos el documento de seguridad
+deberá contener la identificación del responsable o responsables de seguridad?
+a) No es necesario en ningún caso.
+b) Sólo cuando las medidas de seguridad a aplicar sean de nivel alto.
+c) Cuando las medidas de seguridad a aplicar sean de nivel medio o alto.
+d) El documento de seguridad siempre debe contener esa información.
+7. lOe qué material está hecha la tarjeta física del DNI-electrónico?
+a) Policloruro de vinilo.
+b) Policarbonato.
+c) Polietileno de alta densidad.
+d) Fibra de vidrio.
+8. Según la legislación vigente de protección de datos de carácter personal, la transferencia internacional de datos
+de carácter personal resultante de la aplicación de tratados o convenios en los que sea parte España:
+a) Requieren la autorización del director de la Agencia Española de Protección de Datos (AEPD).
+b) Requieren la autorización del director de la AEPD, y posteriormente se hace necesaria la publicación en el diario oficial
+correspondiente.
+c) No requiere la autorización del director de la AEPD pero se hace necesaria publicación en el diario oficial correspondiente
+donde se indique claramente origen, destino, cantidad de datos transferidos y el convenio o tratado al que hace
+referencia.
+d) No requiere la autorización del director de la AEPD.
+9. Según el Real Decreto 1720/2007, Reglamento de desarrollo de la Ley Orgánica 15/1999, se aplicarán las
+medidas de seguridad del nivel alto:
+a) A los ficheros que contengan o se refieran a datos recabados para fines policiales sin consentimiento de las personas
+afectadas.
+b) A los ficheros que contengan un conjunto de datos de carácter personal que permitan evaluar determinados aspectos de
+la personalidad.
+c) A los ficheros de los que sean responsables Administraciones tributarias y se relacionen con el ejercicio de sus potestades
+tributarias.
+d) Los ficheros que contengan datos relativos a la comisión de infracciones administrativas o penales.
+10. Según se especifica en el Real Decreto 1720/2007, los ficheros de datos de carácter personal de titularidad
+pública serán notificados a la Agencia Española de Protección de Datos, en el plazo de:
+a) 20 días desde la publicación de su norma o acuerdo de creación en el diario oficial correspondiente.
+b) 1S días desde la publicación de su norma o acuerdo de creación en el diario oficial correspondiente.
+c) 30 días desde la publicación de su norma o acuerdo de creación en el diario oficial correspondiente.
+d) 1S días desde la entrada en vigor de la norma. 
+
+11. ¿cuál es el ámbito del Registro Electrónico Común?
+a) Todas las Administraciones Públicas.
+b) La Administración General del Estado y la Administración Autonómica.
+c) La Administración General del Estado y los Organismos Públicos adscritos o dependientes de la misma.
+d) La Secretaria de Estado de Administraciones Públicas, como responsable de su gestión.
+12. De las siguientes opciones señalar cuál forma parte del contenido mínimo que debe contener la norma que crea
+una sede electrónica, de acuerdo con el Real Decreto 1671/2009, de 6 de noviembre:
+a) Relación de los servicios disponibles en la sede.
+b) Medios disponibles para la formulación de sugerencias y quejas.
+c) Mapa de navegación de la sede electrónica.
+d) Carta de servicios electrónicos.
+13. Un ciudadano tiene que iniciar varios procedimientos desde la misma sede electrónica, Gen qué momento según
+el Real Decreto 1671/2009 tiene que otorgar consentimiento para que se puedan recabar los datos o
+documentos que ya obran en poder de las AAPP?
+a) De forma específica e individualizada para cada procedimiento.
+b) Una única vez al configurar su cuenta.
+c) Una vez para todos los documentos o datos que estén en cada administración.
+d) No es posible otorgar ese consentimiento y tiene que presentar él mismo todos los documentos.
+14. Señale cuál de las siguientes respuestas NO corresponde a una Norma Técnica de Interoperabilidad según el
+Real Decreto 4/2010 (Esquema Nacional de Interoperabilidad) en su Disposición adicional primera:
+a) Catálogo de estándares.
+b) Requisitos de conexión a la Red de comunicaciones de las Administraciones públicas españolas.
+c) Modelo de Datos para el intercambio de asientos entre las Entidades Registrales.
+d) Protocolos de comunicación de red .
+15. Indica cual de las siguientes NO es una "dimensión de la seguridad" a tener en cuenta para establecer la
+categoría del sistema, según lo especificado en el Anexo 1 del Esquema Nacional de Seguridad (Real Decreto
+3/2010):
+a) Disponibilidad (D).
+b) Trazabilidad (T).
+c) Autenticidad (A).
+d) Conservación (C).
+16. Según la ley 11/2007, la actuación administrativa:
+a) Nunca podrá ser automatizada.
+b) Podrá ser automatizada cuando la complejidad del procedimiento lo aconseje y coexistan en la gestión del mismo, órganos
+de Administraciones estatales y autonómicas.
+c) Se podrá automatizar, previo establecimiento del órgano u órganos competentes para la definición del proceso, su
+auditoría, y de su eventual impugnación.
+d) Se podrá automatizar, de forma previa al nombramiento de órgano competente.
+17. El certificado de sede electrónica, según se establece en el Real Decreto 1671/2009:
+a) Identifica la sede y permite la firma electrónica de documentos y trámites.
+b) Identifica la sede y permite a firma electrónica de documentos.
+c) Identifica la sede, quedando excluida su aplicación para la firma electrónica de documentos y trámites.
+d) Identifica la sede y permite la firma electrónica de trámites.
+18. Según se establece en el Esquema Nacional de Seguridad (ENS) señale cuál NO es un principio básico en las
+decisiones en materia de seguridad:
+a) Función diferenciada.
+b) Enfoque de soluciones multilaterales.
+c) Gestión de riesgos.
+d) Líneas de defensa.
+19. Según se establece en la Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres,
+todo trato desfavorable a las mujeres relacionado con el embarazo o maternidad, constituye discriminación por
+razón de sexo del tipo:
+a) Indirecta.
+b) Directa.
+c) Directa, si concurre violencia física, e indirecta en el resto de casos.
+d) Directa o indirecta, según decisión judicial, considerando las circunstancias que concurran.
+20. De acuerdo con la Ley Orgánica 1/2004, de 28 de diciembre, de Medidas de Protección Integral contra la
+Violencia de Género, ¿a quién corresponderá el asesoramiento, evaluación, colaboración institucional,
+elaboración de informes y estudios, y propuestas de actuación en materia de violencia de género?
+a) A la Delegación Especial del Gobierno contra la Violencia sobre la Mujer.
+b) A las Fuerzas y Cuerpos de Seguridad del Estado.
+c) Al Observatorio Estatal de Violencia sobre la Mujer.
+d) Al Ministerio de Justicia, que creará un órgano específico para ello.
+21. En los sistemas multiprocesador, los sistemas MIMD se caracterizan por:
+a) Varias unidades funcionales realizan diferentes operaciones sobre diferentes datos.
+b) Una única unidad funcional realiza varias operaciones sobre diferentes datos.
+c) Varias unidades funcionales realizan operaciones similares sobre datos diferentes.
+d) Una única unidad funcional realiza una única operación sobre diferentes datos. 
+
+22. lQué ley establece que "la mejora obtenida en el rendimiento de un sistema al utilizar algún modo de ejecución
+más rápido está limitada por la fracción de tiempo que se pueda utilizar ese modo más rápido"?
+a) Ley de Gustafson
+b) Ley de Metcalfe
+c) Ley de Amdahl
+d) Ley de Machrone
+23. Según el estándar del nuevo USB 3.1, ¿cuál es su velocidad?
+a) 12 Gbps
+b) 8 Gbps
+c) 6 Gbps
+d) 10 Gbps
+24. Señale, de los siguientes, el sistema de ejecución multiplataforma desarrollado por Adobe para crear
+aplicaciones RlA que se pueden ejecutar como aplicaciones de escritorio o de dispositivos móviles:
+a) Android SDK
+b) Mahout
+c) InDesign
+d) AIR
+25. ¿Cuál de las siguientes unidades de magnitud en relación al almacenamiento de información es mayor?
+a) Pettabyte (PB)
+b) Terabyte (TB)
+c) Yottabyte (YB)
+d) Zettabyte (ZB)
+26. ¿Cuál de los siguientes nombres NO se corresponde con una versión del sistema operativo Android?
+a) Kit Kat.
+b) Ice Cream Sandwich.
+c) Donut.
+d) Candy Marzipan.
+27. De los siguientes comandos UNIX, indique el que permite mostrar el espacio libre disponible en el disco:
+a) df
+b) du
+c) ps
+d) wc
+28. Para crear en Solaris 10 un enlace simbólico que se denomine "soft_ link" a un archivo denominado "test" y que
+se encuentra en el mismo directorio que el enlace, lqué comando de los siguientes tenemos que ejecutar?:
+a) In test soft_link
+b) In -s test soft_link
+c) In soft_link test
+d) In -s soft_link test
+29. En el contexto de los sistemas operativos, lqué es un Kernel Panic?
+a) No existe tal terminología.
+b) Es un error de los dispositivos de entrada/salida.
+c) Es un error en el núcleo del sistema.
+d) Es un tipo de error de memoria.
+30. TinyOS, cuyo diseño está orientado a sistemas embebidos inalámbricos de baja potencia, está escrito en el
+lenguaje:
+a) Java
+b) Python
+c) .Net
+d) nesC
+31. En UNIX, el atributo "uid" de un proceso:
+a) Indica el identificador del usuario que ha lanzado el proceso.
+b) Indica el grupo del usuario que ha lanzado el proceso.
+c) Indica el identificador del proceso.
+d) Indica la prioridad del proceso.
+32. La llamada POSIX que permite al sistema operativo crear un proceso hijo a partir de un proceso padre es:
+a) setpid
+b) fork
+c) trap
+d) exec
+33. Señale la respuesta correcta respecto a los siguientes lenguajes y frameworks de programación:
+a) JAVA es un lenguaje de alto nivel interpretado y ejecutado en el servidor. Permite la ejecución de aplicaciones en el cliente
+a través de su extensión JavaScript que compila y ejecuta los bytecodes.
+b) Phyton es un lenguaje de alto nivel, compilado y orientado a objetos de tipado estático y débil.
+c) PHP es un lenguaje de alto nivel, interpretado y ejecutado en el servidor principalmente, aunque permite crear
+aplicaciones cliente con el uso de las extensiones PHP-Qt o PHP-GTK.
+d) Ruby es la base sobre la que se ha desarrollado el framework de aplicaciones de código cerrado Ruby on Rails, conocido
+como RoR.
+34. En el sistema operativo Linux, ¿cuál de las siguientes opciones busca la palabra "libro" dentro de ficheros?
+a) find -type f 1 xwygs grep "libro"
+b) find -type f 1 xaygs grep "libro"
+c) find -type f 1 xargs grep "libro"
+d) find -type f 1 xargp grep "libro"
+35. ¿Con qué directiva se declara una página maestra en ASP.Net?
+a) Master
+b) MasterPage
+c) Master.Page
+d) Page
+36. Anjuta es un entorno de desarrollo integrado (IDc) escrito en lenguaje:
+a) .Net
+b) Java
+c) Android
+d) e 
+
+37. Para desarrollar software en el sistema operativo Android, su propietario proporciona Android SDK y para
+desarrollar nativamente NDK, ¿qué lenguajes soportan cada uno?
+a) Android SDK: ObjectiveC con Cocoa y NDK: desarrollo nativo en C/C++.
+b) Android SDK: Java y NDK: ObjectiveC con GNUstep como API defacto.
+c) Android SDK: Java con Java ME como API principal y NDK: ObjectiveC con GNUstep como API defacto.
+d) Android SDK: Java con una API propia y NDK: desarrollo nativo en C/C++ ..
+38. ¿cuál de las siguientes afirmaciones es correcta en relación al protocolo FTP?
+a) En el modo activo el puerto de datos del cliente es el 20.
+b) El comando "upload" permite subir un fichero al servidor.
+c) Entre los tipos de acceso, está el acceso anónimo, que permite conectarse sin necesidad de usuario y contraseña.
+d) El protocolo permite tres modos de conexión: activo, pasivo y bajo demanda.
+39. Señale cuál de las siguientes opciones está basada en el protocolo ICMP:
+a) SMTP
+b) SNMP
+c) PING
+d) DNS
+40. Ethernet realiza la difusión recibiendo tramas con la siguiente dirección MAC de destino:
+a) OO:OO:OO:OO:OO:FF
+b) FF:FF:FF:FF:FF:FF
+c) FF:OO:OO:OO:OO:FF
+d) 00:00:00:00:00:00 
+
+41. Señale la respuesta correcta. En la programación orientada a objetos en lava, sí una clase hereda de otra clase
+un método abstracto:
+a) Tiene que implementar ese método, si no es así, la clase que hereda deberá ser definida abstracta.
+b) Puede usar el método de la clase de la que ha heredado.
+c) Puede usar el método de la clase de la que ha heredado siempre que esté declarado como public.
+d) No se puede heredar de una clase que tenga algún método abstracto.
+
+42. El modelo de desarrollo RAD (Rapid Application Development) fue descrito inicialmente por:
+a) Codd
+b) Boehm
+c) Chen
+d) James Martin
+
+43. Los puntos de fijación (anchor points) son característicos en el modelo de desarrollo:
+a) En cascada.
+b) Basado en prototipos.
+c) En espiral WINWIN.
+d) RAD.
+
+44 . Según Métrica v3, los flujos que interconectan actividades en la técnica SADT (Structured Analysis and Design
+Techniquc) se pueden clasificar en 4 tipos, señale cuál de los siguientes flujos NO es correcto:
+a) Control.
+b) Transacción.
+c) Mecanismo.
+d) Entrada.
+45. La finalidad principal de la Gestión de Proyectos según Métrica v3 es la planificación, el seguimiento y control
+de:
+a) Las actividades y de los recursos humanos que intervienen en el desarrollo de un Sistema de Información (S.I).
+b) Las actividades que intervienen en el desarrollo de un S.I.
+c) Las actividades y de los recursos humanos y materiales que intervienen en el desarrollo de un S.I.
+d) Los recursos humanos y materiales que intervienen en el desarrollo de un S.I.
+
+46. El "nivel de definición" del modelo CMM (Capability Maturity Model) se caracteriza por:
+a) Proceso poco documentado.
+b) Proceso de desarrollo por definir.
+c) Proceso de desarrollo integrado en la organización.
+d) Control cuantitativo de productos.
+
+47. ¿A qué perfil de Métrica v3 pertenece el Responsable de Mantenimiento?
+a) Jefe de Proyecto.
+b) Consultor.
+c) Analista .
+d) Programador.
+
+48. En Métrica v3, para la tarea "GPI 1.1, identificación de elementos a desarrollar", el producto de salida específico
+en orientación a objeto es:
+a) Catálogo de clases.
+b) Catálogo de entidades.
+c) Catálogo de miembros.
+d) Catálogo de interfaces.
+
+49. Cuál de las siguientes palabras y acrónimos NO está relacionado con Metodologías Ágiles para el desarrollo de
+software:
+a) SCRUM
+b) XP
+c) DSDM
+d) AGILD
+50. ¿cuál de las siguientes actividades forma parte de la Planificación de los Sistemas de Información según Métrica
+3?
+a) Estudio de los Sistemas de Información Actuales.
+b) Definición de los Requisitos del Sistema.
+c) Valoración de Alternativas.
+d) Definición del sistema. 
+
+51. lQué practicas, según Métrica v3, tienen como objetivo potenciar la participación activa de la alta dirección
+como medio para obtener los mejores resultados en el menor tiempo posible y con una mayor calidad de los
+productos?
+a) Sesiones JAD.
+b) Sesiones JRP.
+c) Entrevistas.
+d) Reuniones.
+52. Señale de entre las siguientes, la norma que establece los requisitos para el diseño y desarrollo de la
+documentación del software de usuario como parte de los procesos del ciclo de vida:
+a) ISO/lEC 26514.
+b) ISO 7816.
+c) ISO/lEC 12207.
+d) ISO 8859.
+53. ¿Cuál de los siguientes estándares regula los procesos de ciclo de vida del software?
+a) ISO/lEC 12207:2008
+b) ISO 9001:2008
+c) ISO 29393:2009
+d) ISO 31000:2009
+54. Señale cuál de las siguientes es una técnica de desarrollo según Métrica v3:
+a) Técnicas Matriciales.
+b) Método Albrecht.
+c) Análisis de Impacto.
+d) Caminos de Acceso.
+55. Dentro del perfil analista de Métrica v3 se agrupa uno de los siguientes participantes:
+a) Especialista en Comunicaciones.
+b) Usuarios expertos.
+c) Técnicos de Comunicaciones.
+d) Grupo de Aseguramiento de la Calidad.
+56. ¿Cuál de los siguientes contradice un principio de las metodologías ágiles de desarrollo software (principios del
+Manifiesto Ágil)?
+a) Son bienvenidos los requisitos cambiantes, incluso si llegan en las etapas tardías del desarrollo.
+b) Los responsables de negocio y los desarrolladores trabajan juntos de forma cotidiana durante todo el proyecto.
+c) El software, en su fase de diseño, es la medida principal de progreso.
+d) La simplicidad, o el arte de maximizar la cantidad de trabajo no realizado, es esencial.
+57. La actividad EVS-GC 1 de la interface de Gestión de la Configuración (GC) de Métrica v3 recibe entre sus
+entradas un producto resultante de la actividad:
+a) EVS 4- Estudio de Alternativas de Solución.
+b) EVS S- Valoración de las Alternativas.
+c) EVS 3 - Definición de Requisitos del Sistema.
+d) EVS 1 - Establecimiento del A¿cance del Sistema.
+58. En un proyecto de desarrollo que utiliza la metodología SCRUM, aquel rol que tiene la responsabilidad de
+eliminar los obstáculos que impidan el progreso del equipo se denomina:
+a) Product owner.
+b) Retail Cashier.
+c) ScrumMaster.
+d) Development team member.
+59. ¿Cuál de las siguientes es una herramienta que ayuda a realizar seguimiento a los requisitos a lo largo del ciclo
+de vida del proyecto para asegurar que se están cumpliendo de manera eficaz?
+a) Cuestionarios.
+b) Casos de uso.
+c) Matriz de trazabilidad de requisitos.
+d) Prototipos.
+60. Escoja la ordenación correcta de las siguientes técnicas para la realización de prototipos de menor a mayor
+grado de fidelidad con el sistema final:
+a) Mockup, Sketch y WireFrame.
+b) Sketch, Mockup y WireFrame.
+c) Sketch, WireFrame y Mockup.
+d) Mockup, Wireframe y Sketch.
+61. Para las siguientes conexiones entre elementos de un DFD (Diagrama de flujo de datos), NO es posible el flujo:
+a) Proceso-Proceso.
+b) Proceso-Entidad Externa.
+c) Almacén de datos-Almacén de datos.
+d) Entidad Externa-Proceso.
+62. Señale cuál de las siguientes NO es un tipo de conexión válida entre un proceso y un almacén de datos de un
+DFD (diagrama de flujo de datos), según Métrica v3:
+a) Flujo de consulta.
+b) Flujo de actualización.
+c) Flujo de diálogo.
+d) Flujo de sincronización.
+63. ¿Cuál de los siguientes conceptos NO se puede representar a través de un diagrama de flujo de datos?
+a) La persistencia.
+b) Los procesos de transformación.
+c) El flujo de la información.
+d) La herencia.
+64. Según Métrica v3 les posible definir un evento (o interrupción) en un diagrama de flujo de datos?
+a) Sí, mediante un flujo de datos.
+b) Sí, mediante un flujo de control.
+c) Si, mediante un proceso iterativo.
+d) No, no es posible. Los DFD únicamente representan como se transforma la información
+
+65. Dentro del diseño conceptual de datos, en una jerarquía de generalización se dice que un subconjunto (caso
+particular de generalización con una sola entidad como subentidad) siempre es una jerarquía:
+a) Total y exclusiva.
+b) Parcial y superpuesta .
+c) Parcial y exclusiva.
+d) Total y superpuesta.
+66. ¿cuál de los siguientes es un Sistema Gestor de Bases de Datos Orientado a Objetos?
+a) Microsoft SQL Server.
+b) Versant.
+c) MariaDB.
+d) MySQL.
+67. En Métrica v3, en relación al modelo entidad/relación extendido, dentro de las relaciones débiles, ¿qué dos
+divisiones se distinguen?
+a) Dependencia en existencia y dependencia en identificación.
+b) Dependencia en composición y dependencia en identificación.
+c) Dependencia en existencia y dependencia en discriminación.
+d) Dependencia en composición y dependencia en discriminación.
+68. En un entorno de base de datos relacional, si se puede afirmar que los valores de una clave ajena coinciden con
+los valores de la clave primaria a la que hace referencia o son nulos; entonces se está cumpliendo:
+a) Regla de los nulos.
+b) Regla de integridad de la entidad.
+c) Regla de la integridad referencial.
+d) Regla de los valores ajenos.
+69. Indique los cuatro niveles de aislamiento que define ANSI SQL 92:
+a) Lecturas no confirmadas Cread uncommited), lecturas confirmadas Cread commited), lecturas repetibles Crepeatable read),
+transacciones secuenciables Cserializab¿c).
+b) Escrituras no confirmadas Cwrite uncommited), escrituras confirmadas Cwrite commited), escrituras repetibles Crepeatable
+writc), transacciones secuenciables Cserializab¿c).
+c) Escrituras no confirmadas Cwrite uncommited), escrituras confirmadas Cwrite commited), lecturas repetibles Crepeatable
+read), transacciones secuenciables Cserializab¿c).
+d) Lecturas no confirmadas Cread uncommited), lecturas confirmadas Cread commited), escrituras repetibles Crepeatable
+writc), transacciones secuenciables Cserializab¿c).
+70. El término anglosajón "ACID" relacionado con una transacción de base de datos se corresponde con las
+propiedades:
+a) Autentication, Consistency, Integrity, Durability.
+b) Atomicity, Confidentiality, Identification, Durability.
+c) Atomicity, Consistency, Isolation, Durability.
+d) Availability, Consistency, Isolation, Durability.
+71. En relación con la concurrencia en bases de datos, el tamaño del elemento de datos adecuado para el bloqueo
+(granularidad) afecta al grado de concurrencia de forma que, a menor tamaño del elemento que es bloqueado:
+a) Aumenta el grado de concurrencia, aumenta la carga de trabajo para la gestión de bloqueos y el espacio ocupado por la
+información de bloqueos.
+b) Disminuye el grado de concurrencia, aumenta la carga de trabajo para la gestión de bloqueos y el espacio ocupado por la.,
+información de bloqueos.
+c) Disminuye el grado de concurrencia, disminuyendo la carga de trabajo para la gestión de bloqueos y el espacio ocupado
+por la información de bloqueos.
+d) Aumenta el grado de concurrencia, disminuyendo la carga de trabajo para la gestión de bloqueos y el espacio ocupado por
+la información de bloqueos.
+72. La instrucción que aborta la transacción en un SGBD y la hace terminar en forma no exitosa se denomina:
+a) Undo.
+b) Rollback.
+c) Two Phase Commit.
+d) Commit.
+73. Al problema en un SGBD en que dos transacciones paralelas intentan modificar el mismo objeto de la base de
+datos, leyendo ambas el valor antes de que la otra transacción lo actualice, se conoce como:
+a) Lectura sucia .
+b) Lectura fantasma.
+c) Lectura no repetible.
+d) Lectura comprometida.
+74. Señale cuál de los siguientes NO es un modelo de disciplina de cola en teoría de colas:
+a) FIFO
+b) UFO
+c) RSS
+d) PIPE
+75. En el peor de los casos, el algoritmo de ordenación rápida (quicksort) posee una complejidad:
+a) OCn3)
+b) OC n)
+c) OCn)n
+d) OCn2)
+76. ¿cuál de los siguientes estándares regula el formato de documentos abiertos para aplicaciones de ofimática
+( OpenDocument)?
+a) ISO/lEC 26300 :2006
+b) RFC 2373
+c) ISO/lEC 9899:1999
+d) ISO 9000
+77. Señale de entre las siguientes la técnica de integración NO incremental para pruebas de integración:
+a) Top-down .
+b) Sandwich.
+c) Big-Bang.
+d) Bottom-up. 
+
+78. Señale de entre los siguientes cuál NO es un framework de pruebas unitarias para Microsoft .NET:
+a) xUnit
+b) xUnit.net
+c) NUnit
+d) csUnit
+79. Según el Real Decreto 1720/2007, ¿cuál de las siguientes declaraciones es correcta respecto a pruebas en
+sistemas con datos de carácter personal?
+a) Queda terminantemente prohibida la realización de pruebas en los sistemas de información que traten datos reales en
+ficheros con datos de carácter personal.
+b) No existen limitaciones para usar datos reales en ficheros de carácter personal si se utilizan para las pruebas anteriores a
+la implantación o modificación de los sistemas de información.
+c) Las pruebas anteriores a la implantación o modificación de los sistemas de información que traten ficheros con datos de
+carácter personal no se realizarán con datos reales, salvo que se asegure el nivel de seguridad correspondiente al
+tratamiento realizado y se anote su realización en el documento de seguridad.
+d) Si para la validación de un sistema de información, es necesario realizar pruebas que traten ficheros con datos de carácter
+personal reales, se procederá posteriormente al borrado de dichos ficheros para cumplir la normativa legal vigente.
+80. En Métrica v3, ¿quién lleva a cabo las pruebas en la tarea lAS 6.2 "realización de las pruebas de aceptación"?
+a) Usuarios expertos.
+b) Directores de los usuarios.
+c) Equipo de calidad.
+d) Equipo de implantación.
+81. Señale la respuesta INCORRECTA respecto a las características de la metodología de desarrollo software
+conocida como Proceso Unificado de Desarrollo Software:
+a) Es Iterativo e Incremental.
+b) Está dirigido por los casos de uso.
+c) Está enfocado en los riesgos.
+d) Fue creado por Dennis Ritchie y Ken Thompson.
+82. Existen dos especificaciones complementarias que constituyen la especificación completa del lenguaje de
+modelado UML 2.4.1. Estas especificaciones se denominan:
+a) Intrastructure e Hiperstructure.
+b) Basic y Complex.
+c) Infrastructure y Superstructure.
+d) Infrastructure y Substructure.
+83. Indique cuál de los siguientes diagramas de descomposición NO se contempla como técnica en Métrica v3:
+a) Funcional.
+b) Organizativo.
+c) Lógico.
+d) En Diálogos.
+84. Throwable es la superclase de todos los errores y excepciones de Java SE 7. ¿A qué paquete de Java pertenece
+Throwable?
+a) java.lang
+b) java.error
+c) java.util
+d) Throwable no es una clase, es un interface, y éste pertenece al paquete java.io.
+85. Señale la afirmación CORRECTA con respecto a un bean de sesión en JavaEE 7:
+a) Una aplicación requerirá normalmente menos beans de sesión stateless que stateful para respaldar al mismo número de
+clientes.
+b) Los stateful permiten compartir estado entre varios clientes.
+c) Un bean de sesión singleton es instanciado varias veces, según necesidad, pero va a existir una copia (el singleton) todo
+el ciclo de vida de la aplicación.
+d) Los stateful están respaldados por una base de datos y pueden implementar un servicio web.
+86. Señale cuál de las siguientes opciones se ajusta a la siguiente definición: plataforma basada en Java que
+permite crear rich internet applications (RIA) que se comportan de la misma forma en distintas plataformas:
+a) Flex
+b) JavaFX
+c) AJAX
+d) Silverlight
+87. ¿cuál de los siguientes productos Java dispone de un motor de workflow?
+a) Hibernate.
+b) Easy BPM .
+c) Spring.
+d) jBPM.
+88. ¿Qué significa COI en el contexto de Java EE 7?
+a) Contexts and Dependency Injection.
+b) Common Display Interface.
+c) Context-Dependent Interface.
+d) case-Driven Implementation.
+89. El Entity Framework es:
+a) Un framework ORM (object-relational mapper) desarrollado por Microsoft e integrado en la plataforma .NET.
+b) Una utilidad que permite identificar las funcionalidades de un sistema informático.
+c) Una herramienta de planificación y gestión del software desarrollado por Microsoft.
+d) Un framework orientado a la realización de aplicaciones web implementado por Microsoft que respecta el modelo vista
+controlador. 
+
+9O. Elija la respuesta correcta:
+a) La JavaServer Pages Standard Tag Library (JSTL) es una colección de bibliotecas de etiquetas con utilidades ampliamente
+utilizadas en el desarrollo de páginas web.
+b) Apache Struts es un framework de desarrollo bajo el modelo vista controlador que sirve para crear Aplicaciones web con
+Smalltalk.
+c) El Unified Expression Language (EL) integra los JSP con los servlets.
+d) Los Applets y las Java Server Pages (JSPs) son dos métodos de creación de páginas web dinámicas en servidor usando el
+lenguaje Java.
+91. ¿Qué significan las siglas MVC en el contexto de ASP.NET?
+a) Model View Controller.
+b) Multiple Views canvas.
+c) Mobile Video Compatible.
+d) Mobile View Connector.
+92. ¿Qué es el Marco Común de Evaluación (CAF) 2013?
+a) CAF ofrece dos sistemas de puntuación, el clásico y el refinado, sólo el primero de ellos está fundamentado sobre el Ciclo
+de Deming.
+b) Es uno del los ejes del modelo EFQM.
+c) Es una herramienta de gestión de la calidad total, desarrollada por y para el sector público.
+d) Es una autoevaluación que debe realizar una organización conforme a lo que dicta la norma ISO 9000.
+93. Indique en qué consiste el método QSOS:
+a) Está destinado a representar la interacción entre los componentes de un sistema.
+b) Permite calificar, seleccionar y comparar software Open Source de una manera objetiva.
+c) Permite representar a través de objetos la información que contiene una base de datos.
+d) Es un modelo matemático que permite ca¿cular las futuras desviaciones en un proyecto software.
+94. ¿cuál de las siguientes pautas está asociada al principio "comprensible" de la WCAG 2.0?
+a) Alternativas textuales.
+b) Distinguible.
+c) Predecible.
+d) Compatible.
+95. ¿En qué ley se exige que se establezcan las
+medidas necesarias para incentivar el acceso a las
+telecomunicaciones en lengua de signos española?
+a) Ley 30/92
+b) Ley 27/2007
+c) Ley 11/2007 
+d) Ley 34/2002
+96. Indique cuál de los siguientes es un framework software de Apache que soporta aplicaciones distribuidas que
+trabajan con miles de nodos y volúmenes de datos del orden de peta bytes:
+a) Joost
+b) Netflix
+c) Cassandra
+d) Hadoop
+97. ¿cuál de las siguientes NO es una palabra reservada de MDX (MultiDimensional eXpressions) en SQL Server
+2012?
+a) SELECT
+b) DRILL
+c) CUBE
+d) MEMBER
+98. Los ETL son herramientas utilizadas habitualmente en .la minería de datos. ¿En qué consisten dichas
+herramientas?
+a) Son bases de datos multidimensionales que permiten tener la información correctamente estructurada siguiendo multitud
+de criterios o dimensiones.
+b) Son herramientas que realizan informes destinados a la alta dirección de la organización.
+c) Son aplicaciones que permiten el acceso a la base de datos a través de páginas HTML.
+d) Son herramientas que permiten extraer información de diversos orígenes, realizar modificaciones en dicha información y
+cargarla en un sistema destino.
+
+99. Existen distintos tipos de algoritmos que se aplican en DataMining. ¿A qué categoría pertenece el algoritmo de
+Bayes Naive?
+a) Algoritmos de clasificación.
+b) Algoritmos de regresión.
+c) Algoritmos de segmentación.
+d) Algoritmos de asociación.
+
+100. ¿Qué es el "Data staging area" en el contexto de los Data Warehouses?
+a) Es un almacén previo de datos y sus procesos asociados, en el que se extraen los datos de las fuentes, se transforman y
+se adaptan antes de ser cargados en el almacén de datos.
+b) Durante la fase de diseño de un almacén de datos, es la base de datos no permanente usada para ensayar, demostrar y
+estudiar el rendimiento de los diseños propuestos.
+c) Es el área del almacén (conceptual o físicamente separada en otra base de datos) donde se cachean las consultas
+preparadas, cuando éstas no pueden ejecutarse en tiempo real.
+d) Es una copia idéntica de las bases de datos originales, cuando en ellas existe mucha carga y no es posible bloquearlas
+para asegurar la integridad referencial al copiar los datos. 
+
+101. En relación con los servicios web y SOAP, las siglas MTOM se corresponden con:
+a) Mail Transmission Optimization Mechanism.
+b) Message Transmission Optimization Mechanism.
+c) Message Transport Optimization Module.
+d) Mail Transport Optimization Module.
+
+102. Cuando se habla de las pruebas de regresión en el contexto de la calidad del software, ¿qué tipo de fallo (bug)
+es un fallo de regresión?
+a) El que parece arreglarse espontáneamente y que posteriormente no es posible determinar el origen del mismo.
+b) Todos aquellos que son de tipo lógico y que además consistan bien en un bucle infinito, bien en una llamada recursiva
+infinita.
+c) Todos aquellos derivados de problemas de concurrencia entre diferentes hilos accediendo a un mismo recurso:
+condiciones de carrera, deadlocks, etc.
+d) Aquel que inicialmente no existe o no se manifiesta, pero que aparece al introducir otros cambios en el programa o
+arreglar otro fallo en él, o tras ocurrir un evento externo dado.
+
+103. ¿cuál de las siguientes NO es una palabra reservada en Java?
+a) switch
+b) break
+c) continue
+d) then 
+
+104. RMAN es:
+a) Una especificación de monitorización remota de IETF.
+b) Una invocación de métodos remotos utilizada en Java.
+c) Una herramienta de Oracle que permite hacer backups online de bases de datos.
+d) Una herramienta de IBM que permite realizar administración remota de bases de datos.
+
+105. ¿Qué muestra el comando top en UNIX?
+a) Los ficheros abiertos.
+b) El escritorio.
+c) Los procesos.
+d) Los puertos TCP/IP.
+
+106. ¿cuál de estas instrucciones NO vacía el contenido del fichero con nombre 2013 en Linux?
+a) true > 2013
+b) > 2013
+c) cat /dev/null > 2013
+d) 1 > 2013
+
+107. Si queremos restringir el almacenamiento en disco en Linux a determinados usuarios o grupos, ¿cuál de los
+siguientes métodos podemos usar?
+a) Mediante cuotas de disco.
+b) Mediante el editor de directivas de grupo.
+c) No se puede restringir el almacenamiento a usuarios.
+d) No se puede restringir el almacenamiento por grupos.
+
+108. En el ámbito de las bases de datos Oracle una vista materializada:
+a) Es un objeto de la base de datos donde se almacena la información de todas las vistas de la BD.
+b) Es un objeto de la base de datos donde se almacena la definición de la tabla que materializa.
+c) Es un objeto de la base de datos donde se almacena el resultado de una consulta.
+d) Es una vista ordinaria que automáticamente se actualizará siempre que se actualicen las tablas involucradas en esa vista.
+
+109. ¿Qué es Transact-SQL?
+a) Un sistema gestor de base de datos de tipo NoSQL.
+b) Una extensión propietaria al estándar SQL.
+c) Una query que equivale a realizar consultas SELECT por lotes.
+d) Una biblioteca de clases para mapear objetos sobre una base de datos relacional.
+
+110. ¿Qué tipo de mantenimiento debe realizarse como consecuencia de los cambios en el entorno de operación?
+a) Operativo
+b) Correctivo
+c) Perfectivo
+d) Adaptativo
+
+111. En la herramienta de control de versiones Subversion, ¿con que comando se suben los cambios al repositorio?
+a) svn commit
+b) svn checkin
+c) svn checkout
+d) svn upload
+
+112. Una sentencia JCL comienza con:
+a) //
+b) *+
+c) #>
+d) $>
+
+113. En el contexto de copias de seguridad o respaldo, un TMS es acrónimo de:
+a) Tape Management System.
+b) Transaction Multiplexing System.
+c) Tape Mapping System.
+d) Transaction Management System.
+
+114. La tasa de transferencia máxima que soporta el Serial Advanced Technology Attachment (SATA) Revision 3.0 es
+de hasta:
+a) 300 MB/s.
+b) 900 MB/s.
+c) 600 MB/s.
+d) 150 MB/s.
+
+115. ¿cuál es el máximo porcentaje de disco desaprovechado para el almacenamiento efectivo de datos en un array
+de discos configurado en RAID 5 (suponiendo que todos los discos tienen la misma capacidad)?
+a) 33%
+b) 20%
+c) 50%
+d) 0%
+
+116. En el ámbito de las redes SAN, ¿a qué se refiere el término LUN?
+a) A un switch con conexión de fibra.
+b) A la interfaz de red de los servidores para conectarse a la SAN.
+c) A una unidad de discos agrupados en una cabina de almacenamiento.
+d) Al gateway para conectar una NAS a una red SAN.
+
+117. Comparando NAS (Network-attached Storagc) con SAN (Storage Area Network):
+a) NAS opera a nivel de fichero y SAN a nivel de bloque.
+b) NAS opera a nivel de bloque y SAN a nivel de fichero.
+c) Ambos operan a nivel de bloque.
+d) Ambos operan a nivel de fichero.
+
+118. Un conector tipo "MT-Array" es un conector para:
+a) Fibra óptica.
+b) Mainframes.
+c) Buses PCI.
+d) Par trenzado.
+
+119. Los conectores ¿C son:
+a) Conectores para PCI.
+b) Conectores de par trenzado.
+c) Conectores exclusivos para Mainframe.
+d) Conectores de fibra óptica.
+
+120. Uno de los siguientes términos NO se corresponde con un tipo de antena satelital:
+a) cassegrain
+b) Krenwinkel
+c) Gregorian
+d) Offset
+18. ¿cuántos bytes utiliza la trama de Ethernet (IEEE 802.3-2012) para el código de redundancia cíclica?
+a) 4 bytes.
+b) 6 bytes.
+c) 12 bytes.
+d) Ethernet no utiliza ningún código de redundancia cíclica.
+
+121. CRAM-MD5 definido en el RFC 2195 es una técnica criptográfica que consiste en:
+a) Un mecanismo de autenticación challenge-response para autenticación de usuarios POPe IMAP, entre otros.
+b) Un mecanismo de cifrado simétrico de bloque basado en una clave compartida y derivación de subclaves usando MD5.
+c) Un algoritmo de firma electrónica basado en MD5, ideado para escenarios en los que no puede usarse criptografía
+asimétrica.
+d) Un algoritmo de cifrado simétrico de flujo (stream) basado una clave compartida, en MD5 y un LFSR predeterminado.
+
+122. ¿cuál es la dirección MAC de difusión de red o broadcast que se utiliza en Ethernet (IEEE 802.3)?
+a) 255.255.255.255
+b) FF:: FF
+c) FF:FF:FF:FF:FF:FF:FF:FF
+d) FF:FF:FF:FF:FF:FF
+
+123. En redes de área local, ¿cuál de los siguientes es un método de acceso al medio compartido con escucha por
+contienda?
+a) Paso de testigo en anillo.
+b) CSMA no persistente.
+c) ALOHA ranurado.
+d) Contención.
+
+124. ¿cómo se llama la base de datos que tiene los parámetros de gestión de una red?
+a) MIB (Management Information Basc).
+b) NMD (Network Management databasc).
+c) NMS (Network Management System).
+d) Ninguna de los anteriores.
+
+125. ¿cuál de los siguientes puertos utiliza el protocolo SNMP?
+a) 110
+b) 119
+c) 161
+d) 25
+
+126. ¿se pueden controlar el número de impresiones que un usuario ha realizado en una impresora en red mediante
+el protocolo de gestión SNMP?
+a) Si, siempre y cuando en la MIB de la impresora se contemple este parámetro.
+b) No, necesitaría una base de datos externa para almacenarlo.
+c) Si, sólo mediante instalación de firmware nuevo en la impresora.
+d) Si, pero con protocolos propietarios de la impresora.
+
+127. Señale cuál de las siguientes NO es una Protocol Data Unit (PDU) del protocolo SNMP v2/v3:
+a) GETREQUEST PDU
+b) SETRESPONSE PDU
+c) RESPONSE PDU
+d) INFORMREQUEST PDU
+
+128. Indique la respuesta correcta en relación al comando SNMP GetBulkRequest:
+a) Está disponible en todas las versiones de SNMP.
+b) Es utilizado por un sistema gestor de red para enviar un mensaje a otro gestor sobre objetos administrados.
+c) Es el que permite utilizar autenticación en SNMP v3.
+d) Es utilizado cuando se requiere una cantidad elevada de datos transmitidos. 
+
+129. Indicar cuál de las siguientes direcciones IP puede ser asignada a un host en la siguiente subred: 135.26.41.80/28
+a) 135.26.41.94
+b) 135.26.41.95
+c) 135.26.41.96
+d) 135.26.41.97
+
+130. Si tenemos la siguiente dirección de broadcast 95.26.35.159, indicar a qué subred pertenece.
+a) 95.26.35.144/30
+b) 95.26.35.144/29
+c) 95.26.35.128/27
+d) 95.26.35.128/25
+
+131. De las siguientes cabeceras IPv6 (RFC 2460), ¿cuál de las siguientes cabeceras NO es de extensión?
+a) Fragmentacion.
+b) Opciones de salto a salto.
+c) Autenticación.
+d) Límite de saltos.
+
+132. El puerto 69 es utilizado por:
+a) TFTP (Trivial File Transfer Protocol).
+b) Finger.
+c) IMAP (Internet Message Access Protocol).
+d) SFTP (Secure File Transfer Protocol).
+
+133. ¿Cuál es la dirección multicast utilizada por el protocolo RIP v2 (Routing Information Protocol), según RFC 2453, para enviar las actualizaciones de sus tablas?
+a) 224.0.0.4
+b) 224.0.0.5
+c) 224.0.0.9
+d) 224.0.0.22
+
+134. ¿Qué protocolo utiliza la orden "traceroute" para obtener la ruta que se sigue desde nuestro equipo hasta otro
+en Internet?
+a) Ping
+b) ICMP
+c) PPP
+d) RSVP
+
+135. Con respecto al protocolo DNS. ¿Cuál de las siguientes opciones NO es una parte de un mensaje DNS?
+a) Cabecera.
+b) Checksum.
+c) Registros de recursos de Respuesta.
+d) Registros de recursos de Autoridad.
+
+136. Un equipo con la dirección IP 128.0.235.56/27 lQué máscara de red, dirección de red y dirección de broadcast
+tiene?
+a) Máscara 255.255.255.224, red 128.0.235.32, broadcast 128.0.235.63
+b) Máscara 255.255.255.0, red 128.0.235.0, broadcast 128.0.235.255
+c) Máscara 255.255.255.192, red 128.0.235.0, broadcast 128.0.235.63
+d) Máscara 255.255.255.128, red 128.0.235.0, broadcast 128.0.235.127
+
+137. ¿qué tipo es la dirección de IPv6 ff00::/8?
+a) No es válida.
+b) Unicast.
+c) Multicast.
+d) Loopback.
+
+138. Indique qué dirección IPv6 de las siguientes NO es correcta:
+a) ::1
+b) 2022: :0ab7::1528:67bb
+c) ..
+d) ::212. 200 .31 .255
+
+139. En una empresa con 2.000 puestos de usuario final en su red local de comunicaciones existen 3 sub redes con
+estos direccionamientos: red A: 10.X.X.X red B: 192.168.1.X y red C: 195.57.72.X. Teniendo en cuenta que en
+la ubicación de los equipos de usuarios y servidores se busca mantener la red operativa y a la vez con la máxima
+seguridad posible, len qué subred ubicaría los servidores web públicos?
+a) Red A.
+b) Red B.
+c) Red C.
+d) Indistintamente en la red B o en la red C.
+
+140. El estándar ANSI/TIA-942 establece distintos niveles en relación a ciertos requisitos de seguridad en los Centros
+de Proceso de Datos (CPD). ¿Cuál es el nivel más exigente?
+a) Tier S
+b) Tier 4
+c) Tier 3
+d) Tier O
+
+141. De entre los siguientes, lqué protocolo es utilizado para reservar recursos de red a una determinada aplicación?
+a) RSVP
+b) ARP
+c) 802.1ar
+d) H.264
+
+142. lEn qué protocolo de encaminamiento se utiliza el Algoritmo de Dijkstra para el cá¿culo de rutas?
+a) OSPF
+b) RIP
+c) BGP
+d) EGP
+
+143. ¿Cuál de los siguientes elementos NO pertenece al protocolo MPLS (RFC 3031)?
+a) LSP (Label Switched Path).
+b) LSR (Label Switching Router).
+c) FEC (Forwarding Equivalence Class).
+d) ILP (Incoming Label Protocol). 
+
+144. La recomendación X.25 de la ITU (International Telecommunication Union) se refiere a:
+a) Interfaz entre el equipo terminal de datos y el equipo de terminación del circuito de datos para equipos terminales que
+funcionan en el modo paquete y están conectados a redes públicas de datos por circuitos especializados.
+b) Interfaz equipo terminal de datos/equipo de terminación del circuito de datos para los equipos terminales de datos
+arrítmicos con acceso a la facilidad de ensamblado/desensamblado de paquetes en una red pública de datos situada en el
+mismo país.
+c) Utilización, en las redes públicas de datos, de equipos terminales de datos diseñados para su conexión con módems
+síncronos de la serie V.
+d) Interfaz entre el equipo terminal de datos y el equipo de terminación del circuito de datos para funcionamiento síncrono
+en redes públicas de datos.
+
+145. El algoritmo P¿C {Packet Loss Concealment):
+a) Lo utiliza Frame Relay para el reenvío de tramas pérdidas por la congestión en el sentido de la transmisión.
+b) Algoritmo de ocultamiento de pérdida de paquetes utilizado por VoiP.
+c) Utilizado por TCP para la retransmisión de paquetes después de una trama NACK (negative acknowledgement).
+d) Algoritmo de descarte de paquetes en situación de congestión en redes Frame Relay.
+
+146. Con respecto al campo Data Link Connection Identifier (D¿CI) de Frame Relay señale la respuesta correcta:
+a) Debe ser único en toda la red.
+b) Tiene una longitud total de 10 bits por defecto.
+c) Controla los mecanismos de notificación de congestión.
+d) Los valores O a 128 del mismo están reservados para funciones especiales.
+
+147. MPLS (Multiprotocol Label Switching) utiliza algunos conceptos, entre ellos:
+a) FEC (Forwarding Equivalent Class).
+b) LAPO (Link Access Protocol for D-channel).
+c) CIR (Commited Information Ratc).
+d) MBS (Maximum Burst Sizc).
+
+148. Un archivo .PFX, de uso en certificados electrónicos:
+a) Contiene la clave privada.
+b) Cumple la sintaxis PKCS #21.
+c) Está codificado en un formato no binario.
+d) No se puede convertir a formato .PEM.
+
+149. Indique la respuesta FALSA, respecto al protocolo IPSEC:
+a) El protocolo IPSEC AH garantiza integridad y autenticación, pero no confidencialidad.
+b) El protocolo IPSEC ESP utiliza el número de protocolo 50 en la cabecera IP.
+c) IPSEC utiliza IKE como protocolo de intercambio de claves.
+d) IPSEC ESP es incompatible con el modo transporte, sólo se puede utilizar en modo túnel.
+
+151. De los 32 bits que tiene una cabecera MPLS,
+¿cuántos están reservados para el valor de la etiqueta MPLS según la RFC 3032?
+a) 32
+b) 24
+c) 20
+d) 16
+
+152. Indique de entre las siguientes cuál es la definición de secráfono:
+a) Equipo de frontera que, situado fuera de la red interna, ofrece servicios al exterior.
+b) Equipo infectado por un atacante remoto no detectado.
+c) Equipo que genera y entrega claves criptográficas para su distribución.
+d) Equipo para realizar el cifrado analógico de la voz.
+
+154. El algoritmo SHA-1 (RFC 3174) produce un resumen de salida de:
+a) 128 bits
+b) 160 bits
+c) 224 bits
+d) 256 bits
+
+155. Según la recomendación XMLDsig de W3C, la firma digital de tipo enveloped signature cumple que:
+a) La firma y el documento firmado son dos ficheros diferentes.
+b) El documento firmado va dentro de la firma .
+c) La firma va al final del documento firmado como un elemento adicional.
+d) La firma se inserta en el primer elemento XML del documento.
+
+156. ¿Cuál de los siguientes organismos se encarga de generar y mantener las RFC en internet?
+a) IETF (Internet Engineering Task Forcc).
+b) IAB (Internet Architecture Board).
+c) lANA (Internet Assigned Numbers Authority).
+d) ISOC (Internet Society).
+
+157. El protocolo FTP sobre TLS/SSL {FTPS-data) usa el puerto:
+a) 989
+b) 567
+c) 742
+d) 334 
+
+158. Los Puntos Neutros (Internet Exchange Points) en Internet:
+a) Permiten conectarse a Internet sin coste.
+b) Eliminan los paquetes con un TIL mayor del fijado en el segmento de red (típicamente 30).
+c) Son pasarelas para compatibilizar el tráfico IPv4 y el IPv6.
+d) Permiten interconectar las redes de diferentes ISP, reduciendo y encaminando de forma eficiente el tráfico que circula entre ellas.
+
+159. ¿Cómo se llama la clasificación no jerárquica de la información mediante etiquetas/tags por parte de los
+usuarios de la misma?
+a) Web 3.0.
+b) Labelling.
+c) Taxonomía.
+d) Fo¿csonomía.
+
+160. Analizando los problemas con la calidad de servicio en VoiP, lqué se entiende por jitter?
+a) Una reflexión retardada de la señal acústica original.
+b) El tiempo que tarda un paquete en llegar desde la fuente al destino.
+c) Variación en el tiempo de llegada de los paquetes, causada por congestión de red, perdida de sincronización o por las
+diferentes rutas seguidas.
+d) Cantidad de información o de datos que se puede enviar a través de una conexión de red en un período de tiempo dado.
+
+161. La medida Mean Opinion Score (MOS) se utiliza en:
+a) La ponderación de alternativas en el método Delphi.
+b) La calidad de la voz sobre el protocolo VoiP.
+c) La evaluación de riesgos del método Magerit v2.
+d) La explotación de almacenes de datos en CRM (Customer Relationship Management).
+
+162. La arquitectura de la red UMTS está formada por varios elementos, cada uno con unas funciones específicas.
+Elija la afirmación correcta entre las siguientes relativas a la arquitectura UMTS:
+a) El RNS (Radio Network Subsystem) está formado por los RNC (Radio Network Controller), el MSC (Mobile Switching
+Center) y los Nodos B.
+b) El Nodo B es el responsable de la transmisión radio desde los RNC (Radio Network Controller) hacia los MSs (Mobile
+Station) en una o más celdas UMTS.
+c) El VLR (Visitor Location Register) mantiene una base de datos con los datos de los abonados móviles, para poder realizar
+la autenticación del abonado y cifrar las comunicaciones.
+d) El UELC (User Equipment Location Controller) es el encargado de llevar a cabo las funciones de itinerancia (roaming) de
+las MSs (Mobile Station) en un área MSC (Mobile Switching Center).
+
+163. ¿Qué banda de frecuencia se destina con carácter preferente al sistema digital europeo de telecomunicaciones
+sin cordón (DECT), según el Cuadro Nacional de Atribuciones de Frecuencia?
+a) 1850-1900 MHz
+b) 1860-1900 MHz
+c) 1870-1900 MHz
+d) 1880-1900 MHz
+
+164. lQué nombre recibe el estándar de Televisión Digital Terrestre utilizado en Europa?
+a) ATSC
+b) ISDB-T
+c) DVB-T
+d) EDTVB
+
+165. Indica cuál es el grupo de trabajo en el estándar IEEE 802.11 cuyo objetivo es ampliar el soporte para
+aplicaciones wireless con requisitos de calidad de servicio (QoS):
+a) 802.11e
+b) 802.11i
+c) 802.11n
+d) 802.11q
+
+166. En un sistema UNIX, ¿cuál es la diferencia entre los ficheros /etc/passwd y /etc/shadow?
+a) jetcjshadow es una copia exacta del fichero /etc/password pero sólo visible por root.
+b) jetcjpassword alberga las passwords de los usuarios y jetcjshadow alberga la historia de comandos realizadas por los
+mismos.
+c) jetc/passwd es legible por todos los usuarios, mientras que jetc/shadow es legible sólo por root.
+d) jetc/passwd alberga las passwords de los usuarios mientras que jetcjshadow alberga el nombre de los usuarios.
+
+167. ¡Cuál de las siguientes NO es una herramienta de benchmarking?
+a) Server Performance Rating Tool.
+b) 3dmark.
+c) Cinebench.
+d) SPEC CPU2006.
