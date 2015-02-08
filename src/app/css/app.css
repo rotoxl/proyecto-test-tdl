@@ -1686,7 +1686,7 @@ body.ios #main_container {
     height: auto !important;
     background-color: #86e2d5; }
     .vista.vistaTourAplicacion #swypeWrapper .swipeview-active {
-      visibility: visible; }
+      visibility: visible !important; }
     .vista.vistaTourAplicacion #swypeWrapper .slide-img {
       max-width: 80%;
       margin-left: 10%; }
