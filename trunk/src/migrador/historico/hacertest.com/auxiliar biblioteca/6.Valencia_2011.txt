@@ -1,0 +1,792 @@
+#titulo= Examen Auxiliar Biblioteca Universidad Valencia año 2011
+#u8rl=http://www.hacertest.com/oposiciones-auxiliar-biblioteca/universidad-valencia-2011/
+#t=100 preguntas
+
+
+
+1. ¿Cómo define la American Library Association (ALA Glossary of Library and Information Science; 1983) la biblioteca universitaria?
+
+Como una biblioteca que debe velar por la promoción del estudio y del conocimiento y que tiene la misión esencial de formar a los estudiantes para que se formen a sí mismos
+Como una biblioteca, o sistema bibliotecario, establecida, administrada y financiada por una universidad, para cubrir las necesidades de información, investigación y curriculares de sus estudiantes, profesores y personal
+Como la entidad que atiende y sirve a todas las funciones de una universidad: enseñanza e investigación, creación de nuevo conocimiento y transmisión para la posteridad de la ciencia y la cultura del presente
+Como el centro que sirve esencialmente como depósito de libros y sala de estudio de los estudiantes universitarios
+
+
+2. Dentro de la estructura del Servei de Biblioteques i Documentacio, ¿dónde se encuadra la Biblioteca de Psicologia i Esport "Joan Lluis Vives"?
+
+Entre las bibliotecas generales
+Entre las bibliotecas de área
+Ninguna respuesta es correcta
+Entre las bibliotecas temáticas
+
+
+3. ¿Quién puede solicitar el servicio de suministro de artículos de revistas impresas que ofrecen las bibliotecas de la Universitat de Valencia?
+
+PDI, PAS y estudiantes con independencia del grado
+PDI, PAS y estudiantes de grado
+PDI y estudiantes con independencia del grado
+PDI, PAS y estudiantes de postgrado
+
+
+4. Respecto a la Normativa de Reproducción de Documentos del Servei de Biblioteques i Documentacio, ¿cuál de las siguientes afirmaciones es correcta?
+
+Las bibliotecas deben facilitar la reproducción de las obras depositadas de acuerdo con los artículos 32.1 y 35 del R. D. 1/96 de 12 de abril, de aprobación del Texto Refundido de la Ley de Propiedad Intelectual
+La reproducción de las obras depositadas solo es posible cuando la finalidad lucrativa sea a favor de museos, bibliotecas y otras entidades culturales de titularidad pública
+En el caso de las maquinas fotocopiadoras de autoservicio, la responsabilidad del cumplimiento de la normativa recae sobre el usuario que realiza las fotocopias
+Las bibliotecas deben facilitar la reproducción de las obras depositadas cuando la copia esté destinada al trabajo de grupos de investigadores
+
+
+
+
+5. ¿De qué revista existe una colección completa en la Biblioteca Histórica?
+
+Boletín del Instituto Medico Valenciano
+Almanaque de Las Provincias
+Revista de Occidente
+La semana literaria popular: revista ilustrada
+
+
+6. ¿Qué años de aplicación abarca el I Plan de Igualdad de la Universitat de Valencia?
+
+2009-2011
+2011-2013
+Ninguna respuesta es correcta
+2010-2012
+
+
+7. En el formulario de incidencias de préstamo de la pagina web del Servei de Biblioteques i Documentacio, ¿qué tipo de incidencia NO aparece reflejado en el desplegable?
+
+Me consta como prestado un libro que no he sacado
+No figuro en la base de datos
+El código de barras de mi carnet no es correcto
+No puedo acceder a ver mis libros reservados
+
+
+8. ¿Qué lista de encabezamientos de materia utilizan las bibliotecas de la Universitat de Valencia?
+
+La lista de encabezamientos de materia en catalán (LEMAC)
+La adaptación catalana de los encabezamientos de materia de la Library of Congress (LCSH-CAT)
+La lista de encabezamientos de materia de la Universitat de Valencia (LEMUV)
+La lista de encabezamientos de materia de las Universidades valencianas (MATVAL)
+
+9. En materia de cooperación bibliotecaria, la Biblioteca de la Universitat de Valencia...
+
+Forma parte del grupo G9 de universidades
+Junto con la Universitat Jaume I es miembro asociado del CBUC
+Forma parte del club de compras Canarias-Levante
+Es miembro del Consorcio Valenciano de Bibliotecas de Investigación (CVBI)
+
+
+10. Según el artículo 3 de la Ley Orgánica de Protección de Datos de Carácter Personal, se entiende por "cesión o comunicación de datos"...
+
+Toda revelación de datos realizada a una persona distinta del interesado
+Todo tratamiento de datos personales de modo que la información que se obtenga no pueda asociarse a persona identificada o identificable
+Toda manifestación de voluntad, libre, inequívoca, especifica o informada, mediante la cual el interesado consienta el tratamiento de datos personales que le conciernen
+Cualquier información concerniente a personas físicas identificadas o identificables
+
+
+11. ¿Cuál de los siguientes derechos, reconocidos en la Constitución de 1978, no puede ser suspendido cuando se acuerde la declaración del estado de excepción o de sitio?
+
+Derecho a la libertad y a la seguridad
+Derecho a la huelga
+Derecho al honor, a la intimidad personal y familiar y a la propia imagen
+Derecho a comunicar o recibir libremente información veraz por cualquier medio de difusión
+
+
+12. ¿Qué hay que hacer para recibir ayuda sobre la configuración de equipos y sobre incidencias en el acceso a los recursos electrónicos de la Universitat de Valencia?
+
+Ponerse en contacto con la Sección de Recursos Electrónicos del Servei de Biblioteques i Documentacio
+Escribir un mensaje a la dirección dbsib@uv.es
+Enviar un mensaje a listserv@uv.es
+Subscribirse a la lista de correo bases_sib@uv.es
+
+13. ¿En cuál de estas bibliotecas de la Universitat de Valencia hay un servicio de apoyo informático a estudiantes?
+
+Biblioteca d'Educacio "Maria Moliner"
+Biblioteca de Ciencies "Eduard Bosca"
+Biblioteca de Ciencies de la Salut "Pelegri Casanova"
+Biblioteca de Psicologia i Espot "Joan Lluis Vives"
+
+
+14. ¿En cuál de las secciones del repositorio Roderic hay mas documentos colgados?
+
+Somni
+Investigación
+Docencia
+Institucional
+
+
+15. ¿A qué área temática se adscribe el recurso electrónico Iconoce?
+
+Economía y empresa
+Ciencias básicas
+Humanidades
+Prensa y noticias
+
+
+16. Una vez hecha la valoración de un titulo del catalogo Trobes desde Mi Cuenta, ¿en qué color se visualizan las estrellas que relejan esta valoración?
+
+Rojo
+Azul
+Verde
+Amarillo
+
+
+17. Según el artículo cuarto de la Normativa de Préstamo del Servei de Biblioteques i Documentacio, ¿en qué circunstancia NO está permitida la renovación del préstamo de una monografía desde el catálogo Trobes?
+
+Cuando la persona solicitante es PDI de la Universitat de Valencia
+Cuando se solicita el día anterior al vencimiento del préstamo
+Cuando la persona solicitante es profesor/a invitado/a
+Cuando la persona solicitante es estudiante de grado
+
+
+18. ¿Qué caracteriza a las clasificaciones bibliográficas?
+
+Representan el contenido de un documento de manera exclusivamente analítica
+Establecen una división lógica y sistemática del conocimiento
+Son lenguajes documentales controlados y coordinados a posteriori
+Son lenguajes precoordinados y jerárquicos inamovibles
+
+
+19. Son servicios y programas del Consorci de Bibliotecas Universitarias de Catalunya (CBUC):
+
+RECERCAT, RACO y TDX
+UPCCommons, RECOLECTA y RECERCAT
+La Maleta Viajera, TDX y Pórtico
+E-ciencia, Pasaporte Mediterráneo y GEPA
+
+
+20. El artículo 2 de la Ley Orgánica de Protección de Datos de Carácter Personal establece que esta ley será de aplicación a:
+
+Datos de carácter personal registrados exclusivamente en soporte informático
+Datos de carácter personal y jurídico registrados únicamente en soporte papel
+Datos de carácter no personal susceptibles de ser utilizados por el sector publico
+Datos de carácter personal registrados en soporte físico que los haga susceptibles de tratamiento
+
+21. ¿Cuál de las siguientes misiones de la biblioteca universitaria está expresamente recogida en los Estatutos de la Universitat de Valencia (artículo 148)?
+
+Colaborar en los procesos de diseminación de la investigación
+Facilitar el acceso y difusión de la colección a toda la ciudadanía
+Asegurar el mantenimiento de los espacios donde se albergan las colecciones
+Contribuir a la consecución de los objetivos de la institución universitaria
+
+
+22. ¿Cómo se llama la sección del Servei de Biblioteques i Documentacio encargada del mantenimiento y coordinación de la sede web de las bibliotecas de la Universitat de Valencia?
+
+Tecnología, normalización y sistemas
+Comunicación y formación
+Recursos electrónicos y bases de datos
+Gestión de recursos de información
+
+
+23. ¿Cada cuánto tiempo se ejecuta una alerta periódica sobre una búsqueda guardada en el catalogo Trobes?
+
+Trimestralmente
+Cada dos semanas
+Mensualmente
+Semanalmente
+
+
+24. ¿A qué hace referencia la autonomía universitaria que el artículo 7 de sus Estatutos atribuye a la Universitat de Valencia?
+
+A disponer de autonomía docente, investigadora, administrativa y financiera
+A poder elegir la lengua oficial de la Universitat de Valencia
+Ninguna respuesta es correcta
+A la capacidad de elegir y nombrar a los representantes de sus propios órganos de gobierno
+
+
+
+25. ¿Cuál de estos portales de revistas electrónicas NO es multidisciplinar?
+
+Cambridge Jounals Online
+BMJ Journals
+SAGE
+EBSCOhostEJS
+
+
+26. ¿De qué año es la última edición en español de la Clasificación Decimal Universal?
+
+2006
+2008
+2002
+2004
+
+
+27. En referencia al formato de celdas en la aplicación Excel 2003, ¿qué NO es correcto afirmar?
+
+Los formatos de porcentaje multiplican el valor de la celda por 1000
+Los formatos de fecha contienen números que representan fecha y horas como valores de fecha
+Se utiliza la categoría de "Número" en el formato de celdas para la presentación de números en general
+Las celdas con formato de texto son tratadas como texto incluso cuando hay un número en la celda
+
+
+28. En relación con la Conferencia de Rectores de Universidades Españolas (CRUE), la Red de Bibliotecas Universitarias (REBIUN) es:
+
+Una comisión sectorial
+Una comisión asesora
+Una comisión mixta
+Una comisión consultiva
+
+29. De acuerdo con el artículo 53 de la Ley de Ordenación y Gestión de la Función Pública Valenciana, ¿cuál de estos requisitos de acceso en los procedimientos selectivos NO es correcto?
+
+Poseer las capacidades y aptitudes físicas y psíquicas que sean necesarias para el desempeño de las correspondientes funciones o tareas
+Haber cumplido dieciséis años y no exceder, en su caso, de la edad máxima de jubilación forzosa o de aquella otra que pueda establecerse por ley
+Tener la nacionalidad española
+Poseer la titulación exigida o cumplir los requisitos para su obtención en la fecha de finalización de las pruebas selectivas
+
+
+30. En los periodos de apertura extraordinaria de las Bibliotecas de la Universitat de Valencia, pueden acceder a las salas de lectura:
+
+Solo personas pertenecientes a instituciones que hayan firmado un convenio con la Universitat de Valencia
+Solo profesores y estudiantes de la Universitat de Valencia
+Cualquier persona
+Entre otros, los residentes en los colegios mayores Lluís Vives y Rector Peset
+
+
+31. Marca la afirmación correcta referida a las vistas en la aplicación PowerPoint 2003.
+
+La vista Normal es la vista de edición principal, donde se escriben y diseñan las presentaciones
+La vista Presentación con diapositivas es una vista exclusiva de las diapositivas en forma de miniaturas
+Ninguna respuesta es correcta
+La vista Clasificador de diapositivas ocupa toda la pantalla, como una presentación con diapositivas real
+
+
+32. Según el artículo 36 de la Ley de Prevención de Riesgos Laborales, ¿a quién compete promover y fomentar la cooperación de los trabajadores en la ejecución de la normativa sobre prevención de riesgos laborales?
+
+A las Juntas de Personal y Comités de Empresa
+A los Comités de Seguridad y Salud
+A los Delegados de Personal y representantes sindicales
+A los Delegados de Prevención
+
+
+33. El I Plan de Igualdad de la Universitat de Valencia se estructura en cinco ejes. ¿Cuál de los siguientes es uno de ellos?
+
+Participación y gobierno
+Acceso al empleo, ascenso y promoción personal
+Adaptación reglamentaria de la Universitat
+Creación de una cultura de sensibilización
+
+
+34. De acuerdo con la página web del Servei de Biblioteques i Documentacio, la Carta de Servicios es...
+
+Un documento que recoge la normativa de préstamo y reproducción de documentos
+Un documento que informa a los usuarios sobre los servicios, los compromisos de calidad en su prestación y los derechos y obligaciones de los usuarios
+Un documento que informa exclusivamente de los derechos y deberes de los usuarios
+Ninguna respuesta es correcta
+
+
+35. ¿Para qué tipo de material NO existe un enlace directo en el subcatálogo Somni?
+
+Obras del siglo XIX
+Carteles
+Mapas antiguos
+Incunables
+
+
+36. En el catalogo Trobes la búsqueda de la bibliografía recomendada puede hacerse...
+
+Tanto por el nombre de la asignatura como por el nombre del profesor o de la profesora
+Combinando el nombre de la asignatura con el del profesor o de la profesora
+Exclusivamente por el nombre de la asignatura
+Exclusivamente por el nombre del profesor o de la profesora
+
+
+37. En la Universitat de Valencia, ¿cuántos ejemplares pueden prestarse como máximo a un Proyecto de Investigación?
+
+15
+150
+No hay límite
+60
+
+
+38. ¿Qué número de la CDU identifica a las bibliotecas universitarias?
+
+070.1
+004.2
+165.1
+027.7
+
+
+39. ¿Cuál de estas entidades NO es un consorcio de bibliotecas universitarias?
+
+BUCLE
+CBUC
+LIBER
+CBUA
+
+
+40. ¿Cuál es el objetivo principal de un sistema de clasificación por materias?
+
+La localización de libros en el espacio físico de la biblioteca
+La agilización del préstamo interbibliotecario
+La uniformización de los catálogos
+La creación de subcatálogos
+
+
+41. Según REBIUN, entre los servicios que pueden implementarse en los CRAI se encuentra:
+
+Ninguna respuesta es correcta
+El servicio de creación de materiales multimedia para la investigación
+El laboratorio de experimentación científica
+El servicio de búsqueda activa de empleo
+
+
+42. Según la literalidad del artículo 5 del Reglamento de Régimen Interno del Servei de Biblioteques i Documentacio, la biblioteca universitaria tiene, entre otras, como función:
+
+Participar en programas, proyectos y convenios con el fin de flexibilizar los recursos bibliotecarios
+Organizar, conservar y difundir el patrimonio bibliográfico y documental valenciano
+Facilitar el acceso y la difusión de los recursos de información y potenciar su utilización
+Seleccionar y adquirir recursos de información según las necesidades especiales del alumnado
+
+
+43. En relación con el uso del comando Buscar en la aplicación Word 2003, ¿qué afirmación es la correcta?
+
+Con este comando podemos buscar y reemplazar únicamente texto, nunca formato, marcas de párrafo o saltos de página
+El comando Buscar no permite la distinción entre mayúsculas y minúsculas
+No se permite buscar mediante caracteres comodín
+Existe la opción de búsqueda "Solo palabras completas"
+
+
+44. ¿A qué colectivo NO dedica un articulo el capítulo de Derechos y Obligaciones de la Ley de Prevención de Riesgos Laborales?
+
+A los trabajadores especialmente sensibles a determinados riesgos
+A las personas con discapacidad
+A las mujeres embarazadas o de pato reciente
+A los menores
+
+45. Redined es una base de datos especializada en:
+
+Ciencias de la Salud
+Psicología
+Ecología
+Educación
+
+
+46. ¿Por cuál de estas lenguas NO puede delimitarse una Búsqueda Avanzada en el catalogo Trobes?
+
+Hebreo
+Japonés
+Ruso
+Árabe
+
+
+47. ¿A qué tema está dedicado el capítulo III del Título I de la Constitución de 1978?
+
+A las garantías de las libertades y derechos fundamentales
+Ninguna respuesta es correcta
+A la suspensión de los derechos y libertades
+A los principios rectores de la política social y económica
+
+
+48. En la CDU, ¿qué tienen en común los auxiliares de forma y de lugar?
+
+Van entre comillas
+Van entre guiones
+Van entre paréntesis
+Van entre corchetes
+
+49. Según el artículo 96 de los Estatutos de la Universitat de Valencia, el rector o rectora debe ser Necesariamente:
+
+Profesor o profesora con contrato laboral indefinido en la Universitat de Valencia
+Cualquier miembro de la comunidad universitaria
+Catedrático o catedrática en activo de la Universitat de Valencia.
+Profesor o profesora titular de la Universitat de Valencia
+
+
+50. ¿Cuál de estos derechos de los ciudadanos NO está incluido en el Titulo III (Derechos de las Personas) de la Ley Orgánica de Protección de Datos de Carácter Personal?
+
+Derecho a indemnización
+Derecho a la creación de ficheros
+Derecho de rectificación y cancelación
+Derecho de acceso
+
+
+51. ¿Por cuál de estos campos NO puede efectuarse una búsqueda en el catalogo Trobes?
+
+Por lugar de impresión
+Por colección
+Por signatura
+Por lugar de edición
+
+
+52. Según el artículo 16 de la Ley de Ordenación y Gestión de la Función Pública Valenciana, ¿en cuál de estas circunstancias se produce el nombramiento de personal funcionario interino?
+
+Por un exceso o acumulación de tareas, de carácter excepcional y circunstancial, por un plazo máximo de seis meses dentro de un periodo de doce
+Cuando haga falta sustituir de forma permanente a la persona titular de un puesto de trabajo
+Siempre que existan puestos de trabajo vacantes
+Cuando haga falta ejecutar programas de carácter urgente y de duración indefinida
+
+
+53. De acuerdo con la Carta de Servicios del Servei de Biblioteques i Documentacio, ¿cuál de estos NO es un indicador de calidad?
+
+Número de bibliografías incluidas en el catalogo
+Número de publicaciones seriadas por PDI
+Número de bases de datos accesibles mediante la web
+Número de solicitudes de reproducción de documentos de fondo antiguo
+
+
+54. Según informa la pagina web del Servei de Biblioteques i Documentacio, ¿qué horario de apertura tiene habitualmente la Biblioteca de Farmacia los sábados?
+
+La Biblioteca de Farmacia no abre los sábados
+De 9:00 a 13:45
+De 9:00 a 14:00
+De 9:00 a 13:30
+
+
+55. En relación con la conversión de documento Word a página web, ¿qué es correcto afirmar?
+
+Cuando convertimos un documento Word a HTML, todas las características de formato que nos ofrece la aplicación Word 2003 están disponibles en HTML
+Aunque guardemos un documento Word 2003 como pagina web, su icono es el mismo que el del resto de documentos Word
+Los encabezados y pies de página no desaparecen al guardar un documento Word 2003 como pagina web
+La vista "Diseño web" de la aplicación Word 2003 muestra el aspecto que tendrá la pagina en un navegador sin tener que salir del programa
+
+
+56. ¿Qué significa el término CI2, acunado en 2009 por la Comisión Mixta REBIUN y CRUE/TIC?
+
+Competencias informáticas e informacionales
+Competencias informacionales de segundo nivel
+Competencias informativas de nivel avanzado
+Competencias informáticas e informativas
+
+57. Según el artículo 17 del Reglamento de Régimen Interno del Servei de Biblioteques i Documentacio, se debe crear una comisión de usuarios y usuarias...
+
+En todas las bibliotecas sin excepción
+En todas las bibliotecas a excepción de la Biblioteca Histórica y la Biblioteca Diposit
+Solo en las bibliotecas de área
+En todas las bibliotecas a excepción de las temáticas
+
+
+58. ¿Quién puede elegir la biblioteca de recogida de los ejemplares solicitados a través del servicio de préstamo intercampus en la Universitat de Valencia?
+
+PDI, PAS y estudiantes con discapacidad
+Solamente PDI y estudiantes con discapacidad
+Toda la comunidad universitaria
+Solamente el personal de los Departamentos
+
+
+59. Las líneas estratégicas del II Plan Estratégico de REBIUN 2007-2010 están referidas a:
+
+Aprendizaje, Investigación, Calidad y Organización
+Docencia, Investigación, Cooperación y Calidad
+Aprendizaje, Innovación, Calidad y Organización
+Aprendizaje, Investigación, Calidad y Cooperación
+
+
+60. Según lo establecido en el artículo 19 del Texto Refundido de la Ley de Propiedad Intelectual, el préstamo de obras en soporte tangible que se realiza en las bibliotecas es un acto de:
+
+Transformación
+Distribución
+Obra derivada
+Comunicación pública
+
+61. ¿En qué artículo de la Constitución de 1978 se recoge la abolición de la pena de muerte?
+
+18
+29
+22
+15
+
+
+62. ¿En qué consiste la participación de la Universitat de Valencia en el proyecto Europeana Regia?
+
+La Biblioteca Histórica aporta casi un centenar de grabados y mapas antiguos de su colección
+La Biblioteca Histórica aporta más de un centenar de sus manuscritos más valiosos
+La Biblioteca Histórica aporta la totalidad de sus manuscritos carolingios
+La Biblioteca Histórica aporta manuscritos procedentes de los bienes patrimoniales del Duque de Calabria
+
+
+63. Según el artículo 81 de los Estatutos de la Universitat de Valencia, el órgano máximo de representación de la Universitat de Valencia es:
+
+El Consejo Social
+El Claustro
+El Rector/a
+El Consejo de Gobierno
+
+
+64. ¿Quién puede acceder a los recursos electrónicos de la Universitat de Valencia desde fuera de la red de la Universitat?
+
+Solo PDI y estudiantes
+Todas las personas que tengan una cuenta de correo electrónico de la Universitat de Valencia
+Solo PDI, estudiantes y personas beneficiarias de convenios con la Universitat de Valencia
+Solo PDI y PAS
+
+
+65. Desde el enlace Revistas-e de la página web del Servei de Biblioteques i Documentacio se puede buscar por:
+
+Solo por el ISSN de las revistas
+ISSN, DOI y URI
+Títulos de las revistas y títulos de los artículos
+Títulos de las revistas y materias de que tratan
+
+
+66. Una de estas afirmaciones sobre la búsqueda por Autor/titulo en el catalogo Trobes NO es cierta. Indica cual es:
+
+Se puede buscar también por nombres de organizaciones
+Se puede buscar también por lugares geográficos
+En el campo autor se escriben primero los apellidos y después, si se quiere, el nombre
+El titulo se escribe entero si no excede de siete palabras, sin contar el artículo inicial
+
+
+67. ¿Para qué se utiliza el signo de adición (+) en la CDU?
+
+Para unir dos conceptos en relación mutua
+Para expresar conceptos que necesitan de dos números diferentes
+Para unir dos conceptos diferentes
+Para reunir en un grupo números que ocupan lugares sucesivos
+
+
+68. ¿Cuál de las siguientes afirmaciones sobre la reforma constitucional es correcta?
+
+Toda reforma constitucional debe ser sometida a referéndum
+Los proyectos de reforma constitucional habrán de ser aprobados por una mayoría de tres cuartos de cada una de las Cámaras
+Tras la aprobación de una reforma del título II de la Constitución se procederá a la di solución inmediata de las Cortes
+Puede iniciarse la reforma constitucional en tiempo de vigencia del estado de alarma pero no del estado de sitio
+
+69. El plazo de devolución de una obra en préstamo interbibliotecario lo marca la biblioteca prestataria y normalmente suele ser de:
+
+20 días
+45 días
+15 días
+30 días
+
+
+70. Sobre los CRAI, ¿cuál de estas afirmaciones NO es correcta?
+
+Deben facilitar a los y las estudiantes una experiencia de aprendizaje total mediante la interacción de libros, personas y tecnología
+Reúnen en un mismo espacio físico diferentes servicios habitualmente dispersos en facultades, escuelas y campus
+Los CRAI de las universidades públicas europeas están integrados en ALFARED
+Se inspiran en los Learning Resources Centres que se crearon hace unos años en el Reino Unido y otros países europeos
+
+
+71. Según el artículo 8 del Reglamento de Régimen Interno del Servei de Biblioteques i Documentacio, ¿cuál de las siguientes es una función del archivo universitario?
+
+Desarrollar el sistema archivistico de la Universitat de Valencia según las directrices acordadas por el Consejo de Gobierno
+Garantizar el acceso, la consulta y el préstamo de los documentos de acuerdo con las normativas específicas
+Dar asesoramiento técnico al personal investigador para mejorar la difusión y evaluación de la producción científica
+Todas las afirmaciones son correctas
+
+
+72. ¿A qué se dedica el título IV del Estatuto de Autonomía de la Comunidad Valenciana tras la reforma del 2006?
+
+A las relaciones con el Estado y otras Comunidades Autónomas
+A las competencias
+A la administración local
+A las relaciones con la Unión Europea
+
+73. ¿Qué es correcto decir sobre la aplicación Excel 2003?
+
+En ningún caso, el orden en el cual se ejecutan las operaciones en las formulas puede afectar al valor devuelto de la formula
+Para hacer referencia a la celda de la columna A y la fila 10 utilizaremos AA10
+Las formulas de Excel siempre empiezan por un signo igual (=)
+El operador de comparación >= significa mayor que
+
+
+74. Uno de los compromisos de gestión de la Carta de Servicios del Servei de Biblioteques i Documentacio es:
+
+Responder a quejas, reclamaciones y sugerencias antes de 8 días lectivos
+Responder a quejas, reclamaciones y sugerencias antes de 8 días naturales
+Responder a quejas, reclamaciones y sugerencias antes de 6 días lectivos
+Responder a quejas, reclamaciones y sugerencias antes de 6 días naturales
+
+
+75. A través del icono FACIL de la pagina web del Servei de Biblioteques i Documentacio se accede a presentaciones, tutoriales y cursos grabados sobre:
+
+Servicios telemáticos de la Universitat: VPN, Aula Virtual, correo electrónico
+Competencias informáticas
+Endnote
+Guías y tutoriales por asignaturas
+
+
+76. Según el artículo 44 del Estatuto del Estudiante Universitario, ¿a quién corresponde adoptar las decisiones relativas al fomento de la convivencia y al respeto a derechos y deberes de los miembros de la comunidad universitaria?
+
+A la comisión de corresponsabilidad universitaria de cada centro de enseñanza superior
+Al claustro de cada universidad
+Al consejo de gobierno de cada universidad
+Al rector/a de cada universidad
+
+77. La devolución de los documentos prestados por las bibliotecas de la Universitat de Valencia debe hacerse obligatoriamente:
+
+En cualquier biblioteca del campus al que se pertenece
+En la biblioteca a cuya colección pertenezca el documento
+En la misma biblioteca donde se efectuó el préstamo
+En cualquier biblioteca de la Universitat
+
+
+78. ¿Cuál de estas afirmaciones sobre la colección de tesis de la Universito de Valencia es correcta?
+
+Las tesis se consultan siempre en la biblioteca donde están localizadas
+Todas las tesis se encuentran en la Biblioteca Diposit
+Para consultar una tesis se necesita cada vez el permiso explicito del autor
+Las tesis están excluidas del préstamo a domicilio
+
+
+79. El retraso en la devolución de las obras prestadas por las bibliotecas de la Universito de Valencia conlleva la sanción de:
+
+1 día sin préstamo por cada día de retraso y obra
+2 días sin préstamo por cada día de retraso y obra
+1 día sin préstamo por cada día de retraso
+2 días sin préstamo por cada día de retraso
+
+
+80. Según el artículo 58 de la Ley de Ordenación y Gestión de la Función Pública Valenciana, la condición de personal funcionario de carrera se adquiere por el cumplimiento sucesivo de una serie de requisitos, de los cuales el último es:
+
+El nombramiento por la autoridad o el órgano competente
+El juramento o promesa de acatamiento a la Constitución
+La toma de posesión
+La superación de las pruebas selectivas
+
+81. ¿Qué es MADROÑO?
+
+El Consorcio de Universidades de la Comunidad de Madrid y la Biblioteca Nacional de España para la Cooperación Bibliotecaria
+El Consorcio de Universidades de la Comunidad de Madrid y la UNED para la Cooperación Bibliotecaria
+El Catalogo Colectivo de las Bibliotecas Universitarias de la Comunidad de Madrid
+La Red de Bibliotecas Públicas y Bibliobuses de la Comunidad de Madrid
+
+
+82. Según el artículo 1 del Texto Refundido de la Ley de Propiedad Intelectual, la propiedad intelectual de una obra literaria, artística o científica corresponde al autor:
+
+En el momento en que se inscribe la obra en el Registro de la Propiedad Intelectual
+Una vez ha sido divulgada la obra
+Por el solo hecho de su creación
+Tras la venta de la obra
+
+
+83. ¿Cuál de las siguientes declaraciones sobre el trabajo con diapositivas en la aplicación PowerPoint 2003 es incorrecta?
+
+Las diapositivas no se pueden eliminar, solamente ocultar
+Si desea mover las diapositivas en vez de copiarlas, en el menú contextual, haga clic en Cortar y no en Copiar
+Una diapositiva oculta se guarda en el archivo, aunque no se muestre cuando se ejecuta la presentación
+Las diapositivas duplicadas se insertan justo bajo las diapositivas seleccionadas
+
+
+84. ¿Cuál de estas afirmaciones sobre el I Plan de Igualdad de la Universito de Valencia es correcta?
+
+El Plan se implantara mediante los correspondientes planes operativos anuales
+El seguimiento y evaluación del Plan corresponde al Claustro de la Universito
+El Plan se implantara mediante los correspondientes planes operativos semestrales
+El seguimiento y evaluación del Plan corresponde al Consejo de Gobierno de la Universito
+
+85. Según el artículo 122 de la Ley de Ordenación y Gestión de la Función Pública Valenciana, ¿cuál de estas situaciones administrativas NO es propia del personal funcionario de carrera?
+
+Excedencia especial
+Servicio en otras administraciones
+Expectativa de destino
+Suspensión de funciones
+
+
+86. ¿Cómo se releja en las bibliotecas universitarias el nuevo modelo educativo que establece el Espacio Europeo de Educación Superior, que prima el aprendizaje sobre la docencia?
+
+En el uso exclusivo de la bibliografía básica
+La consulta en sala sustituye al préstamo a domicilio
+Las bibliotecas pasan a un segundo término, al trabajar el alumnado exclusivamente con la información que el profesorado cuelga en la plataforma de aprendizaje de la universidad
+En un uso intensivo de la colección
+
+
+87. Según el artículo 11 del Reglamento de Régimen Interno del Servei de Biblioteques i Documentacio, la Comisión del Servei de Biblioteques i Documentacio se define como:
+
+El órgano colegiado de participación de todos los sectores de la comunidad universitaria en la planificación y desarrollo del Servei
+El órgano de participación, consultivo y asesor de la Dirección y de la Junta Técnica
+El órgano de comunicación y participación de los usuarios y usuarias de las bibliotecas en su gestión
+El órgano colegiado de carácter técnico que tiene como finalidad la valoración de los documentos y series documentales, generados o reunidos por las unidades administrativas de la Universito de Valencia
+
+
+88. ¿Cuál de los siguientes enunciados sobre la Cartoteca de la Universito de Valencia es correcta?
+
+No se pueden hacer visitas guiadas a la Cartoteca
+Su fondo está formado exclusivamente por materiales especiales
+Los fondos de la Cartoteca se identifican con la signatura HU CA
+Dispone de un fondo de cartografía histórica valenciana formado por originales procedentes de la Desamortización
+
+89. ¿Qué sucede al picar en el icono Extender del catalogo Trobes cuando se está visualizando una lista de registros guardados?
+
+Se crea una línea que informa de la ubicación de los documentos seleccionados así como de su disponibilidad o no para el préstamo
+Aparece el registro completo de cada documento seleccionado
+Se abre una pantalla de dialogo que permite ampliar la búsqueda inicial
+Se crea una línea que informa de la ubicación de los documentos seleccionados
+
+
+90. Entre los servicios que el Servei de Biblioteques i Documentacio ofrece a las personas con discapacidad, se incluyen:
+
+Ampliación de los periodos de préstamo y reducción proporcional de los periodos de sanciones
+Ampliación de los periodos de préstamo y mesas adaptadas para sillas de ruedas en todas las bibliotecas
+Ordenadores para personas con discapacidad visual y mesas adaptadas para sillas de ruedas en todas las bibliotecas
+Ordenadores para personas con discapacidad visual y elección de la biblioteca donde recoger los documentos solicitados por préstamo intercampus
+
+
+91. ¿Qué dice el articulo 2 del Real decreto 2271/2004 por el cual se regula el acceso a la ocupación pública y la provisión de puestos de trabajo de las personas con discapacidad, respecto a la reserva de plazas en las ofertas de ocupación pública?
+
+La reserva no será inferior al cinco por ciento de las vacantes, y las plazas se cubrirán entre personas con grado de minusvalía igual o superior al 33%
+La reserva será de un cinco por ciento de las vacantes, y las plazas se cubrirán entre personas con grado de minusvalía inferior al 33%
+La reserva no será inferior al cinco por ciento de las vacantes, y las plazas se cubrirán entre personas con grado de minusvalía inferior al 33%
+La reserva será de un cinco por ciento de las vacantes, y las plazas se cubrirán entre personas con grado de minusvalía igual o superior al 33%
+
+
+92. ¿Cuál de estas instituciones de la Generalitat Valenciana esta comisionada por las Cortes?
+
+El Comité Economic i Social
+El Consell Valencia de Cultura
+La Sindicatura de Comptes
+La Academia Valenciana de la Llengua
+
+93. ¿Cuál de estas afirmaciones sobre el servicio de formación a la carta de las bibliotecas de la Universito de Valencia es correcta?
+
+El alumnado puede solicitar individualmente este servicio para su formación personal
+Ninguna respuesta es correcta
+El PDI puede solicitar una sesión para grupos de estudiantes a los cuales imparte asignaturas
+Para impartir una sesión hace falta un mínimo de 7 personas
+
+
+94. ¿Qué órgano aprobó el Reglamento de Régimen Interno del Servei de Biblioteques i Documentacio de la Universito de Valencia de 5 de abril de 2011?
+
+El Vicerrectorado del que depende orgánicamente el Servei de Biblioteques i Documentacio
+El Consejo de Dirección
+El Rector
+El Consejo de Gobierno
+
+
+95. El Consejo de Cooperación Bibliotecaria, dependiente del Ministerio de Cultura, tiene entre sus funciones:
+
+Promover la integración de los sistemas bibliotecarios de titularidad pública en el Sistema Español de Bibliotecas
+Fomentar la formación profesional en el ámbito educativo
+Informar, cuando le sea solicitado, las disposiciones legales y reglamentarias que afectan a las bibliotecas españolas en conjunto
+Canalizar la cooperación bibliotecaria entre las bibliotecas de titularidades pública y privada de España
+
+
+96. ¿Cuál de estas afirmaciones sobre la Biblioteca Depositaria de Naciones Unidas es correcta?
+
+Está situada en el primer piso de la Biblioteca de Ciencies Socials "Gregori Maians"
+Sus monografías están ordenadas según las materias/categorías establecidas por las Naciones Unidas (UNBIS)
+Su colección no tiene fondos de revistas
+Incluye en sus fondos la colección de la Universito de Valencia sobre cooperación internacional
+
+97. ¿Cuál de estas afirmaciones sobre la inserción de hipervínculos NO es correcta?
+
+La inserción de un hipervínculo únicamente nos lleva a otra página web
+Al utilizar la opción de vincular a: "Dirección de correo electrónico", basta con escribir una dirección de correo en el campo Dirección
+Al utilizar la opción de vincular a: "Crear nuevo documento", deberemos de escribir el nombre del archivo nuevo en el campo Nombre del nuevo documento
+Al utilizar la opción de vincular a: "Lugar de este documento", podemos hacer uso de los marcadores previamente definidos
+
+
+98. Indica que característica de las siguientes NO es propia del Espacio Europeo de Educación Superior.
+
+Supone un nuevo paradigma docente centrado en el aprendizaje de los y las estudiantes
+La flexibilidad en las titulaciones tiene por objetivo favorecer la inserción laboral y la formación por etapas
+Los créditos se calculan en relación al volumen total de trabajo que supone para cada estudiante superar las asignaturas
+Se basa en la formación enfocada a disciplinas sin carácter profesionalizador
+
+
+99. Según el artículo 30 del Texto Refundido de la Ley de Propiedad Intelectual, los plazos de protección de los derechos de autor:
+
+Empiezan a contar desde la semana inmediatamente posterior al fallecimiento del autor
+Empiezan a contar desde el día siguiente al fallecimiento del autor
+Empiezan a contar desde el mes inmediatamente posterior al fallecimiento del autor
+Empiezan a contar desde el año inmediatamente posterior al fallecimiento del autor
+
+
+100. Una vez establecida la conexión VPN (Virtual Private Network), el servidor de correo saliente hay que configurarlo como:
+
+proxy.uv.es
+vpn.uv.es
+correo.uv.es
+post.uv.es
+

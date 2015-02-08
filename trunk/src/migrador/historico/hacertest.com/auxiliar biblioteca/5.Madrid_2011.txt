@@ -1,0 +1,759 @@
+#titulo= Examen Auxiliar Biblioteca Universidad Politécnica Madrid año 2011
+#u8rl=http://www.hacertest.com/oposiciones-auxiliar-biblioteca/universidad-politecnica-madrid-2011/
+#t=90 min, 96 preguntas #supuesto #traducción
+
+1. En relación con el patrimonio histórico-artístico español indique ¿cuál de las siguientes afirmaciones NO es correcta?:
+
+Los poderes públicos garantizarán la conservación del patrimonio histórico.
+La legislación civil sancionará los atentados contra estos patrimonios.
+Los poderes públicos garantizarán la conservación del patrimonio artístico.
+La legislación penal sancionará los atentados contra estos patrimonios.
+
+
+2. Según la Ley de Patrimonio Histórico Español, forman parte del patrimonio documental, los documentos generados, conservados o reunidos por cualquier entidad particular ó persona física, siempre que tenga una antigüedad:
+
+Superior a 50 años.
+Superior a 75 años.
+Superior a 100 años.
+Superior a 25 años.
+
+
+3. La Ley de Propiedad Intelectual establece que los derechos de autor son:
+
+Incompatibles con los derechos de propiedad industrial que puedan existir sobre la obra.
+Acumulables con los derechos de propiedad industrial que puedan existir sobre la obra.
+Dependientes de otros derechos que tengan por objeto la cosa material a la que está incorporada la creación intelectual.
+Dependientes de los derechos de propiedad industrial que puedan existir sobre la obra.
+
+
+4. En aplicación de la Ley de Propiedad Intelectual indique: ¿Cuál de los siguientes derechos NO corresponde al autor de una obra?:
+
+Renunciar al reconocimiento de su condición de autor de la obra y a decidir si ésta ha de ser divulgada y en qué forma.
+Modificar la obra respetando los derechos adquiridos por terceros y las exigencias de protección de bienes de interés cultural.
+Retirar la obra del comercio, previa indemnización de daños y perjuicios a los titulares de derechos de explotación.
+Acceder al ejemplar único o raro de la obra, cuando se halle en poder de otro, a fin de ejercitar el derecho de divulgación o cualquier otro que corresponda.
+
+
+5. De acuerdo con la Constitución española de 1978, la soberanía nacional reside:
+
+En el Congreso de los Diputados.
+En la Jefatura del Estado.
+En las Cortes Generales.
+En el pueblo español.
+
+
+6. El Título I de la Constitución española de 1978 trata de:
+
+La Corona.
+El Poder Judicial.
+Las Cortes.
+Los derechos y deberes fundamentales.
+
+
+7. Los Estatutos de Autonomía tienen naturaleza jurídica de:
+
+Ley autonómica.
+Ley ordinaria.
+Ley básica.
+Ley orgánica.
+
+
+8. En la Constitución española se reconoce que la enseñanza básica en España es:
+
+Voluntaria y gratuita.
+Gratuita y pública.
+Obligatoria y gratuita.
+Optativa y pública.
+
+
+9. Según la Ley Orgánica de Universidades, las unidades de docencia e investigación encargadas de coordinar las enseñanzas de uno o varios ámbitos del conocimiento en uno o varios centros son:
+
+Los Institutos Universitarios de docencia e investigación.
+Los Departamentos.
+El Consejo de Universidades.
+Las Escuelas y Facultades.
+
+
+10. De acuerdo con el Estatuto Básico del Empleado Público, los órganos de selección del personal funcionario serán colegiados y en ellos podrán participar:
+
+Los funcionarios de carrera en representación de una sección sindical.
+El personal de elección o de designación política.
+El personal eventual por cuenta propia.
+El personal funcionario de carrera a título individual.
+
+
+11. Las disposiciones del Estatuto Básico del Empleado Público sólo se aplicarán directamente, cuando así lo disponga su legislación específica propia, al personal funcionario y en lo que proceda al personal laboral de las siguientes Administraciones Públicas:
+
+Al personal de la Administración General del Estado.
+Al personal de las Universidades Públicas.
+Al personal de las Administraciones de las Entidades Locales.
+Al personal funcionario de las Cortes Generales.
+
+
+12. El ejercicio de las competencias en materia de personal en la Universidad Politécnica de Madrid corresponde a:
+
+El Gerente.
+El Director de Escuela o Decano de Facultad.
+El Rector.
+El Director de Departamento o Jefe de Sección.
+
+13. La aprobación del presupuesto de la Universidad Politécnica de Madrid corresponde:
+
+Al Consejo de Gobierno.
+Al Rector.
+Al Claustro.
+Al Consejo Social.
+
+
+14. Indique cuál de las siguientes afirmaciones NO es correcta, en virtud de lo previsto en el artículo 35 de la Ley de Régimen Jurídico de las Administraciones Públicas, en el que se establece que los ciudadanos, en sus relaciones con las Administraciones Públicas, tienen derecho a:
+
+Obtener información y orientación acerca de los requisitos jurídicos o tácmcos- que las disposiciones vigentes impongan a los proyectos, actuaciones o solicitudes que se propongan realizar.
+Formular alegaciones y aportar documentos en cualquier fase del procedimiento, que deberán ser tenidos en cuenta por el órgano competente al redactar la propuesta de resolución.
+Identificar a las autoridades y al personal al servicio de las Administraciones Públicas bajo cuya responsabilidad se tramiten los procedimientos.
+Conocer, en cualquier momento, el estado de la tramitación de los procedimientos en los que tengan la condición de interesados.
+
+
+15. La Ley de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común es la Ley:
+
+53/1990, de 15 de enero.
+30/1984, de 2 de agosto.
+30/1992, de 26 de noviembre.
+7/2007, de 12 de abril.
+
+
+16. En una notación de la Clasificación Decimal Universal (CDU) los auxiliares comunes de punto de vista:
+
+Se pueden usar independientemente.
+No se pueden usar independientemente o en primer lugar en una notación compuesta.
+Se sitúan en primer lugar dentro de una notación compuesta.
+Son exclusivas de las clases 5, 6 y 7 de la CDU,
+
+17. ¿Cuál de estos documentos se podría solicitar en préstamo interbibliotecario, desde la Biblioteca Universitaria de la UPM, a otra biblioteca?:
+
+Obras de referencia.
+Una revista.
+Fotocopia del artículo de una revista.
+Libros antiguos o de especial valor.
+
+
+18. ¿La Colección Digital Politécnica es recuperable desde “Ingenio”?:
+
+No, al ser un recurso propio de la red de la UPM.
+Sí.
+No, sólo los libros de fondo antiguo.
+No, al no ser metabuscable.
+
+
+19. ”Avery” e “ICONDA” son bases de datos sobre:
+
+Agricultura y Medio Ambiente.
+Arquitectura.
+Ingeniería y aeronáutica.
+Multidisciplinares.
+
+
+20. El recurso electrónico “SpringerMaterials” recoge documentos de temática:
+
+Química-resistencia de materiales.
+Matemáticas aplicadas.
+Informática-componentes de hardware.
+Arquitectura-materiales de construcción.
+
+21. ¿En cuál de las siguientes declaraciones se establecen por primera vez las dos formas para conseguir el acceso abierto, vía verde y vía dorada?:
+
+Declaración de Berlín (2003).
+Declaración de Budapest (2002).
+Declaración de Copenhague (2004).
+Declaración de Bethesda (2003).
+
+
+22. El “método Crew” es:
+
+Un método de análisis de impacto de las publicaciones periódicas.
+Un método para la adquisición de fondos de una biblioteca.
+Un método de evaluación de colecciones digitales.
+Un método para la realización del expurgo en las bibliotecas.
+
+
+23. ¿Qué derechos de autor se ceden a la Universidad al publicar en el Repositorio Institucional de la UPM?:
+
+Derechos no exclusivos.
+Derechos exclusivos.
+Derechos morales.
+Solamente el derecho de no alteración de la obra.
+
+
+24. Dentro del organigrama del Ministerio de Cultura de España la gestión de la propiedad intelectual depende de:
+
+La Dirección General de Bellas Artes y Patrimonio Cultural.
+La Dirección General de Políticas e Industrias Culturales.
+La Dirección General del Libro, Archivos y Bibliotecas.
+La Secretaría General Técnica.
+
+25. De acuerdo con las directrices para la evaluación en alfabetización informativa de la IFLA, la evaluación formativa se realiza:
+
+Durante el aprendizaje.
+Antes del aprendizaje.
+No existe dicha evaluación.
+Después del aprendizaje.
+
+
+26. El “Sistema Handle” facilita:
+
+El expurgo en bibliotecas universitarias.
+La clasificación de fondo bibliográfico para las enseñanzas de Ingenierías.
+La manipulación de fondos de bibliotecas históricas.
+El almacenamiento de nombres de objetos digitales para identificarlos y permitir su acceso.
+
+
+27. ¿Cuál de los siguientes sistemas y herramientas de gestión no es propio de la industria editorial?:
+
+SINLI
+DILVE
+ISBN
+AMA
+
+
+28. ¿Qué es un lenguaje de marcas o de marcado?:
+
+Un lenguaje informático orientado a la interpretación de una aplicación electrónica.
+Un lenguaje documental.
+Un lenguaje orientado a definir la estructura y semántica de un documento electrónico.
+Un lenguaje para verificar la propiedad de los documentos electrónicos.
+
+29. ¿Cuáles de las siguientes tecnologías son consideradas “Identificadores Persistentes”?:
+
+PURL, DOI, DUBLIN CORE
+DOI, DUBLIN CORE, XML
+PURL, DOI, URN
+PURL, DOI, PDF
+
+
+30. ¿Cuál fue el primer motor de búsqueda que buscaba a texto completo en las páginas web?:
+
+Trovit.
+Google.
+WebCrawler.
+Lycoseek.
+
+
+31. Cuando se aplican las tecnologías y filosofía de la Web 2.0 a las colecciones y servicios bibliotecarios, tanto virtuales como presenciales, estamos hablando de:
+
+Biblioteca híbrida
+WebPAC 2.0
+Biblioteca 2.0
+Politécnica 2.0
+
+
+32. Según la clasificación de la IFLA las bibliotecas universitarias son:
+
+Bibliotecas especializadas.
+Bibliotecas generales de investigación.
+Bibliotecas que atienden al gran público.
+Bibliotecas especializadas y de investigación.
+
+33. ¿En la Biblioteca Universitaria de la UPM qué usuarios pueden solicitar documentos en préstamo interbibliotecario?:
+
+Profesores, doctorandos e investigadores.
+Profesores, doctorandos, investigadores y alumnos con una autorización especial.
+Profesores y doctorandos.
+Toda la comunidad universitaria.
+
+
+34. Dentro de los recursos electrónicos de la Biblioteca Universitaria de la UPM ¿en qué base de datos buscaría información sobre la jurisprudencia nacional y europea relacionada con el derecho de la Unión Europea?:
+
+Iberlex.
+CiteSeerX.
+Norweb.
+vLex Global.
+
+
+35. “Norweb” es:
+
+Una base de datos que recoge las patentes presentadas en España
+Una base de datos que recoge las normas UNE a texto completo
+Una base de datos que recoge la Normativa Internacional
+Una base de datos que recoge las normas ISO
+
+
+36. ¿Qué se entiende por clasificación temática?:
+
+La clasificación que dispone los términos según un sistema orgánico.
+La clasificación en la que se utiliza la característica intrínseca como subdivisión.
+La clasificación de los tipos de imprenta en grupos de afinidades o estilos.
+La clasificación cuyas líneas generales se asemejan a las de la clasificación de la Biblioteca del Congreso de los EE.UU.
+
+37. De acuerdo a Faulkner Brown, el edificio de una biblioteca debe ser:
+
+Constante, Luminoso, Confortable.
+Seguro, Flexible, Disponible.
+Moldeable, Eficaz, Eficiente.
+Flexible, Compacto, Accesible.
+
+
+38. ¿Es obligatorio publicar los resultados de las investigaciones realizadas, bajo subvención de la Comunidad de Madrid, en las Universidades Públicas Madrileñas en Repositorios Institucionales?:
+
+No, en ningún caso.
+Sí, de acuerdo al 4o Plan Regional de Investigación Científica e Innovación Tecnológica (PRICIT) de la CAM.
+No, no es obligatorio, pero sí recomendable.
+Sí, según establece la Ley 10/1989 de 5 de Octubre de Bibliotecas de la Comunidad de Madrid.
+
+
+39. En las “Normas y directrices para bibliotecas universitarias y científicas españolas” elaboradas por REBIUN se recomienda, a título orientativo, la siguiente distribución del presupuesto ordinario de la biblioteca:
+
+Gasto de personal: entre el 40 y el 45%; formación de la colección: 50%; formación del personal: 5%; otros gastos: 5%.
+Gasto de personal: entre el 50 y el 55%; formación de la colección: entre el 35 y el 40%; otros gastos: 10%.
+Gasto de personal: entre el 45 y el 50%; formación de la colección: 55%; otros gastos: 10%.
+Unicamente se recomienda que el presupuesto responda a los objetivos de la biblioteca.
+
+
+40. “BISAC” es:
+
+Un sistema de información de libros en venta.
+Una base de datos multidisciplinar.
+Un índice bibliométrico creado por Elsevier.
+Un sistema de clasificación temática.
+
+
+41. “Bubok” es:
+
+Una plataforma para la autoedición.
+Un modelo de libro electrónico.
+Un metabuscador.
+Un software para la edición de facsímiles.
+
+
+42. El gestor de recursos que da acceso a las colecciones de revistas y libros electrónicos del Consorcio Madroño se denomina:
+
+METALIB.
+CAB Direct.
+TdNet e-Resource Manager.
+Ingenio.
+
+
+43. La tecnología de control de acceso que limita el uso de los e-books, por parte de medios o dispositivos digitales, con el fin de evitar la piratería se denomina:
+
+Cite Seerx
+DRM
+SSRN
+DOMUS
+
+
+44. ¿Para qué tipo de documento es utilizado el “formato BWF” en programas de digitalización con fines de preservación?:
+
+Mapas.
+Diapositivas.
+Grabaciones sonoras.
+Fotografías.
+
+45. ¿Qué se paga cuando se realiza una suscripción a un paquete de revistas electrónicas?:
+
+Los derechos de los autores.
+El uso de las mismas.
+El acceso y el uso.
+El CD-ROM.
+
+
+46. El primer ejemplo de cooperación entre bibliotecas en España fue:
+
+Entre consorcios de bibliotecas.
+Entre bibliotecas de la misma especialidad.
+Entre redes de bibliotecas universitarias.
+Entre bibliotecas con el mismo sistema automatizado.
+
+
+47. La biblioteca que integra fondos, tanto en soporte electrónico como convencional, y presta servicios convencionales y virtuales, ¿se conoce con el nombre de?:
+
+Biblioteca digital.
+Biblioteca electrónica.
+Biblioteca híbrida.
+Biblioteca virtual.
+
+
+48. En una biblioteca universitaria ¿cuál es la base para la ordenación de los fondos y su colocación en los estantes de libre acceso?:
+
+El color del tejuelo.
+El encabezamiento principal.
+La signatura topográfica.
+El número de registro.
+
+
+49. “Copyright Toolbox” es:
+
+Un sistema para explicitar a los usuarios que acceden a un documento qué pueden hacer y qué no.
+Una herramienta que ofrece información sobre los intereses de los autores y las editoriales respecto a una publicación, para que puedan llegar a un acuerdo que beneficie a todos.
+Una librería de software que se incorpora a los documentos electrónicos para identificar al autor y sus derechos.
+Un documento legal estandarizado que modifica el acuerdo de publicación de la editorial y permite que el autor se reserve algunos derechos.
+
+
+50. “SCIRUS” es:
+
+Un buscador web especializado en información aeronáutica desarrollado por Elsevier.
+Un buscador web especializado en información científica desarrollado por Springer.
+Un buscador web especializado en información científica desarrollado por Elsevier.
+Una biblioteca virtual especializada en información científica desarrollada por Elsevier.
+
+
+51. De las bases de datos suscritas por la Biblioteca Universitaria de la UPM, ¿cuál versa sobre matemáticas?:
+
+EngiMath.
+ZENTRALBLATT MATH.
+APSMATH.
+IngeMath.
+
+
+52. El Modelo EFQM fue anunciado por la Comisión Europea en:
+
+1992
+1995
+1993
+1991
+
+
+53. ¿Qué es “ECHO”?:
+
+Proyecto europeo para garantizar el libre acceso al patrimonio cultural en Europa.
+Proyecto estadounidense para garantizar el libre acceso al patrimonio cultural.
+Proyecto europeo para asegurar la libre circulación del patrimonio cultural en Europa.
+Proyecto europeo para la tasación del patrimonio cultural de Europa.
+
+
+54. El estándar de metadatos que nos indica las coordenadas de todos y cada uno de los caracteres reconocidos en una página web, y que posibilita su indexación y posterior búsqueda a texto completo es:
+
+ALTO
+METS
+ONIX
+MODS
+
+
+55. Según establece la Ley 10/2007 de la lectura, el libro y las bibliotecas, las bibliotecas públicas serán:
+
+Aquellas que, financiadas únicamente por administraciones públicas e integradas en redes bibliotecarias, se ofrecen abiertas a todos.
+Aquellas que, siendo únicamente sostenidas por organismos públicos, se ofrecen abiertas a todos.
+Ninguna es correcta.
+Aquellas que, sostenidas por organismos públicos y privados, se ofrecen abiertas a todos.
+
+
+56. La Declaración de Alejandría de 2005 de la Unesco hace referencia a:
+
+Biblioteca Digital.
+Acceso abierto.
+Alfabetización informacional.
+Preservación y conservación.
+
+
+57. ¿Qué fondo bibliográfico regula el Reglamento de Préstamo de la Biblioteca Universitaria de la UPM?:
+
+Sólo el fondo que se ubica en la Biblioteca Universitaria y que se haya adquirido por compra o mediante donación.
+Unicamente el fondo que se encuentra en la Biblioteca Universitaria y haya sido adquirido por compra, donación o canje.
+Sólo el fondo que se ubica en la Biblioteca Universitaria con independencia de su procedencia.
+Todo el fondo bibliográfico de la universidad cualquiera que sea su ubicación o procedencia.
+
+
+58. “24symbols” es:
+
+Software libre para archivos.
+Un indicador de posicionamiento web.
+Una plataforma para leer y compartir libros digitales.
+Una herramienta de analítica web para portales bibliotecarios.
+
+
+59. ¿Para qué se utiliza el “número normalizado ISRN”?:
+
+Para grabaciones sonoras.
+Para bases de datos.
+Para informes técnicos y literatura gris.
+Para documentos electrónicos.
+
+
+60. ¿Quién es el responsable de precisar los contenidos de las titulaciones oficiales de Master Universitario que habilitan para el ejercicio de profesiones reguladas?:
+
+El Consejo de Universidades
+La Comunidad Autónoma
+El Gobierno
+La ANECA
+
+61. ¿Qué es “Issuu”?:
+
+Una herramienta para incrustar presentaciones en línea en Internet.
+Una herramienta para crear revistas virtuales en Internet.
+Una herramienta para colgar fotos en Internet.
+Una herramienta para almacenamiento de documentos en LaTeX.
+
+
+62. ¿Cómo se denomina el documento escrito que refleja la política de la biblioteca respecto de su colección?:
+
+Programa de gestión de la colección.
+Módulo de adquisiciones.
+Comisión de selección y adquisición de colecciones.
+Plan director de adquisiciones.
+
+
+63. En la Clasificación Decimal Universal (CDU) el signo (signo dos puntos):
+
+Es un signo de coordinación.
+Es un signo de relación.
+Es un signo de agrupación.
+Es un signo de extensión.
+
+
+64. Dentro de los recursos electrónicos de la Biblioteca Universitaria de la UPM ¿en qué base de datos buscaría información sobre la NASA?:
+
+Aerospace + High Technology Database (CSA).
+Academic Premier for Aeronautic.
+Zentralblatt AeroMATH.
+ACM Digital Library for Aerospace Technology.
+
+65. “Encarte” es:
+
+Hoja suelta que se intercala entre las páginas de un impreso y que suele ser de anuncio.
+El ejemplar excluido de un expurgo.
+Encuadernación de libros con cartones revestidos de papel.
+El texto o ilustración que figura en una página encarada.
+
+
+66. De las bases de datos disponibles en la Biblioteca Universitaria de la UPM, ¿cuál trata sobre temática relacionada con la energía?:
+
+Petrobet.
+Energy Search.
+Engiplus.
+OSTI Conference Information.
+
+
+67. La consecuencia de una evaluación con un Modelo EFQM de excelencia es:
+
+El incremento de los indicadores de la organización.
+La definición de la misión y visión de la organización.
+La mejora del clima laboral.
+La elaboración de un plan de mejoras.
+
+
+68. ¿Qué es “Cream of Science”?:
+
+Proyecto que pretende fomentar la publicación en abierto de la obra de investigadores de reconocido prestigio.
+Proyecto de Rebiun para crear un Catálogo Colectivo de tesis doctorales.
+Proyecto de la Unión Europea para la digitalización de tesis doctorales en ciencias aplicadas.
+Proyecto desarrollado por las universidades americanas de ciencias para publicar de forma cooperativa trabajos de investigación.
+
+
+69. “ZOTERO” es:
+
+Un gestor de referencias bibliográficas.
+Plataforma de las bibliotecas universitarias portuguesas.
+Una base de datos de revistas de ingeniería.
+Portal de la Biblioteca Nacional sobre documentos de la Guerra de Independencia.
+
+
+70. “Crosspublising” es:
+
+La edición de forma conjunta de diferentes publicaciones por un solo editor.
+La edición por el propio autor de diferentes contenidos con un mismo formato.
+La edición de forma conjunta por distintas editoriales de un mismo contenido.
+La edición de un mismo contenido en diferentes formatos según las necesidades del mercado.
+
+
+71. El prefijo 979 que proporciona “EAN Internacional” identifica el producto:
+
+Fotografía.
+Libro.
+Mapa.
+Revista Electrónica.
+
+
+72. Cuando hablamos de un “modelo freemiun” de acceso a recursos electrónicos, hablamos de:
+
+Un modelo mixto de acceso gratuito y por suscripción a parte de una colección.
+Un modelo basado en una cuota de suscripción.
+Un modelo gratuito financiado con publicidad no intrusiva.
+Un modelo de acceso para artículos concretos y no para publicaciones en general.
+
+
+73. “DROID”, “JHOVE” y “XENA” son programas de gestión indicados para:
+
+Análisis bibliométricos.
+Preservación de formatos digitales.
+Difusión de formatos digitales.
+Catalogación de metalenguajes.
+
+
+74. ¿Dónde nació el primer consorcio español de bibliotecas universitarias?:
+
+En Cataluña.
+En Andalucía.
+En Galicia.
+En Madrid.
+
+
+75. ¿Qué red académica y de investigación española proporciona servicios avanzados de comunicaciones a la comunidad científica y universitaria nacional?:
+
+REBIUN.
+Redial.
+RedIRIS.
+Renater.
+
+
+76. El “protocolo Z39.50” adquiere este nombre por haber sido desarrollado por:
+
+El Comité 50 de la NISO y el Estándar 39 de la ANSI
+El Comité 39 de la ANSI y el Estándar 50 de la NISO
+El Comité 39 de la NISO y el Estándar 50 de la ANSI
+El Estándar de la ISO
+
+77. ¿Qué clasificación de estructura jerárquica y de lenguaje enciclopédico aplica los puntos de vista filosófico, histórico, teórico o práctico?:
+
+CDU
+Colon Classification.
+Clasificación de Ranganathan.
+Clasificación de Bliss.
+
+
+78. Para la catalogación de publicaciones seriadas y otros recursos continuados se aplicaran las normas:
+
+ISBD(CR)
+ISBD(ER)
+ISBD(PM)
+ISBD(S)
+
+
+79. ¿Qué es el OPAC?:
+
+Un catálogo en linea de acceso público.
+Un catálogo de Publicaciones Científicas.
+Un catálogo en línea de Publicaciones Oficiales.
+Un catálogo de Publicaciones Administrativas.
+
+
+80. Las tesis doctorales se consideran como documentos:
+
+Literatura gris
+Secundarios
+Primarios
+Terciarios
+
+
+81. Un usuario con Pasaporte Madroño ¿Cuántos documentos puede sacar en préstamo y por cuánto tiempo?
+
+Máximo 4 vol., 14 días.
+Máximo 3 vol., 30 días.
+Máximo 4 vol., 30 días.
+Máximo 2 vol., 14 días.
+
+
+82. El Reglamento de préstamo de la Biblioteca Universitaria de la Universidad Politécnica de Madrid fue aprobado en:
+
+Consejo de Gobierno de la UPM de fecha 27 de enero de 2011.
+Consejo de Gobierno de la UPM de fecha 1 de febrero de 2001.
+Comisión de Gobierno de la UPM de fecha 2 de febrero de 2010.
+Comisión de Gobierno de la UPM de fecha 27 de enero de 2011.
+
+
+83. ¿Qué es una folksonomía?
+
+Sistema que permite el intercambio de metadatos.
+Un catálogo de música folk.
+Un sistema de indexación social o colaborativa.
+Un protocolo para la comunicación de metadatos.
+
+
+84. La llamada Biblia Regia fue impresa por:
+
+Guillén de Brocar.
+Cristóbal Plantino.
+Aldo Manucio.
+Robert Estienne.
+
+
+85. La declaración de Bolonia sienta las Bases de EEES, organizado en tomo a los principios de:
+
+Ninguna de las respuestas es correcta.
+Calidad y competitividad.
+Movilidad, diversidad y competitividad.
+Calidad, diversidad, competitividad y movilidad.
+
+
+86. Según las Reglas de Catalogación, se entiende por folleto toda publicación unitaria que, sin ser parte integrante de un libro, consta de:
+
+Más de 4 páginas y de menos de 50.
+Más de 3 páginas y menos de 49.
+Más de 4 páginas y menos de 49.
+Más de 8 páginas y de menos de 50.
+
+
+87. Según la Carta de Servicios de la Biblioteca Universitaria de la UPM, el plazo para responder a las sugerencias o quejas de los usuarios será de:
+
+48 horas.
+3 días hábiles.
+4 días naturales.
+24 horas.
+
+
+88. Con los datos cargados en DILVE (Distribuidor de información del libro español en venta) ¿se puede tramitar el alta en el ISBN?
+
+Sí.
+Sólo las publicaciones oficiales.
+Sólo las publicaciones oficiales con certificado digital de la Fábrica Nacional de Moneda y Timbre.
+No, se necesita el certificado digital de la Fábrica Nacional de Moneda y Timbre.
+
+
+89. Los “captchas” son:
+
+buscadores de material electrónico en todo tipo de soportes.
+codees de vídeo digital.
+programas informáticos para la edición digital de libros.
+sistemas de reconocimiento para saber si el usuario que está accediendo a una aplicación es humano o una máquina.
+
+
+90. En relación a la cooperación bibliotecaria, la Biblioteca UPM participa entre otras en:
+
+UNIRED
+ROBLE
+SIU
+IATUL
+
+
+91. SCImago Journal Rank indicator:
+
+es un indicador basado en el índice h.
+es un indicador que muestra la visibilidad de las publicaciones incluidas en la base de datos Dulcinea.
+es un indicador que muestra la visibilidad de las publicaciones incluidas en la base de datos Scopus.
+muestra el ranking de las publicaciones incluidas en las bases de datos del ISI.
+
+
+92. INGeBOOK
+
+Es una plataforma on-line de libros electrónicos para estudiantes de Ciencias e Ingenierías.
+Es una plataforma on-line que sólo ofrece información bibliográfica para estudiantes de Ciencias e Ingenierías.
+Es un lector de libros electrónicos para estudiantes de Ingeniería.
+Es una plataforma on-line de libros electrónicos en acceso abierto.
+
+
+93. Neotake es:
+
+Una aplicación Web de autoedición.
+Un buscador de libros electrónicos.
+Un software para la edición de libros electrónicos.
+Un recolector de repositorios abiertos.
+
+
+94. Durante todo el año, tres bibliotecas de la UPM permanecen abiertas de 9:00 a 22:00 horas de lunes a domingo
+
+ETSI Aeronáuticos, ETSI Telecomunicación y Campus Sur.
+ETS Arquitectura, ETSI Telecomunicación y Campus Sur.
+ETSI Agrónomos, ETSI Minas y ETSI Industriales.
+ETS Arquitectura, ETSI Industriales y Campus Sur.
+
+
+95. La iniciativa de la Biblioteca UPM para el fomento de la lectura se denomina:
+
+“Másalládelatécnica”.
+“Lecturas para ingenieros”.
+“Ingeniamos el futuro”.
+“Nosólotécnica”.
+
+
+96. ¿Cuál de las siguientes bases de datos NO nos ofrece información sobre patentes?
+
+Derwent Innovations Index
+Espacenet
+USPTDO Database
+ERIC

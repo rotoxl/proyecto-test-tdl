@@ -1,0 +1,2 @@
+1 a 2 c 3 c 4 b 5 a 6 a 7 a 8 c 9 a 10 a 11 c 12 c 13 c 14 a 15 b 16 a 17 a 18 a 19 b 20 c 21 b 22 c 23 a 24 b 25 a 26 c 27 b 28 a 29 c 30 c
+31 a 32 b 33 a 34 b 35 a 36 b 37 a 38 a 39 c 40 a 41 c 42 a 43 b 44 b 45 b 46 a 47 b 48 a 49 b 50 c 51 a 52 c 53 c 54 c 55 a 56 a 57 b 58 b 59 b 60 b

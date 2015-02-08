@@ -1,0 +1,703 @@
+#titulo= Examen Auxiliar Biblioteca Universidad Málaga año 2011
+#u8rl=http://www.hacertest.com/oposiciones-auxiliar-biblioteca/universidad-malaga-2011/
+#t=75 min, 90 preguntas #supuesto
+
+1. Según el art.5 de los Estatutos de la Universidad de Málaga, ¿qué órgano determinará la concesión de la medalla que, a efectos honoríficos, tiene ésta instituida?
+
+La Junta de Gobierno.
+El Consejo de Gobierno.
+El Rector.
+Ninguna de las respuestas es correcta.
+
+
+2. Según la Ley 31/1995 de 8 de noviembre de Prevención de Riesgos Laborales, ¿cuál de los siguientes criterios es correcto a efectos de determinar el número de Delegados de Prevención?
+
+Ninguna de las respuestas es correcta.
+Los trabajadores vinculados por contratos de duración determinada superior a seis meses se computarán como trabajadores fijos de plantilla.
+Los trabajadores vinculados por contratos de duración determinada superior a un año se computarán como trabajadores fijos de plantilla.
+Los contratados por término de hasta dos años se computarán según el número de días trabajados en el periodo de un año anterior a su designación.
+
+
+3. En la Carta de Servicios de la Biblioteca de la Universidad de Málaga (BOJA n° 108 de 2 de junio de 2008) se establece el siguiente compromiso de calidad:
+
+Comunicar a las personas peticionarias de préstamo Interbibliotecario el resultado de la gestión realizada en el plazo de una semana.
+Responder en un plazo máximo de 24 horas las consultas planteadas por las personas usuarias.
+Proporcionar préstamos especiales a personas con discapacidad.
+Apoyar y colaborar en proyectos de investigación a nivel nacional e internacional dentro del marco del Campus de Excelencia Internacional Andalucía TECH.
+
+
+4. El módulo de Circulación de Millenium es la aplicación que sirve básicamente para:
+
+Realizar préstamos, devoluciones, catalogación y reservas.
+Realizar préstamos, devoluciones, reservas y renovaciones.
+Realizar las operaciones básicas de circulación y catalogación.
+Crear registros bibliográficos y de ejemplar.
+
+5. ¿Es obligatorio consignar el ISBN en las publicaciones?
+
+Sí, en las partituras.
+No, no es obligatorio por R.D. 2063/2008.
+Sí, en las publicaciones monográficas
+Sí, en las publicaciones seriadas
+
+
+6. A tenor del art.19 de los Estatutos de la Universidad de Málaga, ¿cuántos miembros del Consejo de Gobierno son designados por el Rector?
+
+Veinte.
+Ninguna de las respuestas es correcta.
+Quince.
+Diez.
+
+
+7. La tecnología RFID se aplica a la gestión de:
+
+Sistemas de autopréstamo.
+Búsquedas bibliográficas.
+Estudios de personas usuarias.
+Blogs.
+
+
+8. ¿En cuál de estos canales de participación se puede intervenir desde la página Web de la Biblioteca de la Universidad de Málaga?
+
+La Biblioteca en Google+.
+La Biblioteca en Facebook.
+La Biblioteca en Twítter.
+Foro público de la Biblioteca.
+
+9. Según el art.96 de los Estatutos de la Universidad de Málaga, los Vicerrectores de la misma reducirán sus obligaciones docentes en:
+
+Un tercio a las correspondientes a los profesores con dedicación a tiempo parcial.
+Un tercio a las correspondientes a los profesores con dedicación a tiempo completo.
+Cuatro quintas partes a las correspondientes a los profesores a tiempo completo.
+Dos quintas partes a las correspondientes a los profesores a tiempo completo.
+
+
+10. ¿Qué modelo ha utilizado la Biblioteca de la Universidad de Málaga en su proceso de evaluación institucional?
+
+Modelo EFQM.
+Norma ISO 9001.
+Modelo ANECA.
+LibQUAL+.
+
+
+11. La Biblioteca de la Universidad de Málaga en la actualidad está adscrita al:
+
+Vicerrectorado de Ordenación Académica.
+Vicerrectorado de Cultura y Relaciones Institucionales.
+Vicerrectorado de Investigación.
+Vicerrectorado de Innovación y Desarrollo Tecnológico.
+
+
+12. ¿Qué signo sirve para subagrupar dos o más números principales de la CDU que se hallen unidos por el signo de adición (“+”) o por el signo de relación (“:”)?
+
+( )
+::
+[ ]
+=
+
+13. En la Biblioteca de la Universidad de Málaga, las visitas guiadas se integran dentro de:
+
+Actividades de animación a la lectura.
+Actividades de formación de usuarios.
+Actividades de cooperación bibliotecaria.
+Actividades de extensión bibliotecaria.
+
+
+14. A tenor de lo recogido en el art.9 de los Estatutos de la Universidad de Málaga, no pondrán fin a la vía administrativa los acuerdos adoptados por el siguiente órgano:
+
+El Claustro Universitario.
+Las Juntas de Centro.
+El Consejo de Gobierno.
+El Consejo Social.
+
+
+15. Según la Guía de Préstamo Interbibliotecario de la Biblioteca de la Universidad de Málaga, ¿qué documentos están excluidos del préstamo interbibliotecario?
+
+Patentes.
+Microfilms.
+Copias de artículos de revistas.
+Obras editadas en España disponibles en el mercado.
+
+
+16. ¿Cuál es el máximo órgano de representación de la comunidad universitaria, según los Estatutos de la Universidad de Málaga?
+
+El Claustro de la Universidad.
+El Consejo de Gobierno.
+El Rector.
+El Consejo Social.
+
+
+17. ¿Qué plan específico de la Biblioteca de la Universidad de Málaga contempla entre sus principios rectores el establecimiento de alianzas, acuerdos de colaboración con el tejido empresarial, profesional y asociativo de Málaga?
+
+Plan BISOC.
+Plan PREU.
+Plan PRINTER.
+Plan MERMES.
+
+
+18. ¿Cuál de estas secuencias de la CDU es correcta?
+
+613.12“20”(075.8){460.27)
+613.12“20”(460.27)(075.8)
+613.12(460.27)“20"(075.8)
+613.12(075.8)(460.27)“20”
+
+
+19. Indica qué acción no es posible desde el Catálogo Jábega 2.0:
+
+Reservar un ejemplar.
+Realizar búsquedas por artículos de revistas electrónicas.
+Enlazar con recursos relacionados.
+Crear una wiki.
+
+
+20. Los funcionarios de carrera podrán obtener la excedencia voluntaria por interés particular cuando hayan prestado servicios efectivos en cualquiera de ías Administraciones Públicas:
+
+Durante un periodo de dos años.
+Durante un periodo de dos años inmediatamente anteriores.
+Durante un periodo de cinco años inmediatamente anteriores.
+Durante un periodo de cinco años.
+
+21. Las tesis doctorales se consideran documentos:
+
+Terciarios.
+Secundarios.
+Ninguna de las respuestas es correcta.
+Primarios.
+
+
+22. Según la Normativa de Préstamo Intercampus de la Biblioteca de la Universidad de Málaga, el usuario que ha realizado una solicitud de préstamo intercampus, ¿dónde debe realizar la devolución del ejemplar?
+
+b) En la Biblioteca desde donde se ha realizado la solicitud y se ha retirado el ejemplar.
+d) En cualquier biblioteca de la Universidad.
+a) En la Biblioteca depositaría del ejemplar.
+Las respuestas a) y b) son correctas.
+
+
+23. Según la Normativa de Préstamo Intercampus de la Biblioteca de la Universidad de Málaga, ¿en qué condiciones se realiza el préstamo intercampus? (duración del préstamo, posibles sanciones...)
+
+Hay unas condiciones específicas para el préstamo intercampus,
+Siempre según las condiciones previstas en la biblioteca depositaría del ejemplar.
+Ninguna de las respuestas es correcta.
+Según la normativa de la biblioteca donde el usuario ha realizado la solicitud del ejemplar.
+
+
+24. Según la Normativa del Servicio de Préstamo entre Bibliotecas del Consorcio de Bibliotecas Universitarias Andaluzas (CBUA), ¿qué documentos pueden prestarse a través del Préstamo CBUA?
+
+c) Ninguna de las respuestas es correcta.
+b) Los ejemplares con estado “Disponible” en el Catálogo Colectivo del CBUA.
+Las opciones a) y b) son correctas.
+a) Los ejemplares con estado “Disponible” en el catálogo de su propia institución.
+
+25. Según la Normativa del Servicio de Préstamo entre Bibliotecas del Consorcio de Bibliotecas Universitarias Andaluzas (CBUA), ¿qué duración tiene el préstamo CBUA para el usuario tipo profesor?
+
+20 días.
+25 días.
+30 días.
+15 días.
+
+
+26. Según la Normativa del Servicio de Préstamo entre Bibliotecas del Consorcio de Bibliotecas Universitarias Andaluzas (CBUA), en caso de incumplimiento de los plazos de devolución previstos, ¿con cuántos días de privación del préstamo serán sancionados los usuarios?
+
+Dos días lectivos de privación del servicio de préstamo por cada día de demora en cada uno de los ejemplares atrasados.
+Tres días lectivos de privación del servicio de préstamo por cada día de demora en cada uno de los ejemplares atrasados.
+Dos días naturales de privación del servicio de préstamo por cada día de demora en cada uno de los ejemplares atrasados.
+Tres días naturales de privación del servicio de préstamo por cada día de demora en cada uno de los ejemplares atrasados.
+
+
+27. De acuerdo con la CDU, seleccione el bloque que contiene las signaturas topográficas correctamente ordenadas:
+
+672/674 672(047)/DUB/Ges 672(091 )/ALL/Font 672(44)/MAR/His
+672(091 )/ALL/Font 672(047)/DUB/Ges 672(44)/MAR/His 672/674
+672(44)/MAR/His 672/674672(047)/DUB/Ges 672(091 )/ALL/Font
+672/674 672(047)/DU B/Ges 672(091 )/ALL/Font 672(44)/MAR/His
+
+
+28. ISBD es el acrónimo de:
+
+International Standard Book Document.
+International Standard Bibliographic Description.
+International Standard Bibliografic Document.
+International Standard Book Description.
+
+29. La búsqueda por palabra clave en el catálogo Jábega se realiza:
+
+Solo en el campo materia del registro bibliográfico.
+Solo en los campos de título, materia y notas del registro bibliográfico.
+Solo en los campos de titulo y materia del registro bibliográfico.
+Solo en los campos de autor, título, materia y notas del registro bibliográfico.
+
+
+30. La Biblioteca de la Universidad de Málaga dispone de un servicio de atención al público basado en tecnología chat. Indique cuál de las siguientes afirmaciones no es correcta:
+
+No se atenderán solicitudes de información sobre sanciones del préstamo.
+El Servicio está restringido a los miembros de la comunidad universitaria de la UMA.
+El usuario puede realizar una consulta sobre cualquier aspecto de la Biblioteca Universitaria y obtener una respuesta en tiempo real.
+Se atienden consultas o dudas sobre cualquier aspecto relacionado con la Biblioteca en lo referente a sus instalaciones, equipamiento, horarios, productos, servicios, etc.
+
+
+31. El sistema de etiquetado social en la web 2.0 se denomina:
+
+Folksonomía.
+Podcasting.
+Microblogging.
+Mashup.
+
+
+32. Indique en qué comunidad del Repositorio de la Universidad de Málaga (RIUMA) se archivaría el catálogo de una exposición organizada por la Biblioteca Universitaria de Málaga:
+
+Revistas y Jomadas.
+Investigación.
+Institucional.
+Docencia.
+
+33. En el catálogo Jábega, ¿qué operador booleano se utiliza para especificar palabras que estén cerca la una de la otra, en cualquier orden?
+
+El signo de Interrogación.
+El operador "near".
+El asterisco.
+El operador "and not".
+
+
+34. La aprobación del presupuesto y de la programación plurianual de la Universidad, según el art.14 de los Estatutos de la Universidad de Málaga es aprobada por el Consejo Social a propuesta:
+
+De la Junta de Gobierno.
+Del Gerente.
+Del Consejo de Gobierno.
+Del Tribunal de Cuentas de la Junta de Andalucía.
+
+
+35. Según la Normativa sobre Préstamo de Portátiles publicada en la Web de la Universidad de Málaga, ¿cuál de estas afirmaciones es la correcta?
+
+En caso de pérdida del material, el usuario será sancionado con la retirada del privilegio del préstamo durante un año.
+El alumno podrá sacar el ordenador de la Biblioteca para ser utilizado dentro del aula.
+La duración del préstamo es de tres horas, teniendo en cuenta que la entrega se ha de realizar, como máximo, media hora antes del cierre de la Biblioteca.
+La duración del préstamo es de tres horas y se pueden realizar reservas.
+
+
+36. CRAI es el acrónimo de:
+
+Conferencia de Redes Avanzadas para la Investigación.
+Centro de Recursos para el Aprendizaje y la Innovación.
+Comisión Rectora de Ayudas a la Investigación.
+Centro de Recursos para el Aprendizaje y la Investigación.
+
+37. ¿Con qué intervalo de tiempo se publica una revista con periodicidad trimestral?
+
+Ninguna de las respuestas es correcta.
+Cada tres meses.
+Tres veces al año.
+Cada cuatro meses.
+
+
+38. En relación a lo dispuesto en el art.18 de la Ley Orgánica de Protección de Datos de Carácter Personal, el plazo máximo en que debe dictarse resolución expresa de tutela de derechos será de:
+
+Tres meses.
+Seis meses.
+Ninguna de las respuestas es correcta.
+Un mes.
+
+
+39. La Biblioteca de la Sociedad Malagueña de Ciencias en la actualidad se encuentra depositada en:
+
+La Biblioteca de Medicina.
+La Biblioteca de Humanidades.
+La Biblioteca General.
+La Biblioteca de Ciencias.
+
+
+40. Con respecto a la información bibliográfica, el plazo máximo para responder a las consultas realizadas por los usuarios según la Carta de Servicios de la Biblioteca de la Universidad de Málaga (BOJA n° 108 de 2 de junio de 2008) es de:
+
+48 horas.
+3 días.
+24 horas.
+5 días.
+
+41. ¿Según el art.16 de los Estatutos de la Universidad de Málaga, serán miembros del Consejo Social de la misma?
+
+El Rector, el Secretario General y el Gerente, así como un profesor, dos estudiantes y un representante del personal de administración y servicios.
+El Rector, el Secretario General y el Gerente, así como un profesor, un estudiante y dos representantes del personal de administración y servicios.
+El Rector, el Secretario General y el Gerente, así como un profesor, un estudiante y un representante del personal de administración y servicios.
+El Rector, el Secretario General y el Gerente, así como dos profesores, un estudiante y un representante del personal de administración y servicios.
+
+
+42. ¿Qué software utiliza el Repositorio Institucional de la Universidad de Málaga (RIUMA)?
+
+Open Repository.
+Dspace.
+Zentity.
+EPrints.
+
+
+43. ¿Cuál de los siguientes acrónimos no corresponde a un Consorcio de Bibliotecas?
+
+GEUIN.
+CBUC.
+CBUA.
+BUCLE.
+
+
+44. ¿Qué gestor de referencias bibliográficas tiene suscrito la Biblioteca de la Universidad de Málaga?
+
+ProCite.
+WebBridge.
+EndNote Web.
+Refworks.
+
+45. Desde la opción “Mi cuenta" del catálogo Jábega, los usuarios de la Biblioteca de la Universidad de Málaga pueden:
+
+Realizar préstamos y devoluciones.
+Renovar sus préstamos.
+Reservar ejemplares disponibles.
+Realizar el préstamo de ejemplares.
+
+
+46. ¿Cuál de las siguientes es una línea estratégica recogida en el Plan Estratégico de la Biblioteca de la Universidad de Málaga 2011-2012?
+
+Resultados y comunicación.
+Política y estrategía.
+Gestión de la colección.
+Liderazgo.
+
+
+47. La Biblioteca de la Universidad de Málaga cuenta con un plan de recogida de expectativas de los usuarios denominado:
+
+Ninguna de las respuestas es correcta.
+PREU.
+PRINTER.
+FORUS.
+
+
+48. El sistema automatizado que gestiona el catálogo colectivo del Consorcio de Bibliotecas Universitarias Andaluzas (CBUA) y eí préstamo CBUA se denomina:
+
+Simposia.
+Seriáis Solutions.
+InnReach.
+VTLs.
+
+49. El catálogo que reúne en un mismo orden los asientos bibliográficos de más de una biblioteca, se denomina según las Reglas de Catalogación españolas:
+
+Catálogo general.
+Catálogo colectivo.
+Catálogo sistemático.
+Ninguna de las respuestas es correcta
+
+
+50. El Repositorio Institucional de la Universidad de Málaga (RIUMA) es recolectado por:
+
+Metalib.
+SFX.
+Europeana.
+WebBridge.
+
+
+51. La etiqueta de campo 245 del formato MARC21 se corresponde con:
+
+Mención del título.
+Encabezamiento de materias.
+Área de notas.
+Entradas secundarias de serie.
+
+
+52. En la etiqueta de campo 080 del formato MARC21 se registra la siguiente información:
+
+Depósito Legal.
+CDU.
+ISSN.
+ISBN.
+
+53. El Archivo General de Simancas es un:
+
+Ninguna de las respuestas es correcta.
+Archivo central.
+Archivo intermedio.
+Archivo histórico.
+
+
+54. ¿Cuál de las siguientes bases de datos se utiliza para buscar información empresarial?
+
+EEBO.
+LION.
+ERIC.
+ABI/INFORM GLOBAL.
+
+
+55. La aprobación de las normas que regulen el progreso y la permanencia en la Universidad de los estudiantes, de acuerdo con las características de sus respectivos estudios a tenor de la redacción del art.124 de los Estatutos de la Universidad de Málaga, es competencia de:
+
+Las respectivas Juntas de Centro.
+El Consejo de Coordinación Universitaria, previo informe del Consejo de Gobierno.
+El Consejo Social, previo informe del Consejo de Coordinación Universitaria.
+El Consejo de Coordinación Universitaria, previo informe de la Junta Consultiva.
+
+
+56. El derecho de acceso, según el art.15 de la Ley Orgánica de Protección de Datos de Carácter Personal podrá ser ejercitado :
+
+Solo a intervalos no inferiores a tres meses, salvo que el interesado acredite un interés legítimo al efecto, en cuyo caso podrá ejercitarlo antes.
+Solo a intervalos no inferiores a cinco meses, salvo que el interesado acredite un interés legítimo al efecto, en cuyo caso podrá ejercitarlo antes.
+Solo a intervalos no inferiores a seis meses, salvo que el interesado acredite un interés legítimo al efecto, en cuyo caso podrá ejercitarlo antes.
+Solo a intervalos no inferiores a doce meses, salvo que el interesado acredite un interés legítimo al efecto, en cuyo caso podrá ejercitarlo antes.
+
+57. ¿Cuál de las siguientes herramientas se utiliza para la sindicación de contenidos?
+
+RSS.
+Twitter.
+Blog.
+Tags.
+
+
+58. ¿Cómo se denomina al procedimiento por el que la biblioteca adquiere materiales bibliográficos editados por otras instituciones a cambio de enviar las publicaciones propias?
+
+Compra.
+Donación.
+Préstamo interbibliotecario.
+Canje.
+
+
+59. Según la Ley 31/1995 de 8 de noviembre de Prevención de Riesgos Laborales, cualquier característica del trabajo que pueda tener una influencia significativa en la generación de riesgos para la seguridad y la salud del trabajador, se entenderá:
+
+Condición de trabajo.
+Riesgo laboral.
+Prevención.
+Riesgo laboral grave e inminente.
+
+
+60. ¿Quiénes pueden acceder a los recursos electrónicos de la Biblioteca de la Universidad de Málaga desde el exterior del campus?
+
+Todos los miembros de la comunidad universitaria de Málaga: profesores, investigadores, estudiantes y personal de administración y servicios, debidamente acreditados y que tengan dado de alta su PIN, además de los miembros del Consorcio de Bibliotecas Universitarias Andaluzas (CBUA).
+Solamente profesores y alumnos de la Universidad de Málaga debidamente acreditados y que tengan dado de alta su PIN.
+Ninguna de las respuestas es correcta.
+Todos los miembros de la comunidad universitaria de Málaga: profesores, investigadores, estudiantes y personal de administración y servicios, debidamente acreditados y que tengan dado de alta su PIN.
+
+
+61. El Metabuscador de la Biblioteca de la Universidad de Málaga se basa en la herramienta:
+
+SFX.
+Metalib.
+Research Pro.
+Primo.
+
+
+62. ¿Cuál de las siguientes afirmaciones relacionadas con el formato MARC21 es correcta?
+
+Cada campo tiene asignada una longitud fija.
+El MARC21 tiene su origen en el formato UKMARC.
+Hay códigos de subcampos que no se pueden repetir.
+Todos los campos son de longitud variable.
+
+
+63. Según la Normativa del Servicio de Préstamo entre Bibliotecas del Consorcio de Bibliotecas Universitarias Andaluzas (CBUA), el número máximo de ejemplares que pueden solicitar de manera simultánea los alumnos de 2° Ciclo es de:
+
+3 ejemplares.
+5 ejemplares.
+No tienen limite de ejemplares.
+4 ejemplares.
+
+
+64. En una biblioteca, la marca de propiedad de un libro o documento la constituye:
+
+El registro.
+El tejuelo.
+El código de barras.
+El sello.
+
+65. La diferencia entre una publicación periódica y una publicación seriada consiste en:
+
+Una publicación periódica es un tipo de publicación seriada.
+No hay diferencias entre una publicación seriada y una publicación periódica.
+Una publicación seriada no tiene compromiso de regularidad mientras que la publicación periódica sí tiene una periodicidad establecida.
+La diferencia entre ambas publicaciones consiste en la periodicidad de los números o fascículos.
+
+
+66. ¿Qué órgano elaborará el Reglamento de funcionamiento del Claustro de la Universidad de Málaga?
+
+El Consejo de Gobierno.
+El Consejo Social.
+El Claustro de la Universidad.
+La Junta Consultiva.
+
+
+67. ¿Qué tipo de usuario puede consultar el Catálogo Jábega?
+
+Solamente profesores, alumnos y PAS de cualquiera de las Universidades Andaluzas.
+Solamente profesores, alumnos, PAS y usuarios externos, con algún tipo de vinculación con la Universidad de Málaga.
+Cualquier usuario ya que la consulta del catálogo es de acceso libre.
+Solamente profesores, alumnos, PAS de la Universidad de Málaga.
+
+
+68. Según la Normativa del Servicio de Préstamo Intercampus de la Biblioteca de la Universidad de Málaga están excluidos de préstamo:
+
+Solo están excluidos de préstamo los documentos especiales que la Biblioteca depositaría estime oportunos.
+Solo están excluidos de préstamo los documentos cuya duración de préstamo sea igual o inferior a un día.
+Están excluidos de préstamo los documentos especiales que la Biblioteca depositaría estime oportunos, así como aquellos cuya duración de préstamo sea igual o inferior a un día.
+Ningún documento está excluido de préstamo, siempre que el usuario que lo solicite sea PAS, PDI o alumno con discapacidad.
+
+69. Una publicación periódica que se publica dos veces al mes tiene una periodicidad:
+
+Bianual.
+Bimensual.
+Bimestral.
+Ninguna de las respuestas es correcta.
+
+
+70. Realizar un inventario en una biblioteca, puede tener varias finalidades. Señale cuál de estas afirmaciones no es la correcta:
+
+Un inventario se realiza para retirar de la colección ejemplares deteriorados.
+Un inventario se realiza para controlar el préstamo.
+Un inventario se realiza para verificar si existen ejemplares extraviados.
+Un inventario se realiza para reubicar ejemplares mal colocados en las estanterías.
+
+
+71. ¿Cuál es el protocolo que permite el intercambio electrónico de datos con los proveedores en las bibliotecas?
+
+EDIFACT.
+CIRCA.
+LDAP.
+ERM.
+
+
+72. La norma de descripción resultante de la revisión de las ISBD (S) es:
+
+ISBD(NBM).
+ISBD(CR).
+ISBD(ER).
+ISBD(CF).
+
+73. El expurgo es una tarea que forma parte de:
+
+La política de difusión de la colección.
+Ninguna de las respuestas es correcta.
+La política de gestión de la colección.
+La política de marketing de la biblioteca.
+
+
+74. En la CDU, el auxiliar de forma (038) hace referencia a:
+
+Atlas.
+Enciclopedias.
+Congresos.
+Diccionarios.
+
+
+75. La plataforma que agrupa a todos los repositorios científicos españoles y que provee de servicios tanto a los gestores de repositorios como a ios investigadores, fruto de la colaboración entre REBIUN y FECYT, se denomina:
+
+E-ciencia.
+Recolecta.
+E-REBIUN.
+Recolectum.
+
+
+76. Según la Normativa de Préstamo Interbibliotecario de la Biblioteca de la Universidad de Málaga, ¿qué usuarios pueden realizar una petición de préstamo interbibliotecario?
+
+Solo PD1 y PAS de la Universidad de Málaga.
+Solo los miembros de la Comunidad Universitaria.
+Ninguna de las respuestas es correcta.
+Todos los miembros de la Comunidad Universitaria y otros usuarios no vinculados a la Universidad.
+
+77. Según la Normativa de Préstamo de la Biblioteca de la Universidad de Málaga, ¿cuáles de estas obras no están exentas de préstamo?
+
+Tesis y tesinas publicadas.
+Obras de referencia.
+Libros y documentos antiguos, raros o preciosos.
+Publicaciones periódicas.
+
+
+78. El icono "Explorar” del Catálogo Jábega 2.0 permite:
+
+Acceder a “Mi Cuenta".
+Realizar una búsqueda en el Metabuscador.
+Visualizar el registro bibliográfico completo.
+Enlazar con otros recursos relacionados.
+
+
+79. ¿Cuál es la principal diferencia entre un catálogo y una bibliografía?
+
+Ninguna de las respuestas es correcta.
+No hay diferencia entre un catálogo y una bibliografía.
+La bibliografía tiene siempre un carácter temático específico y el catálogo tiene carácter universal.
+El catálogo especifica la ubicación física de los documentos que describe mientras que la bibliografía no aporta datos de ubicación.
+
+
+80. ¿Qué usuarios de la Biblioteca de la Universidad de Málaga pueden hacer uso del Servicio de Préstamo Intercampus?
+
+Solo PDI y PAS.
+Solo PDI, PAS y Alumnos con discapacidad.
+Toda la comunidad universitaria.
+Solo PDI.
+
+81. El programa que utiliza la Biblioteca Universitaria de Málaga para gestionar el préstamo interbibliotecario es:
+
+Ariel.
+Súbito.
+El módulo de Préstamo Interbibliotecario de Millennium.
+GTBib-Sod.
+
+
+82. Según el art.34 de los Estatutos de la Universidad de Málaga, producido el cese del Rector, el Rector en funciones hasta la toma de posesión del nuevo Rector, convocará elecciones en el plazo máximo de:
+
+10 días desde el cese.
+20 días desde el cese.
+15 días desde el cese.
+30 días lectivos desde el cese.
+
+
+83. A tenor de lo dispuesto en el art.35 de la Ley 31/1995 de 8 de noviembre de Prevención de Riesgos Laborales, en una empresa de 501 a 1000 trabajadores serán designados:
+
+Seis delegados de prevención.
+Cuatro delegados de prevención.
+Dos delegados de prevención.
+Tres delegados de prevención
+
+
+84. Desde la página Web de la Biblioteca de la Universidad de Málaga un usuario podrá:
+
+Realizar una queja o sugerencia.
+Solicitar un préstamo CBUA.
+Ninguna de las respuestas es correcta.
+Devolver un ejemplar.
+
+85. ¿Quiénes pueden realizar pedidos de material bibliográfico mediante el formulario de petición accesible desde la página Web de la Biblioteca de la Universidad de Málaga?
+
+PDI, PAS y alumnos.
+PDI y PAS.
+PDI, PAS y alumnos con discapacidad.
+PDI, PAS, alumnos e investigadores.
+
+
+86. ¿En qué año obtuvo la Biblioteca de la Universidad de Málaga el Certificado de Calidad de la ANECA?
+
+2006.
+2007.
+2009.
+2004.
+
+
+87. A través de la opción “Mi cuenta” del catálogo Jábega, el usuario tiene acceso a diversas funcionalidades y servicios. Indique cuál de las siguientes opciones no es correcta:
+
+Obtener información personal acerca de posibles sanciones por atraso en la entrega de ejemplares.
+Consultar su historial de préstamos.
+Consultar sus préstamos actuales y fechas de devolución.
+Renovar sus préstamos.
+
+
+88. En la CDU, el signo de adición (“+”) se utiliza para;
+
+Fijar el orden de dos o más números principales que normalmente van unidos mediante el signo de relación.
+Establecer una relación general entre dos nociones.
+Unir la primera y la última de una serie de divisiones consecutivas para designar conceptos asociados.
+Unir dos o más números de la CDU, normalmente no consecutivos, para designar conceptos reunidos arbitrariamente en un solo documento.
+
+89. Según el art.76 del Estatuto Básico del Empleado Público, para el acceso a los cuerpos o escalas del Grupo B se exigirá estar en posesión de:
+
+Título de Técnico Superior.
+Título de Graduado en Educación secundaria obligatoria.
+Título de Bachiller o técnico.
+Ninguna de las respuestas es correcta.
+
+
+90. Según el art 36.3 de la Ley 31/1995 de 8 de noviembre de Prevención de Riesgos Laborales, los informes que deban emitir los delegados de prevención deberán elaborarse en un plazo de:
+
+Diez días o en el tiempo imprescindible cuando se trate de adoptar medidas dirigidas a prevenir riesgos inminentes.
+Cinco días o en el tiempo imprescindible cuando se trate de adoptar medidas dirigidas a prevenir riesgos inminentes.
+Quince días o en el tiempo imprescindible cuando se trate de adoptar medidas dirigidas a prevenir riesgos inminentes.
+Veinte días o en el tiempo imprescindible cuando se trate de adoptar medidas dirigidas a prevenir riesgos inminentes.
+

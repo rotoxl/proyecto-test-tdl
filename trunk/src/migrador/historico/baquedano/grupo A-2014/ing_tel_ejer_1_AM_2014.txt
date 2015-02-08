@@ -1,0 +1,404 @@
+1.- El número de las Áreas de Gobierno:
+a) No podrá exceder de 15
+b) Será determinado discrecionalmente por el Alcalde, en ejercicio de la
+competencia que le atribuye el artículo 124.4 k) de la Ley Reguladora de las
+Bases del Régimen Local para establecer la organización y estructura de la
+Administración municipal ejecutiva.
+c) Será determinado por la Junta de Gobierno, en ejercicio de las atribuciones
+que le confiere el artículo 17 la Ley de Capitalidad y Régimen Especial de
+Madrid.
+2.- Los miembros de la Junta de Gobierno de la Ciudad de Madrid:
+a) Son nombrados libremente por el Alcalde únicamente entre todos los
+concejales.
+b) Son propuestos por el pleno de entre todos los concejales y nombrados por
+el Alcalde, cuyo número no podrá exceder de un tercio del número legal de
+miembros del Pleno, además del Alcalde.
+c) Son nombrados libremente por el Alcalde entre los concejales y además
+entre personas que no ostentan la condición de concejal siempre que estos
+no supongan más de un tercio de sus miembros excluido el Alcalde.
+3.- En el Estatuto Básico del Empleado Público (Ley 7/2007, de 12 de abril), las
+infracciones muy graves prescribirán:
+a) A los seis años.
+b) A los seis meses.
+c) A los tres años. 
+
+4.- Es un Principio de conducta de los funcionarios, recogido en la Ley 7/2007, de 12
+de abril, del Estatuto Básico del Empleado Público:
+a) Rechazar cualquier regalo, favor o servicio durante la jornada laboral.
+b) Tratar con cuidado y respeto a los ciudadanos, a sus superiores y a los
+restantes empleados públicos.
+c) Obedecerán siempre las instrucciones y órdenes profesionales de sus
+superiores.
+5.- La particularidad del código de línea diferencial en canales digitales banda base sin
+ruido es que:
+a) Un símbolo 0 ó 1 produce cambio de nivel entre los valores A y –A.
+b) Al símbolo 1 se le hace corresponder alternativamente los niveles A y –A y
+al símbolo 0 el nivel 0 o viceversa.
+c) A cada símbolo 0 ó 1 se le asigna el nivel 0 ó A.
+6.- ¿Cuándo se realiza el proceso de modulación lineal, la señal en banda base es?
+a) La señal moduladora
+b) La señal modulada
+c) La onda modulada
+7.- Dada una señal x(n) transformada por un sistema de codificación digital,
+obteniéndose la señal y(n), se define el error de reconstrucción o de codificación r(n)
+como:
+a) r(n) = x(n) - y(n)
+b) r(n) = x(n) * y(n)
+c) r(n) = x(n) + y(n) 
+
+8.- PCM es un sistema de modulación
+a) Analógico
+b) Digital con modulador analógico
+c) Completamente digital
+9.- Equivalente de referencia es un parámetro que sirve para evaluar la calidad de
+transmisión de las comunicaciones telefónicas; si el equivalente es pequeño,
+entonces:
+a) la sonoridad es excesiva y molesta, reduciendo la inteligibilidad.
+b) la sonoridad es insuficiente y se reduce la relación señal/ ruido
+c) la sonoridad es la adecuada y la comunicación tiene la calidad adecuada
+10.- La fantomización se emplea universalmente para:
+a) Telealimentación de amplificadores y repetidores
+b) Disminuir el ruido de las líneas de cable
+c) Compensar la atenuación y corregir la deformación de las corrientes
+vocales
+11.- La fibra óptica de índice gradual se caracteriza por tener un núcleo con un índice
+de refracción variable
+a) que es mínimo en el centro del núcleo y aumenta de forma continua hasta
+el borde del mismo.
+b) que depende de la longitud de la fibra, según la longitud del tendido
+realizado.
+c) que es máximo en el centro del núcleo y disminuye de forma continua hasta
+el borde del mismo. 
+
+12.- En un sistema de transmisión por fibra óptica, la banda L hace referencia a:
+a) El conjunto de longitudes de onda comprendido entre 1460 y 1530 nm, en
+el que la fibra presenta baja atenuación.
+b) La primera ventana de transmisión.
+c) El conjunto de longitudes de onda comprendido entre 1565 y 1625 nm.
+13.- En un sistema de transmisión digital por fibra óptica se utiliza un regenerador /
+codificadores en el equipo terminal de línea para convertir la señal procedente del
+equipo múltiplex en una señal del siguiente tipo:
+a) Una señal binaria aleatoria
+b) Una señal binaria bipolar
+c) Una señal binaria unipolar
+14.- Considerando que en sistemas de comunicaciones por fibra óptica se pueden
+utilizar diferentes tipos de emisores de luz, indique cual de las siguientes afirmaciones
+es la correcta:
+a) Una fibra óptica multimodo utiliza emisores del tipo LED, aunque en ciertos
+tipos de fibras multimodo, también es posible utilizar emisores Láser, por
+ejemplo en fibras OM3.
+b) Existe tres tipos básicos de LED para sistemas de comunicaciones ópticas
+por fibra: el LED de emisión superficial (SLED), el de emisión por borde o
+lateral (ELED) y el diodo superluminiscente (SLD). Para distancias elevadas
+y velocidades binarias altas, es preferible utilizar SLEDs a los otros dos
+tipos, ya que son capaces de emitir con mayor potencia.
+c) Los diodos superluminiscentes (SLD) son similares a los diodos Laser (LD),
+ya que ambos utilizan el fenómeno de emisión estimulada y generan luz
+coherente.
+
+15.- ¿Cómo podemos mitigar el posible efecto del desvanecimiento por multitrayecto
+minimizando la inversión y costes del enlace?
+a) Con diversidad en frecuencia
+b) Con diversidad espacial
+c) Con diversidad de modulación
+16.- En frecuencias de la banda de SHF:
+a) en vanos con un despejamiento de más del 60 % de la primera zona de
+Fresnel la transmisión puede asumirse de espacio libre
+b) existe propagación por difracción para vanos con despejamiento inferior a la
+primera zona de Fresnel
+c) no hace falta línea de visión directa porque la propagación se produce por
+dispersión troposférica
+17.- En la técnica TDM síncrona:
+a) Las ranuras temporales se preasignan y fijan a las distintas fuentes
+b) Las ranuras temporales asociadas a cada fuente se transmiten sólo si
+tienen datos que enviar
+c) No pueden gestionar fuentes a distintas velocidades 
+
+18.- Las tramas STM-1 contienen información de cada uno de los componentes de la
+red: trayecto, línea y sección, además de la información de usuario. Los datos son
+encapsulados en contenedores específicos para cada tipo de señal tributaria.
+A estos contenedores se les añade una información adicional denominada Path
+overhead, que consiste en una serie de bytes utilizados con fines de mantenimiento de
+red, y que dan lugar a la formación de los denominados contenedores virtuales (VC).
+El resultado de la multiplexación es una trama formada por X filas de Y octetos cada
+una (X columnas de Y bytes). La transmisión se realiza bit a bit en el sentido de
+izquierda a derecha y de arriba abajo. La trama se transmite a razón de Z veces por
+segundo Por lo tanto, el régimen binario (Rb) para el nivel STM-R, dónde R=16 y cada
+trama se transmite en K µs es:
+a) (R* Z* Y * X) * 8
+b) 16 (Y * X ) * K
+c) 16 * Z * (X * Y * K)
+19.- Una de las variantes en el modo de funcionamiento de la conmutación de
+paquetes es:
+a) El establecimiento de colas de mensaje
+b) Datagramas
+c) La técnica de conmutación que puede ser espacial o temporal
+20.- Las centrales de conmutación han evolucionado a lo largo de la historia, de
+manera que han ido apareciendo diseños cada vez más eficientes, y capaces de
+conmutar un mayor número de abonados y enlaces. Respecto de los sistemas paso a
+paso, se puede afirmar lo siguiente:
+a) Por su gran sencillez y eficiencia, son los utilizados por la mayoría de los
+fabricantes de centrales públicas de telefonía en la actualidad.
+b) Son más avanzados que los conmutadores de barras cruzadas o
+“crossbar”.
+c) Son sistemas sencillos de conmutación, adecuados para centrales de
+pequeño tamaño. 
+
+21.- En los sistemas de telefonía públicos se definen una Red Jerárquica, aplicando un
+criterio de jerarquía funcional
+a) en el que todas las centrales de la red están conectadas entre sí de una
+forma mallada
+b) en el que se definen centrales locales, centros primarios, centros
+secundarios, centros terciarios, etc.
+c) que conecta centros locales a nivel supranacional
+22.- Según la recomendación UIT-T Q.700, la parte de transferencia de mensajes
+MTP:
+a) Corresponde a los niveles 1 y 2 del modelo OSI.
+b) Se define completamente en las recomendaciones Q.711 a Q.714, Q.716 y
+Q.717.
+c) Se encuentra a un nivel jerárquico inferior que la Parte de Control de
+Señalización (SCCP), o la Parte de usuario de Telefonía (TUP).
+23.- Dentro de los fundamentos sobre la teoría de tráfico telefónico, se define una
+central "sin bloqueo"
+a) como aquella que es capaz de atender cualquier cantidad de llamadas sin
+limitación
+b) como aquella que rechaza las llamadas en caso de tráfico intenso
+c) como aquella que atiende llamadas según el umbral de bloqueo definido
+24.- En un sistema de tráfico telefónico, se emplea la notación de Kendall A/B/c/K/m/Z
+para caracterizar los diversos parámetros del sistema. De acuerdo con dicha notación:
+a) El parámetro m es un valor numérico que indica el número de puestos que
+atienden el tráfico entrante al sistema.
+b) El parámetro K define la capacidad del sistema, es decir el número máximo
+de clientes o peticiones que se admiten en el mismo.
+c) El parámetro m define la disciplina de la cola de servicio. 
+
+25.- La señalización telefónica de abonado en sistemas de conmutación, basada en
+conexión analógica
+a) utiliza un interfaz normalizado a 2 hilos
+b) utiliza un interfaz normalizado a 4 hilos
+c) dispone de un canal D específicamente utilizado para señalización
+26.- TCAP (Transaction Capabilities Aplication Part) es el protocolo de la pila SS7 que
+permite:
+a) el establecimiento de llamadas ISDN
+b) el establecimiento de un enlace de señalización entre un SSP (Service
+Switching Point) y un STP (Signalling Transfer Point)
+c) la consulta a bases de datos
+27.- Un elemento fundamental de una PABX es:
+a) El controlador de discos
+b) El conmutador de tiempo multiplexado
+c) La matriz del grupo selector
+28.- Si durante 4 horas un grupo de enlaces ha cursado 360 llamadas de 150
+segundos de duración total media cada una, la intensidad en Erlang es:
+a) 3,75 Erlangs
+b) 4 Erlangs.
+c) 4,25 Erlangs. 
+
+29.- El servicio Ibercom como servicio integral de comunicaciones avanzadas permite
+al cliente empresarial o institucional:
+a) Integrar centrales analógicas en el contexto de una RPV
+b) Disponer de una tecnología completamente analógica para su telefonía
+empresarial o institucional
+c) Disponer de su propia red haciendo uso de ciertos elementos de
+transmisión y conmutación, como si fuesen de su uso exclusivo
+30.- En una centralita MD110, utilizada en una red Ibercom, el subsistema TRS es el
+responsable de las funciones:
+a) Control de tráfico, distribuyendo las llamadas entre extensiones y enlaces y
+monitorizando las llamadas establecidas.
+b) Medidas de tráfico, tarificación y funciones de soporte.
+c) Gestión del tráfico entrante y saliente hacia otras centrales.
+31.- La recomendación UIT-T I.411 "Configuraciones de referencia de las interfaces
+Usuario-Red de la RDSI", define el punto de referencia S entre:
+a) La Terminación de Red 2 (NT2) y el Equipo Terminal de Tipo 1 (TE1).
+b) La Terminación de Red 2 (NT2) y el Equipo Terminal de Tipo 1 (TE2).
+c) La Terminación de Red 2 (NT2) y la red pública.
+32.- En RDSI:
+a) el Bus Pasivo Conecta el TR1 a un máximo de 2 dispositivos
+b) Las rosetas van conectadas en paralelo, y son todas normales excepto la
+última, que lleva conectada una resistencia de 100 ohmios entre los pares 3
+y 6, y otra entre 4 y 5.
+c) el Bus Pasivo nunca supera los 147 metros. 
+
+33.- Respecto de los protocolos de control de pasarelas (gateways) en una
+arquitectura de Telefonía IP (ToIP), se cumple lo siguiente:
+a) MGCP es un protocolo basado en texto, que utiliza transporte UDP. Por el
+contrario, H.248 admite codificación binaria y puede utilizar transporte TCP
+o UDP.
+b) H.248 es un protocolo estandarizado por la UIT-T, mientras que MGCP se
+define en la RFC3435. H.248 define un modelo de conexiones en el que las
+entidades fundamentales son equipos terminales (endpoints) y conexiones.
+c) Tanto H.248 como MGCP utilizan las mismas entidades de llamada y son
+compatibles entre sí. La diferencia entre ambos está en la organización que
+los ha estandarizado.
+34.- Para que no se pierda información en el muestreo de señales analógicas de voz
+se deben cumplir ciertas condiciones. Dada una señal con una frecuencia máxima M
+que se modula a una frecuencia 4M a la que se le solapa un ruido de frecuencia
+máxima 2M, la velocidad de muestreo mínima para que no haya pérdida de
+información es:
+a) M
+b) 2M
+c) 4M
+35.- En ToIP, el gatekeeper:
+a) es un elemento opcional, pero de existir en la instalación, todos los demás
+elementos han de hacer uso de él.
+b) es un elemento esencial igual que lo son los gateways
+c) no puede residir en una MCU. 
+
+36.- Según la recomendación UIT-T H.323, en el protocolo H.245 se definen los
+siguientes tipos de mensajes:
+a) Petición, Respuesta, Indicación (Request, Response, Indication).
+b) Petición, Respuesta, Indicación, Comando (Request, Response, Indication,
+Command).
+c) Petición, Respuesta, Indicación, Comando, Confirmación (Request,
+Response, Indication, Command, Acknowledgement).
+37.- Dentro de una cabecera RTP los identificadores de versión (V), padding (P) y
+extensión (X) ocupan:
+a) 4 bits.
+b) 1 byte.
+c) 3 bytes.
+38.- ¿Cual de las siguientes afirmaciones sobre la calidad del servicio en ToIP es
+correcta?
+a) ToIP no es tolerante a pérdidas de paquetes: una pérdida del 1% degrada
+significativamente la voz utilizando G.711.
+b) El jitter de red no se puede compensar.
+c) La latencia máxima tolerable es de 250 microsegundos.
+39.- Los SBC (Session Border Controllers) se usan para:
+a) adaptar la señalización SS7 a H.323 o SIP y viceversa.
+b) sustituir a los softswitches o a los gateways.
+c) que se pueda proporcionar servicios SIP a través de los NAT y Firewalls
+que tenga la red o el usuario. 
+
+40.- Indique con cuál de los siguientes niveles o planos de la arquitectura NGN (Redes
+de Nueva Generación) está directamente relacionada la tecnología IMS:
+a) Plano de Control
+b) Plano de Transporte
+c) Plano de Acceso
+41.- El espectro de la banda base en una señal ADSL2+ cubre:
+a) 1,2 MHz
+b) 4.2 MHz
+c) 2.2 MHz
+42.- ¿Cuál de las siguientes tecnologías de bucle de abonado digital permite a trabajar
+con mayores distancias entre cliente y central?
+a) ADSL
+b) SDSL
+c) VDSL
+43.- La TDT utiliza como técnica de modulación de nivel físico:
+a) CDMA
+b) COFDM
+c) 64-QAM 
+
+44.- ¿Por qué es especialmente apropiada la modulación OFDM para la transmisión
+en medios con perturbaciones eléctricas?
+a) Porque al concentrar toda la energía sobre la portadora ortogonal la señal
+es más potente
+b) Porque al distribuirse la energía sobre múltiples portadoras ortogonales es
+menos probable que toda la información se pierda.
+c) Porque tiene un índice de modulación más bajo que otras técnicas de
+modulación y por tanto es más resistente a perturbaciones
+45.- GPON prevé actualmente velocidades de acceso en sentido red-usuario de hasta:
+a) 2048 Mbps
+b) 2488 Mbps
+c) 3732 Mbps
+46.- El procedimiento de encapsulación GEM (GPON Encapsulation Method):
+a) Resulta de una adaptación del estándar GFP (Genneric Frame Procedure)
+definido en la recomendación ITU-T G.704.
+b) Es el protocolo que permite evitar interferencias entre los canales
+ascendente y descendente en redes GPON.
+c) Está recogido desde sus inicios en el estándar ITU-T G.983 para emplearse
+en redes APON.
+47.- La tecnología de acceso al medio en UMTS es:
+a) TDMA
+b) WCDMA
+c) FDMA 
+
+48.- ¿Cuál de las siguientes es la característica distintiva de la tecnología HSDPA
+(High Speed Downlink Packet Access) que permite incrementar la capacidad del canal
+descendente?
+a) La optimización de la tecnología espectral UMTS/WCDMA.
+b) Se abandona el acceso CDMA empleado en UMTS.
+c) Mejora de la velocidad ofrecida por GPRS mediante la simple introducción
+de la técnica de modulación de fase 8PSK.
+49.- En las instalaciones de cableado estructurado
+a) La impedancia de los cables UTP es mayor que la de los cables STP.
+b) La norma EIA/TIA 568A recomienda que el cableado horizontal debe seguir
+una topología en estrella.
+c) La capacitancia de los cables de par trenzado debe ser inferior a 1,7 pF.
+50.- En un sistema de cableado estructurado el término NEXT es una medida referida
+a:
+a) impedancia
+b) atenuación
+c) diafonía
+51.- ¿Cómo definiría el estándar Ethernet 802.3an?
+a) 10GBBASE-T Ethernet a 10 Gbit/s sobre par trenzado no blindado (UTP).
+b) 1000BASE-T Ethernet de 1 Gbit/s sobre par trenzado no blindado (UTP).
+c) 10 BASE-F 10 Mbit/s sobre fibra óptica. Longitud máxima del segmento
+1000 metros
+
+52.- ¿Cómo definiría el uso del estándar Ethernet 10GBASE-CX4?
+a) Diseñado para funcionar en distancias cortas sobre cableado de fibra óptica
+multi-modo, permite una distancia entre 26 y 82 m dependiendo del tipo de
+cable. También admite una distancia de 300 m sobre una nueva fibra óptica
+multi-modo de 2000 MHz·km (usando longitud de onda de 850nm).
+b) Usa multiplexión por división de longitud de onda para distancias entre
+240 m y 300 m sobre fibra óptica multi-modo. También admite hasta 10 km
+sobre fibra mono-modo. Usa longitudes de onda alrededor de los 1310 nm.
+c) Interfaz de cobre para aplicaciones de corto alcance (máximo 15 m).
+53.- Según la norma 802.1Q:
+a) La inserción del tag que identifica la VLAN no afecta al resto de la trama
+Ethernet.
+b) En las VLAN nativas las tramas se etiquetan con el ID de VLAN.
+c) 802.1Q añade 4 bytes al encabezado Ethernet original, no encapsulando la
+trama original.
+54.- Cuando un router Cisco debe elegir entre rutas que se han aprendido a través de
+diferentes protocolos de enrutamiento, utiliza el concepto de distancia administrativa,
+que, a través de un valor numérico, indica la confianza que el router tiene en los datos
+que le proporciona cada protocolo. De menor a mayor, las distancias administrativas
+por defecto de los diferentes protocolos son:
+a) EIGRP (rutas internas), OSPF, IS-IS, RIP, BGP (rutas externas)
+b) OSPF, EIGRP (rutas internas), RIP, IS-IS, BGP (rutas externas)
+c) BGP (rutas externas), EIGRP (rutas internas), OSPF, IS-IS, RIP
+55.- ¿Cuántos tipos de paquetes usa EIGRP?
+a) 5
+b) 8
+c) 16 
+
+56.- BGP es un protocolo:
+a) mediante el cual se intercambia información de encaminamiento entre
+sistemas autónomos.
+b) de enrutamiento interior propietario de Cisco.
+c) que incluye un subconjunto de las funcionalidades de OSPF
+57.- Indique la afirmación correcta entre las siguientes, en referencia al protocolo
+MPLS:
+a) Un paquete MPLS puede llevar más de una etiqueta MPLS. Las etiquetas
+deben permanecer invariables durante todo el LSP del paquete,
+realizándose el enrutamiento mediante la etiqueta de nivel exterior (la
+última que se ha añadido al paquete). La extracción de esta etiqueta
+(popping) se debe realizar necesariamente en el último LSR del LSP
+(egress router).
+b) La técnica denominada PHP o Implicit Null es un mecanismo de
+optimización, ya que permite reducir el número de veces que el paquete es
+analizado en el egress router.
+c) Un LSP es un camino bidireccional entre un par de routers dentro de una
+red MPLS. El primer router de la secuencia se denomina ingress router o
+Label Edge Router (LER), y es el responsable de introducir el paquete en el
+LSP, mientras que los routers intermedios se denominan Label Switching
+Routers (LSR) y no modifican la etiqueta o etiquetas MPLS del paquete,
+sino que únicamente redirigen dicho paquete al siguiente router dentro del
+LSP. 
+
+58.- Una línea Frame Relay de 1 Mbps con un CIR 256 kbps y un EIR de 128 kbps
+a) No permite superar los 256 kbps de velocidad de acceso
+b) Permite velocidades de acceso de hasta 384 kbps
+c) Permite una velocidad de acceso de hasta 1 Mbps
+59.- En referencia al direccionamiento en IPv4, se puede afirmar que:
+a) Un direccionamiento IP definido por la dirección 8.1.4.5 con máscara 255.255.248.0 corresponde a una dirección de clase A con 8190 subredes.
+b) 199.1.1.100 con máscara 255.255.255.0 corresponde a una dirección de
+clase C que no utiliza subnetting.
+c) 130.4.102.1 con máscara 255.255.252.0 corresponde a una dirección de
+clase B que contiene 510 hosts.
+60.- ¿Qué campo de la cabecera de un datagrama IPv4 permite establecer calidades
+de servicio?
+a) IPv4 no soporta calidades de servicio, por eso, entre otras cosas, surge
+IPv6
+b) El campo DiffServ
+c) En una red IPv4 la calidad de servicio debe gestionarse necesariamente en
+el nivel de transporte 

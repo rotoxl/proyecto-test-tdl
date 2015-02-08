@@ -1,0 +1,395 @@
+#Examen Enfermería Comunidad Valenciana 2013
+#url=http://www.hacertest.com/oposiciones-enfermeria/comunidad-valenciana-2013/
+#60 minutos, 50 preguntas
+
+
+1. De conformidad con el Estatuto de Autonomía de la Comunitat Valenciana, la disolución y convocatoria de nuevas elecciones a Les Corts se realizará por medio de:
+
+Acuerdo del presidente de Les Corts.
+Acuerdo plenario de Les Corts.
+Decreto del president de la Generalitat.
+Decreto del Consell.
+
+
+2. Según la Ley 5/1983, de 30 de diciembre, del Consell, ¿cuál de estas afirmaciones es correcta?
+
+Los consellers ejercen la potestad legislativa en las materias propias de su Conselleria.
+Los consellers son nombrados y separados por el president de la Generalitat.
+Los consellers tienen tratamiento de Molt Honorable Senyor.
+Los consellers cesan por separación de su cargo, decidido por el Consell.
+
+
+3. Según la Constitución Española, la cuestión de confianza que puede plantear el presidente del Gobierno se entiende otorgada con el voto favorable de:
+
+Mayoría simple de los diputados.
+Unanimidad de los diputados.
+Mayoría absoluta de los diputados.
+Mayoría cualificada de los diputados.
+
+
+4. En relación con los tribunales de los procesos selectivos, el Decreto 7/2003, de 28 de enero, del Consell de la Generalitat, por el que se aprueba el Reglamento de selección y provisión de plazas de personal estatutario al servicio de Instituciones Sanitarias de la Generalitat Valenciana, establece que:
+
+Estarán compuestos por un mínimo de cuatro y un máximo de cinco miembros, incluyendo necesariamente un presidente y un secretario.
+Estarán compuestos por un mínimo de cinco miembros incluyendo necesariamente un presidente y un secretario.
+Sus miembros serán nombrados por el Consell.
+Sus miembros no deberán ostentar la condición de personal fijo de las Administraciones Públicas o de los servicios de salud.
+
+5. Según el Decreto 137/2003, de 13 de julio, por el que se regula la jornada y horarios de trabajo, permisos, licencias, vacaciones del personal al servicio de la Instituciones Sanitarias de la Generalitat Valenciana, en materia de permisos y licencias, es INCORRECTO que:
+
+La pareja inscrita en el Registro de Uniones de Hecho tendrá la misma consideración que el cónyuge.
+Entre una persona y su hermano, existen dos grados de parentesco por consanguinidad.
+En el parentesco por afinidad se considera que entre cónyuges existe un grado de parentesco.
+Deberán ser solicitados por escrito.
+
+
+6. Según la Ley 55/2003, de 16 de diciembre, del Estatuto Marco del Personal Estatutario de los Servicios de Salud, NO es una situación del personal estatutario fijo:
+
+Incapacidad transitoria.
+Servicios bajo otro régimen jurídico.
+Servicios especiales.
+Suspensión de funciones.
+
+
+7. El órgano científico-técnico especializado de la Administración General del Estado que tiene como misión el análisis y estudio de las condiciones de seguridad y salud en el trabajo es:
+
+El Ministerio de Sanidad, Consumo y Bienestar Social.
+El Instituto Nacional de Seguridad e Higiene en el Trabajo.
+El Ministerio de Sanidad y Seguridad Social.
+El Gabinete de Seguridad e Higiene en el Trabajo.
+
+
+8. Los periféricos son necesarios para comunicarnos con el ordenador. ¿Qué tipo de periférico es un fax?
+
+De almacenamiento.
+De entrada/salida.
+De entrada.
+De salida.
+
+9. Según la Ley 1/2003, de 28 de enero, de Derechos e Información al Paciente de la Comunidad Valenciana, NO debe constar en el documento de consentimiento informado:
+
+Riesgos frecuentes.
+Anamnesis y exploración física.
+Consecuencias previsibles de la no realización.
+Apartado para la revocación del consentimiento.
+
+
+10. Según el Código de Ética y Deontología de la Enfermería de la Comunitat Valenciana (2010), la enfermera NO viola la confidencialidad:
+
+Cuando del silencio pudiera derivarse un grave delito colectivo.
+Cuando la información que posea pueda esclarecer o evitar la perpetración de un peligro.
+Cuando por imperativo reglamentario, como consecuencia de accidentes, deba proporcionar información a la autoridad judicial o policial.
+Cuando responda a las demandas de la medicina forense o peritaje judicial.
+
+
+11. ¿Quién determinó las 14 necesidades básicas del paciente, según los modelos y teorías en enfermería?
+
+M. Peplau.
+M. Leininger.
+V. Henderson.
+D. Orem.
+
+
+12. Según la estrategia utilizada, el tipo de poder de enfermería basado en la utilización de las capacidades, conocimientos y habilidades de una persona, se denomina:
+
+Poder de referencia.
+Poder de recompensa.
+Poder legítimo.
+Poder de experto.
+
+13. La evaluación del producto enfermero, tipificado desde el punto de vista del tiempo, NO puede ser:
+
+Previa o inicial.
+Periódica.
+Permanente.
+Continua.
+
+
+14. En el ámbito de los servicios de salud, la calidad funcional hace referencia:
+
+A la imagen de la organización sanitaria dentro de la sociedad.
+A lo que el cliente (paciente) recibe realmente.
+A la imagen de la organización sanitaria desde el punto de vista de su personal sanitario.
+A cómo se presta el servicio al cliente (paciente) y depende de su juicio subjetivo.
+
+
+15. ¿Cuál de los siguientes es un componente de la evaluación de la calidad asistencial?
+
+Definir.
+Proponer.
+Valorar.
+Evaluar.
+
+
+16. ¿Cuáles son los tres modelos o fases que identificó Lomas en el año 1993, para transferir la evidencia a la práctica diaria?
+
+Modelo de valoración recursos y costes, modelo de difusión pasiva y modelo de diseminación activa.
+Modelo de difusión pasiva, modelo de diseminación activa y modelo de implementación ordinada.
+Modelo de valoración recursos y costes, modelo de conocimiento organización y modelo de diseminación activa.
+Modelo de valoración recursos y costes, modelo de conocimiento organización y modelo de implementación coordinada.
+
+17. La definición de operador booleano que "localiza registros que contengan alguno (al menos uno) de los términos de búsqueda y que es el operador que más amplia el resultado", se corresponde con:
+
+NEAR
+AND
+NOT
+OR
+
+
+18. Según el Decreto 30/2012, de 3 de febrero, del Consell, por el que se modifica la estructura, funciones y régimen retributivo del personal directivo de Instituciones Sanitarias de la Conselleria de Sanitat, la dirección de enfermería de atención primaria dependerá orgánicamente de:
+
+La dirección médica del departamento.
+La dirección de recursos humanos del departamento.
+El director de zona de asistencia sanitaria.
+La dirección de enfermería del departamento.
+
+
+19. ¿Cuál de las siguientes NO es una premisa para la organización del equipo de atención primaria?:
+
+Trabajo jerarquizado de los distintos profesionales.
+Trabajo programado.
+Participación de todos los componentes en la ejecución y evaluación de las actividades a desarrollar.
+Participación de todos los componentes en la planificación de las actividades a desarrollar.
+
+
+20. Según Pérez Serrano, en la programación en educación para la salud (EpS), la fase de planificación NO comprende:
+
+Descripción del proyecto.
+Objetivos generales.
+Objetivos específicos.
+Metodología.
+
+21. Según Salleras, la definición de educación para la salud es:
+
+Un proceso cuyo objetivo principal es conseguir que la población adquiera la capacidad de controlar, mejorar y adoptar decisiones sobre su propio estado.
+Un proceso que no es solamente la transmisión de información, sino también el fomento de la motivación, las habilidades personales y la autoestima necesarias para mejorar la salud.
+Un proceso planificado y sistemático de comunicación y de enseñanza-aprendizaje, orientado a facilitar la adquisición, elección y mantenimiento de la salud.
+Un proceso que informa, motiva y ayuda a la población a adoptar y mantener prácticas y estilos de vida saludables, propugna los cambios ambientales necesarios para facilitar esos objetivos, y dirige la formación profesional y la investigación a los mismos objetivos.
+
+
+22. De los estudios epidemiológicos descriptivos, ¿cuál es el más adecuado para estimar la prevalencia de una enfermedad en una población?
+
+Cohortes.
+Transversales.
+Longitudinales.
+Encuestas de salud.
+
+
+23. A qué indicador se refiere la expresión: "En España, en el año 2011, hubo 3,2 muertes infantiles antes de cumplir 1 año por cada 1.000 nacidos vivos":
+
+Tasa de mortalidad neonatal.
+Esperanza de vida al nacer.
+Tasa de mortalidad infantil.
+Tasa de mortalidad perinatal.
+
+
+24. La aparición de placas de color rojo brillante en el dorso de la lengua se denomina:
+
+Lengua geográfica.
+Lengua nigra.
+Lengua pilosa.
+Lengua escrotal.
+
+25. Según el Plan de Atención a Pacientes con Enfermedades Crónicas de la Comunitat Valenciana 2012, ¿para cuál de las siguientes alertas NO se han elaborado procedimientos de actuación en el supuesto de EPOC?
+
+Aumento de saturación de oxígeno.
+Aumento de peso e insuficiencia cardiaca.
+Aumento de la frecuencia cardiaca (FC).
+Hipertensión arterial.
+
+
+26. Siguiendo las recomendaciones del Ministerio de Sanidad, Servicios Sociales e Igualdad (manual Viajes internacionales y salud-situación a 1 de enero de 2012), ¿cuál de las siguientes vacunas NO se debe administrar durante el embarazo?
+
+Vacuna para enfermedad meningocócica (vacuna inactivada antimeningocócica polisacárida).
+Vacuna para tuberculosis -BCG- (cepas micobacterianas vivas atenuadas).
+Vacuna inactivada de virus de hepatitis A.
+Vacuna para la rabia (si inactivada).
+
+
+27. ¿Qué método se utiliza para valorar la independencia en las actividades básicas de la vida diaria?
+
+Índice de Katz.
+Escala Norton modificada.
+Miniexamen cognoscitivo (MEC) de Lobo.
+Escala de Downton.
+
+
+28. ¿Qué autor/a establece cuatro fases en la relación interpersonal: "orientación, identificación, aprovechamiento y resolución"?
+
+Maslow.
+Peplau.
+Sullivan.
+C. Roy.
+
+
+29. Para detectar enfermedades metabólicas congénitas en el recién nacido, la muestra (gotas de sangre) obtenida con la punción del talón será depositada en:
+
+Papeles de filtro SIMS.
+Papeles de filtro Walther.
+Papeles de filtro Sheringuer.
+Papeles de filtro Wathman.
+
+
+30. En la obtención de muestra para la detección de metabolopatías, para la determinación de fenilcetonuria, es necesario que hayan transcurrido:
+
+48 horas desde el inicio de la alimentación.
+24 horas desde el inicio de la alimentación.
+72 horas desde el inicio de la alimentación.
+Un mes desde el inicio de la alimentación.
+
+
+31. Una de las zonas de punción de elección para la administración de medicamentos por vía intramuscular es el ventroglúteo, que está situado en:
+
+El músculo medio que está sobre el glúteo lateral.
+El músculo medio que está sobre el glúteo mayor.
+El músculo medio que está sobre el glúteo menor.
+El músculo medio que está sobre el glúteo oblicuo.
+
+
+32. Señale la respuesta correcta por grado y tipo de lesión, en relación con la clasificación de grados de lesiones en el pie diabético según Wagner:
+
+Grado I. Úlcera profunda.
+Grado IV. Gangrena extensa.
+Grado II. Ulcera superficial.
+Grado III. Úlcera profunda más absceso y/u osteomielitis.
+
+33. ¿Cuál de las siguientes respuestas NO es una ventaja del Informe de Enfermería al Ingreso (IEI)?
+
+Favorecer la confianza y la comunicación interprofesional.
+Recomendar la valoración posterior para los profesionales de atención primaria.
+Contribuir a la eficaz gestión del alta.
+Permitir la evaluación periódica de la evolución del usuario desde su ingreso hasta el momento del alta.
+
+
+34. Según el Plan Integral de Cuidados Paliativos de la Comunitat Valenciana 2010-2013, cuál de los siguientes es el OBJETIVO GENERAL de la investigación:
+
+Fomentar la investigación en efectividad, eficiencia y seguridad de la atención prestada.
+Potenciar la investigación con máximo rigor metodológico en cuidados paliativos.
+Desarrollar una línea de investigación específica en cuidados paliativos por parte de la Conselleria de Sanidad.
+Fomentar la cooperación investigadora multicéntrica de grupos y equipos interdisciplinares y pertenecientes a ámbitos de actuación distintos.
+
+
+35. ¿Cuál de las siguientes NO es una recomendación para pacientes y cuidadores respecto a las úlceras por presión?
+
+Tratar la úlcera al principio de su formación.
+Aliviar la presión en las zonas de apoyo.
+Que la ropa que roza al paciente permanezca seca.
+Seguir una dieta hipocalórica.
+
+
+36. El puerperio inmediato abarca:
+
+Los 4 primeros días después del parto.
+Las primeras 48 horas después del parto.
+Los 3 primeros días después del parto.
+Las primeras 24 horas después del parto.
+
+37. La infección puerperal en la que aparece dolor localizado en el hipogastrio, el útero está blando, la puérpera refiere dolor a la presión y a la movilización, hay fiebre y los loquios tienen un olor fétido y son de color achocolatado, se denomina:
+
+Endometritis.
+Vaginitis.
+Salpingooforitis.
+Vulvitis.
+
+
+38. Según la Sociedad Española de Cuidados Paliativos (SECPAL), ¿cuál de las siguientes afirmaciones es correcta en relación con el uso de la morfina?
+
+La morfina por vía oral siempre provoca una depresión respiratoria.
+La morfina provoca euforia.
+No provoca acostumbramiento.
+La dosis por vía parenteral debe ser del doble al triple de la cantidad que se usaría por vía oral.
+
+
+39. El test de Finnegan se aplica a recién nacidos con:
+
+Síndrome de abstinencia neonatal.
+Síndromes cardiacos.
+Síndromes renales.
+Síndrome de Down.
+
+
+40. La lactancia materna está contraindicada en los hijos de madres con:
+
+Citomegalovirus.
+Hepatitis A.
+Virus de la leucemia de células T (HTLV-I o II).
+Rubeola.
+
+41. Según el Decreto 240/1994, de 22 de noviembre, del Gobierno Valenciano, por el que se aprueba el Reglamento regulador de la gestión de los residuos sanitarios, ¿cuál de las siguientes afirmaciones es correcta?
+
+El Decreto es de aplicación a las grandes piezas anatómicas.
+El Decreto es de aplicación a las aguas residuales.
+El Decreto es de aplicación a los residuos radioactivos.
+El Decreto es de aplicación a los residuos citostáticos.
+
+
+42. Según el Decreto 240/1994, de 22 de noviembre, del Gobierno Valenciano, por el que se aprueba el Reglamento regulador de la gestión de los residuos sanitarios, la identificación externa de los contenedores para los residuos de Grupo III llevará la leyenda:
+
+Material contaminado químicamente.
+Residuos sanitarios no específicos.
+Residuos de riesgo.
+No precisan ir identificados.
+
+
+43. En la resucitación cardiopulmonar básica (RCP) ¿cuál es la afirmación correcta?
+
+Si hay un solo reanimador, en los lactantes y en los niños, se deben realizar las maniobras de RCP durante un minuto y luego se ha de pedir ayuda.
+Iniciar la RCP efectuando 50 compresiones torácicas (50 por minuto).
+Realizar siempre mayor número de ventilaciones que compresiones torácicas.
+Iniciar la RCP primero con las ventilaciones y después con las compresiones torácicas.
+
+
+44. Normalmente, el estomaterapeuta se encarga de marcar el sitio apropiado para realizar la ostomía antes de la intervención quirúrgica. ¿Cuál es la ubicación más apropiada?
+
+Músculo cremáster.
+Músculo oblicuo mayor.
+Músculo recto abdominal.
+Músculo transverso.
+
+45. En la realización de una gasometría arterial, la selección de la arteria más adecuada para la punción, por orden preferente, determinada por el riesgo creciente de complicaciones, es la siguiente:
+
+Radial, femoral, ulnar, humeral.
+Radial, femoral, humeral, ulnar.
+Humeral, femoral, ulnar, humeral.
+Radial, humeral, femoral, ulnar.
+
+
+46. En el test de la tuberculina, ¿cuál de las siguientes afirmaciones es correcta?
+
+Se utiliza un antiséptico con colorante.
+La lectura se hace a las 12 horas.
+Se administra una cantidad superior a 1 ml.
+No debe aplicarse encima de una vena.
+
+
+47. ¿Cuál es un síndrome en el paciente ingresado en cuidados intensivos?
+
+Dolor.
+Incapacidad para dormir.
+Fluctuación del nivel de conciencia.
+Limitación de la comunicación y de la capacidad para comer.
+
+
+48. Durante el puerperio aparecen episodios de diaforesis que consisten en:
+
+Aumento de la transpiración.
+Aparición de estrías.
+Disminución de la diuresis.
+Entuertos.
+
+
+49. Según la Sociedad Europea de Cuidados Paliativos, el objetivo de los cuidados paliativos es:
+
+Proporcionar bienestar y soporte al paciente y su familia.
+Realizar técnicas y métodos para alargar la vida del paciente.
+Proporcionar cuidados al paciente en caso de empeoramiento.
+Proporcionar bienestar y soporte exclusivamente al paciente.
+
+
+50. Los vendajes funcionales adhesivos no están indicados en:
+
+Trastornos vasculares.
+Lesiones cápsulo-ligamentosas.
+Lesiones musculares y tendinosas.
+Lesiones líquidas.
+
+

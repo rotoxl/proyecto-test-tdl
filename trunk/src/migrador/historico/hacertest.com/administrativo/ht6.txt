@@ -1,0 +1,400 @@
+#titulo=Modelo A, Examen Administrativo Sanidad Comunidad Valenciana 2013
+#url=http://www.hacertest.com/oposiciones-administrativo-sanidad/comunidad-valenciana-2013/
+#t=45 min, 50 preguntas
+#
+#
+#En el año 2011 mediante la Resolución de 24 de marzo plazas de administrativo de la función administrativa de instituciones sanitarias de la Conselleria de Sanidad de Valencia. En total fueron convocadas 40 plazas vacantes de personal estatutario del grupo C (C1) 2 plazas reservadas para personas con una discapacidad igual o superior al 33% y 14 plazas reservadas para ser cubiertas por turno de promoción interna. Las plazas que no fueron cubiertas por el turno de promoción interna pasaron a formar parte de aquellas de acceso de turno libre.
+#
+#El proceso selectivo se llevó a cabo mediante concurso-oposición. La fase de oposición estuvo formada por dos ejercicios:
+#
+#Primer ejercicio: el primer ejercicio estuvo formado por un cuestionario tipo test que versó sobre 35 temas los 35 temas que se incluyen como Anexo II: Normativa General (3), Normativa Sanitaria Común (7), Informática (3) y Temario Específico de la Categoría (22). Los aspirantes que accedieran por el turno de promoción interna, quedaron exentos de la realización de este ejercicio.
+#Segundo ejercicio: de carácter técnico para valorar las aptitudes de los aspirantes en el desarrollo de las funciones de administrativo.
+
+
+1. Según el artículo 159 de la Constitución Española de 1978, los miembros del tribunal Constitucional serán designados:
+
+Por un período de nueve años y se renovarán por terceras partes cada tres.
+Por un período de seis años y se renovarán por terceras partes cada dos.
+Por un período de seis años y se renovarán en dos partes cada tres
+Por un período de nueve años y se renovarán en su totalidad al finalizar dicho período.
+
+
+2. Según el artículo 27 del Estatuto de Autonomía de la Comunitat Valenciana, el president de la Generalitat será elegido por Les Corts de entre sus miembros:
+
+Por mayoría simple de los miembros de derecho de Les Corts, en primera votación.
+Por mayoría de dos tercios de los miembros de derecho de Les Corts, en primera votación.
+Por mayoría de tres quintos de los miembros de derecho de Les Corts, en primera votación.
+Por mayoría absoluta de los miembros de derecho de Les Corts, en primera votación.
+
+
+3. Según el artículo 28 de la Ley 5/1983, de 30 de diciembre, del Consell, señale cual de las siguientes NO es una función de entre las asignadas a los consellers, como miembros del Consell y jefes de Departamento:
+
+Ejercer la dirección, iniciativa e inspección de todos los servicios del Departamento y la alta inspección y demás funciones que les correspondan respecto a los organismos autónomos adscritos al mismo.
+Disponer los gastos propios de los servicios de su conselleria dentro de los límites legales y presupuestarios y la ordenación de pagos correspondientes.
+Proponer al Consell, para su aprobación, la estructura y organización de sus respectivas consellerias.
+Dictar decretos legislativos en los términos y con las formalidades previstas en la Ley 5/1983. Para el control de esta legislación delegada por Les Corts, se estará a lo dispuesto en su Reglamento.
+
+
+4. Según lo dispuesto en el artículo 22 de la Ley 55/2003, de 16 de diciembre, del Estatuto Marco del personal estatutario de los servicios de salud, y en relación a la renuncia a la condición de personal estatutario, indique cual de las siguientes afirmaciones es CORRECTA:
+
+Todas las respuestas son incorrectas.
+Tiene carácter voluntario y deberá ser solicitada por el interesado con una antelación mínima de un mes a la fecha en que se desee hacer efectiva.
+Será aceptada en el plazo de un mes, salvo que el interesado esté sujeto a expediente disciplinario.
+No inhabilita para obtener nuevamente dicha condición a través de los procedimientos de selección establecidos.
+
+5. Según lo dispuesto en el artículo 8 de la Ley 3/2003 de 6 de febrero, de Ordenación Sanitaria de la Comunitat Valenciana, señale cual de los siguientes NO es un fin al que deba orientarse el sistema sanitario valenciano:
+
+La prevención de la enfermedad.
+El desarrollo profesional.
+La promoción de la adecuada educación sanitaria de la población.
+La investigación.
+
+
+6. Según el artículo 38 del Decreto 7/2003, del 28 de enero, del Consell de la Generalitat, por el que se aprueba el Reglamento de Selección y Provisión de Plazas de Personal Estatutario al Servicio de Instituciones Sanitarias de la Generalitat Valenciana, el personal nombrado para un puesto de trabajo de libre designación podrá ser cesado discrecionalmente:
+
+Por la autoridad que acordó su nombramiento, previo informe de la comisión de valoración.
+Por la autoridad que acordó su nombramiento.
+No puede ser cesado de su puesto de trabajo discrecionalmente.
+Siempre por el conseller de Sanidad.
+
+
+7. Según lo dispuesto en el artículo 11 de la Ley 1/2003, de 28 de enero, de la Generalitat, de Derechos e Información al Paciente de la Comunidad Valenciana, en relación con la información previa al consentimiento informado, indique cual de las siguientes afirmaciones es CORRECTA:
+
+La información deberá ser veraz, descifrable, objetiva y suficiente.
+La información deberá ser veraz, comprensible, razonable y suficiente.
+La información deberá ser válida, comprensible, objetiva y suficiente.
+La información deberá ser veraz, entendible, razonable y escueta.
+
+
+8. Según lo dispuesto en el artículo 35 de la Ley 31/1995, de 8 de noviembre, de Prevención de Riesgos Laborales, en las empresas de treinta y uno a cuarenta y nueve trabajadores habrá:
+
+Dos delegados de Prevención.
+Un delegado de Prevención.
+Tres delegados de Prevención.
+Cuatro delegados de Prevención.
+
+9. ¿Cuál de las siguientes afirmaciones es FALSA?
+
+Los sistemas operativos pueden funcionar en el modo multitarea, es decir, pueden manejar más de un programa en memoria a la vez.
+Hardware son los elementos físicos de un sistema computador.
+Para codificar las señales analógicas se utiliza un sistema denominado binario.
+La CPU es la parte del ordenador que realiza las operaciones necesarias para efectuar un proceso de datos.
+
+
+10. En una hoja de cálculo EXCEL utilizamos el signo $ en una fórmula:
+
+Se coloca delante de la columna, de la fila o de ambas, para que la copia sea relativa, no absoluta.
+Se coloca únicamente delante de la columna, ya que la fila siempre es relativa.
+Se coloca delante de la columna, de la fila o de ambas, para que la copia sea absoluta, no relativa.
+Para que calcule el total en dólares.
+
+
+11. Según lo dispuesto en el artículo 94 de la Constitución Española de 1978, la prestación del consentimiento del Estado para obligarse mediante Tratados Internacionales que Impliquen obligaciones financieras para la Hacienda Pública requerirá la previa autorización de:
+
+El Gobierno mediante una modificación de la Ley de Presupuestos Generales del Estado.
+Las Cortes Generales.
+Ninguna de las respuestas es correcta.
+El Ministerio de Hacienda.
+
+
+12. Según lo dispuesto en el artículo 103 de la Constitución Española de 1978, señale cual de los siguientes NO es un principio de actuación de la Administración Pública:
+
+Eficacia.
+Centralización.
+Coordinación.
+Desconcentración.
+
+13. De acuerdo con lo establecido en la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, y con respecto a la abstención y recusación, señale cual de las siguientes afirmaciones es CORRECTA:
+
+El recusado en un procedimiento manifestará a su inmediato superior, en el plazo de tres días, si se da o no en él la causa alegada.
+Los órganos superiores no podrán ordenar la abstención de las autoridades y el personal al servicio de las Administraciones Públicas de intervenir en un procedimiento.
+La actuación de autoridades y personal al servicio de las Administraciones Públicas en los que concurran motivos de abstención no implicará, necesariamente, la invalidez de los actos en que hayan intervenido.
+La recusación podrá promoverse por cualquier ciudadano aunque no sea interesado en el procedimiento.
+
+
+14. Según el Título VIII de la Constitución Española de 1978, y en relación con la Administración Local, señale cual de las siguientes afirmaciones es la CORRECTA:
+
+Cualquier alteración de los límites provinciales habrá de ser aprobada por las asambleas legislativas de las comunidades autónomas correspondientes, mediante ley.
+Las Haciendas locales se nutrirán, fundamentalmente de tributos propios y de participación en los del Estado y de las comunidades autónomas.
+Los municipios no gozarán de personalidad jurídica plena, al depender de las diputaciones provinciales.
+No se podrán crear agrupaciones de municipios diferentes de la provincia.
+
+
+15. De acuerdo con lo establecido en artículo 54 de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, ¿cuál de los siguientes actos administrativos debe ser necesariamente motivado, con sucinta referencia de hechos y fundamentos de derecho?
+
+Los que limiten derechos objetivos.
+Los que se separen del criterio seguido en actuaciones precedentes o del dictamen de órganos consultivos.
+Los que se dicten en el ejercicio de potestades regladas.
+Los acuerdos de reducción de plazos en la tramitación del procedimiento.
+
+
+16. De acuerdo con lo establecido en el artículo 96 de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, ¿cuál de los siguientes es un medio de ejecución forzosa de los actos administrativos?:
+
+La sanción disciplinaria.
+La compulsión sobre el patrimonio.
+La ejecución subsidiaria.
+El apremio sobre las personas.
+
+17. De acuerdo con lo establecido en la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, y en relación a la instrucción del procedimiento administrativo, señale cual de las siguientes afirmaciones es la INCORRECTA:
+
+Se podrá prescindir del trámite de audiencia cuando no figuren en el procedimiento ni sean tenidos en cuenta en la resolución otros hechos ni otras alegaciones y pruebas que las aducidas por el interesado.
+Los interesados podrán, en cualquier momento del procedimiento, aducir alegaciones y aportar documentos u otros elementos de juicio.
+El informe emitido fuera de plazo podrá no ser tenido en cuenta al adoptar la correspondiente resolución.
+El instructor, cuando la naturaleza del procedimiento lo exija, acordará la apertura de un periodo de prueba, por un plazo no superior a treinta días ni inferior a diez.
+
+
+18. De acuerdo con lo establecido en el artículo 96 de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, señale cual de las siguientes NO es una causa de iniciación de oficio de los procedimientos administrativos:
+
+Por acuerdo del órgano competente, como consecuencia de orden superior.
+Por acuerdo del órgano competente por propia iniciativa.
+Por denuncia.
+Por acuerdo del órgano competente, como consecuencia de solicitud de persona interesada.
+
+
+19. De acuerdo con lo establecido en el artículo 103 de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, ¿qué actos administrativos podrán ser declarados lesivos para el interés público por las Administraciones Públicas?
+
+Los actos favorables para los interesados que sean nulos de pleno derecho.
+Los actos desfavorables para los interesados que sean nulos de pleno derecho.
+Los actos desfavorables para los interesados que sean anulables.
+Los actos favorables para los interesados que sean anulables.
+
+
+20. De acuerdo con lo establecido en el artículo 115 de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, el plazo para la interposición del recurso de alzada, si el acto fuera expreso, será de:
+
+Un mes.
+Tres meses.
+Quince días.
+Dos meses
+
+21. La exigencia de responsabilidad penal del personal al servicio de las Administraciones Públicas no suspenderá los procedimientos de reconocimiento de responsabilidad patrimonial que se instruyan. Esta afirmación, según el artículo 146 de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, es:
+
+Ninguna de las respuestas es cierta.
+Cierta en todos los supuestos.
+Falsa en todos los supuestos.
+Cierta, salvo que la determinación de los hechos en el orden jurisdiccional penal sea necesaria para la fijación de la responsabilidad patrimonial.
+
+
+22. Según lo dispuesto en el título IX de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común, y en relación con los procedimientos administrativos que regulan el ejercicio de la potestad sancionadora, señale cual de las siguientes afirmaciones es INCORRECTA:
+
+Los procedimientos sancionadores respetarán la presunción de no existencia de responsabilidad administrativa mientras no se demuestre lo contrario.
+La resolución que ponga fin al procedimiento habrá de ser motivada y resolverá todas las cuestiones planteadas en el expediente.
+En ningún caso se podrá imponer una sanción sin que se haya tramitado el necesario procedimiento.
+Deberán establecer la debida separación entre la fase instructora y la sancionadora, aunque su tramitación y resolución corresponda al mismo órgano.
+
+
+23. Según lo dispuesto en el artículo 3 del Real Decreto Legislativo 3/2011, de 14 de noviembre, por el que se aprueba el texto refundido de la Ley de Contratos del Sector Público, dentro del sector público y a los efectos de esta ley, No tendrán la consideración de Administraciones Públicas:
+
+Las mutuas de accidentes de trabajo y enfermedades profesionales de la Seguridad Social.
+Las universidades públicas.
+Las entidades gestoras y los servicios comunes de la Seguridad Social.
+Los organismos autónomos.
+
+
+24. Según lo dispuesto en el artículo 28 del Real Decreto Legislativo 3/2011, de 14 de noviembre, por el que se aprueba el texto refundido de la Ley de Contratos del Sector Público, relativo al carácter formal de la contratación del sector público, los entes, organismos y entidades del sector público:
+
+No podrán contratar verbalmente, salvo que el contrato tenga carácter de urgencia y su importe sea menor de 200.000 euros.
+No podrán contratar verbalmente, salvo que el contrato tenga carácter de urgencia y su importe sea mayor de 200.000 euros.
+No podrán contratar verbalmente, salvo que el contrato tenga carácter de emergencia.
+Podrán contratar verbalmente todos aquellos contratos sujetos a regulación armonizada, según la normativa europea.
+
+25. Según lo dispuesto en el artículo 9 del Real Decreto Legislativo 3/2011, de 14 de noviembre, por el que se aprueba el texto refundido de la Ley de Contratos del Sector Público, los contratos que tienen "por objeto la adquisición, el arrendamiento financiero, o el arrendamiento, con o sin opción de compra, de productos o bienes muebles" son:
+
+Contratos de obras.
+Contratos de suministros.
+Contratos de servicios.
+Contratos de gestión de servicios públicos.
+
+
+26. Según la Resolución de 15 de marzo de 2010, del director gerente de la Agencia Valenciana de Salud, por la que se delegan competencias en determinados órganos de la Agencia, en materia de contratación administrativa y de gestión económica, las facultades referidas a los gastos de los capítulos II y VI de los Servicios Centrales por un importe de 10.000.000,00 de euros se delegan en:
+
+Consejo de Administración de la Agencia Valenciana de Salud.
+Los directores generales de la Agencia Valenciana de Salud.
+Mancomunadamente, en el director general de Recursos Económicos y el director gerente de la Agencia Valenciana de salud.
+El director general de Recursos Económicos, salvo que el director gerente de la Agencia Valenciana de Salud decida ejercer tal facultad.
+
+
+27. Según lo dispuesto en el Decreto Legislativo de 26 de junio de 1991, por el que se aprueba el texto refundido de la Ley de Hacienda Pública de la Generalitat Valenciana, indique de las siguientes afirmaciones cual es INCORRECTA:
+
+Los pagos se ordenarán a través de los respectivos mandamientos, librados por el ordenador a favor de los acreedores de la Generalitat Valenciana.
+El ejercicio presupuestario coincidirá con el año natural.
+Los créditos consignados en los estados de gastos del Presupuesto tienen carácter orientativo y no limitativo.
+Si las Cortes Valencianas no aprobaran el presupuesto antes del primer día del ejercicio económico, se entenderá prorrogado el del ejercicio anterior hasta la aprobación y publicación del nuevo en el Diari Oficial de la Generalitat Valenciana.
+
+
+28. Según lo dispuesto en el artículo 24 del Decreto Legislativo de 26 de junio de 1991, por el que se aprueba el texto refundido de la Ley de Hacienda Pública de la Generalitat Valenciana, las conselleries enviarán al conseller de Economía y Hacienda el anteproyecto correspondiente a sus estados de gastos debidamente ajustados a las leyes aplicables y a las directrices aprobadas por el Gobierno Valenciano a propuesta del citado conseller, antes del:
+
+1 de octubre.
+1 de septiembre.
+1 de diciembre.
+1 de junio.
+
+29. Según lo dispuesto en el artículo 34 del Decreto Legislativo de 26 de junio de 1991, por el que se aprueba el texto refundido de la Ley de Hacienda Pública de la Generalitat Valenciana, ¿a quién corresponderá la concesión de suplementos de créditos a una entidad autónoma de la Generalitat Valenciana cuando ello significase un aumento de sus créditos de un 10% de los consignados en sus presupuestos?
+
+Al Conseller de Economía y Hacienda.
+Al Director de la entidad autónoma.
+A Les Corts.
+Al Gobierno Valenciano.
+
+
+30. Según lo dispuesto en el artículo 100 del Real Decreto Legislativo 1/1994, de 20 de junio, por el que se aprueba el texto refundido de la Ley General de la Seguridad Social, sobre afiliación, altas y bajas, señale cual de las siguientes NO es una obligación que corresponde al empresario:
+
+Reconocer el derecho al alta y baja de los trabajadores en el Régimen General.
+Solicitar la afiliación al sistema de la Seguridad Social de los trabajadores que ingresen a su servicio.
+Comunicar el ingreso en la empresa de los trabajadores que ingresen a su servicio para que sean dados de alta en el Régimen General.
+Comunicar el cese en la empresa de los trabajadores que cesen a su servicio para que sean dados de baja en el Régimen General.
+
+
+31. Según lo dispuesto en el artículo 99 del Real Decreto Legislativo 1/1994, de 20 de junio, por el que se aprueba el texto refundido de la Ley General de la Seguridad Social, indique cual de los siguientes es el requisito previo e indispensable que los empresarios deben realizar antes de iniciar sus actividades:
+
+Deben solicitar la afiliación al sistema de la Seguridad Social de los trabajadores que ingresen a su servicio.
+Deben reconocer el derecho al alta y baja de sus trabajadores.
+Deben solicitar su inscripción en el Régimen General de la Seguridad Social, haciendo constar la entidad gestora o, en su caso, la Mutua de Accidentes de Trabajo y Enfermedades Profesionales de la Seguridad Social que haya de asumir la protección por estas contingencias del personal a su servicio.
+Deben solicitar su inscripción en el Régimen General de la Seguridad Social, sin tener necesidad en ese momento de hacer constar la entidad gestora o, en su caso, la Mutua de Accidentes de Trabajo y Enfermedades Profesionales de la Seguridad Social que haya de asumir la protección por estas contingencias del personal a su servicio.
+
+
+32. Según lo dispuesto en el artículo 45 del Real Decreto Legislativo 1/1995, de 24 de marzo, por el que se aprueba el texto refundido de la Ley del Estatuto de los Trabajadores, indique cual de las siguientes NO es una causa de suspensión del contrato de trabajo:
+
+Las consignadas válidamente en el contrato
+Por jubilación del trabajador.
+Excedencia forzosa.
+Mutuo acuerdo de las partes.
+
+33. Según lo dispuesto en el Real Decreto 1382/1985, de 1 de agosto, por el que se regula la relación laboral de carácter especial del personal de alta dirección, y con respecto al contrato especial de trabajo del personal de alta dirección, señale cual de las siguientes afirmaciones es INCORRECTA:
+
+En dicho contrato podrá concertarse un período de prueba que en ningún caso podrá exceder de nueve meses, si su duración es indefinida.
+El contrato especial de trabajo tendrá la duración que las partes acuerden. A falta de pacto escrito se presume celebrado por tiempo indefinido.
+Se formalizará por escrito, en ejemplar duplicado, uno para cada parte contratante.
+El contrato debe indicar obligatoriamente la formación académica del interesado.
+
+
+34. Según lo dispuesto en el artículo 4 de la Ley 31/1995, de 8 de noviembre, de Prevención de Riesgos Laborales, ¿qué es definido como "el conjunto de actividades o medidas adoptadas o previstas en todas la fases de actividad de la empresa con el fin de evitar o disminuir los riesgos derivados del trabajo"?
+
+Equipo de protección individual.
+Daños derivados del trabajo.
+Evaluación de riesgos.
+Prevención.
+
+
+35. Según lo dispuesto en el artículo 4 de la Ley 31/1995, de 8 de noviembre, de Prevención de Riesgos Laborales, y en el caso que se acordara la paralización de los trabajos por implicar un riesgo grave e inminente para la seguridad y salud de los trabajadores, dicha paralización se levantará por:
+
+El Comité de Empresa.
+La Inspección de Trabajo y Seguridad Social que la hubiera decretado, o por el empresario tan pronto como se subsanen las causas que la motivaron, debiendo, en este último caso, comunicarlo inmediatamente a la Inspección de Trabajo y Seguridad Social.
+El delegado de Prevención debiendo comunicarlo inmediatamente al empresario.
+El Comité de Seguridad y Salud.
+
+
+36. Según el artículo 3 de la Ley 10/2010, de 9 de julio, de Ordenación y Gestión de la Función Pública Valenciana, el personal estatutario al servicio de la Generalitat se regirá por esta ley:
+
+En aquellas materias no reguladas por su normativa específica, a excepción únicamente de los artículos relativos a las retribuciones complementarias.
+En aquellas materias no reguladas por su normativa específica, a excepción de los artículos relativos a las retribuciones complementarias, la movilidad interadministrativa y la promoción profesional. No obstante lo anterior, las previsiones de la evaluación del desempeño del artículo 121, serán de aplicación a este personal.
+En aquellas materias no reguladas por su normativa específica, en todo caso.
+En aquellas materias no reguladas por su normativa específica, a excepción únicamente de los artículos relativos a las retribuciones complementarias y la movilidad interadministrativa.
+
+
+37. Según el artículo 43 de la Ley 10/2010, de 9 de julio, de Ordenación y Gestión de la Función Pública Valenciana, la elaboración, tramitación y aprobación de las relaciones de puestos de trabajo de la administración de la Generalitat, sin perjuicio de las funciones atribuidas al Consell Interdepartamental de Retribucions (CIR), se publicarán en el Diari Oficial de la Comunitat Valenciana al menos:
+
+Una vez cada dos meses.
+Una vez cada dos años.
+Una vez al año.
+Una vez al semestre.
+
+
+38. Según lo dispuesto en artículo 10 de la Ley 55/2003, de 16 de diciembre, del Estatuto Marco del personal estatutario de los servicios de salud, ¿cuál es el órgano que, como principal instrumento de configuración y cohesión del Sistema Nacional de Salud, conocerá, debatirá y, en su caso, emitirá recomendaciones sobre los criterios para la coordinación de la política de recursos humanos del Sistema Nacional de Salud?
+
+La Comisión de Recursos Humanos del Sistema Nacional de Salud.
+El Consejo Interterritorial del Sistema Nacional de Salud.
+La Comisión Nacional de Salud y Recursos Humanos.
+El Consejo Nacional de Salud.
+
+
+39. Según lo dispuesto en el artículo 72 de la Ley 55/2003, de 16 de diciembre, del Estatuto Marco del personal estatutario de los servicios de salud, es falta MUY GRAVE:
+
+La falta de obediencia debida a los superiores.
+El abuso de autoridad en el ejercicio de sus funciones.
+El encubrimiento, consentimiento o cooperación con cualquier acto a la comisión de faltas muy graves.
+La notoria falta de rendimiento que comporte inhibición en el cumplimiento de sus funciones.
+
+
+40. Según lo dispuesto en el artículo 41 de la Ley 55/2003, de 16 de diciembre, del Estatuto Marco del personal estatutario de los servicios de salud, el sistema retributivo del personal estatutario se estructura en:
+
+Retribuciones básicas, retribuciones complementarias y retribuciones no periódicas.
+Retribuciones básicas, retribuciones complementarias y retribuciones de carrera profesional.
+Retribuciones básicas, retribuciones complementarias y retribuciones específicas.
+Retribuciones básicas y retribuciones complementarias.
+
+41. Según lo dispuesto en el artículo 62 de la Ley 14/1986, de 25 de abril, General de Sanidad, para conseguir la máxima operatividad y eficacia en el funcionamiento de los servicios a nivel primario, las Áreas de Salud se dividirán en:
+
+Clínicas de salud.
+Centros de salud.
+Zonas básicas de salud.
+Hospitales generales.
+
+
+42. Según lo dispuesto en el artículo 79 de la Ley 14/1986, de 25 de abril, General de Sanidad, señale cual de las siguientes NO es una vía de financiación de la asistencia prestada:
+
+Transferencias del Estado.
+Transferencias de Fondos Europeos.
+Cotizaciones sociales.
+Tasas por la prestación de determinados servicios.
+
+
+43. Según lo dispuesto en la Ley 3/2003, de 6 de febrero, de Ordenación Sanitaria de la Comunidad Valenciana, y en relación con la Agencia Valenciana de Salud, señale cual de las siguientes afirmaciones es INCORRECTA:
+
+Se crea para llevar a cabo una adecuada gestión y administración del sistema valenciano de salud y de la prestación sanitaria de la Comunitat Valenciana.
+Es un organismo autónomo de carácter administrativo.
+Se financiará, entre otros, por las donaciones, subvenciones y aportaciones que le puedan hacer entidades o particulares.
+Está adscrito a la Conselleria de Sanidad, sin personalidad jurídica propia.
+
+
+44. Según lo dispuesto en el artículo 12 del Decreto 74/2007, de 18 de mayo, por el que se aprueba el Reglamento sobre estructura, organización y funcionamiento de la atención sanitaria en la Comunidad Valenciana, señale cual de las siguientes prestaciones NO corresponde a los centros de salud y consultorios:
+
+Cirugía mayor ambulatoria.
+Rehabilitación básica.
+Trabajo social.
+La atención a la salud bucodental.
+
+45. Según el artículo 3 del Decreto 74/2007, de 18 de mayo, por el que se aprueba el Reglamento sobre estructura, organización y funcionamiento de la atención sanitaria en la Comunidad Valenciana, la definición "las agrupaciones de recursos asistenciales que provienen de distintos servicios médicos, y/o quirúrgicos o de soporte que atienden patologías afines y garantizan una respuesta integral al paciente", corresponde a:
+
+Las áreas clínicas.
+Las unidades de gestión clínica.
+Los centros de salud integrados.
+Los departamentos de salud.
+
+
+46. Según lo dispuesto en el artículo 3 de la Ley 1/2003, de 28 de enero, de la Generalitat, de Derechos e Información al Paciente de la Comunidad Valenciana, de entre los siguientes señale cual NO es un derecho del paciente:
+
+Acceder a todos los servicios asistenciales disponibles en condiciones de igualdad efectiva.
+Recibir información sanitaria en la forma más idónea para su comprensión y siempre en la lengua propia del paciente.
+Recibir en todo momento un trato humano, amable, comprensivo y respetuoso.
+Obtener, dentro de las posibilidades presupuestarias de la Conselleria de Sanidad, una habitación individual para garantizar la mejora del servicio y el derecho a la intimidad y confidencialidad de cada usuario.
+
+
+47. Según lo dispuesto en el artículo 3 de la Ley 41/2002, de 14 de noviembre, básica reguladora de la autonomía del paciente y de derechos y obligaciones en materia de información y documentación clínica, "el soporte de cualquier tipo o clase que contiene un conjunto de datos e informaciones de carácter asistencial" recibe el nombre de:
+
+Informe médico.
+Documentación clínica.
+Información clínica.
+Historial clínica.
+
+
+48. Según el artículo 3 de la Ley 6/2008, de 2 de junio, de Aseguramiento Sanitario del Sistema Sanitario Público de la Comunitat Valenciana, y en relación con el número de identificación personal del Sistema de Información Poblacional (número SIP), indique cual de las siguientes afirmaciones es CORRECTA:
+
+Es exclusivo, perdurable e independiente del estado de alta o de baja en el SIP.
+Es exclusivo, perdurable y depende del estado de alta o de baja en el SIP.
+No es obligatorio que aparezca en las recetas oficiales de farmacia, pero sí en el resto de documentación sanitaria.
+Será único para cada unidad familiar, independientemente del número de miembros que la componga.
+
+49. Según el artículo 18 de la Ley 6/2008, de 2 de junio, de Aseguramiento Sanitario del Sistema Sanitario Público de la Comunitat Valenciana, y en relación con la Tarjeta Sanitaria Individual, indique de las siguientes afirmaciones cual es INCORRECTA:
+
+En el caso de disparidad de datos, la información existente en la Tarjeta Sanitaria Individual SIP prevalecerá sobre la que aparezca en el SIP (Sistema de Información Poblacional), salvo que el interesado acredite lo contrario.
+El uso indebido de la tarjeta SIP conllevará la retención cautelar y retirada en su caso de la misma.
+En el caso de disparidad de datos, la información existente en el SIP (Sistema de Información Poblacional) prevalecerá sobre la que aparezca en la Tarjeta Sanitaria Individual SIP, salvo que el interesado acredite lo contrario.
+La tarjeta SIP es un documento de uso personal exclusivo de su titular.
+
+
+50. Según lo establecido en el Título VIII de la Constitución Española de 1978, las Comunidades Autónomas NO podrán asumir competencias en las siguientes materias:
+
+Promoción del deporte y de la adecuada utilización del ocio.
+Los montes y aprovechamientos forestales.
+La gestión en materia de protección del medio ambiente.
+Fomento y coordinación general de la investigación científica y técnica.

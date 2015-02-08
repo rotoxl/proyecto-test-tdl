@@ -1,0 +1,473 @@
+#Examen Enfermería Comunidad Valenciana 2008
+#url=http://www.hacertest.com/oposiciones-enfermeria/comunidad-valenciana-2008/
+# Aciertos-(Errores/numOpciones-1)
+#60 preguntas
+#contiene imágenesj
+
+1. Según establece la Constitución Española de 1978, el derecho a la protección a la salud:
+
+Puede ser recabado a través de recurso de amparo ante el Tribunal Constitucional.
+Puede ser recabada su tutela ante los Tribunales ordinarios de preferencia y sumariedad.
+Sólo podrá ser alegado ante la Jurisdicción ordinaria de acuerdo con lo que dispongan las leyes que lo desarrolle.
+No es objeto de tutela por parte de los Tribunales.
+
+
+2. En base al Estatuto de Autonomía de la Comunidad Valenciana, señale las materias sobre las que la Generalitat NO tiene competencia exclusiva:
+
+Higiene.
+Ordenación farmacéutica, sin perjuicio de lo que dispone el número 16 del apartado 1) del artículo 149 de la Constitución Española.
+Fomento y coordinación general de la investigación científica y técnica.
+Promoción de la mujer.
+
+
+3. Entre los deberes del personal estatutario de los servicios de salud, según la Ley 55/2003 del Estatuto Marco de dicho personal, NO se encuentra uno de los siguientes:
+
+Cumplir con diligencia las instrucciones recibidas de sus superiores jerárquicos en relación con las funciones propias de su nombramiento, y colaborar leal y activamente en el trabajo en equipo.
+Prestar colaboración profesional cuando así sea requerido por las autoridades como consecuencia de la adopción de medidas especiales por razones de urgencia o necesidad.
+Respetar la Constitución, el Estatuto de Autonomía correspondiente y el resto del ordenamiento jurídico.
+A la movilidad voluntaria y desarrollo profesional, en la forma en que prevean las disposiciones en cada caso aplicables.
+
+
+4. La selección de personal estatutario fijo, de acuerdo con el decreto 7/2003, de 28 de enero, del Consell de la Generalitat, se efectuará por la Generalitat, con carácter general:
+
+Por el sistema de concurso.
+A través de una Oferta Pública Extraordinaria de consolidación de empleo.
+A través del sistema de concurso-oposición.
+Por el sistema de oposición.
+
+5. Una enfermera que tiene reconocido un grado 2 de carrera profesional accede por promoción interna a un puesto de médico con carácter fijo. ¿Qué ocurre con su carrera profesional?
+
+No percibirá el complemento retributivo hasta que complete el grado 3 en la categoría de médico.
+Percibirá el complemento retributivo de grado 2 de enfermera y de grado 3 de médico.
+Continuará percibiendo el complemento retributivo correspondiente al grado 2 de enfermera.
+Continuará percibiendo el complemento retributivo de grado 2 de médico.
+
+
+6. Según la Ley 31/1995, de 8 de noviembre sobre Prevención de Riesgos Laborales, el Comité de Seguridad y Salud:
+
+Es un órgano paritario y sus decisiones se toman por consenso unánime de sus miembros.
+Es un órgano colegiado con mayor participación de los delegados de prevención que del empresario y/o sus representantes.
+Es un órgano participativo, destinado a la consulta excepcional y circunstancial de las actuaciones de la empresa en materia de prevención de riesgos.
+Se reunirá de forma trimestral y siempre que lo solicite alguna de las representaciones del mismo.
+
+
+7. En el reconocimiento del desarrollo profesional, señale el tiempo necesario que se requiere acreditar para el acceso al primer grado:
+
+Dos años de ejercicio profesional.
+Cinco años de ejercicio profesional.
+Tres años de ejercicio profesional.
+Diez años de ejercicio profesional.
+
+
+8. Un grupo de programas de proceso con las rutinas de control necesarias para mantener continuamente operativos dichos programas, es:
+
+Un sistema operativo.
+Un sistema de redes.
+Una hoja de cálculo.
+El hardware.
+
+
+9. De las siguientes suites ofimáticas ¿cuál de ellas es multiplataforma y se distribuye con sistemas operativos de código abierto bajo licencia pública general de GNU/Linux?
+
+I work.
+Microsoft Works.
+Microsoft Office.
+OpenOffice.org.
+
+
+10. Ante un accidente de múltiples víctimas (AMV) el responsable de facilitar al Centro de Información y Coordinación de Urgencia (CICU) de la provincia, la información sanitaria sobre el estado y situación de los accidentados, es:
+
+El director del puesto de mando avanzado.
+El coordinador del grupo sanitario.
+El director del puesto de asistencia sanitaria.
+El coordinador del plan sectorial de emergencias.
+
+
+11. Según la escala de sedación de COOK y PALMA, un paciente se encontrará dormido, cuando tenga una puntuación de:
+
+15-17
+20-21
+5-7
+22-23
+
+
+12. ¿En qué tipo de paciente psiquiátrico, se ve alterado el estado mental en las áreas del discurso, el pensamiento, la percepción y la afectividad?
+
+Paciente psicótico.
+Paciente fóbico.
+Paciente deprimido.
+Paciente neurótico.
+
+13. Nos encontramos ante un paciente de 68 años inconsciente, en posición lateral de seguridad, con una saturación de oxígeno por debajo del 90%; en este caso la inserción de una cánula Guedel es una maniobra:
+
+Correcta y suficiente.
+Necesaria y suficiente.
+No es necesaria ni suficiente.
+Correcta y necesaria.
+
+
+14. Esta imagen  corresponde a una arritmia; ¿de qué tipo?
+
+Taquicardia auricular paroxística.
+Taquicardia sinusal.
+Taquicardia supraventricular.
+Taquicardia paroxística supraventricular.
+
+
+15. Esto es un bloqueo aurículo-ventricular de 2o grado tipo Wenckebach (Mobitz I)  y se trata con:
+
+Marcapasos transcutáneo.
+Perfusión de dopamina 5-20 microgramos / kilo / minuto.
+Perfusión de adrenalina a 0'5-7'5 microgramos / kilo / minuto.
+Solamente se tratan si la frecuencia es menor de 50 pulsaciones por minuto y hay signos de hipoperfusión.
+
+
+16. Señale la respuesta INCORRECTA. La pulsioximetría es un método no invasivo para evaluar la saturación arterial de la hemoglobina, basado en técnicas espectrofotométricas, que cuantiflca la luz que absorbe la oxihemoglobina; con este método podemos obtener datos no fiables cuando exista:
+
+Mala perfusión sanguínea a nivel cutáneo.
+Delgadez excesiva de la piel.
+Ictericia.
+Concentraciones elevadas de carboxihemoglobina.
+
+17. Señale la respuesta INCORRECTA. Las aceleraciones negativas de - 0,5 G a - 0,9 G, por frenazos bruscos, pueden producir:
+
+Aumento de la tensión arterial.
+Elevación de la presión venosa central.
+Aumento de la presión intracraneal.
+Taquicardia refleja.
+
+
+18. Al nivel de evidencia obtenido por opiniones de autoridades respetadas, basadas en la experiencia clínica no cuantificada, o en informes de comités de expertos, se le clasifica como:
+
+Nivel de evidencia III.
+Nivel de evidencia I.
+Nivel de evidencia II.
+Nivel de evidencia IV.
+
+
+19. Señale la respuesta INCORRECTA. La pulsioximetría se basa en el principio de Beer-Lambert, según el cual podemos conocer la concentración de un soluto por la absorción de la luz. Un pulsioximetro tiene un diodo que emite luz en dos longitudes de onda, roja e infrarroja, siendo la primera absorbida por la hemoglobina reducida y la segunda por la oxihemoglobina; en el lado opuesto hay un fotodetector que registra la cantidad de luz recibida de ambas longitudes de onda, los cambios de absorción son detectados para ambas longitudes de onda y como resultado calcula los siguientes parámetros:
+
+Ondas de pulso (cuya amplitud viene definida por la intensidad de absorción de la luz).
+La Sa02 funcional (cociente entre la oxihemoglobina y la suma de esta y la hemoglobina reducida).
+La Fi02 (fracción inspiratoria oxigeno).
+La frecuencia cardiaca.
+
+
+20. El triaje en un accidente con múltiples víctimas, proporciona la etiqueta roja a una persona. ¿Qué indica esto?
+
+Que su evacuación es prioritaria.
+Que se debe trasladar con urgencia, pero admite un compás de espera.
+Que se debe evacuar en último término o por medios propios de la víctima.
+Que no debe ser transportada con urgencia, porque esta muerta o con lesiones irreversibles.
+
+21. Señale la opción INCORRECTA. El Puesto de Asistencia Sanitario (PAS) es la estructura sanitaria provisional que se crea en una emergencia con respuesta compleja:
+
+Se nutre de las norias de rescate y recogida.
+Como elementos materiales, entre otros, se dota de un amplio equipo sanitario suficiente para la gama amplia de funciones variables.
+Se encuadra a una sección.
+Destinada a realizar la primera valoración, clasificación y estabilización vital de las víctimas.
+
+
+22. ¿A quién corresponde la tarea de clasificar los enfermos en el RAC (recepción, acogida y clasificación), en un hospital?
+
+Al médico.
+Al enfermero.
+Al celador.
+Al administrativo de admisión.
+
+
+23. ¿En cuál de los siguientes casos NO se puede aplicar el método científico?
+
+En una tautología lógica.
+El influjo lunar sobre la psicosis.
+La eficacia de un fármaco sobre la calvicie.
+La influencia del color amarillo sobre la diuresis.
+
+
+24. En educación para la salud, cuando medimos el grado en el que un programa educativo ha logrado sus objetivos, entre la población diana, nos estamos refiriendo a:
+
+Evaluación de la eficiencia.
+Evaluación de la eficacia.
+Evaluación de los resultados.
+Evaluación de la efectividad.
+
+25. Señale la respuesta INCORRECTA. El enfermero de evacuación, en un accidente múltiples víctimas (AMV) realiza entre otras funciones:
+
+Obtener el máximo posible de datos de las víctimas.
+Comunicar datos al director del puesto de mando avanzado (PMA).
+Coordinar a través del Centro de Información y Coordinación de Urgencias (CICU) la noria de rescate.
+Realizar la evaluación de los heridos que no vayan en SAMU.
+
+
+26. ¿Qué APGAR presentará un lactante cuya frecuencia cardiaca es mayor de 100 latidos por minuto; tiene un llanto irregular, presenta movimientos activos, al paso de una sonda de aspiración hace muecas, la coloración de la piel del tronco es de color rosáceo y tiene además acrocianosis?
+
+Puntuación 7
+Puntuación 6
+Puntuación 8
+Puntuación 9
+
+
+27. ¿Qué código de deletreo se utiliza en las comunicaciones entre unidades SAMU y el Centro de Información y Coordinación de Urgencias (CICU)?
+
+Código 10.
+Código Q.
+Código INTERCO.
+Código SINPO.
+
+
+28. El profesional de enfermería no debe introducir nunca, porque se inactiva, un bolo de adrenalina por una vía por la que esté pasando:
+
+Ringer lactato.
+Solución glucosada.
+Bicarbonato sódico.
+Lincaína.
+
+29. Señale la respuesta CORRECTA. En las fases preliminares de valorarse:
+
+El conocimiento actual sobre el tema, la pertinencia del estudio, hipótesis conceptual.
+El conocimiento actual sobre el tema, la pertinencia del estudio, los la población de estudio y los aspectos éticos.
+El conocimiento actual sobre el tema, la pertinencia del estudio, los la población de estudio, los aspectos éticos y la hipótesis conceptual.
+El conocimiento actual sobre el tema, la pertinencia del estudio, los la población de estudio y la hipótesis conceptual.
+
+
+30. El área geográfica donde se produce un accidente de múltiples víctimas se rodea de tres zonas operativas. De las siguientes, señale la INCORRECTA.
+
+Zona de impacto.
+Zona de salvamento.
+Zona de asistencia.
+Zona de evacuación.
+
+
+31. Tenemos que preparar una perfusión de fenitoína (ampollas 250 mg/ 5 mi) en 100 mi y pasarla a 200 ml/h en 30 minutos, para ello preparamos 4 ampollas (1 g) en:
+
+100 ml de suero fisiológico 0'9% en envase de plástico.
+100 ml de suero glucosado 5% en envase de plástico.
+80 ml de suero glucosado 5% en envase de cristal.
+80 ml de suero fisiológico 0'9% en envase de plástico.
+
+
+32. Señale la respuesta CORRECTA. Hemodinámicamente el shock cardiogénico se caracteriza por:
+
+Gasto cardiaco, presión venosa central y presión de oclusión de arteria pulmonar bajas con aumento de las resistencias vasculares sistémicas.
+Gasto cardiaco bajo, descenso de la presión venosa central, descenso de la presión de oclusión de arteria pulmonar y disminución de la resistencia vascular sistèmica.
+Gasto cardiaco bajo, resistencias vasculares sistémicas elevadas, presión venosa central alta y una presión de oclusión de arteria pulmonar alta.
+Gasto cardiaco elevado y disminución de las resistencias vasculares sistémicas; la presión venosa central y presión de oclusión de arteria pulmonar son bajas.
+
+33. En un accidente de tráfico con un varón de 36 años atrapado, que presenta un trauma torácico con insuficiencia respiratoria, ingurgitación yugular, desvío traqueal contrasterai, enfisema subcutáneo y se encuentra en shock, ¿cuál es la causa más probable de esta sintomatologia y el tratamiento más adecuado en emergencias extrahospitalarias?
+
+Taponamiento cardiaco: pericardiocentesis, punción bajo xifoides a nivel borde lateral izquierdo avanzando con la aguja en un ángulo de 45°.
+Tórax inestable por volet costal: administrar oxígeno, fluidos y analgesia.
+Hemotorax masivo: drenaje con tubo torácico 4°-5° espacio intercostal línea media axilar.
+Neumotorax a tensión: descompresión con angiocateter n° 18-14, según edad, 2o espacio intercostal línea media clavicular.
+
+
+34. En los estudios epidemiológicos, cuando el objetivo a estudiar es la estimación de la frecuencia de una enfermedad, de un factor de riesgo o de cualquier otro atributo en la población, examinando la relación o asociación entre el problema y las variables predictoras, el diseño adecuado es:
+
+Estudios de cohorte.
+Estudios transversales.
+Estudios descriptivos.
+Estudios de casos y controles.
+
+
+35. La gestión clínica requiere una estrategia para su aplicación al cuidado enfermero de la salud. ¿En qué criterios de los siguientes está basada?
+
+Conocer los recursos de enfermeras en una institución y asignarlos en relación con los niveles de dependencia de cuidados, definiendo mecanismos de evaluación y control.
+Ninguna de las respuestas es cierta.
+Determinar el marco de la función enfermera, establecer normas y procedimientos y asignar los recursos y su evaluación en relación con las necesidades de las personas en el cuidado de su salud.
+Los criterios de la gestión clínica están determinados por la Dirección Gerencia de la organización, siendo cada equipo de gestión quien deberá determinar la función específica de la dirección enfermera.
+
+
+36. En las nuevas guías de actuación del European Resuscitacion Council 2005, en su apartado de recomendaciones prácticas en reanimación cardiopulmonar pediátrica, cuando se alude a “una intervención aceptable, segura y útil, considerada de elección por la mayoría de los expertos”, se está refiriendo a una evidencia de:
+
+Clase II b.
+Clase I.
+Clase III.
+Clase II a.
+
+37. ¿Qué respuesta en situaciones de emergencias NO es propia del Centro de Operaciones de Emergencias o puesto de mando avanzado (PMA)?
+
+Coordinar las actividades de los Servicios de Emergencias.
+Establecer perímetros en la escena del desastre.
+Mantener enlaces de trabajo con las unidades exteriores.
+Asegurar el pleno uso de los recursos locales.
+
+
+38. Un enfermero desea comparar la desinfección del dorso de la mano con povidona yodada frente a la solución alcohólica tradicional. Su hipótesis es que los pacientes tratados con la solución alcohólica, soportaran en media menos intentos de accesos venosos fallidos que los tratados con la solución de povidona. Extrae una muestra aleatoria de pacientes sobre los que se ha realizado este procedimiento y los asigna aleatoriamente a los dos métodos de desinfección. ¿Sabría decir cuál es la variable independiente en este estudio?
+
+Los intentos de acceso venoso con dos niveles (fallido - acertado).
+La desinfección de la mano con la solución alcohólica.
+El método de desinfección con dos niveles (solución alcohólica - povidona yodada).
+La desinfección de la mano con povidona yodada.
+
+
+39. ¿Qué valora el test de Silverman en el recién nacido?
+
+El nivel de consciencia.
+La dificultad motora.
+La intensidad de la dificultad respiratoria.
+La gravedad de la tetralogía de Fallot.
+
+
+40. El muestreo en etapas múltiples consiste en:
+
+La población se divide en subgrupos de unidades que tienen ciertas características en común, y dentro de cada uno de ellos se escoge una muestra al azar.
+La primera unidad se escoge al azar, y las siguientes a partir de una constante de muestreo.
+Cada unidad de muestreo de la población tiene la misma probabilidad de ser escogida.
+Seleccionar unidades de muestreo (unidades primarias) de una población, procediéndose después a obtener una muestra (unidades secundarias) de cada una de las unidades primarias seleccionadas.
+
+41. ¿Cuántos miligramos de una ampolla de dopamina (200 mg/10 mi) debemos disolver en 100 mi de Suero Glucosado al 5%, para administrar a un niño de 10 años de 30 kg de peso una perfusión (6mg /kilo de peso) a 3 ml/h?
+
+60 mg.
+90 mg.
+180 mg.
+120 mg.
+
+
+42. Señale la respuesta INCORRECTA. Los accidentes de tráfico son un gran peligro para el personal sanitario, tanto por su gran incidencia como por la dificultad de controlar el entorno, por eso es importante adoptar una serie de medidas de seguridad:
+
+El personal no bajará de la ambulancia hasta no tener garantizada su seguridad. La zona tiene que ser inspeccionada y señalizada correctamente.
+El personal sanitario encargado de la asistencia prehospitalaria debe llevar uniforme visible e identifícable en condiciones adversas, y que garantice la protección corporal en casos de riesgo.
+Se ha de estacionar la ambulancia o vehículo en un lugar que no dificulte la circulación a una distancia mayor de 15 m del lugar del siniestro.
+Los desplazamientos del personal hacia la ambulancia deberán efectuarse en sentido a la circulación, de manera que esto nos permita la visibilidad de los vehículos que circulen de frente.
+
+
+43. Señale la respuesta INCORRECTA. Respecto a la asistencia al parto de nalgas, sólo se debe hacer una ayuda manual si se da alguna de las siguientes circunstancias:
+
+Cuando la cabeza no se ha desprendido.
+Si se trata de un parto eutòcico.
+Cuando el parto no progresa.
+Cuando aparece una bradicardia ostensible en el cordón umbilical.
+
+
+44. Según la Ley 9/2002, de 12 de diciembre, de Protección Civil y Gestión de Emergencias de la Generalitat Valenciana, el instrumento organizativo general de respuesta para hacer frente a riesgos concretos cuya naturaleza requiera una metodología técnico-científica específica, bien por sectores de actividad, bien por tipos de emergencia, o bien por actividades concretas recibe la denominación de:
+
+Procedimiento de actuación.
+Protocolo operativo.
+Plan especial.
+Plan territorial.
+
+45. La valoración neurològica primaria que se realiza a un paciente politraumatizado debe comprender:
+
+Pupilas, respuesta al dolor y estimulación verbal.
+Estado de conciencia, pupilas y respuesta motora.
+Estado de conciencia, presencia de otorragia y respuesta al dolor.
+Pupilas, sensibilidad y respuesta motora.
+
+
+46. Si tenemos electrocardiográficamente la imagen siguiente , estaremos tratando una:
+
+Taquicarida ventricular.
+Taquicardia paroxística supraventricular.
+Taquicardia sinusal.
+Torsade de pointes.
+
+
+47. ¿Cuándo se considera realizada la transferencia del paciente en un transporte primario?
+
+Todas son correctas.
+Cuando el paciente está ubicado en el servicio de urgencias del hospital de destino.
+Cuando el personal del hospital de destino tiene los datos del paciente.
+Cuando el paciente se encuentra en la cama del hospital y el personal sanitario del centro asume su responsabilidad.
+
+
+48. Un paciente politraumatizado que contesta a preguntas de forma inadecuada, que responde con flexión al estímulo doloroso y que abre los ojos por orden, tiene un valor en la escala de Glasgow de:
+
+valor 11
+valor 9
+valor 12
+valor 10
+
+49. En una secuencia rápida de intubación (SRI), una de las siguientes fases NO es correcta:
+
+Fase de oxigenación previa.
+Aplicación de presión cricotiroidea.
+Administración de un hipnótico de acción rápida y duradera.
+Administración de un bloqueante neuromuscular de acción rápida y breve.
+
+
+50. Las manifestaciones típicas que un profesional de enfermería hallará en un paciente con shock hipovolémico serán:
+
+Pulso rápido y filiforme, hipotensión, sudor frío y pegajoso, y taquipnea.
+Pulso lento y filiforme, debilidad, sudor frío y pegajoso, y bradipnea.
+Pulso rápido y filiforme, hipertensión, sudor frío y pegajoso, y bradipnea.
+Pulso lento y filiforme, hipotensión, sudor y taquipnea.
+
+
+51. Desde un punto de vista bioético, ¿cuál de los siguientes NO es un mandamiento básico en reanimación cardiopulmonar (RCP)?
+
+No utilizar técnicas invasivas.
+No defraudar esperanzas ni crear falsas expectativas. En caso de desconocimiento y duda, debe asumirse el consentimiento presunto.
+Evitar la futilidad a cualquier precio.
+No malgastar energías.
+
+
+52. Si de 1.000 pacientes hipertensos de una zona de salud, 60 desarrollan una cardiopatía isquémica después de un año de seguimiento, ¿cuál de las siguientes afirmaciones es correcta?
+
+La prevalencia es del 6%.
+La incidencia es del 6%.
+El riesgo atribuible es del 6%.
+El riesgo relativo es del 6%.
+
+53. Existen diferentes maneras de posicionar en el tórax de un paciente los electrodos de un marcapasos transcutáneo. De las siguientes, ¿cuál es la recomendada para no interferir en una eventual desfibrilación?
+
+Anterior-posterior: electrodo negativo (rojo) en región precordial izquierda; electrodo positivo (negro) en región infraescapular izquierda.
+Anterior-anterior: electrodo positivo (rojo) en región infraclavicular izquierda; electrodo negativo (negro) en región inframamaria izquierda.
+Anterior-posterior: electrodo positivo (rojo) en región infraescapular izquierda; electrodo negativo (negro) en región precordial izquierda.
+Anterior-anterior: electrodo negativo (rojo) en región inframamaria izquierda; electrodo positivo (negro) en región infraclavicular izquierda.
+
+
+54. ¿Cuál de los siguientes objetivos del Plan de Salud de la Comunidad Valenciana 2005- 2009, en urgencias y emergencias es un objetivo general?
+
+Desarrollar un sistema integral de atención sanitaria urgente que garantice la adecuada atención sanitaria en cada ámbito y la continuidad asistencial.
+Aumentar la satisfacción de los pacientes mejorando la capacidad de resolución de los problemas de salud urgentes mediante la implantación de un modelo organizativo adecuado a las necesidades asistenciales y basado en criterios de calidad.
+Implementar la coordinación entre niveles de atención y la continuidad asistencial mediante su priorización en el diseño del modelo organizativo de atención urgente.
+Mejorar la adecuación de la respuesta asistencial estableciendo un sistema de priorización de la asistencia urgente común.
+
+
+55. Si observamos la imagen  de la siguiente secuencia al realizar un electrocardiograma nos encontramos ante un/a:
+
+Angina inestable.
+Infarto agudo de miocardio.
+Taquicardia sinusal.
+Bradicardia sinusal.
+
+
+56. ¿Cuál es la secuencia correcta de utilización del desfibrilador externo semiautomático (DESA)?
+
+Encender el DESA, conectar los parches al paciente, analizar el ritmo, proceder a la descarga y continuar la RCP.
+Conectar los parches al paciente, encender el DESA, proceder a la descarga, continuar la RCP y analizar el ritmo.
+Encender el DESA, conectar los parches al paciente, analizar, proceder a la descarga y analizar el ritmo.
+Encender el DESA, comprobar el pulso, poner los parches, analizar el ritmo y proceder a la descarga.
+
+
+57. Señale la respuesta INCORRECTA, en relación con las características de las pruebas diagnósticas:
+
+La prevalencia influye en el valor predictivo positivo pero no sobre el valor predictivo negativo.
+El valor predictivo positivo es la probabilidad de que un paciente presente la enfermedad cuando el resultado de la prueba es positivo.
+La sensibilidad es la probabilidad de que una prueba sea positiva cuando la persona a la que se aplica está enferma.
+La especificidad es la probabilidad de obtener una prueba negativa cuando se aplica a una persona.
+
+
+58. La imprudencia profesional es constitutiva de delito cuando concurren los siguientes requisitos:
+
+Una actuación profesional que suponga una omisión de normas de cuidado debido, produciendo daño imprevisible y evitable.
+Una actuación profesional que denote un grave desconocimiento o incumplimiento de la lex artis produciendo muerte o lesiones.
+Cuando de una actuación profesional se deriva la producción de un daño.
+Cuando se incumple con el deber de asistencia.
+
+
+59. La bioética se ocupa de:
+
+Los problemas de la vida y la ciencia.
+Las repercusiones que los avances científicos pueden teneren la vida del hombre.
+Los problemas de la tecnología y de la vida.
+Las repercusiones que los avances científicos y tecnológicos pueden tener sobre todo el ecosistema.
+
+
+60. La capnometria es:
+
+La representación numérica de la P C02 exhalada por un individuo.
+La medición del dióxido de carbono en la vía aérea de un paciente durante su ciclo espiratorio.
+La medición del dióxido de carbono en la vía aérea de un paciente durante su ciclo inspiratorio.
+La medición del dióxido de carbono en la vía aérea de un paciente durante su ciclo respiratorio.
+

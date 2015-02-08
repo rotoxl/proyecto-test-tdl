@@ -1,0 +1,799 @@
+#titulo= Examen Auxiliar Biblioteca UNED año 2010
+#url=http://www.hacertest.com/oposiciones-auxiliar-biblioteca/UNED-2010/
+#t=60 min, 100 preguntas #supuesto
+
+1. Por su uso, los catálogos pueden ser:
+
+En fichas, listas, microformas, automatizados.
+Generales, especiales, colectivos.
+Internos, externos.
+Alfabéticos, numéricos, mixtos.
+
+
+2. Las Bibliotecas de los Centros Asociados integrados en la Red Básica deben poseer obligatoriamente:
+
+Bibliografía complementaria de todas las carreras y estudios que se imparten en la UNED.
+Bibliografía complementaria de las carreras más demandadas.
+Bibliografía básica de todas las carreras y estudios que se imparten en la UNED.
+Bibliografía básica de las carreras más demandadas.
+
+
+3. ¿Cuál de estos fines del inventario no es correcto?
+
+Dar de baja del sistema ejemplares desaparecidos.
+Medir el crecimiento de la colección.
+Retirar de la colección ejemplares deteriorados por el uso.
+Verificar si existen copias o ejemplares extraviados.
+
+
+4. Los SIGB son:
+
+Grupo de sistemas de gestión bibliográfica.
+Grupo de programas informáticos que integran sistemas bibliográficos.
+Asociaciones de bibliotecas que se reúnen periódicamente para actualizar sus procedimientos.
+Grupo de programas informáticos relacionados entre sí que automatizan múltiples operaciones y funciones bibliotecarias.
+
+
+
+5. El embargo de una revista electrónica consiste en:
+
+La restricción temporal de acceso a los contenidos.
+La restricción de acceso a los contenidos para determinados usuarios.
+La limitación de números digitalizados disponibles.
+La limitación en el uso de los contenidos establecida por el editor.
+
+
+6. En los tesauros se establecen tres tipos de relaciones semánticas:
+
+Preferenciales, jerárquicas y asociativas.
+Temáticas, cronológicas y onomásticas.
+Alfabéticas, sistemáticas y gráficas.
+De homogeneidad, exhaustividad y especificidad.
+
+
+7. El Consejo de Cooperación Bibliotecaria:
+
+Organiza y planifica la preservación y conservación del patrimonio bibliográfico.
+Actúa como centro español del ISSN.
+Informa preceptivamente las disposiciones legales y reglamentarias que afecten a las bibliotecas españolas en conjunto.
+Es el encargado de elaborar la Bibliografía Española.
+
+
+8. Un aspecto del análisis formal es la descripción bibliográfica, también llamada:
+
+Asiento documental y de clasificación.
+Asiento descriptivo y normalizado.
+Asiento documental y referencial.
+Asiento bibliográfico, noticia o referencia bibliográfica.
+
+
+9. Los metadatos se pueden clasificar en tres categorías:
+
+Generales, selectivos, indicativos.
+Analíticos, funcionales, especializados.
+Informativos, clasifícatenos, retrospectivos.
+Descriptivos, estructurales, administrativos.
+
+
+10. ¿Qué es el NIPO?
+
+El código identificador de contribuciones o partes en publicaciones seriadas y monografías.
+El código internacional para la identificación de grabaciones.
+El código identificador que se constituye como dato fundamental para el control de las publicaciones de la administración pública.
+El código que identifica de manera única los objetos digitales en las redes informáticas.
+
+
+11. Un E-prints es un documento:
+
+Publicado en una revista electrónica que ha adoptado la Vía dorada.
+Que aún no ha sido sometido a un proceso de revisión por pares (peer review).
+Publicado bajo licencia copy-left.
+Incluido en un repositorio de documentos electrónicos.
+
+
+12. Dos características propias de los catálogos colectivos son:
+
+La homogeneidad de fondos y localización.
+El número de registros y su uso.
+Las bibliotecas que lo integran y su relevancia.
+La actualización y la accesibilidad.
+
+
+
+13. Según su estructura los lenguajes documentales pueden ser:
+
+Alfabéticos, numéricos y alfanuméricos.
+Libres y controlados.
+Enciclopédicos y especializados.
+Jerárquicos, combinatorios y sintácticos.
+
+
+14. Señale cuál de estos materiales no es objeto de expurgo:
+
+Ediciones revisadas por otras que las han superado.
+Ejemplares deteriorados.
+Fondo antiguo en general.
+Obras en idiomas originales ya traducidas.
+
+
+15. En la Ley 16/1985 de Patrimonio Histórico Español, la declaración de Bien de Interés Cultural:
+
+Todas las respuestas son correctas.
+Proporciona singular protección y tutela.
+Puede realizarse mediante Real Decreto de forma individualizada.
+Obliga a su inscripción en el Registro General de Bienes de Interés Cultural.
+
+
+16. ¿A qué corresponde la localización Missing en UNICORN?
+
+Extraviado temporalmente dentro de la Biblioteca.
+Descartado.
+Dado por perdido por la Biblioteca porque un usuario moroso no lo devolvió.
+Perdido definitivamente por el usuario.
+
+
+17. Bubok es:
+
+El repositorio institucional de la Biblioteca de la Universidad Autónoma de Madrid.
+El repositorio institucional de la Biblioteca de la Universidad Autónoma de Barcelona.
+Una plataforma gratuita para la publicación de libros electrónicos.
+Un servicio de Google Academic enfocado a las bibliotecas universitarias.
+
+
+18. Señale cuál de las siguientes opciones no es una herramienta que facilite la búsqueda simultánea en diversos repositorios:
+
+E-LIS.
+RECOLECTA.
+E-ciencia.
+OAISTER.
+
+
+19. El esquema de metadatos Dublin Core:
+
+Es un estándar adoptado por la IFLAen la capital de Irlanda.
+Debe su nombre a haberse fijado sus campos en una reunión .celebrada en la capital de Irlanda en el año 2000.
+Define quince campos de descripción para documentos electrónicos.
+Coincide en sus campos de descripción con los establecidos por las ISBD para recursos electrónicos.
+
+
+20. ¿Qué es una copia digital?
+
+La digitalización de documentos.
+Una forma de reproducción de documentos mediante la descarga por parte de usuarios autorizados.
+Una nueva forma de distribución de documentos mediante descarga.
+Descarga de documentos electrónicos por parte de los usuarios.
+
+
+21. Por su contenido las clasificaciones pueden ser:
+
+Enumerativas, por facetas y mixtas.
+Enciclopédicas y especializadas.
+Principales, auxiliares, notación e índice.
+Precoordinadas y postcoordinadas.
+
+
+22. La iniciativa OAI (Open Archive Iniciative):
+
+Define el esquema de metadatos Dublin Core.
+Es un protocolo de intercambio de metadatos que permite exclusivamente el formato Dublin Core.
+Permite el intercambio de metadatos codificados en XML de todo documento almacenado en formato electrónico.
+Establece dos formatos para expresar metadatos: Dublin Core calificado y Dublin Core no calificado.
+
+
+23. El conjunto de estándares relativos al Préstamo Interbibliotecario (ILL):
+
+Distingue dos agentes que intervienen en los procesos ILL: peticionario y destinatario.
+Emite un identificador para la transacción de la biblioteca peticionaria y otro para la biblioteca receptora.
+Se diseñó originalmente para funcionar sobre el protocolo TCP/IP.
+Permite la interconexión de diferentes programas informáticos de gestión de bibliotecas.
+
+
+24. La Biblioteca de la UNED posee el sello:
+
+Compromiso Excelencia Europea.
+Excelencia Europea 400+.
+Excelencia Europea 300+.
+Excelencia Europea 500+.
+
+
+25. El Espacio Europeo de Educación Superior (EEES)
+
+Establece objetivos comunes en Cumbres anuales.
+Está restringido a los Estados miembro de la Unión Europea.
+Está vinculado a los objetivos de la Unión Europea, pero abarca a países que no pertenecen a la UE y a otras organizaciones.
+Fue una iniciativa de la Comisión Europea.
+
+
+26. Los tres modelos clásicos de recuperación de la información son:
+
+Modelo vectorial, booleano y semántico.
+Modelo probabilístico, sintáctico y semántico.
+Modelo sintáctico, semántico y booleano.
+Modelo booleano, vectorial y probabilistico.
+
+
+27. SFX es:
+
+Un estándar para generar DOls (Digital Object Number).
+Un estándar para generar URIs (Uniform Resource Identifier).
+Una herramienta que integra la recuperación de la información de catálogos de diferentes bibliotecas.
+Una herramienta que permite integrar la recuperación de la información sobre los recursos disponibles en una biblioteca.
+
+
+28. La aplicación de la Web social a la atención de usuarios en bibliotecas posibilita:
+
+La comunicación mediante correo electrónico.
+Todas las respuestas son correctas.
+La creación de formularios electrónicos para el envío de sugerencias.
+La interacción en redes sociales.
+
+
+29. Según la Ley 10/2007 de la Lectura, del Libro y de las Bibliotecas, no es un servicio básico de las bibliotecas públicas:
+
+El préstamo interbibliotecario.
+El acceso a la información digital a través de Internet.
+La información y orientación para el uso de la biblioteca.
+El préstamo individual y colectivo.
+
+
+30. Las siglas XHTML corresponden a:
+
+Un lenguaje derivado del estándar HTTP.
+Un lenguaje similar al HTML.
+Ninguna de las respuestas es correcta.
+El protocolo de red empleado por los servidores WWW.
+
+
+31. La escritura silábica de los pueblos de Oriente Medio fue conocida como:
+
+Protoescritura sintética.
+Escritura hierática o sacerdotal.
+Escritura abstracta.
+Escritura cuneiforme.
+
+
+32. En el modelo EFQM, los medios que pone la organización para lograr los resultados se denominan:
+
+Agentes facilitadores.
+Procesos clave.
+Liderazgo.
+Alianzas y recursos.
+
+33. ¿Qué mecanismos de control establecen las bibliotecas universitarias para permitir el acceso a sus recursos electrónicos?
+
+La identificación personal de cada estudiante en su Biblioteca correspondiente.
+Los que permitan garantizar la personalidad del usuario y su derecho a usar el servicio.
+Ninguno. Son Instituciones Públicas y permiten acceso libre a todos los recursos electrónicos.
+El número de registro personal o número de registro de matrícula.
+
+
+34. La asignación de direcciones en la WWW se realiza mediante:
+
+El sistema denominado URL (Uniform Resource Locator).
+El DOI (Digital Object Number) que identifica unívocamente un recurso electrónico.
+Las direcciones IP.
+El sistema HTTP (Hypertext Transfer Protocpl) accesibles mediante el navegador.
+
+
+35. En el sistema de créditos ECTS,
+
+Cada crédito representa entre 25 y 30 horas de estudio del alumno.
+Se tiene en cuenta el esfuerzo del estudiante dentro y fuera del aula.
+Cada crédito representa 60 horas de trabajo efectivo del estudiante.
+Se aplica únicamente a los estudios de Grado.
+
+
+36. La definición de la biblioteca, como "Centro de recursos para el aprendizaje, la docencia, la investigación, la formación continua y las actividades relacionadas con el funcionamiento y la gestión de la universidad en su conjunto" corresponde a:
+
+UNESCO.
+IFLA.
+UNED.
+REBIUN.
+
+
+37. En el Espacio Europeo de Educación Superior, el Master Universitario tiene como fin:
+
+La preparación inicial del estudiante para acceder a la investigación.
+La preparación profesional avanzada, orientada a la especialización académica profesional y a la investigación.
+La preparación del estudiante para el ejercicio de carácter profesional.
+La formación avanzada del estudiante en investigación.
+
+
+38. ¿Qué significan las siglas ANECA?
+
+Agencia de Normalización Española de la Calidad.
+Agencia Nacional de Evaluación de la Calidad y Acreditación.
+Agencia Nacional para una Educación de Calidad.
+Agencia de Normalización de la Evaluación y de la Calidad.
+
+
+39. En la Ley de Propiedad Intelectual, el préstamo es una forma de:
+
+Distribución.
+Comunicación pública
+Transformación.
+Reproducción.
+
+
+40. Las entidades de gestión colectiva de derechos de propiedad intelectual:
+
+Son entidades de carácter lucrativo.
+Son entidades públicas.
+Deben contar con la autorización del Ministerio de Cultura para funcionar como tales.
+Dependen del Ministerio de Cultura.
+
+41. Las Comunidades Autónomas:
+
+No tienen competencias legislativas en materia de bibliotecas.
+Pueden asumir la gestión de las Bibliotecas Públicas del Estado radicadas en su territorio.
+Tienen competencias exclusivas en materia de bibliotecas de titularidad estatal.
+No tienen representación en el Consejo de Cooperación Bibliotecaria.
+
+
+42. ¿Cuál es el fin de la cooperación bibliotecaria?
+
+Facilitar la búsqueda bibliográfica y documental.
+Facilitar mejores servicios a los usuarios y optimizar el aprovechamiento de los recursos.
+Conocer una mayor pluralidad de recursos.
+Acceder a la información general.
+
+
+43. ¿Qué fecha establece como límite el Consorcio de Bibliotecas Europeas de Investigación para que se considere una colección como "fondo antiguo"?
+
+1820.
+1885.
+1830.
+1801.
+
+
+44. El nuevo modelo educativo que establece el Espacio Europeo de Educación Superior prima el aprendizaje sobre la docencia ¿Cómo se ve reflejado en las Bibliotecas universitarias?
+
+En que sólo se consultará una pequeña parte de la colección.
+En el uso exclusivo de la bibliografía básica.
+En el uso intensivo de la colección.
+En que el préstamo domiciliario será sustituido por la consulta en sala.
+
+
+
+45. Las Bibliotecas de los Centros Asociados dependen de la Biblioteca de la Sede Central:
+
+Orgánica pero no funcionalmente.
+Orgánica y funcionalmente.
+Funcional pero no orgánicamente.
+No dependen ni orgánica ni funcionalmente.
+
+
+46. ¿Cuál es el motivo de organizar un servicio de información en la Bibliotecas Universitarias?
+
+Atender las numerosas demandas informativas de respuesta inmediata.
+Ofrecer una buena imagen.
+Informar sobre cuestiones de referencia p bibliográficas.
+Ofrecer una orientación sobre cualquier materia o necesidad de información.
+
+
+47. El sitio Web de una biblioteca universitaria es la puerta de acceso a la misma para muchos usuarios ¿Qué característica se considera esencial para un sitio Web de una biblioteca universitaria y que llegue á ser una herramienta imprescindible?
+
+La utilización masiva de recursos hipermedia.
+Que posea las mejores condiciones de usabilidad.
+Permitir solamente el acceso al OPAC y a las bases de datos.
+La estructura debe ser lineal sin diferenciar el tipo de información.
+
+
+48. La formación en competencias en información consiste en:
+
+Conocer los servicios de la biblioteca y aprender a utilizarlos.
+Conocer los distintos recursos electrónicos y los cursos virtuales.
+Adquirir un conjunto de conocimientos, habilidades y actitudes básicas para comprender, usar y comunicar éticamente la información.
+Dominar el sistema de lectura y escritura rápida.
+
+
+49. Una adecuada señalización del edificio y de las colecciones en una biblioteca universitaria es:
+
+Una forma de marketing de la que se obtienen grandes ventajas.
+Una forma de creatividad.
+Un canal de difusión de atención personalizada.
+Un canal de comunicación de difusión generalizada.
+
+
+50. ¿Cuál de estas respuestas es falsa respecto a los niveles de iluminación de los fondos?
+
+La luz causa daños acumulativos.
+Se debe controlar la intensidad y duración de cualquier fuente de luz.
+Se recomienda que la intensidad lumínica del depósito sea superior a 400 lux.
+La luz solar directa no es la más idónea para las salas de lectura con fondos de libre acceso.
+
+
+51. ¿Cuál de las siguientes instalaciones no es propio de un CRAI?
+
+Sala de trabajo en grupo.
+Sala de proyecciones audiovisuales.
+Servicio de capacitación pedagógica.
+Laboratorio de idiomas.
+
+
+52. El mazorral, que es un elemento propio de los incunables, consiste en:
+
+Filigrana que se colocaba en la parte posterior de un Incunable.
+Denominación que recibían los Incunables en la América española, donde la imprenta llegó más tarde (S. XVI).
+Márgenes de considerable tamaño.
+Estructura lineal del texto en contraposición al texto a doble columna.
+
+53. En 1887, Torbert Lanston inventó la monotipia. ¿Para qué servía?
+
+Para guardar .las composiciones y abaratar las tiradas.
+Para fundir uno a uno los caracteres del texto con lo que se podía corregir mejor los errores que se detectaban.
+Para mejorar las ilustraciones gracias a la utilización del color que daría más vistosidad a los libros infantiles que, a finales del S.XN/III y principios del S.XIX, comenzaron a imprimirse con profusión.
+Para reproducir textos y dibujos sobre una plancha metálica.
+
+
+54. En el II Plan Estratégico de REBIUN la línea estratégica 4 está dedicada a:
+
+Rebiun en el ámbito de la investigación.
+Rebiun y calidad.
+Rebiun como organización.
+Rebiun en el ámbito del aprendizaje.
+
+
+55. ¿Qué herramienta de la Web social se utiliza para organizar recursos por mateo?
+
+Aplicaciones para compartir imágenes.
+Marcadores sociales.
+Blogs.
+Redes sociales.
+
+
+56. El préstamo interbibliotecario de libros entre la Biblioteca de la Sede Central y las de los Centros Asociados ¿tiene algún coste para el usuario?
+
+Sí, acorde a las tarifas Rebiun.
+Sí, pero menor que las tarifas Rebiun.
+No, si lo solicita un profesor tutor.
+No, es gratuito.
+
+
+
+57. ¿Qué es la Biblioteca electrónica?
+
+Biblioteca que permite el acceso a las bases de datos.
+Biblioteca en la que coexisten colecciones de documentos digitales con colecciones en papel.
+Biblioteca que da acceso universal a información digital.
+Biblioteca que da acceso local a información digital.
+
+
+58. ¿Qué servicio no es habitual en las bibliotecas?
+
+La venta de publicaciones.
+El préstamo domiciliario.
+La extensión bibliotecaria.
+La lectura en sala.
+
+
+59. El carácter definitorio de la biblioteca pública es:
+
+Que está abierta a cuantos deseen utilizarla sin prejuicios ni discriminación.
+Que se sostiene exclusivamente con fondos públicos.
+Que solo difunde obras publicadas.
+Ninguna de las respuestas es cierta.
+
+
+60. En el pensamiento bibliotecario del S. XX la concepción anglosajona está principalmente marcada por:
+
+La idea de biblioteca como instrumento esencial en la educación y control ideológico de la sociedad.
+Su gran vocación conservadora y bibliófila.
+Ninguna de las respuestas es cierta.
+Ideas como el libre acceso a la colección y máxima difusión.
+
+
+61. El carácter y eficacia de una Universidad suele medirse por el tratamiento que da a su órgano central, la biblioteca. Esta afirmación se debe a:
+
+Rebiun.
+Dirección General del Libro, Archivos y de las Bibliotecas.
+JOINT University Grants Committee.
+ALA.
+
+
+62. La mayor ventaja del modelo centralizado de biblioteca universitaria es:
+
+La mejora de aprovechamiento de los recursos informativos, económicos y de personal.
+La mayor comodidad para los estudiantes, profesores e investigadores.
+La proximidad a las facultades y escuelas.
+La naturaleza de sus fondos tiende a ser más general.
+
+
+63. El acercamiento de los servicios de la biblioteca a los usuarios con algún tipo de discapacidad se denomina:
+
+Préstamo domiciliario.
+Formación de usuarios.
+Extensión bibliotecaria.
+Difusión selectiva de la información.
+
+
+64. La Biblioteca de la Sede Central de la UNED se estructura según su Reglamento en:
+
+Biblioteca Central y Bibliotecas de Áreas.
+Biblioteca Central y Bibliotecas departamentales.
+Biblioteca Central, Bibliotecas Sectoriales y Bibliotecas de Centros Asociados.
+Biblioteca Central y Bibliotecas Sectoriales.
+
+
+65. El fondo especial Biblioteca Cuello Calón se encuentra depositado en:
+
+Facultad de Derecho.
+Hemeroteca de Derecho.
+Biblioteca Psicología.
+Biblioteca Central.
+
+
+66. Un ejemplar de las tesis de los estudiantes de la UNED se procesa en:
+
+Sección de Información Bibliográfica y Referencia.
+Sección de Proceso Técnico.
+Sección, de Adquisiciones.
+Archivo General.
+
+
+67. ¿Qué componente no influye en la acidificación del papel de los documentos?
+
+Carbonato calcico.
+Lignito existente en el papel.
+Pigmentos colorantes.
+Polvo.
+
+
+68. Para que exista una red de bibliotecas es imprescindible:
+
+Infraestructura y medios técnicos.
+Todas las respuestas son correctas.
+Objetivos, programas y proyectos.
+Normas que regulen las actividades.
+
+69. ¿Qué grupo no forma parte, actualmente, de los grupos de trabajo estables de REBIUN?
+
+Patrimonio bibliográfico.
+Préstamo Interbibliotecario.
+Datos estadísticos.
+Gestión de la colección.
+
+
+70. ¿Cuál de las siguientes afirmaciones sobre ERIC es falsa?
+
+Es una base de datos.
+Es una colección de documentos de economía.
+Es una colección de documentos secundarios.
+Es una colección de documentos especializada.
+
+
+71. ¿Qué tipología no corresponde a una Bibliografía en función de su ordenación?
+
+Cronológica.
+Alfabética.
+Sistemática.
+Temática.
+
+
+72. ¿Qué actividad bibliotecaria no corresponde al proceso de gestión de la colección?
+
+Inventario, reposición y expurgo.
+Preservación de la colección.
+Proceso técnico.
+Difusión de la colección.
+
+73. Según las directrices de REBIUN para Bibliotecas Universitarias, ¿qué número de volúmenes se recomienda para cada nuevo programa máster?:
+
+1000 volúmenes.
+5000 volúmenes.
+2000 volúmenes.
+Ninguna respuesta es correcta.
+
+
+74. ¿Qué afirmación no es cierta respecto a los soportes de película?
+
+Las películas de sales de plata son las más duraderas.
+Se deben conservar en condiciones ambientales controladas a temperatura y humedad bajas
+Se deben almacenar en envases adecuados como el plástico.
+Las películas de sales de nitrato son las más seguras.
+
+
+75. La digitalización y microfilm ación de los fondos bibliográficos forma parte de:
+
+La preservación.
+Ninguna de las respuestas es cierta.
+La conservación.
+La restauración.
+
+
+76. La Constitución Española regula en los artículos 64 y 65 los actos del Rey y establece:
+
+Que todos los actos del Rey son refrendados por los Ministros competentes por razón de la materia.
+Que todos los actos del Rey son refrendados por el Presidente del Congreso.
+Que todos los actos del Rey son refrendados por el Presidente del Gobierno.
+Que el nombramiento y relevo de los cargos civiles y militares de su Casa y la distribución de los presupuestos para su Familia y Casa se realiza-libremente por el Rey.
+
+
+77. Según la Constitución Española, la titularidad de los derechos de sufragio activo y pasivo:
+
+Corresponde a los españoles y siempre que así lo establezca un tratado internacional o una ley, también a los extranjeros en las elecciones municipales.
+Corresponde a los españoles y siempre que así lo establezca un tratado internacional o una ley, también a los extranjeros en las elecciones municipales y al Parlamento Europeo.
+Corresponde sólo a los españoles.
+Corresponde por igual a los españoles y extranjeros en las elecciones municipales.
+
+
+78. La Constitución establece que el Tribunal Constitucional se compone:
+
+De 14 miembros, nombrados por 9 años, renovándose por terceras partes cada tres años.
+De 14 miembros, nombrados por el Rey a propuesta del Congreso, del Senado, del Gobierno y del Consejo General del Poder Judicial.
+De 14 miembros, nombrados por el Congreso y el Senado por mayoría de tres quintos por un periodo de 9 años.
+De magistrados, fiscales, profesores universitarios, funcionarios públicos y abogados, que son nombrados por el Rey por un periodo de nueve años.
+
+
+79. A la luz del artículo 90.2 de la Constitución Española ¿con qué plazo cuenta el Senado para vetar un proyecto de ley remitido por el Congreso de los Diputados?
+
+El Senado dispondrá de dos meses a contar desde el día de recepción del texto.
+El Senado dispondrá de tres meses a contar desde el día de remisión del texto por el Congreso de los Diputados.
+El Senado no puede vetar un proyecto de ley; únicamente puede aprobar enmiendas a su articulado, que serán debatidas y votadas en el Pleno.
+El Senado dispondrá de tres meses a contar desde el día de recepción del texto.
+
+
+80. Según la Constitución Española, son incompatibles:
+
+Los cargos de Alcalde y Senador.
+Los cargos de Diputado y Senador.
+Los cargos de Ministro y Diputado.
+Ninguna de las respuestas es cierta.
+
+
+81. Las Comisiones Delegadas del Gobierno:
+
+Se crean por Real Decreto del Consejo de Ministros, a propuesta del Presidente del Gobierno.
+Se crean por Real Decreto del Presidente del Gobierno.
+Se crean por Ley, que determinará su composición y el miembro del Gobierno que ejerce su presidencia.
+Se crean por Ley que determinará su composición, el miembro del Gobierno que ejerce su presidencia, el miembro de la Comisión que ejerce de Secretario y las funciones legalmente atribuidas a la misma.
+
+
+82. Los Delegados del Gobierno serán nombrados y separados por:
+
+El Ministro del Interior.
+El Vicepresidente Primero del Gobierno.
+El Presidente del Gobierno.
+Real Decreto de Consejo de Ministros.
+
+
+83. La iniciativa para la reforma de los Estatutos de la UNED corresponde al Claustro Universitario a propuesta de:
+
+La décima parte de sus miembros.
+La cuarta parte de sus miembros.
+El 15 por ciento de sus miembros.
+La quinta parte de sus miembros.
+
+
+84. En las Universidades públicas agotan la vía administrativa y serán impugnables ante la jurisdicción contencioso-administrativa:
+
+Los acuerdos de Juntas de las Facultades o Escuelas.
+Las resoluciones del Rector y los acuerdos del Consejo Social, del Consejo de Gobierno y del Claustro Universitario.
+Los acuerdos del Secretario General y de los Decanos.
+Los acuerdos del Gerente.
+
+85. Señale la afirmación correcta en relación con la regulación de las retribuciones de los funcionarios que se recoge en los artículos 22 a 24 de la Ley 7/2007, de 12 de abril, del Estatuto Básico del Empleado Público:
+
+Las pagas extraordinarias son retribuciones complementarias.
+Las retribuciones básicas retribuyen al funcionario según la adscripción de su Cuerpo o escala a un Subgrupo o Grupo, atendiendo a la especial dificultad técnica del puesto de trabajo o las condiciones en las que se desempeña el trabajo.
+La cuantía de las retribuciones complementarias se establecerá por Ley.
+Las retribuciones básicas están integradas única y exclusivamente por el sueldo, los trienios y las pagas extraordinarias.
+
+
+86. La suspensión provisional en la tramitación de un procedimiento disciplinario:
+
+No podrá exceder de 3 meses, salvo en caso de paralización del procedimiento imputable al interesado.
+No podrá exceder de 9 meses, salvo en caso de paralización del procedimiento, imputable al interesado.
+No podrá exceder de 12 meses, salvo en caso de paralización del procedimiento imputable al interesado.
+No podrá exceder de 6 meses, salvo en caso de paralización del procedimiento imputable al interesado.
+
+
+87. Un funcionario de la Administración General del Estado que ocupe un puesto de trabajo obtenido por libre designación en una Comunidad Autónoma, ¿en qué situación administrativa se encontrará respecto de la Administración General del Estado?
+
+Servicio activo.
+Excedencia por incompatibilidad.
+Servicios especiales.
+Servicio en otras Administraciones Públicas.
+
+
+88. ¿Qué recurso en vía administrativa cabe contra un acto dictado por un Director General en uso de una competencia previamente delegada en él por su Ministro?
+
+Recurso de alzada ante el Consejo de Ministros.
+Recurso contencioso-administrativo.
+Recurso potestativo de reposición.
+Recurso de alzada ante el Ministro.
+
+
+89. La delegación de firma de un órgano en otro órgano, ¿implica la delegación de competencia?
+
+No, en ningún caso.
+Sí, siempre que se trate de órganos jerárquicamente dependientes y se publique la delegación de firma en el Boletín Oficial del Estado.
+Sí, en todos los casos, siempre con respeto a lo establecido en el artículo 13 de la Ley 30/1992, de 26 de noviembre, de régimen jurídico de las administraciones públicas y procedimiento administrativo común.
+Sí, salvo en las resoluciones, de carácter sancionador, en las que no cabe delegación de firma.
+
+
+90. En aquellos supuestos en los que se haya producido una desestimación presunta de la pretensión de un particular por parte de la Administración, la resolución expresa posterior de la Administración:
+
+Sólo podrá ser estimatoria de la pretensión del particular.
+Sólo podrá ser desestimatoria de la pretensión del particular.
+Será nula por incumplir la obligación de resolver establecida en el artículo 42 de la Ley 30/1992, de 26 de noviembre, de régimen jurídico de las administraciones públicas y procedimiento administrativo común.
+Podrá ser estimatoria o desestimatoria de la pretensión del particular.
+
+
+91. La participación en un procedimiento administrativo de contratación de un funcionario público en quien concurra alguna de las causas legales de abstención tasadas en el artículo 28 de la Ley de Régimen Jurídico de las Administraciones Públicas y Procedimiento Administrativo Común:
+
+No implica necesariamente la invalidez de los actos en los que haya intervenido el funcionario.
+Ninguna de las afirmaciones es correcta.
+Determina la invalidez de los actos en los que haya intervenido el funcionario.
+Determina la nulidad de pleno derecho de los actos en los que haya intervenido el funcionario.
+
+
+92. En los órganos colegiados, el Secretario del órgano:
+
+Actúa siempre con voz pero sin voto.
+Actúa con voz y voto si es funcionario de la administración a la que pertenezca el órgano y solo con voz, pero sin voto en el caso de que el secretario no tenga la condición de funcionario.
+Actúa siempre con voz y voto.
+Actúa con voz pero sin voto en el caso de que el Secretario sea un funcionario; y con voz y voto en el caso que el Secretario sea miembro del órgano colegiado.
+
+
+93. ¿Cuál de los siguientes no es un medio de ejecución forzosa de las Administraciones Públicas de los regulados en el artículo 96 de la Ley 30/1992?
+
+Expropiación forzosa.
+Compulsión sobre las persona.
+Ejecución subsidiaria.
+Apremio sobre el patrimonio.
+
+
+94. Contra las Resoluciones del Director de la Agencia de Protección de Datos:
+
+No cabe recurso alguno.
+Cabe recurso contencioso-administrativo.
+Cabe recurso de alzada o contencioso administrativo, a elección del recurrente.
+Cabe recurso de alzada.
+
+
+95. El plazo para hacer efectivo el derecho de rectificación o cancelación de datos:
+
+Es de 10 días.
+Es de 15 días.
+Lo establece cada responsable de fichero.
+Es de 12 días.
+
+
+96. El empresario podrá desarrollar personalmente las actividades de prevención, con excepción de las actividades relativas a la vigilancia de la salud de los trabajadores, en las empresas de hasta:
+
+10 trabajadores.
+20 trabajadores.
+50 trabajadores.
+25 trabajadores.
+
+97. Las limitaciones a la contratación de jóvenes menores de dieciocho años en trabajos que presenten riesgos específicos serán establecidos por:
+
+El Consejo de Estado.
+El Congreso.
+El Gobierno.
+El Ministerio de Trabajo e Inmigración.
+
+
+98. El Plan "Concilia" introdujo una medida por la que las madres pueden sustituir, con carácter voluntario, el permiso de lactancia para los hijos menores de 12 meses, por:
+
+Aumento en sus retribuciones equivalente a las horas de lactancia dejadas de disfrutar y la posibilidad de flexibilizar en una hora el horario fijo de jornada laboral.
+Permiso de 4 semanas que se acumulan a su permiso de maternidad.
+Aumento de retribuciones equivalente a horas de lactancia dejadas de disfrutar.
+Permiso de 6 semanas que se acumulan a su permiso de maternidad.
+
+
+99. ¿Qué tipo de empresas pueden percibir, según la Ley Orgánica 3/2007, el distintivo en materia de igualdad?
+
+Sólo empresas públicas.
+La Ley Orgánica 3/2007 no hace referencia a ello en su texto.
+Empresas públicas y privadas.
+Sólo empresas privadas.
+
+
+100. El porcentaje del presupuesto ordinario recomendado por REBIUN para la formación de la colección en una biblioteca universitaria es de:
+
+Entre el 50 y el 55%.
+Del 35 al 40%.
+Del 20 al 30%.
+Entre 40 y 45%.

@@ -1,0 +1,392 @@
+#titulo=Examen Administrativo del Estado año 2010 (Promoción interna)
+#url=http://www.hacertest.com/oposiciones-administrativo-estado/2010/
+#t=90 min, 50 preguntas + supuesto
+
+1. Según el art. 81.1 de la Constitución Española (en adelante la Constitución), son Leyes Orgánicas las relativas:
+
+a) Al desarrollo de los derechos fundamentales y de las libertades públicas, las relativas a la organización de los poderes del Estado y las demás previstas en la Constitución.
+b) Al desarrollo de los derechos fundamentales y de las libertades públicas, las que aprueben los Estatutos de Autonomía y el régimen electoral general y las demás previstas en la Constitución.
+c) Al desarrollo de los derechos fundamentales y de las libertades públicas, las que afecten al desarrollo de los valores constitucionales y al régimen electoral general y las demás previstas en la Constitución.
+d) Al desarrollo de los derechos fundamentales, las que aprueben los Estatutos de Autonomía y el régimen electoral general y las demás previstas en la Constitución.
+
+
+2. Según el artículo 57.1 de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común (en adelante Ley 30/1992), un acto administrativo es eficaz:
+
+a) Desde la fecha en que se dicte, salvo que en ellos se disponga otra cosa.
+b) Desde el momento en que el interesado acredite tener conocimiento del mismo.
+c) Dentro del plazo de diez días desde la fecha en que se dicte.
+d) Una vez notificado.
+
+
+3. Señale la respuesta correcta en relación con la anulabilidad de actos administrativos regulada en el art. 63 y siguientes de la Ley 30/1992:
+
+a) Son anulables los actos que incurran en la infracción definida en el art. 70 de la Ley 29/1998, de 13 de julio, reguladora de la Jurisdicción Contencioso-Administrativa.
+b) Son anulables los actos dictados por órgano manifiestamente incompetente por razón de la materia o el territorio.
+c) Son anulables los que tengan un contenido imposible.
+d) Solamente se pueden convalidar los actos que se hubieren dictado fuera de plazo.
+
+
+4. Según la Ley 30/1992, a los solos efectos de entender cumplida la obligación de notificar un acto administrativo dentro del plazo máximo de duración de los procedimientos, será suficiente la notificación que contenga:
+
+a) Cuando menos el texto íntegro de la resolución.
+b) Cuando menos el texto íntegro de la resolución, con indicación de si es o no definitivo en la vía administrativa, la expresión de los recursos que procedan.
+c) Al menos el texto íntegro de la resolución, así como el intento de notificación debidamente acreditado.
+d) Cuando menos el texto íntegro de la resolución, con indicación de si es o no definitivo en la vía administrativa, la expresión de los recursos que procedan y el órgano ante el que hubieran de presentarse y plazo para interponerlos.
+
+5. El artículo 105 de la Constitución establece que una Ley regulará:
+
+a) El derecho de los ciudadanos a conocer, en cualquier momento, el estado de la tramitación de los procedimientos en los que tengan la condición de interesados, y obtener copias de documentos contenidos en ellos.
+b) El derecho de los ciudadanos a acceder en condiciones de igualdad a las funciones y cargos públicos.
+c) El acceso de los ciudadanos a los archivos y registros administrativos, salvo en lo que afecte a la seguridad y defensa del Estado, la averiguación de los delitos y la intimidad de las personas.
+d) El derecho de los ciudadanos a utilizar las lenguas oficiales en el territorio de su Comunidad Autónoma, de acuerdo con la Constitución y el resto del Ordenamiento Jurídico.
+
+
+6. La Ley 30/1992 recoge la figura de la "Reformatio in Peius" cuando:
+
+a) Prohíbe la retroactividad de las disposiciones administrativas sancionadoras no favorables al interesado.
+b) Dispone que en los procedimientos tramitados a solicitud del interesado, la resolución será congruente con las peticiones formuladas por éste, sin que en ningún caso pueda agravar su situación inicial y sin perjuicio de la potestad de la Administración de incoar de oficio un nuevo procedimiento, si procede.
+c) Prohíbe la acumulación de expedientes que no guarden identidad sustancial o intereses conexos.
+d) Requiere que la Administración realice la interpretación más favorable al derecho de acción por parte de los interesados.
+
+
+7. En relación con el cómputo de los plazos previstos en el artículo 48 de Ley 30/1992, señale la afirmación correcta:
+
+a) Si el plazo se fija en meses o años, éstos se computarán a partir de aquel en que tenga lugar la notificación o publicación del acto de que se trate, o desde aquel en que se produzca la estimación o desestimación por silencio administrativo.
+b) Siempre que por Ley o normativa comunitaria europea no se exprese otra cosa, cuando los plazos se señalen por días, se entienden que éstos son naturales, excluyéndose del cómputo los domingos y los declarados festivos.
+c) Los plazos expresados en días se contarán a partir de aquel en que tenga lugar la notificación o publicación del acto de que se trate, o desde aquel en que se produzca la estimación o la desestimación por silencio administrativo.
+d) Cuando un día fuese hábil en el municipio o Comunidad Autónoma en que residiese el interesado, e inhábil en la sede del órgano administrativo, o a la inversa, se considerará inhábil en todo caso.
+
+
+8. Señale la afirmación correcta en relación con el silencio administrativo:
+
+a) Cuando se haya interpuesto recurso de alzada contra la desestimación por silencio administrativo de una solicitud por el transcurso del plazo, se entenderá estimado el mismo si, llegado el plazo de resolución, el órgano administrativo competente no dictase resolución expresa sobre el recurso.
+b) El silencio tendrá efecto estimatorio en los procedimientos relativos al ejercicio del derecho de petición, a que se refiere el artículo 29 de la Constitución.
+c) En los procedimientos iniciados a solicitud del interesado, el vencimiento del plazo máximo sin haberse notificado resolución expresa legitima al interesado o interesados que hubieran deducido la solicitud para enterderla estimada por silencio administrativo cuando así venga expresamente establecido en la ley reguladora de la materia en cuestión.
+d) La estimación por silencio administrativo tiene a todos los efectos la consideración de acto administrativo finalizador del procedimiento por lo que la Administración está exenta de la obligación general de dictar una resolución expresa.
+
+9. Un ciudadano puede interponer un recurso de alzada:
+
+a) Contra un acto de un Secretario de Estado emanado en el ejercicio de sus competencias.
+b) Contra la resolución de un Subsecretario en materia de servicios prestados por un funcionario.
+c) Contra el Acuerdo de Iniciación de un procedimiento sancionador.
+d) Contra una lista definitiva de admitidos y excluidos de un Tribunal de oposiciones.
+
+
+10. ¿Qué recurso administrativo, en el que la Administración tiene un mes para dictar y notificar la resolución, procede contra los actos administrativos previstos en el art. 109 de la Ley 30/1992?:
+
+a) Alzada.
+b) Potestativo de reposición.
+c) Extraordinario de revisión.
+d) Reclamación Previa.
+
+
+11. Según el artículo 46 de la Ley 29/1998, de 13 de julio, reguladora de la Jurisdicción Contencioso-Administrativa (en adelante Ley de la Jurisdicción Contencioso-Administrativa), el plazo para interponer el recurso contencioso administrativo será de:
+
+a) Cinco meses contados desde el día siguiente al de la publicación de la disposición impugnada o al de la notificación o publicación del acto que ponga fin a la vía administrativa, si fuera expreso.
+b) Seis meses contados desde el día siguiente al de la publicación de la disposición impugnada o al de la notificación o publicación del acto que ponga fin a la vía administrativa, si fuera expreso.
+c) Dos meses contados desde el día siguiente al de la publicación de la disposición impugnada o al de la notificación o publicación del acto que ponga fin a la vía administrativa, si fuera expreso.
+d) Tres meses contados desde el día siguiente al de la publicación de la disposición impugnada o al de la notificación o publicación del acto que ponga fin a la vía administrativa, si fuera expreso.
+
+
+12. Señale cuál de los siguientes órganos corresponde a un órgano de contratación en la Administración General del Estado (Ley 30/2007, de 30 de octubre, de Contratos del Sector Público):
+
+a) El Subsecretario del Ministerio de Fomento.
+b) El Subdirector General de Recursos Humanos del Ministerio de Trabajo e Inmigración.
+c) El Ministro de Presidencia.
+d) El Jefe de Área de Contratación del Ministerio de Industria y Energía.
+
+13. Están incluidos en el ámbito de aplicación de la Ley 30/2007, de 30 de octubre, de Contratos del Sector Público (en adelante Ley de Contratos):
+
+a) Los contratos relativos a servicios de arbitraje y conciliación.
+b) Los contratos de servicios celebrados por una Agencia Estatal.
+c) La relación de servicio de los funcionarios públicos y los contratos regulados en la legislación laboral.
+d) Los contratos y convenios adjudicados en virtud de un procedimiento específico de una organización internacional.
+
+
+14. Según lo dispuesto en el Real Decreto 817/2009 de 8 de mayo, por el que se desarrolla parcialmente la Ley 30/2007, de 30 de octubre, de Contratos del Sector Público, los órganos de contratación de las Administraciones Públicas (con excepción de las Juntas de Contratación) estarán asistidos por una Mesa de Contratación, que será competente para la valoración de ofertas en los procedimientos de adjudicación siguientes:
+
+a) En procedimientos abiertos y negociados sin publicidad.
+b) En procedimientos abiertos, restringidos y negociados sin publicidad.
+c) En procedimientos abiertos, restringidos y negociados con publicidad.
+d) Únicamente en los procedimientos abiertos.
+
+
+15. ¿Cómo se define el concepto de "actividades básicas de la vida diaria" en la Ley 39/2006, de 14 de diciembre, de Promoción de la Autonomía Personal y Atención a las personas en situación de dependencia (en adelante Ley de Dependencia)?:
+
+a) Sólo existen definiciones doctrinales, la ley no especifica este concepto.
+b) Aquellas que permiten a la persona desenvolverse con un mínimo de autonomía e independencia, tales como: el cuidado personal, las actividades domésticas básicas, la movilidad esencial, reconocer personas y objetos, orientarse, entender y ejecutar órdenes o tareas sencillas.
+c) No existe una definición fija, se valora de forma individual en cada caso.
+d) Esta definición la determinará cada CCAA en la legislación de desarrollo por ser una competencia autonómica.
+
+
+16. Una novedad de la Ley de Dependencia es la prestación económica para ser atendido por cuidadores no profesionales, cuyos requisitos son:
+
+a) Se concederá siempre que se den condiciones adecuadas de convivencia y habitabilidad de la vivienda.
+b) Se concederá excepcionalmente, siempre que se den condiciones adecuadas de convivencia y de habitabilidad de la vivienda y así lo establezca su Programa Individual de Atención.
+c) Los que determine cada Comunidad Autónoma en su normativa de desarrollo.
+d) Se concederá excepcionalmente, siempre que se den condiciones adecuadas de convivencia y de habitabilidad de la vivienda y se cumpla con una jornada no inferior a 8 horas diarias.
+
+
+17. Conforme a la Ley 51/2003, de 2 de diciembre, de igualdad de oportunidades, no discriminación y accesibilidad universal de las personas con discapacidad, ¿qué se entiende por condiciones básicas de accesibilidad y no discriminación?:
+
+a) A las que establece el Gobierno, sin perjuicio de las competencias autonómicas y Locales, para garantizar unos mismos niveles de igualdad de oportunidades a todos los ciudadanos con discapacidad.
+b) A las que establecen las Comunidades Autónomas para garantizar unos mismos niveles de igualdad de oportunidades a todos los ciudadanos con discapacidad.
+c) A las que están fijadas taxativamente en la Ley 51/2003, de 2 de diciembre, de igualdad de oportunidades, no discriminación y accesibilidad universal de las personas con discapacidad.
+d) Es un concepto jurídico indeterminado que varía en cada área de interés.
+
+
+18. ¿Quiénes están habilitados para desarrollar la Ley 7/2007, de 12 de abril, del Estatuto Básico del Empleado Público (en adelante EBEP) conforme al artículo 6 de la Ley 7/2007?:
+
+a) Las Cortes Generales, las Asambleas Legislativas de las Comunidades Autónomas, las Juntas Generales de las Diputaciones Forales y los Plenos de los Cabildos y Consejos insulares aprobarán, en el ámbito de sus competencias, las Leyes reguladoras de la Función Pública de la Administración General del Estado, las Comunidades Autónomas, las Diputaciones Forales y los Cabildos y Consejos Insulares.
+b) El EBEP no necesita desarrollo.
+c) Las Cortes Generales aprobarán, en el ámbito de sus competencias, las Leyes reguladoras de la Función Pública de la Administración General del Estado y de las Comunidades Autónomas.
+d) Las Cortes Generales y las Asambleas Legislativas de las Comunidades Autónomas aprobarán, en el ámbito de sus competencias, las Leyes reguladoras de la Función Pública de la Administración General del Estado y de las Comunidades Autónomas.
+
+
+19. Conforme al EBEP, y en relación con el personal eventual:
+
+a) La condición de personal eventual será mérito para el acceso a la Función Pública o para la promoción interna.
+b) El nombramiento y cese del personal eventual serán mediante el procedimiento de libre designación.
+c) El personal eventual sólo realiza funciones expresamente calificadas como de confianza o asesoramiento especial.
+d) El cese solamente tendrá lugar cuando se produzca el de la autoridad a la que se preste la función de confianza o asesoramiento.
+
+
+20. De acuerdo con el EBEP, señale qué materias quedan excluidas de la obligatoriedad de la negociación colectiva:
+
+a) La determinación y aplicación de las retribuciones complementarias de los funcionarios.
+b) Los criterios generales sobre oferta de empleo público.
+c) La determinación de las condiciones de trabajo del personal directivo.
+d) Las normas que fijen los mecanismos generales de evaluación del desempeño.
+
+21. Según el Real Decreto 365/1995, de 10 de marzo, por el que se aprueba el Reglamento de situaciones administrativas de los funcionarios civiles de la Administración General del Estado, un funcionario que se encuentra en servicios especiales debe solicitar el reingreso en la Administración:
+
+a) En el plazo de un mes desde que finalizó la situación que originó el pase a servicios especiales.
+b) En el momento que le interese que se le autorice una compatibilidad entre su situación de servicios especiales y su condición de funcionario.
+c) En el plazo de tres meses desde que finalizó la situación que originó el pase a servicios especiales.
+d) Al día siguiente de finalizar la situación que originó el pase a servicios especiales.
+
+
+22. ¿Cuáles son, según el EBEP, los procedimientos de provisión de puestos de trabajo?:
+
+a) Libre designación y traslado.
+b) Concurso y libre designación con convocatoria pública.
+c) Oposición, concurso-oposición, libre designación y traslado.
+d) Concurso y libre designación sin convocatoria pública.
+
+
+23. Según el Real Decreto 364/1995, de 10 de marzo, por el que se aprueba el Reglamento General de ingreso del personal al servicio de la Administración General del Estado y de provisión de puestos de trabajo y promoción profesional de los funcionarios civiles de la Administración General del Estado (en adelante Reglamento General de ingreso), los puestos de trabajo podrán proveerse por medio de adscripción provisional, entre otras causas:
+
+a) Por supresión del puesto de trabajo.
+b) Por necesidades del servicio, cuando sea necesario cubrir el puesto.
+c) Cuando no sea posible proveerlo mediante una comisión de servicios, por no autorizarla el superior jerárquico.
+d) Por que el funcionario deba moverse a otra unidad de forma rápida.
+
+
+24. Conforme al Reglamento General de ingreso, las comisiones de servicios de carácter forzoso se producirán:
+
+a) No hay comisiones de carácter forzoso, todas tienen carácter voluntario.
+b) Cuando haya necesidades del servicio y el puesto no pueda cubrirse mediante adscripción provisional.
+c) Cuando en un concurso un puesto se declare desierto y sea urgentemente para el servicio su provisión.
+d) Las comisiones siempre tienen carácter forzoso.
+
+25. Según el Reglamento General de ingreso, la movilidad por razones de salud o de rehabilitación estará condicionada:
+
+a) A que el funcionario pudiese concursar en el plazo de 2 años desde que ocupase la plaza a la que haya sido adscrito.
+b) A la existencia de informe del Servicio de prevención de riesgos laborales del departamento u organismo donde preste sus servicios.
+c) A que el funcionario hubiese desempeñado puestos similares en los últimos 10 años.
+d) A que el funcionario padezca una enfermedad propia, no siendo posible en caso de enfermedad de un familiar.
+
+
+26. En relación con la sindicación de los funcionarios públicos:
+
+a) No se contempla para el personal laboral.
+b) Se regula por la Ley 11/1988, de 5 de agosto, de Libertad Sindical.
+c) Está regulada en los artículos 28 y 103.3 de la Constitución.
+d) No existen funcionarios excluidos de este derecho.
+
+
+27. Conforme al Real Decreto 375/2003, de 28 de marzo, por el que se aprueba el Reglamento General del Mutualismo Administrativo, los requisitos para ser beneficiario de un mutualista son:
+
+a) Vivir con el titular del derecho y a sus expensas.
+b) Estar protegidos, por título distinto, a través de cualquiera de los Regímenes que integran el sistema español de la Seguridad Social.
+c) Tener relación con el titular del derecho.
+d) Percibir ingresos por rendimientos derivados del trabajo.
+
+
+28. Podrá autorizarse la compatibilidad, cumplidas las restantes exigencias de la Ley 53/1984, de 26 de diciembre, de incompatibilidades del personal al servicio de las Administraciones Públicas (en adelante Ley de Incompatibilidades), para el desempeño de un puesto de trabajo en la esfera docente como profesor universitario asociado:
+
+a) Cuando modificando el horario de trabajo como funcionarios, sea de interés para la administración.
+b) Cuando la actividad se realice en régimen de dedicación no superior a la de tiempo parcial y con duración determinada, cumplidas el resto de exigencias exigidas en la propia Ley de incompatibilidades.
+c) En cualquier caso siempre que se ajuste a las necesidades del servicio y este autorizado por su superior jerárquico.
+d) Cuando los ingresos derivados de su actividad en la administración sean inferiores a 25.350 Euros.
+
+29. Señale la respuesta correcta según lo dispuesto en el EBEP. La prescripción de las sanciones impuestas por faltas graves se produce:
+
+a) A los 2 años desde la firmeza de la resolución sancionadora.
+b) A los 2 años desde su comisión o desde el cese de su comisión en faltas continuadas.
+c) A los 2 años desde su comisión.
+d) A los 3 años de su comisión.
+
+
+30. De acuerdo con el III Convenio Colectivo Único para el personal laboral de la Administración General del Estado (en adelante III Convenio Colectivo Único), señale cuál de los siguientes colectivos está excluido de la participación en los concursos de traslados de personal laboral de la Administración General del Estado:
+
+a) Personal laboral fijo en situación de excedencia voluntaria por interés particular.
+b) Personal laboral fijo en situación de excedencia voluntaria por cuidado de hijos.
+c) Personal laboral fijo contratado a tiempo parcial.
+d) Personal laboral interino.
+
+
+31. Señale la respuesta correcta. Según el III Convenio Colectivo Único, la edad de jubilación obligatoria para este personal es:
+
+a) 65 años con posibilidad de prolongar la permanencia en el servicio activo hasta los 70 años solicitando la prolongación al Subsecretario del Departamento donde esté destinado el trabajador o, en su caso, al Presidente o Director del Organismo Autónomo.
+b) 65 años, sin excepciones.
+c) 65 años, salvo que el trabajador necesite completar los periodos de carencia para la jubilación.
+d) 70 años.
+
+
+32. Está excluido del ámbito de aplicación del III Convenio Colectivo Único:
+
+a) El personal laboral que presta sus servicios en el exterior.
+b) El personal laboral del Consejo de Seguridad Nuclear.
+c) El personal laboral de los Organismos Públicos de Investigación.
+d) El personal laboral de la Agencia de Protección de Datos.
+
+
+33. Según el III Convenio Colectivo Único, ¿cuál es la categoría profesional de un trabajador del grupo profesional 5, área funcional 1?:
+
+a) Oficial de gestión y servicios comunes.
+b) Ayudante de gestión y servicios comunes.
+c) Oficial de actividades técnicas y profesionales.
+d) Ayudante de servicios generales.
+
+
+34. De acuerdo a lo establecido en la Ley 47/2003, de 26 de noviembre, General Presupuestaria (en adelante Ley General Presupuestaria), los escenarios presupuestarios plurianuales contendrán la distribución orgánica de los recursos disponibles y se desarrollan en programas plurianuales, referidos:
+
+a) A los cinco ejercicios siguientes.
+b) A los dos ejercicios siguientes.
+c) A los tres ejercicios siguientes.
+d) A los cuatro ejercicios siguientes.
+
+
+35. Según la Ley General Presupuestaria, la agrupación de los créditos en capítulos, artículos, conceptos y subconceptos corresponde a la clasificación:
+
+a) Orgánica.
+b) Contable.
+c) Económica.
+d) Por programas.
+
+
+36. Conforme a la Ley General Presupuestaria, las generaciones de crédito son:
+
+a) Créditos destinados a hacer frente a gastos que no puedan demorarse hasta el ejercicio siguiente, cuando no exista crédito adecuado o sea insuficiente y no ampliable el consignado.
+b) Traspasos de dotaciones entre los diferentes créditos del presupuesto.
+c) Incrementos de créditos de un ejercicio financiados con cargo a los remanentes de crédito del ejercicio anterior.
+d) Modificaciones que incrementan los créditos como consecuencia de la realización de determinados ingresos no previstos o superiores a los contemplados en el presupuesto inicial.
+
+37. Según la Ley General Presupuestaria, con carácter excepcional podrán generar crédito en el Presupuesto del ejercicio los ingresos realizados:
+
+a) Por la venta de bienes.
+b) En el último trimestre del ejercicio anterior.
+c) Por reembolso de préstamos.
+d) Por prestación de servicios.
+
+
+38. Según la Ley General Presupuestaria, la competencia para autorizar créditos extraordinarios en los Organismos Autonómicos corresponderá a los Presidentes o Directores de los Organismos si la cuantía no supera 500.000 Euros y hasta un importe del:
+
+a) 20% del capítulo de su presupuesto total de gastos.
+b) 10% del correspondiente capítulo de su presupuesto inicial de gastos.
+c) 10% del correspondiente capítulo de su presupuesto total de gastos.
+d) 20% del capítulo de su presupuesto inicial de gastos.
+
+
+39. Señale, de acuerdo con la Ley General Presupuestaria, cuál de las siguientes afirmaciones es correcta:
+
+a) Excepcionalmente tendrán la condición de ampliables los créditos destinados al pago de los salarios de los empleados públicos.
+b) La Ley General Presupuestaria permite realizar transferencias de crédito desde el Capítulo 6 de los Presupuestos generales del Estado al Capítulo 2.
+c) Los créditos extraordinarios por necesidades surgidas en operaciones financieras se financian con Deuda Pública o con baja en otros créditos de la misma naturaleza.
+d) Es competencia del Consejo de Ministros la autorización de generaciones de crédito.
+
+
+40. Según el Real Decreto 640/1987, de 8 de mayo, sobre pagos librados "a justificar", los gastos cuyos pagos hayan de realizarse con fondos a justificar serán acordados por:
+
+a) Los gestores competentes en cada caso.
+b) El Director General de pagos.
+c) El jefe de la unidad.
+d) El cajero pagador.
+
+41. Conforme al Real Decreto 725/1989, de 16 de junio, sobre anticipos de caja fija, rendirán cuentas por los gastos atendidos con anticipos de caja fija, necesariamente en el mes de diciembre de cada año:
+
+a) El Jefe de la unidad administrativa.
+b) Los gestores competentes en cada caso.
+c) Los cajeros pagadores.
+d) El órgano gestor.
+
+
+42. Según la Ley 38/2003, de 17 de noviembre, General de Subvenciones (en adelante Ley General de Subvenciones), en el gasto de subvenciones, ¿en qué momento debe efectuarse la aprobación del gasto?:
+
+a) Una vez aprobada la propuesta de resolución definitiva.
+b) Posteriormente a la convocatoria de la subvención.
+c) Durante la instrucción del procedimiento de concesión.
+d) Con carácter previo a la convocatoria de la subvención.
+
+
+43. Respecto a la confección de la nómina, en el resumen de retribuciones y deducciones figurarán las contenidas en la propia nómina de funcionarios, ordenadas las retribuciones:
+
+a) En función del importe de los diferentes conceptos, ordenados de mayor a menor.
+b) Por orden alfabético.
+c) Por orden decreciente de las claves asignadas a cada concepto.
+d) Por aplicaciones presupuestarias de acuerdo con el orden marcado en los Presupuestos Generales del Estado.
+
+
+44. Conforme a la Ley 30/2007, de 30 de octubre, de Contratos del Sector Público (en adelante Ley de Contratos), en procedimientos de adjudicación de contratos sujetos a regulación armonizada, el plazo general de presentación de proposiciones (sin tener en cuenta las excepciones previstas en la Ley) no será inferior a:
+
+a) 52 días.
+b) 10 días.
+c) 37 días.
+d) 15 días.
+
+45. Según lo dispuesto en la Ley de Contratos los índices mensuales de precios de los materiales básicos y de la energía se aprobarán por:
+
+a) La Junta Consultiva de Contratación Administrativa.
+b) La Dirección General de Patrimonio del Estado.
+c) El Comité Superior de Precios de Contratos del Estado.
+d) La Comisión Delegada del Gobierno para Asuntos Económicos.
+
+
+46. Atendiendo a lo establecido en la Ley de Contratos, el plazo de duración de los contratos menores:
+
+a) Podrán prorrogarse por mutuo acuerdo de las partes, siempre que la duración del contrato, incluida la prórroga no supere los cuatro años.
+b) Podrán prorrogarse por mutuo acuerdo de las partes, siempre que la duración del contrato, incluida la prórroga no supere los dos años.
+c) No podrán tener una duración superior a un año.
+d) No podrán tener una duración inferior a un año.
+
+
+47. Conforme a lo dispuesto en la Ley de Contratos, el contrato de gestión de servicios públicos según el cual el empresario gestiona el servicio a su propio riesgo y ventura, se denomina:
+
+a) Sociedad de economía mixta.
+b) Concesión.
+c) Gestión interesad.
+d) Concierto.
+
+
+48. Señale cuál de las siguientes es una excepción del ámbito de aplicación directa del EBEP, salvo que su legislación específica lo disponga:
+
+a) Los funcionarios de la Administración de la Comunidad Foral de Navarra.
+b) Los funcionarios de las Administraciones de las Entidades Locales.
+c) Los funcionarios de la Administración de Justicia.
+d) Los funcionarios de la Administración General del Estado.
+
+49. Señale cuál es la respuesta correcta de acuerdo con el EBEP, acerca de las retribuciones complementarias de los funcionarios públicos:
+
+a) Se establece en el Estatuto Básico del Empleado Público que las retribuciones del personal laboral, en su estructura, serán las mismas que las del personal funcionario.
+b) Se establece en el Estatuto Básico del Empleado Público que un factor a tener en cuenta por las Administraciones públicas para las retribuciones complementarias de los funcionarios públicos será el del rendimiento o el de los resultados obtenidos por los mismos.
+c) Se establece en el Estatuto Básico del Empleado Público que para el desempeño de todos los puestos de trabajo a proveer por los funcionarios públicos se exigirá incompatibilidad para el desempeño de otro puesto público.
+d) Se establece en el Estatuto Básico del Empleado Público un complemento de destino para todos los funcionarios de las Administraciones Públicas.
+
+
+50. Conforme a la Ley 30/1992, señale la respuesta correcta en relación con una Resolución firme:
+
+a) Deriva su carácter firme del transcurso, sin que se interponga el recurso de alzada, del plazo de un mes, si el acto fuera expreso, y si no lo fuera, del plazo de dos meses.
+b) Es aquella que pone fin a la vía administrativa.
+c) Admite la interposición en su contra del Recurso Extraordinario de Revisión en circustancias tasadas.
+d) Es aquella contra la que solo se puede interponer un recurso contencioso administrativo y ningún recurso administrativo.

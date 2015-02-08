@@ -1,0 +1,834 @@
+1. ¿Cuál de las siguientes opciones hace referencia a la Independecia de una transacción?
+A) A pesar de que una transacción está compuesta por un número cualquiera de eventos, el sistema
+las debe considerar como una única operación.
+B) Todos los cambios provocados por la transacción deben dejar al sistema en un estado correcto.
+C) Las transacciones que se ejecutan concurrentemente no se ven afectadas unas con otras.
+D) Si una transacción es terminada en forma exitosa los efectos serán permanentes.
+2. ¿Cuál de las siguientes opciones NO es un estándar que se haya tenido en cuenta en MÉTRICA
+Versión 3?
+A) ISO 12207.
+B) ISO 20000.
+C) ISO/IEC TR 15.504/SPICE.
+D) UNE-EN-ISO 9001:2000.
+3. En MÉTRICA Versión 3 la actividad “Especificación del Plan de Pruebas” se lleva a cabo en el
+proceso:
+A) Estudio de Viabilidad del Sistema.
+B) Planificación de Sistemas de Información.
+C) Implantación y Aceptación del Sistema.
+D) Análisis del Sistema de Información.
+4. ¿Qué opción indica los niveles del modelo CMM?
+A) Inicial, Repetible, Definido, Gestionado y Optimizado.
+B) Inicial, Repetible, Gestionado, Optimizado y Finalizado.
+C) Inicial, Redefinido, Gestionado y Optimizado.
+D) Inicial, Repetible, Definido y Optimizado.
+5. ¿Cuál de las siguientes opciones NO es una ventaja de ISO 9000:2000?
+A) Reconocimiento y apariencia internacional, marca de reconocido prestigio.
+B) Amplia aplicabilidad, en cualquier industria y entorno.
+C) Guía paso a paso para la mejora, a través de niveles de madurez y capacidad.
+D) Libertad de implementación y de interpretación de los requisitos.
+6. Las 4 fases del ciclo de vida de la implantación de la Función de Calidad son:
+A) Estudio, Diseño, Desarrollo, Implantación.
+B) Análisis, Diseño, Implantación, Mantenimiento.
+C) Estudio, Análisis, Desarrollo, Mantenimiento.
+D) Análisis, Desarrollo, Implantación, Mantenimiento.
+
+7. ¿Cuál de las siguientes afirmaciones acerca del modelo EFQM es FALSA?
+A) Está basado en 9 criterios.
+B) Uno de los agentes facilitadores es el Liderazgo.
+C) Uno de los agentes facilitadores son los Procesos.
+D) Hay 4 agentes facilitadores y 5 resultados.
+8. Indique la opción CORRECTA con respecto a la Herramienta de autoevaluación de ISO 9004:
+A) Hay un total de 8 niveles de madurez.
+B) Al menos hay 3 niveles de madurez.
+C) Utiliza 5 niveles de madurez, que pueden ampliarse para incluir niveles adicionales o
+personalizarse según sea necesario.
+D) Utiliza 5 niveles de madurez y no se puede ampliar.
+9. Según la clasificación realizada por Dominich los modelos de recuperación de información
+basados en la Lógica de Fuzzy se denominan:
+A) Modelos alternativos.
+B) Modelos lógicos.
+C) Modelos basados en la interactividad.
+D) Modelos basados en la inteligencia artificial.
+10. Según Baeza-Yates dentro de la clasificación realizada sobre los Sistemas de Recuperación de
+Información NO es un modelo algebraico:
+A) Vectorial generalizado.
+B) Indexación por semántica latente.
+C) Redes neuronales.
+D) Redes de inferencia.
+11. Un modelo de seguridad con protección continúa de datos:
+A) Realiza copias totales cada cierto tiempo, consiguiendo una protección continua de datos.
+B) No realiza copias de seguridad cada cierto tiempo, sino inmediatamente después de detectar un
+cambio.
+C) Realiza una copia total y después cada cierto tiempo fijo realiza una nueva copia solo de los
+archivos modificados.
+D) Realiza una copia total y después cada cierto tiempo aleatorio realiza una nueva copia solo de los
+archivos modificados.
+12. La ecuación matemática que expresa la tasa de datos máxima para un canal sin ruido de ancho
+de banda finito, se conoce como:
+A) Teorema de Shannon.
+B) Teorema de Nyquist.
+C) Teorema de Fourier.
+D) Transformada de Fourier.
+
+13. Según la norma internacional ISO 11801:2002 la frecuencia máxima que soporta un cable de par
+trenzado de Clase C es:
+A) Hasta 16 MHz.
+B) Hasta 100 KHz.
+C) Hasta 100 MHz.
+D) Hasta 250 MHz.
+14. DWDM es una técnica de transmisión de señales a través de fibra óptica para:
+A) Multiplexación por división en longitud de onda densa.
+B) Intercambio de frecuencias en anillo.
+C) Aumento de la dispersión modal.
+D) Decremento del índice de dispersión.
+15. En el modelo OSI la capa de transporte se corresponde con el nivel:
+A) 2.
+B) 3.
+C) 4.
+D) 5.
+16. En el protocolo TCP la variable que almacena el tiempo que tarda un paquete de información
+desde el emisor hasta el receptor y de vuelta al emisor se denomina:
+A) KAT (Keep Alive Timer).
+B) TW (Timed Wait).
+C) STF (System Time Flow).
+D) RTT (Round Trip Time).
+17. La dirección de Loopback en el protocolo Internet Protocol version 6 (IPv6) es:
+A) ::1
+B) 0:0:0:0:127
+C) ::127
+D) 0:0:0:0:0:0:0:127
+18. En relación con el protocolo RSVP (Protocolo de Reserva de Recursos o Resource Reservation
+Protocol) indique que afirmación es INCORRECTA:
+A) Es el protocolo de reserva de recursos para la arquitectura de servicios integrados.
+B) Este protocolo optimiza el uso de ancho de banda.
+C) Proporciona diferentes estilos de reservas.
+D) No tiene soporte para IPv6.
+
+19. Desde el punto de vista de la QoS (Calidad de Servicio), ¿cuál de los siguientes servicios o
+aplicaciones tiene unos requisitos mayores con respecto al Retardo?
+A) Correo electrónico.
+B) Videoconferencia.
+C) Transferencia de archivos.
+D) Acceso a Web.
+20. ¿Cuál de las siguientes opciones corresponde a un estándar para redes de área local
+inalámbricas?
+A) IEEE 1394.
+B) IEEE 802.11.
+C) IEEE 802.3.
+D) IEEE 802.5.
+21. Fast Ethernet puede proporcionar una velocidad máxima de:
+A) 10 Mbps.
+B) 100 Mbps.
+C) 10 MBps.
+D) 1 Gbps.
+22. Indique la afirmación INCORRECTA en relación a ATM:
+A) ATM utiliza paquetes de longitud variable denominados Celdas.
+B) ATM permite la multiplexación de varias conexiones lógicas a través de una única interfaz.
+C) ATM proporciona servicios en tiempo real.
+D) ATM proporciona servicios en tiempo no real.
+23. ¿Cuál de las siguientes clases de servicios proporcionados por ATM, es un servicio en tiempo
+real?
+A) CBR o Constant Bit Rate.
+B) ABR o Available Bit Rate.
+C) UBR o Unspecified Bit Rate.
+D) nrt-VBR o non-real-time VBR.
+24. Indique cuál de las siguientes afirmaciones relacionadas con X.25 y Frame Relay es FALSA:
+A) En X.25 los paquetes de control de llamada se transmiten por el mismo canal y circuito virtual que
+los paquetes de datos.
+B) En Frame Relay la señalización de control de llamadas se transmite a través de una conexión
+lógica distinta de la de los datos de usuario.
+C) En X.25 la multiplexación de circuitos virtuales tiene lugar en la capa 3.
+D) En Frame Relay tanto la capa 2 como la 3 incluyen mecanismos de control de flujo y de errores.
+
+25. ¿Qué protocolo resuelve el problema de encontrar qué dirección Ethernet corresponde a una
+dirección IP dada?
+A) DNS.
+B) NAT.
+C) RARP.
+D) ARP.
+26. En relación con la interconexión de redes, indique cuál de las siguientes afirmaciones es
+VERDADERA:
+A) Un Puente o Bridge opera en la capa 3 del modelo OSI.
+B) Un Encaminador o Router opera en la capa 2 del modelo OSI.
+C) Un Concentrador o Hub opera en la capa 1 del modelo OSI.
+D) Un Conmutador o Switch opera en la capa 4 del modelo OSI.
+27. De los siguientes protocolos de enrutamiento, ¿cuál es un protocolo de enrutamiento externo o
+(EGP)?
+A) RIP.
+B) OSPF.
+C) BGP.
+D) IGRP.
+28. Imagine que envía un correo electrónico rellenando los destinatarios de la siguiente forma:
+Para: DestinatarioA
+CC: DestinatarioB
+CCO: DestinatarioC
+¿Qué opción es CORRECTA?
+A) El correo llega a DestinatarioA y DestinatarioB, pero no a DestinatarioC.
+B) El correo llega a todos y todos ven a quién se le ha enviado el mensaje.
+C) El correo llega a todos, DestinatarioA y DestinatarioB no saben que se le ha enviado a
+DestinatarioC, pero DestinatarioC sí sabe que se le ha enviado a DestinatarioA y DestinatarioB.
+D) El correo llega a todos, DestinatarioA y DestinatarioB no saben que se le ha enviado a
+DestinatarioC, y DestinatarioC no sabe que se le ha enviado a DestinatarioA y DestinatarioB.
+29. ¿Cuál de los siguientes puertos es el puerto estándar de SMTP?
+A) 21.
+B) 23.
+C) 110.
+D) 25.
+
+30. ¿Cuál de los siguientes puertos es el puerto estándar de POP3 sobre SSL?
+A) 995.
+B) 993.
+C) 220.
+D) 465.
+31. ¿Cuál de las siguientes tecnologías xDSL permite operar con tipo de enlace tanto de manera
+simétrica como asimétrica?
+A) HDSL.
+B) SDSL.
+C) VDSL.
+D) ADSL.
+32. Cuando dos o más dispositivos Bluetooth establecen una conexión a través de un único
+dispositivo que actúa como maestro se denomina:
+A) Mixnet.
+B) Trinet.
+C) Piconet.
+D) Masternet.
+33. PLC (Power Line Connection) es una tecnología que ofrece conexión a Internet a través de:
+A) La red eléctrica.
+B) Ondas de radio.
+C) Microondas.
+D) Fibra óptica.
+34. Internet 2 proporciona un espacio de direccionamiento de:
+A) 32 bits.
+B) 64 bits.
+C) 128 bits.
+D) 256 bits.
+35. ¿Cuál de los siguientes servicios permite que el usuario encuentre y evalúe información sin
+necesidad de obtener una copia para determinar su contenido?
+A) FTP.
+B) Telnet.
+C) Gopher.
+D) I-look.
+
+36. ¿Cuál de las siguientes afirmaciones acerca de una DMZ (DeMilitarized Zone) o red perimetral
+pone en riesgo nuestra red interna?
+A) Las conexiones desde la red interna o privada a la DMZ están permitidas.
+B) Las conexiones desde la red externa o pública a la DMZ están permitidas.
+C) Las conexiones desde la DMZ a la red interna o privada están permitidas.
+D) Las conexiones desde la DMZ a la red externa o pública están permitidas.
+37. Con respecto a los aspectos legales de la Historia Clínica Electrónica (HCE) es FALSO:
+A) La HCE es una realidad consolidada desde el punto de vista legal y se admite como soporte de
+información de salud de las personas.
+B) Es obligado informar al paciente de la existencia de la HCE, identidad y dirección de su
+responsable.
+C) Exige el consentimiento del paciente para el tratamiento informatizado de sus datos.
+D) El paciente tiene derecho a acceder a los datos consignados en la historia con excepción de datos
+confidenciales de terceras personas, anotaciones subjetivas hechas por profesionales y datos
+limitados por razones terapéuticas.
+38. ¿Cómo se denomina el conjunto de datos que ofrecen en la menor extensión información
+sanitaria que es imprescindible conocer y cuya actualización es automática siempre que alguno
+de sus campos varíe en la Historia Clínica Electrónica de la que se alimenta?
+A) Resumen Sanitario Digital (RSD).
+B) Historia Clínica Resumida (HCR).
+C) Conjunto Básico Asistencial (CBA).
+D) Historia Mínima Asistencial (HMA).
+39. La política de estándares propuesta por el Grupo de trabajo de Estándares y Requerimientos
+Técnicos para la Historia Clínica Digital del SNS, recomienda que el formato de documentos a
+intercambiar sea:
+A) doc.
+B) odt.
+C) txt.
+D) pdf.
+40. En relación a la receta electrónica, los tratamientos prescritos al paciente en receta médica
+electrónica podrán ser dispensados:
+A) En cualquier oficina de farmacia del territorio nacional.
+B) Sólo en oficinas de farmacia de la Comunidad Autónoma donde se haya expedido la receta médica
+electrónica.
+C) Sólo en los servicios de farmacia de los centros de salud y estructuras de atención primaria de
+todo el territorio SNS.
+D) En todo el territorio nacional y países de la Unión Europea (UE) acogidos a la directiva Common
+Right Export Health a través del nodo del SNS.
+
+41. A fin de garantizar la interoperabilidad entre los diferentes servicios de salud, las recetas
+médicas electrónicas de cada una de las Administraciones sanitarias deberán necesariamente
+incorporar:
+A) El código identificador unívoco de usuarios del Sistema Nacional de Salud.
+B) El número de afiliación a la seguridad social en el caso de titulares o asistencia en el caso de
+beneficiarios, que posibilitará la identificación del régimen de pertenencia del paciente.
+C) El CIP Autonómico de la Comunidad Autónoma donde se realiza la prescripción.
+D) El NIF o NIE del paciente.
+42. El sistema de receta médica electrónica garantizará la seguridad en el acceso y transmisión de
+la información, así como la protección de la confidencialidad de los datos, de conformidad con
+lo dispuesto en la Ley Orgánica 15/1999, de 13 de diciembre, de protección de datos de carácter
+personal. Se implantarán las medidas de seguridad de:
+A) Nivel bajo.
+B) Nivel medio.
+C) Nivel alto.
+D) Nivel muy alto.
+43. En el ámbito de SAP ERP, los infotipos son:
+A) Objetos de Cálculo de nómina y de Gestión de personal utilizados para distinguir entre importes
+monetarios.
+B) Unidades de tiempo que se utilizan de modos diferentes para calcular la remuneración del
+empleado.
+C) Unidades de información en el sistema de Gestión de personal.
+D) Técnicas provistas por SAP para el ingreso masivo de información.
+44. En el ámbito de SAP ERP un grupo de empleados para los que se debe ejecutar el Cálculo de
+nómina de manera conjunta y al mismo tiempo es el:
+A) Registro de Gestión del cálculo de la nómina.
+B) Área de nómina.
+C) Status de nómina.
+D) Período del cálculo de nómina.
+45. De los siguientes componentes, ¿cuál pertenece al módulo HR (RECURSOS HUMANOS) de
+SAP?
+A) Gestión Presupuestaria.
+B) Contabilidad de Centros de Coste.
+C) Gestión de Materiales.
+D) Gestión de Personal.
+
+46. ¿Cuál de las siguientes NO es una característica y/o función de la solución SAP ERP
+Financials?
+A) Gestión de la tesorería y el riesgo financiero.
+B) Contabilidad y cierre financiero.
+C) Gestión de RRHH y nóminas.
+D) Gestión de deudores.
+47. En el ámbito de SAP ERP, un Centro de Coste o CeCo:
+A) Es la unidad organizativa, dentro de una sociedad CO, que representa un emplazamiento
+claramente delimitado donde se producen costes.
+B) Corresponde a una posición en el plan de cuentas relevante para el coste.
+C) Es el nivel jerárquico más alto en el Sistema SAP.
+D) Es una lista de todas las cuentas de mayor utilizadas por una o varias sociedades.
+48. Indique cuál de los siguientes estándares NO pertenece a HL7:
+A) Clinical Document Architecture (CDA).
+B) Literal Digital Copying Images (LDCI).
+C) Clinical Context Management Specification (CCOW).
+D) Common Terminology Services (CTS).
+49. La versión más reciente de la clasificación mundial de enfermedades realizada por la OMS
+(Organización Mundial de la Salud) es:
+A) CIE-6.
+B) CIE-9.
+C) CIE-10.
+D) CIE-12.
+50. En ITIL v3, la fase de Operación del Servicio:
+A) Define la perspectiva, la posición, los planes y patrones que un proveedor de servicios necesita
+ejecutar para alinearse con los resultados del negocio de una organización.
+B) Coordina y lleva a cabo las actividades y procesos requeridos para entregar y gestionar servicios
+en los niveles acordados con los usuarios de negocio y clientes.
+C) Asegura que los servicios nuevos, modificados o retirados satisfagan las expectativas del negocio,
+como se documenta en las etapas de estrategia y diseño del servicio dentro de su ciclo de vida.
+D) Asegura que los servicios estén alineados con las necesidades cambiantes del negocio por medio
+de la identificación e implementación de mejoras en los servicios de TI que dan soporte a los
+procesos de negocio.
+
+51. En relación con la norma ISO/IEC 20000, indique cuál de las siguientes afirmaciones es
+CIERTA:
+A) ISO/IEC 20000 especifica una serie de requisitos mínimos que deben cumplir todos los
+proveedores de servicios que deseen obtener esta certificación, además de definir una línea de
+referencia independiente a partir de la cual se pueden conseguir nuevas mejoras del servicio.
+B) ISO/IEC 20000 no es un estándar internacional sobre gestión de servicios TI.
+C) La parte 1 de la norma se denomina Código de prácticas y la parte 2 se denomina Especificación.
+D) ISO/IEC 20000 es dependiente de marcos de trabajo como ITIL ó COBIT.
+52. El proceso mediante el cual un usuario se autentica una vez en el sistema de la organización y
+es capaz de acceder al resto de servicios se denomina:
+A) Single Login On.
+B) Simple Login On.
+C) Single Sign On.
+D) Simple Sign On.
+53. ¿Cuál de los siguientes NO es un software utilizado para la implantación de portales
+corporativos?
+A) Liferay Portal.
+B) Jetspeed 2.
+C) WebSphere Portal.
+D) Jumbo Portal.
+54. El artículo 3 de la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de
+Carácter Personal define como datos de carácter personal:
+A) Cualquier información concerniente a personas físicas identificadas o no.
+B) Cualquier información concerniente a personas físicas identificadas o identificables.
+C) Cualquier información concerniente a personas físicas o jurídicas identificadas.
+D) Cualquier información concerniente a personas identificadas o identificables.
+55. Conforme a lo establecido en la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de
+Datos de Carácter Personal, los ficheros mantenidos por los partidos políticos, sindicatos,
+iglesias, confesiones o comunidades religiosas y asociaciones, fundaciones y otras entidades
+sin ánimo de lucro, cuya finalidad sea política, filosófica, religiosa o sindical, en cuanto a los
+datos relativos a sus asociados o miembros:
+A) Precisará siempre el previo consentimiento del afectado para la cesión de los mismos.
+B) Precisará el consentimiento expreso y por escrito del afectado para su tratamiento.
+C) Precisará el consentimiento expreso y por escrito del afectado para su tratamiento o cesión.
+D) No precisará del consentimiento expreso y por escrito del afectado para su tratamiento o cesión.
+
+56. La Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter personal
+establece que La Agencia Española de Protección de Datos, es:
+A) Un ente de derecho público, con personalidad jurídica propia y plena capacidad pública pero no
+privada, que actúa con plena independencia de las Administraciones Públicas en el ejercicio de
+sus funciones.
+B) Un ente de derecho privado, con personalidad jurídica propia y plena capacidad pública y privada,
+que actúa con plena independencia de las Administraciones Públicas en el ejercicio de sus
+funciones.
+C) Un ente de derecho público, con personalidad jurídica propia y plena capacidad pública pero no
+privada, que actúa bajo la dependencia de las Administraciones Públicas en el ejercicio de sus
+funciones.
+D) Un ente de derecho público, con personalidad jurídica propia y plena capacidad pública y privada,
+que actúa con plena independencia de las Administraciones Públicas en el ejercicio de sus
+funciones.
+57. La Ley 8/2011, de 23 de marzo, de Igualdad entre Mujeres y Hombres y contra la Violencia de
+Género en Extremadura, será de aplicación:
+A) A los consorcios, fundaciones y demás entidades con personalidad jurídica propia en los que sea
+minoritaria la representación directa de la Junta de Extremadura.
+B) A las entidades privadas que no suscriban contratos o convenios de colaboración con las
+Administraciones Públicas de Extremadura o no sean beneficiarias de ayudas o subvenciones
+concedidas por ellas.
+C) A todas las entidades que realicen actividades educativas y de formación cualquiera que sea su
+tipo, nivel y grado.
+D) A los consorcios, fundaciones y demás entidades con personalidad jurídica propia en los que sea
+mayoritaria la representación indirecta de la Junta de Extremadura.
+58. La situación en que se produce cualquier comportamiento verbal, no verbal o físico de índole
+sexual, con el propósito o el efecto de atentar contra la dignidad de una persona, en particular
+cuando se crea un entorno intimidatorio, hostil, degradante, humillante u ofensivo, es definida
+por la Ley 8/2011, de 23 de marzo, de Igualdad entre Mujeres y Hombres y contra la Violencia de
+Género en Extremadura, como:
+A) Acoso sexual.
+B) Discriminación directa.
+C) Discriminación directa por razón de sexo.
+D) Discriminación indirecta sexual.
+59. El artículo 17 de la Ley 8/2011, de 23 de marzo, de Igualdad entre Mujeres y Hombres y contra la
+Violencia de Género en Extremadura, establece que la Junta de Extremadura creará como
+órgano consultivo y de participación de las asociaciones y organizaciones de mujeres y los
+agentes sociales y económicos en las políticas de igualdad de género de la Junta de
+Extremadura:
+A) El Consejo Extremeño de Igualdad.
+B) El Centro de Estudios Consultivo de Género.
+C) La Comisión Interdepartamental para la Igualdad de las Mujeres.
+D) El Consejo Extremeño de Participación de las Mujeres.
+
+60. ¿Qué tecnología de almacenamiento a largo plazo permite almacenar una única copia de
+información, generando un identificador único para cada fichero en función de su contenido,
+sustituyendo las duplicidades por referencias al documento original?
+A) Dispositivos de almacenamiento WORM (Write Once Read Many).
+B) Tecnología CAS (Content Address Storage).
+C) Records Management and Archiving.
+D) Sistemas iPRIUS Content Reference.
+61. ¿Cuál de las siguientes NO es una capa de una red de almacenamiento SAN?
+A) Capa Host.
+B) Capa Procesamiento.
+C) Capa Conexión.
+D) Capa Almacenamiento.
+62. ¿Qué nivel RAID distribuye los datos equitativamente entre dos o más discos sin información
+de paridad que proporcione redundancia?
+A) RAID 0.
+B) RAID 1.
+C) RAID 4.
+D) RAID 6.
+63. El rol de un servidor de aplicaciones:
+A) Se ocupa del funcionamiento de la parte estática de las aplicaciones.
+B) Almacena y gestiona registros de datos, manteniendo datos estructurados.
+C) Se ocupa del funcionamiento de la parte dinámica de las aplicaciones, funciones de lógica y
+acceso a datos de la aplicación.
+D) Proporciona la traducción entre los nombres de dominio y sus direcciones IP asociadas.
+64. La capa de virtualización que enmascara los recursos físicos de un equipo y ofrece al sistema
+operativo recursos diferentes a los que en realidad existen se denomina:
+A) Administrador.
+B) Virtualizador.
+C) Supervisor.
+D) Hypervisor.
+
+65. ¿Cuál de las siguientes sentencias acerca del modelo de arquitectura de capas NO es cierta?
+A) Las entidades cliente y servidor pueden residir en la misma máquina o estar implementadas en
+máquinas distintas que se comunican a través de una red.
+B) 2 capas. Dos tipos de nodos: clientes y servidores. Los clientes realizan las peticiones, y los
+servidores procesan la información y envían la respuesta.
+C) 3 capas. Separa la funcionalidad del cliente en 2 capas: una capa de presentación y una capa de
+cliente de aplicación. Y una de servidor de base de datos (capa de datos).
+D) Multicapa (n-capas). Divide la capa intermedia de lógica de negocio en tantas subcapas como sea
+necesario.
+66. ¿Cuándo usaremos un servidor secuencial?
+A) Cuando el tiempo medio de respuesta que observa el cliente sea pequeño.
+B) Cuando el tiempo medio de respuesta es grande o desconocido a priori.
+C) Cuando el tiempo de servicio de una petición sea muy variable.
+D) Cuando la demanda de acceso sea elevada.
+67. ¿Cómo se denomina la arquitectura que define la cooperación basada en tareas y servicios
+residentes en distintas plataformas?
+A) Arquitectura de procesos distribuidos.
+B) Arquitectura de procesos corporativos.
+C) Arquitectura de procesos multiplataforma.
+D) Arquitectura de procesos cooperativos.
+68. La Ley 59/2003, de 19 de diciembre, de firma electrónica, establece como concepto de firma
+electrónica reconocida:
+A) A la firma electrónica que permite identificar al firmante y detectar cualquier cambio ulterior de los
+datos firmados, que está vinculada al firmante de manera única y a los datos a que se refiere y que
+ha sido creada por medios que el firmante puede mantener bajo su exclusivo control.
+B) A la firma electrónica avanzada basada en un certificado reconocido y generada mediante un
+dispositivo seguro de creación de firma.
+C) Al conjunto de datos en forma electrónica, consignados junto a otros o asociados con ellos, que
+pueden ser utilizados como medio de identificación del firmante.
+D) Al documento firmado electrónicamente por un prestador de servicios de certificación que vincula
+unos datos de verificación de firma a un firmante y confirma su identidad.
+69. Conforme a lo establecido en el Decreto 2/2006, de 10 de enero, por el que se crea el Registro
+Telemático, se regula la utilización de técnicas electrónicas, informáticas y telemáticas, así
+como el empleo de la firma electrónica reconocida por la administración de la Comunidad
+Autónoma de Extremadura, NO es función del Registro Telemático:
+A) La recepción de solicitudes, relativas a los trámites y procedimientos que cada Consejería u
+Organismo Público haya aprobado previamente.
+B) La anotación de los correspondientes asientos de entrada.
+C) La expedición de copias selladas de los documentos que, en su caso, se transmitan junto con la
+solicitud, escrito o comunicación.
+D) La recepción de escritos y comunicaciones, relativas a los trámites y procedimientos que cada
+Consejería u Organismo Público haya aprobado previamente.
+
+70. El Decreto 2/2006, de 10 de enero, por el que se crea el Registro Telemático, se regula la
+utilización de técnicas electrónicas, informáticas y telemáticas, así como el empleo de la firma
+electrónica reconocida por la administración de la Comunidad Autónoma de Extremadura,
+establece que existiendo constancia de la recepción de una notificación telemática en la
+dirección electrónica asignada al interesado, se entenderá que la misma ha sido rechazada a
+los efectos previstos en el artículo 59.4 de la Ley 30/1992, de 26 de noviembre, de Régimen
+Jurídico y del Procedimiento Administrativo Común:
+A) Cuando transcurrieran 20 días naturales sin que se acceda a su contenido.
+B) Cuando transcurrieran 10 días hábiles sin que se acceda a su contenido.
+C) Cuando transcurrieran 20 días hábiles sin que se acceda a su contenido.
+D) Cuando transcurrieran 10 días naturales sin que se acceda a su contenido.
+71. En un núcleo monolítico el procesador puede ejecutar instrucciones en dos modos de
+operación:
+A) Modo simple y modo multitarea.
+B) Modo supervisor y modo usuario.
+C) Modo gráfico y modo texto.
+D) Modo monotarea y modo avanzado.
+72. ¿Cuál de los siguientes NO es un tipo de sistema operativo?
+A) Sistema operativo de mainframe.
+B) Sistema operativo en tiempo real.
+C) Sistema operativo incrustado o embebido.
+D) Sistema operativo policíclico.
+73. El algoritmo de paginación de memoria LRU consiste en:
+A) Cuando ocurra un fallo de página, hay que descartar la página que no se haya utilizado desde
+hace más tiempo.
+B) Cuando ocurra un fallo de página, no hay que descartar la página que no se haya utilizado desde
+hace más tiempo.
+C) Cuando no ocurra un fallo de página, hay que descartar la página que no se haya utilizado desde
+hace más tiempo.
+D) Cuando ocurra un fallo de página, hay que descartar la página que se haya utilizado desde hace
+más tiempo.
+74. Indique cuál de las siguientes clasificaciones NO está incluida en la taxonomía de Flynn:
+A) SISD.
+B) MISD.
+C) SIMD.
+D) MIDS.
+
+75. En una arquitectura Grid cuál de las siguientes afirmaciones es INCORRECTA:
+A) El middleware funciona como una capa de abstracción de software distribuida, que se sitúa entre
+las capas de aplicaciones y las capas inferiores.
+B) El middleware se encarga de las funciones de la capa de red.
+C) El middleware optimiza el uso de recursos que pueden estar muy dispersos.
+D) El middleware monitoriza el progreso de los trabajos en ejecución.
+76. La Iniciativa Grid Nacional Española coordinada por el Consejo Superior de Investigaciones
+Científicas se denomina:
+A) IGN-ES.
+B) GridIris.
+C) ES-NGI.
+D) GridSpain.
+77. Dentro del sistema de ficheros de dispositivos de Linux, el ratón se considera un dispositivo:
+A) De caracteres.
+B) De bloques.
+C) Especial de bloques.
+D) Señalador.
+78. El comando en Linux para eliminar un directorio con archivos es:
+A) rmdir nombredirectorio
+B) rm -d nombredirectorio
+C) rm -rf nombredirectorio
+D) rmdir -a nombredirectorio
+79. Cuál de las siguientes afirmaciones es CORRECTA en Linux en un fichero con los permisos
+rwxrw-r-x:
+A) El usuario y el grupo al que pertenece pueden ejecutar el fichero.
+B) Los usuarios que no pertenecen al grupo pueden ejecutar el fichero.
+C) Los usuarios que no pertenecen al grupo pueden escribir en el fichero.
+D) Cualquier usuario puede escribir en el fichero.
+80. El comando CORRECTO para crear una copia de seguridad comprimida de todos los
+directorios y archivos de /home es:
+A) tar -czf backup.tar.gz /home
+B) tar -czf /home backup.tar.gz
+C) tar -cbf backup.tar.gz /home
+D) tar -cbf /home backup.tar.gz 
+
+81. En un sistema POSIX la señal para que un proceso termine de forma correcta es:
+A) SIGKILL.
+B) SIGTERM.
+C) SIGQUIT.
+D) SIGEND.
+82. El entorno gráfico de escritorio que proporciona KDE se denomina:
+A) GTK Desktop.
+B) Plasma Desktop.
+C) Qt Desktop.
+D) Graphical KDE.
+83. El lugar donde se guarda información acerca de todos los datos que forman la BD, su
+descripción y la de los objetos que la forman, se denomina:
+A) Almacén de datos.
+B) Repositorio de datos.
+C) Diccionario de datos.
+D) Colección de datos.
+84. El SGBD debe garantizar la transferencia de los datos desde el nivel interno al nivel externo, a
+este proceso se llama transformación de datos o mapeo. ¿Cuál de las siguientes NO es una
+transformación válida?
+A) Transformación conceptual/interna.
+B) Transformación externa/conceptual.
+C) Transformación interna/externa.
+D) Transformación externa/externa.
+85. ¿Cuál de los siguientes NO es un modelo de datos, principio de organización que especifica
+mecanismos particulares para guardar y recuperar datos?
+A) Modelo relacional.
+B) Modelo jerárquico.
+C) Modelo de objetos.
+D) Modelo de clases.
+86. Las formas normales (FN) en las que se apoyan las dependencias funcionales son:
+A) 1FN, 2FN, 3FN y la FN de Boyce-Codd (FNBC).
+B) 1FN, 2FN y 3FN.
+C) 2FN, 3FN, 4FN y la FN de Boyce-Codd (FNBC).
+D) 4FN, FNBC y la FN Multievaluada.
+
+87. ¿Cuál de las siguientes sentencias acerca de las vistas en SQL es FALSA?
+A) Las vistas son creadas con una expresión de consulta sobre otras tablas y/o vistas.
+B) Las vistas son utilizadas para describir los diferentes esquemas externos.
+C) Imposibilidad de cambiar el nombre de las columnas utilizadas en la expresión de consulta que
+crea la vista.
+D) Las vistas no existen realmente como conjunto de valores almacenados en la base de datos.
+88. ¿Qué sintaxis SQL utilizaremos para otorgar los privilegios de SELECT, UPDATE y DELETE
+para todos los usuarios con el rol medicos sobre la tabla pacientes?
+A) GRANT SELECT, UPDATE, DELETE ON pacientes TO medicos
+B) ALLOW SELECT, UPDATE, DELETE ON pacientes TO medicos
+C) ALLOW SELECT, UPDATE, DELETE TO pacientes FROM medicos
+D) GRANT SELECT, UPDATE, DELETE TO pacientes FROM medicos
+89. El subconjunto de datos de un Almacén de Datos se denomina:
+A) Data Warehouse.
+B) OLAP.
+C) Data Mart.
+D) Data Mining.
+90. Indicar cuál de los siguientes sistemas OLAP NO existe:
+A) ROLAP.
+B) COLAP.
+C) MOLAP.
+D) HOLAP.
+91. El objetivo principal del Data Mining es:
+A) La recolección de datos.
+B) La interpretación de los resultados.
+C) La extracción de patrones.
+D) La preparación de la información.
+92. Según la Workflow Management Coalition (WfMC) ¿cuál de las siguientes funciones NO es
+característica de un Workflow?
+A) Funciones de Control de Procesos en Tiempo de ejecución (Run-time Process Control Functions).
+B) Interacciones de Actividad en Tiempo de ejecución (Run-time Activity Interactions).
+C) Distribución e Interfaces del Sistema (Distribution & System Interfaces).
+D) Lanzamiento de Procesos Programados (Scheduled Release Process).
+
+93. El Servicio de Representación de Workflow (Workflow Enactment Service) según la Workflow
+Management Coalition (WfMC) se encarga de:
+A) Interpretar la descripción de procesos y controlar las diferentes instancias de los procesos,
+secuencia de actividades, añadir elementos a la lista de trabajo de los usuarios, e invocar las
+aplicaciones necesarias.
+B) El modelado y diseño de los procesos, el cual puede ser interpretado en tiempo de ejecución por el
+o los motores de Workflow.
+C) La definición de los mecanismos requeridos por los desarrolladores de productos Workflow para
+implementar la comunicación de un motor Workflow con otros.
+D) La interacción entre los participantes del flujo de trabajo y el servicio de lanzamiento de flujo de
+trabajo.
+94. De las siguientes afirmaciones sobre XPDL seleccione la INCORRECTA:
+A) Permite escribir especificaciones de procesos Workflow de manera estandarizada.
+B) Permite una representación gráfica de los procesos incluyendo coordenadas X e Y para cada nodo
+implementado.
+C) Proporciona una notación gráfica para facilitar la comunicación humana entre usuarios.
+D) Es un lenguaje de definición de Workflow creado por OASIS.
+95. Indique cuál de las siguientes afirmaciones es VERDADERA:
+A) En un criptosistema simétrico el conocimiento de la clave pública no permite calcular la clave
+privada.
+B) En un criptosistema de clave pública el conocimiento de la clave pública permite calcular la clave
+privada.
+C) En un criptosistema de clave privada el conocimiento de la clave pública permite calcular la clave
+privada.
+D) En un criptosistema asimétrico el conocimiento de la clave pública no permite calcular la clave
+privada.
+96. El algoritmo RSA es un algoritmo:
+A) De triple clave.
+B) Asimétrico.
+C) De clave privada.
+D) Simétrico.
+97. El algoritmo DES:
+A) Es un algoritmo de cifrado asimétrico que codifica bloques de 64 bits empleando claves de 32 bits,
+con una permutación al principio y otra al final del proceso.
+B) Es un algoritmo de cifrado por bloques que codifica bloques de 54 bits, y su estructura consta de
+16 etapas.
+C) Es un algoritmo de cifrado simétrico cuya estructura es una variación de la red de Feistel.
+D) Es un algoritmo de cifrado de flujo que codifica flujos de 64 bits, empleando una clave de 64,
+aunque sólo 56 son utilizados. Los 8 bits restantes comprueban la paridad.
+
+98. ¿Cómo se denomina el módulo criptográfico necesario para poder operar con el DNI
+electrónico en un entorno UNIX?
+A) Cryptographic Service Provider (CSP).
+B) PKCS#11.
+C) PGP.
+D) Smart Card Mini-Driver.
+99. En relación con X.500, indique cuál de las siguientes afirmaciones es FALSA:
+A) Cuando la información requerida no se encuentra en el DSA, éste puede devolver una respuesta
+con una referencia que contiene la dirección de otro DSA que soporta dicha información.
+B) Cuando la información requerida no se encuentra en el DSA, éste puede obtener de otros DSA del
+sistema dicha información para que posteriormente sea enviada de forma directa al DUA que la
+solicitó originalmente.
+C) El Protocolo de Acceso al Directorio (DAP) define el intercambio de peticiones y respuestas entre
+un DUA y un DSA.
+D) El Protocolo del Sistema de Directorio (DSP) define el intercambio de peticiones y respuestas
+entre dos DUAs.
+100. Indique cuál de las siguientes afirmaciones relacionadas con LDAP es CIERTA:
+A) Sus siglas responden a Low Directory Access Protocol.
+B) Emplea el modelo OSI en lugar de TCP/IP.
+C) Su modelo funcional consta de un conjunto de operaciones divididas en 2 grupos: operaciones de
+consulta (interrogation operations) y operaciones de actualización (update operations).
+D) Es un protocolo que permite el acceso a servicios de directorio basados en X.500.
+101. ¿Qué es MAGERIT?
+A) Es la Metodología de Análisis y Gestión de Riesgos de los Sistemas de Información creada por el
+CSAE.
+B) Es la Metodología de Análisis, Gestión, Especificación, Resolución, Implementación y Tratamiento
+de Cortafuegos elaborada por la ISO.
+C) Es un algoritmo de cifrado parasimétrico, que en lugar de utilizar una función hash, emplea una
+triple clave privada.
+D) Es un protocolo de cifrado de datos a nivel de la capa de transporte.
+
+102. Dada la siguiente tabla correspondiente a las reglas de filtrado de un cortafuegos donde el
+orden de aplicación de las reglas es descendente, indique cuál de las siguientes afirmaciones
+es FALSA:
+A) Todo el tráfico desde la red 158.43.0.0 será detenido.
+B) Todo el tráfico hacia la red 195.53.22.0 será detenido.
+C) Todo el tráfico desde la red 158.42.0.0 hacía la red 193.22.34.0 será detenido.
+D) Todo el tráfico desde la red 158.41.0.0 será detenido.
+103. Indique cuál de las siguientes afirmaciones relacionadas con IPsec es FALSA:
+A) IPv6 incluye explícitamente la posibilidad de utilizarlo.
+B) Puede operar en modo túnel o en modo transporte.
+C) El protocolo AH proporciona confidencialidad.
+D) El protocolo ESP proporciona autenticación.
+104. ¿Cuál de los siguientes modelos de ciclo de vida NO se considera un modelo tradicional?
+A) Modelo en espiral.
+B) Modelo en cascada.
+C) Modelo de desarrollo incremental.
+D) Modelo de prototipado evolutivo.
+105. Los valores originales de la programación extrema son:
+A) Simplicidad, comunicación, retroalimentación y coraje.
+B) Simplicidad, comunicación, retroalimentación y respeto.
+C) Simplicidad, comunicación, retroalimentación y mantenimiento.
+D) Comunicación, retroalimentación, mantenimiento y pruebas.
+106. De las siguientes opciones ¿cuál es una técnica de validación de requerimientos?
+A) Entorno de Bucles Adaptativo.
+B) Sesiones JDA.
+C) Construcción de Prototipos.
+D) Casos de Uso.
+
+107. Los problemas de obtención de requisitos que indican el cambio de las necesidades del
+usuario a lo largo del proyecto son:
+A) Problemas de Volatilidad.
+B) Problemas de Comprensión.
+C) Problemas de Alcance.
+D) Problemas de Entendimiento.
+108. De las siguientes opciones ¿Cuál NO es un principio del manifiesto Ágil?
+A) Los responsables de negocio y los desarrolladores trabajan juntos de forma cotidiana durante todo
+el proyecto.
+B) El software funcionando es la medida principal de progreso.
+C) La atención continua a la excelencia técnica y al buen diseño mejora la agilidad.
+D) Trazar un camino al principio y seguirlo hasta el final es esencial.
+109. Indique cuál de las siguientes opciones es una técnica asociada al Modelado de Funciones del
+Sistema:
+A) Diagrama de Flujo de Datos.
+B) Modelo Entidad-Relación.
+C) Diagrama de Estructura de Datos.
+D) Diagrama Sensorial.
+110. En el modelo Entidad-Relación la definición “Número máximo de instancias de cada entidad
+que pueden participar en una relación” se refiere a:
+A) Restricción semántica.
+B) Tipo de correspondencia.
+C) Grado de la relación.
+D) Restricción de usuario.
+111. ¿Cuál de las siguientes opciones NO es una técnica del Análisis Estructurado?
+A) Diagrama de Flujos de Datos.
+B) Diagrama de Transición de Estados.
+C) Diccionario de Entidades Externas.
+D) Diagrama Entidad-Relación.
+112. ¿Cuál de las siguientes opciones es CORRECTA?
+A) Tom DeMarco en la década de los 50 escribió “Análisis Estructurado” donde mejoraba los
+principios del análisis de software.
+B) Ed Yourdon creó una versión mejorada de Análisis Estructurado, a la que llamó Análisis
+Estructurado Moderno.
+C) Ward y Mellor son los padres del Análisis Estructurado.
+D) Richard Stallman creó los Diagramas de Flujo de Datos, muy útiles en el Análisis Estructurado.
+
+113. Los componentes de un Diagrama de Flujo de Datos son:
+A) Procesos, Casos de Uso, Entidades Externas, Superentidades, Diccionario.
+B) Procesos, Almacenes de Datos, Flujos de Datos, Entidades Externas.
+C) Almacenes de Datos, Procesos, Diagramas de Contexto, Entidades.
+D) Procesos, Bases de Datos, Relaciones, Flujos de Datos.
+114. En la Programación Orientada a Objetos ¿cuál es la diferencia entre Clase y Objeto?
+A) No hay diferencia.
+B) Una clase es una abstracción que representa a un conjunto de objetos con un comportamiento e
+interfaz común. Y un objeto es una instancia de una clase.
+C) Las clases son las propiedades de los objetos.
+D) Un objeto es una abstracción que representa a un conjunto de clases con un comportamiento e
+interfaz común. Y una clase es una instancia de un objeto.
+115. ¿Cuál de las siguientes opciones NO es una característica de CORBA?
+A) Tecnología propietaria de Microsoft.
+B) Independencia en el lenguaje de programación y sistema operativo.
+C) Transparencia de distribución.
+D) Transparencia de localización.
+116. ¿Qué es el centro de transacción en un DFD?
+A) El diagrama de contexto del DFD.
+B) El proceso inicial del DFD más expandido.
+C) El proceso desde el que parten los posibles caminos de información.
+D) La entidad externa desde la que manan muchos caminos alternativos.
+117. ¿Cuál de los siguientes elementos NO forma parte de una Red de Petri?
+A) Lugar.
+B) Transición.
+C) Testimonio.
+D) Testigo
+
+118. De los siguientes componentes, ¿cuál NO pertenece al módulo FI (CONTABILIDAD
+FINANCIERA o GESTIÓN FINANCIERA) de SAP?
+A) GL. (Libro Mayor).
+B) AP. (Acreedores).
+C) AR. (Deudores).
+D) CM. (Gestión de Caja).
+119. ¿Cuáles son las cuatro etapas o fases del modelo de Gibson y Nolan para describir la
+asimilación de las Tecnologías de la Información en las empresas?
+A) Iniciación, Expansión, Formalización y Madurez.
+B) Iniciación, Formalización, Seguimiento y Madurez.
+C) Iniciación, Mantenimiento, Madurez y Decadencia.
+D) Expansión, Formalización, Madurez y Decadencia.
+120. ¿Cuántas tareas se definen dentro de la actividad “ASI 2. Establecimiento de Requisitos” en
+Métrica versión 3?
+A) 4.
+B) 2.
+C) 5.
+D) Ninguna.
+121. ¿Cuál de las siguientes sentencias NO es cierta del modelo cliente/servidor?
+A) Permite que la información se procese cerca de donde se ha generado.
+B) El crecimiento del hardware puede ser gradual.
+C) Facilita el uso de interfaces gráficas de usuario y aplicaciones multimedia.
+D) El software distribuido es más fácil de probar y de depurar errores.
+122. ¿Qué es SAML?
+A) Un estándar abierto que define un esquema para el intercambio de datos de autenticación y
+autorización.
+B) Un servicio proveedor de identidades.
+C) Un protocolo para la verificación de identidades.
+D) Un software de definición de autoridades.
+123. DICOM es un estándar utilizado en entornos médicos para:
+A) La clasificación de enfermedades.
+B) La clasificación de la historia clínica según patologías.
+C) El intercambio, visualización, almacenamiento, impresión y transmisión de pruebas médicas.
+D) La clasificación de medicamentos según su eficacia.
+
+124. En ITIL v3, las 5 fases del Ciclo de Vida del Servicio son:
+A) Estrategia del Servicio, Diseño del Servicio, Transición del Servicio, Operación del Servicio y
+Mejora Continua del Servicio.
+B) Diseño del Servicio, Análisis del Servicio, Transición del Servicio, Implementación del Servicio y
+Monitorización Continua del Servicio.
+C) Diseño del Servicio, Análisis del Servicio, Implementación del Servicio, Monitorización del Servicio
+y Aceptación del Servicio.
+D) Estudio de Viabilidad del Servicio, Análisis del Servicio, Diseño del Servicio, Construcción del
+Servicio e Implantación y Aceptación del Servicio.
+125. ¿Cuál de las siguientes NO es una tecnología LAN?:
+A) Ethernet.
+B) FDDI.
+C) ATM.
+D) ADSL.
+126. En la DS (Arquitectura de Servicios Diferenciados o Differenciated Services) los paquetes se
+etiquetan para un tratamiento de QoS (Calidad de Servicio) utilizando:
+A) El campo tipo de servicio de la cabecera IPv4, o el campo tipo de servicio de la cabecera IPv6.
+B) El campo clase de tráfico de la cabecera IPv4 o el campo clase de tráfico de la cabecera IPv6.
+C) El campo tipo de servicio de la cabecera IPv4 o el campo clase de tráfico de la cabecera IPv6.
+D) El campo clase de tráfico de la cabecera IPv4 o el campo tipo de servicio de la cabecera IPv6.
