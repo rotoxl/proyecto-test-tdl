@@ -2286,8 +2286,7 @@ body.ios #main_container{height:100%;}
 		background-color: #86e2d5;
 
 		.swipeview-active{
-			visibility: visible;
-
+			visibility: visible !important;
 		}
 
 		.slide-img{
