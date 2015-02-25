@@ -432,7 +432,7 @@ Controlador.prototype.init=function(){
 		this.loginEnMiNubeSinToken(obj)
 		this.userDataReceived(obj)
 		}
-	else if (sr.indexOf('noHayDatos')>=0){
+	else if (ss.indexOf('noHayDatos')>=0){
 		var s=get('tapp37_userdata')
 		this.cache.usuario=JSON.parse(s) || {
 								cd_usuario: 'desconocido',
@@ -445,6 +445,22 @@ Controlador.prototype.init=function(){
 		else
 			this.offline=false
 		this.cache.usuario.loginExpires=null
+		this.cache.usuario.loginEnMiNube=false
+		this.actualizaDomUsuario()
+		app.cargaVistaInicio()
+		}
+	else if (ss.indexOf('noHayUsuario')>=0){
+		var id=(isPhone()?device.id:Math.random())
+
+		this.cache.usuario={	cd_usuario:'anónimo',
+								email:'anónimo@ejemplo.com',
+								given_name: 'Anónimo', family_name: 'Anónimo',
+								picture:'./images/avatar_default.png',
+								}
+		var obj={email:id, family_name:'anónimo', given_name:'anónimo', picture:''}
+		this.loginEnMiNubeSinToken(obj)
+		this.cache.usuario.loginExpires=null
+		this.cache.usuario.loginEnMiNube=false
 		this.actualizaDomUsuario()
 		app.cargaVistaInicio()
 		}
@@ -669,13 +685,14 @@ Controlador.prototype.getRespuestasLocales=function(){
 	return ret
 	}
 /////
-Controlador.prototype.loginEnMiNubeSinToken=function(obj){
+Controlador.prototype.loginEnMiNubeSinToken=function(obj, accion){
+	accion=accion || 'loginNativo'
 	var self=this
 	
 	var desfaseUTC=new Date().getTimezoneOffset()/-60
     var tz=(desfaseUTC<0?'-':'+')+lpad(desfaseUTC, '0', 2)+':00'
 
-	jQuery.post(this.config.url, {accion:'loginNativo', datosUsu:JSON.stringify(obj), tz:tz}).success(
+	jQuery.post(this.config.url, {accion:accion, datosUsu:JSON.stringify(obj), tz:tz}).success(
 		function(data){
 			var datos=xeval(data)
 			
@@ -738,7 +755,8 @@ Controlador.prototype.actualizaDomUsuario=function(){
 		jQuery('.liVistaUploadTest').removeClass('hidden')
 	}
 Controlador.prototype.logout=function(){
-	//if (googleMobileApi) googleMobileApi.disconnectUser(app.cache.token)
+	jQuery.post(app.config.url, {accion:'logout'}).success(function(data){})
+
 	if (isPhone())
 		window.plugins.googleplus.disconnect()
 	else 
@@ -3275,8 +3293,13 @@ VistaTienda.prototype._generaDomTest=function(test, j, cat){
 		loTengo=buscaFilas(app.cache.testLocales, {cd_test:test.cd_test}).length
 
 		if (comprado || loTengo){
-			if (test.precio>0 && test.lotengo)
-				domPrecio=creaObjProp('span', {className:'col-xs-8  bl precio', texto:'COMPRADO'})	
+			
+			if (test.precio>0 && test.lotengo){
+				var texto='COMPRADO'
+				if (!app.cache.usuario.loginEnMiNube)
+					texto='INSTALADA'
+				domPrecio=creaObjProp('span', {className:'col-xs-8  bl precio', texto:texto})	
+			}
 			else if (loTengo)
 				domPrecio=creaObjProp('span', {className:'col-xs-8 loTengo', texto:'INSTALADA'})
 			else 
@@ -4307,7 +4330,19 @@ VistaSocial.prototype.setOffline=function(v){
 VistaSocial.prototype.getData=function(){
 	var self=this
 
-	if (app.offline){
+	if (!app.cache.usuario.loginEnMiNube){
+		this.domBody.find('.row.head').remove()
+		this.domGrupos.empty()
+			.removeClass('cargando')
+			.addClass('noHayUsuario')
+			.append( 
+				this.admonition('No te has identificado', 
+							'Lamentablemente ninguno de tus amigos podrá encontrarte mientras sigas así. Identificate para empezar a crear grupos de estudio', 
+							'fa-user-secret fa-4x')
+				)
+		return
+		}
+	else if (app.offline){
 		self.grupos=[]
 		if (app.vistaActiva==self) self.pintaGrupos(self.grupos)
 		return

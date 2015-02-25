@@ -10,7 +10,7 @@ $REQ=($getopost == 'GET'?INPUT_GET:INPUT_POST);
 require_once('metadatos.php'); 
 try{
     @session_start();
-    if ($accion=='login' || $accion=='loginNativo'){
+    if ($accion=='login' || $accion=='loginNativo' || $accion=='noHayUsuario'){
         }
     else {
         $usu=new Usuario();//saca los datos de la sesión
@@ -34,7 +34,7 @@ $ret=null;
 global $showSQL;
 
 $json_order=null;
-try {
+// try {
     switch ($accion) {
         case 'getPortadaTienda':
             $cd_usuario=$usu->cd_usuario;
@@ -336,15 +336,15 @@ try {
         default:
             trigger_error('¡Accion '. $accion . ' no implementada!');
         }
-    }
-catch (Exception $ee){
-    $ret=array('retorno'=>0, 
-                'error'=>1, 
-                'msgError'=>$ee->getMessage(),
-                'sql' => $conn->arrResultSet,
-                );
-    echo json_encode($ret);
-    }
+//     }
+// catch (Exception $ee){
+//     $ret=array('retorno'=>0, 
+//                 'error'=>1, 
+//                 'msgError'=>$ee->getMessage(),
+//                 'sql' => $conn->arrResultSet,
+//                 );
+//     echo json_encode($ret);
+//     }
 
 function fnGetMisGrupos($cd_usuario, $from=null){
     global $md;

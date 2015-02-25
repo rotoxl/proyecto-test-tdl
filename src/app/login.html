@@ -31,7 +31,7 @@
 	<section>
 		<div class="screens" style="display:none" ></div>
 
-		<!-- <a href="#" style="display:none" class="btn-mobile btn btn-google btn-info btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a> -->
+		<a style="display:none" onclick="loginSinUsuario()" class="btn-no-user btn btn-success btn-rounded"><i class="fa fa-user-secret"></i> Explorar</a> 
 
 		<span id="signinButton" style="display:none" onclick="googleWebApi.signIn()" class="btn btn-web btn-google btn-rounded btn-danger" >
 			<span
@@ -41,13 +41,13 @@
 			    data-cookiepolicy="single_host_origin"
 			    data-scope="https://www.googleapis.com/auth/plus.login" >
 
-			    <i class="fa fa-google-plus"></i>Login con Google</a>
+			    <i class="fa fa-google-plus"></i>Login </a>
 		  	</span>
 		</span>
 
 		<a style="display:none" onclick="loginSinConexion()" class="btn-no-connection btn btn-warning btn-rounded"><i class="fa fa-sign-in"></i> Entrar</a>
 
-		<a href="#" style="display:none" onclick="nativeApi.doLogin()" class="btn-native btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login con Google</a>
+		<a href="#" style="display:none" onclick="nativeApi.doLogin()" class="btn-native btn btn-google btn-primary btn-rounded"><i class="fa fa-google-plus"></i>Login </a>
 
 		
 		<p class="status"></p>
@@ -93,7 +93,10 @@
 
 			}
 		function loginSinConexion(){
-			document.location.replace('./prod.html#noHayDatos')
+			document.location.replace('./prod.html?noHayDatos')
+			}
+		function loginSinUsuario(){
+			document.location.replace('./prod.html?noHayUsuario')
 			}
 		function backButton(){
 			navigator.app.exitApp()

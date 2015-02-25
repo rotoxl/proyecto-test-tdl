@@ -59,17 +59,23 @@ body.login {
       background-position: center center;
       background-repeat: no-repeat; }
     body.login > section .btn {
-      width: 220px;
+      width: 150px;
       margin: 0 auto;
       display: inherit;
       padding: 10px 12px;
       font-size: 18px; }
+      body.login > section .btn.btn-no-user {
+        float: left;
+        margin-left: 5px; }
+      body.login > section .btn.btn-web, body.login > section .btn.btn-native {
+        float: right;
+        margin-right: 5px; }
     body.login > section p.status {
       margin: 15px;
       font-size: 16px;
       text-align: center; }
       body.login > section p.status.sinRegistroPrevio {
-        margin-top: 50px;
+        margin-top: 70px;
         margin-left: 15%;
         margin-right: 15%;
         font-size: 12px;
@@ -868,6 +874,9 @@ article.card, article.pack {
     overflow: auto; }
   #content .vista.vistaSocial {
     background-color: #25313e; }
+    #content .vista.vistaSocial .noHayUsuario .admonition {
+      margin-top: 20% !important;
+      color: white !important; }
     #content .vista.vistaSocial .admonition {
       margin-top: 0;
       color: rgba(245, 245, 245, 0.6); }
