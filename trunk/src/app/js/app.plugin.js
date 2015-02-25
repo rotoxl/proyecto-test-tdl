@@ -1,4 +1,5 @@
 var authWindow=null
+var txtSinRegistroPrevio='<i class="fa fa-asterisk"></i> Sin registro previo, sólo utilizamos tu correo para que tus amigos te encuentren'
 
 !function (jQuery) {
 
@@ -22,7 +23,7 @@ var authWindow=null
 ////
 var googleWebApi={
     prepareLogin:function(){
-        var btn=jQuery('.btn-web').show()
+        var btn=jQuery('.btn-web, .btn-no-user').show()
         btn.find('.g-signin').attr('data-clientid', options.web.client_id)
 
         var $throbber=jQuery('.login .throbber')
@@ -32,7 +33,7 @@ var googleWebApi={
         $throbber.hide()
         $img.show()
         $loginStatus
-            .html('<i class="fa fa-asterisk"></i> Sin registro previo, sólo necesitamos saber tu correo electrónico y otra información básica')
+            .html(txtSinRegistroPrevio)
             .addClass('sinRegistroPrevio')
         },
     getURL:function(data){
@@ -150,13 +151,13 @@ var nativeApi={
     prepareLogin:function(){
         jQuery('.login > section').show()
 
-        var $loginButton = jQuery('.login a.btn-native')
+        var $loginButton = jQuery('.login a.btn-native, .login a.btn-no-user')
         var $loginStatus = jQuery('.login p.status')
         var $throbber=jQuery('.login .throbber')
         var $img=jQuery('.login .screens')
 
         $loginStatus
-            .html('<i class="fa fa-asterisk"></i> Sin registro previo, sólo necesitamos saber tu correo electrónico y otra información básica')
+            .html(txtSinRegistroPrevio)
             .addClass('sinRegistroPrevio')
 
         $loginButton.fadeIn()
